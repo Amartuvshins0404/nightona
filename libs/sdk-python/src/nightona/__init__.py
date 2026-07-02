@@ -28,13 +28,6 @@ if TYPE_CHECKING:
     )
     from .common.code_interpreter import ExecutionError, ExecutionResult, OutputMessage
     from .common.computer_use import ScreenshotOptions, ScreenshotRegion
-    from .common.nightona import (
-        CodeLanguage,
-        CreateSandboxBaseParams,
-        CreateSandboxFromImageParams,
-        CreateSandboxFromSnapshotParams,
-        NightonaConfig,
-    )
     from .common.errors import (
         NightonaAuthenticationError,
         NightonaAuthorizationError,
@@ -57,6 +50,13 @@ if TYPE_CHECKING:
     )
     from .common.image import Image
     from .common.lsp_server import LspCompletionPosition, LspLanguageId
+    from .common.nightona import (
+        CodeLanguage,
+        CreateSandboxBaseParams,
+        CreateSandboxFromImageParams,
+        CreateSandboxFromSnapshotParams,
+        NightonaConfig,
+    )
     from .common.process import CodeRunParams, ExecuteResponse, ExecutionArtifacts, OutputHandler, SessionExecuteRequest
     from .common.pty import PtySize
     from .common.sandbox import ListSandboxesQuery, Resources

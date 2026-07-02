@@ -14,7 +14,7 @@ RSpec.describe 'Nightona common models' do
   it 'stores execute response attributes' do
     artifacts = Nightona::ExecutionArtifacts.new('stdout', ['chart'])
     response = Nightona::ExecuteResponse.new(exit_code: 0, result: 'stdout', artifacts: artifacts,
-                                            additional_properties: { ok: true })
+                                             additional_properties: { ok: true })
 
     expect(response.exit_code).to eq(0)
     expect(response.result).to eq('stdout')

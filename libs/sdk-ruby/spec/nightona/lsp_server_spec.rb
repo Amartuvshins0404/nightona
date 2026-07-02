@@ -79,7 +79,7 @@ RSpec.describe Nightona::LspServer do
 
       result = lsp.completions(path: '/workspace/main.py',
                                position: Nightona::LspServer::Position.new(line: 10,
-                                                                          character: 5))
+                                                                           character: 5))
 
       expect(result).to eq(completions)
       expect(toolbox_api).to have_received(:completions) do |req|

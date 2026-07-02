@@ -46,7 +46,7 @@ Common variables:
 - **Ruby SDK** — `Nightona::Config` in `libs/sdk-ruby/lib/nightona/config.rb` (covers runtime env plus `.env` / `.env.local`).
 - **Java SDK** — `io.nightona.sdk.Nightona`'s default-config factory reads `NIGHTONA_API_KEY`, `NIGHTONA_API_URL`, and `NIGHTONA_TARGET` with `DAYTONA_*` fallbacks (`envWithFallback` in `Nightona.java`).
 
-**Known limitation — `.env` files read by Go binaries**: the CLI (`godotenv.Load()` in `apps/cli/main.go`) and the proxy (`godotenv.Overload(...)` in `apps/proxy/cmd/proxy/config/config.go`) load `.env` files *after* the alias shim has already run. A `DAYTONA_*` key that exists **only in a `.env` file** (not in the process environment) is therefore **not** mirrored to `NIGHTONA_*` for those two binaries. Use the `NIGHTONA_*` name in `.env` files, or export the variable in the environment. Setting both names is safe in all components.
+**Known limitation — `.env` files read by Go binaries**: the CLI (`godotenv.Load()` in `apps/cli/main.go`) and the proxy (`godotenv.Overload(...)` in `apps/proxy/cmd/proxy/config/config.go`) load `.env` files _after_ the alias shim has already run. A `DAYTONA_*` key that exists **only in a `.env` file** (not in the process environment) is therefore **not** mirrored to `NIGHTONA_*` for those two binaries. Use the `NIGHTONA_*` name in `.env` files, or export the variable in the environment. Setting both names is safe in all components.
 
 ## CLI configuration directory
 

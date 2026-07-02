@@ -61,7 +61,6 @@ lib/nightona_api_client/models/create_session_request.rb
 lib/nightona_api_client/models/create_snapshot.rb
 lib/nightona_api_client/models/create_user.rb
 lib/nightona_api_client/models/create_volume.rb
-lib/nightona_api_client/models/nightona_configuration.rb
 lib/nightona_api_client/models/display_info_response.rb
 lib/nightona_api_client/models/docker_registry.rb
 lib/nightona_api_client/models/download_files.rb
@@ -111,6 +110,7 @@ lib/nightona_api_client/models/mouse_move_response.rb
 lib/nightona_api_client/models/mouse_position.rb
 lib/nightona_api_client/models/mouse_scroll_request.rb
 lib/nightona_api_client/models/mouse_scroll_response.rb
+lib/nightona_api_client/models/nightona_configuration.rb
 lib/nightona_api_client/models/oidc_config.rb
 lib/nightona_api_client/models/organization.rb
 lib/nightona_api_client/models/organization_invitation.rb

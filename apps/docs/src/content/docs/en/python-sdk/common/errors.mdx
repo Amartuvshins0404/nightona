@@ -201,9 +201,9 @@ Map an HTTP status code to the corresponding NightonaError subclass.
 
 ```python
 def create_nightona_error(message: str,
-                         status_code: int | None = None,
-                         headers: Mapping[str, Any] | None = None,
-                         error_code: str | None = None) -> NightonaError
+                          status_code: int | None = None,
+                          headers: Mapping[str, Any] | None = None,
+                          error_code: str | None = None) -> NightonaError
 ```
 
 Create the appropriate NightonaError subclass from structured error metadata.

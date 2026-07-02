@@ -12,7 +12,9 @@
     "url": "git+https://github.com/nightona-co/nightona.git"
   },
   "author": "Daytona Platforms Inc.",
-  "contributors": ["Nightona contributors <amaraaamka0404@gmail.com>"],
+  "contributors": [
+    "Nightona contributors <amaraaamka0404@gmail.com>"
+  ],
   "license": "Apache-2.0",
   "dependencies": {
     "@nightona-co/sdk": "^0.163.0",

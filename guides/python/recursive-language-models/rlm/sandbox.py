@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any
 
 from rlm.budget import SandboxBudget
 
-from nightona import CreateSandboxFromImageParams, Nightona, NightonaConfig, Image
+from nightona import CreateSandboxFromImageParams, Image, Nightona, NightonaConfig
 
 if TYPE_CHECKING:
     from nightona import Sandbox

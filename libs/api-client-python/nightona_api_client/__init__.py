@@ -88,7 +88,6 @@ if TYPE_CHECKING:
     from nightona_api_client.models.create_snapshot import CreateSnapshot
     from nightona_api_client.models.create_user import CreateUser
     from nightona_api_client.models.create_volume import CreateVolume
-    from nightona_api_client.models.nightona_configuration import NightonaConfiguration
     from nightona_api_client.models.display_info_response import DisplayInfoResponse
     from nightona_api_client.models.docker_registry import DockerRegistry
     from nightona_api_client.models.download_files import DownloadFiles
@@ -138,6 +137,7 @@ if TYPE_CHECKING:
     from nightona_api_client.models.mouse_position import MousePosition
     from nightona_api_client.models.mouse_scroll_request import MouseScrollRequest
     from nightona_api_client.models.mouse_scroll_response import MouseScrollResponse
+    from nightona_api_client.models.nightona_configuration import NightonaConfiguration
     from nightona_api_client.models.oidc_config import OidcConfig
     from nightona_api_client.models.organization import Organization
     from nightona_api_client.models.organization_invitation import OrganizationInvitation
@@ -303,7 +303,6 @@ _DYNAMIC_IMPORTS: dict[str, str] = {
     "CreateSnapshot": "nightona_api_client.models.create_snapshot",
     "CreateUser": "nightona_api_client.models.create_user",
     "CreateVolume": "nightona_api_client.models.create_volume",
-    "NightonaConfiguration": "nightona_api_client.models.nightona_configuration",
     "DisplayInfoResponse": "nightona_api_client.models.display_info_response",
     "DockerRegistry": "nightona_api_client.models.docker_registry",
     "DownloadFiles": "nightona_api_client.models.download_files",
@@ -353,6 +352,7 @@ _DYNAMIC_IMPORTS: dict[str, str] = {
     "MousePosition": "nightona_api_client.models.mouse_position",
     "MouseScrollRequest": "nightona_api_client.models.mouse_scroll_request",
     "MouseScrollResponse": "nightona_api_client.models.mouse_scroll_response",
+    "NightonaConfiguration": "nightona_api_client.models.nightona_configuration",
     "OidcConfig": "nightona_api_client.models.oidc_config",
     "Organization": "nightona_api_client.models.organization",
     "OrganizationInvitation": "nightona_api_client.models.organization_invitation",
@@ -532,7 +532,6 @@ __all__ = [
     "CreateSnapshot",
     "CreateUser",
     "CreateVolume",
-    "NightonaConfiguration",
     "DisplayInfoResponse",
     "DockerRegistry",
     "DownloadFiles",
@@ -582,6 +581,7 @@ __all__ = [
     "MousePosition",
     "MouseScrollRequest",
     "MouseScrollResponse",
+    "NightonaConfiguration",
     "OidcConfig",
     "Organization",
     "OrganizationInvitation",

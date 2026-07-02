@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime
 
-from nightona import CreateSandboxFromSnapshotParams, Nightona, FileDownloadRequest, FileUpload
+from nightona import CreateSandboxFromSnapshotParams, FileDownloadRequest, FileUpload, Nightona
 
 
 def main():

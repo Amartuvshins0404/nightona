@@ -58,7 +58,6 @@ models/create-session-request.ts
 models/create-snapshot.ts
 models/create-user.ts
 models/create-volume.ts
-models/nightona-configuration.ts
 models/display-info-response.ts
 models/docker-registry.ts
 models/download-files.ts
@@ -109,6 +108,7 @@ models/mouse-move-response.ts
 models/mouse-position.ts
 models/mouse-scroll-request.ts
 models/mouse-scroll-response.ts
+models/nightona-configuration.ts
 models/oidc-config.ts
 models/organization-invitation.ts
 models/organization-role.ts

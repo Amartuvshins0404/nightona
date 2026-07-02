@@ -8,8 +8,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from nightona.common.nightona import CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, NightonaConfig
 from nightona.common.errors import NightonaAuthenticationError, NightonaValidationError
+from nightona.common.nightona import CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, NightonaConfig
 from nightona.common.sandbox import Resources
 
 ASYNC_MODULE = "nightona._async.nightona"
@@ -445,7 +445,9 @@ class TestAsyncNightonaCreateValidation:
     async def test_negative_auto_stop_raises(self, env_with_api_key):
         nightona = _make_async_nightona()
         with pytest.raises(NightonaValidationError, match="auto_stop_interval must be a non-negative"):
-            await nightona._create(CreateSandboxFromSnapshotParams(language="python", auto_stop_interval=-1), timeout=60)
+            await nightona._create(
+                CreateSandboxFromSnapshotParams(language="python", auto_stop_interval=-1), timeout=60
+            )
 
     @pytest.mark.asyncio
     async def test_negative_auto_archive_raises(self, env_with_api_key):

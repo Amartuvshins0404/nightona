@@ -26,6 +26,9 @@ public Nightona()
 Creates a client using environment variables.
 
 Reads `NIGHTONA_API_KEY`, `NIGHTONA_API_URL`, and `NIGHTONA_TARGET`.
+For backward compatibility, the legacy `DAYTONA_API_KEY`, `DAYTONA_API_URL`,
+and `DAYTONA_TARGET` variables are used as fallbacks when the `NIGHTONA_`
+variables are unset or empty.
 
 **Throws**:
 

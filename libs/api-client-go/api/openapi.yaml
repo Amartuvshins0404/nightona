@@ -2,8 +2,8 @@ openapi: 3.0.0
 info:
   contact:
     email: amaraaamka0404@gmail.com
-    name: Nightona Platforms Inc.
-    url: https://www.daytona.io
+    name: Nightona contributors
+    url: https://github.com/nightona-co/nightona
   description: Nightona AI platform API Docs
   license:
     name: Apache-2.0

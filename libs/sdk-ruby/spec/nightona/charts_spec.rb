@@ -49,7 +49,7 @@ RSpec.describe Nightona::Charts do
     expect(chart).to be_a(Nightona::BoxAndWhiskerChart)
     expect(chart.elements.first).to eq(
       Nightona::BoxAndWhiskerData.new(label: 'latency', min: 1, first_quartile: 2, median: 3, third_quartile: 4,
-                                     max: 5, outliers: [10])
+                                      max: 5, outliers: [10])
     )
   end
 

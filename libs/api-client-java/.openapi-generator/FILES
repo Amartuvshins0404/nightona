@@ -75,7 +75,6 @@ src/main/java/io/nightona/api/client/model/CreateSessionRequest.java
 src/main/java/io/nightona/api/client/model/CreateSnapshot.java
 src/main/java/io/nightona/api/client/model/CreateUser.java
 src/main/java/io/nightona/api/client/model/CreateVolume.java
-src/main/java/io/nightona/api/client/model/NightonaConfiguration.java
 src/main/java/io/nightona/api/client/model/DisplayInfoResponse.java
 src/main/java/io/nightona/api/client/model/DockerRegistry.java
 src/main/java/io/nightona/api/client/model/DownloadFiles.java
@@ -125,6 +124,7 @@ src/main/java/io/nightona/api/client/model/MouseMoveResponse.java
 src/main/java/io/nightona/api/client/model/MousePosition.java
 src/main/java/io/nightona/api/client/model/MouseScrollRequest.java
 src/main/java/io/nightona/api/client/model/MouseScrollResponse.java
+src/main/java/io/nightona/api/client/model/NightonaConfiguration.java
 src/main/java/io/nightona/api/client/model/OidcConfig.java
 src/main/java/io/nightona/api/client/model/Organization.java
 src/main/java/io/nightona/api/client/model/OrganizationInvitation.java
@@ -276,7 +276,6 @@ src/test/java/io/nightona/api/client/model/CreateSessionRequestTest.java
 src/test/java/io/nightona/api/client/model/CreateSnapshotTest.java
 src/test/java/io/nightona/api/client/model/CreateUserTest.java
 src/test/java/io/nightona/api/client/model/CreateVolumeTest.java
-src/test/java/io/nightona/api/client/model/NightonaConfigurationTest.java
 src/test/java/io/nightona/api/client/model/DisplayInfoResponseTest.java
 src/test/java/io/nightona/api/client/model/DockerRegistryTest.java
 src/test/java/io/nightona/api/client/model/DownloadFilesTest.java
@@ -326,6 +325,7 @@ src/test/java/io/nightona/api/client/model/MouseMoveResponseTest.java
 src/test/java/io/nightona/api/client/model/MousePositionTest.java
 src/test/java/io/nightona/api/client/model/MouseScrollRequestTest.java
 src/test/java/io/nightona/api/client/model/MouseScrollResponseTest.java
+src/test/java/io/nightona/api/client/model/NightonaConfigurationTest.java
 src/test/java/io/nightona/api/client/model/OidcConfigTest.java
 src/test/java/io/nightona/api/client/model/OrganizationInvitationTest.java
 src/test/java/io/nightona/api/client/model/OrganizationRoleTest.java

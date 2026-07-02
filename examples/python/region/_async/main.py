@@ -1,7 +1,7 @@
 import asyncio
 import time
 
-from nightona import AsyncNightona, CreateSandboxFromSnapshotParams, CreateSnapshotParams, NightonaConfig, Image
+from nightona import AsyncNightona, CreateSandboxFromSnapshotParams, CreateSnapshotParams, Image, NightonaConfig
 
 
 async def main():

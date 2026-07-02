@@ -149,7 +149,7 @@ RSpec.describe Nightona::Nightona do
 
     it 'raises on negative auto stop interval' do
       params = Nightona::CreateSandboxFromSnapshotParams.new(snapshot: 'snap-1', language: :python,
-                                                            auto_stop_interval: -1)
+                                                             auto_stop_interval: -1)
 
       expect { described_class.new(config).create(params) }
         .to raise_error(Nightona::Sdk::Error, /auto_stop_interval must be a non-negative integer/)
@@ -157,7 +157,7 @@ RSpec.describe Nightona::Nightona do
 
     it 'raises on negative auto archive interval' do
       params = Nightona::CreateSandboxFromSnapshotParams.new(snapshot: 'snap-1', language: :python,
-                                                            auto_archive_interval: -1)
+                                                             auto_archive_interval: -1)
 
       expect { described_class.new(config).create(params) }
         .to raise_error(Nightona::Sdk::Error, /auto_archive_interval must be a non-negative integer/)
@@ -214,7 +214,7 @@ RSpec.describe Nightona::Nightona do
       allow(sandbox_api).to receive(:create_sandbox).and_return(build_sandbox_dto(state: 'pending'))
 
       described_class.new(config).create(Nightona::CreateSandboxFromSnapshotParams.new(snapshot: 'snap-1',
-                                                                                      language: :python))
+                                                                                       language: :python))
 
       expect(pending_sandbox).to have_received(:wait_for_sandbox_start)
     end

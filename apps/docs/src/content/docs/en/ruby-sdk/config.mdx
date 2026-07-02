@@ -225,6 +225,8 @@ def read_env(name)
 
 Reads a NIGHTONA_-prefixed environment variable using the same precedence
 as the Config initializer: runtime ENV first, then .env.local, then .env.
+For backwards compatibility, the legacy DAYTONA_-prefixed variable is used
+as a fallback at each level when the NIGHTONA_ one is not set.
 Only names starting with NIGHTONA_ are accepted.
 
 **Parameters**:

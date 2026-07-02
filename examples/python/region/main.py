@@ -1,6 +1,6 @@
 import time
 
-from nightona import CreateSandboxFromSnapshotParams, CreateSnapshotParams, Nightona, NightonaConfig, Image
+from nightona import CreateSandboxFromSnapshotParams, CreateSnapshotParams, Image, Nightona, NightonaConfig
 
 
 def main():

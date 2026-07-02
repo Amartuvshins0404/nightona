@@ -1,8 +1,8 @@
 from nightona import (
     CreateSandboxFromImageParams,
+    ExecutionError,
     Nightona,
     NightonaTimeoutError,
-    ExecutionError,
     OutputMessage,
     Resources,
     Sandbox,

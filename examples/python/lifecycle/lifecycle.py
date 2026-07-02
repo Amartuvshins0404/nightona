@@ -1,4 +1,4 @@
-from nightona import Nightona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
+from nightona import ListSandboxesQuery, Nightona, SandboxListSortDirection, SandboxListSortField, SandboxState
 
 
 def main():

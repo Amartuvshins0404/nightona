@@ -5,9 +5,6 @@ description = "Nightona Toolbox API"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
 ]
-maintainers = [
-  {name = "Nightona contributors",email = "amaraaamka0404@gmail.com"},
-]
 license = { text = "Apache-2.0" }
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Nightona Toolbox API"]

@@ -3,7 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { GetAllSnapshotsOrderEnum, GetAllSnapshotsSortEnum, PaginatedSnapshots, SnapshotDto } from '@nightona-co/api-client'
+import {
+  GetAllSnapshotsOrderEnum,
+  GetAllSnapshotsSortEnum,
+  PaginatedSnapshots,
+  SnapshotDto,
+} from '@nightona-co/api-client'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import { useApi } from '../useApi'

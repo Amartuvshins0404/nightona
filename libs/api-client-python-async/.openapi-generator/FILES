@@ -59,7 +59,6 @@ nightona_api_client_async/models/create_session_request.py
 nightona_api_client_async/models/create_snapshot.py
 nightona_api_client_async/models/create_user.py
 nightona_api_client_async/models/create_volume.py
-nightona_api_client_async/models/nightona_configuration.py
 nightona_api_client_async/models/display_info_response.py
 nightona_api_client_async/models/docker_registry.py
 nightona_api_client_async/models/download_files.py
@@ -109,6 +108,7 @@ nightona_api_client_async/models/mouse_move_response.py
 nightona_api_client_async/models/mouse_position.py
 nightona_api_client_async/models/mouse_scroll_request.py
 nightona_api_client_async/models/mouse_scroll_response.py
+nightona_api_client_async/models/nightona_configuration.py
 nightona_api_client_async/models/oidc_config.py
 nightona_api_client_async/models/organization.py
 nightona_api_client_async/models/organization_invitation.py

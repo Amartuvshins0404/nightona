@@ -3,9 +3,6 @@ name = "nightona_api_client_async"
 version = "0.0.0-dev"
 description = "Nightona"
 authors = [
-  {name = "Daytona Platforms Inc.",email = "support@daytona.com"},
-]
-maintainers = [
   {name = "Nightona contributors",email = "amaraaamka0404@gmail.com"},
 ]
 license = { text = "Apache-2.0" }

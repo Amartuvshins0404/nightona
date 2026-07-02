@@ -59,7 +59,7 @@ module Nightona
       envs = env&.empty? ? nil : env
 
       response = toolbox_api.execute_command(NightonaToolboxApiClient::ExecuteRequest.new(command:, cwd:, envs:,
-                                                                                         timeout:))
+                                                                                          timeout:))
       result = response.result || ''
       ExecuteResponse.new(
         exit_code: response.exit_code,
@@ -183,7 +183,7 @@ module Nightona
       response = toolbox_api.session_execute_command(
         session_id,
         NightonaToolboxApiClient::SessionExecuteRequest.new(command: req.command, run_async: req.run_async,
-                                                           suppress_input_echo: req.suppress_input_echo)
+                                                            suppress_input_echo: req.suppress_input_echo)
       )
 
       SessionExecuteResponse.new(

@@ -43,7 +43,5 @@ class NightonaEnvReader:
     def _load(path: str) -> dict[str, str]:
         parsed = dotenv_values(path)
         return {
-            k: v
-            for k, v in parsed.items()
-            if (k.startswith("NIGHTONA_") or k.startswith("DAYTONA_")) and v is not None
+            k: v for k, v in parsed.items() if (k.startswith("NIGHTONA_") or k.startswith("DAYTONA_")) and v is not None
         }

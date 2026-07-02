@@ -17,7 +17,7 @@ import os
 
 from dotenv import load_dotenv
 
-from nightona import CreateSnapshotParams, Nightona, NightonaConfig, Image
+from nightona import CreateSnapshotParams, Image, Nightona, NightonaConfig
 
 OPENENV_REPO = "https://github.com/meta-pytorch/OpenEnv.git"
 SERVER_CMD = "cd /app/env && uvicorn finqa_env.server.app:app --host 0.0.0.0 --port 8000"

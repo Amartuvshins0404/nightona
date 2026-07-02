@@ -20,12 +20,6 @@ from nightona.common.charts import (
     parse_chart,
 )
 from nightona.common.computer_use import ScreenshotOptions
-from nightona.common.nightona import (
-    CodeLanguage,
-    CreateSandboxFromImageParams,
-    CreateSandboxFromSnapshotParams,
-    NightonaConfig,
-)
 from nightona.common.errors import NightonaNotFoundError, NightonaValidationError
 from nightona.common.filesystem import (
     FileDownloadErrorDetails,
@@ -38,6 +32,12 @@ from nightona.common.filesystem import (
 from nightona.common.git import GitCommitResponse
 from nightona.common.image import Image
 from nightona.common.lsp_server import LspCompletionPosition, LspLanguageId
+from nightona.common.nightona import (
+    CodeLanguage,
+    CreateSandboxFromImageParams,
+    CreateSandboxFromSnapshotParams,
+    NightonaConfig,
+)
 from nightona.common.process import (
     STDERR_PREFIX,
     STDOUT_PREFIX,

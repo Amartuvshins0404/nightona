@@ -11,8 +11,8 @@ from pathlib import Path
 import dspy
 import matplotlib.pyplot as plt
 import numpy as np
-from nightona_interpreter import NightonaInterpreter
 from dotenv import load_dotenv
+from nightona_interpreter import NightonaInterpreter
 
 load_dotenv(override=True)
 

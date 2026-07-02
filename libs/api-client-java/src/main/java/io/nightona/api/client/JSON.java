@@ -131,7 +131,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.CreateSnapshot.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.CreateUser.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.CreateVolume.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.NightonaConfiguration.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.DisplayInfoResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.DockerRegistry.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.DownloadFiles.CustomTypeAdapterFactory());
@@ -178,6 +177,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.MousePosition.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.MouseScrollRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.MouseScrollResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.NightonaConfiguration.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.OidcConfig.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.Organization.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.nightona.api.client.model.OrganizationInvitation.CustomTypeAdapterFactory());

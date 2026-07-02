@@ -155,7 +155,7 @@ RSpec.describe Nightona::Sandbox do
 
     it 'sets state to destroyed on 404' do
       allow(sandbox_api).to receive(:delete_sandbox).and_raise(NightonaApiClient::ApiError.new(code: 404,
-                                                                                              message: 'Not found'))
+                                                                                               message: 'Not found'))
 
       sandbox.delete
 
@@ -164,7 +164,7 @@ RSpec.describe Nightona::Sandbox do
 
     it 're-raises non-404 API errors' do
       allow(sandbox_api).to receive(:delete_sandbox).and_raise(NightonaApiClient::ApiError.new(code: 500,
-                                                                                              message: 'boom'))
+                                                                                               message: 'boom'))
 
       expect { sandbox.delete }.to raise_error(NightonaApiClient::ApiError)
     end

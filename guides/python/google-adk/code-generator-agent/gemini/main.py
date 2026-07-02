@@ -6,11 +6,11 @@
 import asyncio
 import logging
 
-from nightona_adk import NightonaPlugin  # pylint: disable=import-error
 from dotenv import load_dotenv
 from google.adk.agents import Agent  # pylint: disable=import-error
 from google.adk.apps import App  # pylint: disable=import-error
 from google.adk.runners import InMemoryRunner  # pylint: disable=import-error
+from nightona_adk import NightonaPlugin  # pylint: disable=import-error
 
 load_dotenv()
 

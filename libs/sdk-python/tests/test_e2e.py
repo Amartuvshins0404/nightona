@@ -14,11 +14,11 @@ import pytest
 from nightona import (
     CreateSandboxFromImageParams,
     CreateSandboxFromSnapshotParams,
-    Nightona,
     DownloadProgress,
     FileDownloadRequest,
     FileUpload,
     Image,
+    Nightona,
     PtySize,
     Sandbox,
     SessionExecuteRequest,

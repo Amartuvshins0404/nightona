@@ -17,7 +17,6 @@ import "github.com/nightona-co/nightona/libs/sdk-go/pkg/types"
 - [type CodeLanguage](<#CodeLanguage>)
 - [type CodeRunParams](<#CodeRunParams>)
 - [type CreateSnapshotParams](<#CreateSnapshotParams>)
-- [type NightonaConfig](<#NightonaConfig>)
 - [type ExecuteResponse](<#ExecuteResponse>)
 - [type ExecutionArtifacts](<#ExecutionArtifacts>)
 - [type ExecutionError](<#ExecutionError>)
@@ -33,6 +32,7 @@ import "github.com/nightona-co/nightona/libs/sdk-go/pkg/types"
 - [type GpuType](<#GpuType>)
 - [type ImageParams](<#ImageParams>)
 - [type LspLanguageID](<#LspLanguageID>)
+- [type NightonaConfig](<#NightonaConfig>)
 - [type OutputMessage](<#OutputMessage>)
 - [type PaginatedSnapshots](<#PaginatedSnapshots>)
 - [type Position](<#Position>)
@@ -114,23 +114,6 @@ type CreateSnapshotParams struct {
     Entrypoint     []string
     SkipValidation *bool
     SandboxClass   *SandboxClass
-}
-```
-
-<a name="NightonaConfig"></a>
-## type NightonaConfig
-
-NightonaConfig represents the configuration for the Nightona client. When a field is nil, the client will fall back to environment variables or defaults.
-
-```go
-type NightonaConfig struct {
-    APIKey         string
-    JWTToken       string
-    OrganizationID string
-    APIUrl         string
-    Target         string
-    OtelEnabled    bool // Enable OpenTelemetry tracing for SDK operations.
-    Experimental   *ExperimentalConfig
 }
 ```
 
@@ -336,6 +319,23 @@ const (
     LspLanguageJavaScript LspLanguageID = "javascript"
     LspLanguageTypeScript LspLanguageID = "typescript"
 )
+```
+
+<a name="NightonaConfig"></a>
+## type NightonaConfig
+
+NightonaConfig represents the configuration for the Nightona client. When a field is nil, the client will fall back to environment variables or defaults.
+
+```go
+type NightonaConfig struct {
+    APIKey         string
+    JWTToken       string
+    OrganizationID string
+    APIUrl         string
+    Target         string
+    OtelEnabled    bool // Enable OpenTelemetry tracing for SDK operations.
+    Experimental   *ExperimentalConfig
+}
 ```
 
 <a name="OutputMessage"></a>

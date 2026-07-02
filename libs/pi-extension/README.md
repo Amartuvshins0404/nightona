@@ -71,10 +71,10 @@ Or run outside a git repo to get a blank workspace.
 
 | Flag                | Description                                                         |
 | ------------------- | ------------------------------------------------------------------- |
-| `--nightona`         | Run tools inside a Nightona sandbox                                  |
+| `--nightona`        | Run tools inside a Nightona sandbox                                 |
 | `--repo <url>`      | Git repo to clone into the sandbox (defaults to the repo you're in) |
 | `--branch <name>`   | Branch to clone (defaults to your current branch)                   |
-| `--snapshot <name>` | Choose a Nightona snapshot / base image                              |
+| `--snapshot <name>` | Choose a Nightona snapshot / base image                             |
 | `--public`          | Create a public sandbox so preview URLs need no token               |
 
 #### Slash commands

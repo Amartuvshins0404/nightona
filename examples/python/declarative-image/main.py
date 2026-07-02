@@ -4,8 +4,8 @@ from nightona import (
     CreateSandboxFromImageParams,
     CreateSandboxFromSnapshotParams,
     CreateSnapshotParams,
-    Nightona,
     Image,
+    Nightona,
     Resources,
 )
 

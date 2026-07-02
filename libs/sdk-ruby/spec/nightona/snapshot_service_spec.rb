@@ -17,7 +17,8 @@ RSpec.describe Nightona::SnapshotService do
   describe '#list' do
     it 'returns PaginatedResource of Snapshots' do
       dto = build_snapshot_dto
-      paginated = instance_double(NightonaApiClient::PaginatedSnapshots, total: 1, page: 1, total_pages: 1, items: [dto])
+      paginated = instance_double(NightonaApiClient::PaginatedSnapshots, total: 1, page: 1, total_pages: 1,
+                                                                         items: [dto])
       allow(snapshots_api).to receive(:get_all_snapshots).with(page: nil, limit: nil).and_return(paginated)
 
       result = service.list

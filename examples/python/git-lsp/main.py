@@ -1,4 +1,4 @@
-from nightona import CreateSandboxFromImageParams, Nightona, Image, LspCompletionPosition
+from nightona import CreateSandboxFromImageParams, Image, LspCompletionPosition, Nightona
 
 
 def main():

@@ -30,7 +30,7 @@ The client reads configuration from environment variables:
 - NIGHTONA\_API\_KEY: API key for authentication
 - NIGHTONA\_JWT\_TOKEN: JWT token for authentication \(alternative to API key\)
 - NIGHTONA\_ORGANIZATION\_ID: Organization ID \(required when using JWT token\)
-- NIGHTONA\_API\_URL: API URL \(defaults to https://app.daytona.io/api\)
+- NIGHTONA\_API\_URL: API URL \(defaults to http://localhost:3000/api\)
 - NIGHTONA\_TARGET: Target environment
 
 Or provide configuration explicitly:
@@ -4364,7 +4364,7 @@ homeDir, err := sandbox.GetUserHomeDir(ctx)
 if err != nil {
     return err
 }
-fmt.Printf("Home directory: %s\n", homeDir) // e.g., "/home/daytona"
+fmt.Printf("Home directory: %s\n", homeDir) // e.g., "/home/nightona"
 ```
 
 <a name="Sandbox.GetWorkingDir"></a>

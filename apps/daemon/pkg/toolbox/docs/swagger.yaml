@@ -1138,8 +1138,8 @@ definitions:
 info:
   contact: {}
   description: "Nightona Toolbox API. The base URL comes from the sandbox's `toolboxProxyUrl`
-    field (returned in sandbox DTO by the main Nightona API) plus the sandbox ID: `{toolboxProxyUrl}/{sandboxId}/{endpoint}`.
-    Default for Nightona Cloud: `https://proxy.app.daytona.io/toolbox/{sandboxId}`."
+    field (returned in sandbox DTO by the main Nightona API) plus the sandbox ID:
+    `{toolboxProxyUrl}/{sandboxId}/{endpoint}`. Default for Nightona Cloud: `https://proxy.app.daytona.io/toolbox/{sandboxId}`."
   license:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0

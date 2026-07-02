@@ -4,8 +4,8 @@ from nightona import (
     AsyncNightona,
     AsyncSandbox,
     CreateSandboxFromImageParams,
-    NightonaTimeoutError,
     ExecutionError,
+    NightonaTimeoutError,
     OutputMessage,
     Resources,
 )

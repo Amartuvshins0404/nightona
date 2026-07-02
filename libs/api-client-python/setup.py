@@ -33,7 +33,7 @@ setup(
     name=NAME,
     version=VERSION,
     description="Nightona",
-    author="Nightona Platforms Inc.",
+    author="Nightona contributors",
     author_email="amaraaamka0404@gmail.com",
     url="",
     keywords=["OpenAPI", "OpenAPI-Generator", "Nightona"],

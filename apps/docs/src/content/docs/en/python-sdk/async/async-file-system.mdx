@@ -803,7 +803,8 @@ Structured error metadata for a failed bulk file download item.
 #### create\_file\_download\_error
 
 ```python
-def create_file_download_error(response: FileDownloadResponse) -> NightonaError
+def create_file_download_error(
+        response: FileDownloadResponse) -> NightonaError
 ```
 
 Create the appropriate Nightona exception for a failed file download response.

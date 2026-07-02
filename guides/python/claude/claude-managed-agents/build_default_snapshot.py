@@ -13,7 +13,7 @@ import sys
 import dotenv
 import host_lib
 
-from nightona import CreateSnapshotParams, Nightona, NightonaNotFoundError, Image, Resources
+from nightona import CreateSnapshotParams, Image, Nightona, NightonaNotFoundError, Resources
 
 dotenv.load_dotenv(override=True)
 

@@ -8,8 +8,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from nightona.common.nightona import CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, NightonaConfig
 from nightona.common.errors import NightonaAuthenticationError, NightonaValidationError
+from nightona.common.nightona import CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, NightonaConfig
 from nightona.common.sandbox import Resources
 
 SYNC_MODULE = "nightona._sync.nightona"
