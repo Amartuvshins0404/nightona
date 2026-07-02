@@ -10,7 +10,7 @@ const getOpenApiConfig = (oidcIssuer: string) =>
     .setTitle('Nightona')
     .addServer('http://localhost:3000')
     .setDescription('Nightona AI platform API Docs')
-    .setContact('Nightona Platforms Inc.', 'https://www.daytona.io', 'support@nightona.com')
+    .setContact('Nightona contributors', 'https://github.com/Amartuvshins0404/nightona', 'amaraaamka0404@gmail.com')
     .setVersion('1.0')
     .setLicense('Apache-2.0', 'https://www.apache.org/licenses/LICENSE-2.0')
     .addBearerAuth({
