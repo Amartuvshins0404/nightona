@@ -1,12 +1,12 @@
 // Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Configuration, Sandbox as SandboxDto } from '@nightona/api-client'
+import type { Configuration, Sandbox as SandboxDto } from '@nightona-co/api-client'
 import { createApiResponse } from './helpers'
 import { NightonaNotFoundError } from '../errors/NightonaError'
 
 jest.mock(
-  '@nightona/api-client',
+  '@nightona-co/api-client',
   () => ({
     SandboxState: {
       RESIZING: 'resizing',
@@ -19,7 +19,7 @@ jest.mock(
 )
 
 jest.mock(
-  '@nightona/toolbox-api-client',
+  '@nightona-co/toolbox-api-client',
   () => ({
     FileSystemApi: jest.fn(() => ({})),
     GitApi: jest.fn(() => ({})),

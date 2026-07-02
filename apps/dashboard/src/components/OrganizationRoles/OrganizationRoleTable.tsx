@@ -25,7 +25,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { DEFAULT_PAGE_SIZE } from '@/constants/Pagination'
 import { cn } from '@/lib/utils'
 import { DEFAULT_TABLE_COLUMN, getColumnSizeStyles, getTableSizeStyles } from '@/lib/utils/table'
-import { OrganizationRole, OrganizationRolePermissionsEnum } from '@nightona/api-client'
+import { OrganizationRole, OrganizationRolePermissionsEnum } from '@nightona-co/api-client'
 import {
   ColumnDef,
   flexRender,

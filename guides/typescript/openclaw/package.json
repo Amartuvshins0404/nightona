@@ -9,7 +9,7 @@
     "serve": "tsx src/index.ts"
   },
   "dependencies": {
-    "@nightona/sdk": "^0.163.0",
+    "@nightona-co/sdk": "^0.163.0",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {

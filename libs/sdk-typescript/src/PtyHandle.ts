@@ -6,7 +6,7 @@
 import WebSocket from 'isomorphic-ws'
 import type { PtyResult } from './types/Pty'
 import { NightonaConnectionError, NightonaError, NightonaTimeoutError } from './errors/NightonaError'
-import type { PtySessionInfo } from '@nightona/toolbox-api-client'
+import type { PtySessionInfo } from '@nightona-co/toolbox-api-client'
 import { WithInstrumentation } from './utils/otel.decorator'
 
 /**

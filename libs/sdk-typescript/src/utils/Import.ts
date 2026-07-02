@@ -128,7 +128,7 @@ export function getPackageInfo(): { name: string; version: string } {
     const pkg = require('../../package.json')
     _packageInfo = { name: pkg.name, version: pkg.version }
   } catch {
-    _packageInfo = { name: '@nightona/sdk', version: '0.0.0' }
+    _packageInfo = { name: '@nightona-co/sdk', version: '0.0.0' }
   }
   return _packageInfo
 }

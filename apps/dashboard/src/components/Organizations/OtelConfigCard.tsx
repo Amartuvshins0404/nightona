@@ -13,7 +13,7 @@ import { useDeleteOrganizationOtelConfigMutation } from '@/hooks/mutations/useDe
 import { useUpdateOrganizationOtelConfigMutation } from '@/hooks/mutations/useUpdateOrganizationOtelConfigMutation'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { handleApiError } from '@/lib/error-handling'
-import type { Organization } from '@nightona/api-client'
+import type { Organization } from '@nightona-co/api-client'
 import { useForm } from '@tanstack/react-form'
 import { Minus, Plus } from 'lucide-react'
 import React, { useEffect, useRef } from 'react'

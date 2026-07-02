@@ -165,7 +165,7 @@ export NIGHTONA_OTEL_ENABLED=true
 
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
-    import { Nightona } from '@nightona/sdk'
+    import { Nightona } from '@nightona-co/sdk'
 
     // Using async dispose (recommended)
     await using nightona = new Nightona({ otelEnabled: true })
@@ -373,7 +373,7 @@ print(f"NumPy version: {np.__version__}")
     process.env.OTEL_EXPORTER_OTLP_ENDPOINT = "https://otlp.nr-data.net:4317"
     process.env.OTEL_EXPORTER_OTLP_HEADERS = "api-key=YOUR_API_KEY"
 
-    import { Nightona } from '@nightona/sdk'
+    import { Nightona } from '@nightona-co/sdk'
 
     async function main() {
       // Initialize Nightona with OTEL enabled

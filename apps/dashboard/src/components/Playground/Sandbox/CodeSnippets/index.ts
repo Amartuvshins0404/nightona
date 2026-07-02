@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { CodeLanguage } from '@nightona/sdk'
+import { CodeLanguage } from '@nightona-co/sdk'
 import { PythonSnippetGenerator } from './python'
 import { CodeSnippetGenerator } from './types'
 import { TypeScriptSnippetGenerator } from './typescript'

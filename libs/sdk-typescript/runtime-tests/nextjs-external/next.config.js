@@ -5,5 +5,5 @@
 // bundle them via webpack. Node loads them as ESM at runtime, which is the
 // failure mode reported in issue #4771.
 module.exports = {
-  serverExternalPackages: ['@nightona/sdk', '@nightona/api-client', '@nightona/toolbox-api-client'],
+  serverExternalPackages: ['@nightona-co/sdk', '@nightona-co/api-client', '@nightona-co/toolbox-api-client'],
 }

@@ -15,8 +15,8 @@ import {
   PaymentMethod,
   PaymentUrl,
   Tier,
-} from '@nightona/billing-api-client'
-import { NightonaConfiguration } from '@nightona/api-client/src'
+} from '@nightona-co/billing-api-client'
+import { NightonaConfiguration } from '@nightona-co/api-client/src'
 import { bypass, http, HttpResponse } from 'msw'
 
 const BILLING_API_URL = 'http://localhost:3000/api/billing'

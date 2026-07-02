@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { FlueContext } from '@flue/sdk/client'
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 import { nightona } from '../connectors/nightona'
 import * as v from 'valibot'
 import { readFileSync } from 'node:fs'

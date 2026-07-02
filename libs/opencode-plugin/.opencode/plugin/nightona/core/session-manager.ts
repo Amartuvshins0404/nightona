@@ -8,7 +8,7 @@
  * Stores data per-project in ~/.local/share/opencode/storage/nightona/{projectId}.json
  */
 
-import { Nightona, type Sandbox } from '@nightona/sdk'
+import { Nightona, type Sandbox } from '@nightona-co/sdk'
 import { logger } from './logger'
 import type { SessionSandboxMap, SandboxInfo } from './types'
 import { SessionGitManager } from '../git/session-git-manager'

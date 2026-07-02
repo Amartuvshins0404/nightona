@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Nightona, Sandbox } from '@nightona/sdk'
+import { Nightona, Sandbox } from '@nightona-co/sdk'
 import { AgentResult, NetworkRun } from '@inngest/agent-kit'
 import type { TextMessage } from '@inngest/agent-kit'
 

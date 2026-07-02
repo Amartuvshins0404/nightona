@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { WebhookEvent } from '@nightona/api-client'
+import { WebhookEvent } from '@nightona-co/api-client'
 
 export const WEBHOOK_EVENTS: Array<{ value: WebhookEvent; label: string; category: string }> = [
   { value: WebhookEvent.SANDBOX_CREATED, label: 'Sandbox Created', category: 'Sandbox' },

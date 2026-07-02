@@ -5,7 +5,7 @@ import { chromium } from 'playwright'
 import { createServer } from 'http'
 import { readFileSync, existsSync } from 'fs'
 import { extname, join, resolve } from 'path'
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 
 const DIST = resolve('dist')
 const mime = { '.js': 'application/javascript', '.html': 'text/html', '.css': 'text/css', '.json': 'application/json' }

@@ -31,7 +31,7 @@ import {
   type Organization,
   OrganizationUserRoleEnum,
   UpdateOrganizationInvitationRoleEnum,
-} from '@nightona/api-client'
+} from '@nightona-co/api-client'
 import { AlertCircle, Building2, PlusIcon, RefreshCw } from 'lucide-react'
 import React, { useMemo, useRef } from 'react'
 import { useAuth } from 'react-oidc-context'

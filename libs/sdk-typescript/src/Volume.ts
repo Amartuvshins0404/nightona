@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { VolumesApi } from '@nightona/api-client'
-import type { VolumeDto } from '@nightona/api-client'
+import { VolumesApi } from '@nightona-co/api-client'
+import type { VolumeDto } from '@nightona-co/api-client'
 import { NightonaNotFoundError } from './errors/NightonaError'
 import { WithInstrumentation } from './utils/otel.decorator'
 

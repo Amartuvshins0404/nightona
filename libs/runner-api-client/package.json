@@ -1,7 +1,7 @@
 {
-  "name": "@nightona/runner-api-client",
+  "name": "@nightona-co/runner-api-client",
   "version": "0.0.0-dev",
-  "description": "OpenAPI client for @nightona/runner-api-client",
+  "description": "OpenAPI client for @nightona-co/runner-api-client",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@nightona/runner-api-client"
+    "@nightona-co/runner-api-client"
   ],
   "license": "Unlicense",
   "main": "./src/index.js",

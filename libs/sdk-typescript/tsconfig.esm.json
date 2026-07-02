@@ -6,8 +6,8 @@
     "outDir": "../../dist/libs/sdk-typescript/esm",
     "baseUrl": ".",
     "paths": {
-      "@nightona/api-client": ["../../dist/libs/api-client/src"],
-      "@nightona/toolbox-api-client": ["../../dist/libs/toolbox-api-client/src"]
+      "@nightona-co/api-client": ["../../dist/libs/api-client/src"],
+      "@nightona-co/toolbox-api-client": ["../../dist/libs/toolbox-api-client/src"]
     }
   }
 }

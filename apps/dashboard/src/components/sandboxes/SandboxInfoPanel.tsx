@@ -15,7 +15,7 @@ import { Empty, EmptyDescription, EmptyHeader, EmptyMedia } from '@/components/u
 import { Skeleton } from '@/components/ui/skeleton'
 import { getGpuTypeLabel } from '@/lib/gpu-types'
 import { cn, formatDuration, getRelativeTimeString } from '@/lib/utils'
-import { SandboxListItem } from '@nightona/api-client'
+import { SandboxListItem } from '@nightona-co/api-client'
 import { AlertCircle, ArrowUpRight, KeyRound, Tag, UserRoundX } from 'lucide-react'
 import React, { ReactNode, useMemo } from 'react'
 

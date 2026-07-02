@@ -37,7 +37,7 @@ import {
   getTableColumnMaxResizeSize,
   getTableSizeStyles,
 } from '@/lib/utils/table'
-import { OrganizationRolePermissionsEnum, VolumeDto, VolumeState } from '@nightona/api-client'
+import { OrganizationRolePermissionsEnum, VolumeDto, VolumeState } from '@nightona-co/api-client'
 import {
   ColumnDef,
   ColumnFiltersState,

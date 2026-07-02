@@ -5,7 +5,7 @@
 
 import { CopilotRuntime, copilotRuntimeNextJSAppRouterEndpoint } from '@copilotkit/runtime'
 import { BuiltInAgent, defineTool } from '@copilotkit/runtime/v2'
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 import type { NextRequest } from 'next/server'
 import { z } from 'zod'
 

@@ -15,13 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nightona/api-client": ["libs/api-client/src/index.ts"],
-      "@nightona/runner-api-client": ["libs/runner-api-client/src/index.ts"],
-      "@nightona/sdk": ["libs/sdk-typescript/src/index.ts"],
-      "@nightona/toolbox-api-client": ["libs/toolbox-api-client/src/index.ts"],
-      "@nightona/analytics-api-client": ["libs/analytics-api-client/src/index.ts"],
-      "@nightona/billing-api-client": ["libs/billing-api-client/src/index.ts"],
-      "@nightona/runner-proto": ["libs/runner-proto/gen/ts/runner/v1alpha1/job_pb.ts"]
+      "@nightona-co/api-client": ["libs/api-client/src/index.ts"],
+      "@nightona-co/runner-api-client": ["libs/runner-api-client/src/index.ts"],
+      "@nightona-co/sdk": ["libs/sdk-typescript/src/index.ts"],
+      "@nightona-co/toolbox-api-client": ["libs/toolbox-api-client/src/index.ts"],
+      "@nightona-co/analytics-api-client": ["libs/analytics-api-client/src/index.ts"],
+      "@nightona-co/billing-api-client": ["libs/billing-api-client/src/index.ts"],
+      "@nightona-co/runner-proto": ["libs/runner-proto/gen/ts/runner/v1alpha1/job_pb.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

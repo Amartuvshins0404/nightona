@@ -9,8 +9,8 @@ import {
   Configuration as AnalyticsConfiguration,
   TelemetryApi as AnalyticsTelemetryApi,
   UsageApi as AnalyticsUsageApi,
-} from '@nightona/analytics-api-client'
-import { Configuration as BillingConfiguration } from '@nightona/billing-api-client'
+} from '@nightona-co/analytics-api-client'
+import { Configuration as BillingConfiguration } from '@nightona-co/billing-api-client'
 import {
   ApiKeysApi,
   AuditApi,
@@ -25,7 +25,7 @@ import {
   UsersApi,
   VolumesApi,
   WebhooksApi,
-} from '@nightona/api-client'
+} from '@nightona-co/api-client'
 import axios, { AxiosError } from 'axios'
 import { NightonaError } from './errors'
 

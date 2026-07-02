@@ -1,7 +1,7 @@
 // Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-const { Nightona, Image } = require('@nightona/sdk')
+const { Nightona, Image } = require('@nightona-co/sdk')
 
 const image = Image.base('alpine').env({ FOO: 'bar' })
 if (!image.dockerfile.includes('FROM alpine')) throw new Error('Image.base failed')

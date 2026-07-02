@@ -7,7 +7,7 @@
  * @module code-interpreter
  */
 
-import type { InterpreterContext } from '@nightona/toolbox-api-client'
+import type { InterpreterContext } from '@nightona-co/toolbox-api-client'
 
 /**
  * Represents stdout or stderr output from code execution.

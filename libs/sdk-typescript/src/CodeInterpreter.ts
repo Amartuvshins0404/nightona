@@ -8,9 +8,9 @@
  */
 
 import WebSocket from 'isomorphic-ws'
-import { InterpreterApi } from '@nightona/toolbox-api-client'
-import type { InterpreterContext } from '@nightona/toolbox-api-client'
-import { Configuration } from '@nightona/api-client'
+import { InterpreterApi } from '@nightona-co/toolbox-api-client'
+import type { InterpreterContext } from '@nightona-co/toolbox-api-client'
+import { Configuration } from '@nightona-co/api-client'
 import {
   NightonaConnectionError,
   NightonaError,

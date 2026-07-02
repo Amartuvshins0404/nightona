@@ -56,7 +56,7 @@ export default [
     },
   },
   {
-    // The SDK runtime-test fixtures intentionally import from '@nightona/sdk'
+    // The SDK runtime-test fixtures intentionally import from '@nightona-co/sdk'
     // (the packed published package) instead of the workspace source — that's
     // the whole point of the tests. Disable the enforce-module-boundaries
     // auto-fix that rewrites those imports to relative source paths.
@@ -66,7 +66,7 @@ export default [
     },
   },
   {
-    // pi-extension consumes '@nightona/sdk' as a published package — statically in the
+    // pi-extension consumes '@nightona-co/sdk' as a published package — statically in the
     // agent code and via dynamic import() in the helper scripts — but nx, seeing it
     // as a workspace project, would rewrite those imports to source. Off tree-wide
     // on purpose: it's a published leaf, so narrowing to SDK-only files would add

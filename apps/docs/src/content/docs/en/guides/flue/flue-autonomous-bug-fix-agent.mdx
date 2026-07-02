@@ -217,7 +217,7 @@ This requires an AI coding-agent CLI to already be installed and authenticated l
 This guide ships the resulting `.flue/connectors/nightona.ts` pre-built so the demo runs without an extra step, but the file is byte-identical to what `flue add nightona | <agent>` produces. Once installed, you import the connector and pass it to `init()`:
 
 ```typescript
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 import { nightona } from '../connectors/nightona'
 
 const client = new Nightona({ apiKey: env.NIGHTONA_API_KEY })

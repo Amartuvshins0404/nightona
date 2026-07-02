@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Nightona, Sandbox } from '@nightona/sdk'
+import { Nightona, Sandbox } from '@nightona-co/sdk'
 import * as dotenv from 'dotenv'
 import * as readline from 'readline'
 import { GeminiSession } from './session.js'

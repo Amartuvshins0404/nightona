@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { json } from '@remix-run/node'
-import { Nightona, Image } from '@nightona/sdk'
+import { Nightona, Image } from '@nightona-co/sdk'
 
 export async function loader() {
   const image = Image.base('alpine').env({ FOO: 'bar' })

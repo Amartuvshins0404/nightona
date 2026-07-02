@@ -12,7 +12,7 @@ import {
   ModelsSandboxUsage,
   ModelsUsageChartPoint,
   ModelsUsagePeriod,
-} from '@nightona/analytics-api-client'
+} from '@nightona-co/analytics-api-client'
 
 export interface AnalyticsUsageParams {
   from: Date

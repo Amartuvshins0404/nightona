@@ -72,7 +72,7 @@ export {
   SandboxListSortField,
   SandboxListSortDirection,
   SandboxClass,
-} from '@nightona/api-client'
+} from '@nightona-co/api-client'
 export type {
   FileInfo,
   GitStatus,
@@ -80,7 +80,7 @@ export type {
   Match,
   ReplaceResult,
   SearchFilesResponse,
-} from '@nightona/toolbox-api-client'
+} from '@nightona-co/toolbox-api-client'
 
 export type {
   ScreenshotRegion,

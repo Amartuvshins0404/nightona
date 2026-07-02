@@ -1,7 +1,7 @@
 // Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 
 export const dynamic = 'force-dynamic'
 

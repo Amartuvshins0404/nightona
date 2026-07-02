@@ -17,9 +17,9 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   roots: ['<rootDir>/src'],
   moduleNameMapper: {
-    '^@nightona/api-client$': '<rootDir>/../api-client/src/index.ts',
-    '^@nightona/toolbox-api-client$': '<rootDir>/../toolbox-api-client/src/index.ts',
-    '^@nightona/sdk$': '<rootDir>/src/index.ts',
+    '^@nightona-co/api-client$': '<rootDir>/../api-client/src/index.ts',
+    '^@nightona-co/toolbox-api-client$': '<rootDir>/../toolbox-api-client/src/index.ts',
+    '^@nightona-co/sdk$': '<rootDir>/src/index.ts',
   },
   coverageDirectory: '../../coverage/libs/sdk-typescript',
 }

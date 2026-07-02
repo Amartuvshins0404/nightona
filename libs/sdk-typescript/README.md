@@ -9,13 +9,13 @@ The SDK provides an interface for sandbox management, file system operations, Gi
 Install the package using **npm**:
 
 ```bash
-npm install @nightona/sdk
+npm install @nightona-co/sdk
 ```
 
 or using **yarn**:
 
 ```bash
-yarn add @nightona/sdk
+yarn add @nightona-co/sdk
 ```
 
 ## Get API key
@@ -31,7 +31,7 @@ Configure the SDK using [environment variables](https://www.daytona.io/docs/en/c
 - `NIGHTONA_TARGET`: Your target [region](https://www.daytona.io/docs/en/regions/) environment (e.g. `us`, `eu`)
 
 ```typescript
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 
 // Initialize with environment variables
 const nightona = new Nightona();
@@ -49,7 +49,7 @@ const nightona = new Nightona({
 Create a sandbox to run your code securely in an isolated environment.
 
 ```typescript
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 
 const nightona = new Nightona({apiKey: "YOUR_API_KEY"});
 const sandbox = await nightona.create({
@@ -68,7 +68,7 @@ Nightona provides [examples](https://www.daytona.io/docs/en/getting-started/#exa
 Create a sandbox with [custom resources](https://www.daytona.io/docs/en/sandboxes/#resources) (CPU, memory, disk).
 
 ```typescript
-import { Nightona, Image } from '@nightona/sdk';
+import { Nightona, Image } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create({
@@ -82,7 +82,7 @@ const sandbox = await nightona.create({
 Create an [ephemeral sandbox](https://www.daytona.io/docs/en/sandboxes/#ephemeral-sandboxes) that is automatically deleted when stopped.
 
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create({
@@ -96,7 +96,7 @@ const sandbox = await nightona.create({
 Create a sandbox from a [snapshot](https://www.daytona.io/docs/en/snapshots/).
 
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create({

@@ -7,7 +7,7 @@ import { DEFAULT_PAGE_SIZE } from '@/constants/Pagination'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { cn } from '@/lib/utils'
 import { DEFAULT_TABLE_COLUMN, getColumnSizeStyles, getTableSizeStyles } from '@/lib/utils/table'
-import { DockerRegistry, OrganizationRolePermissionsEnum } from '@nightona/api-client'
+import { DockerRegistry, OrganizationRolePermissionsEnum } from '@nightona-co/api-client'
 import {
   ColumnDef,
   flexRender,

@@ -5,7 +5,7 @@
 
 import { handleApiError } from '@/lib/error-handling'
 import { downloadBlob } from '@/lib/utils'
-import { FileInfo } from '@nightona/toolbox-api-client'
+import { FileInfo } from '@nightona-co/toolbox-api-client'
 import { Buffer } from 'buffer'
 import { format } from 'date-fns'
 import { toast } from 'sonner'

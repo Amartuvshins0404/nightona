@@ -9,7 +9,7 @@ import {
   PieChart,
   ScatterChart,
   Image,
-} from '@nightona/sdk'
+} from '@nightona-co/sdk'
 import * as fs from 'fs'
 import * as path from 'path'
 

@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Skeleton } from '@/components/ui/skeleton'
 import { useOrganizationBillingPortalUrlQuery } from '@/hooks/queries/useOrganizationBillingPortalUrlQuery'
 import { usePaymentMethodsQuery } from '@/hooks/queries/usePaymentMethodsQuery'
-import { PaymentMethod } from '@nightona/billing-api-client'
+import { PaymentMethod } from '@nightona-co/billing-api-client'
 import { CreditCardIcon, PencilIcon } from 'lucide-react'
 
 interface PaymentMethodsCardProps {

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { LspApi } from '@nightona/toolbox-api-client'
-import type { CompletionList, LspSymbol } from '@nightona/toolbox-api-client'
+import { LspApi } from '@nightona-co/toolbox-api-client'
+import type { CompletionList, LspSymbol } from '@nightona-co/toolbox-api-client'
 import { NightonaValidationError } from './errors/NightonaError'
 import { WithInstrumentation } from './utils/otel.decorator'
 

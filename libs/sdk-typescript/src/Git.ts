@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GitApi } from '@nightona/toolbox-api-client'
-import type { ListBranchResponse, GitStatus } from '@nightona/toolbox-api-client'
+import { GitApi } from '@nightona-co/toolbox-api-client'
+import type { ListBranchResponse, GitStatus } from '@nightona-co/toolbox-api-client'
 import { WithInstrumentation } from './utils/otel.decorator'
 
 /**

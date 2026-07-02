@@ -23,7 +23,7 @@ import {
   TierApi,
   UsageApi,
   WalletApi,
-} from '@nightona/billing-api-client'
+} from '@nightona-co/billing-api-client'
 import { AxiosInstance } from 'axios'
 
 export class BillingApiClient {

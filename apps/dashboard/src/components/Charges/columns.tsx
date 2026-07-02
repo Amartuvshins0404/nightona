@@ -4,7 +4,7 @@
  */
 
 import { formatAmount } from '@/lib/utils'
-import { Charge } from '@nightona/billing-api-client'
+import { Charge } from '@nightona-co/billing-api-client'
 import { ColumnDef } from '@tanstack/react-table'
 import React from 'react'
 import { SortOrderIcon } from '../SortIcon'

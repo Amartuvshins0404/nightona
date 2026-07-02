@@ -5,7 +5,7 @@ description: Use the Nightona Pi extension to run every Pi tool call inside a re
 
 import piExtensionGif from '../../../../../assets/docs/images/pi-extension.gif'
 
-This guide demonstrates how to run the [Nightona Pi extension](https://www.npmjs.com/package/@nightona/pi) which integrates Nightona sandboxes and [Pi](https://pi.dev/). When the extension is active, the agent runs on your machine while every tool call — `bash`, file I/O, and search — runs inside a secure Nightona sandbox. Each session gets its own sandbox, and your work is synced to a per-session GitHub branch.
+This guide demonstrates how to run the [Nightona Pi extension](https://www.npmjs.com/package/@nightona-co/pi) which integrates Nightona sandboxes and [Pi](https://pi.dev/). When the extension is active, the agent runs on your machine while every tool call — `bash`, file I/O, and search — runs inside a secure Nightona sandbox. Each session gets its own sandbox, and your work is synced to a per-session GitHub branch.
 
 ### 1. Workflow Overview
 
@@ -35,7 +35,7 @@ See the [Pi documentation](https://pi.dev/) for other install options.
 Add the Nightona extension to Pi:
 
 ```bash
-pi install npm:@nightona/pi
+pi install npm:@nightona-co/pi
 ```
 
 To update it later, run `pi update` — `pi install` will not refresh an existing install.
@@ -99,7 +99,7 @@ A session flows through it like this:
 
 #### 1. Tool registration
 
-Each built-in tool is re-registered so that, when a sandbox is active, it runs against it through the [Nightona SDK](https://www.npmjs.com/package/@nightona/sdk). A small `sandboxTool` helper wraps a local tool with a per-call rebuild against the active sandbox:
+Each built-in tool is re-registered so that, when a sandbox is active, it runs against it through the [Nightona SDK](https://www.npmjs.com/package/@nightona-co/sdk). A small `sandboxTool` helper wraps a local tool with a per-call rebuild against the active sandbox:
 
 ```typescript
 // Wrap a local tool so it runs against the sandbox (rebuilt per call) when one is active.

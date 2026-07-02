@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ButtonGroup } from '@/components/ui/button-group'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { isArchivable, isPausable, isRecoverable, isStartable, isStoppable, isTransitioning } from '@/lib/utils/sandbox'
-import { SandboxClass, SandboxListItem, SandboxState } from '@nightona/api-client'
+import { SandboxClass, SandboxListItem, SandboxState } from '@nightona-co/api-client'
 import { Archive, Play, Square, Trash2, Wrench, Pause } from 'lucide-react'
 
 interface SandboxActionsSegmentedProps {

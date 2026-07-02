@@ -2,10 +2,10 @@
 # Copyright Daytona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-# Runtime compatibility tests for @nightona/sdk
+# Runtime compatibility tests for @nightona-co/sdk
 #
 # For each subdirectory containing a `run.sh`, this orchestrator:
-#   1. Installs the locally-built SDK as `@nightona/sdk` via npm pack tarball
+#   1. Installs the locally-built SDK as `@nightona-co/sdk` via npm pack tarball
 #   2. Executes the runtime's `run.sh`
 #   3. Records pass/fail and continues to the next runtime
 #
@@ -55,9 +55,9 @@ echo "==> Packing api-client, toolbox-api-client, and sdk"
 API_TARBALL="$ROOT/.api-client.tgz"
 TOOLBOX_TARBALL="$ROOT/.toolbox-api-client.tgz"
 TARBALL="$ROOT/.sdk.tgz"
-pack_pkg "$API_CLIENT_DIST" "$API_TARBALL" "@nightona/api-client"
-pack_pkg "$TOOLBOX_DIST" "$TOOLBOX_TARBALL" "@nightona/toolbox-api-client"
-pack_pkg "$DIST" "$TARBALL" "@nightona/sdk"
+pack_pkg "$API_CLIENT_DIST" "$API_TARBALL" "@nightona-co/api-client"
+pack_pkg "$TOOLBOX_DIST" "$TOOLBOX_TARBALL" "@nightona-co/toolbox-api-client"
+pack_pkg "$DIST" "$TARBALL" "@nightona-co/sdk"
 export SDK_TARBALL="$TARBALL"
 export API_CLIENT_TARBALL="$API_TARBALL"
 export TOOLBOX_API_CLIENT_TARBALL="$TOOLBOX_TARBALL"

@@ -5,7 +5,7 @@
 
 import { RoutePath } from '@/enums/RoutePath'
 import { queryKeys } from '@/hooks/queries/queryKeys'
-import { NightonaConfiguration } from '@nightona/api-client'
+import { NightonaConfiguration } from '@nightona-co/api-client'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { InMemoryWebStorage, WebStorageStateStore } from 'oidc-client-ts'
 import { ReactNode, useMemo } from 'react'

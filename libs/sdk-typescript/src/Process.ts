@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Configuration, ProcessApi } from '@nightona/toolbox-api-client'
+import { Configuration, ProcessApi } from '@nightona-co/toolbox-api-client'
 import type {
   Command,
   Session,
@@ -12,7 +12,7 @@ import type {
   CodeRunRequest,
   PtyCreateRequest,
   PtySessionInfo,
-} from '@nightona/toolbox-api-client'
+} from '@nightona-co/toolbox-api-client'
 import type { ExecuteResponse } from './types/ExecuteResponse'
 import { parseChart } from './types/Charts'
 import { stdDemuxStream } from './utils/Stream'

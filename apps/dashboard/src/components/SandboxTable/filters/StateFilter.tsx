@@ -12,7 +12,7 @@ import {
   CommandList,
 } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { SandboxState } from '@nightona/api-client'
+import { SandboxState } from '@nightona-co/api-client'
 import { X } from 'lucide-react'
 import { STATUSES, getStateLabel } from '../constants'
 

@@ -1,4 +1,4 @@
-import { Nightona, Image } from '@nightona/sdk'
+import { Nightona, Image } from '@nightona-co/sdk'
 
 async function main() {
   const nightona = new Nightona({

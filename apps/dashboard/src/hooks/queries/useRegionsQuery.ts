@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Region } from '@nightona/api-client'
+import { Region } from '@nightona-co/api-client'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { createRegionNameGetter, EMPTY_REGIONS } from '@/lib/regions'

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 import * as dotenv from 'dotenv'
 import * as readline from 'readline'
 import Anthropic from '@anthropic-ai/sdk'

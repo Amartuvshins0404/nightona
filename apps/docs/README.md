@@ -51,7 +51,7 @@ pip install nightona
 ### TypeScript SDK
 
 ```bash
-npm install @nightona/sdk
+npm install @nightona-co/sdk
 ```
 
 ---
@@ -100,7 +100,7 @@ nightona.delete(sandbox)
 ### Typescript SDK
 
 ```jsx
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 
 async function main() {
   // Initialize the Nightona client

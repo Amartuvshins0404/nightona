@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import type { Charge } from '@nightona/billing-api-client'
+import type { Charge } from '@nightona-co/billing-api-client'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect, useMemo } from 'react'
 import { useApi } from '../useApi'

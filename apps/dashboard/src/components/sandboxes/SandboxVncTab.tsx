@@ -11,7 +11,7 @@ import { useStartVncMutation } from '@/hooks/mutations/useStartVncMutation'
 import { useVncInitialStatusQuery, useVncPollStatusQuery } from '@/hooks/queries/useVncStatusQuery'
 import { useVncSessionQuery } from '@/hooks/queries/useVncSessionQuery'
 import { isStoppable } from '@/lib/utils/sandbox'
-import { SandboxListItem } from '@nightona/api-client'
+import { SandboxListItem } from '@nightona-co/api-client'
 import { Spinner } from '@/components/ui/spinner'
 import { ArrowUpRight, Monitor, Play, RefreshCw } from 'lucide-react'
 

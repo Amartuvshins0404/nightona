@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import type { OtelConfig } from '@nightona/api-client'
+import type { OtelConfig } from '@nightona-co/api-client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { queryKeys } from '../queries/queryKeys'

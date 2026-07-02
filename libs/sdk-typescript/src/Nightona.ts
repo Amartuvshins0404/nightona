@@ -11,8 +11,8 @@ import {
   SandboxState,
   VolumesApi,
   ConfigApi,
-} from '@nightona/api-client'
-import type { GpuType, SandboxVolume } from '@nightona/api-client'
+} from '@nightona-co/api-client'
+import type { GpuType, SandboxVolume } from '@nightona-co/api-client'
 import axios, { AxiosError } from 'axios'
 import type { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
 import {

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, Nightona, Sandbox } from '@nightona/sdk'
+import { CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, Nightona, Sandbox } from '@nightona-co/sdk'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from 'react-oidc-context'
 import { useConfig } from '../useConfig'

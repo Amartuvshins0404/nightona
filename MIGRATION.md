@@ -68,7 +68,7 @@ Nightona-named packages are **not published yet** (see [PUBLISHING.md](PUBLISHIN
 
 | Ecosystem | Daytona v0.190.0 (upstream, published) | Nightona (this repo / planned) |
 | --------- | -------------------------------------- | ------------------------------ |
-| npm (TypeScript SDK) | `@daytonaio/sdk` | `@nightona/sdk` |
+| npm (TypeScript SDK) | `@daytonaio/sdk` | `@nightona-co/sdk` |
 | PyPI (Python SDK) | `daytona` | `nightona` |
 | RubyGems (Ruby SDK) | `daytona` | `nightona` |
 | Go module (Go SDK) | `github.com/daytonaio/daytona/libs/sdk-go` | `github.com/nightona-co/nightona/libs/sdk-go` |
@@ -88,7 +88,7 @@ from nightona import Nightona
 // before
 import { Daytona } from '@daytonaio/sdk'
 // after
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 ```
 
 ## SDK default API URL

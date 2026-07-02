@@ -39,7 +39,7 @@ jest.mock('axios', () => {
 })
 
 jest.mock(
-  '@nightona/api-client',
+  '@nightona-co/api-client',
   () => ({
     __esModule: true,
     Configuration: mockConfigurationCtor,

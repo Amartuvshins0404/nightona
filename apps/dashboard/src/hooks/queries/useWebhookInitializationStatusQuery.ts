@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { WebhookInitializationStatus } from '@nightona/api-client'
+import { WebhookInitializationStatus } from '@nightona-co/api-client'
 import { useQuery } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import { useApi } from '../useApi'

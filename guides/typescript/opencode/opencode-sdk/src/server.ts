@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Sandbox } from '@nightona/sdk'
+import { Sandbox } from '@nightona-co/sdk'
 
 const PORT = 4096
 const HOSTNAME = '0.0.0.0'

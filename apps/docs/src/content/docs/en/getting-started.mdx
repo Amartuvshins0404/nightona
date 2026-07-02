@@ -113,10 +113,10 @@ For **Cloudflare Workers**, set the Node.js compatibility flag in your `wrangler
 compatibility_flags = ["nodejs_compat"]
 ```
 
-For **Deno**, install with `deno add npm:@nightona/sdk` or import directly with the `npm:` specifier:
+For **Deno**, install with `deno add npm:@nightona-co/sdk` or import directly with the `npm:` specifier:
 
 ```typescript
-import { Nightona, Image } from 'npm:@nightona/sdk'
+import { Nightona, Image } from 'npm:@nightona-co/sdk'
 ```
 
 For **browser apps with Vite** (or any browser bundler), install [`vite-plugin-node-polyfills`](https://www.npmjs.com/package/vite-plugin-node-polyfills) and add it to your `vite.config.ts`:
@@ -162,7 +162,7 @@ print(f"Sandbox ID: {sandbox.id}")
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create();
@@ -266,7 +266,7 @@ sandbox.delete()
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create();
@@ -403,7 +403,7 @@ sandbox = nightona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Nightona, Image } from '@nightona/sdk';
+import { Nightona, Image } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create({
@@ -532,7 +532,7 @@ sandbox = nightona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create({
@@ -653,7 +653,7 @@ sandbox = nightona.create(
 
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create({
@@ -778,7 +778,7 @@ sandbox = nightona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Nightona, Image } from '@nightona/sdk';
+import { Nightona, Image } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const image = Image.debianSlim('3.12')
@@ -910,7 +910,7 @@ sandbox = nightona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const volume = await nightona.volume.get('my-volume', true);
@@ -1065,7 +1065,7 @@ print(f"Branch: {status.current_branch}")
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 const nightona = new Nightona();
 const sandbox = await nightona.create();

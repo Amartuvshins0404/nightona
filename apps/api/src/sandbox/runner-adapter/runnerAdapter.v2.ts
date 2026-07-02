@@ -10,7 +10,7 @@ import {
   ForkSandboxPayloadSchema,
   PauseSandboxPayloadSchema,
   RegistrySchema,
-} from '@nightona/runner-proto'
+} from '@nightona-co/runner-proto'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository, IsNull, Not } from 'typeorm'
 import {
@@ -41,7 +41,7 @@ import {
   UpdateNetworkSettingsDTO,
   InspectSnapshotInRegistryRequest,
   RecoverSandboxDTO,
-} from '@nightona/runner-api-client'
+} from '@nightona-co/runner-api-client'
 import { SnapshotStateError } from '../errors/snapshot-state-error'
 
 /**

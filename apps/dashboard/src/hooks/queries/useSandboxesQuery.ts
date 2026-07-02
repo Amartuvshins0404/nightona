@@ -14,7 +14,7 @@ import {
   SandboxListSortField,
   SandboxState,
   ListSandboxesResponse,
-} from '@nightona/api-client'
+} from '@nightona-co/api-client'
 import { queryKeys } from './queryKeys'
 
 type ListSandboxesQueryResponse = ListSandboxesResponse | SandboxListItem[]

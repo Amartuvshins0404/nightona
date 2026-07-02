@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { OrganizationUser, UpdateOrganizationMemberAccess } from '@nightona/api-client'
+import { OrganizationUser, UpdateOrganizationMemberAccess } from '@nightona-co/api-client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { queryKeys } from '../queries/queryKeys'
 import { useApi } from '../useApi'

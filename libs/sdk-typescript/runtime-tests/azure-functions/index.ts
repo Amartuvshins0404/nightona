@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions'
-import { Nightona, Image } from '@nightona/sdk'
+import { Nightona, Image } from '@nightona-co/sdk'
 
 export async function sandboxesHandler(_req: HttpRequest, _ctx: InvocationContext): Promise<HttpResponseInit> {
   const image = Image.base('alpine').env({ FOO: 'bar' })

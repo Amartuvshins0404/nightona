@@ -4,7 +4,7 @@
  */
 
 import { cn } from '@/lib/utils'
-import { RegionUsageOverview } from '@nightona/api-client/src'
+import { RegionUsageOverview } from '@nightona-co/api-client/src'
 
 export function UsageOverviewIndicator({
   usage,

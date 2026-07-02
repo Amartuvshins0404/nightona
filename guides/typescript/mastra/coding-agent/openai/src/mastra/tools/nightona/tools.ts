@@ -6,7 +6,7 @@
 import { createTool } from '@mastra/core/tools'
 import z from 'zod'
 import { getNightonaClient, getSandboxById, createFileUploadFormat, normalizeSandboxPath } from './utils'
-import { Sandbox, CreateSandboxBaseParams, CodeRunParams, NightonaNotFoundError, CodeLanguage } from '@nightona/sdk'
+import { Sandbox, CreateSandboxBaseParams, CodeRunParams, NightonaNotFoundError, CodeLanguage } from '@nightona-co/sdk'
 
 export const createSandbox = createTool({
   id: 'createSandbox',

@@ -1,4 +1,4 @@
-import { Nightona, Sandbox } from '@nightona/sdk'
+import { Nightona, Sandbox } from '@nightona-co/sdk'
 
 async function interactivePtySession(sandbox: Sandbox) {
   console.log('=== First PTY Session: Interactive Command with Exit ===')

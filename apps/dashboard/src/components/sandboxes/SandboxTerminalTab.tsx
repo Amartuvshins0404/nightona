@@ -10,7 +10,7 @@ import { NIGHTONA_DOCS_URL } from '@/constants/ExternalLinks'
 import { useTerminalSessionQuery } from '@/hooks/queries/useTerminalSessionQuery'
 import { useSandboxSessionContext } from '@/hooks/useSandboxSessionContext'
 import { isStoppable } from '@/lib/utils/sandbox'
-import { SandboxListItem } from '@nightona/api-client'
+import { SandboxListItem } from '@nightona-co/api-client'
 import { Spinner } from '@/components/ui/spinner'
 import { ArrowUpRight, RefreshCw, TerminalSquare } from 'lucide-react'
 

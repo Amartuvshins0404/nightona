@@ -16,7 +16,7 @@ import { useOrganizations } from '@/hooks/useOrganizations'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { handleApiError } from '@/lib/error-handling'
 import { cn, getMaskedToken } from '@/lib/utils'
-import { ApiKeyResponse, CreateApiKeyPermissionsEnum, OrganizationRolePermissionsEnum } from '@nightona/api-client'
+import { ApiKeyResponse, CreateApiKeyPermissionsEnum, OrganizationRolePermissionsEnum } from '@nightona-co/api-client'
 import { Check, ClipboardIcon, Eye, EyeOff, Loader2, Plus } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
@@ -334,9 +334,9 @@ const Onboarding: React.FC = () => {
 
 const codeExamples = {
   typescript: {
-    install: `npm install @nightona/sdk`,
+    install: `npm install @nightona-co/sdk`,
     run: `npx tsx index.mts`,
-    example: `import { Nightona } from '@nightona/sdk'
+    example: `import { Nightona } from '@nightona-co/sdk'
 
 // Initialize the Nightona client
 const nightona = new Nightona({ apiKey: 'your-api-key' });

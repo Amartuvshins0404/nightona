@@ -5,7 +5,7 @@
 
 import { ComparisonSection, ComparisonTable } from './ComparisonTable'
 
-import { OrganizationTier, Tier } from '@nightona/billing-api-client'
+import { OrganizationTier, Tier } from '@nightona-co/billing-api-client'
 import { TIER_RATE_LIMITS } from '@/constants/limits'
 import { Skeleton } from './ui/skeleton'
 

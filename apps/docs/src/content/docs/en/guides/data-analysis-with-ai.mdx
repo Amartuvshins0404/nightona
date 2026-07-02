@@ -36,7 +36,7 @@ Install the Nightona SDK and Anthropic SDK to your project:
   </TabItem>
 
   <TabItem label="TypeScript" icon="seti:typescript">
-    `bash npm install @nightona/sdk @anthropic-ai/sdk dotenv `
+    `bash npm install @nightona-co/sdk @anthropic-ai/sdk dotenv `
   </TabItem>
 
   <TabItem label="Ruby" icon="seti:ruby">
@@ -96,7 +96,7 @@ Now create a [Nightona sandbox](/docs/en/sandboxes/#create-sandboxes) and upload
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
     import 'dotenv/config'
-    import { Nightona } from '@nightona/sdk';
+    import { Nightona } from '@nightona-co/sdk';
 
     // Create sandbox
     const nightona = new Nightona(); // The sandbox language is Python by default.
@@ -168,7 +168,7 @@ First, let's create a function to handle code execution and chart extraction. Th
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
     import fs from 'fs'
-    import { Sandbox } from '@nightona/sdk'
+    import { Sandbox } from '@nightona-co/sdk'
 
     interface ExecutionResult {
       stdout: string
@@ -746,7 +746,7 @@ Here are the complete, ready-to-run examples with the agentic loop:
     import "dotenv/config";
     import fs from "fs";
     import Anthropic from "@anthropic-ai/sdk";
-    import { Nightona, Sandbox } from "@nightona/sdk";
+    import { Nightona, Sandbox } from "@nightona-co/sdk";
     import type {
       MessageParam,
       Tool,

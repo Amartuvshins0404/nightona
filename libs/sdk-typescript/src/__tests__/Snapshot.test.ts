@@ -1,7 +1,7 @@
 // Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Configuration } from '@nightona/api-client'
+import type { Configuration } from '@nightona-co/api-client'
 import { createApiResponse } from './helpers'
 import { SnapshotService } from '../Snapshot'
 import { Image } from '../Image'
@@ -10,7 +10,7 @@ const mockProcessStreamingResponse = jest.fn()
 const mockDynamicImport = jest.fn()
 
 jest.mock(
-  '@nightona/api-client',
+  '@nightona-co/api-client',
   () => ({
     SnapshotState: {
       ACTIVE: 'active',

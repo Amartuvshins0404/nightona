@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/sheet'
 import { Spinner } from '@/components/ui/spinner'
 import { useOrganizationRolesQuery } from '@/hooks/queries/useOrganizationRolesQuery'
-import { CreateOrganizationInvitationRoleEnum, OrganizationRole } from '@nightona/api-client'
+import { CreateOrganizationInvitationRoleEnum, OrganizationRole } from '@nightona-co/api-client'
 import { useForm } from '@tanstack/react-form'
 import { AlertTriangle } from 'lucide-react'
 import React, {

@@ -32,7 +32,7 @@ export default defineConfig((mode) => ({
   },
   plugins: [
     react(),
-    // Required for @nightona/sdk
+    // Required for @nightona-co/sdk
     nodePolyfills({
       globals: { global: true, process: true, Buffer: true },
       overrides: {
@@ -72,14 +72,14 @@ export default defineConfig((mode) => ({
   ],
   resolve: {
     alias: [
-      // Resolve @nightona/sdk to the built ESM entry so browsers never receive raw SDK TypeScript decorators.
+      // Resolve @nightona-co/sdk to the built ESM entry so browsers never receive raw SDK TypeScript decorators.
       {
-        find: '@nightona/sdk',
+        find: '@nightona-co/sdk',
         replacement: path.resolve(__dirname, '../../dist/libs/sdk-typescript'),
       },
-      // Target @ but not @nightona,
+      // Target @ but not @nightona-co,
       {
-        // find: /^@(?!nightona)/,
+        // find: /^@(?!nightona-co)/,
         find: '@',
         replacement: path.resolve(__dirname, './src'), // Make sure this points to dashboard's src
       },

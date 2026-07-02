@@ -1,7 +1,7 @@
 {
-  "name": "@nightona/api-client",
+  "name": "@nightona-co/api-client",
   "version": "0.0.0-dev",
-  "description": "OpenAPI client for @nightona/api-client",
+  "description": "OpenAPI client for @nightona-co/api-client",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@nightona/api-client"
+    "@nightona-co/api-client"
   ],
   "license": "Apache-2.0",
   "main": "./src/index.js",

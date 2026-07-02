@@ -2,7 +2,7 @@
 
 This document describes how to publish the Nightona SDKs (Python, TypeScript, and Ruby) to their respective package registries.
 
-> **Status (rebrand bootstrap)**: Nightona has not published any packages yet. The coordinates used below — `nightona` on PyPI, `@nightona/sdk` on npm, and `nightona` on RubyGems — are the planned names. **TODO**: register/claim these names on each registry before the first release. Until then, upstream's published Daytona packages (from v0.190.0) remain the only prebuilt artifacts, and the SDKs must be built from source.
+> **Status (rebrand bootstrap)**: Nightona has not published any packages yet. The coordinates used below — `nightona` on PyPI, `@nightona-co/sdk` on npm, and `nightona` on RubyGems — are the planned names. **TODO**: register/claim these names on each registry before the first release. Until then, upstream's published Daytona packages (from v0.190.0) remain the only prebuilt artifacts, and the SDKs must be built from source.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ Before publishing any SDK, ensure you have:
 1. **Maintainer Access**: Write access to the Nightona repository
 2. **Package Registry Credentials** (**TODO**: Nightona registry accounts and tokens do not exist yet):
    - PyPI: Token with upload permissions
-   - npm: Token with publish permissions (requires the `@nightona` npm org/scope)
+   - npm: Token with publish permissions (requires the `@nightona-co` npm org/scope)
    - RubyGems: API key with push permissions
 3. **Local Development Setup**:
    - All dependencies installed (`yarn install`)
@@ -155,9 +155,9 @@ curl -s https://pypi.org/pypi/nightona/json | jq -r .info.version
 #### npm
 
 ```bash
-npm view @nightona/sdk version
+npm view @nightona-co/sdk version
 # or
-npm info @nightona/sdk
+npm info @nightona-co/sdk
 ```
 
 #### RubyGems

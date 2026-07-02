@@ -7,7 +7,7 @@ import { CREATE_API_KEY_PERMISSIONS_GROUPS } from '@/constants/CreateApiKeyPermi
 import { DEFAULT_PAGE_SIZE } from '@/constants/Pagination'
 import { cn, getRelativeTimeString } from '@/lib/utils'
 import { DEFAULT_TABLE_COLUMN, getColumnSizeStyles, getTableSizeStyles } from '@/lib/utils/table'
-import { ApiKeyList, ApiKeyListPermissionsEnum, CreateApiKeyPermissionsEnum } from '@nightona/api-client'
+import { ApiKeyList, ApiKeyListPermissionsEnum, CreateApiKeyPermissionsEnum } from '@nightona-co/api-client'
 
 import {
   ColumnDef,

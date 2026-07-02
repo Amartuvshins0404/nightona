@@ -18,7 +18,7 @@
  * fails loudly — it never silently falls back to the host.
  */
 
-import type { Sandbox } from '@nightona/sdk'
+import type { Sandbox } from '@nightona-co/sdk'
 
 export class SandboxUnavailableError extends Error {
   constructor(public readonly sandboxId: string) {

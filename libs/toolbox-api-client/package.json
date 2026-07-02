@@ -1,7 +1,7 @@
 {
-  "name": "@nightona/toolbox-api-client",
+  "name": "@nightona-co/toolbox-api-client",
   "version": "0.0.0-dev",
-  "description": "OpenAPI client for @nightona/toolbox-api-client",
+  "description": "OpenAPI client for @nightona-co/toolbox-api-client",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@nightona/toolbox-api-client"
+    "@nightona-co/toolbox-api-client"
   ],
   "license": "Apache-2.0",
   "main": "./src/index.js",

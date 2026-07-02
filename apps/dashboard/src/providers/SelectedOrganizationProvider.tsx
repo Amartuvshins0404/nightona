@@ -11,7 +11,7 @@ import {
 } from '@/hooks/queries/useOrganizationMembersQuery'
 import { useApi } from '@/hooks/useApi'
 import { useOrganizations } from '@/hooks/useOrganizations'
-import { Organization, OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@nightona/api-client'
+import { Organization, OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@nightona-co/api-client'
 import { useQueryClient } from '@tanstack/react-query'
 import { usePostHog } from 'posthog-js/react'
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'

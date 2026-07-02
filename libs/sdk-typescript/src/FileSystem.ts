@@ -5,8 +5,8 @@
 
 import * as pathe from 'pathe'
 import axios from 'axios'
-import { Configuration, FileSystemApi } from '@nightona/toolbox-api-client'
-import type { FileInfo, Match, ReplaceRequest, ReplaceResult, SearchFilesResponse } from '@nightona/toolbox-api-client'
+import { Configuration, FileSystemApi } from '@nightona-co/toolbox-api-client'
+import type { FileInfo, Match, ReplaceRequest, ReplaceResult, SearchFilesResponse } from '@nightona-co/toolbox-api-client'
 import { dynamicImport } from './utils/Import'
 import { RUNTIME, Runtime } from './utils/Runtime'
 import { createNightonaError, NightonaError } from './errors/NightonaError'

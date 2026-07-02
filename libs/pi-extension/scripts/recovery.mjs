@@ -27,7 +27,7 @@ const jiti = createJiti(import.meta.url, {
   moduleCache: false,
   alias: { '@earendil-works/pi-coding-agent': hostEntry },
 })
-const { Nightona } = await import('@nightona/sdk')
+const { Nightona } = await import('@nightona-co/sdk')
 
 let pass = 0,
   fail = 0

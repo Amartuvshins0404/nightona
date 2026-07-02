@@ -4,7 +4,7 @@
  */
 
 import { z } from 'zod'
-import type { Match } from '@nightona/sdk'
+import type { Match } from '@nightona-co/sdk'
 import type { PluginInput } from '@opencode-ai/plugin'
 import type { ToolContext } from '@opencode-ai/plugin/tool'
 import type { NightonaSessionManager } from '../core/session-manager'

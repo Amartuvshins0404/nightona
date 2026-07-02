@@ -12,7 +12,7 @@ import {
   CreateSandboxFromSnapshotParams,
   Nightona,
   Sandbox,
-} from '@nightona/sdk'
+} from '@nightona-co/sdk'
 import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { useAuth } from 'react-oidc-context'

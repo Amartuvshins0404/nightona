@@ -75,8 +75,8 @@ import {
   SandboxListSortDirection,
   SandboxListSortField,
   SandboxState,
-} from '@nightona/api-client'
-import type { Sandbox as CreatedSandbox } from '@nightona/sdk'
+} from '@nightona-co/api-client'
+import type { Sandbox as CreatedSandbox } from '@nightona-co/sdk'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { PlusIcon } from 'lucide-react'
 import {

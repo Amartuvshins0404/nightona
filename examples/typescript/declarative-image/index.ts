@@ -1,4 +1,4 @@
-import { Nightona, Image } from '@nightona/sdk'
+import { Nightona, Image } from '@nightona-co/sdk'
 import fs from 'fs'
 
 async function main() {

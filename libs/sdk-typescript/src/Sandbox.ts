@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { SandboxState, SandboxApi, SandboxBackupStateEnum, Configuration } from '@nightona/api-client'
+import { SandboxState, SandboxApi, SandboxBackupStateEnum, Configuration } from '@nightona-co/api-client'
 import type {
   Sandbox as SandboxDto,
   SandboxListItem as SandboxListItemDto,
@@ -18,7 +18,7 @@ import type {
   UpdateSandboxNetworkSettings,
   SandboxListSortField,
   SandboxListSortDirection,
-} from '@nightona/api-client'
+} from '@nightona-co/api-client'
 import { Nightona } from './Nightona'
 import type { Resources } from './Nightona'
 import {
@@ -29,7 +29,7 @@ import {
   InfoApi,
   ComputerUseApi,
   InterpreterApi,
-} from '@nightona/toolbox-api-client'
+} from '@nightona-co/toolbox-api-client'
 import { FileSystem } from './FileSystem'
 import { Git } from './Git'
 import { Process } from './Process'

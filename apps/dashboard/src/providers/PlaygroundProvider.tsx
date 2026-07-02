@@ -37,7 +37,7 @@ import {
   CreateSandboxFromImageParams,
   CreateSandboxFromSnapshotParams,
   Image,
-} from '@nightona/sdk'
+} from '@nightona-co/sdk'
 import { useCallback, useState } from 'react'
 
 const PARAM_SECTION_MAP: Partial<Record<keyof SandboxParams, SandboxParametersSections>> = {

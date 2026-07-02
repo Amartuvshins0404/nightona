@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Nightona, CodeLanguage, Sandbox } from '@nightona/sdk'
+import { Nightona, CodeLanguage, Sandbox } from '@nightona-co/sdk'
 import OpenAI from 'openai'
 import * as fs from 'fs'
 

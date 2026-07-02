@@ -4,7 +4,7 @@
  */
 
 import { DEFAULT_SNAPSHOT_SORTING, SnapshotSorting } from '@/hooks/queries/useSnapshotsQuery'
-import { GetAllSnapshotsOrderEnum, GetAllSnapshotsSortEnum } from '@nightona/api-client'
+import { GetAllSnapshotsOrderEnum, GetAllSnapshotsSortEnum } from '@nightona-co/api-client'
 import { SortingState } from '@tanstack/react-table'
 
 export const convertApiSortingToTableSorting = (sorting: SnapshotSorting): SortingState => {

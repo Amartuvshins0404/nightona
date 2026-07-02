@@ -17,7 +17,7 @@
     "resolveJsonModule": true,
     "baseUrl": "../..",
     "paths": {
-      "@nightona/sdk": ["libs/sdk-typescript/src/index.ts"]
+      "@nightona-co/sdk": ["libs/sdk-typescript/src/index.ts"]
     }
   },
   "include": ["index.ts", "src/**/*.ts"]

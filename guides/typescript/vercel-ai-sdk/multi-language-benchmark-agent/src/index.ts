@@ -4,7 +4,7 @@
  */
 
 import { anthropic } from '@ai-sdk/anthropic'
-import { Nightona, Sandbox } from '@nightona/sdk'
+import { Nightona, Sandbox } from '@nightona-co/sdk'
 import { ToolLoopAgent, stepCountIs, tool } from 'ai'
 import { writeFileSync } from 'fs'
 import { randomUUID } from 'node:crypto'

@@ -6,7 +6,7 @@
 import { queryKeys } from '@/hooks/queries/queryKeys'
 import { useNotificationSocket } from '@/hooks/useNotificationSocket'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
-import { Sandbox, SandboxDesiredState, SandboxState } from '@nightona/api-client'
+import { Sandbox, SandboxDesiredState, SandboxState } from '@nightona-co/api-client'
 import type { QueryKey } from '@tanstack/react-query'
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef } from 'react'

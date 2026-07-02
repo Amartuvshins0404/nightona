@@ -1,4 +1,4 @@
-import { Nightona, SandboxListSortDirection, SandboxListSortField, SandboxState } from '@nightona/sdk'
+import { Nightona, SandboxListSortDirection, SandboxListSortField, SandboxState } from '@nightona-co/sdk'
 
 async function main() {
   const nightona = new Nightona()

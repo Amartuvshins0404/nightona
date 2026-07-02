@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Invoice } from '@nightona/billing-api-client'
+import { Invoice } from '@nightona-co/billing-api-client'
 import { formatAmount } from '@/lib/utils'
 import { ColumnDef, RowData, Table } from '@tanstack/react-table'
 import React from 'react'

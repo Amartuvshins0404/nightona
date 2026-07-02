@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Nightona, Sandbox, OutputMessage, ExecutionResult } from '@nightona/sdk'
-import { InterpreterContext, ExecuteResponse } from '@nightona/toolbox-api-client'
+import { Nightona, Sandbox, OutputMessage, ExecutionResult } from '@nightona-co/sdk'
+import { InterpreterContext, ExecuteResponse } from '@nightona-co/toolbox-api-client'
 import * as dotenv from 'dotenv'
 import * as readline from 'readline'
 

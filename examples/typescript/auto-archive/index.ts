@@ -1,4 +1,4 @@
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 
 async function main() {
   const nightona = new Nightona()

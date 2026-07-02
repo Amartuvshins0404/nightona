@@ -1,4 +1,4 @@
-import { Nightona, Image, Sandbox } from '@nightona/sdk'
+import { Nightona, Image, Sandbox } from '@nightona-co/sdk'
 
 /**
  * Runs `curl` against a URL inside the sandbox and reports whether the request

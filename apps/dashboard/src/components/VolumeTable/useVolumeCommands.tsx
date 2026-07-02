@@ -4,7 +4,7 @@
  */
 
 import { pluralize } from '@/lib/utils'
-import { VolumeDto, VolumeState } from '@nightona/api-client'
+import { VolumeDto, VolumeState } from '@nightona-co/api-client'
 import { CheckSquare2Icon, MinusSquareIcon, PlusIcon, TrashIcon } from 'lucide-react'
 import { useMemo } from 'react'
 import { CommandConfig, useRegisterCommands } from '../CommandPalette'

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Runner } from '@nightona/api-client'
+import { Runner } from '@nightona-co/api-client'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useApi } from '../useApi'
 import { useSelectedOrganization } from '../useSelectedOrganization'

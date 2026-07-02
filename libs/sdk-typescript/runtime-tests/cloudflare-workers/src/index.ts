@@ -1,7 +1,7 @@
 // Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Nightona, Image } from '@nightona/sdk'
+import { Nightona, Image } from '@nightona-co/sdk'
 
 export default {
   async fetch(_req: Request, env: any) {

@@ -1,5 +1,5 @@
 {
-  "name": "@nightona/pi",
+  "name": "@nightona-co/pi",
   "version": "0.0.0-dev",
   "description": "Pi coding agent extension that runs all tool calls inside a remote, ephemeral Nightona sandbox while the agent runs locally",
   "type": "module",
@@ -38,7 +38,7 @@
     "test:live": "npm run test:bash-bg && npm run test:recovery"
   },
   "dependencies": {
-    "@nightona/sdk": "^0.184.0"
+    "@nightona-co/sdk": "^0.184.0"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",

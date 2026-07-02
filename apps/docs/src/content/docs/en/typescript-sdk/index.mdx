@@ -11,13 +11,13 @@ The Nightona TypeScript SDK provides a powerful interface for programmatically i
 Install the Nightona TypeScript SDK using npm:
 
 ```bash
-npm install @nightona/sdk
+npm install @nightona-co/sdk
 ```
 
 Or using yarn:
 
 ```bash
-yarn add @nightona/sdk
+yarn add @nightona-co/sdk
 ```
 
 ## Getting Started
@@ -27,7 +27,7 @@ yarn add @nightona/sdk
 Create a Nightona Sandbox to run your code securely in an isolated environment. The following snippet is an example “Hello World” program that runs securely inside a Nightona Sandbox.
 
 ```typescript
-import { Nightona } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
 
 async function main() {
   // Initialize the SDK (uses environment variables by default)
@@ -52,7 +52,7 @@ main().catch(console.error)
 The Nightona SDK can be configured using environment variables or by passing options to the constructor:
 
 ```typescript
-import { Nightona } from '@nightona/sdk';
+import { Nightona } from '@nightona-co/sdk';
 
 // Using environment variables (NIGHTONA_API_KEY, NIGHTONA_API_URL, NIGHTONA_TARGET)
 const nightona = new Nightona();
@@ -77,10 +77,10 @@ For **Cloudflare Workers**, set the Node.js compatibility flag in your `wrangler
 compatibility_flags = ["nodejs_compat"]
 ```
 
-For **Deno**, install with `deno add npm:@nightona/sdk` or import directly with the `npm:` specifier:
+For **Deno**, install with `deno add npm:@nightona-co/sdk` or import directly with the `npm:` specifier:
 
 ```typescript
-import { Nightona, Image } from 'npm:@nightona/sdk'
+import { Nightona, Image } from 'npm:@nightona-co/sdk'
 ```
 
 For **browser apps with Vite** (or any browser bundler), install [`vite-plugin-node-polyfills`](https://www.npmjs.com/package/vite-plugin-node-polyfills) and add it to your `vite.config.ts`:

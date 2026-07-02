@@ -15,7 +15,7 @@ import {
 } from '@/contexts/PlaygroundContext'
 import { KeyboardActions } from '@/enums/Playground'
 import { usePlayground } from '@/hooks/usePlayground'
-import { ComputerUse } from '@nightona/sdk'
+import { ComputerUse } from '@nightona-co/sdk'
 import PlaygroundActionForm from '../../ActionForm'
 import InlineInputFormControl from '../../Inputs/InlineInputFormControl'
 import FormNumberInput from '../../Inputs/NumberInput'

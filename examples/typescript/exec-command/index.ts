@@ -1,4 +1,4 @@
-import { Nightona, Sandbox, Image, NightonaTimeoutError, ExecutionError, OutputMessage } from '@nightona/sdk'
+import { Nightona, Sandbox, Image, NightonaTimeoutError, ExecutionError, OutputMessage } from '@nightona-co/sdk'
 
 async function basicExec(sandbox: Sandbox) {
   //  run some typescript code directly

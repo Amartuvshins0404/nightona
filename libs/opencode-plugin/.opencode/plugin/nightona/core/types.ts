@@ -7,7 +7,7 @@
  * Type definitions and constants for the Nightona OpenCode plugin
  */
 
-import type { Sandbox } from '@nightona/sdk'
+import type { Sandbox } from '@nightona-co/sdk'
 
 // OpenCode Types
 

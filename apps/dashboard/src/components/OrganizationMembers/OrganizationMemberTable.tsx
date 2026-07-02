@@ -23,7 +23,7 @@ import {
 import { DEFAULT_PAGE_SIZE } from '@/constants/Pagination'
 import { capitalize, cn } from '@/lib/utils'
 import { DEFAULT_TABLE_COLUMN, getColumnSizeStyles, getTableSizeStyles } from '@/lib/utils/table'
-import { OrganizationUser, OrganizationUserRoleEnum } from '@nightona/api-client'
+import { OrganizationUser, OrganizationUserRoleEnum } from '@nightona-co/api-client'
 import {
   ColumnDef,
   flexRender,

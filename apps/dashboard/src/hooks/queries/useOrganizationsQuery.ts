@@ -4,7 +4,7 @@
  */
 
 import { handleApiError } from '@/lib/error-handling'
-import { Organization } from '@nightona/api-client'
+import { Organization } from '@nightona-co/api-client'
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query'
 import { useApi } from '../useApi'
 import { queryKeys } from './queryKeys'

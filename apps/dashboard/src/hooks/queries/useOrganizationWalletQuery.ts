@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import type { OrganizationWallet } from '@nightona/billing-api-client'
+import type { OrganizationWallet } from '@nightona-co/billing-api-client'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useApi } from '../useApi'
 import { useConfig } from '../useConfig'

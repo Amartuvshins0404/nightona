@@ -1,5 +1,5 @@
 {
-  "name": "@nightona/opencode",
+  "name": "@nightona-co/opencode",
   "version": "0.0.0-dev",
   "description": "OpenCode plugin that automatically runs all sessions in Nightona sandboxes for isolated, reproducible development environments",
   "main": "./.opencode/plugin/index.js",
@@ -15,7 +15,7 @@
   "contributors": ["Nightona contributors <amaraaamka0404@gmail.com>"],
   "license": "Apache-2.0",
   "dependencies": {
-    "@nightona/sdk": "^0.163.0",
+    "@nightona-co/sdk": "^0.163.0",
     "@opencode-ai/plugin": "1.1.59",
     "xdg-basedir": "^5.1.0",
     "zod": "^4.2.1"

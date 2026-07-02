@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react'
-import { OrganizationRole, OrganizationRolePermissionsEnum } from '@nightona/api-client'
+import { OrganizationRole, OrganizationRolePermissionsEnum } from '@nightona-co/api-client'
 import {
   Dialog,
   DialogClose,

@@ -5,7 +5,7 @@ import { createApiResponse } from './helpers'
 import { NightonaNotFoundError } from '../errors/NightonaError'
 import { VolumeService } from '../Volume'
 
-jest.mock('@nightona/api-client', () => ({}), { virtual: true })
+jest.mock('@nightona-co/api-client', () => ({}), { virtual: true })
 
 describe('VolumeService', () => {
   const volumesApi = {

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ObjectStorageApi, SnapshotsApi, SnapshotState, SandboxClass, Configuration } from '@nightona/api-client'
-import type { SnapshotDto, CreateSnapshot, PaginatedSnapshots as PaginatedSnapshotsDto } from '@nightona/api-client'
+import { ObjectStorageApi, SnapshotsApi, SnapshotState, SandboxClass, Configuration } from '@nightona-co/api-client'
+import type { SnapshotDto, CreateSnapshot, PaginatedSnapshots as PaginatedSnapshotsDto } from '@nightona-co/api-client'
 import { NightonaError } from './errors/NightonaError'
 import { Image } from './Image'
 import type { Resources } from './Nightona'

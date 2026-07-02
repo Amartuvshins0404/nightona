@@ -4,7 +4,7 @@
 import { createApiResponse } from './helpers'
 import { NightonaValidationError } from '../errors/NightonaError'
 
-jest.mock('@nightona/toolbox-api-client', () => ({}), { virtual: true })
+jest.mock('@nightona-co/toolbox-api-client', () => ({}), { virtual: true })
 
 describe('LspServer', () => {
   const apiClient = {

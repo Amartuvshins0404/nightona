@@ -13,7 +13,7 @@
  * Blueprint: examples/extensions/ssh.ts from @earendil-works/pi-coding-agent.
  */
 
-import { Nightona, type Sandbox } from '@nightona/sdk'
+import { Nightona, type Sandbox } from '@nightona-co/sdk'
 import type { ExtensionAPI, ExtensionContext } from '@earendil-works/pi-coding-agent'
 import { SessionManager } from '@earendil-works/pi-coding-agent'
 import { resolveApiKey } from './src/auth.ts'

@@ -1,5 +1,5 @@
 {
-  "name": "@nightona/sdk",
+  "name": "@nightona-co/sdk",
   "version": "0.0.0-dev",
   "description": "Nightona TypeScript SDK for sandbox management and code execution",
   "exports": {

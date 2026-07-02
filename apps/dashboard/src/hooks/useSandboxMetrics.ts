@@ -7,7 +7,7 @@ import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useApi } from '@/hooks/useApi'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { queryKeys } from '@/hooks/queries/queryKeys'
-import { MetricsResponse } from '@nightona/api-client'
+import { MetricsResponse } from '@nightona-co/api-client'
 
 export interface MetricsQueryParams {
   from: Date

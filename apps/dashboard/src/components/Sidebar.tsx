@@ -24,7 +24,7 @@ import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { cn, getMetaKey } from '@/lib/utils'
 import { lazyRoutes } from '@/routes'
 import { usePylonCommands } from '@/vendor/pylon'
-import { OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@nightona/api-client'
+import { OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@nightona-co/api-client'
 import {
   ArrowRightIcon,
   Box,

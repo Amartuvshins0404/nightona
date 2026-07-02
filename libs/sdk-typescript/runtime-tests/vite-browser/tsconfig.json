@@ -13,8 +13,8 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@nightona/sdk": ["../../src"],
-      "@nightona/sdk/*": ["../../src/*"]
+      "@nightona-co/sdk": ["../../src"],
+      "@nightona-co/sdk/*": ["../../src/*"]
     }
   },
   "include": ["src/**/*.ts"],

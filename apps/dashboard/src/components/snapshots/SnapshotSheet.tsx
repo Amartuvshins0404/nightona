@@ -18,7 +18,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { getSnapshotQueryErrorStatus, useSnapshotQuery } from '@/hooks/queries/useSnapshotsQuery'
 import { getGpuTypeLabel } from '@/lib/gpu-types'
 import { cn, getRelativeTimeString, truncateUUID } from '@/lib/utils'
-import { SnapshotDto, SnapshotState } from '@nightona/api-client'
+import { SnapshotDto, SnapshotState } from '@nightona-co/api-client'
 import { MagnifyingGlassIcon } from '@phosphor-icons/react'
 import { ChevronDown, ChevronUp, CircleAlert, Pause, Play, Trash2, X } from 'lucide-react'
 import React, { Ref, useImperativeHandle, useState } from 'react'

@@ -7,7 +7,7 @@ import { z } from 'zod'
 import type { PluginInput } from '@opencode-ai/plugin'
 import type { ToolContext } from '@opencode-ai/plugin/tool'
 import type { NightonaSessionManager } from '../core/session-manager'
-import type { FileInfo } from '@nightona/sdk'
+import type { FileInfo } from '@nightona-co/sdk'
 
 export const lsTool = (
   sessionManager: NightonaSessionManager,

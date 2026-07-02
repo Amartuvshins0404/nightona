@@ -7,9 +7,9 @@ import 'dotenv/config'
 
 import { z } from 'zod'
 import { createAgent, createNetwork, createTool, anthropic } from '@inngest/agent-kit'
-import { CodeRunParams, NightonaError } from '@nightona/sdk'
+import { CodeRunParams, NightonaError } from '@nightona-co/sdk'
 import { getSandbox, extractTextMessageContent, logDebug } from './utils.js'
-import type { FileUpload } from '@nightona/sdk/src/FileSystem.js'
+import type { FileUpload } from '@nightona-co/sdk/src/FileSystem.js'
 import { Buffer } from 'buffer'
 
 async function main() {

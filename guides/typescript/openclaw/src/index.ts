@@ -4,8 +4,8 @@
  */
 
 import 'dotenv/config'
-import { Nightona } from '@nightona/sdk'
-import type { Sandbox } from '@nightona/sdk'
+import { Nightona } from '@nightona-co/sdk'
+import type { Sandbox } from '@nightona-co/sdk'
 import { randomBytes } from 'crypto'
 import { readFileSync } from 'fs'
 import { join } from 'path'

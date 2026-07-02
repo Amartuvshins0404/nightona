@@ -12,7 +12,7 @@ import {
   SandboxListSortField,
   SandboxState,
   SnapshotDto,
-} from '@nightona/api-client'
+} from '@nightona-co/api-client'
 import { ColumnFiltersState, SortingState, Table } from '@tanstack/react-table'
 import type { Ref } from 'react'
 import { ResourceFilterValue } from './filters/ResourceFilter'

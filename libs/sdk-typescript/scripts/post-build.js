@@ -18,7 +18,7 @@ const pkg = readJson(path.join(sourceDir, 'package.json'))
 pkg.dependencies = { ...generatedDeps }
 for (const name of ['api-client', 'toolbox-api-client']) {
   const distPkg = readJson(path.join(workspaceRoot, 'dist', 'libs', name, 'package.json'))
-  pkg.dependencies[`@nightona/${name}`] = distPkg.version
+  pkg.dependencies[`@nightona-co/${name}`] = distPkg.version
 }
 
 for (const buildDir of [esmDir, cjsDir]) {
@@ -45,7 +45,7 @@ if (fs.existsSync(esmImportJs)) {
     `  try { if (typeof require !== 'undefined') return require; } catch {}\n` +
     `  return (id) => { throw new Error(\n` +
     `    'cannot require("' + id + '"): no CommonJS require available. ' +\n` +
-    `    'If re-bundling @nightona/sdk to CJS, ensure createRequire or the host require is accessible.'\n` +
+    `    'If re-bundling @nightona-co/sdk to CJS, ensure createRequire or the host require is accessible.'\n` +
     `  ); };\n` +
     `})();\n`
   const original = fs.readFileSync(esmImportJs, 'utf8')

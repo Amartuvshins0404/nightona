@@ -6,7 +6,7 @@
 import { queryKeys } from '@/hooks/queries/queryKeys'
 import { useNotificationSocket } from '@/hooks/useNotificationSocket'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
-import { VolumeDto, VolumeState } from '@nightona/api-client'
+import { VolumeDto, VolumeState } from '@nightona-co/api-client'
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 

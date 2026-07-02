@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Nightona, Sandbox } from '@nightona/sdk'
-import { FileUpload } from '@nightona/sdk/src/FileSystem'
+import { Nightona, Sandbox } from '@nightona-co/sdk'
+import { FileUpload } from '@nightona-co/sdk/src/FileSystem'
 
 let nightonaInstance: Nightona | null = null
 

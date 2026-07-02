@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import type { Nightona } from '@nightona/sdk'
+import type { Nightona } from '@nightona-co/sdk'
 
 export type PreviewKind = 'binary' | 'image' | 'text'
 

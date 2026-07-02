@@ -4,7 +4,7 @@
  */
 
 import { CopyButton } from '@/components/CopyButton'
-import type { SandboxListItem } from '@nightona/api-client'
+import type { SandboxListItem } from '@nightona-co/api-client'
 import type React from 'react'
 import { InfoRow, InfoSection } from '../SandboxInfoPanel'
 import { SandboxState as SandboxStateComponent } from '../SandboxState'

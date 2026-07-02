@@ -1,6 +1,6 @@
 # Runtime compatibility tests
 
-End-to-end smoke tests that prove `@nightona/sdk` builds and runs in every supported JavaScript runtime. Each subdirectory is a self-contained mini-project that:
+End-to-end smoke tests that prove `@nightona-co/sdk` builds and runs in every supported JavaScript runtime. Each subdirectory is a self-contained mini-project that:
 
 1. Installs the locally-built SDK (via `npm pack` tarball)
 2. Builds (when the runtime requires bundling)
@@ -62,8 +62,8 @@ Everything else (`wrangler`, `lambda-local`, `vite`, `next`, `nuxt`, `remix`, `e
 ## Adding a new runtime
 
 1. Create `runtime-tests/<runtime-name>/`
-2. Add a minimal `package.json` (no `@nightona/sdk` in deps — the orchestrator injects it via tarball)
-3. Add a test file that imports `@nightona/sdk`, exercises `Image.base()` + `nightona.list()`, and prints `PASS` / exits non-zero on failure
+2. Add a minimal `package.json` (no `@nightona-co/sdk` in deps — the orchestrator injects it via tarball)
+3. Add a test file that imports `@nightona-co/sdk`, exercises `Image.base()` + `nightona.list()`, and prints `PASS` / exits non-zero on failure
 4. Add `run.sh` that installs deps, runs `npm install --silent "$SDK_TARBALL"`, builds (if needed), and runs the test
 5. `chmod +x run.sh`
 

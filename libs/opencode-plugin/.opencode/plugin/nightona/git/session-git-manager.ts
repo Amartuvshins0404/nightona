@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Sandbox } from '@nightona/sdk'
+import type { Sandbox } from '@nightona-co/sdk'
 import { logger } from '../core/logger'
 import { toast } from '../core/toast'
 import { NightonaSandboxGitManager } from './sandbox-git-manager'

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Sandbox } from '@nightona/sdk'
+import { Sandbox } from '@nightona-co/sdk'
 import { LettaMessage, ApprovalRequestMessage, ResultMessage, ToolCall } from './types'
 import { renderMarkdown } from './utils'
 

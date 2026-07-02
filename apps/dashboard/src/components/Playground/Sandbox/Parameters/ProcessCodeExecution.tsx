@@ -12,7 +12,7 @@ import {
 } from '@/contexts/PlaygroundContext'
 import { ProcessCodeExecutionActions } from '@/enums/Playground'
 import { usePlayground } from '@/hooks/usePlayground'
-import { CodeLanguage } from '@nightona/sdk'
+import { CodeLanguage } from '@nightona-co/sdk'
 import PlaygroundActionForm from '../../ActionForm'
 import StackedInputFormControl from '../../Inputs/StackedInputFormControl'
 

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Sandbox, PtyHandle } from '@nightona/sdk'
+import { Sandbox, PtyHandle } from '@nightona-co/sdk'
 import { AmpMessage, AssistantMessage, ResultMessage, UserMessage } from './types.js'
 import { renderMarkdown } from './utils.js'
 

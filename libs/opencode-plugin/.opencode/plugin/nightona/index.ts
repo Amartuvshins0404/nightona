@@ -19,7 +19,7 @@
  * Nightona Sandbox Integration Tools
  *
  * Requires:
- * - npm install @nightona/sdk
+ * - npm install @nightona-co/sdk
  * - Environment: NIGHTONA_API_KEY
  */
 

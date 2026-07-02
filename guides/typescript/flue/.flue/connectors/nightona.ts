@@ -11,7 +11,7 @@
  *
  * @example
  * ```typescript
- * import { Nightona } from '@nightona/sdk';
+ * import { Nightona } from '@nightona-co/sdk';
  * import { nightona } from './connectors/nightona';
  *
  * const client = new Nightona({ apiKey: process.env.NIGHTONA_API_KEY });
@@ -22,7 +22,7 @@
  */
 import { createSandboxSessionEnv } from '@flue/sdk/sandbox'
 import type { SandboxApi, SandboxFactory, SessionEnv, FileStat } from '@flue/sdk/sandbox'
-import type { Sandbox as NightonaSandbox } from '@nightona/sdk'
+import type { Sandbox as NightonaSandbox } from '@nightona-co/sdk'
 
 export interface NightonaConnectorOptions {
   /**

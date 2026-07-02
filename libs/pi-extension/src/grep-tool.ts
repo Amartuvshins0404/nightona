@@ -15,7 +15,7 @@
  * of Pi's grep output closely enough for the model.
  */
 
-import type { Sandbox } from '@nightona/sdk'
+import type { Sandbox } from '@nightona-co/sdk'
 import { execCommand } from './sandbox.ts'
 import { shellQuote } from './util.ts'
 

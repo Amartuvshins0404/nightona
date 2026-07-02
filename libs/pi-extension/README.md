@@ -25,7 +25,7 @@ See [pi.dev](https://pi.dev) for other install options.
 Then add the Nightona extension to Pi:
 
 ```bash
-pi install npm:@nightona/pi
+pi install npm:@nightona-co/pi
 ```
 
 > [!NOTE]
@@ -159,7 +159,7 @@ Install the extension's own dependencies once (needed for running it and for the
 cd libs/pi-extension && npm install
 ```
 
-This is needed even after `yarn install` at the repo root, which doesn't make `@nightona/sdk` resolvable at runtime.
+This is needed even after `yarn install` at the repo root, which doesn't make `@nightona-co/sdk` resolvable at runtime.
 
 #### Run from source
 
@@ -167,7 +167,7 @@ Remove any previously installed copy (loading two copies makes every tool and fl
 
 ```bash
 pi list                        # shows installed packages and their exact source
-pi uninstall <source>          # e.g. npm:@nightona/pi — use the source shown by `pi list`
+pi uninstall <source>          # e.g. npm:@nightona-co/pi — use the source shown by `pi list`
 ```
 
 Install the local directory:
