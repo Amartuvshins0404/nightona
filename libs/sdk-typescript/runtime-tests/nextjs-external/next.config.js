@@ -1,4 +1,4 @@
-// Copyright Nightona Platforms Inc.
+// Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // Externalize the SDK and its sibling client packages so Next.js does NOT

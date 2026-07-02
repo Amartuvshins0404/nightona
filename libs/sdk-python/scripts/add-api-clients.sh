@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2025 Nightona Platforms Inc.
+# Copyright 2025 Daytona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -e

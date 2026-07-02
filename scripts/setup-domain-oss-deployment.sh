@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2026 Nightona Platforms Inc.
+# Copyright 2026 Daytona Platforms Inc.
 # SPDX-License-Identifier: AGPL-3.0
 
 # Nightona Domain Setup

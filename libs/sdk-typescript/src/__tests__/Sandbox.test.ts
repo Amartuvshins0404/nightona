@@ -1,4 +1,4 @@
-// Copyright Nightona Platforms Inc.
+// Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Configuration, Sandbox as SandboxDto } from '@nightona/api-client'

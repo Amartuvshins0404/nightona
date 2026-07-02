@@ -1,4 +1,4 @@
-# Copyright Nightona Platforms Inc.
+# Copyright Daytona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """Shared fixtures and mock setup for Nightona Python SDK tests."""

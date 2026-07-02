@@ -1,4 +1,4 @@
-// Copyright 2025 Nightona Platforms Inc.
+// Copyright (c) 2026 Nightona contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Package envcompat provides backward compatibility with the legacy

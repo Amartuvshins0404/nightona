@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Nightona Platforms Inc.
+# Copyright Daytona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 # ENDPOINT and TOKEN are printed by serve_sglang.py.

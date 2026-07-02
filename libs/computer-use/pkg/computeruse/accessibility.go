@@ -1,4 +1,4 @@
-// Copyright Nightona Platforms Inc.
+// Copyright Daytona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 // AT-SPI is spoken directly over D-Bus via godbus/dbus/v5. AT-SPI's public

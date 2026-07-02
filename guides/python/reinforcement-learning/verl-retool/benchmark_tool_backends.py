@@ -1,4 +1,4 @@
-# Copyright 2025 Nightona Platforms Inc.
+# Copyright 2025 Daytona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """Benchmark veRL ReTool tool backends: Nightona, Docker, and SandboxFusion."""

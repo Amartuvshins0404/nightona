@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Nightona Platforms Inc.
+# Copyright Daytona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 #
 # Reproduces and regression-tests issue #4771: sandbox.fs.downloadFile() in

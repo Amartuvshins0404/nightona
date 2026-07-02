@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright Nightona Platforms Inc.
+# Copyright Daytona Platforms Inc.
 # SPDX-License-Identifier: AGPL-3.0
 
 # Fails if any migration file is placed directly under

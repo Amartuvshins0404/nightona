@@ -1,5 +1,5 @@
 /*
- * Copyright Nightona Platforms Inc.
+ * Copyright (c) 2026 Nightona contributors
  * SPDX-License-Identifier: AGPL-3.0
  */
 
