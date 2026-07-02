@@ -41,6 +41,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      # OIDC trusted publishing for the PyPI and RubyGems legs. Because the
+      # matrix shares one job, the npm/TS legs are also granted id-token:write
+      # (unused there; npm still authenticates with NPM_TOKEN).
+      id-token: write
     name: Publish ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -69,8 +73,6 @@ jobs:
           #   projects: sdk-java
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-      RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
       MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
       MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
       MAVEN_GPG_SIGNING_KEY: ${{ secrets.MAVEN_GPG_SIGNING_KEY }}
@@ -102,15 +104,78 @@ jobs:
           git config --global user.name "Nightona Release Bot"
           git config --global user.email "nightona-release@users.noreply.github.com"
 
-      - name: Configure RubyGems credentials
+      # Exchanges the job's OIDC token for a temporary RubyGems API key and
+      # exports it in the env vars that the nx publish targets' gem push
+      # reads (trusted publishers must be configured for each gem)
+      - name: Configure RubyGems credentials (OIDC trusted publishing)
         if: matrix.projects == 'sdk-ruby'
+        uses: rubygems/configure-rubygems-credentials@dc5a8d8553e6ee01fc26761a49e99e733d17954a # v2.1.0
+
+      # The Python SDK leg publishes via PyPI trusted publishing (OIDC)
+      # instead of the nx poetry-publish targets, which need a long-lived
+      # registry token.
+      # Two publish stages are required: the API clients must be live on
+      # PyPI before the SDK build can pin them (add-api-clients runs
+      # "poetry add nightona_api_client@$PYPI_PKG_VERSION ...").
+      - name: Build Python API clients
+        if: matrix.projects == 'sdk-python'
         run: |
-          mkdir -p ~/.gem
-          echo "---" > ~/.gem/credentials
-          echo ":rubygems_api_key: $RUBYGEMS_API_KEY" >> ~/.gem/credentials
-          chmod 0600 ~/.gem/credentials
+          source "$(poetry env info --path)/bin/activate"
+          yarn nx run-many --target=build --projects=api-client-python,api-client-python-async,toolbox-api-client-python,toolbox-api-client-python-async
+          mkdir -p dist/pypi-clients
+          cp libs/api-client-python/dist/* libs/api-client-python-async/dist/* libs/toolbox-api-client-python/dist/* libs/toolbox-api-client-python-async/dist/* dist/pypi-clients/
+
+      - name: Publish Python API clients (OIDC trusted publishing)
+        if: matrix.projects == 'sdk-python'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/pypi-clients
+
+      - name: Wait for Python API clients on PyPI
+        if: matrix.projects == 'sdk-python'
+        run: |
+          source "$(poetry env info --path)/bin/activate"
+          for pkg in nightona_api_client nightona_api_client_async nightona_toolbox_api_client nightona_toolbox_api_client_async; do
+            found=""
+            for i in $(seq 1 20); do
+              if pip download "${pkg}==${PYPI_PKG_VERSION}" -q -d /tmp; then
+                echo "${pkg}==${PYPI_PKG_VERSION} is now downloadable from PyPI"
+                found="true"
+                sleep 5
+                break
+              fi
+              echo "Attempt $i/20: ${pkg}==${PYPI_PKG_VERSION} not yet available"
+              sleep 5
+            done
+            if [ -z "$found" ]; then
+              echo "Timeout waiting for ${pkg}==${PYPI_PKG_VERSION} on PyPI" >&2
+              exit 1
+            fi
+          done
+
+      # add-api-clients pins the freshly published clients into the SDK's
+      # pyproject; --excludeTaskDependencies skips the nx client publish
+      # targets (already published above). Only the nightona-* artifacts are
+      # uploaded: the nightona_sdk alias built by build-sdk.sh has no
+      # trusted publisher registered.
+      - name: Build Python SDK
+        if: matrix.projects == 'sdk-python'
+        run: |
+          source "$(poetry env info --path)/bin/activate"
+          yarn nx run-many --target=add-api-clients --projects=sdk-python --excludeTaskDependencies
+          yarn nx run-many --target=deps-check --projects=sdk-python --excludeTaskDependencies
+          yarn nx run-many --target=build --projects=sdk-python
+          mkdir -p dist/pypi-sdk
+          cp libs/sdk-python/dist/nightona-* dist/pypi-sdk/
+
+      - name: Publish Python SDK (OIDC trusted publishing)
+        if: matrix.projects == 'sdk-python'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/pypi-sdk
 
       - name: Publish projects
+        if: matrix.projects != 'sdk-python'
         run: |
           source "$(poetry env info --path)/bin/activate"
           if [ "${{ matrix.exclude-task-deps }}" = "true" ]; then
