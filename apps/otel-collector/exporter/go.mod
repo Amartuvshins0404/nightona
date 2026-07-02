@@ -3,7 +3,7 @@ module github.com/nightona-co/nightona/apps/otel-collector/exporter
 go 1.25.4
 
 require (
-	github.com/nightona-co/nightona/libs/api-client-go v0.190.0
+	github.com/nightona-co/nightona/libs/api-client-go v0.191.0
 	github.com/nightona-co/nightona/libs/common-go v0.0.0-00010101000000-000000000000
 	go.opentelemetry.io/collector/client v1.61.0
 	go.opentelemetry.io/collector/component v1.61.0

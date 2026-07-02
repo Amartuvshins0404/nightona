@@ -7,7 +7,7 @@ require (
 	github.com/docker/docker v28.5.2+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/mark3labs/mcp-go v0.55.1
-	github.com/nightona-co/nightona/libs/api-client-go v0.190.0
+	github.com/nightona-co/nightona/libs/api-client-go v0.191.0
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c
 	github.com/sirupsen/logrus v1.9.4
 	github.com/spf13/cobra v1.10.2
