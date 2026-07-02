@@ -22,10 +22,12 @@ Status of the visual rebrand (Daytona -> Nightona wordmark: crescent moon + "NIG
    `https://raw.githubusercontent.com/Amartuvshins0404/nightona/main/apps/docs/public/nightona.png`
    (the rebranded 1248x628 OG card in this repo).
 3. **Contact emails** — `sales@daytona.io` / `support@daytona.io` mailto links remain in
-   `apps/dashboard/src/components/TierUpgradeCard.tsx`, `LoadingFallbackContent.tsx`, and
-   `UsageOverview.tsx` (no Nightona address exists yet).
-4. **Docs URLs** — `NIGHTONA_DOCS_URL` and deep links still point at `daytona.io/docs` by design
-   (no replacement domain yet).
+   `LoadingFallbackContent.tsx` and `UsageOverview.tsx` (no Nightona address exists yet).
+   `TierUpgradeCard.tsx` and `apps/api/src/common/constants/error-messages.ts` now point at
+   `https://github.com/Amartuvshins0404/nightona/issues` instead.
+4. **Docs URLs** — `NIGHTONA_DOCS_URL` in `apps/dashboard/src/constants/ExternalLinks.ts` and other
+   deep links still point at `https://www.daytona.io/docs` by design (upstream docs; no replacement
+   domain yet). Switch them once Nightona docs are hosted.
 5. **Render quality** — all PNGs were rasterized from the SVG wordmark (bold Helvetica Neue) via
    headless Chrome. Good enough for UI use; a designer may want to re-export from a proper brand file
    and convert the wordmark text to outlined paths so the SVGs render identically without system fonts.

@@ -32,9 +32,9 @@ Thinking...
 > I'll create a Kanji flashcard app with flip animations, progress tracking, and multiple study modes. Here's the preview URL:
 
 https://8000-29baaaf7-767a-4dff-8129-1e6ec2100b3e.nightonaproxy01.net
-🔧 create_file /home/nightona/index.html
-Successfully created file /home/nightona/index.html
-🔧 create_file /home/nightona/start.sh
+🔧 create_file /home/daytona/index.html
+Successfully created file /home/daytona/index.html
+🔧 create_file /home/daytona/start.sh
 Running `python3 -m http.server 8000` via session command...
 
 User:
@@ -111,7 +111,7 @@ On startup, the script:
 1. Creates a new [Nightona sandbox](/docs/en/sandboxes) with the Amp API key.
 2. Installs the Amp CLI globally in the sandbox.
 3. Creates a PTY for streaming output from Amp.
-4. Sends a Nightona-aware system prompt as the first user message (preview URL pattern + instruction to write server startup command to `/home/nightona/start.sh`).
+4. Sends a Nightona-aware system prompt as the first user message (preview URL pattern + instruction to write server startup command to `/home/daytona/start.sh`).
 5. Enters the readline loop to send prompts and receive streamed responses.
 6. On Ctrl+C, kills the PTY session, deletes the sandbox, and exits.
 
@@ -142,7 +142,7 @@ private async runAmpCommand(args: string[]): Promise<void> {
   const command = ['amp', '--dangerously-allow-all', '--stream-json', '-m smart', ...args].join(' ')
 
   // Send command to the PTY
-  await this.ptyHandle.sendInput(`cd /home/nightona && ${command}\n`)
+  await this.ptyHandle.sendInput(`cd /home/daytona && ${command}\n`)
 
   // Wait for the response to complete (signaled by result message)
   await new Promise<void>((resolve) => {
@@ -214,14 +214,14 @@ private handleJsonLine(line: string): void {
 
 #### System Prompt and Main Loop
 
-A Nightona-aware system prompt is sent as the first user message. It instructs the agent to use the preview URL pattern and to write the server start command into `/home/nightona/start.sh` (instead of executing directly in Amp), then provide the preview URL:
+A Nightona-aware system prompt is sent as the first user message. It instructs the agent to use the preview URL pattern and to write the server start command into `/home/daytona/start.sh` (instead of executing directly in Amp), then provide the preview URL:
 
 ```ts
 const defaultSystemPrompt = [
   'You are running in a Nightona sandbox.',
   `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
   'When you need to start a server, DO NOT run it directly.',
-  'Instead, write only the server start command to /home/nightona/start.sh (one command, no markdown).',
+  'Instead, write only the server start command to /home/daytona/start.sh (one command, no markdown).',
   'After writing the start command, provide the preview URL to the user.',
 ].join(' ')
 
@@ -243,7 +243,7 @@ while (true) {
 }
 ```
 
-The readline loop waits for user input, sends it to the agent, and displays the streamed response. If Amp produced `/home/nightona/start.sh`, the script is then launched via Nightona's session command API so long-running/background server startup does not hang Amp turns.
+The readline loop waits for user input, sends it to the agent, and displays the streamed response. If Amp produced `/home/daytona/start.sh`, the script is then launched via Nightona's session command API so long-running/background server startup does not hang Amp turns.
 
 **Key advantages:**
 

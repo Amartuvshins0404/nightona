@@ -25,8 +25,8 @@ from nightona import CreateSandboxFromSnapshotParams, Nightona, NightonaConflict
 
 REPO = pathlib.Path(__file__).resolve().parent
 RUNNER_LOG = "/tmp/sandbox_runner.log"
-RUNNER_PIDFILE = "/home/nightona/sandbox_runner.pid"
-RUNNER_EXITCODE_FILE = "/home/nightona/sandbox_runner.exit"
+RUNNER_PIDFILE = "/home/daytona/sandbox_runner.pid"
+RUNNER_EXITCODE_FILE = "/home/daytona/sandbox_runner.exit"
 STOPPED_AT_LABEL = "byoc.stopped_at"
 WORK_ID_LABEL = "byoc.work_id"
 DEFAULT_DOCKERFILE = REPO / "Dockerfile.default"
@@ -285,8 +285,8 @@ def clear_stop_state(sandbox) -> None:
 def preflight_runner_environment(sandbox) -> None:
     script = """
     set -eu
-    mkdir -p /home/nightona /mnt/session
-    test -w /home/nightona
+    mkdir -p /home/daytona /mnt/session
+    test -w /home/daytona
     test -w /mnt/session
     command -v bash >/dev/null
     command -v python3.12 >/dev/null
@@ -310,7 +310,7 @@ def install_runner(sandbox) -> None:
         raise RuntimeError(f"failed to prepare /mnt/session (exit {r.exit_code}); " f"output:\n{r.result or '<empty>'}")
     sandbox.fs.upload_file(
         (REPO / "sandbox_runner.py").read_bytes(),
-        "/home/nightona/sandbox_runner.py",
+        "/home/daytona/sandbox_runner.py",
     )
     r = sandbox.process.exec(
         "python3.12 -m pip install --quiet --user 'anthropic>=0.103'",
@@ -350,7 +350,7 @@ def runner_process_state(sandbox) -> RunnerProcessState:
 
     find_stale_runner() {{
       ps -eo pid=,comm=,args= |
-        awk '$2 == "python3.12" && $0 ~ "/home/nightona/sandbox_runner.py" {{print $1; exit}}'
+        awk '$2 == "python3.12" && $0 ~ "/home/daytona/sandbox_runner.py" {{print $1; exit}}'
     }}
 
     if ! test -s "$pidfile"; then
@@ -448,7 +448,7 @@ def stop_existing_runner_process_group(sandbox) -> None:
       exit 0
     fi
 
-    stale=$(ps -eo pid=,comm=,args= | awk '$2 == "python3.12" && $0 ~ "/home/nightona/sandbox_runner.py" {{print $1}}')
+    stale=$(ps -eo pid=,comm=,args= | awk '$2 == "python3.12" && $0 ~ "/home/daytona/sandbox_runner.py" {{print $1}}')
     if test -n "$stale"; then
       echo "pidfile missing; stopping stale sandbox_runner.py"
       for pid in $stale; do
@@ -592,7 +592,7 @@ def start_runner(
         "SESSION_ID": session_id,
     }
     runner_wrapper = f"""
-      python3.12 /home/nightona/sandbox_runner.py
+      python3.12 /home/daytona/sandbox_runner.py
       code=$?
       printf '%s\\n' "$code" > {shlex.quote(RUNNER_EXITCODE_FILE)}
       exit "$code"

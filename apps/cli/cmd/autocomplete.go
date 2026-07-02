@@ -32,7 +32,7 @@ var AutoCompleteCmd = &cobra.Command{
 		fmt.Printf("For manual sourcing, use: source %s\n", profilePath)
 		if shell == "bash" {
 			fmt.Println("Please make sure that you have bash-completion installed in order to get full autocompletion functionality.")
-			fmt.Println("On how to install bash-completion, please refer to the following link: https://www.daytona.io/docs/tools/cli/#nightona-autocomplete")
+			fmt.Println("On how to install bash-completion, please refer to the following link: https://www.daytona.io/docs/tools/cli/#daytona-autocomplete")
 		}
 
 		return nil

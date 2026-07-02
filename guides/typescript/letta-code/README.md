@@ -65,7 +65,7 @@ You: make and run a lunar lander web server
 Thinking...
 
 🔧 TodoWrite
-🔧 Write /home/nightona/workspace/index.html
+🔧 Write /home/daytona/workspace/index.html
 🔧 TodoWrite
 🔧 Start HTTP server on port 8000
 🔧 BashOutput

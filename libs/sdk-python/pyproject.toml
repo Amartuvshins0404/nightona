@@ -6,6 +6,9 @@ build-backend = "poetry.core.masonry.api"
 name = "nightona"
 version = "0.0.0-dev"
 authors = [
+    { name = "Daytona Platforms Inc.", email = "support@daytona.io"  },
+]
+maintainers = [
     { name = "Nightona contributors", email = "amaraaamka0404@gmail.com" },
 ]
 description = "Python SDK for Nightona"

@@ -88,7 +88,7 @@ Now create a [Nightona sandbox](/docs/en/sandboxes/#create-sandboxes) and upload
 
     # Upload the dataset to the sandbox
 
-    sandbox.fs.upload_file("dataset.csv", "/home/nightona/dataset.csv")
+    sandbox.fs.upload_file("dataset.csv", "/home/daytona/dataset.csv")
 
     ```
   </TabItem>
@@ -103,7 +103,7 @@ Now create a [Nightona sandbox](/docs/en/sandboxes/#create-sandboxes) and upload
     const sandbox = await nightona.create()
 
     // Upload the dataset to the sandbox
-    await sandbox.fs.uploadFile('dataset.csv', '/home/nightona/dataset.csv')
+    await sandbox.fs.uploadFile('dataset.csv', '/home/daytona/dataset.csv')
     ```
   </TabItem>
 
@@ -117,7 +117,7 @@ Now create a [Nightona sandbox](/docs/en/sandboxes/#create-sandboxes) and upload
     sandbox = nightona.create
 
     # Upload the dataset to the sandbox
-    sandbox.fs.upload_file(File.read('dataset.csv'), '/home/nightona/dataset.csv')
+    sandbox.fs.upload_file(File.read('dataset.csv'), '/home/daytona/dataset.csv')
     ```
   </TabItem>
 </Tabs>
@@ -221,7 +221,7 @@ Next, we'll create the prompt that tells Claude about our dataset and what analy
     from anthropic import Anthropic
 
     prompt = f"""
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle
@@ -243,7 +243,7 @@ Next, we'll create the prompt that tells Claude about our dataset and what analy
     import Anthropic from '@anthropic-ai/sdk'
 
     const prompt = `
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle
@@ -594,10 +594,10 @@ Here are the complete, ready-to-run examples with the agentic loop:
         sandbox = nightona.create()
 
         # Upload the dataset to the sandbox
-        sandbox.fs.upload_file("dataset.csv", "/home/nightona/dataset.csv")
+        sandbox.fs.upload_file("dataset.csv", "/home/daytona/dataset.csv")
 
         initial_prompt = """
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle
@@ -769,10 +769,10 @@ Here are the complete, ready-to-run examples with the agentic loop:
       const sandbox = await nightona.create();
 
       // Upload the dataset to the sandbox
-      await sandbox.fs.uploadFile("dataset.csv", "/home/nightona/dataset.csv");
+      await sandbox.fs.uploadFile("dataset.csv", "/home/daytona/dataset.csv");
 
       const initialPrompt = `
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle

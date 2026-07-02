@@ -165,10 +165,10 @@ func GetForceSnapshotRemoval() bool {
 
 func GetBuildLogFilePath(snapshotRef string) (string, error) {
 	// Extract image name from various snapshot ref formats:
-	// - registry:5000/nightona/nightona-<hash>
-	// - nightona-<hash>
-	// - nightona-<hash>:tag
-	// - cr.preprod.daytona.io/sbox/nightona/nightona-<hash>:nightona
+	// - registry:5000/daytona/daytona-<hash>
+	// - daytona-<hash>
+	// - daytona-<hash>:tag
+	// - cr.preprod.daytona.io/sbox/daytona/daytona-<hash>:daytona
 
 	buildId := snapshotRef
 

@@ -43,7 +43,7 @@ nightona = Nightona()
 volume = nightona.volume.get("my-volume", create=True)
 
 # ボリュームをサンドボックスにマウントする
-mount_dir_1 = "/home/nightona/volume"
+mount_dir_1 = "/home/daytona/volume"
 
 params = CreateSandboxFromSnapshotParams(
     language="python",
@@ -79,7 +79,7 @@ async function main() {
   const volume = await nightona.volume.get('my-volume', true)
 
   // ボリュームをサンドボックスにマウントする
-  const mountDir1 = '/home/nightona/volume'
+  const mountDir1 = '/home/daytona/volume'
 
   const sandbox1 = await nightona.create({
     language: 'typescript',

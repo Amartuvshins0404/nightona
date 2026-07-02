@@ -766,7 +766,7 @@ nightona = Nightona()
 image = (
     Image.debian_slim("3.12")
     .pip_install(["requests", "pandas", "numpy"])
-    .workdir("/home/nightona")
+    .workdir("/home/daytona")
 )
 sandbox = nightona.create(
     CreateSandboxFromImageParams(image=image),
@@ -783,7 +783,7 @@ import { Nightona, Image } from '@nightona/sdk';
 const nightona = new Nightona();
 const image = Image.debianSlim('3.12')
     .pipInstall(['requests', 'pandas', 'numpy'])
-    .workdir('/home/nightona');
+    .workdir('/home/daytona');
 const sandbox = await nightona.create(
     { image },
     { onSnapshotCreateLogs: console.log }
@@ -812,7 +812,7 @@ func main() {
 
     image := nightona.DebianSlim(nil).
         PipInstall([]string{"requests", "pandas", "numpy"}).
-        Workdir("/home/nightona")
+        Workdir("/home/daytona")
     sandbox, err := client.Create(context.Background(), types.ImageParams{
         Image: image,
     })
@@ -832,7 +832,7 @@ nightona = Nightona::Nightona.new
 image = Nightona::Image
     .debian_slim('3.12')
     .pip_install(['requests', 'pandas', 'numpy'])
-    .workdir('/home/nightona')
+    .workdir('/home/daytona')
 sandbox = nightona.create(
     Nightona::CreateSandboxFromImageParams.new(image: image),
     on_snapshot_create_logs: proc { |chunk| puts chunk }
@@ -853,7 +853,7 @@ public class App {
         try (Nightona nightona = new Nightona()) {
             Image image = Image.debianSlim("3.12")
                     .pipInstall("requests", "pandas", "numpy")
-                    .workdir("/home/nightona");
+                    .workdir("/home/daytona");
             CreateSandboxFromImageParams params = new CreateSandboxFromImageParams();
             params.setImage(image);
             Sandbox sandbox = nightona.create(params, 60, System.out::println);
@@ -879,7 +879,7 @@ curl 'https://app.daytona.io/api/sandbox' \
   --header 'Content-Type: application/json' \
   --data '{
   "buildInfo": {
-    "dockerfileContent": "FROM python:3.12-slim\nRUN pip install requests pandas numpy\nWORKDIR /home/nightona"
+    "dockerfileContent": "FROM python:3.12-slim\nRUN pip install requests pandas numpy\nWORKDIR /home/daytona"
   }
 }'
 ```
@@ -901,7 +901,7 @@ nightona = Nightona()
 volume = nightona.volume.get("my-volume", create=True)
 sandbox = nightona.create(
     CreateSandboxFromSnapshotParams(
-        volumes=[VolumeMount(volume_id=volume.id, mount_path="/home/nightona/data")]
+        volumes=[VolumeMount(volume_id=volume.id, mount_path="/home/daytona/data")]
     )
 )
 ```
@@ -915,7 +915,7 @@ import { Nightona } from '@nightona/sdk';
 const nightona = new Nightona();
 const volume = await nightona.volume.get('my-volume', true);
 const sandbox = await nightona.create({
-    volumes: [{ volumeId: volume.id, mountPath: '/home/nightona/data' }]
+    volumes: [{ volumeId: volume.id, mountPath: '/home/daytona/data' }]
 });
 ```
 
@@ -951,7 +951,7 @@ func main() {
         SandboxBaseParams: types.SandboxBaseParams{
             Volumes: []types.VolumeMount{{
                 VolumeID:  volume.ID,
-                MountPath: "/home/nightona/data",
+                MountPath: "/home/daytona/data",
             }},
         },
     })
@@ -972,7 +972,7 @@ sandbox = nightona.create(
     Nightona::CreateSandboxFromSnapshotParams.new(
         volumes: [NightonaApiClient::SandboxVolume.new(
             volume_id: volume.id,
-            mount_path: '/home/nightona/data'
+            mount_path: '/home/daytona/data'
         )]
     )
 )
@@ -1003,7 +1003,7 @@ public class App {
 
             VolumeMount mount = new VolumeMount();
             mount.setVolumeId(volume.getId());
-            mount.setMountPath("/home/nightona/data");
+            mount.setMountPath("/home/daytona/data");
 
             CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
             params.setVolumes(Collections.singletonList(mount));
@@ -1019,7 +1019,7 @@ public class App {
 
 ```shell
 nightona volume create my-volume
-nightona create --volume my-volume:/home/nightona/data
+nightona create --volume my-volume:/home/daytona/data
 ```
 
 </TabItem>
@@ -1034,7 +1034,7 @@ curl 'https://app.daytona.io/api/sandbox' \
   "volumes": [
     {
       "volumeId": "<VOLUME_ID>",
-      "mountPath": "/home/nightona/data"
+      "mountPath": "/home/daytona/data"
     }
   ]
 }'
@@ -1056,8 +1056,8 @@ from nightona import Nightona
 nightona = Nightona()
 sandbox = nightona.create()
 
-sandbox.git.clone("https://github.com/Amartuvshins0404/nightona.git", "/home/nightona/nightona")
-status = sandbox.git.status("/home/nightona/nightona")
+sandbox.git.clone("https://github.com/Amartuvshins0404/nightona.git", "/home/daytona/nightona")
+status = sandbox.git.status("/home/daytona/nightona")
 print(f"Branch: {status.current_branch}")
 ```
 
@@ -1070,8 +1070,8 @@ import { Nightona } from '@nightona/sdk';
 const nightona = new Nightona();
 const sandbox = await nightona.create();
 
-await sandbox.git.clone('https://github.com/Amartuvshins0404/nightona.git', '/home/nightona/nightona');
-const status = await sandbox.git.status('/home/nightona/nightona');
+await sandbox.git.clone('https://github.com/Amartuvshins0404/nightona.git', '/home/daytona/nightona');
+const status = await sandbox.git.status('/home/daytona/nightona');
 console.log(`Branch: ${status.currentBranch}`);
 ```
 
@@ -1100,8 +1100,8 @@ func main() {
         log.Fatal(err)
     }
 
-    sandbox.Git.Clone(context.Background(), "https://github.com/Amartuvshins0404/nightona.git", "/home/nightona/nightona")
-    status, err := sandbox.Git.Status(context.Background(), "/home/nightona/nightona")
+    sandbox.Git.Clone(context.Background(), "https://github.com/Amartuvshins0404/nightona.git", "/home/daytona/nightona")
+    status, err := sandbox.Git.Status(context.Background(), "/home/daytona/nightona")
     if err != nil {
         log.Fatal(err)
     }
@@ -1118,8 +1118,8 @@ require 'nightona'
 nightona = Nightona::Nightona.new
 sandbox = nightona.create
 
-sandbox.git.clone(url: "https://github.com/Amartuvshins0404/nightona.git", path: "/home/nightona/nightona")
-status = sandbox.git.status("/home/nightona/nightona")
+sandbox.git.clone(url: "https://github.com/Amartuvshins0404/nightona.git", path: "/home/daytona/nightona")
+status = sandbox.git.status("/home/daytona/nightona")
 puts "Branch: #{status.current_branch}"
 ```
 
@@ -1135,8 +1135,8 @@ public class App {
     public static void main(String[] args) {
         try (Nightona nightona = new Nightona()) {
             Sandbox sandbox = nightona.create();
-            sandbox.git.clone("https://github.com/Amartuvshins0404/nightona.git", "/home/nightona/nightona");
-            GitStatus status = sandbox.git.status("/home/nightona/nightona");
+            sandbox.git.clone("https://github.com/Amartuvshins0404/nightona.git", "/home/daytona/nightona");
+            GitStatus status = sandbox.git.status("/home/daytona/nightona");
             System.out.println("Branch: " + status.getCurrentBranch());
         }
     }
@@ -1161,11 +1161,11 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/clone' \
   --header 'Content-Type: application/json' \
   --data '{
   "url": "https://github.com/Amartuvshins0404/nightona.git",
-  "path": "/home/nightona/nightona"
+  "path": "/home/daytona/nightona"
 }'
 
 # Get repository status
-curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/status?path=/home/nightona/nightona' \
+curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/status?path=/home/daytona/nightona' \
   --header 'Authorization: Bearer <API_KEY>'
 ```
 

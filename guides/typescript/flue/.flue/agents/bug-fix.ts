@@ -57,7 +57,7 @@ export default async function ({ init, payload, env }: FlueContext) {
   const nightonaApiKey = requireEnv(env, 'NIGHTONA_API_KEY')
   const githubToken = requireEnv(env, 'GITHUB_TOKEN')
   const model = env.MODEL ?? 'anthropic/claude-sonnet-4-6'
-  const projectDir = '/home/nightona/project'
+  const projectDir = '/home/daytona/project'
 
   console.log(`[bug-fix] target: ${repo}#${issueNumber} (model: ${model})`)
 

@@ -658,13 +658,13 @@ def setup_openvpn(ovpn_config: str):
 
     # Step 2: Write the OpenVPN config file
     print("\nWriting OpenVPN configuration...")
-    sandbox.fs.upload_file(ovpn_config.encode(), "/home/nightona/client.ovpn")
-    print("Configuration written to /home/nightona/client.ovpn")
+    sandbox.fs.upload_file(ovpn_config.encode(), "/home/daytona/client.ovpn")
+    print("Configuration written to /home/daytona/client.ovpn")
 
     # Step 3: Start OpenVPN in background
     print("\nStarting OpenVPN tunnel...")
     sandbox.process.exec(
-        "nohup sudo openvpn /home/nightona/client.ovpn > /tmp/openvpn.log 2>&1 &",
+        "nohup sudo openvpn /home/daytona/client.ovpn > /tmp/openvpn.log 2>&1 &",
         timeout=10
     )
 
@@ -751,19 +751,19 @@ async function setupOpenvpn(ovpnConfig: string): Promise<void> {
   console.log("\nWriting OpenVPN configuration...");
   // Use heredoc to write the config file
   await sandbox.process.executeCommand(
-    `cat << 'OVPNEOF' > /home/nightona/client.ovpn
+    `cat << 'OVPNEOF' > /home/daytona/client.ovpn
 ${ovpnConfig}
 OVPNEOF`,
     undefined,
     undefined,
     30
   );
-  console.log("Configuration written to /home/nightona/client.ovpn");
+  console.log("Configuration written to /home/daytona/client.ovpn");
 
   // Step 3: Start OpenVPN in background
   console.log("\nStarting OpenVPN tunnel...");
   await sandbox.process.executeCommand(
-    "nohup sudo openvpn /home/nightona/client.ovpn > /tmp/openvpn.log 2>&1 &",
+    "nohup sudo openvpn /home/daytona/client.ovpn > /tmp/openvpn.log 2>&1 &",
     undefined,  // cwd
     undefined,  // env
     10          // timeout

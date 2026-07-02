@@ -80,7 +80,7 @@ async function main() {
       'You are running in a Nightona sandbox.',
       `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
       'When you need to start a server, DO NOT run it directly.',
-      'Instead, write only the server start command to /home/nightona/start.sh (one command, no markdown).',
+      'Instead, write only the server start command to /home/daytona/start.sh (one command, no markdown).',
       'After writing the start command, provide the preview URL to the user.',
       'Start the conversation with a greeting and ask the user what they would like to do.',
     ].join(' ')
@@ -93,12 +93,12 @@ async function main() {
 
     const startServerFromScript = async () => {
       // Only run when Amp has produced a start script for this turn.
-      const startScriptCheck = await activeSandbox.process.executeCommand('test -f /home/nightona/start.sh')
+      const startScriptCheck = await activeSandbox.process.executeCommand('test -f /home/daytona/start.sh')
       if (startScriptCheck.exitCode !== 0) {
         return
       }
 
-      const startScriptContents = (await activeSandbox.fs.downloadFile('/home/nightona/start.sh')).toString('utf-8')
+      const startScriptContents = (await activeSandbox.fs.downloadFile('/home/daytona/start.sh')).toString('utf-8')
       const clippedStartScript = formatCommandPreview(startScriptContents)
       console.log(`Running \`${clippedStartScript}\` via session command...`)
       // Execute server startup outside Amp so long-running/background commands
@@ -108,7 +108,7 @@ async function main() {
       serverSessions.push(sessionId)
 
       await activeSandbox.process.executeSessionCommand(sessionId, {
-        command: 'cd /home/nightona && chmod +x start.sh && ./start.sh',
+        command: 'cd /home/daytona && chmod +x start.sh && ./start.sh',
         runAsync: true,
       })
     }

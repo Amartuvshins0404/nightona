@@ -114,7 +114,7 @@ class NightonaSandboxApi implements SandboxApi {
 export function nightona(sandbox: NightonaSandbox, options?: NightonaConnectorOptions): SandboxFactory {
   return {
     async createSessionEnv({ cwd }: { id: string; cwd?: string }): Promise<SessionEnv> {
-      const sandboxCwd = cwd ?? (await sandbox.getWorkDir()) ?? '/home/nightona'
+      const sandboxCwd = cwd ?? (await sandbox.getWorkDir()) ?? '/home/daytona'
       const api = new NightonaSandboxApi(sandbox)
 
       // Resolve cleanup function

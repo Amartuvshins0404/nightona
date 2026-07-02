@@ -23,7 +23,7 @@ export class Server {
     const previewUrlPattern = (await sandbox.getPreviewLink(1234)).url.replace(/1234/, '{PORT}')
     const systemPrompt = [
       'You are running in a Nightona sandbox.',
-      'Use the /home/nightona directory instead of /workspace for file operations.',
+      'Use the /home/daytona directory instead of /workspace for file operations.',
       `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
       'When starting a server, always give the user the preview URL to access it.',
       'When starting a server, start it in the background with & so the command does not block further instructions.',

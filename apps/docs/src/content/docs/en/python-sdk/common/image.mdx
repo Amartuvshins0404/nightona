@@ -149,7 +149,7 @@ Adds a local file to the image.
 **Example**:
 
 ```python
-image = Image.debian_slim("3.12").add_local_file("package.json", "/home/nightona/package.json")
+image = Image.debian_slim("3.12").add_local_file("package.json", "/home/daytona/package.json")
 ```
 
 #### Image.add\_local\_dir
@@ -174,7 +174,7 @@ Adds a local directory to the image.
 **Example**:
 
 ```python
-image = Image.debian_slim("3.12").add_local_dir("src", "/home/nightona/src")
+image = Image.debian_slim("3.12").add_local_dir("src", "/home/daytona/src")
 ```
 
 #### Image.run\_commands
@@ -225,7 +225,7 @@ Sets environment variables in the image.
 **Example**:
 
 ```python
-image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/nightona"})
+image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/daytona"})
 ```
 
 #### Image.workdir
@@ -249,7 +249,7 @@ Sets the working directory in the image.
 **Example**:
 
 ```python
-image = Image.debian_slim("3.12").workdir("/home/nightona")
+image = Image.debian_slim("3.12").workdir("/home/daytona")
 ```
 
 #### Image.entrypoint

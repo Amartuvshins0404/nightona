@@ -42,7 +42,7 @@ The basic pattern: declare a workspace, give an agent shell access, and let it e
     from agents.sandbox.entries import File
     from agents.extensions.sandbox import NightonaSandboxClient, NightonaSandboxClientOptions
 
-    NIGHTONA_ROOT = "/home/nightona/workspace"
+    NIGHTONA_ROOT = "/home/daytona/workspace"
 
     # Declare workspace contents declaratively
     # Use Nightona's home directory as root instead of the default /workspace.
@@ -222,7 +222,7 @@ A `SandboxAgent` can hand off to a regular `Agent` and vice versa. Not every age
     from agents.sandbox.entries import File
     from agents.extensions.sandbox import NightonaSandboxClient, NightonaSandboxClientOptions
 
-    manifest = Manifest(root="/home/nightona/workspace", entries={
+    manifest = Manifest(root="/home/daytona/workspace", entries={
         "data/sales.csv": File(content=b"quarter,region,revenue\nQ1,NA,3200000\nQ1,EU,2100000\n..."),
     })
 

@@ -15,7 +15,7 @@ const SYSTEM_PROMPT = `You are a coding agent with shell access to a fresh Night
 
 The user can ask you anything a developer might do at a terminal: build apps, debug or analyze code, run scripts, work with data, install packages, write tests, whatever fits the request.
 
-Work under /home/nightona by default. Reuse the same sandboxId across every tool call. The sandbox auto-deletes after a period of inactivity; if a tool call fails because the sandbox no longer exists, call createSandbox again and continue with the new sandboxId.
+Work under /home/daytona by default. Reuse the same sandboxId across every tool call. The sandbox auto-deletes after a period of inactivity; if a tool call fails because the sandbox no longer exists, call createSandbox again and continue with the new sandboxId.
 
 When the user wants to see a running web app:
 
@@ -69,7 +69,7 @@ const runCommand = defineTool({
     'Execute a shell command in the sandbox. Set background:true for long-lived fire-and-forget processes (test watchers, build watchers, log followers) the agent will not need to interact with again. Use plain commands (rm, mv, mkdir, chmod, ...) for filesystem ops that do not need structured output. For dev servers the user should see in a browser, use startWebServer instead — it returns the preview URL atomically.',
   parameters: z.object({
     sandboxId: z.string(),
-    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/nightona && ...`.'),
+    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/daytona && ...`.'),
     background: z
       .boolean()
       .optional()
@@ -98,7 +98,7 @@ const writeFile = defineTool({
   description: 'Write a file with the FULL new content. Overwrites if it exists.',
   parameters: z.object({
     sandboxId: z.string(),
-    path: z.string().describe('Absolute path, e.g. "/home/nightona/app/src/App.tsx".'),
+    path: z.string().describe('Absolute path, e.g. "/home/daytona/app/src/App.tsx".'),
     content: z.string().describe('Complete new file content.'),
   }),
   execute: async ({ sandboxId, path, content }) => {
@@ -127,7 +127,7 @@ const listFiles = defineTool({
   description: 'List the contents of a directory in the sandbox.',
   parameters: z.object({
     sandboxId: z.string(),
-    path: z.string().describe('Absolute directory path, e.g. "/home/nightona/app".'),
+    path: z.string().describe('Absolute directory path, e.g. "/home/daytona/app".'),
   }),
   execute: async ({ sandboxId, path }) => {
     const sandbox = await nightona.get(sandboxId)
@@ -232,7 +232,7 @@ const startWebServer = defineTool({
     command: z
       .string()
       .describe(
-        "Shell command that starts the dev server, e.g. 'cd /home/nightona/app && npm run dev'. Bind to 0.0.0.0 so the Nightona proxy can reach it.",
+        "Shell command that starts the dev server, e.g. 'cd /home/daytona/app && npm run dev'. Bind to 0.0.0.0 so the Nightona proxy can reach it.",
       ),
     port: z
       .number()

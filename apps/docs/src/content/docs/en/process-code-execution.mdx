@@ -358,7 +358,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/interpreter/conte
 
 Nightona provides methods to execute shell commands in sandboxes. You can run commands with working directory, timeout, and environment variable options.
 
-The working directory defaults to the sandbox working directory. It uses the WORKDIR specified in the Dockerfile if present, or falls back to the user's home directory if not (e.g., `workspace/repo` implies `/home/nightona/workspace/repo`). You can override it with an absolute path by starting the path with `/`.
+The working directory defaults to the sandbox working directory. It uses the WORKDIR specified in the Dockerfile if present, or falls back to the user's home directory if not (e.g., `workspace/repo` implies `/home/daytona/workspace/repo`). You can override it with an absolute path by starting the path with `/`.
 
 ### Execute commands
 

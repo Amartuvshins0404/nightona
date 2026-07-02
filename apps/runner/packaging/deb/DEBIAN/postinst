@@ -11,7 +11,7 @@ if [ ! -f /etc/nightona/runner.env ]; then
     cat > /etc/nightona/runner.env <<EOF
 # Nightona Runner Environment Variables
 # Add your configuration here, for example:
-# NIGHTONA_API_URL=https://api.daytona.io
+# NIGHTONA_API_URL=http://localhost:3000/api
 # NIGHTONA_RUNNER_TOKEN=your-token-here
 EOF
     chmod 600 /etc/nightona/runner.env

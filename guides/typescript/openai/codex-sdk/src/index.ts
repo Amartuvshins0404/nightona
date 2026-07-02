@@ -99,7 +99,7 @@ async function main() {
     // Configure the Codex system prompt
     const systemPrompt = [
       'You are running in a Nightona sandbox.',
-      'Use the /home/nightona directory instead of /workspace for file operations.',
+      'Use the /home/daytona directory instead of /workspace for file operations.',
       `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
     ].join(' ')
     const config = `developer_instructions = "${systemPrompt}"`

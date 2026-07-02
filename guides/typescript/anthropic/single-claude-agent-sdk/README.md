@@ -79,7 +79,7 @@ Perfect! The web server is now running successfully. 🚀
 Your Lunar Lander game is live at:
 🌐 https://80-17ac1c0f-d684-4122-93b5-8f52fd5393f8.proxy.nightona.works
 
-The server is serving the files from /home/nightona/. Click the link above to start playing!
+The server is serving the files from /home/daytona/. Click the link above to start playing!
 
 Objective: Land gently on the green platform with safe speeds. Good luck! 🌙
 ```

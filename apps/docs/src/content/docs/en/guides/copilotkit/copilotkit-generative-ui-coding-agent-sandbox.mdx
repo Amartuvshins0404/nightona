@@ -141,7 +141,7 @@ The user can ask you anything a developer might do at a terminal: build apps,
 debug or analyze code, run scripts, work with data, install packages, write
 tests, whatever fits the request.
 
-Work under /home/nightona by default. Reuse the same sandboxId across every
+Work under /home/daytona by default. Reuse the same sandboxId across every
 tool call. The sandbox auto-deletes after a period of inactivity; if a tool
 call fails because the sandbox no longer exists, call createSandbox again
 and continue with the new sandboxId.
@@ -218,7 +218,7 @@ const runCommand = defineTool({
     'Execute a shell command in the sandbox. Set background:true for long-lived fire-and-forget processes (test watchers, build watchers, log followers) the agent will not need to interact with again. Use plain commands (rm, mv, mkdir, chmod, ...) for filesystem ops that do not need structured output. For dev servers the user should see in a browser, use startWebServer instead — it returns the preview URL atomically.',
   parameters: z.object({
     sandboxId: z.string(),
-    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/nightona && ...`.'),
+    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/daytona && ...`.'),
     background: z
       .boolean()
       .optional()
@@ -251,7 +251,7 @@ const writeFile = defineTool({
   description: 'Write a file with the FULL new content. Overwrites if it exists.',
   parameters: z.object({
     sandboxId: z.string(),
-    path: z.string().describe('Absolute path, e.g. "/home/nightona/app/src/App.tsx".'),
+    path: z.string().describe('Absolute path, e.g. "/home/daytona/app/src/App.tsx".'),
     content: z.string().describe('Complete new file content.'),
   }),
   execute: async ({ sandboxId, path, content }) => {
@@ -415,7 +415,7 @@ A typical first turn looks like this:
 ✓  Sandbox ready                              a0ffcc3d-7753-4d52-89d0-6c595c60626a
 
 ✓  done
-$ cd /home/nightona && npm create vite@latest snake-game -- --template react-ts --yes && cd snake-game && npm install
+$ cd /home/daytona && npm create vite@latest snake-game -- --template react-ts --yes && cd snake-game && npm install
 
 npm warn exec The following package was not found and will be installed: create-vite@9.0.7
 
@@ -423,7 +423,7 @@ npm warn exec The following package was not found and will be installed: create-
 > "create-vite" snake-game --template react-ts --yes
 
 │
-◇  Scaffolding project in /home/nightona/snake-game...
+◇  Scaffolding project in /home/daytona/snake-game...
 │
 └  Done. Now run:
 
@@ -438,16 +438,16 @@ added 152 packages, and audited 153 packages in 17s
 
 found 0 vulnerabilities
 
-✓  wrote  /home/nightona/snake-game/src/App.tsx                             4492 B
+✓  wrote  /home/daytona/snake-game/src/App.tsx                             4492 B
 
-✓  wrote  /home/nightona/snake-game/src/App.css                             1527 B
+✓  wrote  /home/daytona/snake-game/src/App.css                             1527 B
 
-✓  wrote  /home/nightona/snake-game/src/index.css                            307 B
+✓  wrote  /home/daytona/snake-game/src/index.css                            307 B
 
-✓  wrote  /home/nightona/snake-game/vite.config.ts                           273 B
+✓  wrote  /home/daytona/snake-game/vite.config.ts                           273 B
 
 ✓  done
-$ cd /home/nightona/snake-game && npm run build
+$ cd /home/daytona/snake-game && npm run build
 
 > snake-game@0.0.0 build
 > tsc -b && vite build
@@ -478,7 +478,7 @@ Done — the Snake game is running here: https://5173-a0ffcc3d-7753-4d52-89d0-6c
 On follow-up turns, the agent edits files in place and the iframe reloads instantly with the new changes. For example, asking **"Make it red themed"** triggers:
 
 ```text
-✓  wrote  /home/nightona/snake-game/src/App.css                             1529 B
+✓  wrote  /home/daytona/snake-game/src/App.css                             1529 B
 
 Done — the app now uses a red theme.
 ```

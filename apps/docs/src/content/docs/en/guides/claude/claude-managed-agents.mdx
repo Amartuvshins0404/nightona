@@ -139,13 +139,13 @@ def handle_work(work):
         sb.start()
 
     sb.fs.upload_file(open("sandbox_runner.py", "rb").read(),
-                      "/home/nightona/sandbox_runner.py")
+                      "/home/daytona/sandbox_runner.py")
     sb.process.exec("pip install --user anthropic")
     sb.process.exec(
         f"ANTHROPIC_ENVIRONMENT_KEY={environment_key} "
         f"ANTHROPIC_WORK_ID={work.id} ANTHROPIC_SESSION_ID={session_id} "
         f"ANTHROPIC_ENVIRONMENT_ID={environment_id} "
-        "nohup python3 /home/nightona/sandbox_runner.py &"
+        "nohup python3 /home/daytona/sandbox_runner.py &"
     )
 ```
 
@@ -253,8 +253,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         util-linux procps mawk \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /home/nightona /mnt/session \
-    && chmod 777 /home/nightona /mnt/session
+    && mkdir -p /home/daytona /mnt/session \
+    && chmod 777 /home/daytona /mnt/session
 
 WORKDIR /mnt/session
 ```

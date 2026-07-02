@@ -72,7 +72,7 @@ async function main(): Promise<void> {
 
   // Configure Codex options
   const options: ThreadOptions = {
-    workingDirectory: '/home/nightona',
+    workingDirectory: '/home/daytona',
     skipGitRepoCheck: true,
     sandboxMode: 'danger-full-access',
   }

@@ -133,7 +133,7 @@ jobs:
 
   update-homebrew-tap:
     # original condition: ${{ github.repository == 'Amartuvshins0404/nightona' && inputs.npm_tag == 'latest' }}
-    # dispatches to the upstream daytonaio/homebrew-cli repo with the upstream GITHUBBOT_TOKEN
+    # dispatches to the Amartuvshins0404/homebrew-cli repo (fork of upstream daytonaio/homebrew-cli) with a GITHUBBOT_TOKEN
     if: false # disabled post-fork: needs Nightona infra
     runs-on: blacksmith-4vcpu-ubuntu-2404
     permissions: {}
@@ -150,7 +150,7 @@ jobs:
         run: |
           curl -f -X POST -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${GITHUBBOT_TOKEN}" \
-          https://api.github.com/repos/daytonaio/homebrew-cli/dispatches \
+          https://api.github.com/repos/Amartuvshins0404/homebrew-cli/dispatches \
           -d "{\"event_type\": \"update-version\", \"client_payload\": {\"version\": \"$VERSION\"}}"
 
         env:

@@ -55,10 +55,10 @@ Nightona（サンドボックスの作成・管理プラットフォーム）の
     dynamic_image = (
         Image.debian_slim("3.12")
         .pip_install(["pytest", "pytest-cov", "mypy", "ruff", "black", "gunicorn"])
-        .run_commands("apt-get update && apt-get install -y git curl", "mkdir -p /home/nightona/project")
-        .workdir("/home/nightona/project")
+        .run_commands("apt-get update && apt-get install -y git curl", "mkdir -p /home/daytona/project")
+        .workdir("/home/daytona/project")
         .env({"ENV_VAR": "My Environment Variable"})
-        .add_local_file("file_example.txt", "/home/nightona/project/file_example.txt")
+        .add_local_file("file_example.txt", "/home/daytona/project/file_example.txt")
     )
 
     # Create a new Sandbox with the dynamic image and stream the build logs
@@ -79,12 +79,12 @@ Nightona（サンドボックスの作成・管理プラットフォーム）の
     // Define the dynamic image
     const dynamicImage = Image.debianSlim('3.13')
         .pipInstall(['pytest', 'pytest-cov', 'black', 'isort', 'mypy', 'ruff'])
-        .runCommands('apt-get update && apt-get install -y git', 'mkdir -p /home/nightona/project')
-        .workdir('/home/nightona/project')
+        .runCommands('apt-get update && apt-get install -y git', 'mkdir -p /home/daytona/project')
+        .workdir('/home/daytona/project')
         .env({
           NODE_ENV: 'development',
         })
-        .addLocalFile('file_example.txt', '/home/nightona/project/file_example.txt')
+        .addLocalFile('file_example.txt', '/home/daytona/project/file_example.txt')
 
     // Create a new Sandbox with the dynamic image and stream the build logs
     const sandbox = await nightona.create(
@@ -131,12 +131,12 @@ Nightona（サンドボックスの作成・管理プラットフォーム）の
         .run_commands(
             "apt-get update && apt-get install -y git",
             "groupadd -r nightona && useradd -r -g nightona -m nightona",
-            "mkdir -p /home/nightona/workspace",
+            "mkdir -p /home/daytona/workspace",
         )
         .dockerfile_commands(["USER nightona"])
-        .workdir("/home/nightona/workspace")
+        .workdir("/home/daytona/workspace")
         .env({"MY_ENV_VAR": "My Environment Variable"})
-        .add_local_file("file_example.txt", "/home/nightona/workspace/file_example.txt")
+        .add_local_file("file_example.txt", "/home/daytona/workspace/file_example.txt")
     )
 
     # スナップショットを作成し、ビルドログをストリーミング出力
@@ -183,14 +183,14 @@ Nightona（サンドボックスの作成・管理プラットフォーム）の
         .runCommands(
           'apt-get update && apt-get install -y git',
           'groupadd -r nightona && useradd -r -g nightona -m nightona',
-          'mkdir -p /home/nightona/workspace'
+          'mkdir -p /home/daytona/workspace'
         )
         .dockerfileCommands(['USER nightona'])
-        .workdir('/home/nightona/workspace')
+        .workdir('/home/daytona/workspace')
         .env({
             MY_ENV_VAR: 'My Environment Variable',
         })
-        .addLocalFile(localFilePath, '/home/nightona/workspace/file_example.txt')
+        .addLocalFile(localFilePath, '/home/daytona/workspace/file_example.txt')
 
     # スナップショットを作成し、ビルドログをストリーミング出力
     console.log(`=== Creating Snapshot: ${snapshotName} ===`)

@@ -26,7 +26,7 @@ Declarative images are cached for 24 hours, and are automatically reused when ru
 declarative_image = (
   Image.debian_slim("3.12")
   .pip_install(["requests", "pytest"])
-  .workdir("/home/nightona")
+  .workdir("/home/daytona")
 )
 
 # Create a new sandbox with the declarative image and stream the build logs
@@ -44,7 +44,7 @@ sandbox = nightona.create(
 // Define a declarative image with python packages
 const declarativeImage = Image.debianSlim('3.12')
   .pipInstall(['requests', 'pytest'])
-  .workdir('/home/nightona')
+  .workdir('/home/daytona')
 
 // Create a new sandbox with the declarative image and stream the build logs
 const sandbox = await nightona.create(
@@ -67,7 +67,7 @@ const sandbox = await nightona.create(
 declarative_image = Nightona::Image
   .debian_slim('3.12')
   .pip_install(['requests', 'pytest'])
-  .workdir('/home/nightona')
+  .workdir('/home/daytona')
 
 # Create a new Sandbox with the declarative image and stream the build logs
 sandbox = nightona.create(
@@ -84,7 +84,7 @@ sandbox = nightona.create(
 version := "3.12"
 declarativeImage := nightona.DebianSlim(&version).
   PipInstall([]string{"requests", "pytest"}).
-  Workdir("/home/nightona")
+  Workdir("/home/daytona")
 
 // Create a new sandbox with the declarative image and stream the build logs
 logChan := make(chan string)
@@ -109,7 +109,7 @@ if err != nil {
 // Define a declarative image with python packages
 Image declarativeImage = Image.debianSlim("3.12")
     .pipInstall("requests", "pytest")
-    .workdir("/home/nightona");
+    .workdir("/home/daytona");
 
 // Create a new sandbox with the declarative image and stream the build logs
 CreateSandboxFromImageParams params = new CreateSandboxFromImageParams();
@@ -150,7 +150,7 @@ snapshot_name = "data-science-snapshot"
 image = (
   Image.debian_slim("3.12")
   .pip_install(["pandas", "numpy"])
-  .workdir("/home/nightona")
+  .workdir("/home/daytona")
 )
 
 # Create the snapshot and stream the build logs
@@ -177,7 +177,7 @@ const snapshotName = 'data-science-snapshot'
 
 const image = Image.debianSlim('3.12')
   .pipInstall(['pandas', 'numpy'])
-  .workdir('/home/nightona')
+  .workdir('/home/daytona')
 
 // Create the snapshot and stream the build logs
 await nightona.snapshot.create(
@@ -206,7 +206,7 @@ snapshot_name = 'data-science-snapshot'
 image = Nightona::Image
   .debian_slim('3.12')
   .pip_install(['pandas', 'numpy'])
-  .workdir('/home/nightona')
+  .workdir('/home/daytona')
 
 # Create the Snapshot and stream the build logs
 nightona.snapshot.create(
@@ -233,7 +233,7 @@ snapshotName := "data-science-snapshot"
 version := "3.12"
 image := nightona.DebianSlim(&version).
   PipInstall([]string{"pandas", "numpy"}).
-  Workdir("/home/nightona")
+  Workdir("/home/daytona")
 
 // Create the snapshot and stream the build logs
 _, logChan, err := client.Snapshot.Create(ctx, &types.CreateSnapshotParams{
@@ -265,7 +265,7 @@ String snapshotName = "data-science-snapshot";
 
 Image image = Image.debianSlim("3.12")
     .pipInstall("pandas", "numpy")
-    .workdir("/home/nightona");
+    .workdir("/home/daytona");
 
 // Create the snapshot and stream the build logs
 nightona.snapshot().create(snapshotName, image, System.out::println);
@@ -439,10 +439,10 @@ The following snippets demonstrate how to add files and directories to your imag
 
 ```python
 # Add a local file
-image = Image.debian_slim("3.12").add_local_file("package.json", "/home/nightona/package.json")
+image = Image.debian_slim("3.12").add_local_file("package.json", "/home/daytona/package.json")
 
 # Add a local directory
-image = Image.debian_slim("3.12").add_local_dir("src", "/home/nightona/src")
+image = Image.debian_slim("3.12").add_local_dir("src", "/home/daytona/src")
 ```
 
 </TabItem>
@@ -450,10 +450,10 @@ image = Image.debian_slim("3.12").add_local_dir("src", "/home/nightona/src")
 
 ```typescript
 // Add a local file
-const image = Image.debianSlim('3.12').addLocalFile('package.json', '/home/nightona/package.json')
+const image = Image.debianSlim('3.12').addLocalFile('package.json', '/home/daytona/package.json')
 
 // Add a local directory
-const image = Image.debianSlim('3.12').addLocalDir('src', '/home/nightona/src')
+const image = Image.debianSlim('3.12').addLocalDir('src', '/home/daytona/src')
 ```
 
 </TabItem>
@@ -461,10 +461,10 @@ const image = Image.debianSlim('3.12').addLocalDir('src', '/home/nightona/src')
 
 ```ruby
 # Add a local file
-image = Nightona::Image.debian_slim('3.12').add_local_file('package.json', '/home/nightona/package.json')
+image = Nightona::Image.debian_slim('3.12').add_local_file('package.json', '/home/daytona/package.json')
 
 # Add a local directory
-image = Nightona::Image.debian_slim('3.12').add_local_dir('src', '/home/nightona/src')
+image = Nightona::Image.debian_slim('3.12').add_local_dir('src', '/home/daytona/src')
 ```
 
 </TabItem>
@@ -473,10 +473,10 @@ image = Nightona::Image.debian_slim('3.12').add_local_dir('src', '/home/nightona
 ```go
 // Add a local file
 version := "3.12"
-image := nightona.DebianSlim(&version).AddLocalFile("package.json", "/home/nightona/package.json")
+image := nightona.DebianSlim(&version).AddLocalFile("package.json", "/home/daytona/package.json")
 
 // Add a local directory
-image := nightona.DebianSlim(&version).AddLocalDir("src", "/home/nightona/src")
+image := nightona.DebianSlim(&version).AddLocalDir("src", "/home/daytona/src")
 ```
 
 </TabItem>
@@ -492,10 +492,10 @@ The following snippets demonstrate how to configure environment variables and wo
 
 ```python
 # Set environment variables
-image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/nightona"})
+image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/daytona"})
 
 # Set working directory
-image = Image.debian_slim("3.12").workdir("/home/nightona")
+image = Image.debian_slim("3.12").workdir("/home/daytona")
 ```
 
 </TabItem>
@@ -503,10 +503,10 @@ image = Image.debian_slim("3.12").workdir("/home/nightona")
 
 ```typescript
 // Set environment variables
-const image = Image.debianSlim('3.12').env({ PROJECT_ROOT: '/home/nightona' })
+const image = Image.debianSlim('3.12').env({ PROJECT_ROOT: '/home/daytona' })
 
 // Set working directory
-const image = Image.debianSlim('3.12').workdir('/home/nightona')
+const image = Image.debianSlim('3.12').workdir('/home/daytona')
 ```
 
 </TabItem>
@@ -514,10 +514,10 @@ const image = Image.debianSlim('3.12').workdir('/home/nightona')
 
 ```ruby
 # Set environment variables
-image = Nightona::Image.debian_slim('3.12').env({ 'PROJECT_ROOT' => '/home/nightona' })
+image = Nightona::Image.debian_slim('3.12').env({ 'PROJECT_ROOT' => '/home/daytona' })
 
 # Set working directory
-image = Nightona::Image.debian_slim('3.12').workdir('/home/nightona')
+image = Nightona::Image.debian_slim('3.12').workdir('/home/daytona')
 ```
 
 </TabItem>
@@ -526,10 +526,10 @@ image = Nightona::Image.debian_slim('3.12').workdir('/home/nightona')
 ```go
 // Set environment variables
 version := "3.12"
-image := nightona.DebianSlim(&version).Env("PROJECT_ROOT", "/home/nightona")
+image := nightona.DebianSlim(&version).Env("PROJECT_ROOT", "/home/daytona")
 
 // Set working directory
-image := nightona.DebianSlim(&version).Workdir("/home/nightona")
+image := nightona.DebianSlim(&version).Workdir("/home/daytona")
 ```
 
 </TabItem>
@@ -538,10 +538,10 @@ image := nightona.DebianSlim(&version).Workdir("/home/nightona")
 ```java
 // Set environment variables
 Image image = Image.debianSlim("3.12")
-    .env(java.util.Map.of("PROJECT_ROOT", "/home/nightona"));
+    .env(java.util.Map.of("PROJECT_ROOT", "/home/daytona"));
 
 // Set working directory
-image = Image.debianSlim("3.12").workdir("/home/nightona");
+image = Image.debianSlim("3.12").workdir("/home/daytona");
 ```
 
 </TabItem>
@@ -560,7 +560,7 @@ The following snippets demonstrate how to execute commands during build and conf
 image = Image.debian_slim("3.12").run_commands(
     'apt-get update && apt-get install -y git',
     'groupadd -r nightona && useradd -r -g nightona -m nightona',
-    'mkdir -p /home/nightona/workspace'
+    'mkdir -p /home/daytona/workspace'
 )
 
 # Set entrypoint
@@ -578,7 +578,7 @@ image = Image.debian_slim("3.12").cmd(["/bin/bash"])
 const image = Image.debianSlim('3.12').runCommands(
     'apt-get update && apt-get install -y git',
     'groupadd -r nightona && useradd -r -g nightona -m nightona',
-    'mkdir -p /home/nightona/workspace'
+    'mkdir -p /home/daytona/workspace'
 )
 
 // Set entrypoint
@@ -596,7 +596,7 @@ const image = Image.debianSlim('3.12').cmd(['/bin/bash'])
 image = Nightona::Image.debian_slim('3.12').run_commands(
   'apt-get update && apt-get install -y git',
   'groupadd -r nightona && useradd -r -g nightona -m nightona',
-  'mkdir -p /home/nightona/workspace'
+  'mkdir -p /home/daytona/workspace'
 )
 
 # Set entrypoint
@@ -615,7 +615,7 @@ version := "3.12"
 image := nightona.DebianSlim(&version).
   Run("apt-get update && apt-get install -y git").
   Run("groupadd -r nightona && useradd -r -g nightona -m nightona").
-  Run("mkdir -p /home/nightona/workspace")
+  Run("mkdir -p /home/daytona/workspace")
 
 // Set entrypoint
 image := nightona.DebianSlim(&version).Entrypoint([]string{"/bin/bash"})
@@ -632,7 +632,7 @@ image := nightona.DebianSlim(&version).Cmd([]string{"/bin/bash"})
 Image image = Image.debianSlim("3.12").runCommands(
     "apt-get update && apt-get install -y git",
     "groupadd -r nightona && useradd -r -g nightona -m nightona",
-    "mkdir -p /home/nightona/workspace"
+    "mkdir -p /home/daytona/workspace"
 );
 
 // Set entrypoint
@@ -793,10 +793,10 @@ image = (
   Image.debian_slim("3.12")
   .pip_install(["fastapi", "uvicorn"])
   .run_commands(
-    "groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona",
-    "chown -R nightona:nightona /home/nightona",
+    "groupadd -r nightona && useradd -r -g nightona -m -d /home/daytona nightona",
+    "chown -R nightona:nightona /home/daytona",
   )
-  .workdir("/home/nightona")
+  .workdir("/home/daytona")
   .dockerfile_commands(["USER nightona"])
 )
 ```
@@ -808,10 +808,10 @@ image = (
 const image = Image.debianSlim('3.12')
   .pipInstall(['fastapi', 'uvicorn'])
   .runCommands(
-    'groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona',
-    'chown -R nightona:nightona /home/nightona',
+    'groupadd -r nightona && useradd -r -g nightona -m -d /home/daytona nightona',
+    'chown -R nightona:nightona /home/daytona',
   )
-  .workdir('/home/nightona')
+  .workdir('/home/daytona')
   .dockerfileCommands(['USER nightona'])
 ```
 
@@ -823,10 +823,10 @@ image = Nightona::Image
   .debian_slim('3.12')
   .pip_install(['fastapi', 'uvicorn'])
   .run_commands(
-    'groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona',
-    'chown -R nightona:nightona /home/nightona'
+    'groupadd -r nightona && useradd -r -g nightona -m -d /home/daytona nightona',
+    'chown -R nightona:nightona /home/daytona'
   )
-  .workdir('/home/nightona')
+  .workdir('/home/daytona')
   .dockerfile_commands(['USER nightona'])
 ```
 
@@ -837,9 +837,9 @@ image = Nightona::Image
 version := "3.12"
 image := nightona.DebianSlim(&version).
   PipInstall([]string{"fastapi", "uvicorn"}).
-  Run("groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona").
-  Run("chown -R nightona:nightona /home/nightona").
-  Workdir("/home/nightona").
+  Run("groupadd -r nightona && useradd -r -g nightona -m -d /home/daytona nightona").
+  Run("chown -R nightona:nightona /home/daytona").
+  Workdir("/home/daytona").
   User("nightona")
 ```
 

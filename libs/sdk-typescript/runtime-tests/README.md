@@ -15,7 +15,7 @@ Build the SDK first, then run the orchestrator:
 yarn nx build sdk-typescript
 
 NIGHTONA_API_KEY=<your-key> \
-NIGHTONA_API_URL=https://app.daytona.io/api \
+NIGHTONA_API_URL=http://localhost:3000/api \
   bash libs/sdk-typescript/runtime-tests/run-all.sh
 ```
 

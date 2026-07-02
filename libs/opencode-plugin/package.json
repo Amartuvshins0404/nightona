@@ -11,7 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/Amartuvshins0404/nightona.git"
   },
-  "author": "Nightona Platforms Inc.",
+  "author": "Daytona Platforms Inc.",
+  "contributors": ["Nightona contributors <amaraaamka0404@gmail.com>"],
   "license": "Apache-2.0",
   "dependencies": {
     "@nightona/sdk": "^0.163.0",

@@ -197,7 +197,7 @@ sandbox = nightona.create(
     )
 )
 
-mount_path = "/home/nightona/s3"
+mount_path = "/home/daytona/s3"
 
 # mount-s3 daemonizes by default and reads AWS_* from the environment
 sandbox.process.exec(f"mkdir -p {mount_path}")
@@ -225,7 +225,7 @@ const sandbox = await nightona.create({
   },
 })
 
-const mountPath = '/home/nightona/s3'
+const mountPath = '/home/daytona/s3'
 
 // mount-s3 daemonizes by default and reads AWS_* from the environment
 await sandbox.process.executeCommand(`mkdir -p ${mountPath}`)
@@ -255,7 +255,7 @@ sandbox = nightona.create(
   )
 )
 
-mount_path = '/home/nightona/s3'
+mount_path = '/home/daytona/s3'
 
 # mount-s3 daemonizes by default and reads AWS_* from the environment
 sandbox.process.exec(command: "mkdir -p #{mount_path}")
@@ -300,7 +300,7 @@ if err != nil {
 	log.Fatal(err)
 }
 
-mountPath := "/home/nightona/s3"
+mountPath := "/home/daytona/s3"
 
 // mount-s3 daemonizes by default and reads AWS_* from the environment
 if _, err := sandbox.Process.ExecuteCommand(ctx, "mkdir -p "+mountPath); err != nil {
@@ -343,7 +343,7 @@ public class App {
             ));
             Sandbox sandbox = nightona.create(params);
 
-            String mountPath = "/home/nightona/s3";
+            String mountPath = "/home/daytona/s3";
 
             // mount-s3 daemonizes by default and reads AWS_* from the environment
             sandbox.getProcess().executeCommand("mkdir -p " + mountPath);
@@ -398,7 +398,7 @@ sandbox.process.exec(
 )
 
 # Mount and use
-mount_path = "/home/nightona/s3"
+mount_path = "/home/daytona/s3"
 sandbox.process.exec(f"mkdir -p {mount_path} && mount-s3 my-bucket {mount_path}")
 response = sandbox.process.exec(f"ls {mount_path}")
 print(response.result)
@@ -432,7 +432,7 @@ await sandbox.process.executeCommand(
 )
 
 // Mount and use
-const mountPath = '/home/nightona/s3'
+const mountPath = '/home/daytona/s3'
 await sandbox.process.executeCommand(`mkdir -p ${mountPath} && mount-s3 my-bucket ${mountPath}`)
 const response = await sandbox.process.executeCommand(`ls ${mountPath}`)
 console.log(response.result)
@@ -468,7 +468,7 @@ sandbox.process.exec(
 )
 
 # Mount and use
-mount_path = '/home/nightona/s3'
+mount_path = '/home/daytona/s3'
 sandbox.process.exec(command: "mkdir -p #{mount_path} && mount-s3 my-bucket #{mount_path}")
 response = sandbox.process.exec(command: "ls #{mount_path}")
 puts response.result
@@ -519,7 +519,7 @@ if _, err := sandbox.Process.ExecuteCommand(ctx,
 }
 
 // Mount and use
-mountPath := "/home/nightona/s3"
+mountPath := "/home/daytona/s3"
 if _, err := sandbox.Process.ExecuteCommand(ctx,
 	"mkdir -p "+mountPath+" && mount-s3 my-bucket "+mountPath); err != nil {
 	log.Fatal(err)
@@ -563,7 +563,7 @@ public class App {
                     + "&& sudo apt-get install -y /tmp/mount-s3.deb");
 
             // Mount and use
-            String mountPath = "/home/nightona/s3";
+            String mountPath = "/home/daytona/s3";
             sandbox.getProcess().executeCommand(
                 "mkdir -p " + mountPath + " && mount-s3 my-bucket " + mountPath);
             ExecuteResponse response = sandbox.getProcess().executeCommand("ls " + mountPath);
@@ -760,7 +760,7 @@ sandbox = nightona.create(
     )
 )
 
-mount_path = "/home/nightona/r2"
+mount_path = "/home/daytona/r2"
 
 sandbox.process.exec(f"mkdir -p {mount_path}")
 sandbox.process.exec(
@@ -791,7 +791,7 @@ const sandbox = await nightona.create({
   },
 })
 
-const mountPath = '/home/nightona/r2'
+const mountPath = '/home/daytona/r2'
 
 await sandbox.process.executeCommand(`mkdir -p ${mountPath}`)
 await sandbox.process.executeCommand(
@@ -824,7 +824,7 @@ sandbox = nightona.create(
   )
 )
 
-mount_path = '/home/nightona/r2'
+mount_path = '/home/daytona/r2'
 
 sandbox.process.exec(command: "mkdir -p #{mount_path}")
 sandbox.process.exec(
@@ -872,7 +872,7 @@ if err != nil {
 	log.Fatal(err)
 }
 
-mountPath := "/home/nightona/r2"
+mountPath := "/home/daytona/r2"
 
 if _, err := sandbox.Process.ExecuteCommand(ctx, "mkdir -p "+mountPath); err != nil {
 	log.Fatal(err)
@@ -915,7 +915,7 @@ public class App {
             ));
             Sandbox sandbox = nightona.create(params);
 
-            String mountPath = "/home/nightona/r2";
+            String mountPath = "/home/daytona/r2";
 
             sandbox.getProcess().executeCommand("mkdir -p " + mountPath);
             sandbox.getProcess().executeCommand(
@@ -969,7 +969,7 @@ sandbox.process.exec(
 )
 
 # Mount with R2 endpoint
-mount_path = "/home/nightona/r2"
+mount_path = "/home/daytona/r2"
 sandbox.process.exec(
     f"mkdir -p {mount_path} && "
     f"mount-s3 --endpoint-url https://{account_id}.r2.cloudflarestorage.com "
@@ -1009,7 +1009,7 @@ await sandbox.process.executeCommand(
 )
 
 // Mount with R2 endpoint
-const mountPath = '/home/nightona/r2'
+const mountPath = '/home/daytona/r2'
 await sandbox.process.executeCommand(
   `mkdir -p ${mountPath} && ` +
     `mount-s3 --endpoint-url https://${accountId}.r2.cloudflarestorage.com ` +
@@ -1051,7 +1051,7 @@ sandbox.process.exec(
 )
 
 # Mount with R2 endpoint
-mount_path = '/home/nightona/r2'
+mount_path = '/home/daytona/r2'
 sandbox.process.exec(
   command: "mkdir -p #{mount_path} && " \
            "mount-s3 --endpoint-url https://#{account_id}.r2.cloudflarestorage.com " \
@@ -1108,7 +1108,7 @@ if _, err := sandbox.Process.ExecuteCommand(ctx,
 }
 
 // Mount with R2 endpoint
-mountPath := "/home/nightona/r2"
+mountPath := "/home/daytona/r2"
 if _, err := sandbox.Process.ExecuteCommand(ctx,
 	"mkdir -p "+mountPath+" && "+
 		"mount-s3 --endpoint-url https://"+accountID+".r2.cloudflarestorage.com "+
@@ -1156,7 +1156,7 @@ public class App {
                     + "&& sudo apt-get install -y /tmp/mount-s3.deb");
 
             // Mount with R2 endpoint
-            String mountPath = "/home/nightona/r2";
+            String mountPath = "/home/daytona/r2";
             sandbox.getProcess().executeCommand(
                 "mkdir -p " + mountPath + " && "
                     + "mount-s3 --endpoint-url https://" + accountId + ".r2.cloudflarestorage.com "
@@ -1353,7 +1353,7 @@ sandbox = nightona.create(
     )
 )
 
-mount_path = "/home/nightona/tigris"
+mount_path = "/home/daytona/tigris"
 
 sandbox.process.exec(f"mkdir -p {mount_path}")
 sandbox.process.exec(
@@ -1381,7 +1381,7 @@ const sandbox = await nightona.create({
   },
 })
 
-const mountPath = '/home/nightona/tigris'
+const mountPath = '/home/daytona/tigris'
 
 await sandbox.process.executeCommand(`mkdir -p ${mountPath}`)
 await sandbox.process.executeCommand(
@@ -1411,7 +1411,7 @@ sandbox = nightona.create(
   )
 )
 
-mount_path = '/home/nightona/tigris'
+mount_path = '/home/daytona/tigris'
 
 sandbox.process.exec(command: "mkdir -p #{mount_path}")
 sandbox.process.exec(
@@ -1456,7 +1456,7 @@ if err != nil {
 	log.Fatal(err)
 }
 
-mountPath := "/home/nightona/tigris"
+mountPath := "/home/daytona/tigris"
 
 if _, err := sandbox.Process.ExecuteCommand(ctx, "mkdir -p "+mountPath); err != nil {
 	log.Fatal(err)
@@ -1496,7 +1496,7 @@ public class App {
             ));
             Sandbox sandbox = nightona.create(params);
 
-            String mountPath = "/home/nightona/tigris";
+            String mountPath = "/home/daytona/tigris";
 
             sandbox.getProcess().executeCommand("mkdir -p " + mountPath);
             sandbox.getProcess().executeCommand(
@@ -1548,7 +1548,7 @@ sandbox.process.exec(
 )
 
 # Mount with Tigris endpoint
-mount_path = "/home/nightona/tigris"
+mount_path = "/home/daytona/tigris"
 sandbox.process.exec(
     f"mkdir -p {mount_path} && "
     f"mount-s3 --endpoint-url https://t3.storage.dev "
@@ -1586,7 +1586,7 @@ await sandbox.process.executeCommand(
 )
 
 // Mount with Tigris endpoint
-const mountPath = '/home/nightona/tigris'
+const mountPath = '/home/daytona/tigris'
 await sandbox.process.executeCommand(
   `mkdir -p ${mountPath} && ` +
     `mount-s3 --endpoint-url https://t3.storage.dev ` +
@@ -1626,7 +1626,7 @@ sandbox.process.exec(
 )
 
 # Mount with Tigris endpoint
-mount_path = '/home/nightona/tigris'
+mount_path = '/home/daytona/tigris'
 sandbox.process.exec(
   command: "mkdir -p #{mount_path} && " \
            'mount-s3 --endpoint-url https://t3.storage.dev ' \
@@ -1681,7 +1681,7 @@ if _, err := sandbox.Process.ExecuteCommand(ctx,
 }
 
 // Mount with Tigris endpoint
-mountPath := "/home/nightona/tigris"
+mountPath := "/home/daytona/tigris"
 if _, err := sandbox.Process.ExecuteCommand(ctx,
 	"mkdir -p "+mountPath+" && "+
 		"mount-s3 --endpoint-url https://t3.storage.dev "+
@@ -1727,7 +1727,7 @@ public class App {
                     + "&& sudo apt-get install -y /tmp/mount-s3.deb");
 
             // Mount with Tigris endpoint
-            String mountPath = "/home/nightona/tigris";
+            String mountPath = "/home/daytona/tigris";
             sandbox.getProcess().executeCommand(
                 "mkdir -p " + mountPath + " && "
                     + "mount-s3 --endpoint-url https://t3.storage.dev "
@@ -1785,7 +1785,7 @@ const sandbox = await nightona.create({
 })
 
 // 3. Mount the fork bucket
-const mountPath = '/home/nightona/tigris'
+const mountPath = '/home/daytona/tigris'
 await sandbox.process.executeCommand(`mkdir -p ${mountPath}`)
 await sandbox.process.executeCommand(
   `mount-s3 --endpoint-url https://t3.storage.dev ${fork.bucket} ${mountPath}`,
@@ -2008,8 +2008,8 @@ service_account_key = os.environ["GCS_SERVICE_ACCOUNT_KEY"].encode()
 
 sandbox = nightona.create(CreateSandboxFromSnapshotParams(snapshot="fuse-gcs"))
 
-mount_path = "/home/nightona/gcs"
-key_path = "/home/nightona/.gcs-key.json"
+mount_path = "/home/daytona/gcs"
+key_path = "/home/daytona/.gcs-key.json"
 
 # Upload the key file into the sandbox
 sandbox.fs.upload_file(service_account_key, key_path)
@@ -2037,8 +2037,8 @@ const serviceAccountKey = Buffer.from(process.env.GCS_SERVICE_ACCOUNT_KEY!)
 
 const sandbox = await nightona.create({ snapshot: 'fuse-gcs' })
 
-const mountPath = '/home/nightona/gcs'
-const keyPath = '/home/nightona/.gcs-key.json'
+const mountPath = '/home/daytona/gcs'
+const keyPath = '/home/daytona/.gcs-key.json'
 
 // Upload the key file into the sandbox
 await sandbox.fs.uploadFile(serviceAccountKey, keyPath)
@@ -2068,8 +2068,8 @@ sandbox = nightona.create(
   Nightona::CreateSandboxFromSnapshotParams.new(snapshot: 'fuse-gcs')
 )
 
-mount_path = '/home/nightona/gcs'
-key_path = '/home/nightona/.gcs-key.json'
+mount_path = '/home/daytona/gcs'
+key_path = '/home/daytona/.gcs-key.json'
 
 # Upload the key file into the sandbox
 sandbox.fs.upload_file(service_account_key, key_path)
@@ -2114,8 +2114,8 @@ if err != nil {
 	log.Fatal(err)
 }
 
-mountPath := "/home/nightona/gcs"
-keyPath := "/home/nightona/.gcs-key.json"
+mountPath := "/home/daytona/gcs"
+keyPath := "/home/daytona/.gcs-key.json"
 
 // Upload the key file into the sandbox
 if err := sandbox.FileSystem.UploadFile(ctx, serviceAccountKey, keyPath); err != nil {
@@ -2164,8 +2164,8 @@ public class App {
             params.setSnapshot("fuse-gcs");
             Sandbox sandbox = nightona.create(params);
 
-            String mountPath = "/home/nightona/gcs";
-            String keyPath = "/home/nightona/.gcs-key.json";
+            String mountPath = "/home/daytona/gcs";
+            String keyPath = "/home/daytona/.gcs-key.json";
 
             // Upload the key file into the sandbox
             sandbox.fs.uploadFile(serviceAccountKey, keyPath);
@@ -2223,8 +2223,8 @@ sandbox.process.exec(
 )
 
 # Upload the key and mount
-mount_path = "/home/nightona/gcs"
-key_path = "/home/nightona/.gcs-key.json"
+mount_path = "/home/daytona/gcs"
+key_path = "/home/daytona/.gcs-key.json"
 sandbox.fs.upload_file(service_account_key, key_path)
 sandbox.process.exec(f"chmod 600 {key_path}")
 sandbox.process.exec(f"mkdir -p {mount_path}")
@@ -2265,8 +2265,8 @@ await sandbox.process.executeCommand(
 )
 
 // Upload the key and mount
-const mountPath = '/home/nightona/gcs'
-const keyPath = '/home/nightona/.gcs-key.json'
+const mountPath = '/home/daytona/gcs'
+const keyPath = '/home/daytona/.gcs-key.json'
 await sandbox.fs.uploadFile(serviceAccountKey, keyPath)
 await sandbox.process.executeCommand(`chmod 600 ${keyPath}`)
 await sandbox.process.executeCommand(`mkdir -p ${mountPath}`)
@@ -2307,8 +2307,8 @@ sandbox.process.exec(
 )
 
 # Upload the key and mount
-mount_path = '/home/nightona/gcs'
-key_path = '/home/nightona/.gcs-key.json'
+mount_path = '/home/daytona/gcs'
+key_path = '/home/daytona/.gcs-key.json'
 sandbox.fs.upload_file(service_account_key, key_path)
 sandbox.process.exec(command: "chmod 600 #{key_path}")
 sandbox.process.exec(command: "mkdir -p #{mount_path}")
@@ -2366,8 +2366,8 @@ if _, err := sandbox.Process.ExecuteCommand(ctx,
 }
 
 // Upload the key and mount
-mountPath := "/home/nightona/gcs"
-keyPath := "/home/nightona/.gcs-key.json"
+mountPath := "/home/daytona/gcs"
+keyPath := "/home/daytona/.gcs-key.json"
 if err := sandbox.FileSystem.UploadFile(ctx, serviceAccountKey, keyPath); err != nil {
 	log.Fatal(err)
 }
@@ -2424,8 +2424,8 @@ public class App {
                     + "&& sudo apt-get update && sudo apt-get install -y gcsfuse");
 
             // Upload the key and mount
-            String mountPath = "/home/nightona/gcs";
-            String keyPath = "/home/nightona/.gcs-key.json";
+            String mountPath = "/home/daytona/gcs";
+            String keyPath = "/home/daytona/.gcs-key.json";
             sandbox.fs.uploadFile(serviceAccountKey, keyPath);
             sandbox.getProcess().executeCommand("chmod 600 " + keyPath);
             sandbox.getProcess().executeCommand("mkdir -p " + mountPath);
@@ -2675,8 +2675,8 @@ nightona = Nightona()
 
 sandbox = nightona.create(CreateSandboxFromSnapshotParams(snapshot="fuse-azure"))
 
-mount_path = "/home/nightona/azure"
-config_path = "/home/nightona/.blobfuse2.yaml"
+mount_path = "/home/daytona/azure"
+config_path = "/home/daytona/.blobfuse2.yaml"
 
 account = os.environ["AZURE_STORAGE_ACCOUNT"]
 container = os.environ["AZURE_STORAGE_CONTAINER"]
@@ -2723,8 +2723,8 @@ const nightona = new Nightona()
 
 const sandbox = await nightona.create({ snapshot: 'fuse-azure' })
 
-const mountPath = '/home/nightona/azure'
-const configPath = '/home/nightona/.blobfuse2.yaml'
+const mountPath = '/home/daytona/azure'
+const configPath = '/home/daytona/.blobfuse2.yaml'
 
 const account = process.env.AZURE_STORAGE_ACCOUNT!
 const container = process.env.AZURE_STORAGE_CONTAINER!
@@ -2772,8 +2772,8 @@ sandbox = nightona.create(
   Nightona::CreateSandboxFromSnapshotParams.new(snapshot: 'fuse-azure')
 )
 
-mount_path = '/home/nightona/azure'
-config_path = '/home/nightona/.blobfuse2.yaml'
+mount_path = '/home/daytona/azure'
+config_path = '/home/daytona/.blobfuse2.yaml'
 
 account = ENV.fetch('AZURE_STORAGE_ACCOUNT')
 container = ENV.fetch('AZURE_STORAGE_CONTAINER')
@@ -2837,8 +2837,8 @@ if err != nil {
 	log.Fatal(err)
 }
 
-mountPath := "/home/nightona/azure"
-configPath := "/home/nightona/.blobfuse2.yaml"
+mountPath := "/home/daytona/azure"
+configPath := "/home/daytona/.blobfuse2.yaml"
 
 account := os.Getenv("AZURE_STORAGE_ACCOUNT")
 container := os.Getenv("AZURE_STORAGE_CONTAINER")
@@ -2904,8 +2904,8 @@ public class App {
             params.setSnapshot("fuse-azure");
             Sandbox sandbox = nightona.create(params);
 
-            String mountPath = "/home/nightona/azure";
-            String configPath = "/home/nightona/.blobfuse2.yaml";
+            String mountPath = "/home/daytona/azure";
+            String configPath = "/home/daytona/.blobfuse2.yaml";
 
             String account = System.getenv("AZURE_STORAGE_ACCOUNT");
             String container = System.getenv("AZURE_STORAGE_CONTAINER");
@@ -2987,8 +2987,8 @@ sandbox.process.exec(
 )
 
 # Build config and mount
-mount_path = "/home/nightona/azure"
-config_path = "/home/nightona/.blobfuse2.yaml"
+mount_path = "/home/daytona/azure"
+config_path = "/home/daytona/.blobfuse2.yaml"
 account = os.environ["AZURE_STORAGE_ACCOUNT"]
 container = os.environ["AZURE_STORAGE_CONTAINER"]
 account_key = os.environ["AZURE_STORAGE_ACCOUNT_KEY"]
@@ -3053,8 +3053,8 @@ await sandbox.process.executeCommand(
 )
 
 // Build config and mount
-const mountPath = '/home/nightona/azure'
-const configPath = '/home/nightona/.blobfuse2.yaml'
+const mountPath = '/home/daytona/azure'
+const configPath = '/home/daytona/.blobfuse2.yaml'
 const account = process.env.AZURE_STORAGE_ACCOUNT!
 const container = process.env.AZURE_STORAGE_CONTAINER!
 const accountKey = process.env.AZURE_STORAGE_ACCOUNT_KEY!
@@ -3118,8 +3118,8 @@ sandbox.process.exec(
 )
 
 # Build config and mount
-mount_path = '/home/nightona/azure'
-config_path = '/home/nightona/.blobfuse2.yaml'
+mount_path = '/home/daytona/azure'
+config_path = '/home/daytona/.blobfuse2.yaml'
 account = ENV.fetch('AZURE_STORAGE_ACCOUNT')
 container = ENV.fetch('AZURE_STORAGE_CONTAINER')
 account_key = ENV.fetch('AZURE_STORAGE_ACCOUNT_KEY')
@@ -3200,8 +3200,8 @@ if _, err := sandbox.Process.ExecuteCommand(ctx,
 }
 
 // Build config and mount
-mountPath := "/home/nightona/azure"
-configPath := "/home/nightona/.blobfuse2.yaml"
+mountPath := "/home/daytona/azure"
+configPath := "/home/daytona/.blobfuse2.yaml"
 account := os.Getenv("AZURE_STORAGE_ACCOUNT")
 container := os.Getenv("AZURE_STORAGE_CONTAINER")
 accountKey := os.Getenv("AZURE_STORAGE_ACCOUNT_KEY")
@@ -3279,8 +3279,8 @@ public class App {
                     + "&& sudo ldconfig");
 
             // Build config and mount
-            String mountPath = "/home/nightona/azure";
-            String configPath = "/home/nightona/.blobfuse2.yaml";
+            String mountPath = "/home/daytona/azure";
+            String configPath = "/home/daytona/.blobfuse2.yaml";
             String account = System.getenv("AZURE_STORAGE_ACCOUNT");
             String container = System.getenv("AZURE_STORAGE_CONTAINER");
             String accountKey = System.getenv("AZURE_STORAGE_ACCOUNT_KEY");
@@ -3457,7 +3457,7 @@ public class App {
 
 #### Launch and mount
 
-Pass `ARCHIL_MOUNT_TOKEN`, `ARCHIL_REGION`, and `ARCHIL_DISK` to the sandbox via `envVars`. Your code then mounts the disk at `/home/nightona/archil` and hands ownership to the `nightona` user so non-root processes can read and write through the mount.
+Pass `ARCHIL_MOUNT_TOKEN`, `ARCHIL_REGION`, and `ARCHIL_DISK` to the sandbox via `envVars`. Your code then mounts the disk at `/home/daytona/archil` and hands ownership to the `nightona` user so non-root processes can read and write through the mount.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -3468,7 +3468,7 @@ from nightona import CreateSandboxFromSnapshotParams, Nightona
 
 nightona = Nightona()
 
-mount_path = "/home/nightona/archil"
+mount_path = "/home/daytona/archil"
 
 sandbox = nightona.create(
     CreateSandboxFromSnapshotParams(
@@ -3501,7 +3501,7 @@ import { Nightona } from '@nightona/sdk'
 
 const nightona = new Nightona()
 
-const mountPath = '/home/nightona/archil'
+const mountPath = '/home/daytona/archil'
 
 const sandbox = await nightona.create({
   snapshot: 'fuse-archil',
@@ -3532,7 +3532,7 @@ require 'nightona'
 
 nightona = Nightona::Nightona.new
 
-mount_path = '/home/nightona/archil'
+mount_path = '/home/daytona/archil'
 
 sandbox = nightona.create(
   Nightona::CreateSandboxFromSnapshotParams.new(
@@ -3577,7 +3577,7 @@ if err != nil {
 	log.Fatal(err)
 }
 
-mountPath := "/home/nightona/archil"
+mountPath := "/home/daytona/archil"
 
 sandbox, err := client.Create(ctx, types.SnapshotParams{
 	Snapshot: "fuse-archil",
@@ -3628,7 +3628,7 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) {
         try (Nightona nightona = new Nightona()) {
-            String mountPath = "/home/nightona/archil";
+            String mountPath = "/home/daytona/archil";
 
             CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
             params.setSnapshot("fuse-archil");
@@ -3671,7 +3671,7 @@ from nightona import CreateSandboxBaseParams, Nightona
 
 nightona = Nightona()
 
-mount_path = "/home/nightona/archil"
+mount_path = "/home/daytona/archil"
 
 sandbox = nightona.create(
     CreateSandboxBaseParams(
@@ -3708,7 +3708,7 @@ import { Nightona } from '@nightona/sdk'
 
 const nightona = new Nightona()
 
-const mountPath = '/home/nightona/archil'
+const mountPath = '/home/daytona/archil'
 
 const sandbox = await nightona.create({
   envVars: {
@@ -3743,7 +3743,7 @@ require 'nightona'
 
 nightona = Nightona::Nightona.new
 
-mount_path = '/home/nightona/archil'
+mount_path = '/home/daytona/archil'
 
 sandbox = nightona.create(
   Nightona::CreateSandboxBaseParams.new(
@@ -3792,7 +3792,7 @@ if err != nil {
 	log.Fatal(err)
 }
 
-mountPath := "/home/nightona/archil"
+mountPath := "/home/daytona/archil"
 
 sandbox, err := client.Create(ctx, types.SnapshotParams{
 	SandboxBaseParams: types.SandboxBaseParams{
@@ -3850,7 +3850,7 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) {
         try (Nightona nightona = new Nightona()) {
-            String mountPath = "/home/nightona/archil";
+            String mountPath = "/home/daytona/archil";
 
             CreateSandboxBaseParams params = new CreateSandboxBaseParams();
             params.setEnvVars(Map.of(
@@ -3886,7 +3886,7 @@ public class App {
 
 [MesaFS ↗](https://mesa.dev) is an agent-native versioned filesystem from Mesa, purpose-built for the same workloads Nightona sandboxes run — parallel agent swarms, shared working memory, structured artifacts, and long-lived state across runs. With MesaFS, instead of mounting a cloud bucket, you mount a Mesa **repository**: a Git-compatible versioned working directory with sub-50ms reads/writes, instant fork/branch operations, and unlimited concurrent writers.
 
-The Mesa setup follows the same pattern as the bucket providers but uses the Mesa CLI rather than a FUSE-specific tool: install the CLI in your sandbox, authenticate with your API key, and run `mesa mount --daemonize` to mount your repos at `/home/nightona/mesa/mnt/<org>/<repo>`.
+The Mesa setup follows the same pattern as the bucket providers but uses the Mesa CLI rather than a FUSE-specific tool: install the CLI in your sandbox, authenticate with your API key, and run `mesa mount --daemonize` to mount your repos at `/home/daytona/mesa/mnt/<org>/<repo>`.
 
 **Credentials** — set `MESA_API_KEY` and `MESA_ORG` (your Mesa organization slug) in your local environment. The snippets below pass them into the sandbox via `envVars`, and the Mesa CLI reads them from there.
 
@@ -4022,7 +4022,7 @@ public class App {
 
 #### Launch and mount
 
-Pass `MESA_API_KEY` and your Mesa organization slug to the sandbox via `envVars`. Your code then writes a TOML config into the sandbox, authenticates the Mesa CLI, and mounts your repos at `/home/nightona/mesa/mnt/<org>/<repo>`.
+Pass `MESA_API_KEY` and your Mesa organization slug to the sandbox via `envVars`. Your code then writes a TOML config into the sandbox, authenticates the Mesa CLI, and mounts your repos at `/home/daytona/mesa/mnt/<org>/<repo>`.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -4035,8 +4035,8 @@ nightona = Nightona()
 
 org = os.environ["MESA_ORG"]
 repo = "my-workspace"
-mount_path = f"/home/nightona/mesa/mnt/{org}/{repo}"
-config_path = "/home/nightona/.config/mesa/config.toml"
+mount_path = f"/home/daytona/mesa/mnt/{org}/{repo}"
+config_path = "/home/daytona/.config/mesa/config.toml"
 
 sandbox = nightona.create(
     CreateSandboxFromSnapshotParams(
@@ -4048,7 +4048,7 @@ sandbox = nightona.create(
     )
 )
 
-config = f'''mount-point = "/home/nightona/mesa/mnt"
+config = f'''mount-point = "/home/daytona/mesa/mnt"
 
 [secrets]
 backend = "plaintext-file"
@@ -4076,8 +4076,8 @@ const nightona = new Nightona()
 
 const org = process.env.MESA_ORG!
 const repo = 'my-workspace'
-const mountPath = `/home/nightona/mesa/mnt/${org}/${repo}`
-const configPath = '/home/nightona/.config/mesa/config.toml'
+const mountPath = `/home/daytona/mesa/mnt/${org}/${repo}`
+const configPath = '/home/daytona/.config/mesa/config.toml'
 
 const sandbox = await nightona.create({
   snapshot: 'fuse-mesa',
@@ -4087,7 +4087,7 @@ const sandbox = await nightona.create({
   },
 })
 
-const config = `mount-point = "/home/nightona/mesa/mnt"
+const config = `mount-point = "/home/daytona/mesa/mnt"
 
 [secrets]
 backend = "plaintext-file"
@@ -4115,8 +4115,8 @@ nightona = Nightona::Nightona.new
 
 org = ENV.fetch('MESA_ORG')
 repo = 'my-workspace'
-mount_path = "/home/nightona/mesa/mnt/#{org}/#{repo}"
-config_path = '/home/nightona/.config/mesa/config.toml'
+mount_path = "/home/daytona/mesa/mnt/#{org}/#{repo}"
+config_path = '/home/daytona/.config/mesa/config.toml'
 
 sandbox = nightona.create(
   Nightona::CreateSandboxFromSnapshotParams.new(
@@ -4129,7 +4129,7 @@ sandbox = nightona.create(
 )
 
 config = <<~TOML
-  mount-point = "/home/nightona/mesa/mnt"
+  mount-point = "/home/daytona/mesa/mnt"
 
   [secrets]
   backend = "plaintext-file"
@@ -4169,8 +4169,8 @@ if err != nil {
 
 org := os.Getenv("MESA_ORG")
 repo := "my-workspace"
-mountPath := fmt.Sprintf("/home/nightona/mesa/mnt/%s/%s", org, repo)
-configPath := "/home/nightona/.config/mesa/config.toml"
+mountPath := fmt.Sprintf("/home/daytona/mesa/mnt/%s/%s", org, repo)
+configPath := "/home/daytona/.config/mesa/config.toml"
 
 sandbox, err := client.Create(ctx, types.SnapshotParams{
 	Snapshot: "fuse-mesa",
@@ -4185,7 +4185,7 @@ if err != nil {
 	log.Fatal(err)
 }
 
-config := fmt.Sprintf(`mount-point = "/home/nightona/mesa/mnt"
+config := fmt.Sprintf(`mount-point = "/home/daytona/mesa/mnt"
 
 [secrets]
 backend = "plaintext-file"
@@ -4231,8 +4231,8 @@ public class App {
         try (Nightona nightona = new Nightona()) {
             String org = System.getenv("MESA_ORG");
             String repo = "my-workspace";
-            String mountPath = "/home/nightona/mesa/mnt/" + org + "/" + repo;
-            String configPath = "/home/nightona/.config/mesa/config.toml";
+            String mountPath = "/home/daytona/mesa/mnt/" + org + "/" + repo;
+            String configPath = "/home/daytona/.config/mesa/config.toml";
 
             CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
             params.setSnapshot("fuse-mesa");
@@ -4242,7 +4242,7 @@ public class App {
             ));
             Sandbox sandbox = nightona.create(params);
 
-            String config = "mount-point = \"/home/nightona/mesa/mnt\"\n\n"
+            String config = "mount-point = \"/home/daytona/mesa/mnt\"\n\n"
                 + "[secrets]\n"
                 + "backend = \"plaintext-file\"\n\n"
                 + "[organizations." + org + "]\n";
@@ -4279,8 +4279,8 @@ nightona = Nightona()
 
 org = os.environ["MESA_ORG"]
 repo = "my-workspace"
-mount_path = f"/home/nightona/mesa/mnt/{org}/{repo}"
-config_path = "/home/nightona/.config/mesa/config.toml"
+mount_path = f"/home/daytona/mesa/mnt/{org}/{repo}"
+config_path = "/home/daytona/.config/mesa/config.toml"
 
 sandbox = nightona.create(
     CreateSandboxBaseParams(
@@ -4296,7 +4296,7 @@ sandbox.process.exec(
     "sudo sed -i 's/^#user_allow_other/user_allow_other/' /etc/fuse.conf"
 )
 
-config = f'''mount-point = "/home/nightona/mesa/mnt"
+config = f'''mount-point = "/home/daytona/mesa/mnt"
 
 [secrets]
 backend = "plaintext-file"
@@ -4324,8 +4324,8 @@ const nightona = new Nightona()
 
 const org = process.env.MESA_ORG!
 const repo = 'my-workspace'
-const mountPath = `/home/nightona/mesa/mnt/${org}/${repo}`
-const configPath = '/home/nightona/.config/mesa/config.toml'
+const mountPath = `/home/daytona/mesa/mnt/${org}/${repo}`
+const configPath = '/home/daytona/.config/mesa/config.toml'
 
 const sandbox = await nightona.create({
   envVars: {
@@ -4339,7 +4339,7 @@ await sandbox.process.executeCommand(
   "sudo sed -i 's/^#user_allow_other/user_allow_other/' /etc/fuse.conf",
 )
 
-const config = `mount-point = "/home/nightona/mesa/mnt"
+const config = `mount-point = "/home/daytona/mesa/mnt"
 
 [secrets]
 backend = "plaintext-file"
@@ -4367,8 +4367,8 @@ nightona = Nightona::Nightona.new
 
 org = ENV.fetch('MESA_ORG')
 repo = 'my-workspace'
-mount_path = "/home/nightona/mesa/mnt/#{org}/#{repo}"
-config_path = '/home/nightona/.config/mesa/config.toml'
+mount_path = "/home/daytona/mesa/mnt/#{org}/#{repo}"
+config_path = '/home/daytona/.config/mesa/config.toml'
 
 sandbox = nightona.create(
   Nightona::CreateSandboxBaseParams.new(
@@ -4385,7 +4385,7 @@ sandbox.process.exec(
 )
 
 config = <<~TOML
-  mount-point = "/home/nightona/mesa/mnt"
+  mount-point = "/home/daytona/mesa/mnt"
 
   [secrets]
   backend = "plaintext-file"
@@ -4425,8 +4425,8 @@ if err != nil {
 
 org := os.Getenv("MESA_ORG")
 repo := "my-workspace"
-mountPath := fmt.Sprintf("/home/nightona/mesa/mnt/%s/%s", org, repo)
-configPath := "/home/nightona/.config/mesa/config.toml"
+mountPath := fmt.Sprintf("/home/daytona/mesa/mnt/%s/%s", org, repo)
+configPath := "/home/daytona/.config/mesa/config.toml"
 
 sandbox, err := client.Create(ctx, types.SnapshotParams{
 	SandboxBaseParams: types.SandboxBaseParams{
@@ -4449,7 +4449,7 @@ if _, err := sandbox.Process.ExecuteCommand(ctx,
 	log.Fatal(err)
 }
 
-config := fmt.Sprintf(`mount-point = "/home/nightona/mesa/mnt"
+config := fmt.Sprintf(`mount-point = "/home/daytona/mesa/mnt"
 
 [secrets]
 backend = "plaintext-file"
@@ -4495,8 +4495,8 @@ public class App {
         try (Nightona nightona = new Nightona()) {
             String org = System.getenv("MESA_ORG");
             String repo = "my-workspace";
-            String mountPath = "/home/nightona/mesa/mnt/" + org + "/" + repo;
-            String configPath = "/home/nightona/.config/mesa/config.toml";
+            String mountPath = "/home/daytona/mesa/mnt/" + org + "/" + repo;
+            String configPath = "/home/daytona/.config/mesa/config.toml";
 
             CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
             params.setEnvVars(Map.of(
@@ -4510,7 +4510,7 @@ public class App {
             sandbox.getProcess().executeCommand(
                 "sudo sed -i 's/^#user_allow_other/user_allow_other/' /etc/fuse.conf");
 
-            String config = "mount-point = \"/home/nightona/mesa/mnt\"\n\n"
+            String config = "mount-point = \"/home/daytona/mesa/mnt\"\n\n"
                 + "[secrets]\n"
                 + "backend = \"plaintext-file\"\n\n"
                 + "[organizations." + org + "]\n";

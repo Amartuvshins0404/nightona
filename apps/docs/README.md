@@ -1,6 +1,6 @@
 <div align="center">
 
-[![Documentation](https://img.shields.io/github/v/release/daytonaio/docs?label=Docs&color=23cc71)](https://www.daytona.io/docs)
+[![Documentation](https://img.shields.io/github/v/release/Amartuvshins0404/nightona?label=Docs&color=23cc71)](https://www.daytona.io/docs)
 ![License](https://img.shields.io/badge/License-AGPL--3-blue)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Amartuvshins0404/nightona)](https://goreportcard.com/report/github.com/Amartuvshins0404/nightona)
 [![Issues - nightona](https://img.shields.io/github/issues/Amartuvshins0404/nightona)](https://github.com/Amartuvshins0404/nightona/issues)
@@ -30,7 +30,7 @@
     <a href="https://github.com/Amartuvshins0404/nightona/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%F0%9F%90%9B+Bug+Report%3A+"> Report Bug </a>·
     <a href="https://github.com/Amartuvshins0404/nightona/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%F0%9F%9A%80+Feature%3A+"> Request Feature </a>·
     <a href="https://go.daytona.io/slack"> Join our Slack </a>·
-    <a href="https://x.com/daytonaio"> Connect on X </a>
+    <a href="https://github.com/Amartuvshins0404/nightona/discussions"> GitHub Discussions </a>
 </p>
 
 <p align="center">

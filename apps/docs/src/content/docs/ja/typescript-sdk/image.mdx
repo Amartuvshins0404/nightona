@@ -139,7 +139,7 @@ addLocalDir(localPath: string, remotePath: string): Image
 ```ts
 const image = Image
  .debianSlim('3.12')
- .addLocalDir('src', '/home/nightona/src')
+ .addLocalDir('src', '/home/daytona/src')
 ```
 
 ***
@@ -167,7 +167,7 @@ addLocalFile(localPath: string, remotePath: string): Image
 ```ts
 const image = Image
  .debianSlim('3.12')
- .addLocalFile('requirements.txt', '/home/nightona/requirements.txt')
+ .addLocalFile('requirements.txt', '/home/daytona/requirements.txt')
 ```
 
 ***
@@ -407,7 +407,7 @@ workdir(dirPath: string): Image
 ```ts
 const image = Image
  .debianSlim('3.12')
- .workdir('/home/nightona')
+ .workdir('/home/daytona')
 ```
 
 ***

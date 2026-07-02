@@ -14,7 +14,7 @@ import {
   ResultEvent,
 } from './types.js'
 
-const WORK_DIR = '/home/nightona'
+const WORK_DIR = '/home/daytona'
 
 const DEBUG = false
 function debug(...args: unknown[]) {

@@ -5,7 +5,7 @@ End-to-end tests for the async SDK (``AsyncNightona``).
 
 Mirrors ``test_e2e.py`` but exercises the asyncio code path.  Run with::
 
-    NIGHTONA_API_KEY=dtn_... NIGHTONA_API_URL=https://app.daytona.io/api \\
+    NIGHTONA_API_KEY=dtn_... NIGHTONA_API_URL=http://localhost:3000/api \\
         pytest tests/test_async_e2e.py -m e2e
 
 The suite intentionally starts small (lifecycle / list / get / delete plus the

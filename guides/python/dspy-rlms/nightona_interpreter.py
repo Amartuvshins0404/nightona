@@ -395,7 +395,7 @@ def SUBMIT({", ".join(sig_parts)}):
         write_code = f"""
 import os
 broker_code = {repr(_BROKER_SERVER_CODE)}
-with open("/home/nightona/broker_server.py", "w") as f:
+with open("/home/daytona/broker_server.py", "w") as f:
     f.write(broker_code)
 print("Broker server code written")
 """
@@ -409,7 +409,7 @@ print("Broker server code written")
         self._sandbox.process.execute_session_command(
             self._broker_session_id,
             self._session_execute_request(
-                command="cd /home/nightona && python broker_server.py",
+                command="cd /home/daytona && python broker_server.py",
                 run_async=True,
             ),
         )

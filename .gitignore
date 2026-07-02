@@ -4,6 +4,7 @@
 dist
 tmp
 out-tsc
+apps/ssh-gateway/ssh-gateway
 
 # dependencies
 node_modules

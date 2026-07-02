@@ -72,7 +72,7 @@ Filesystem operations like `mkdir`, `mv`, `rm`, and `chmod` are intentionally le
 
 ## How it works
 
-The system prompt tells the agent to call `createSandbox` once at session start, reuse the returned `sandboxId` across every subsequent tool call (creating a new one if the sandbox auto-deletes after a long pause), and work under `/home/nightona` by default. For web apps, it tells the agent to prefer Vite over the deprecated `create-react-app`, bind any dev server to `0.0.0.0` so the Nightona preview proxy can reach it, and hand it to `startWebServer` so the preview URL comes back in one shot.
+The system prompt tells the agent to call `createSandbox` once at session start, reuse the returned `sandboxId` across every subsequent tool call (creating a new one if the sandbox auto-deletes after a long pause), and work under `/home/daytona` by default. For web apps, it tells the agent to prefer Vite over the deprecated `create-react-app`, bind any dev server to `0.0.0.0` so the Nightona preview proxy can reach it, and hand it to `startWebServer` so the preview URL comes back in one shot.
 
 On the React side, `app/page.tsx` registers `useRenderTool` per tool. Each renderer reads streaming `{ status, parameters, result }` and produces a card:
 

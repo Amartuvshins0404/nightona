@@ -1,6 +1,6 @@
 # Nightona Sandbox Slim Image
 
-[Dockerfile](./Dockerfile) contains the definition for [daytonaio/sandbox](https://hub.docker.com/r/daytonaio/sandbox) slim images which are used as default snapshots in self-hosted environments.
+[Dockerfile](./Dockerfile) defines the slim Nightona sandbox image, published as `ghcr.io/amartuvshins0404/sandbox` with `-slim` tag suffixes (e.g. `latest-slim`) and used as the default snapshot in self-hosted environments. It is derived from the upstream [daytonaio/sandbox](https://hub.docker.com/r/daytonaio/sandbox) image lineage.
 
 The slim sandbox image contains Python, Node and some popular dependencies including:
 

@@ -18,7 +18,7 @@ This directory contains example scripts demonstrating how to use the Nightona Ru
    NIGHTONA_ORGANIZATION_ID=your-org-id  # required when using JWT token
 
    # Optional
-   NIGHTONA_API_URL=https://app.daytona.io/api  # defaults to this if not specified
+   NIGHTONA_API_URL=http://localhost:3000/api  # defaults to this if not specified
    NIGHTONA_TARGET=us  # defaults to your organization's default region
    ```
 
@@ -28,7 +28,7 @@ This directory contains example scripts demonstrating how to use the Nightona Ru
 
    ```bash
    export NIGHTONA_API_KEY="your-api-key"
-   export NIGHTONA_API_URL="https://app.daytona.io/api"  # optional, this is the default
+   export NIGHTONA_API_URL="http://localhost:3000/api"  # optional, this is the default
    export NIGHTONA_TARGET="us"  # optional
    ```
 

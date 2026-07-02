@@ -183,12 +183,26 @@ func getConfigPath() (string, error) {
 	return filepath.Join(configDir, "config.json"), nil
 }
 
-var legacyConfigDirNotice sync.Once
+var (
+	legacyConfigDirNotice    sync.Once
+	legacyConfigDirEnvNotice sync.Once
+)
 
 func GetConfigDir() (string, error) {
 	nightonaConfigDir := os.Getenv("NIGHTONA_CONFIG_DIR")
 	if nightonaConfigDir != "" {
 		return nightonaConfigDir, nil
+	}
+
+	// Backward compatibility: if NIGHTONA_CONFIG_DIR is empty or unset, honor
+	// a non-empty legacy DAYTONA_CONFIG_DIR. This also covers the case where
+	// the main() env-alias shim skipped mapping because NIGHTONA_CONFIG_DIR
+	// was set to an empty string.
+	if legacyEnvConfigDir := os.Getenv("DAYTONA_CONFIG_DIR"); legacyEnvConfigDir != "" {
+		legacyConfigDirEnvNotice.Do(func() {
+			fmt.Fprintln(os.Stderr, "Warning: DAYTONA_CONFIG_DIR is deprecated, use NIGHTONA_CONFIG_DIR instead")
+		})
+		return legacyEnvConfigDir, nil
 	}
 
 	userConfigDir, err := os.UserConfigDir()

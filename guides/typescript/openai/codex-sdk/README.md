@@ -62,11 +62,11 @@ Thinking...
 🔨 ✓ Run: /bin/sh -lc pwd
 🔨 ✓ Run: /bin/sh -lc '/bin/ls -a'
 🔨 ✓ Run: /bin/sh -lc '/bin/ls -a .nightona'
-📝 Add /home/nightona/index.html
-📝 Add /home/nightona/style.css
-📝 Add /home/nightona/main.js
-📝 Update /home/nightona/main.js
-📝 Update /home/nightona/main.js
+📝 Add /home/daytona/index.html
+📝 Add /home/daytona/style.css
+📝 Add /home/daytona/main.js
+📝 Update /home/daytona/main.js
+📝 Update /home/daytona/main.js
 Built a playable lunar lander experience with stylized cockpit UI and physics-driven canvas gameplay.
 - index.html: Hero copy, control pill, stat bar, canvas playfield with mission brief sidebar and reset control wired for keyboard/onscreen use.
 - style.css: Bold dark-space treatment with gradients, neon accent palette, pill stats, responsive two-column → single-column layout, and hover states.
@@ -74,8 +74,8 @@ Built a playable lunar lander experience with stylized cockpit UI and physics-dr
 Usage Summary: Cached: 49152, Input: 105923, Output: 11037
 User: run the server
 Thinking...
-🔨 ✓ Run: /bin/sh -lc 'cd /home/nightona && nohup python -m http.server 8000 >/home/nightona/server.log 2>&1 & echo $!'
-Server running on port 8000 (PID 343). Open https://8000-583a999c-64f7-4ef7-9f04-b533afe4a61e.proxy.nightona.works to play. Check logs at /home/nightona/server.log if needed; stop with kill 343.
+🔨 ✓ Run: /bin/sh -lc 'cd /home/daytona && nohup python -m http.server 8000 >/home/daytona/server.log 2>&1 & echo $!'
+Server running on port 8000 (PID 343). Open https://8000-583a999c-64f7-4ef7-9f04-b533afe4a61e.proxy.nightona.works to play. Check logs at /home/daytona/server.log if needed; stop with kill 343.
 Usage Summary: Cached: 8192, Input: 24947, Output: 266
 User:
 Cleaning up...

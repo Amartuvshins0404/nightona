@@ -60,7 +60,7 @@ const configuration = {
     user: process.env.SMTP_USER,
     password: process.env.SMTP_PASSWORD,
     secure: process.env.SMTP_SECURE === 'true',
-    from: process.env.SMTP_EMAIL_FROM || 'noreply@mail.daytona.io',
+    from: process.env.SMTP_EMAIL_FROM || 'no-reply@nightona.local',
   },
   defaultSnapshot: process.env.DEFAULT_SNAPSHOT,
   defaultSandboxClass: (process.env.DEFAULT_SANDBOX_CLASS || SandboxClass.CONTAINER) as SandboxClass,

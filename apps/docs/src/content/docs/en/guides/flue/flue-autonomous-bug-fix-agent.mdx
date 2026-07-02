@@ -406,12 +406,12 @@ That runs `flue run bug-fix --target node --id run-1 --env .env --payload '{}'`,
 [bug-fix] running TDD workflow (reproduce → fix → PR)...
 [flue] Agent started
   I'll work through this systematically following the test-driven approach.
-[flue] tool:start  read  /home/nightona/project/package.json
+[flue] tool:start  read  /home/daytona/project/package.json
 [flue] tool:done   read  (1477 chars)
 [flue] tool:start  glob  **/*.test.*
 [flue] tool:done   glob
-[flue] tool:start  read  /home/nightona/project/src/index.ts
-[flue] tool:start  read  /home/nightona/project/src/parse.test.ts
+[flue] tool:start  read  /home/daytona/project/src/index.ts
+[flue] tool:start  read  /home/daytona/project/src/parse.test.ts
 [flue] tool:done   read  (5864 chars)
 [flue] tool:done   read  (5082 chars)
   Now I have a clear picture. Let me verify what `format(Number.MAX_VALUE)` actually
@@ -422,12 +422,12 @@ That runs `flue run bug-fix --target node --id run-1 --env .env --payload '{}'`,
   which the regex in parse() cannot match. Setting up the branch and writing the test:
 [flue] tool:start  bash  $ git checkout -b flue/fix-issue-284
 [flue] tool:done   bash
-[flue] tool:start  edit  /home/nightona/project/src/parse.test.ts
+[flue] tool:start  edit  /home/daytona/project/src/parse.test.ts
 [flue] tool:done   edit
 [flue] tool:start  bash  $ pnpm test:nodejs
 [flue] tool:done   bash  (2102 chars)
   The tests fail as expected. Now let me implement the fix:
-[flue] tool:start  edit  /home/nightona/project/src/index.ts
+[flue] tool:start  edit  /home/daytona/project/src/index.ts
 [flue] tool:done   edit
 [flue] tool:start  bash  $ pnpm test
 [flue] tool:done   bash  (1319 chars)

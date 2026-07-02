@@ -29,7 +29,7 @@ export const createFileUploadFormat = (content: string, path: string): FileUploa
 }
 
 // Default working directory for Nightona sandboxes
-const DEFAULT_WORKING_DIR = '/home/nightona'
+const DEFAULT_WORKING_DIR = '/home/daytona'
 
 export const normalizeSandboxPath = (path: string): string => {
   // If path already starts with the working directory, return as-is

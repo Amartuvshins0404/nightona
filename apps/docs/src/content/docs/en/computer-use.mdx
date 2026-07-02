@@ -1847,7 +1847,7 @@ sandbox = nightona.create(
     CreateSandboxFromSnapshotParams(
         snapshot="daytonaio/sandbox:0.6.0",
         name="my-sandbox",
-        env_vars={"NIGHTONA_RECORDINGS_DIR": "/home/nightona/my-recordings"}
+        env_vars={"NIGHTONA_RECORDINGS_DIR": "/home/daytona/my-recordings"}
     )
 )
 ```
@@ -1862,7 +1862,7 @@ const nightona = new Nightona();
 const sandbox = await nightona.create({
   snapshot: 'daytonaio/sandbox:0.6.0',
   name: 'my-sandbox',
-  envVars: { NIGHTONA_RECORDINGS_DIR: '/home/nightona/my-recordings' }
+  envVars: { NIGHTONA_RECORDINGS_DIR: '/home/daytona/my-recordings' }
 });
 ```
 
@@ -1876,7 +1876,7 @@ nightona = Nightona::Client.new
 sandbox = nightona.create(
   snapshot: 'daytonaio/sandbox:0.6.0',
   name: 'my-sandbox',
-  env_vars: { NIGHTONA_RECORDINGS_DIR: '/home/nightona/my-recordings' }
+  env_vars: { NIGHTONA_RECORDINGS_DIR: '/home/daytona/my-recordings' }
 )
 ```
 
@@ -1891,7 +1891,7 @@ import (
 
 nightona := client.New()
 envVars := map[string]string{
-	"NIGHTONA_RECORDINGS_DIR": "/home/nightona/my-recordings",
+	"NIGHTONA_RECORDINGS_DIR": "/home/daytona/my-recordings",
 }
 
 sandbox, err := nightona.Create(ctx, &types.CreateSandboxParams{
@@ -1918,7 +1918,7 @@ try (Nightona nightona = new Nightona()) {
     CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
     params.setSnapshot("daytonaio/sandbox:0.6.0");
     params.setName("my-sandbox");
-    params.setEnvVars(Map.of("NIGHTONA_RECORDINGS_DIR", "/home/nightona/my-recordings"));
+    params.setEnvVars(Map.of("NIGHTONA_RECORDINGS_DIR", "/home/daytona/my-recordings"));
     Sandbox sandbox = nightona.create(params);
 }
 ```

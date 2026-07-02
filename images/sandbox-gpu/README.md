@@ -1,8 +1,8 @@
 # Nightona Sandbox GPU Image
 
-[Dockerfile](./Dockerfile) defines [daytonaio/sandbox-gpu](https://hub.docker.com/r/daytonaio/sandbox-gpu), a GPU-enabled sandbox image for x86 GPU hosts (e.g. H100).
+[Dockerfile](./Dockerfile) defines the GPU-enabled Nightona sandbox image, published as `ghcr.io/amartuvshins0404/sandbox-gpu`, for x86 GPU hosts (e.g. H100). It is derived from the upstream [daytonaio/sandbox](https://hub.docker.com/r/daytonaio/sandbox) image lineage.
 
-It is a **superset of the default [`daytonaio/sandbox`](../sandbox) image** — it builds `FROM daytonaio/sandbox` and layers the GPU stack on top, so everything in the standard sandbox (Python, Node, language servers, the computer-use/VNC tooling, the default Python/agent packages, the `nightona` user) is present, plus GPU support.
+It is a **superset of the default [sandbox](../sandbox) image** — it builds `FROM daytonaio/sandbox` by default (CI substitutes the freshly built `ghcr.io/amartuvshins0404/sandbox` base) and layers the GPU stack on top, so everything in the standard sandbox (Python, Node, language servers, the computer-use/VNC tooling, the default Python/agent packages, the `nightona` user) is present, plus GPU support.
 
 ## NOTE
 

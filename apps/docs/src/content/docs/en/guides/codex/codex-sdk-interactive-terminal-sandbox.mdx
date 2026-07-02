@@ -27,17 +27,17 @@ Thinking...
 🔨 ✓ Run: /bin/sh -lc ls
 🔨 ✓ Run: /bin/sh -lc 'ls -a'
 🔨 ✓ Run: /bin/sh -lc 'ls .nightona'
-🔨 ✓ Run: /bin/sh -lc 'find /home/nightona -maxdepth 4 -name .git'
-📝 Add /home/nightona/index.html
-📝 Add /home/nightona/style.css
-📝 Add /home/nightona/main.js
-📝 Update /home/nightona/main.js
+🔨 ✓ Run: /bin/sh -lc 'find /home/daytona -maxdepth 4 -name .git'
+📝 Add /home/daytona/index.html
+📝 Add /home/daytona/style.css
+📝 Add /home/daytona/main.js
+📝 Update /home/daytona/main.js
 - Built a self-contained 3D lunar lander experience with HUD in index.html wired to main.js.
 - Styled a glassy mission card, typography, and neon accents in style.css.
 - Implemented the Three.js scene in main.js: starfield + noisy terrain with a flattened pad, modeled lander, thrust/fuel/rotation controls, gravity/drag physics, landing/crash checks, exhaust particles, and a chase camera. Controls: Space/↑ thrust, ←/→ yaw, W/S pitch, R restart.
 
 Next steps:
-1) Serve locally (e.g., cd /home/nightona && python3 -m http.server 8080) and open https://8080-e7c5deb5-7723-4bb8-93c6-25258d9b7c53.proxy.nightona.works.
+1) Serve locally (e.g., cd /home/daytona && python3 -m http.server 8080) and open https://8080-e7c5deb5-7723-4bb8-93c6-25258d9b7c53.proxy.nightona.works.
 2) Tune physics constants or terrain size if you want a harder/easier landing.
 🗒️ To-do list:
 - [x] Inspect workspace and set up project structure for web-based lunar lander game
@@ -46,7 +46,7 @@ Next steps:
 Usage Summary: Cached: 71936, Input: 103238, Output: 11311
 User: start the server
 Thinking...
-🔨 ✓ Run: /bin/sh -lc 'cd /home/nightona && nohup python3 -m http.server 8080 --bind 0.0.0.0 >/home/nightona/server.log 2>&1 & echo $!'
+🔨 ✓ Run: /bin/sh -lc 'cd /home/daytona && nohup python3 -m http.server 8080 --bind 0.0.0.0 >/home/daytona/server.log 2>&1 & echo $!'
 Server started on port 8080 (pid 274). Open the game at:
 https://8080-e7c5deb5-7723-4bb8-93c6-25258d9b7c53.proxy.nightona.works
 
@@ -139,7 +139,7 @@ Custom system prompts for Codex must be configured via a `.codex/config.toml` fi
 ```typescript
 const systemPrompt = [
   'You are running in a Nightona sandbox.',
-  'Use the /home/nightona directory instead of /workspace for file operations.',
+  'Use the /home/daytona directory instead of /workspace for file operations.',
   `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
 ].join(' ')
 const config = `developer_instructions = "${systemPrompt}"`
@@ -186,7 +186,7 @@ The agent is initialized with custom options that include the workspace director
 ```typescript
 // Configure Codex options
 const options: ThreadOptions = {
-  workingDirectory: '/home/nightona',
+  workingDirectory: '/home/daytona',
   skipGitRepoCheck: true,
   sandboxMode: 'danger-full-access',
 }
