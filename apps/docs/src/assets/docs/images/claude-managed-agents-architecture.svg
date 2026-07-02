@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 500" width="1040" height="500" role="img" aria-labelledby="archtitle archdesc">
-  <title id="archtitle">Architecture: Claude Managed Agents on Daytona</title>
-  <desc id="archdesc">Three-actor topology. One or more applications and an orchestrator talk to Anthropic. Anthropic dispatches the agent's tools directly into a Daytona sandbox; the orchestrator handles the work queue and sandbox lifecycle.</desc>
+  <title id="archtitle">Architecture: Claude Managed Agents on Nightona</title>
+  <desc id="archdesc">Three-actor topology. One or more applications and an orchestrator talk to Anthropic. Anthropic dispatches the agent's tools directly into a Nightona sandbox; the orchestrator handles the work queue and sandbox lifecycle.</desc>
 
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -14,7 +14,7 @@
 
   <!-- Title -->
   <text x="60" y="50" fill="#fafafa" font-family="Inter, system-ui, sans-serif" font-size="25.5" font-weight="600" letter-spacing="-0.02em">Architecture</text>
-  <text x="60" y="76" fill="#71717a" font-family="Inter, system-ui, sans-serif" font-size="17.5">Three parties: you, Anthropic, Daytona</text>
+  <text x="60" y="76" fill="#71717a" font-family="Inter, system-ui, sans-serif" font-size="17.5">Three parties: you, Anthropic, Nightona</text>
 
   <!-- App A (full content) -->
   <rect x="60" y="140" width="220" height="160" rx="10" fill="#14141a" stroke="#3f3f46" stroke-width="1.5" />
@@ -47,12 +47,12 @@
   <text x="870" y="244" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="15.5" text-anchor="middle">sandbox lifecycle</text>
   <text x="870" y="282" fill="#61616a" font-family="ui-monospace, SFMono-Regular, monospace" font-size="13.5" text-anchor="middle">yours</text>
 
-  <!-- Daytona sandbox -->
+  <!-- Nightona sandbox -->
   <rect x="760" y="340" width="220" height="120" rx="10" fill="#14141a" stroke="#2ecc71" stroke-width="1.5" />
-  <text x="870" y="372" fill="#2ecc71" font-family="Inter, system-ui, sans-serif" font-size="19.5" font-weight="600" text-anchor="middle">Daytona sandbox</text>
+  <text x="870" y="372" fill="#2ecc71" font-family="Inter, system-ui, sans-serif" font-size="19.5" font-weight="600" text-anchor="middle">Nightona sandbox</text>
   <text x="870" y="400" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="15.5" text-anchor="middle">filesystem · bash shell</text>
   <text x="870" y="422" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="15.5" text-anchor="middle">one container per session</text>
-  <text x="870" y="444" fill="#61616a" font-family="ui-monospace, SFMono-Regular, monospace" font-size="13.5" text-anchor="middle">hosted on Daytona</text>
+  <text x="870" y="444" fill="#61616a" font-family="ui-monospace, SFMono-Regular, monospace" font-size="13.5" text-anchor="middle">hosted on Nightona</text>
 
   <!-- Arrows -->
   <!-- App A ↔ Anthropic (labels live on this arrow) -->
@@ -67,12 +67,12 @@
   <line x1="660" y1="200" x2="760" y2="200" stroke="#a1a1aa" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   <text x="710" y="190" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="13.5" text-anchor="middle">work queue</text>
 
-  <!-- Anthropic ↔ Daytona sandbox (tools dispatched directly) -->
+  <!-- Anthropic ↔ Nightona sandbox (tools dispatched directly) -->
   <path d="M 660 280 L 720 280 L 720 380 L 760 380" fill="none" stroke="#a1a1aa" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)" />
   <text x="728" y="272" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="13.5" text-anchor="end">tool calls ↓</text>
   <text x="713" y="377" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="13.5" text-anchor="end">tool results ↑</text>
 
-  <!-- Orchestrator → Daytona sandbox (lifecycle only) -->
+  <!-- Orchestrator → Nightona sandbox (lifecycle only) -->
   <line x1="870" y1="300" x2="870" y2="340" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#arrow)" />
   <text x="878" y="324" fill="#a1a1aa" font-family="Inter, system-ui, sans-serif" font-size="13.5" text-anchor="start">start / stop</text>
 

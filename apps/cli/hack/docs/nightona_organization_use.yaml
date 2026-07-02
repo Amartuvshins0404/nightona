@@ -1,0 +1,9 @@
+name: nightona organization use
+synopsis: Set active organization
+usage: nightona organization use [ORGANIZATION] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona organization - Manage Nightona organizations

@@ -1,27 +1,27 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import { CopilotRuntime, copilotRuntimeNextJSAppRouterEndpoint } from '@copilotkit/runtime'
 import { BuiltInAgent, defineTool } from '@copilotkit/runtime/v2'
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 import type { NextRequest } from 'next/server'
 import { z } from 'zod'
 
-const daytona = new Daytona({ apiKey: process.env.DAYTONA_API_KEY })
+const nightona = new Nightona({ apiKey: process.env.NIGHTONA_API_KEY })
 
-const SYSTEM_PROMPT = `You are a coding agent with shell access to a fresh Daytona sandbox.
+const SYSTEM_PROMPT = `You are a coding agent with shell access to a fresh Nightona sandbox.
 
 The user can ask you anything a developer might do at a terminal: build apps, debug or analyze code, run scripts, work with data, install packages, write tests, whatever fits the request.
 
-Work under /home/daytona by default. Reuse the same sandboxId across every tool call. The sandbox auto-deletes after a period of inactivity; if a tool call fails because the sandbox no longer exists, call createSandbox again and continue with the new sandboxId.
+Work under /home/nightona by default. Reuse the same sandboxId across every tool call. The sandbox auto-deletes after a period of inactivity; if a tool call fails because the sandbox no longer exists, call createSandbox again and continue with the new sandboxId.
 
 When the user wants to see a running web app:
 
 1. Prefer a modern, maintained scaffolder. Vite is the safest default for React/TS/SPA work; use \`npm create vite@latest <name> -- --template react-ts --yes\` or similar. Avoid \`create-react-app\`; it is deprecated and has very slow first-compile times.
 
-2. ALWAYS bind the dev server to 0.0.0.0 or the Daytona proxy will not reach it. Cheat sheet:
+2. ALWAYS bind the dev server to 0.0.0.0 or the Nightona proxy will not reach it. Cheat sheet:
    - Vite: \`vite --host 0.0.0.0 --port 5173\` (CLI flag) AND write a \`vite.config.ts\` with \`server: { host: '0.0.0.0', port: 5173, strictPort: true, hmr: { clientPort: 443, protocol: 'wss' } }\` so HMR survives the HTTPS proxy.
    - Next.js: \`next dev -H 0.0.0.0 -p 3000\`.
    - Express / Node: \`app.listen(PORT, '0.0.0.0')\`.
@@ -35,7 +35,7 @@ Reply to the user with one short sentence per turn. The tool cards in the chat c
 const createSandbox = defineTool({
   name: 'createSandbox',
   description:
-    'Create a fresh Daytona sandbox with public preview URLs enabled. Call ONCE at session start; reuse the returned sandboxId for every subsequent tool call. Optionally inject environment variables, labels, or change the auto-stop interval.',
+    'Create a fresh Nightona sandbox with public preview URLs enabled. Call ONCE at session start; reuse the returned sandboxId for every subsequent tool call. Optionally inject environment variables, labels, or change the auto-stop interval.',
   parameters: z.object({
     envVars: z
       .record(z.string())
@@ -52,7 +52,7 @@ const createSandbox = defineTool({
       .describe('Minutes of inactivity before the sandbox auto-stops. 0 disables, default 15.'),
   }),
   execute: async ({ envVars, labels, autoStopInterval }) => {
-    const sandbox = await daytona.create({
+    const sandbox = await nightona.create({
       public: true,
       ephemeral: true,
       envVars,
@@ -69,7 +69,7 @@ const runCommand = defineTool({
     'Execute a shell command in the sandbox. Set background:true for long-lived fire-and-forget processes (test watchers, build watchers, log followers) the agent will not need to interact with again. Use plain commands (rm, mv, mkdir, chmod, ...) for filesystem ops that do not need structured output. For dev servers the user should see in a browser, use startWebServer instead — it returns the preview URL atomically.',
   parameters: z.object({
     sandboxId: z.string(),
-    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/daytona && ...`.'),
+    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/nightona && ...`.'),
     background: z
       .boolean()
       .optional()
@@ -78,7 +78,7 @@ const runCommand = defineTool({
       ),
   }),
   execute: async ({ sandboxId, command, background }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     if (background) {
       const sessionId = `bg-${Date.now()}`
       await sandbox.process.createSession(sessionId)
@@ -98,11 +98,11 @@ const writeFile = defineTool({
   description: 'Write a file with the FULL new content. Overwrites if it exists.',
   parameters: z.object({
     sandboxId: z.string(),
-    path: z.string().describe('Absolute path, e.g. "/home/daytona/app/src/App.tsx".'),
+    path: z.string().describe('Absolute path, e.g. "/home/nightona/app/src/App.tsx".'),
     content: z.string().describe('Complete new file content.'),
   }),
   execute: async ({ sandboxId, path, content }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     await sandbox.fs.uploadFile(Buffer.from(content), path)
     return { path, bytesWritten: Buffer.byteLength(content) }
   },
@@ -116,7 +116,7 @@ const readFile = defineTool({
     path: z.string().describe('Absolute path to the file in the sandbox.'),
   }),
   execute: async ({ sandboxId, path }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const buf = await sandbox.fs.downloadFile(path)
     return { path, content: buf.toString('utf-8'), bytes: buf.length }
   },
@@ -127,10 +127,10 @@ const listFiles = defineTool({
   description: 'List the contents of a directory in the sandbox.',
   parameters: z.object({
     sandboxId: z.string(),
-    path: z.string().describe('Absolute directory path, e.g. "/home/daytona/app".'),
+    path: z.string().describe('Absolute directory path, e.g. "/home/nightona/app".'),
   }),
   execute: async ({ sandboxId, path }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const files = await sandbox.fs.listFiles(path)
     return {
       path,
@@ -153,7 +153,7 @@ const findFiles = defineTool({
     pattern: z.string().describe('Regex pattern to match against file contents.'),
   }),
   execute: async ({ sandboxId, path, pattern }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const matches = await sandbox.fs.findFiles(path, pattern)
     return { pattern, matches }
   },
@@ -168,7 +168,7 @@ const searchFiles = defineTool({
     pattern: z.string().describe('Glob pattern for file names, e.g. "**/*.tsx".'),
   }),
   execute: async ({ sandboxId, path, pattern }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const result = await sandbox.fs.searchFiles(path, pattern)
     return { pattern, files: result.files }
   },
@@ -185,7 +185,7 @@ const replaceInFiles = defineTool({
     newValue: z.string().describe('Replacement text.'),
   }),
   execute: async ({ sandboxId, files, pattern, newValue }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const results = await sandbox.fs.replaceInFiles(files, pattern, newValue)
     return {
       pattern,
@@ -207,7 +207,7 @@ const getFileDetails = defineTool({
     path: z.string(),
   }),
   execute: async ({ sandboxId, path }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const info = await sandbox.fs.getFileDetails(path)
     return {
       path,
@@ -232,7 +232,7 @@ const startWebServer = defineTool({
     command: z
       .string()
       .describe(
-        "Shell command that starts the dev server, e.g. 'cd /home/daytona/app && npm run dev'. Bind to 0.0.0.0 so the Daytona proxy can reach it.",
+        "Shell command that starts the dev server, e.g. 'cd /home/nightona/app && npm run dev'. Bind to 0.0.0.0 so the Nightona proxy can reach it.",
       ),
     port: z
       .number()
@@ -241,7 +241,7 @@ const startWebServer = defineTool({
       ),
   }),
   execute: async ({ sandboxId, command, port }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const sessionId = `web-${Date.now()}`
     await sandbox.process.createSession(sessionId)
     const bg = await sandbox.process.executeSessionCommand(sessionId, {
@@ -285,7 +285,7 @@ const getPreviewUrl = defineTool({
     port: z.number().describe('Port the hosted process is listening on.'),
   }),
   execute: async ({ sandboxId, port }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const preview = await sandbox.getPreviewLink(port)
     return { url: preview.url, port }
   },

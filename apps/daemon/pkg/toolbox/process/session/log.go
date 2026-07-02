@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package session
@@ -6,8 +6,8 @@ package session
 import (
 	"net/http"
 
-	"github.com/daytonaio/daemon/internal/util"
-	"github.com/daytonaio/daemon/pkg/session"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal/util"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/session"
 	"github.com/gin-gonic/gin"
 )
 

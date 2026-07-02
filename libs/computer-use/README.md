@@ -1,6 +1,6 @@
 # ComputerUse - Process Management for VNC Desktop Environment
 
-This package provides a Computer Use plugin used by the Daytona Daemon to allow agents to control VNC desktop environments.
+This package provides a Computer Use plugin used by the Nightona Daemon to allow agents to control VNC desktop environments.
 
 ## Overview
 
@@ -84,8 +84,8 @@ RUN apt-get update && apt-get install -y \
 
 ```dockerfile
 # Setup VNC
-RUN mkdir -p /home/daytona/.vnc && \
-    chown -R daytona:daytona /home/daytona/.vnc
+RUN mkdir -p /home/nightona/.vnc && \
+    chown -R nightona:nightona /home/nightona/.vnc
 
 # NoVNC setup
 RUN ln -sf /usr/share/novnc/vnc.html /usr/share/novnc/index.html && \
@@ -144,11 +144,11 @@ App-side accessibility caveats:
 Ensure you have a non-root user with proper permissions:
 
 ```dockerfile
-# Create the Daytona user and configure sudo access
-RUN useradd -m daytona && echo "daytona ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/91-daytona
+# Create the Nightona user and configure sudo access
+RUN useradd -m nightona && echo "nightona ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/91-nightona
 
 # Switch to the user for VNC operations
-USER daytona
+USER nightona
 ```
 
 ## Configuration
@@ -159,7 +159,7 @@ USER daytona
 - `VNC_PORT`: VNC server port (default: 5901)
 - `NO_VNC_PORT`: NoVNC web port (default: 6080)
 - `DISPLAY`: X display (default: ":1")
-- `VNC_USER`: User to run VNC processes (default: "daytona")
+- `VNC_USER`: User to run VNC processes (default: "nightona")
 
 ### Process Configuration
 
@@ -179,11 +179,11 @@ The processes are configured with the following settings based on environment va
 - `VNC_RESOLUTION`: `1920x1080`
 - `VNC_PORT`: `5901`
 - `NO_VNC_PORT`: `6080`
-- `VNC_USER`: `daytona`
+- `VNC_USER`: `nightona`
 
 ### Log Files
 
-Log files are stored in `~/.daytona/computeruse/`:
+Log files are stored in `~/.nightona/computeruse/`:
 
 - `xfce4.log` - Standard output from xfce4
 - `xfce4.err` - Error output from xfce4

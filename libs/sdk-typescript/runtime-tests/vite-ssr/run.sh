@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -euo pipefail

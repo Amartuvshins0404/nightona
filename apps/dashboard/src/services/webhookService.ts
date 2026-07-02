@@ -1,11 +1,11 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { useAuth } from 'react-oidc-context'
 import { useCallback } from 'react'
-import { WebhookInitializationStatus } from '@daytona/api-client'
+import { WebhookInitializationStatus } from '@nightona/api-client'
 
 export function useWebhookService() {
   const { user } = useAuth()

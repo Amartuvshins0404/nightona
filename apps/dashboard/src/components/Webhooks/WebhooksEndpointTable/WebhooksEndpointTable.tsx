@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -162,7 +162,7 @@ export function WebhooksEndpointTable({
                     <p>Create an endpoint to start receiving webhook events.</p>
                     <p>
                       <a
-                        href="https://www.daytona.io/docs/en/tools/api/#daytona/webhook/undefined/"
+                        href="https://www.daytona.io/docs/en/tools/api/#nightona/webhook/undefined/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline font-medium"

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package middlewares
@@ -7,20 +7,20 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/daytonaio/runner/internal/constants"
+	"github.com/Amartuvshins0404/nightona/apps/runner/internal/constants"
 	"github.com/gin-gonic/gin"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
 )
 
 func AuthMiddleware(apiToken string) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		authHeader := ctx.GetHeader(constants.DAYTONA_AUTHORIZATION_HEADER)
+		authHeader := ctx.GetHeader(constants.NIGHTONA_AUTHORIZATION_HEADER)
 		if authHeader == "" {
 			authHeader = ctx.GetHeader(constants.AUTHORIZATION_HEADER)
 		}
 
-		ctx.Request.Header.Del(constants.DAYTONA_AUTHORIZATION_HEADER)
+		ctx.Request.Header.Del(constants.NIGHTONA_AUTHORIZATION_HEADER)
 
 		if authHeader == "" {
 			ctx.Error(common_errors.NewUnauthorizedError(errors.New("authorization header required")))

@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Snapshot(SnapshotDto)
 ```
 
-事前に構成されたサンドボックスである Daytona のスナップショットを表します。
+事前に構成されたサンドボックスである Nightona のスナップショットを表します。
 
 **属性**:
 
@@ -37,7 +37,7 @@ class Snapshot(SnapshotDto)
 class SnapshotService()
 ```
 
-Daytonaのスナップショットを管理するサービス。スナップショットの一覧、取得、作成、削除に使用できます。
+Nightonaのスナップショットを管理するサービス。スナップショットの一覧、取得、作成、削除に使用できます。
 
 #### SnapshotService.list
 
@@ -56,8 +56,8 @@ def list() -> List[Snapshot]
 **Example**:
 
 ```python
-daytona = Daytona()
-snapshots = daytona.snapshot.list()
+nightona = Nightona()
+snapshots = nightona.snapshot.list()
 for snapshot in snapshots:
     print(f"{snapshot.name} ({snapshot.image_name})")
 ```
@@ -79,9 +79,9 @@ def delete(snapshot: Snapshot) -> None
 **Example**:
 
 ```python
-daytona = Daytona()
-snapshot = daytona.snapshot.get("test-snapshot")
-daytona.snapshot.delete(snapshot)
+nightona = Nightona()
+snapshot = nightona.snapshot.get("test-snapshot")
+nightona.snapshot.delete(snapshot)
 print("Snapshot deleted")
 ```
 
@@ -107,8 +107,8 @@ def get(name: str) -> Snapshot
 **Example**:
 
 ```python
-daytona = Daytona()
-snapshot = daytona.snapshot.get("test-snapshot-name")
+nightona = Nightona()
+snapshot = nightona.snapshot.get("test-snapshot-name")
 print(f"{snapshot.name} ({snapshot.image_name})")
 ```
 
@@ -136,7 +136,7 @@ def create(params: CreateSnapshotParams,
 
 ```python
 image = Image.debianSlim('3.12').pipInstall('numpy')
-daytona.snapshot.create(
+nightona.snapshot.create(
     CreateSnapshotParams(name='my-snapshot', image=image),
     on_logs=lambda chunk: print(chunk, end=""),
 )
@@ -189,7 +189,7 @@ class CreateSnapshotParams(BaseModel)
 - `name` _Optional[str]_ - スナップショット名。
 - `image` _Union[str, Image]_ - スナップショットのイメージ。文字列が指定された場合は、
   いずれかのレジストリで利用可能である必要があります。Image インスタンスが指定された場合は、
-  Daytona で新しいイメージを作成するために使用されます。
+  Nightona で新しいイメージを作成するために使用されます。
 - `resources` _Optional[Resources]_ - スナップショットのリソース。
 - `entrypoint` _Optional[List[str]]_ - スナップショットのエントリポイント。
 

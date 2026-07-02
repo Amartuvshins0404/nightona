@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -37,7 +37,7 @@ import {
   CreateSandboxFromImageParams,
   CreateSandboxFromSnapshotParams,
   Image,
-} from '@daytona/sdk'
+} from '@nightona/sdk'
 import { useCallback, useState } from 'react'
 
 const PARAM_SECTION_MAP: Partial<Record<keyof SandboxParams, SandboxParametersSections>> = {
@@ -357,9 +357,9 @@ export const PlaygroundProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       createSandboxParams.autoArchiveInterval = sandboxParametersState['createSandboxBaseParams']['autoArchiveInterval']
     if (useAutoDeleteInterval)
       createSandboxParams.autoDeleteInterval = sandboxParametersState['createSandboxBaseParams']['autoDeleteInterval']
-    createSandboxParams.labels = { 'daytona-playground': 'true' }
+    createSandboxParams.labels = { 'nightona-playground': 'true' }
     if (useLanguageParam)
-      createSandboxParams.labels['daytona-playground-language'] = sandboxParametersState['language'] as string // useLanguageParam guarantees that value isn't undefined so we put as string to silence TS compiler
+      createSandboxParams.labels['nightona-playground-language'] = sandboxParametersState['language'] as string // useLanguageParam guarantees that value isn't undefined so we put as string to silence TS compiler
     return {
       useLanguageParam,
       useResources,

@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -22,7 +22,7 @@ import {
 } from './ui/dropdown-menu'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
-const DATA_TABLE_CONFIG_STORAGE_PREFIX = 'daytona:data-table-config'
+const DATA_TABLE_CONFIG_STORAGE_PREFIX = 'nightona:data-table-config'
 const DATA_TABLE_CONFIG_VERSION = 2
 const DEFAULT_DATA_TABLE_CONFIG_EXCLUDED_COLUMN_IDS = ['actions', 'select'] as const
 const DATA_TABLE_CONFIG_PIN_SEPARATOR_ID = '__data-table-config-pin-separator__'

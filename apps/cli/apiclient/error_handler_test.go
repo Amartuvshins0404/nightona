@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package apiclient_test
@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/daytonaio/daytona/cli/apiclient"
+	"github.com/Amartuvshins0404/nightona/apps/cli/apiclient"
 )
 
 func response(statusCode int, body string) *http.Response {
@@ -76,7 +76,7 @@ func TestHandleErrorResponse_UnchangedBehavior(t *testing.T) {
 		if err == nil {
 			t.Fatal("expected error, got nil")
 		}
-		if !strings.Contains(err.Error(), "run 'daytona login' to reauthenticate") {
+		if !strings.Contains(err.Error(), "run 'nightona login' to reauthenticate") {
 			t.Errorf("expected reauth hint in 401 error, got: %q", err.Error())
 		}
 	})
@@ -98,7 +98,7 @@ func TestHandleErrorResponse_UnchangedBehavior(t *testing.T) {
 		if err == nil {
 			t.Fatal("expected error, got nil")
 		}
-		if strings.Contains(err.Error(), "run 'daytona login' to reauthenticate") {
+		if strings.Contains(err.Error(), "run 'nightona login' to reauthenticate") {
 			t.Errorf("403 error should not contain reauth hint, got: %q", err.Error())
 		}
 	})
@@ -110,7 +110,7 @@ func TestHandleErrorResponse_UnchangedBehavior(t *testing.T) {
 			t.Fatal("expected error, got nil")
 		}
 		msg := err.Error()
-		if strings.Contains(msg, "daytona login") || strings.Contains(msg, "check that your API key") {
+		if strings.Contains(msg, "nightona login") || strings.Contains(msg, "check that your API key") {
 			t.Errorf("500 error should contain no hint, got: %q", msg)
 		}
 	})

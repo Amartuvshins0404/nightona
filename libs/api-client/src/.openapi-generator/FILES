@@ -58,7 +58,7 @@ models/create-session-request.ts
 models/create-snapshot.ts
 models/create-user.ts
 models/create-volume.ts
-models/daytona-configuration.ts
+models/nightona-configuration.ts
 models/display-info-response.ts
 models/docker-registry.ts
 models/download-files.ts

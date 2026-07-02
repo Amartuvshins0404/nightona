@@ -1,5 +1,5 @@
 ---
-import daytonaLogo from '@assets/icons/daytona-logo.svg?raw'
+import nightonaLogo from '@assets/icons/nightona-logo.svg?raw'
 import searchIcon from '@assets/icons/search.svg?raw'
 import packageIcon from '@assets/sidebar/package.svg?raw'
 import serverIcon from '@assets/sidebar/server.svg?raw'
@@ -54,10 +54,10 @@ const {
     <div class="logo-divider">
       <a
         href={import.meta.env.BASE_URL}
-        aria-label="Daytona"
-        class="daytona-logo"
+        aria-label="Nightona"
+        class="nightona-logo"
       >
-        <Fragment set:html={daytonaLogo} />
+        <Fragment set:html={nightonaLogo} />
       </a>
     </div>
     <div class="navbar-links">
@@ -117,7 +117,7 @@ const {
             {Astro.locals.t('sidebarconfig.javaSdkReference' as any)}
           </a>
           <a
-            href={`${import.meta.env.BASE_URL}/en/tools/api/#daytona/`}
+            href={`${import.meta.env.BASE_URL}/en/tools/api/#nightona/`}
             class:list={[{ active: isApiActive }]}
           >
             <Fragment set:html={serverIcon} />
@@ -159,10 +159,10 @@ const {
     <div class="blur-section">
       <a
         href={import.meta.env.BASE_URL}
-        aria-label="Daytona"
-        class="daytona-logo blur-section"
+        aria-label="Nightona"
+        class="nightona-logo blur-section"
       >
-        <Fragment set:html={daytonaLogo} />
+        <Fragment set:html={nightonaLogo} />
       </a>
     </div>
     {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -847,8 +847,8 @@ export class JobStateHandlerService {
           // Prefer the ref the runner actually pushed. Otherwise reconstruct
           // from `hash`, matching the runner-side canonical form
           // (apps/runner/cmd/runner/config/config.go): registry-based VM /
-          // container snapshots use `<registry>/<project>/daytona-<hash>:daytona`,
-          // Windows VM snapshots have no registry and use bare `daytona-<hash>`.
+          // container snapshots use `<registry>/<project>/nightona-<hash>:nightona`,
+          // Windows VM snapshots have no registry and use bare `nightona-<hash>`.
           const refFromRunner =
             (typeof metadata?.ref === 'string' && metadata.ref) ||
             (typeof metadata?.Ref === 'string' && metadata.Ref) ||
@@ -858,10 +858,10 @@ export class JobStateHandlerService {
           if (!snapshotRef && hash) {
             const cleanHash = hash.replace(/^sha256:/, '')
             if (payload?.registry?.url) {
-              const project = payload.registry.project || 'daytona'
-              snapshotRef = `${payload.registry.url}/${project}/daytona-${cleanHash}:daytona`
+              const project = payload.registry.project || 'nightona'
+              snapshotRef = `${payload.registry.url}/${project}/nightona-${cleanHash}:nightona`
             } else {
-              snapshotRef = `daytona-${cleanHash}`
+              snapshotRef = `nightona-${cleanHash}`
             }
           }
           if (!snapshotRef) {

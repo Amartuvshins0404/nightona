@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -7,7 +7,7 @@
  * @module code-interpreter
  */
 
-import type { InterpreterContext } from '@daytona/toolbox-api-client'
+import type { InterpreterContext } from '@nightona/toolbox-api-client'
 
 /**
  * Represents stdout or stderr output from code execution.

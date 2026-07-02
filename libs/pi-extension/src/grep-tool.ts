@@ -1,5 +1,5 @@
 /**
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -15,7 +15,7 @@
  * of Pi's grep output closely enough for the model.
  */
 
-import type { Sandbox } from '@daytona/sdk'
+import type { Sandbox } from '@nightona/sdk'
 import { execCommand } from './sandbox.ts'
 import { shellQuote } from './util.ts'
 

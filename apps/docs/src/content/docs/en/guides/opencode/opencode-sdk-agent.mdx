@@ -1,44 +1,44 @@
 ---
-title: Build a Coding Agent Using OpenCode SDK and Daytona
-description: Step-by-step guide to building an autonomous coding agent using OpenCode and Daytona sandboxes.
+title: Build a Coding Agent Using OpenCode SDK and Nightona
+description: Step-by-step guide to building an autonomous coding agent using OpenCode and Nightona sandboxes.
 ---
 
 import { Image } from 'astro:assets'
 
 import opencodeSdkSyncboard from '../../../../../assets/docs/images/opencode-sdk-syncboard.gif'
 
-This guide walks you through running the [OpenCode](https://opencode.ai/) autonomous coding agent inside a secure Daytona sandbox. The OpenCode server runs fully isolated in the sandbox and the script connects to the server using the [OpenCode SDK](https://www.npmjs.com/package/@opencode-ai/sdk).
+This guide walks you through running the [OpenCode](https://opencode.ai/) autonomous coding agent inside a secure Nightona sandbox. The OpenCode server runs fully isolated in the sandbox and the script connects to the server using the [OpenCode SDK](https://www.npmjs.com/package/@opencode-ai/sdk).
 
 The agent can develop full-stack web apps, write code in any language, install dependencies, and run scripts. It can also start and manage dev servers, and generate [preview links](/docs/en/preview/) for live apps.
 
 ### 1. Workflow Overview
 
-When you run the script, it creates a Daytona sandbox, installs OpenCode, and starts the OpenCode server inside the sandbox. You send prompts and see responses in your terminal. On exit, the sandbox is deleted.
+When you run the script, it creates a Nightona sandbox, installs OpenCode, and starts the OpenCode server inside the sandbox. You send prompts and see responses in your terminal. On exit, the sandbox is deleted.
 
 ```
 $ npm run start
 Creating sandbox...
 Installing OpenCode in sandbox...
-Preview: https://4096-0626a08c-08e7-4fbe-9799-d160bac66b08.daytonaproxy01.net
+Preview: https://4096-0626a08c-08e7-4fbe-9799-d160bac66b08.nightonaproxy01.net
 Press Ctrl+C at any time to exit.
 User: Create a minimalist collaborative whiteboard app
 Thinking...
 🔨 ✓ Run: Check current directory structure
 ✓ 3 todos
-📝 Add home/daytona/SPEC.md
+📝 Add home/nightona/SPEC.md
 ✓ 2 todos
-📝 Add home/daytona/index.html
+📝 Add home/nightona/index.html
 ✓ 1 todos
-✓ home/daytona/SPEC.md
+✓ home/nightona/SPEC.md
 ✓ https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;700&display=swap (text/css; charset=utf-8)
-✓ home/daytona/index.html
+✓ home/nightona/index.html
 🔨 ✓ Run: List files in directory
 🔨 ✓ Run: Start HTTP server for whiteboard
 🔨 ✓ Run: Check if server is running
 ✓ 0 todos
 Your minimalist collaborative whiteboard app is ready!
 
-**Preview URL:** https://8080-0626a08c-08e7-4fbe-9799-d160bac66b08.daytonaproxy01.net
+**Preview URL:** https://8080-0626a08c-08e7-4fbe-9799-d160bac66b08.nightonaproxy01.net
 
 ## SyncBoard - Features
 
@@ -87,21 +87,21 @@ You can continue interacting with your agent until you are finished. When you ex
 
 #### Clone the Repository
 
-First, clone the Daytona [repository](https://github.com/daytonaio/daytona.git) and navigate to the OpenCode SDK example:
+First, clone the Nightona [repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the OpenCode SDK example:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/typescript/opencode/opencode-sdk
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/typescript/opencode/opencode-sdk
 ```
 
 #### Configure Environment
 
-Get your API key from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys).
+Get your API key from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys).
 
 Copy `.env.example` to `.env` and add your key:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_key
+NIGHTONA_API_KEY=your_nightona_key
 ```
 
 #### Local Usage
@@ -127,7 +127,7 @@ OpenCode uses a client-server model: The [server](https://opencode.ai/docs/serve
 
 On startup, the script:
 
-1. Creates a new [Daytona sandbox](/docs/en/sandboxes).
+1. Creates a new [Nightona sandbox](/docs/en/sandboxes).
 2. Installs OpenCode globally in the sandbox.
 3. Starts the OpenCode server in the sandbox.
 4. Gets the preview URL for the server and creates a client with that base URL.
@@ -146,7 +146,7 @@ const command = await sandbox.process.executeSessionCommand(sessionId, {
 })
 ```
 
-A custom configuration is injected which includes a system prompt. The system prompt tells the agent it runs in a sandbox, to use `/home/daytona` for file operations, and the preview URL pattern so it can provide correct preview links.
+A custom configuration is injected which includes a system prompt. The system prompt tells the agent it runs in a sandbox, to use `/home/nightona` for file operations, and the preview URL pattern so it can provide correct preview links.
 
 #### OpenCode Client
 
@@ -154,7 +154,7 @@ The client runs on your machine and talks to the server using the [OpenCode SDK]
 
 ```ts
 const client = createOpencodeClient({ baseUrl })
-const sessionRes = await client.session.create({ body: { title: 'Daytona query' } })
+const sessionRes = await client.session.create({ body: { title: 'Nightona query' } })
 const sessionId = sessionRes.data?.id
 if (!sessionId) throw new Error('Failed to create OpenCode session:' + sessionRes.error)
 const events = await client.event.subscribe()
@@ -192,9 +192,9 @@ The readline loop waits for user input, sends it to the agent, and prints the re
 
 **Key advantages:**
 
-- Secure, isolated execution in Daytona sandboxes
+- Secure, isolated execution in Nightona sandboxes
 - OpenCode SDK client in your terminal; server runs in the sandbox
 - Support for 75+ LLM providers
 - All agent code execution happens inside the sandbox
 - Automatic preview link generation for deployed services
-- Custom agent configuration for Daytona-specific workflows
+- Custom agent configuration for Nightona-specific workflows

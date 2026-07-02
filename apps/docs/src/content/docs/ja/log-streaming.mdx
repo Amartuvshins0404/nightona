@@ -4,7 +4,7 @@ title: ログストリーミング
 
 サンドボックス（隔離された一時的な実行環境）で長時間動作するプロセスを扱う場合、**リアルタイム**でログにアクセスし処理したいことがよくあります。
 
-Daytona（サンドボックスを作成・管理するプラットフォーム）のSDKは次の両方をサポートします:
+Nightona（サンドボックスを作成・管理するプラットフォーム）のSDKは次の両方をサポートします:
 
 - `Fetching log snapshot` — 指定時点までのすべてのログを取得します。
 - `Log streaming` — プロセスの実行中に生成されるログをストリーミングします。
@@ -29,11 +29,11 @@ import { TabItem, Tabs } from '@astrojs/starlight/components'
 <TabItem label="Python" icon="seti:python">
 ```python
 import asyncio
-from daytona import Daytona, SessionExecuteRequest
+from nightona import Nightona, SessionExecuteRequest
 
 async def main():
-    daytona = Daytona()
-    sandbox = daytona.create()
+    nightona = Nightona()
+    sandbox = nightona.create()
 
     try:
         session_id = "exec-session-1"
@@ -72,11 +72,11 @@ if __name__ == "__main__":
 </TabItem>
   <TabItem label="Typescript" icon="seti:typescript">
   ```typescript
-  import { Daytona, Sandbox } from '@daytona/sdk'
+  import { Nightona, Sandbox } from '@nightona/sdk'
 
   async function main() {
-    const daytona = new Daytona()
-    const sandbox = await daytona.create()
+    const nightona = new Nightona()
+    const sandbox = await nightona.create()
 
     try {           
       const sessionId = 'exec-session-async-logs'
@@ -121,11 +121,11 @@ if __name__ == "__main__":
   ```python
   import asyncio
   import os
-  from daytona import Daytona, SessionExecuteRequest
+  from nightona import Nightona, SessionExecuteRequest
 
   async def main():
-      daytona = Daytona()
-      sandbox = daytona.create()
+      nightona = Nightona()
+      sandbox = nightona.create()
 
       try:
           session_id = "exec-session-1"
@@ -166,11 +166,11 @@ if __name__ == "__main__":
   </TabItem>
   <TabItem label="Typescript" icon="seti:typescript">
   ```typescript
-  import { Daytona, Sandbox } from '@daytona/sdk'
+  import { Nightona, Sandbox } from '@nightona/sdk'
 
   async function main() {
-    const daytona = new Daytona()
-    const sandbox = await daytona.create()
+    const nightona = new Nightona()
+    const sandbox = await nightona.create()
 
     try {           
       const sessionId = 'exec-session-async-logs'

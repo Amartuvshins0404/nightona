@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package sshgateway
@@ -12,7 +12,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/daytonaio/runner/pkg/docker"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/docker"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -308,7 +308,7 @@ func (s *Service) getSandboxDetails(sandboxId string) (*SandboxDetails, error) {
 	}
 
 	return &SandboxDetails{
-		User:     "daytona",
+		User:     "nightona",
 		Hostname: containerIP,
 	}, nil
 }

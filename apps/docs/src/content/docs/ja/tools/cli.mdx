@@ -1,43 +1,43 @@
 ---
 title: CLI
-description: Daytona（デイトナ）CLI で利用可能な操作のリファレンス。
+description: Nightona（デイトナ）CLI で利用可能な操作のリファレンス。
 sidebar:
-  label: Daytona CLI リファレンス
+  label: Nightona CLI リファレンス
 ---
 
 import Aside from '@components/Aside.astro'
 import Label from '@components/Label.astro'
 
-`daytona` コマンドラインツールは、Daytona（デイトナ）のコア機能へのアクセスを提供し、スナップショットの管理や Daytona サンドボックスのライフサイクル管理を行えます。インストール手順は[こちら](/docs/ja/getting-started#setting-up-the-daytona-cli)をご覧ください。
+`nightona` コマンドラインツールは、Nightona（デイトナ）のコア機能へのアクセスを提供し、スナップショットの管理や Nightona サンドボックスのライフサイクル管理を行えます。インストール手順は[こちら](/docs/ja/getting-started#setting-up-the-nightona-cli)をご覧ください。
 
-本リファレンスでは、`daytona` コマンドラインツールでサポートされているすべてのコマンドを、その動作の説明および対応フラグとともに一覧しています。`daytona` 実行時に `--help` または `-h` フラグを付けることで、各コマンドごとのドキュメントを参照できます。
+本リファレンスでは、`nightona` コマンドラインツールでサポートされているすべてのコマンドを、その動作の説明および対応フラグとともに一覧しています。`nightona` 実行時に `--help` または `-h` フラグを付けることで、各コマンドごとのドキュメントを参照できます。
 
-## daytona
+## nightona
 
-Daytona CLI
+Nightona CLI
 
 ```shell
-daytona [flags]
+nightona [flags]
 ```
 
 **フラグ**
 | ロング | ショート | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示します |
-| `--version` | `-v` | Daytona のバージョンを表示します |
+| `--help` | | nightona のヘルプを表示します |
+| `--version` | `-v` | Nightona のバージョンを表示します |
 
-## daytona autocomplete
+## nightona autocomplete
 
 シェル環境に補完スクリプトを追加します
 
 ```shell
-daytona autocomplete [bash|zsh|fish|powershell] [flags]
+nightona autocomplete [bash|zsh|fish|powershell] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
 <Aside type="note">
   bash シェルを使用している場合、オートコンプリート機能をフルに利用するには bash-completion がインストールされていることを確認してください。Linux のインストール: `sudo
@@ -45,183 +45,183 @@ daytona autocomplete [bash|zsh|fish|powershell] [flags]
           bash-completion`
 </Aside>
 
-## daytona docs
+## nightona docs
 
-既定のブラウザでDaytona（デイトナ）のドキュメントを開きます。
+既定のブラウザでNightona（デイトナ）のドキュメントを開きます。
 
 ```shell
-daytona docs [flags]
+nightona docs [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona login
+## nightona login
 
-Daytona（デイトナ）にログイン
+Nightona（デイトナ）にログイン
 
 ```shell
-daytona login [flags]
+nightona login [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
 | `--api-key` | | 認証に使用するAPIキー |
-| `--help` | | daytonaのヘルプ |
+| `--help` | | nightonaのヘルプ |
 
-## daytona logout
+## nightona logout
 
-Daytona（デイトナ）からログアウトします
+Nightona（デイトナ）からログアウトします
 
 ```shell
-daytona logout [flags]
+nightona logout [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona mcp
+## nightona mcp
 
-Daytona MCPサーバー（Model Context Protocol）を管理する
+Nightona MCPサーバー（Model Context Protocol）を管理する
 
 ```shell
-daytona mcp [flags]
+nightona mcp [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona mcp config
+## nightona mcp config
 
-Daytona MCPサーバー用のJSON設定を出力します
+Nightona MCPサーバー用のJSON設定を出力します
 
 ```shell
-daytona mcp config [AGENT_NAME] [flags]
+nightona mcp config [AGENT_NAME] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona mcp init
+## nightona mcp init
 
-エージェントを指定して Daytona MCPサーバー を初期化します（現在サポート: claude、windsurf、cursor）
+エージェントを指定して Nightona MCPサーバー を初期化します（現在サポート: claude、windsurf、cursor）
 
 ```shell
-daytona mcp init [AGENT_NAME] [flags]
+nightona mcp init [AGENT_NAME] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona mcp start
+## nightona mcp start
 
-Daytona MCPサーバーを起動します
+Nightona MCPサーバーを起動します
 
 ```shell
-daytona mcp start [flags]
+nightona mcp start [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona organization
+## nightona organization
 
-Daytona（デイトナ）の組織を管理する
+Nightona（デイトナ）の組織を管理する
 
 ```shell
-daytona organization [flags]
+nightona organization [flags]
 ```
 
 **フラグ**
 | ロング | ショート | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona organization create
+## nightona organization create
 
 新しい組織を作成し、アクティブとして設定します
 
 ```shell
-daytona organization create [ORGANIZATION_NAME] [flags]
+nightona organization create [ORGANIZATION_NAME] [flags]
 ```
 
 **フラグ**
 | ロング | ショート | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona organization delete
+## nightona organization delete
 
 組織を削除する
 
 ```shell
-daytona organization delete [ORGANIZATION] [flags]
+nightona organization delete [ORGANIZATION] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona organization list
+## nightona organization list
 
 すべての組織を一覧表示します
 
 ```shell
-daytona organization list [flags]
+nightona organization list [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
 | `--format` | `-f` | 出力形式。yaml または json のいずれか |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona organization use
+## nightona organization use
 
 アクティブな組織を設定する
 
 ```shell
-daytona organization use [ORGANIZATION] [flags]
+nightona organization use [ORGANIZATION] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona sandbox
+## nightona sandbox
 
-Daytona（デイトナ）のサンドボックスを管理します
+Nightona（デイトナ）のサンドボックスを管理します
 
 ```shell
-daytona sandbox [flags]
+nightona sandbox [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona sandbox create
+## nightona sandbox create
 
 新しいサンドボックスを作成
 
 ```shell
-daytona sandbox create [flags]
+nightona sandbox create [flags]
 ```
 
 **フラグ**
@@ -244,14 +244,14 @@ daytona sandbox create [flags]
 | `--target` | | ターゲット（リージョン）（eu, us） |
 | `--user` | | サンドボックスに関連付けるユーザー |
 | `--volume` | `-v` | マウントするボリューム（形式: VOLUME\_NAME:MOUNT\_PATH） |
-| `--help` | | daytona のヘルプ |
+| `--help` | | nightona のヘルプ |
 
-## daytona sandbox delete
+## nightona sandbox delete
 
 サンドボックスを削除
 
 ```shell
-daytona sandbox delete [SANDBOX_ID] [flags]
+nightona sandbox delete [SANDBOX_ID] [flags]
 ```
 
 **フラグ**
@@ -259,14 +259,14 @@ daytona sandbox delete [SANDBOX_ID] [flags]
 | :--- | :---- | :---------- |
 | `--all` | `-a` | すべてのサンドボックスを削除 |
 | `--force` | `-f` | 強制的に削除 |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona sandbox info
+## nightona sandbox info
 
 サンドボックス情報を取得する
 
 ```shell
-daytona sandbox info [SANDBOX_ID] [flags]
+nightona sandbox info [SANDBOX_ID] [flags]
 ```
 
 **フラグ**
@@ -274,14 +274,14 @@ daytona sandbox info [SANDBOX_ID] [flags]
 | :--- | :---- | :---------- |
 | `--format` | `-f` | 出力形式。yaml または json のいずれかを指定します |
 | `--verbose` | `-v` | 詳細な出力を含める |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona sandbox list
+## nightona sandbox list
 
 サンドボックスを一覧表示します
 
 ```shell
-daytona sandbox list [flags]
+nightona sandbox list [flags]
 ```
 
 **フラグ**
@@ -291,55 +291,55 @@ daytona sandbox list [flags]
 | `--limit` | `-l` | 1ページあたりの最大件数 |
 | `--page` | `-p` | ページ番号（1から開始） |
 | `--verbose` | `-v` | 冗長な出力を含める |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona sandbox start
+## nightona sandbox start
 
 サンドボックスを起動する
 
 ```shell
-daytona sandbox start [SANDBOX_ID] [flags]
+nightona sandbox start [SANDBOX_ID] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
 | `--all` | `-a` | すべてのサンドボックスを起動する |
-| `--help` | | daytona のヘルプ |
+| `--help` | | nightona のヘルプ |
 
-## daytona sandbox stop
+## nightona sandbox stop
 
 サンドボックスを停止する
 
 ```shell
-daytona sandbox stop [SANDBOX_ID] [flags]
+nightona sandbox stop [SANDBOX_ID] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
 | `--all` | `-a` | すべてのサンドボックスを停止 |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona snapshot
+## nightona snapshot
 
-Daytona（デイトナ）のスナップショットを管理する
+Nightona（デイトナ）のスナップショットを管理する
 
 ```shell
-daytona snapshot [flags]
+nightona snapshot [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona snapshot create
+## nightona snapshot create
 
 スナップショットを作成
 
 ```shell
-daytona snapshot create [SNAPSHOT] [flags]
+nightona snapshot create [SNAPSHOT] [flags]
 ```
 
 **フラグ**
@@ -352,28 +352,28 @@ daytona snapshot create [SNAPSHOT] [flags]
 | `--entrypoint` | `-e` | スナップショットのエントリーポイントコマンド |
 | `--image` | `-i` | スナップショットのイメージ名 |
 | `--memory` | | サンドボックスに割り当てるメモリ容量（GB）（既定: 1） |
-| `--help` | | daytona のヘルプ |
+| `--help` | | nightona のヘルプ |
 
-## daytona snapshot delete
+## nightona snapshot delete
 
 スナップショットを削除します
 
 ```shell
-daytona snapshot delete [SNAPSHOT_ID] [flags]
+nightona snapshot delete [SNAPSHOT_ID] [flags]
 ```
 
 **フラグ**
 | ロング | ショート | 説明 |
 | :--- | :---- | :---------- |
 | `--all` | `-a` | すべてのスナップショットを削除します |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona snapshot list
+## nightona snapshot list
 
 すべてのスナップショットを一覧表示します
 
 ```shell
-daytona snapshot list [flags]
+nightona snapshot list [flags]
 ```
 
 **フラグ**
@@ -382,14 +382,14 @@ daytona snapshot list [flags]
 | `--format` | `-f` | 出力形式。yaml または json のいずれか |
 | `--limit` | `-l` | 1ページあたりの最大件数 |
 | `--page` | `-p` | ページネーション用のページ番号（1から） |
-| `--help` | | daytona のヘルプ |
+| `--help` | | nightona のヘルプ |
 
-## daytona snapshot push
+## nightona snapshot push
 
 ローカルのスナップショットをプッシュします
 
 ```shell
-daytona snapshot push [SNAPSHOT] [flags]
+nightona snapshot push [SNAPSHOT] [flags]
 ```
 
 **フラグ**
@@ -400,85 +400,85 @@ daytona snapshot push [SNAPSHOT] [flags]
 | `--entrypoint` | `-e` | イメージのエントリポイントコマンド |
 | `--memory` | | サンドボックスに割り当てるメモリ容量（GB、デフォルト: 1） |
 | `--name` | `-n` | スナップショット名を指定 |
-| `--help` | | daytonaのヘルプ |
+| `--help` | | nightonaのヘルプ |
 
-## daytona version
+## nightona version
 
 バージョン番号を表示します
 
 ```shell
-daytona version [flags]
+nightona version [flags]
 ```
 
 **フラグ**
 | ロング | ショート | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona volume
+## nightona volume
 
-Daytona（デイトナ）のボリュームを管理します
+Nightona（デイトナ）のボリュームを管理します
 
 ```shell
-daytona volume [flags]
+nightona volume [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona volume create
+## nightona volume create
 
 ボリュームを作成します
 
 ```shell
-daytona volume create [NAME] [flags]
+nightona volume create [NAME] [flags]
 ```
 
 **フラグ**
 | ロング | ショート | 説明 |
 | :--- | :---- | :---------- |
 | `--size` | `-s` | ボリュームのサイズ（GB） |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona volume delete
+## nightona volume delete
 
 ボリュームを削除します
 
 ```shell
-daytona volume delete [VOLUME_ID] [flags]
+nightona volume delete [VOLUME_ID] [flags]
 ```
 
 **フラグ**
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona volume get
+## nightona volume get
 
 ボリュームの詳細を取得する
 
 ```shell
-daytona volume get [VOLUME_ID] [flags]
+nightona volume get [VOLUME_ID] [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
 | `--format` | `-f` | 出力形式。yaml または json のいずれか |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |
 
-## daytona volume list
+## nightona volume list
 
 すべてのボリュームを一覧表示します
 
 ```shell
-daytona volume list [flags]
+nightona volume list [flags]
 ```
 
 **フラグ**
 | Long | Short | 説明 |
 | :--- | :---- | :---------- |
 | `--format` | `-f` | 出力形式。yaml または json のいずれか |
-| `--help` | | daytona のヘルプを表示 |
+| `--help` | | nightona のヘルプを表示 |

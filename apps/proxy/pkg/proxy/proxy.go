@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package proxy
@@ -16,16 +16,16 @@ import (
 	"sync"
 	"time"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	"github.com/daytonaio/proxy/cmd/proxy/config"
-	"github.com/daytonaio/proxy/internal"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/apps/proxy/cmd/proxy/config"
+	"github.com/Amartuvshins0404/nightona/apps/proxy/internal"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/securecookie"
 
-	common_cache "github.com/daytonaio/common-go/pkg/cache"
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	common_proxy "github.com/daytonaio/common-go/pkg/proxy"
+	common_cache "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/cache"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	common_proxy "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/proxy"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -35,9 +35,9 @@ type RunnerInfo struct {
 	ApiKey string `json:"apiKey"`
 }
 
-const SANDBOX_AUTH_KEY_HEADER = "X-Daytona-Preview-Token"
-const SANDBOX_AUTH_KEY_QUERY_PARAM = "DAYTONA_SANDBOX_AUTH_KEY"
-const SANDBOX_AUTH_COOKIE_NAME = "daytona-sandbox-auth-"
+const SANDBOX_AUTH_KEY_HEADER = "X-Nightona-Preview-Token"
+const SANDBOX_AUTH_KEY_QUERY_PARAM = "NIGHTONA_SANDBOX_AUTH_KEY"
+const SANDBOX_AUTH_COOKIE_NAME = "nightona-sandbox-auth-"
 
 // SANDBOX_AUTH_COOKIE_MAX_AGE_SECONDS bounds both the auth cookie's browser
 // Max-Age and the shared securecookie signer's server-side acceptance window.
@@ -45,8 +45,8 @@ const SANDBOX_AUTH_COOKIE_NAME = "daytona-sandbox-auth-"
 // cookie value for its 30-day default, well past the 1h the browser is told.
 const SANDBOX_AUTH_COOKIE_MAX_AGE_SECONDS = 3600
 
-const SKIP_LAST_ACTIVITY_UPDATE_HEADER = "X-Daytona-Skip-Last-Activity-Update"
-const ACTIVITY_POLL_STOP_KEY = "daytona-activity-poll-stop"
+const SKIP_LAST_ACTIVITY_UPDATE_HEADER = "X-Nightona-Skip-Last-Activity-Update"
+const ACTIVITY_POLL_STOP_KEY = "nightona-activity-poll-stop"
 const TERMINAL_PORT = "22222"
 const TOOLBOX_PORT = "2280"
 const RECORDING_DASHBOARD_PORT = "33333"
@@ -166,8 +166,8 @@ func StartProxy(ctx context.Context, config *config.Config) error {
 	}))
 
 	router.Use(func(ctx *gin.Context) {
-		if ctx.Request.Header.Get("X-Daytona-Disable-CORS") == "true" {
-			ctx.Request.Header.Del("X-Daytona-Disable-CORS")
+		if ctx.Request.Header.Get("X-Nightona-Disable-CORS") == "true" {
+			ctx.Request.Header.Del("X-Nightona-Disable-CORS")
 			return
 		}
 

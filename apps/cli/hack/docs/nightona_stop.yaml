@@ -1,0 +1,14 @@
+name: nightona stop
+synopsis: Stop a sandbox
+usage: nightona stop [SANDBOX_ID] | [SANDBOX_NAME] [flags]
+options:
+  - name: force
+    shorthand: f
+    default_value: 'false'
+    usage: Force stop the sandbox using SIGKILL
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

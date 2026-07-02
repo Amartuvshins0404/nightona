@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import type { Tier } from '@daytona/billing-api-client'
+import type { Tier } from '@nightona/billing-api-client'
 import { useQuery } from '@tanstack/react-query'
 import { useApi } from '../useApi'
 import { useConfig } from '../useConfig'

@@ -1,14 +1,14 @@
-# Run Recursive Language Models on Daytona
+# Run Recursive Language Models on Nightona
 
 ## Overview
 
-This guide demonstrates how to implement a recursive language model (RLM) agent system built on Daytona sandboxes, based on the approach pioneered in [Recursive Language Models](https://arxiv.org/abs/2512.24601) (Zhang, Kraska, Khattab). Unlike traditional single-agent approaches, agents can spawn sub-agents recursively, each in its own isolated sandbox with a fresh clone of the target repository.
+This guide demonstrates how to implement a recursive language model (RLM) agent system built on Nightona sandboxes, based on the approach pioneered in [Recursive Language Models](https://arxiv.org/abs/2512.24601) (Zhang, Kraska, Khattab). Unlike traditional single-agent approaches, agents can spawn sub-agents recursively, each in its own isolated sandbox with a fresh clone of the target repository.
 
 The system enables tree-structured problem decomposition: a root agent can delegate subtasks to child agents, which can spawn their own children, creating a hierarchy of specialized workers collaborating on complex software engineering tasks.
 
 ## Features
 
-- **Sandboxed code execution:** Each agent runs in an isolated Daytona sandbox with a fresh repository clone
+- **Sandboxed code execution:** Each agent runs in an isolated Nightona sandbox with a fresh repository clone
 - **Recursive agent spawning:** Agents spawn sub-agents via `rlm_query()`, each with their own sandbox
 - **Parallel sub-agent execution:** `rlm_query_batched()` spawns multiple sub-agents concurrently using thread pools
 - **Budget management:** Global sandbox limit (default: 25) shared across the entire agent tree
@@ -22,7 +22,7 @@ The system enables tree-structured problem decomposition: a root agent can deleg
 
 ## Environment Variables
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `LLM_API_KEY`: Required for your LLM provider via [LiteLLM](https://docs.litellm.ai/) (OpenRouter, OpenAI, Anthropic, etc.)
 
 ## Getting Started
@@ -46,7 +46,7 @@ pip install -e .
 
 ```bash
 cp .env.example .env
-# Edit .env with your DAYTONA_API_KEY and LLM_API_KEY
+# Edit .env with your NIGHTONA_API_KEY and LLM_API_KEY
 ```
 
 4. Run the agent:
@@ -87,7 +87,7 @@ The script has several configurable parameters in `config.yaml`:
 
 The system runs a recursive agent architecture where each agent operates in its own sandbox.
 
-1. **Initialization:** Load config and create root agent (depth=0) with a Daytona sandbox containing a fresh clone of the target repository
+1. **Initialization:** Load config and create root agent (depth=0) with a Nightona sandbox containing a fresh clone of the target repository
 2. **Iteration loop:** The agent runs an iteration loop: LLM call → extract Python code blocks → execute in REPL
 3. **Sub-agent spawning:** When code calls `rlm_query(task)`, a new sub-agent is created with its own sandbox
 4. **Recursive delegation:** Sub-agents can spawn their own sub-agents (unlimited depth)

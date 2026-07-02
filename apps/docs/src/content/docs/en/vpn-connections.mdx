@@ -5,29 +5,29 @@ description: Connect your sandboxes to private networks.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-VPN connections are a way to connect your Daytona sandboxes to private networks. By establishing a VPN connection, your sandbox can access network resources using private IP addresses and can be accessed by other devices on the same VPN network.
+VPN connections are a way to connect your Nightona sandboxes to private networks. By establishing a VPN connection, your sandbox can access network resources using private IP addresses and can be accessed by other devices on the same VPN network.
 
 This integration enables communication between your development environment and existing infrastructure, allowing you to test applications against services within the private network, access shared development resources, and collaborate with team members.
 
-Daytona supports the following VPN network providers:
+Nightona supports the following VPN network providers:
 
 - [Tailscale](#tailscale)
 - [OpenVPN](#openvpn)
 - [Netbird](#netbird)
 
 :::note
-For connecting to a VPN network, you need to [create or access your Daytona sandbox](/docs/en/sandboxes), **have access to your VPN network provider credentials**, and be on [**Tier 3** or higher](/docs/en/limits#resources).
+For connecting to a VPN network, you need to [create or access your Nightona sandbox](/docs/en/sandboxes), **have access to your VPN network provider credentials**, and be on [**Tier 3** or higher](/docs/en/limits#resources).
 :::
 
 ## Tailscale
 
-Daytona provides multiple ways to connect to a Daytona sandbox with a Tailscale network:
+Nightona provides multiple ways to connect to a Nightona sandbox with a Tailscale network:
 
 - [Connect with browser login](#tailscale-browser-login)
 - [Connect with auth key](#tailscale-auth-key)
 - [Connect with web terminal](#tailscale-web-terminal)
 
-When you connect a Daytona sandbox to a Tailscale network, the sandbox becomes part of your private Tailscale network, allowing you to access resources that are available within the network and enabling other devices on the network to access the sandbox.
+When you connect a Nightona sandbox to a Tailscale network, the sandbox becomes part of your private Tailscale network, allowing you to access resources that are available within the network and enabling other devices on the network to access the sandbox.
 
 This integration makes your sandbox appear as a device within your Tailscale network, with its own Tailscale IP address and access to other devices and services on the network.
 
@@ -43,25 +43,25 @@ The following snippet demonstrates connecting to a Tailscale network using a bro
   <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, DaytonaConfig
+from nightona import Nightona, NightonaConfig
 import time
 import re
 
 # Configuration
-DAYTONA_API_KEY = "YOUR_API_KEY" # Replace with your API key
+NIGHTONA_API_KEY = "YOUR_API_KEY" # Replace with your API key
 
-# Initialize the Daytona client
-config = DaytonaConfig(api_key=DAYTONA_API_KEY)
-daytona = Daytona(config)
+# Initialize the Nightona client
+config = NightonaConfig(api_key=NIGHTONA_API_KEY)
+nightona = Nightona(config)
 
 def setup_tailscale_vpn_interactive():
     """
-    Connect a Daytona sandbox to a Tailscale network using the Python SDK.
+    Connect a Nightona sandbox to a Tailscale network using the Python SDK.
     Uses interactive login via browser URL (no auth key required).
     """
     # Create the sandbox
     print("Creating sandbox...")
-    sandbox = daytona.create()
+    sandbox = nightona.create()
     print(f"Sandbox created: {sandbox.id}")
 
     # Step 1: Install Tailscale
@@ -157,14 +157,14 @@ if __name__ == "__main__":
   <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
 // Configuration
-const DAYTONA_API_KEY = 'YOUR_API_KEY' // Replace with your API key
+const NIGHTONA_API_KEY = 'YOUR_API_KEY' // Replace with your API key
 
-// Initialize the Daytona client
-const daytona = new Daytona({
-  apiKey: DAYTONA_API_KEY,
+// Initialize the Nightona client
+const nightona = new Nightona({
+  apiKey: NIGHTONA_API_KEY,
 })
 
 function sleep(ms: number): Promise<void> {
@@ -173,13 +173,13 @@ function sleep(ms: number): Promise<void> {
 
 async function setupTailscaleVpnInteractive(): Promise<void> {
   /**
-   * Connect a Daytona sandbox to a Tailscale network using the TypeScript SDK.
+   * Connect a Nightona sandbox to a Tailscale network using the TypeScript SDK.
    * Uses interactive login via browser URL (no auth key required).
    */
 
   // Create the sandbox
   console.log('Creating sandbox...')
-  const sandbox = await daytona.create()
+  const sandbox = await nightona.create()
   console.log(`Sandbox created: ${sandbox.id}`)
 
   // Step 1: Install Tailscale
@@ -320,7 +320,7 @@ Once the connection is established and authentication is complete, the sandbox w
 
 ### Tailscale auth key
 
-Using an auth key provides a non-interactive way to connect your Daytona sandbox to Tailscale, making it suitable for automated scripts, CI/CD pipelines, or any scenario where manual browser interaction is not available.
+Using an auth key provides a non-interactive way to connect your Nightona sandbox to Tailscale, making it suitable for automated scripts, CI/CD pipelines, or any scenario where manual browser interaction is not available.
 
 1. Access your [Tailscale admin console ↗](https://login.tailscale.com/admin/machines)
 2. Click **Add device** and select **Linux server**
@@ -332,32 +332,32 @@ This will generate a script that you can use to install Tailscale and connect to
 curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up --auth-key=tskey-auth-<AUTH_KEY>
 ```
 
-Copy the auth key from the generated script and use it to connect your Daytona sandbox to Tailscale:
+Copy the auth key from the generated script and use it to connect your Nightona sandbox to Tailscale:
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, DaytonaConfig
+from nightona import Nightona, NightonaConfig
 import time
 
 # Configuration
-DAYTONA_API_KEY = "YOUR_API_KEY" # Replace with your API key
+NIGHTONA_API_KEY = "YOUR_API_KEY" # Replace with your API key
 TAILSCALE_AUTH_KEY = "YOUR_AUTH_KEY" # Replace with your auth key
 
-# Initialize the Daytona client
-config = DaytonaConfig(api_key=DAYTONA_API_KEY)
-daytona = Daytona(config)
+# Initialize the Nightona client
+config = NightonaConfig(api_key=NIGHTONA_API_KEY)
+nightona = Nightona(config)
 
 
 def setup_tailscale_vpn(auth_key: str):
 """
-Connect a Daytona sandbox to a Tailscale network using the Python SDK.
+Connect a Nightona sandbox to a Tailscale network using the Python SDK.
 Uses auth-key for non-interactive authentication.
 """
 # Create the sandbox
 print("Creating sandbox...")
-sandbox = daytona.create()
+sandbox = nightona.create()
 print(f"Sandbox created: {sandbox.id}")
 
 # Step 1: Install Tailscale
@@ -408,15 +408,15 @@ if __name__ == "__main__":
   <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
 // Configuration
-const DAYTONA_API_KEY = 'YOUR_API_KEY' // Replace with your API key
+const NIGHTONA_API_KEY = 'YOUR_API_KEY' // Replace with your API key
 const TAILSCALE_AUTH_KEY = 'YOUR_AUTH_KEY' // Replace with your auth key
 
-// Initialize the Daytona client
-const daytona = new Daytona({
-  apiKey: DAYTONA_API_KEY,
+// Initialize the Nightona client
+const nightona = new Nightona({
+  apiKey: NIGHTONA_API_KEY,
 })
 
 function sleep(ms: number): Promise<void> {
@@ -425,13 +425,13 @@ function sleep(ms: number): Promise<void> {
 
 async function setupTailscaleVpn(authKey: string): Promise<void> {
   /**
-   * Connect a Daytona sandbox to a Tailscale network using the TypeScript SDK.
+   * Connect a Nightona sandbox to a Tailscale network using the TypeScript SDK.
    * Uses auth-key for non-interactive authentication.
    */
 
   // Create the sandbox
   console.log('Creating sandbox...')
-  const sandbox = await daytona.create()
+  const sandbox = await nightona.create()
   console.log(`Sandbox created: ${sandbox.id}`)
 
   // Step 1: Install Tailscale
@@ -498,18 +498,18 @@ Once the connection is established and authentication is complete, the sandbox w
 
 ### Tailscale web terminal
 
-For working directly in the terminal or for more control over the Tailscale connection process, you can set up Tailscale manually through the Daytona [web terminal](/docs/en/web-terminal) or [SSH](/docs/en/ssh-access).
+For working directly in the terminal or for more control over the Tailscale connection process, you can set up Tailscale manually through the Nightona [web terminal](/docs/en/web-terminal) or [SSH](/docs/en/ssh-access).
 
 This approach provides visibility into each step of the installation and connection process, and allows you to customize the setup if needed. The process involves installing Tailscale, starting the daemon in a persistent session using tmux, and then authenticating through the interactive login flow.
 
-1. Navigate to your sandbox [web terminal](/docs/en/web-terminal) in [Daytona Dashboard ↗](https://app.daytona.io/), or [access it via SSH](/docs/en/ssh-access)
+1. Navigate to your sandbox [web terminal](/docs/en/web-terminal) in [Nightona Dashboard ↗](https://app.daytona.io/), or [access it via SSH](/docs/en/ssh-access)
 2. Install Tailscale using the official installation script:
 
 ```bash
 curl -fsSL https://tailscale.com/install.sh | sh
 ```
 
-This begins the Tailscale installation process and initializes the Tailscale CLI inside the sandbox. Daytona requires the Tailscale daemon to be running in the background to connect the sandbox to the Tailscale network.
+This begins the Tailscale installation process and initializes the Tailscale CLI inside the sandbox. Nightona requires the Tailscale daemon to be running in the background to connect the sandbox to the Tailscale network.
 
 The recommended approach is to run it in a detached tmux (or similar) session to ensure the daemon is running in the background:
 
@@ -544,19 +544,19 @@ Once authenticated, you will see the following confirmation message:
 Your device <id> is logged in to the <address> tailnet.
 ```
 
-You've now successfully connected your Daytona sandbox to your Tailscale network. The sandbox should appear in your [Tailscale dashboard](https://login.tailscale.com/admin/machines).
+You've now successfully connected your Nightona sandbox to your Tailscale network. The sandbox should appear in your [Tailscale dashboard](https://login.tailscale.com/admin/machines).
 
 ## OpenVPN
 
-Daytona provides multiple ways to connect to a Daytona sandbox with an OpenVPN network:
+Nightona provides multiple ways to connect to a Nightona sandbox with an OpenVPN network:
 
 - [OpenVPN client configuration](#openvpn-client-configuration)
 - [Connect with web terminal](#openvpn-web-terminal)
 
-OpenVPN uses a client-server model where your Daytona sandbox acts as a client connecting to an OpenVPN server. This approach is suitable for connecting to existing corporate VPNs, accessing resources behind firewalls, or integrating with infrastructure that already uses OpenVPN.
+OpenVPN uses a client-server model where your Nightona sandbox acts as a client connecting to an OpenVPN server. This approach is suitable for connecting to existing corporate VPNs, accessing resources behind firewalls, or integrating with infrastructure that already uses OpenVPN.
 
 :::note
-Connecting a Daytona sandbox to OpenVPN network requires a [client configuration file](#openvpn-client-configuration-file).
+Connecting a Nightona sandbox to OpenVPN network requires a [client configuration file](#openvpn-client-configuration-file).
 :::
 
 ### OpenVPN client configuration file
@@ -621,28 +621,28 @@ The following snippets demonstrate connecting to an OpenVPN network using a clie
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```python
-from daytona import Daytona, DaytonaConfig
+from nightona import Nightona, NightonaConfig
 import time
 
 # Configuration
-DAYTONA_API_KEY = "YOUR_API_KEY" # Replace with your API key
+NIGHTONA_API_KEY = "YOUR_API_KEY" # Replace with your API key
 
 # OpenVPN client configuration (paste your .ovpn config here)
 OPENVPN_CONFIG = """
 """.strip()
 
-# Initialize the Daytona client
-config = DaytonaConfig(api_key=DAYTONA_API_KEY)
-daytona = Daytona(config)
+# Initialize the Nightona client
+config = NightonaConfig(api_key=NIGHTONA_API_KEY)
+nightona = Nightona(config)
 
 
 def setup_openvpn(ovpn_config: str):
     """
-    Connect a Daytona sandbox to an OpenVPN network using the Python SDK.
+    Connect a Nightona sandbox to an OpenVPN network using the Python SDK.
     """
     # Create the sandbox
     print("Creating sandbox...")
-    sandbox = daytona.create()
+    sandbox = nightona.create()
     print(f"Sandbox created: {sandbox.id}")
 
     # Step 1: Install OpenVPN
@@ -658,13 +658,13 @@ def setup_openvpn(ovpn_config: str):
 
     # Step 2: Write the OpenVPN config file
     print("\nWriting OpenVPN configuration...")
-    sandbox.fs.upload_file(ovpn_config.encode(), "/home/daytona/client.ovpn")
-    print("Configuration written to /home/daytona/client.ovpn")
+    sandbox.fs.upload_file(ovpn_config.encode(), "/home/nightona/client.ovpn")
+    print("Configuration written to /home/nightona/client.ovpn")
 
     # Step 3: Start OpenVPN in background
     print("\nStarting OpenVPN tunnel...")
     sandbox.process.exec(
-        "nohup sudo openvpn /home/daytona/client.ovpn > /tmp/openvpn.log 2>&1 &",
+        "nohup sudo openvpn /home/nightona/client.ovpn > /tmp/openvpn.log 2>&1 &",
         timeout=10
     )
 
@@ -705,18 +705,18 @@ if __name__ == "__main__":
   </TabItem>
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
 // Configuration
-const DAYTONA_API_KEY = "YOUR_API_KEY"; // Replace with your API key
+const NIGHTONA_API_KEY = "YOUR_API_KEY"; // Replace with your API key
 
 // OpenVPN client configuration (paste your .ovpn config here)
 const OPENVPN_CONFIG = `
 `.trim();
 
-// Initialize the Daytona client
-const daytona = new Daytona({
-  apiKey: DAYTONA_API_KEY,
+// Initialize the Nightona client
+const nightona = new Nightona({
+  apiKey: NIGHTONA_API_KEY,
 });
 
 function sleep(ms: number): Promise<void> {
@@ -725,12 +725,12 @@ function sleep(ms: number): Promise<void> {
 
 async function setupOpenvpn(ovpnConfig: string): Promise<void> {
   /**
-   * Connect a Daytona sandbox to an OpenVPN network using the TypeScript SDK.
+   * Connect a Nightona sandbox to an OpenVPN network using the TypeScript SDK.
    */
 
   // Create the sandbox
   console.log("Creating sandbox...");
-  const sandbox = await daytona.create();
+  const sandbox = await nightona.create();
   console.log(`Sandbox created: ${sandbox.id}`);
 
   // Step 1: Install OpenVPN
@@ -751,19 +751,19 @@ async function setupOpenvpn(ovpnConfig: string): Promise<void> {
   console.log("\nWriting OpenVPN configuration...");
   // Use heredoc to write the config file
   await sandbox.process.executeCommand(
-    `cat << 'OVPNEOF' > /home/daytona/client.ovpn
+    `cat << 'OVPNEOF' > /home/nightona/client.ovpn
 ${ovpnConfig}
 OVPNEOF`,
     undefined,
     undefined,
     30
   );
-  console.log("Configuration written to /home/daytona/client.ovpn");
+  console.log("Configuration written to /home/nightona/client.ovpn");
 
   // Step 3: Start OpenVPN in background
   console.log("\nStarting OpenVPN tunnel...");
   await sandbox.process.executeCommand(
-    "nohup sudo openvpn /home/daytona/client.ovpn > /tmp/openvpn.log 2>&1 &",
+    "nohup sudo openvpn /home/nightona/client.ovpn > /tmp/openvpn.log 2>&1 &",
     undefined,  // cwd
     undefined,  // env
     10          // timeout
@@ -824,9 +824,9 @@ setupOpenvpn(OPENVPN_CONFIG).catch(console.error);
 
 ### OpenVPN web terminal
 
-Daytona provides a [web terminal](/docs/en/web-terminal) for interacting with your sandboxes, allowing you to install OpenVPN and connect to your OpenVPN network.
+Nightona provides a [web terminal](/docs/en/web-terminal) for interacting with your sandboxes, allowing you to install OpenVPN and connect to your OpenVPN network.
 
-1. Navigate to your sandbox [web terminal](/docs/en/web-terminal) in [Daytona Dashboard ↗](https://app.daytona.io/) by clicking on the Terminal icon `>_`, or [access it via SSH](/docs/en/ssh-access)
+1. Navigate to your sandbox [web terminal](/docs/en/web-terminal) in [Nightona Dashboard ↗](https://app.daytona.io/) by clicking on the Terminal icon `>_`, or [access it via SSH](/docs/en/ssh-access)
 
 2. Install OpenVPN and tmux
 
@@ -834,7 +834,7 @@ Daytona provides a [web terminal](/docs/en/web-terminal) for interacting with yo
 sudo apt update && sudo apt install -y openvpn tmux
 ```
 
-3. Create the OpenVPN [client configuration file](#openvpn-client-configuration-file) for your Daytona sandbox
+3. Create the OpenVPN [client configuration file](#openvpn-client-configuration-file) for your Nightona sandbox
 
 ```bash
 sudo nano client.ovpn
@@ -842,7 +842,7 @@ sudo nano client.ovpn
 
 4. Save the file by pressing `Ctrl+O`, then `Enter`, and exit by pressing `Ctrl+X`
 
-Daytona requires the OpenVPN tunnel to be running in the background to connect the sandbox to the OpenVPN network. The recommended approach is to run it in a detached tmux (or similar) session:
+Nightona requires the OpenVPN tunnel to be running in the background to connect the sandbox to the OpenVPN network. The recommended approach is to run it in a detached tmux (or similar) session:
 
 5. Start OpenVPN tunnel in a background tmux session
 
@@ -860,22 +860,22 @@ curl ifconfig.me
 
 This will return the IP address of the sandbox connected to the OpenVPN network.
 
-You've now successfully connected your Daytona sandbox to your OpenVPN network.
+You've now successfully connected your Nightona sandbox to your OpenVPN network.
 
 ## Netbird
 
-Daytona provides multiple ways to connect to a Daytona sandbox with a Netbird network:
+Nightona provides multiple ways to connect to a Nightona sandbox with a Netbird network:
 
 - [Connect with setup key](#netbird-setup-key)
 - [Connect with browser login](#netbird-browser-login)
 
-When you connect a Daytona sandbox to a Netbird network, the sandbox becomes part of your private Netbird network, allowing you to access resources that are available within the network and enabling other devices on the network to access the sandbox.
+When you connect a Nightona sandbox to a Netbird network, the sandbox becomes part of your private Netbird network, allowing you to access resources that are available within the network and enabling other devices on the network to access the sandbox.
 
 This integration makes your sandbox appear as a device within your Netbird network, with its own Netbird IP address and access to other devices and services on the network.
 
 ### Netbird setup key
 
-Using a Netbird setup key provides a non-interactive way to connect your Daytona sandbox to Netbird, making it suitable for automated scripts, CI/CD pipelines, or any scenario where manual browser interaction is not available.
+Using a Netbird setup key provides a non-interactive way to connect your Nightona sandbox to Netbird, making it suitable for automated scripts, CI/CD pipelines, or any scenario where manual browser interaction is not available.
 
 1. Access your [Netbird dashboard ↗](https://app.netbird.io/)
 2. Click **Setup Keys**
@@ -887,20 +887,20 @@ The following snippets demonstrate connecting to a Netbird network using a setup
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, DaytonaConfig
+from nightona import Nightona, NightonaConfig
 
 # Configuration
-DAYTONA_API_KEY = "YOUR_API_KEY"
+NIGHTONA_API_KEY = "YOUR_API_KEY"
 NETBIRD_SETUP_KEY = "YOUR_SETUP_KEY"
 
-# Initialize the Daytona client
-config = DaytonaConfig(api_key=DAYTONA_API_KEY)
-daytona = Daytona(config)
+# Initialize the Nightona client
+config = NightonaConfig(api_key=NIGHTONA_API_KEY)
+nightona = Nightona(config)
 
 
 def setup_netbird():
     """
-    Connect a Daytona sandbox to a NetBird network using the Python SDK.
+    Connect a Nightona sandbox to a NetBird network using the Python SDK.
     Uses the official NetBird install script and a Setup Key for non-interactive auth.
     See: https://docs.netbird.io/manage/peers/access-infrastructure/setup-keys-add-servers-to-network
     """
@@ -910,7 +910,7 @@ def setup_netbird():
 
     # Create the sandbox
     print("Creating sandbox...")
-    sandbox = daytona.create()
+    sandbox = nightona.create()
     print(f"Sandbox created: {sandbox.id}")
     print("\nInstalling NetBird via the official install script...")
     install_cmd = (
@@ -948,27 +948,27 @@ if __name__ == "__main__":
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
 // Configuration
-const DAYTONA_API_KEY = "YOUR_API_KEY";
+const NIGHTONA_API_KEY = "YOUR_API_KEY";
 const NETBIRD_SETUP_KEY = "YOUR_SETUP_KEY";
 
-// Initialize the Daytona client
-const daytona = new Daytona({
-  apiKey: DAYTONA_API_KEY,
+// Initialize the Nightona client
+const nightona = new Nightona({
+  apiKey: NIGHTONA_API_KEY,
 });
 
 async function setupNetbird(): Promise<void> {
   /**
-   * Connect a Daytona sandbox to a NetBird network using the TypeScript SDK.
+   * Connect a Nightona sandbox to a NetBird network using the TypeScript SDK.
    * Uses the official NetBird install script and a Setup Key for non-interactive auth.
    * See: https://docs.netbird.io/manage/peers/access-infrastructure/setup-keys-add-servers-to-network
    */
 
   // Create the sandbox
   console.log("Creating sandbox...");
-  const sandbox = await daytona.create();
+  const sandbox = await nightona.create();
   console.log(`Sandbox created: ${sandbox.id}`);
 
   // Install NetBird via the official install script
@@ -1024,7 +1024,7 @@ setupNetbird().catch(console.error);
 
 ### Netbird browser login
 
-The browser login method initiates an interactive authentication flow where Netbird generates a unique login URL that you visit in your web browser to authenticate the Daytona sandbox.
+The browser login method initiates an interactive authentication flow where Netbird generates a unique login URL that you visit in your web browser to authenticate the Nightona sandbox.
 
 The following snippets demonstrate connecting to a Netbird network using a browser login.
 
@@ -1032,26 +1032,26 @@ The following snippets demonstrate connecting to a Netbird network using a brows
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, DaytonaConfig
+from nightona import Nightona, NightonaConfig
 import time
 import re
 
 # Configuration
-DAYTONA_API_KEY = "YOUR_API_KEY"
+NIGHTONA_API_KEY = "YOUR_API_KEY"
 
-# Initialize the Daytona client
-config = DaytonaConfig(api_key=DAYTONA_API_KEY)
-daytona = Daytona(config)
+# Initialize the Nightona client
+config = NightonaConfig(api_key=NIGHTONA_API_KEY)
+nightona = Nightona(config)
 
 
 def setup_netbird():
     """
-    Connect a Daytona sandbox to a NetBird network using the Python SDK.
+    Connect a Nightona sandbox to a NetBird network using the Python SDK.
     Uses the official NetBird install script and interactive browser login.
     """
     # Create the sandbox
     print("Creating sandbox...")
-    sandbox = daytona.create()
+    sandbox = nightona.create()
     print(f"Sandbox created: {sandbox.id}")
     # Install NetBird via the official install script
     print("\nInstalling NetBird via the official install script...")
@@ -1136,14 +1136,14 @@ if __name__ == "__main__":
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
 // Configuration
-const DAYTONA_API_KEY = "YOUR_API_KEY";
+const NIGHTONA_API_KEY = "YOUR_API_KEY";
 
-// Initialize the Daytona client
-const daytona = new Daytona({
-  apiKey: DAYTONA_API_KEY,
+// Initialize the Nightona client
+const nightona = new Nightona({
+  apiKey: NIGHTONA_API_KEY,
 });
 
 function sleep(ms: number): Promise<void> {
@@ -1152,13 +1152,13 @@ function sleep(ms: number): Promise<void> {
 
 async function setupNetbirdVpnInteractive(): Promise<void> {
   /**
-   * Connect a Daytona sandbox to a NetBird network using the TypeScript SDK.
+   * Connect a Nightona sandbox to a NetBird network using the TypeScript SDK.
    * Uses the official NetBird install script and interactive browser login.
    */
 
   // Create the sandbox
   console.log("Creating sandbox...");
-  const sandbox = await daytona.create();
+  const sandbox = await nightona.create();
   console.log(`Sandbox created: ${sandbox.id}`);
 
   // Remove the broken Yarn list so apt-get update inside the installer succeeds,

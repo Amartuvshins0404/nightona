@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package middlewares
@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/daytonaio/daemon/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/common"
 	"github.com/gin-gonic/gin"
 )
 

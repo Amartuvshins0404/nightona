@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
   contact:
-    email: support@daytona.com
-    name: Daytona Platforms Inc.
+    email: support@nightona.com
+    name: Nightona Platforms Inc.
     url: https://www.daytona.io
-  description: Daytona AI platform API Docs
+  description: Nightona AI platform API Docs
   license:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  title: Daytona
+  title: Nightona
   version: "1.0"
 servers:
 - url: http://localhost:3000
@@ -22,8 +22,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DaytonaConfiguration"
-          description: Daytona configuration
+                $ref: "#/components/schemas/NightonaConfiguration"
+          description: Nightona configuration
       summary: Get config
       tags:
       - config
@@ -34,7 +34,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -65,7 +65,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -99,7 +99,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -127,7 +127,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -157,7 +157,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -192,7 +192,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1179,7 +1179,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1208,7 +1208,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1242,7 +1242,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1273,7 +1273,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1308,7 +1308,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1346,7 +1346,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1382,7 +1382,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1418,7 +1418,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1585,7 +1585,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1831,7 +1831,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -1866,7 +1866,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2107,7 +2107,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2153,7 +2153,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2188,7 +2188,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2232,7 +2232,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2279,7 +2279,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2316,7 +2316,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2360,7 +2360,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2396,7 +2396,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2438,7 +2438,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2480,7 +2480,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2518,7 +2518,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2554,7 +2554,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2595,7 +2595,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2636,7 +2636,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2680,7 +2680,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2715,7 +2715,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2752,7 +2752,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2796,7 +2796,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2828,7 +2828,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2872,7 +2872,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2917,7 +2917,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -2964,7 +2964,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3006,7 +3006,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3041,7 +3041,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3085,7 +3085,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3137,7 +3137,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3187,7 +3187,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3227,7 +3227,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3263,7 +3263,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3307,7 +3307,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3351,7 +3351,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3387,7 +3387,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3423,7 +3423,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3459,7 +3459,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3503,7 +3503,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3532,7 +3532,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3651,7 +3651,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3682,7 +3682,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3746,7 +3746,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3782,7 +3782,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3835,7 +3835,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3871,7 +3871,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3907,7 +3907,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3944,7 +3944,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -3989,7 +3989,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4035,7 +4035,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4080,7 +4080,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4124,7 +4124,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4177,7 +4177,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4224,7 +4224,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4268,7 +4268,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4315,7 +4315,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4376,7 +4376,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4421,7 +4421,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4472,7 +4472,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4518,7 +4518,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4559,7 +4559,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4598,7 +4598,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4636,7 +4636,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4679,7 +4679,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4718,7 +4718,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4757,7 +4757,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4800,7 +4800,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4846,7 +4846,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4885,7 +4885,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4924,7 +4924,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -4963,7 +4963,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5007,7 +5007,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5050,7 +5050,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5088,7 +5088,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5127,7 +5127,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5166,7 +5166,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5210,7 +5210,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5266,7 +5266,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5317,7 +5317,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5376,7 +5376,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5412,7 +5412,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5455,7 +5455,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5494,7 +5494,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5538,7 +5538,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5589,7 +5589,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5633,7 +5633,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5673,7 +5673,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5712,7 +5712,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5772,7 +5772,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5811,7 +5811,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5851,7 +5851,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5911,7 +5911,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5948,7 +5948,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -5985,7 +5985,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6022,7 +6022,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6066,7 +6066,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6110,7 +6110,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6154,7 +6154,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6198,7 +6198,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6235,7 +6235,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6278,7 +6278,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6321,7 +6321,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6364,7 +6364,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6407,7 +6407,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6446,7 +6446,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6485,7 +6485,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6524,7 +6524,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6568,7 +6568,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6640,7 +6640,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6705,7 +6705,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6798,7 +6798,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6835,7 +6835,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6870,7 +6870,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6953,7 +6953,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -6989,7 +6989,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7020,7 +7020,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7060,7 +7060,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7100,7 +7100,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7136,7 +7136,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7177,7 +7177,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7336,7 +7336,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7373,7 +7373,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7407,7 +7407,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7440,7 +7440,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7476,7 +7476,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7671,7 +7671,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7700,7 +7700,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7734,7 +7734,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7771,7 +7771,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7802,7 +7802,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -7837,7 +7837,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8553,7 +8553,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8588,7 +8588,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8625,7 +8625,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8661,7 +8661,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8770,7 +8770,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8829,7 +8829,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8920,7 +8920,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -8993,7 +8993,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -9040,7 +9040,7 @@ paths:
       - description: Use with JWT to specify the organization ID
         explode: false
         in: header
-        name: X-Daytona-Organization-ID
+        name: X-Nightona-Organization-ID
         required: false
         schema:
           type: string
@@ -9134,11 +9134,11 @@ components:
           type: string
         clientId:
           description: OIDC client ID
-          example: daytona-client
+          example: nightona-client
           type: string
         audience:
           description: OIDC audience
-          example: daytona-api
+          example: nightona-api
           type: string
       required:
       - audience
@@ -9175,7 +9175,7 @@ components:
           - $ref: "#/components/schemas/RateLimitEntry"
           description: Sandbox lifecycle rate limit
       type: object
-    DaytonaConfiguration:
+    NightonaConfiguration:
       example:
         dashboardUrl: https://dashboard.example.com
         rateLimit: ""
@@ -9200,7 +9200,7 @@ components:
             learnMoreUrl: https://example.com
       properties:
         version:
-          description: Daytona version
+          description: Nightona version
           example: 0.0.1
           type: string
         posthog:
@@ -10587,7 +10587,7 @@ components:
     CreateRegionResponse:
       example:
         proxyApiKey: proxy-api-key-xyz
-        snapshotManagerUsername: daytona
+        snapshotManagerUsername: nightona
         snapshotManagerPassword: snapshotManagerPassword
         id: region_12345
         sshGatewayApiKey: ssh-gateway-api-key-abc
@@ -10608,7 +10608,7 @@ components:
           type: string
         snapshotManagerUsername:
           description: Snapshot Manager username for the region
-          example: daytona
+          example: nightona
           nullable: true
           type: string
         snapshotManagerPassword:
@@ -10654,11 +10654,11 @@ components:
     SnapshotManagerCredentials:
       example:
         password: password
-        username: daytona
+        username: nightona
       properties:
         username:
           description: Snapshot Manager username for the region
-          example: daytona
+          example: nightona
           type: string
         password:
           description: Snapshot Manager password for the region
@@ -10824,7 +10824,7 @@ components:
         disk: 10
         name: MySandbox
         backupState: None
-        user: daytona
+        user: nightona
         autoArchiveInterval: 10080
         snapshot: daytonaio/sandbox:latest
       properties:
@@ -10869,7 +10869,7 @@ components:
           type: string
         user:
           description: The user associated with the project
-          example: daytona
+          example: nightona
           type: string
         errorReason:
           description: The error reason of the sandbox
@@ -10998,7 +10998,7 @@ components:
           disk: 10
           name: MySandbox
           backupState: None
-          user: daytona
+          user: nightona
           autoArchiveInterval: 10080
           snapshot: daytonaio/sandbox:latest
         - memory: 4
@@ -11027,7 +11027,7 @@ components:
           disk: 10
           name: MySandbox
           backupState: None
-          user: daytona
+          user: nightona
           autoArchiveInterval: 10080
           snapshot: daytonaio/sandbox:latest
       properties:
@@ -11148,7 +11148,7 @@ components:
         disk: 10
         name: MySandbox
         backupState: None
-        user: daytona
+        user: nightona
         autoArchiveInterval: 10080
         snapshot: daytonaio/sandbox:latest
       properties:
@@ -11170,7 +11170,7 @@ components:
           type: string
         user:
           description: The user associated with the project
-          example: daytona
+          example: nightona
           type: string
         env:
           additionalProperties:
@@ -11388,7 +11388,7 @@ components:
           disk: 10
           name: MySandbox
           backupState: None
-          user: daytona
+          user: nightona
           autoArchiveInterval: 10080
           snapshot: daytonaio/sandbox:latest
         - memory: 4
@@ -11432,7 +11432,7 @@ components:
           disk: 10
           name: MySandbox
           backupState: None
-          user: daytona
+          user: nightona
           autoArchiveInterval: 10080
           snapshot: daytonaio/sandbox:latest
       properties:
@@ -11501,7 +11501,7 @@ components:
         public: false
         linkedSandbox: sandbox123
         name: MySandbox
-        user: daytona
+        user: nightona
         autoArchiveInterval: 10080
         snapshot: ubuntu-4vcpu-8ram-100gb
         gpuType:
@@ -11518,7 +11518,7 @@ components:
           type: string
         user:
           description: The user associated with the project
-          example: daytona
+          example: nightona
           type: string
         env:
           additionalProperties:
@@ -12520,9 +12520,9 @@ components:
     RunnerHealthcheck:
       example:
         appVersion: v0.0.0-dev
-        apiUrl: http://api.daytona.example.com:8080
-        proxyUrl: http://proxy.daytona.example.com:8080
-        domain: runner-123.daytona.example.com
+        apiUrl: http://api.nightona.example.com:8080
+        proxyUrl: http://proxy.nightona.example.com:8080
+        domain: runner-123.nightona.example.com
         serviceHealth:
         - healthy: false
           errorReason: Cannot connect to the runner
@@ -12543,15 +12543,15 @@ components:
           type: array
         domain:
           description: Runner domain
-          example: runner-123.daytona.example.com
+          example: runner-123.nightona.example.com
           type: string
         proxyUrl:
           description: Runner proxy URL
-          example: http://proxy.daytona.example.com:8080
+          example: http://proxy.nightona.example.com:8080
           type: string
         apiUrl:
           description: Runner API URL
-          example: http://api.daytona.example.com:8080
+          example: http://api.nightona.example.com:8080
           type: string
         appVersion:
           description: Runner app version
@@ -13076,7 +13076,7 @@ components:
         lazyStart: false
         envs:
           TERM: xterm-256color
-          PS1: '\u@daytona:\w$ '
+          PS1: '\u@nightona:\w$ '
         active: true
         id: pty-session-12345
         rows: 24
@@ -13095,7 +13095,7 @@ components:
           description: Environment variables for the PTY session
           example:
             TERM: xterm-256color
-            PS1: '\u@daytona:\w$ '
+            PS1: '\u@nightona:\w$ '
           type: object
         cols:
           description: Number of terminal columns
@@ -13137,7 +13137,7 @@ components:
           lazyStart: false
           envs:
             TERM: xterm-256color
-            PS1: '\u@daytona:\w$ '
+            PS1: '\u@nightona:\w$ '
           active: true
           id: pty-session-12345
           rows: 24
@@ -13147,7 +13147,7 @@ components:
           lazyStart: false
           envs:
             TERM: xterm-256color
-            PS1: '\u@daytona:\w$ '
+            PS1: '\u@nightona:\w$ '
           active: true
           id: pty-session-12345
           rows: 24
@@ -13167,7 +13167,7 @@ components:
         lazyStart: false
         envs:
           TERM: xterm-256color
-          PS1: '\u@daytona:\w$ '
+          PS1: '\u@nightona:\w$ '
         id: pty-session-12345
         rows: 24
         cols: 80
@@ -13185,7 +13185,7 @@ components:
           description: Environment variables for the PTY session
           example:
             TERM: xterm-256color
-            PS1: '\u@daytona:\w$ '
+            PS1: '\u@nightona:\w$ '
           type: object
         cols:
           description: Number of terminal columns
@@ -15142,7 +15142,7 @@ components:
     StorageAccessDto:
       example:
         organizationId: 123e4567-e89b-12d3-a456-426614174000
-        bucket: daytona
+        bucket: nightona
         accessKey: temp-user-123
         sessionToken: eyJhbGciOiJIUzI1NiIs...
         secret: abchbGciOiJIUzI1NiIs...
@@ -15170,7 +15170,7 @@ components:
           type: string
         bucket:
           description: S3 bucket name
-          example: daytona
+          example: nightona
           type: string
       required:
       - accessKey

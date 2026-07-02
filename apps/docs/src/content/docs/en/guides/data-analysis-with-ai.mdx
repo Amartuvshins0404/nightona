@@ -1,6 +1,6 @@
 ---
 title: Analyze Data with AI
-description: Use Daytona to run AI-generated code for data analysis and visualization.
+description: Use Nightona to run AI-generated code for data analysis and visualization.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
@@ -8,7 +8,7 @@ import { Image } from 'astro:assets'
 
 import chartImage from '../../../../assets/docs/images/chart-0.png'
 
-You can use Daytona Sandbox to run AI-generated code to analyze data. Here's how the AI data analysis workflow typically looks:
+You can use Nightona Sandbox to run AI-generated code to analyze data. Here's how the AI data analysis workflow typically looks:
 
 1. Your user has a dataset in CSV format or other formats.
 2. You prompt the LLM to generate code (usually Python) based on the user's data.
@@ -18,9 +18,9 @@ You can use Daytona Sandbox to run AI-generated code to analyze data. Here's how
 
 ---
 
-## Build an AI Data Analyst with Daytona
+## Build an AI Data Analyst with Nightona
 
-This example shows how to build an AI-powered data analyst that automatically generates insights and visualizations from CSV data using Daytona's secure sandbox environment.
+This example shows how to build an AI-powered data analyst that automatically generates insights and visualizations from CSV data using Nightona's secure sandbox environment.
 
 **What we'll build:** A system that analyzes a vehicle valuation dataset, identifies price relation to manufacturing year, and generates professional visualizations - all through natural language prompts to Claude. The system uses an agentic loop that allows Claude to iteratively refine the code based on execution results.
 
@@ -28,19 +28,19 @@ This example shows how to build an AI-powered data analyst that automatically ge
 
 #### 1.1 Install Dependencies
 
-Install the Daytona SDK and Anthropic SDK to your project:
+Install the Nightona SDK and Anthropic SDK to your project:
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
-    `bash pip install daytona anthropic python-dotenv `
+    `bash pip install nightona anthropic python-dotenv `
   </TabItem>
 
   <TabItem label="TypeScript" icon="seti:typescript">
-    `bash npm install @daytona/sdk @anthropic-ai/sdk dotenv `
+    `bash npm install @nightona/sdk @anthropic-ai/sdk dotenv `
   </TabItem>
 
   <TabItem label="Ruby" icon="seti:ruby">
-    `bash gem install daytona anthropic dotenv `
+    `bash gem install nightona anthropic dotenv `
   </TabItem>
 </Tabs>
 
@@ -48,13 +48,13 @@ Install the Daytona SDK and Anthropic SDK to your project:
 
 Get your API keys and configure your environment:
 
-1. **Daytona API key:** Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+1. **Nightona API key:** Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 2. **Anthropic API key:** Get it from [Anthropic Console](https://console.anthropic.com/)
 
 Create a `.env` file in your project:
 
 ```bash
-DAYTONA_API_KEY=dtn_***
+NIGHTONA_API_KEY=dtn_***
 ANTHROPIC_API_KEY=sk-ant-***
 ```
 
@@ -70,25 +70,25 @@ Download the file and save it as `dataset.csv` in your project directory.
 
 #### 2.2 Initialize Sandbox
 
-Now create a [Daytona sandbox](/docs/en/sandboxes/#create-sandboxes) and upload your dataset:
+Now create a [Nightona sandbox](/docs/en/sandboxes/#create-sandboxes) and upload your dataset:
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
     ```python
     from dotenv import load_dotenv
-    from daytona import Daytona
+    from nightona import Nightona
     import os
 
     load_dotenv()
 
     # Create sandbox
 
-    daytona = Daytona() # The sandbox language is Python by default.
-    sandbox = daytona.create()
+    nightona = Nightona() # The sandbox language is Python by default.
+    sandbox = nightona.create()
 
     # Upload the dataset to the sandbox
 
-    sandbox.fs.upload_file("dataset.csv", "/home/daytona/dataset.csv")
+    sandbox.fs.upload_file("dataset.csv", "/home/nightona/dataset.csv")
 
     ```
   </TabItem>
@@ -96,35 +96,35 @@ Now create a [Daytona sandbox](/docs/en/sandboxes/#create-sandboxes) and upload 
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
     import 'dotenv/config'
-    import { Daytona } from '@daytona/sdk';
+    import { Nightona } from '@nightona/sdk';
 
     // Create sandbox
-    const daytona = new Daytona(); // The sandbox language is Python by default.
-    const sandbox = await daytona.create()
+    const nightona = new Nightona(); // The sandbox language is Python by default.
+    const sandbox = await nightona.create()
 
     // Upload the dataset to the sandbox
-    await sandbox.fs.uploadFile('dataset.csv', '/home/daytona/dataset.csv')
+    await sandbox.fs.uploadFile('dataset.csv', '/home/nightona/dataset.csv')
     ```
   </TabItem>
 
   <TabItem label="Ruby" icon="seti:ruby">
     ```ruby
-    require 'daytona'
+    require 'nightona'
     require 'dotenv/load'
 
     # Create sandbox
-    daytona = Daytona::Daytona.new # The sandbox language is Python by default.
-    sandbox = daytona.create
+    nightona = Nightona::Nightona.new # The sandbox language is Python by default.
+    sandbox = nightona.create
 
     # Upload the dataset to the sandbox
-    sandbox.fs.upload_file(File.read('dataset.csv'), '/home/daytona/dataset.csv')
+    sandbox.fs.upload_file(File.read('dataset.csv'), '/home/nightona/dataset.csv')
     ```
   </TabItem>
 </Tabs>
 
 ### 3. Building the AI Data Analyst
 
-Now we'll create the core functionality that connects Claude with Daytona to analyze data and generate visualizations.
+Now we'll create the core functionality that connects Claude with Nightona to analyze data and generate visualizations.
 
 #### 3.1 Code Execution Handler
 
@@ -168,7 +168,7 @@ First, let's create a function to handle code execution and chart extraction. Th
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
     import fs from 'fs'
-    import { Sandbox } from '@daytona/sdk'
+    import { Sandbox } from '@nightona/sdk'
 
     interface ExecutionResult {
       stdout: string
@@ -221,7 +221,7 @@ Next, we'll create the prompt that tells Claude about our dataset and what analy
     from anthropic import Anthropic
 
     prompt = f"""
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle
@@ -243,7 +243,7 @@ Next, we'll create the prompt that tells Claude about our dataset and what analy
     import Anthropic from '@anthropic-ai/sdk'
 
     const prompt = `
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle
@@ -539,10 +539,10 @@ This approach allows Claude to:
 
 **Key advantages of this approach:**
 
-- **Secure execution:** Code runs in isolated Daytona sandboxes
+- **Secure execution:** Code runs in isolated Nightona sandboxes
 - **Automatic artifact capture:** Charts, tables, and outputs are automatically extracted
 - **Error handling:** Built-in error detection and logging
-- **Language agnostic:** While we used Python here, Daytona supports multiple languages
+- **Language agnostic:** While we used Python here, Nightona supports multiple languages
 
 ### 4. Running Your Analysis
 
@@ -575,7 +575,7 @@ Here are the complete, ready-to-run examples with the agentic loop:
     ```python
     import base64
     from dotenv import load_dotenv
-    from daytona import Daytona, Sandbox
+    from nightona import Nightona, Sandbox
     from anthropic import Anthropic
     from typing import TypedDict
 
@@ -590,14 +590,14 @@ Here are the complete, ready-to-run examples with the agentic loop:
         load_dotenv()
 
         # Create sandbox
-        daytona = Daytona()
-        sandbox = daytona.create()
+        nightona = Nightona()
+        sandbox = nightona.create()
 
         # Upload the dataset to the sandbox
-        sandbox.fs.upload_file("dataset.csv", "/home/daytona/dataset.csv")
+        sandbox.fs.upload_file("dataset.csv", "/home/nightona/dataset.csv")
 
         initial_prompt = """
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle
@@ -746,7 +746,7 @@ Here are the complete, ready-to-run examples with the agentic loop:
     import "dotenv/config";
     import fs from "fs";
     import Anthropic from "@anthropic-ai/sdk";
-    import { Daytona, Sandbox } from "@daytona/sdk";
+    import { Nightona, Sandbox } from "@nightona/sdk";
     import type {
       MessageParam,
       Tool,
@@ -765,14 +765,14 @@ Here are the complete, ready-to-run examples with the agentic loop:
 
     async function main() {
       // Create sandbox
-      const daytona = new Daytona();
-      const sandbox = await daytona.create();
+      const nightona = new Nightona();
+      const sandbox = await nightona.create();
 
       // Upload the dataset to the sandbox
-      await sandbox.fs.uploadFile("dataset.csv", "/home/daytona/dataset.csv");
+      await sandbox.fs.uploadFile("dataset.csv", "/home/nightona/dataset.csv");
 
       const initialPrompt = `
-    I have a CSV file with vehicle valuations saved in the sandbox at /home/daytona/dataset.csv.
+    I have a CSV file with vehicle valuations saved in the sandbox at /home/nightona/dataset.csv.
 
     Relevant columns:
     - 'year': integer, the manufacturing year of the vehicle

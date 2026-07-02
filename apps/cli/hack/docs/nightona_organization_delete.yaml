@@ -1,0 +1,9 @@
+name: nightona organization delete
+synopsis: Delete an organization
+usage: nightona organization delete [ORGANIZATION] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona organization - Manage Nightona organizations

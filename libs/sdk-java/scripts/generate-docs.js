@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 const fs = require('fs')
 const path = require('path')
 
-const SDK_SOURCE_DIR = path.resolve(__dirname, '../src/main/java/io/daytona/sdk')
+const SDK_SOURCE_DIR = path.resolve(__dirname, '../src/main/java/io/nightona/sdk')
 const DOCS_OUTPUT_DIR = path.resolve(__dirname, '../../../apps/docs/src/content/docs/en/java-sdk')
 
 const DOC_TARGETS = [
-  { outputFile: 'daytona.mdx', logName: 'Daytona', classes: [{ file: 'Daytona.java', className: 'Daytona' }] },
+  { outputFile: 'nightona.mdx', logName: 'Nightona', classes: [{ file: 'Nightona.java', className: 'Nightona' }] },
   {
     outputFile: 'config.mdx',
-    logName: 'DaytonaConfig',
-    classes: [{ file: 'DaytonaConfig.java', className: 'DaytonaConfig', includeInner: ['Builder'] }],
+    logName: 'NightonaConfig',
+    classes: [{ file: 'NightonaConfig.java', className: 'NightonaConfig', includeInner: ['Builder'] }],
   },
   { outputFile: 'sandbox.mdx', logName: 'Sandbox', classes: [{ file: 'Sandbox.java', className: 'Sandbox' }] },
   {
@@ -76,17 +76,17 @@ const DOC_TARGETS = [
     logName: 'Exception Classes',
     title: 'Errors',
     classes: [
-      { file: 'exception/DaytonaException.java', className: 'DaytonaException' },
-      { file: 'exception/DaytonaAuthenticationException.java', className: 'DaytonaAuthenticationException' },
-      { file: 'exception/DaytonaBadRequestException.java', className: 'DaytonaBadRequestException' },
-      { file: 'exception/DaytonaConflictException.java', className: 'DaytonaConflictException' },
-      { file: 'exception/DaytonaConnectionException.java', className: 'DaytonaConnectionException' },
-      { file: 'exception/DaytonaForbiddenException.java', className: 'DaytonaForbiddenException' },
-      { file: 'exception/DaytonaNotFoundException.java', className: 'DaytonaNotFoundException' },
-      { file: 'exception/DaytonaRateLimitException.java', className: 'DaytonaRateLimitException' },
-      { file: 'exception/DaytonaServerException.java', className: 'DaytonaServerException' },
-      { file: 'exception/DaytonaTimeoutException.java', className: 'DaytonaTimeoutException' },
-      { file: 'exception/DaytonaValidationException.java', className: 'DaytonaValidationException' },
+      { file: 'exception/NightonaException.java', className: 'NightonaException' },
+      { file: 'exception/NightonaAuthenticationException.java', className: 'NightonaAuthenticationException' },
+      { file: 'exception/NightonaBadRequestException.java', className: 'NightonaBadRequestException' },
+      { file: 'exception/NightonaConflictException.java', className: 'NightonaConflictException' },
+      { file: 'exception/NightonaConnectionException.java', className: 'NightonaConnectionException' },
+      { file: 'exception/NightonaForbiddenException.java', className: 'NightonaForbiddenException' },
+      { file: 'exception/NightonaNotFoundException.java', className: 'NightonaNotFoundException' },
+      { file: 'exception/NightonaRateLimitException.java', className: 'NightonaRateLimitException' },
+      { file: 'exception/NightonaServerException.java', className: 'NightonaServerException' },
+      { file: 'exception/NightonaTimeoutException.java', className: 'NightonaTimeoutException' },
+      { file: 'exception/NightonaValidationException.java', className: 'NightonaValidationException' },
     ],
   },
 ]
@@ -446,7 +446,7 @@ function buildClassDoc(classData) {
   lines.push(`## ${classData.className}`)
   lines.push('')
 
-  const classDescription = classData.javadoc.description || `${classData.className} class for Daytona SDK.`
+  const classDescription = classData.javadoc.description || `${classData.className} class for Nightona SDK.`
   lines.push(classDescription)
   lines.push('')
 

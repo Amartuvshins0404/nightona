@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -43,7 +43,7 @@ import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { handleApiError } from '@/lib/error-handling'
 import { EMPTY_REGIONS } from '@/lib/regions'
 import { getMaskedToken } from '@/lib/utils'
-import { OrganizationRolePermissionsEnum, Region, SnapshotManagerCredentials } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum, Region, SnapshotManagerCredentials } from '@nightona/api-client'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CheckIcon, CopyIcon, EyeIcon, EyeOffIcon, InfoIcon, PlusIcon } from 'lucide-react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'

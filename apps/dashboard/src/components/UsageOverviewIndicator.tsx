@@ -1,10 +1,10 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { cn } from '@/lib/utils'
-import { RegionUsageOverview } from '@daytona/api-client/src'
+import { RegionUsageOverview } from '@nightona/api-client/src'
 
 export function UsageOverviewIndicator({
   usage,

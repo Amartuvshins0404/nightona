@@ -1,21 +1,21 @@
 ---
-title: Run OpenCode with the Daytona Plugin
-description: Use the Daytona OpenCode plugin to run each OpenCode session in a Daytona sandbox, with automatic git sync to local branches.
+title: Run OpenCode with the Nightona Plugin
+description: Use the Nightona OpenCode plugin to run each OpenCode session in a Nightona sandbox, with automatic git sync to local branches.
 ---
 
 import { Image } from 'astro:assets'
 
 import opencodePluginGif from '../../../../../assets/docs/images/opencode-plugin.gif'
 
-This guide demonstrates how to run the [Daytona OpenCode plugin](https://www.npmjs.com/package/@daytona/opencode) which integrates Daytona sandboxes and OpenCode. When the plugin is active, all agent operations occur in secure sandboxes, with one sandbox per OpenCode session. The plugin also has the ability to sync changes between sandboxes and local Git branches.
+This guide demonstrates how to run the [Nightona OpenCode plugin](https://www.npmjs.com/package/@nightona/opencode) which integrates Nightona sandboxes and OpenCode. When the plugin is active, all agent operations occur in secure sandboxes, with one sandbox per OpenCode session. The plugin also has the ability to sync changes between sandboxes and local Git branches.
 
 ### 1. Workflow Overview
 
-When you run OpenCode with the Daytona plugin, sandboxes are created automatically inside OpenCode sessions. Operations such as running code, installing dependencies, and starting servers occur in the sandbox.
+When you run OpenCode with the Nightona plugin, sandboxes are created automatically inside OpenCode sessions. Operations such as running code, installing dependencies, and starting servers occur in the sandbox.
 
 <Image
   src={opencodePluginGif}
-  alt="OpenCode with Daytona plugin — sandbox toast and git branches"
+  alt="OpenCode with Nightona plugin — sandbox toast and git branches"
   width={600}
   style="max-width: 100%; height: auto; margin: 1rem 0;"
 />
@@ -26,12 +26,12 @@ Sandboxes are preserved until you delete the OpenCode session. If a local Git re
 
 #### Add the Plugin
 
-Add the Daytona plugin to your project by creating or editing `opencode.json` in the project directory:
+Add the Nightona plugin to your project by creating or editing `opencode.json` in the project directory:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["@daytona/opencode"]
+  "plugin": ["@nightona/opencode"]
 }
 ```
 
@@ -39,18 +39,18 @@ OpenCode downloads the plugin automatically when it starts. To install the plugi
 
 #### Configure Environment
 
-This plugin requires a [Daytona account](https://www.daytona.io/) and [Daytona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
+This plugin requires a [Nightona account](https://www.daytona.io/) and [Nightona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
 
 Set your API key:
 
 ```bash
-export DAYTONA_API_KEY="your-api-key"
+export NIGHTONA_API_KEY="your-api-key"
 ```
 
 Or create a `.env` file in your project root:
 
 ```env
-DAYTONA_API_KEY=your-api-key
+NIGHTONA_API_KEY=your-api-key
 ```
 
 #### Run OpenCode
@@ -68,12 +68,12 @@ opencode
 
 You can now use OpenCode as usual. As you work, you will see notifications in OpenCode indicating sandboxes are being created and changes are being synced to local branches.
 
-To confirm the plugin is working, type `pwd` in the chat and you should see a path like `/home/daytona/project`.
+To confirm the plugin is working, type `pwd` in the chat and you should see a path like `/home/nightona/project`.
 
 To view live logs from the plugin for debugging:
 
 ```bash
-tail -f ~/.local/share/opencode/log/daytona.log
+tail -f ~/.local/share/opencode/log/nightona.log
 ```
 
 #### Version control
@@ -96,7 +96,7 @@ You can run as many OpenCode sessions in parallel as you want. Use Git to review
 
 ### 3. Understanding the Plugin Architecture
 
-The Daytona plugin consists of several modules that provide custom tools, hooks for events, connections from sessions to sandboxes and system prompt transforms. These modules ensure every agent action runs in a [Daytona sandbox](/docs/en/sandboxes) and that changes sync to local Git branches:
+The Nightona plugin consists of several modules that provide custom tools, hooks for events, connections from sessions to sandboxes and system prompt transforms. These modules ensure every agent action runs in a [Nightona sandbox](/docs/en/sandboxes) and that changes sync to local Git branches:
 
 - **Custom tools:** Overrides bash, read, write, edit, etc., so they run in the sandbox.
 - **System prompt transform:** Injects sandbox path and instructions into the agent's system prompt.
@@ -105,11 +105,11 @@ The Daytona plugin consists of several modules that provide custom tools, hooks 
 
 #### Custom tools
 
-The custom tools module registers overrides for OpenCode's built-in tools so that every file and process operation goes through the Daytona SDK. It receives the project `id` and `worktree` from the plugin context and returns a tool map:
+The custom tools module registers overrides for OpenCode's built-in tools so that every file and process operation goes through the Nightona SDK. It receives the project `id` and `worktree` from the plugin context and returns a tool map:
 
 ```typescript
-export async function customTools(ctx: PluginInput, sessionManager: DaytonaSessionManager) {
-  logger.info('OpenCode started with Daytona plugin')
+export async function customTools(ctx: PluginInput, sessionManager: NightonaSessionManager) {
+  logger.info('OpenCode started with Nightona plugin')
   const projectId = ctx.project.id
   const worktree = ctx.project.worktree
   return {
@@ -119,7 +119,7 @@ export async function customTools(ctx: PluginInput, sessionManager: DaytonaSessi
 }
 ```
 
-For example, the plugin implementation of the bash tool uses the Daytona SDK to run the command in the sandbox:
+For example, the plugin implementation of the bash tool uses the Nightona SDK to run the command in the sandbox:
 
 ```typescript
 async execute(args: { command: string; background?: boolean }, ctx: ToolContext) {
@@ -151,8 +151,8 @@ export async function systemPromptTransform(ctx: PluginInput, repoPath: string) 
   return async (input: ExperimentalChatSystemTransformInput, output: ExperimentalChatSystemTransformOutput) => {
     output.system.push(
       [
-        '## Daytona Sandbox Integration',
-        'This session is integrated with a Daytona sandbox.',
+        '## Nightona Sandbox Integration',
+        'This session is integrated with a Nightona sandbox.',
         `The main project repository is located at: ${repoPath}.`,
         'Bash commands will run in this directory.',
         'Put all projects in the project directory. Do NOT try to use the current working directory of the host system.',
@@ -169,7 +169,7 @@ export async function systemPromptTransform(ctx: PluginInput, repoPath: string) 
 The session events handler listens for OpenCode session lifecycle events and handles them appropriately. When you delete a session, the handler cleans up the corresponding sandbox. When a session becomes idle, it triggers auto-commit and sync:
 
 ```typescript
-export async function eventHandlers(ctx: PluginInput, sessionManager: DaytonaSessionManager, repoPath: string) {
+export async function eventHandlers(ctx: PluginInput, sessionManager: NightonaSessionManager, repoPath: string) {
   const projectId = ctx.project.id
   const worktree = ctx.project.worktree
   return async (args: any) => {
@@ -200,7 +200,7 @@ While OpenCode is in use, the plugin uses Git to keep session sandboxes and your
 4. Your current `HEAD` is pushed to `opencode`, and the sandbox repo is reset to that state.
 5. On session idle, the plugin commits in the sandbox on `opencode`, then pulls into a local branch (`opencode/1`, `opencode/2`, etc.) which is unique to each sandbox. A notification is shown when the sync is complete.
 
-For more information on how the sync is implemented, see the [SessionGitManager](https://github.com/daytonaio/daytona/blob/main/libs/opencode-plugin/.opencode/plugin/daytona/git/session-git-manager.ts) class.
+For more information on how the sync is implemented, see the [SessionGitManager](https://github.com/Amartuvshins0404/nightona/blob/main/libs/opencode-plugin/.opencode/plugin/nightona/git/session-git-manager.ts) class.
 
 :::caution
 When the plugin syncs to local `opencode` branches, any local changes on those branches are overwritten.
@@ -210,14 +210,14 @@ When the plugin syncs to local `opencode` branches, any local changes on those b
 
 The session manager stores which sandbox belongs to each project in JSON files (using the same base path as OpenCode via `xdg-basedir`).
 
-- **macOS:** `~/.local/share/opencode/storage/daytona/[projectid].json`
-- **Windows:** `%LOCALAPPDATA%\opencode\storage\daytona\[projectid].json`
+- **macOS:** `~/.local/share/opencode/storage/nightona/[projectid].json`
+- **Windows:** `%LOCALAPPDATA%\opencode\storage\nightona\[projectid].json`
 
 Each file holds sandbox metadata for that project's sessions so that sandboxes are retained between OpenCode uses.
 
 **Key advantages:**
 
-- Secure, isolated execution: each OpenCode session runs in its own Daytona sandbox
+- Secure, isolated execution: each OpenCode session runs in its own Nightona sandbox
 - Sandboxes persist until you delete the OpenCode session
 - Live [preview links](/docs/en/preview/) when a server starts in the sandbox
 - Automatic git sync to local branches so you can review and merge agent changes

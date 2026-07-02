@@ -5,7 +5,7 @@ description: Interact with your sandboxes using a browser-based web terminal.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona provides a browser-based web terminal for interacting with your sandboxes. The web terminal allows you to run commands, view files, and debug directly from your browser without installing any local tools.
+Nightona provides a browser-based web terminal for interacting with your sandboxes. The web terminal allows you to run commands, view files, and debug directly from your browser without installing any local tools.
 
 - **Remote command execution**: run shell commands directly in your sandbox
 - **File management**: navigate the file system, view and edit files
@@ -14,7 +14,7 @@ Daytona provides a browser-based web terminal for interacting with your sandboxe
 
 ## Access from Dashboard
 
-Access the web terminal directly from the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/sandboxes).
+Access the web terminal directly from the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/sandboxes).
 
 1. Navigate to [Sandboxes ↗](https://app.daytona.io/dashboard/sandboxes)
 2. Locate the running sandbox you want to access
@@ -24,18 +24,18 @@ This opens the web terminal in a new browser tab, providing a full terminal sess
 
 ## Access via CLI
 
-When you create a sandbox using the Daytona CLI, the web terminal URL is displayed automatically in the output.
+When you create a sandbox using the Nightona CLI, the web terminal URL is displayed automatically in the output.
 
 ```shell
-daytona create
+nightona create
 ```
 
 The CLI output includes the terminal URL:
 
 ```text
 Sandbox '<sandboxId>' created successfully
-Connect via SSH:         daytona ssh <sandboxId>
-Open the Web Terminal:   https://22222-<sandboxId>.proxy.daytona.work
+Connect via SSH:         nightona ssh <sandboxId>
+Open the Web Terminal:   https://22222-<sandboxId>.proxy.nightona.work
 ```
 
 ## Access via URL
@@ -79,7 +79,7 @@ url, err := sandbox.GetPreviewLink(ctx, 22222)
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona preview-url <sandbox-name> --port 22222
+nightona preview-url <sandbox-name> --port 22222
 ```
 
 </TabItem>

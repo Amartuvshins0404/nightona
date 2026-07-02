@@ -1,10 +1,10 @@
-from daytona import CreateSandboxFromImageParams, Daytona, Image, LspCompletionPosition
+from nightona import CreateSandboxFromImageParams, Nightona, Image, LspCompletionPosition
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
-    sandbox = daytona.create(
+    sandbox = nightona.create(
         CreateSandboxFromImageParams(
             image=(
                 Image.base("ubuntu:25.10").run_commands(
@@ -61,7 +61,7 @@ def main():
         print("Error executing example:", error)
     finally:
         # Cleanup
-        daytona.delete(sandbox)
+        nightona.delete(sandbox)
 
 
 if __name__ == "__main__":

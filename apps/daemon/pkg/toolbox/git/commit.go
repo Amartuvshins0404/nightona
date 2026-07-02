@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package git
@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	"github.com/daytonaio/daemon/pkg/git"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/git"
 	"github.com/gin-gonic/gin"
 	go_git "github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing/object"

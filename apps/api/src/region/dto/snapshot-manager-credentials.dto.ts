@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,7 +10,7 @@ import { IsString, IsNotEmpty } from 'class-validator'
 export class SnapshotManagerCredentialsDto {
   @ApiProperty({
     description: 'Snapshot Manager username for the region',
-    example: 'daytona',
+    example: 'nightona',
   })
   @IsString()
   @IsNotEmpty()

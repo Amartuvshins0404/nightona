@@ -1,11 +1,11 @@
-from daytona import Daytona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
+from nightona import Nightona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
     print("Creating sandbox")
-    sandbox = daytona.create()
+    sandbox = nightona.create()
     print("Sandbox created")
 
     _ = sandbox.set_labels(
@@ -15,24 +15,24 @@ def main():
     )
 
     print("Stopping sandbox")
-    daytona.stop(sandbox)
+    nightona.stop(sandbox)
     print("Sandbox stopped")
 
     print("Starting sandbox")
-    daytona.start(sandbox)
+    nightona.start(sandbox)
     print("Sandbox started")
 
     print("Getting existing sandbox")
-    existing_sandbox = daytona.get(sandbox.id)
+    existing_sandbox = nightona.get(sandbox.id)
     print("Get existing sandbox")
 
-    response = existing_sandbox.process.exec('echo "Hello World from exec!"', cwd="/home/daytona", timeout=10)
+    response = existing_sandbox.process.exec('echo "Hello World from exec!"', cwd="/home/nightona", timeout=10)
     if response.exit_code != 0:
         print(f"Error: {response.exit_code} {response.result}")
     else:
         print(response.result)
 
-    for sb in daytona.list(
+    for sb in nightona.list(
         ListSandboxesQuery(
             limit=10,
             labels={"env": "dev"},
@@ -44,7 +44,7 @@ def main():
         print(sb.id)
 
     print("Removing sandbox")
-    daytona.delete(sandbox)
+    nightona.delete(sandbox)
     print("Sandbox removed")
 
 

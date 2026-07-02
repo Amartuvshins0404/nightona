@@ -6,7 +6,7 @@ hideTitleOnPage: true
 
 ## Sandbox
 
-Represents a Daytona Sandbox.
+Represents a Nightona Sandbox.
 
 **Properties**:
 
@@ -47,7 +47,7 @@ Represents a Daytona Sandbox.
 - `process` _Process_ - Process execution interface
 - `public` _boolean_ - Whether the Sandbox is publicly accessible
 - `recoverable?` _boolean_ - Whether the Sandbox error is recoverable.
-- `snapshot?` _string_ - Daytona snapshot used to create the Sandbox
+- `snapshot?` _string_ - Nightona snapshot used to create the Sandbox
 - `state?` _SandboxState_ - Current state of the Sandbox (e.g., "started", "stopped")
 - `target` _string_ - Target location of the runner where the Sandbox runs
 - `toolboxProxyUrl` _string_
@@ -120,7 +120,7 @@ used to create new Sandboxes. The Sandbox will temporarily enter a
 **Example:**
 
 ```ts
-const sandbox = await daytona.get('my-sandbox');
+const sandbox = await nightona.get('my-sandbox');
 await sandbox._experimental_createSnapshot('my-snapshot');
 console.log('Snapshot created successfully');
 ```
@@ -161,7 +161,7 @@ with the same disk contents but operates independently from that point on.
 **Example:**
 
 ```ts
-const sandbox = await daytona.get('my-sandbox');
+const sandbox = await nightona.get('my-sandbox');
 const forked = await sandbox._experimental_fork({ name: 'my-fork' });
 console.log(`Forked sandbox: ${forked.id}`);
 ```
@@ -412,7 +412,7 @@ not consume CPU cycles.
 **Example:**
 
 ```ts
-const sandbox = await daytona.get('my-sandbox');
+const sandbox = await nightona.get('my-sandbox');
 await sandbox.pause();
 console.log('Sandbox paused successfully');
 ```
@@ -439,12 +439,12 @@ Recover the Sandbox from a recoverable error and wait for it to be ready.
 
 **Throws**:
 
-- `DaytonaError` - If Sandbox fails to recover or times out
+- `NightonaError` - If Sandbox fails to recover or times out
 
 **Example:**
 
 ```ts
-const sandbox = await daytona.get('my-sandbox-id');
+const sandbox = await nightona.get('my-sandbox-id');
 await sandbox.recover();
 console.log('Sandbox recovered successfully');
 ```
@@ -579,7 +579,7 @@ The Sandbox will automatically archive after being continuously stopped for the 
 
 **Throws**:
 
-- `DaytonaError` - If interval is not a non-negative integer
+- `NightonaError` - If interval is not a non-negative integer
 
 **Example:**
 
@@ -650,7 +650,7 @@ Interactions using Sandbox Previews are not included.
 
 **Throws**:
 
-- `DaytonaError` - If interval is not a non-negative integer
+- `NightonaError` - If interval is not a non-negative integer
 
 **Example:**
 
@@ -717,12 +717,12 @@ This method starts the Sandbox and waits for it to be ready.
 
 **Throws**:
 
-- `DaytonaError` - If Sandbox fails to start or times out
+- `NightonaError` - If Sandbox fails to start or times out
 
 **Example:**
 
 ```ts
-const sandbox = await daytona.getCurrentSandbox('my-sandbox');
+const sandbox = await nightona.getCurrentSandbox('my-sandbox');
 await sandbox.start(40);  // Wait up to 40 seconds
 console.log('Sandbox started successfully');
 ```
@@ -753,7 +753,7 @@ This method stops the Sandbox and waits for it to be fully stopped.
 **Example:**
 
 ```ts
-const sandbox = await daytona.get('my-sandbox-id');
+const sandbox = await nightona.get('my-sandbox-id');
 await sandbox.stop();
 console.log('Sandbox stopped successfully');
 ```
@@ -863,7 +863,7 @@ or encounters an error.
 
 **Throws**:
 
-- `DaytonaError` - If the sandbox ends up in an error state or fails to start within the timeout period.
+- `NightonaError` - If the sandbox ends up in an error state or fails to start within the timeout period.
 
 ***
 
@@ -890,7 +890,7 @@ or encounters an error.
 
 **Throws**:
 
-- `DaytonaError` - If the sandbox fails to stop within the timeout period.
+- `NightonaError` - If the sandbox fails to stop within the timeout period.
 ## ListSandboxesQuery
 
 **Properties**:

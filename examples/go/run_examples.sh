@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 # Find all example main.go files
 examples=$(find ./ -name "main.go" -type f | sort)
 
-echo -e "${BLUE}Running all examples with DAYTONA_API_KEY${NC}"
+echo -e "${BLUE}Running all examples with NIGHTONA_API_KEY${NC}"
 echo "================================================"
 echo ""
 

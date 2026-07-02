@@ -18,7 +18,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 
 RUN apk add --no-cache git
 
-WORKDIR /daytona
+WORKDIR /nightona
 
 # Yarn caching layer
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -35,7 +35,7 @@ COPY libs/common-go/go.mod libs/common-go/go.sum libs/common-go/
 RUN head -1 go.work > go.work.tmp && printf '\nuse (\n\t./apps/otel-collector/exporter\n\t./libs/api-client-go\n\t./libs/common-go\n)\n' >> go.work.tmp && mv go.work.tmp go.work
 
 ENV NX_DAEMON=false
-ENV GONOSUMDB=github.com/daytonaio/daytona
+ENV GONOSUMDB=github.com/Amartuvshins0404/nightona
 
 RUN go -C apps/otel-collector/exporter mod download && \
     go -C libs/api-client-go mod download && \
@@ -56,10 +56,10 @@ RUN apk update && apk upgrade --no-cache openssl pcre2 \
 
 WORKDIR /usr/local/bin
 
-COPY --from=build /daytona/dist/apps/otel-collector/daytona-otel-collector daytona-otel-collector
-COPY --from=build /daytona/apps/otel-collector/config.yaml /otelcol/collector-config.yaml
+COPY --from=build /nightona/dist/apps/otel-collector/nightona-otel-collector nightona-otel-collector
+COPY --from=build /nightona/apps/otel-collector/config.yaml /otelcol/collector-config.yaml
 
-RUN chmod +x daytona-otel-collector
+RUN chmod +x nightona-otel-collector
 
 HEALTHCHECK CMD [ "curl", "-f", "http://localhost:13133/health/status" ]
 
@@ -68,6 +68,6 @@ EXPOSE 4318
 EXPOSE 13133
 EXPOSE 8888
 
-ENTRYPOINT ["daytona-otel-collector"]
+ENTRYPOINT ["nightona-otel-collector"]
 
 CMD ["--config", "/otelcol/collector-config.yaml"]

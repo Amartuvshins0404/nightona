@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package runner
@@ -9,13 +9,13 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/daytonaio/runner/internal/metrics"
-	"github.com/daytonaio/runner/pkg/cache"
-	"github.com/daytonaio/runner/pkg/docker"
-	"github.com/daytonaio/runner/pkg/models"
-	"github.com/daytonaio/runner/pkg/netrules"
-	"github.com/daytonaio/runner/pkg/services"
-	"github.com/daytonaio/runner/pkg/sshgateway"
+	"github.com/Amartuvshins0404/nightona/apps/runner/internal/metrics"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/cache"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/docker"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/netrules"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/services"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/sshgateway"
 )
 
 type RunnerInstanceConfig struct {

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/daytonaio/runner/pkg/netrules"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/netrules"
 	"github.com/docker/docker/api/types/events"
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/client"
@@ -174,10 +174,10 @@ func (dm *DockerMonitor) handleContainerEvent(event events.Message) {
 
 // reconcileNetworkRules is called when reconnection is established
 func (dm *DockerMonitor) reconcileNetworkRules(table string, chain string) {
-	// List all DOCKER-USER rules that jump to Daytona chains
-	rules, err := dm.netRulesManager.ListDaytonaRules(table, chain)
+	// List all DOCKER-USER rules that jump to Nightona chains
+	rules, err := dm.netRulesManager.ListNightonaRules(table, chain)
 	if err != nil {
-		dm.log.Error("Error listing Daytona rules", "error", err)
+		dm.log.Error("Error listing Nightona rules", "error", err)
 		return
 	}
 
@@ -205,8 +205,8 @@ func (dm *DockerMonitor) reconcileNetworkRules(table string, chain string) {
 			continue
 		}
 
-		// Extract container ID from chain name (remove DAYTONA-SB- prefix)
-		containerID := strings.TrimPrefix(chainName, "DAYTONA-SB-")
+		// Extract container ID from chain name (remove NIGHTONA-SB- prefix)
+		containerID := strings.TrimPrefix(chainName, "NIGHTONA-SB-")
 		if containerID == chainName {
 			dm.log.Warn("Invalid chain name format", "chainName", chainName)
 			continue
@@ -249,16 +249,16 @@ func (dm *DockerMonitor) reconcileNetworkRules(table string, chain string) {
 
 // reconcileChains removes orphaned chains for non-existent containers
 func (dm *DockerMonitor) reconcileChains(table string) {
-	// List all chains that start with DAYTONA-SB-
-	chains, err := dm.netRulesManager.ListDaytonaChains(table)
+	// List all chains that start with NIGHTONA-SB-
+	chains, err := dm.netRulesManager.ListNightonaChains(table)
 	if err != nil {
-		dm.log.Error("Error listing Daytona chains", "error", err)
+		dm.log.Error("Error listing Nightona chains", "error", err)
 		return
 	}
 
 	for _, chain := range chains {
-		// Extract container ID from chain name (remove DAYTONA-SB- prefix)
-		containerID := strings.TrimPrefix(chain, "DAYTONA-SB-")
+		// Extract container ID from chain name (remove NIGHTONA-SB- prefix)
+		containerID := strings.TrimPrefix(chain, "NIGHTONA-SB-")
 		if containerID == chain {
 			dm.log.Warn("Invalid chain name format", "chain", chain)
 			continue

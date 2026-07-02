@@ -1,9 +1,9 @@
-import { Daytona, SandboxListSortDirection, SandboxListSortField, SandboxState } from '@daytona/sdk'
+import { Nightona, SandboxListSortDirection, SandboxListSortField, SandboxState } from '@nightona/sdk'
 
 async function main() {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
-  for await (const sandbox of daytona.list({
+  for await (const sandbox of nightona.list({
     limit: 10,
     labels: { env: 'dev' },
     states: [SandboxState.STARTED],

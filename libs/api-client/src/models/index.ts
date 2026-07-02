@@ -33,7 +33,7 @@ export * from './create-session-request';
 export * from './create-snapshot';
 export * from './create-user';
 export * from './create-volume';
-export * from './daytona-configuration';
+export * from './nightona-configuration';
 export * from './display-info-response';
 export * from './docker-registry';
 export * from './download-files';

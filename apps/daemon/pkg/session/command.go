@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package session
@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
 )
 
 func (s *SessionService) getSessionCommands(sessionId string) ([]*Command, error) {

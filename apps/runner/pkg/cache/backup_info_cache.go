@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package cache
@@ -7,10 +7,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/daytonaio/runner/pkg/models"
-	"github.com/daytonaio/runner/pkg/models/enums"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models/enums"
 
-	common_cache "github.com/daytonaio/common-go/pkg/cache"
+	common_cache "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/cache"
 )
 
 type BackupInfoCache struct {

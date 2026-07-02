@@ -11,7 +11,7 @@ class AsyncComputerUse()
 
 デスクトップ環境と対話するためのコンピューター操作（Computer Use）機能。
 
-サンドボックス（Daytonaが管理する隔離された一時的な実行環境）内でのデスクトップ操作自動化のために、マウス、キーボード、スクリーンショット、ディスプレイの各操作にアクセスできます。
+サンドボックス（Nightonaが管理する隔離された一時的な実行環境）内でのデスクトップ操作自動化のために、マウス、キーボード、スクリーンショット、ディスプレイの各操作にアクセスできます。
 
 **属性**:
 
@@ -373,7 +373,7 @@ async def type(text: str, delay: Optional[int] = None) -> None
 
 **Raises**:
 
-- `DaytonaError` - 入力処理に失敗した場合。
+- `NightonaError` - 入力処理に失敗した場合。
   
 
 **Example**:
@@ -410,7 +410,7 @@ async def press(key: str, modifiers: Optional[List[str]] = None) -> None
 
 **Raises**:
 
-- `DaytonaError` - キー押下処理に失敗した場合。
+- `NightonaError` - キー押下処理に失敗した場合。
   
 
 **Example**:
@@ -452,7 +452,7 @@ async def hotkey(keys: str) -> None
 
 **Raises**:
 
-- `DaytonaError` - ホットキー処理に失敗した場合。
+- `NightonaError` - ホットキー処理に失敗した場合。
   
 
 **Example**:

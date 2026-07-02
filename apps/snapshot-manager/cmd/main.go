@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -12,9 +12,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/daytonaio/snapshot-manager/internal/config"
-	"github.com/daytonaio/snapshot-manager/internal/logger"
-	"github.com/daytonaio/snapshot-manager/internal/server"
+	"github.com/Amartuvshins0404/nightona/apps/snapshot-manager/internal/config"
+	"github.com/Amartuvshins0404/nightona/apps/snapshot-manager/internal/logger"
+	"github.com/Amartuvshins0404/nightona/apps/snapshot-manager/internal/server"
 )
 
 func main() {
@@ -55,5 +55,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	log.Info("Daytona Snapshot manager stopped")
+	log.Info("Nightona Snapshot manager stopped")
 }

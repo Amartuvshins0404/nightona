@@ -5,7 +5,7 @@ hideTitleOnPage: true
 
 ## Sandbox
 
-Represents a Daytona Sandbox instance.
+Represents a Nightona Sandbox instance.
 
 Exposes lifecycle controls and operation facades for process execution, file-system access,
 and Git.
@@ -45,7 +45,7 @@ Starts this Sandbox with default timeout.
 
 **Throws**:
 
-- `DaytonaException` - if the Sandbox fails to start
+- `NightonaException` - if the Sandbox fails to start
 
 #### start()
 ```java
@@ -60,7 +60,7 @@ Starts this Sandbox and waits for readiness.
 
 **Throws**:
 
-- `DaytonaException` - if start fails or times out
+- `NightonaException` - if start fails or times out
 
 #### stop()
 ```java
@@ -71,7 +71,7 @@ Stops this Sandbox with default timeout.
 
 **Throws**:
 
-- `DaytonaException` - if the Sandbox fails to stop
+- `NightonaException` - if the Sandbox fails to stop
 
 #### stop()
 ```java
@@ -86,7 +86,7 @@ Stops this Sandbox and waits until fully stopped.
 
 **Throws**:
 
-- `DaytonaException` - if stop fails or times out
+- `NightonaException` - if stop fails or times out
 
 #### waitUntilStopped()
 ```java
@@ -101,7 +101,7 @@ Waits until Sandbox reaches `stopped` (or `destroyed`) state.
 
 **Throws**:
 
-- `DaytonaException` - if timeout is invalid, state becomes error, or timeout expires
+- `NightonaException` - if timeout is invalid, state becomes error, or timeout expires
 
 #### delete()
 ```java
@@ -112,7 +112,7 @@ Deletes this Sandbox with default timeout behavior.
 
 **Throws**:
 
-- `DaytonaException` - if deletion fails
+- `NightonaException` - if deletion fails
 
 #### delete()
 ```java
@@ -127,7 +127,7 @@ Deletes this Sandbox.
 
 **Throws**:
 
-- `DaytonaException` - if deletion fails
+- `NightonaException` - if deletion fails
 
 #### setLabels()
 ```java
@@ -146,7 +146,7 @@ Replaces Sandbox labels.
 
 **Throws**:
 
-- `DaytonaException` - if label update fails
+- `NightonaException` - if label update fails
 
 #### setAutostopInterval()
 ```java
@@ -161,7 +161,7 @@ Sets Sandbox auto-stop interval.
 
 **Throws**:
 
-- `DaytonaException` - if the update fails
+- `NightonaException` - if the update fails
 
 #### setAutoArchiveInterval()
 ```java
@@ -176,7 +176,7 @@ Sets Sandbox auto-archive interval.
 
 **Throws**:
 
-- `DaytonaException` - if the update fails
+- `NightonaException` - if the update fails
 
 #### setAutoDeleteInterval()
 ```java
@@ -191,7 +191,7 @@ Sets Sandbox auto-delete interval.
 
 **Throws**:
 
-- `DaytonaException` - if the update fails
+- `NightonaException` - if the update fails
 
 #### updateNetworkSettings()
 ```java
@@ -206,7 +206,7 @@ Updates outbound network policy on the runner (block all, restore access, or CID
 
 **Throws**:
 
-- `DaytonaException` - if the update fails
+- `NightonaException` - if the update fails
 
 #### getUserHomeDir()
 ```java
@@ -221,7 +221,7 @@ Returns home directory path for Sandbox user.
 
 **Throws**:
 
-- `DaytonaException` - if the request fails
+- `NightonaException` - if the request fails
 
 #### getWorkDir()
 ```java
@@ -236,7 +236,7 @@ Returns current working directory path.
 
 **Throws**:
 
-- `DaytonaException` - if the request fails
+- `NightonaException` - if the request fails
 
 #### waitUntilStarted()
 ```java
@@ -251,7 +251,7 @@ Waits until Sandbox reaches `started` state.
 
 **Throws**:
 
-- `DaytonaException` - if timeout is invalid, state becomes failure, or timeout expires
+- `NightonaException` - if timeout is invalid, state becomes failure, or timeout expires
 
 #### refreshData()
 ```java
@@ -259,11 +259,11 @@ public void refreshData()
 ```
 
 Refreshes local Sandbox fields from latest API state. After refresh, all fields
-— including those not returned by `Daytona#list` — are populated.
+— including those not returned by `Nightona#list` — are populated.
 
 **Throws**:
 
-- `DaytonaException` - if refresh fails
+- `NightonaException` - if refresh fails
 
 #### experimentalFork()
 ```java
@@ -279,7 +279,7 @@ Uses default timeout of 60 seconds.
 
 **Throws**:
 
-- `DaytonaException` - if the fork operation fails or times out
+- `NightonaException` - if the fork operation fails or times out
 
 #### experimentalFork()
 ```java
@@ -300,7 +300,7 @@ The forked Sandbox is a copy-on-write clone of the original.
 
 **Throws**:
 
-- `DaytonaException` - if the fork operation fails or times out
+- `NightonaException` - if the fork operation fails or times out
 
 #### experimentalCreateSnapshot()
 ```java
@@ -316,7 +316,7 @@ Uses default timeout of 60 seconds.
 
 **Throws**:
 
-- `DaytonaException` - if the snapshot operation fails
+- `NightonaException` - if the snapshot operation fails
 
 #### experimentalCreateSnapshot()
 ```java
@@ -333,11 +333,11 @@ The Sandbox will temporarily enter a 'snapshotting' state and return to its prev
 
 **Throws**:
 
-- `DaytonaException` - if the snapshot operation fails
+- `NightonaException` - if the snapshot operation fails
 
 #### pause()
 ```java
-public void pause() throws DaytonaException
+public void pause() throws NightonaException
 ```
 
 Pauses the Sandbox, freezing all running processes.
@@ -345,11 +345,11 @@ Uses default timeout of 60 seconds.
 
 **Throws**:
 
-- `DaytonaException` - if the pause operation fails
+- `NightonaException` - if the pause operation fails
 
 #### pause()
 ```java
-public void pause(long timeoutSeconds) throws DaytonaException
+public void pause(long timeoutSeconds) throws NightonaException
 ```
 
 Pauses the Sandbox, freezing all running processes.
@@ -361,7 +361,7 @@ The Sandbox will enter a 'pausing' state and transition to 'paused' when complet
 
 **Throws**:
 
-- `DaytonaException` - if timeout is negative or the operation fails/times out
+- `NightonaException` - if timeout is negative or the operation fails/times out
 
 #### getId()
 ```java
@@ -397,7 +397,7 @@ public String getSnapshot()
 
 **Returns**:
 
-- `String` - Daytona snapshot used to create this Sandbox, or `null` if none.
+- `String` - Nightona snapshot used to create this Sandbox, or `null` if none.
 
 #### getUser()
 ```java
@@ -577,7 +577,7 @@ public Map<String, String> getEnv()
 
 Returns Sandbox environment variables.
 
-Not returned by `Daytona#list`; call `#refreshData()` on each item to populate.
+Not returned by `Nightona#list`; call `#refreshData()` on each item to populate.
 
 **Returns**:
 
@@ -590,7 +590,7 @@ public Boolean getNetworkBlockAll()
 
 Returns whether all network access is blocked for this Sandbox.
 
-Not returned by `Daytona#list`; call `#refreshData()` on each item to populate.
+Not returned by `Nightona#list`; call `#refreshData()` on each item to populate.
 
 **Returns**:
 
@@ -603,7 +603,7 @@ public String getNetworkAllowList()
 
 Returns the comma-separated CIDR allow list, if any.
 
-Not returned by `Daytona#list`; call `#refreshData()` on each item to populate.
+Not returned by `Nightona#list`; call `#refreshData()` on each item to populate.
 
 **Returns**:
 
@@ -616,7 +616,7 @@ public String getDomainAllowList()
 
 Returns the comma-separated list of allowed domains, if any.
 
-Not returned by `Daytona#list`; call `#refreshData()` on each item to populate.
+Not returned by `Nightona#list`; call `#refreshData()` on each item to populate.
 
 **Returns**:
 
@@ -629,7 +629,7 @@ public List<SandboxVolume> getVolumes()
 
 Returns volumes attached to the Sandbox.
 
-Not returned by `Daytona#list`; call `#refreshData()` on each item to populate.
+Not returned by `Nightona#list`; call `#refreshData()` on each item to populate.
 
 **Returns**:
 
@@ -642,7 +642,7 @@ public BuildInfo getBuildInfo()
 
 Returns build information if the Sandbox was created from a dynamic build.
 
-Not returned by `Daytona#list`; call `#refreshData()` on each item to populate.
+Not returned by `Nightona#list`; call `#refreshData()` on each item to populate.
 
 **Returns**:
 
@@ -655,7 +655,7 @@ public String getBackupCreatedAt()
 
 Returns the creation timestamp of the last backup.
 
-Not returned by `Daytona#list`; call `#refreshData()` on each item to populate.
+Not returned by `Nightona#list`; call `#refreshData()` on each item to populate.
 
 **Returns**:
 

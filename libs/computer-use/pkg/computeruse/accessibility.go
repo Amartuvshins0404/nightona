@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 // AT-SPI is spoken directly over D-Bus via godbus/dbus/v5. AT-SPI's public
@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
 	"github.com/godbus/dbus/v5"
 )
 
@@ -920,7 +920,7 @@ func (c *ComputerUse) setAccessibilityNodeValue(id string, value string) error {
 // These adapt the lowercase plugin-internal methods (positional args,
 // plugin-owned A11yNode/A11yBounds) to the shape the daemon's IComputerUse
 // interface expects (request structs, wire types from
-// github.com/daytonaio/daemon/pkg/toolbox/computeruse). Error translation to
+// github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse). Error translation to
 // HTTP status codes happens in the handler layer — wrappers propagate
 // sentinel errors unchanged so the handler can use errors.Is.
 // ---------------------------------------------------------------------------

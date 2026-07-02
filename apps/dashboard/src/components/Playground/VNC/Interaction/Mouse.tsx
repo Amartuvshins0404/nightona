@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -18,7 +18,7 @@ import {
 } from '@/contexts/PlaygroundContext'
 import { MouseActions, MouseButton, MouseScrollDirection } from '@/enums/Playground'
 import { usePlayground } from '@/hooks/usePlayground'
-import { ComputerUse } from '@daytona/sdk'
+import { ComputerUse } from '@nightona/sdk'
 import React from 'react'
 import PlaygroundActionForm from '../../ActionForm'
 import FormCheckboxInput from '../../Inputs/CheckboxInput'

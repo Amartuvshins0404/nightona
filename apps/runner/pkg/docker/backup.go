@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -8,8 +8,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/daytonaio/runner/pkg/api/dto"
-	"github.com/daytonaio/runner/pkg/models/enums"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models/enums"
 
 	cmap "github.com/orcaman/concurrent-map/v2"
 )

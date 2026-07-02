@@ -5,7 +5,7 @@ hideTitleOnPage: true
 
 ## Config
 
-Main class for a new Daytona::Config object.
+Main class for a new Nightona::Config object.
 
 ### Constructors
 
@@ -16,15 +16,15 @@ def initialize(api_key:, jwt_token:, api_url:, organization_id:, target:, otel_e
 
 ```
 
-Initializes a new Daytona::Config object.
+Initializes a new Nightona::Config object.
 
 **Parameters**:
 
-- `api_key` _String, nil_ - Daytona API key. Defaults to ENV['DAYTONA_API_KEY'].
-- `jwt_token` _String, nil_ - Daytona JWT token. Defaults to ENV['DAYTONA_JWT_TOKEN'].
-- `api_url` _String, nil_ - Daytona API URL. Defaults to ENV['DAYTONA_API_URL'] or Daytona::Config::API_URL.
-- `organization_id` _String, nil_ - Daytona organization ID. Defaults to ENV['DAYTONA_ORGANIZATION_ID'].
-- `target` _String, nil_ - Daytona target. Defaults to ENV['DAYTONA_TARGET'].
+- `api_key` _String, nil_ - Nightona API key. Defaults to ENV['NIGHTONA_API_KEY'].
+- `jwt_token` _String, nil_ - Nightona JWT token. Defaults to ENV['NIGHTONA_JWT_TOKEN'].
+- `api_url` _String, nil_ - Nightona API URL. Defaults to ENV['NIGHTONA_API_URL'] or Nightona::Config::API_URL.
+- `organization_id` _String, nil_ - Nightona organization ID. Defaults to ENV['NIGHTONA_ORGANIZATION_ID'].
+- `target` _String, nil_ - Nightona target. Defaults to ENV['NIGHTONA_TARGET'].
 - `otel_enabled` _Boolean, nil_ - Enable OpenTelemetry tracing for SDK operations.
 - `_experimental` _Hash, nil_ - Experimental configuration options.
 
@@ -41,11 +41,11 @@ def api_key()
 
 ```
 
-API key for authentication with the Daytona API
+API key for authentication with the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona API key
+- `String, nil` - Nightona API key
 
 #### api_key=()
 
@@ -54,11 +54,11 @@ def api_key=(value)
 
 ```
 
-API key for authentication with the Daytona API
+API key for authentication with the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona API key
+- `String, nil` - Nightona API key
 
 #### jwt_token()
 
@@ -67,11 +67,11 @@ def jwt_token()
 
 ```
 
-JWT token for authentication with the Daytona API
+JWT token for authentication with the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona JWT token
+- `String, nil` - Nightona JWT token
 
 #### jwt_token=()
 
@@ -80,11 +80,11 @@ def jwt_token=(value)
 
 ```
 
-JWT token for authentication with the Daytona API
+JWT token for authentication with the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona JWT token
+- `String, nil` - Nightona JWT token
 
 #### api_url()
 
@@ -93,11 +93,11 @@ def api_url()
 
 ```
 
-URL of the Daytona API
+URL of the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona API URL
+- `String, nil` - Nightona API URL
 
 #### api_url=()
 
@@ -106,11 +106,11 @@ def api_url=(value)
 
 ```
 
-URL of the Daytona API
+URL of the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona API URL
+- `String, nil` - Nightona API URL
 
 #### organization_id()
 
@@ -119,11 +119,11 @@ def organization_id()
 
 ```
 
-Organization ID for authentication with the Daytona API
+Organization ID for authentication with the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona API URL
+- `String, nil` - Nightona API URL
 
 #### organization_id=()
 
@@ -132,11 +132,11 @@ def organization_id=(value)
 
 ```
 
-Organization ID for authentication with the Daytona API
+Organization ID for authentication with the Nightona API
 
 **Returns**:
 
-- `String, nil` - Daytona API URL
+- `String, nil` - Nightona API URL
 
 #### target()
 
@@ -149,7 +149,7 @@ Target environment for sandboxes
 
 **Returns**:
 
-- `String, nil` - Daytona target
+- `String, nil` - Nightona target
 
 #### target=()
 
@@ -162,7 +162,7 @@ Target environment for sandboxes
 
 **Returns**:
 
-- `String, nil` - Daytona target
+- `String, nil` - Nightona target
 
 #### otel_enabled()
 
@@ -223,13 +223,13 @@ def read_env(name)
 
 ```
 
-Reads a DAYTONA_-prefixed environment variable using the same precedence
+Reads a NIGHTONA_-prefixed environment variable using the same precedence
 as the Config initializer: runtime ENV first, then .env.local, then .env.
-Only names starting with DAYTONA_ are accepted.
+Only names starting with NIGHTONA_ are accepted.
 
 **Parameters**:
 
-- `name` _String_ - The environment variable name. Must start with DAYTONA_.
+- `name` _String_ - The environment variable name. Must start with NIGHTONA_.
 
 **Returns**:
 
@@ -237,4 +237,4 @@ Only names starting with DAYTONA_ are accepted.
 
 **Raises**:
 
-- `ArgumentError` - If name does not start with DAYTONA_.
+- `ArgumentError` - If name does not start with NIGHTONA_.

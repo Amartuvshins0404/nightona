@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package cache
@@ -7,7 +7,7 @@ import (
 	"context"
 	"time"
 
-	common_cache "github.com/daytonaio/common-go/pkg/cache"
+	common_cache "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/cache"
 )
 
 type SnapshotErrorCache struct {

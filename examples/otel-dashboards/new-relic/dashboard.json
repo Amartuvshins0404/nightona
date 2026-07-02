@@ -1,11 +1,11 @@
 {
-  "name": "Daytona Sandbox Resource Monitoring - Multi-Service",
-  "description": "Comprehensive CPU, Memory, and Disk monitoring for Daytona Sandboxes",
+  "name": "Nightona Sandbox Resource Monitoring - Multi-Service",
+  "description": "Comprehensive CPU, Memory, and Disk monitoring for Nightona Sandboxes",
   "permissions": "PUBLIC_READ_WRITE",
   "pages": [
     {
       "name": "Resource Overview",
-      "description": "High-level overview of all Daytona Sandbox",
+      "description": "High-level overview of all Nightona Sandbox",
       "widgets": [
         {
           "title": "Sandbox Count",
@@ -44,7 +44,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT uniqueCount(service.name) as 'Over Threshold' FROM Metric WHERE daytona.sandbox.cpu.utilization > 80 OR daytona.sandbox.memory.utilization > 80 OR daytona.sandbox.filesystem.utilization > 80 SINCE 5 minutes ago"
+                "query": "SELECT uniqueCount(service.name) as 'Over Threshold' FROM Metric WHERE nightona.sandbox.cpu.utilization > 80 OR nightona.sandbox.memory.utilization > 80 OR nightona.sandbox.filesystem.utilization > 80 SINCE 5 minutes ago"
               }
             ],
             "thresholds": [
@@ -75,7 +75,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(service.name) as 'Service', latest(daytona.sandbox.cpu.utilization) as 'CPU %', latest(daytona.sandbox.cpu.`limit`) as 'CPU Cores', latest(daytona.sandbox.memory.utilization) as 'Memory %', latest(daytona.sandbox.memory.usage) / 1073741824 as 'Memory Used (GB)', latest(daytona.sandbox.memory.`limit`) / 1073741824 as 'Memory Limit (GB)', latest(daytona.sandbox.filesystem.utilization) as 'Disk %', latest(daytona.sandbox.filesystem.usage) / 1073741824 as 'Disk Used (GB)', latest(daytona.sandbox.filesystem.total) / 1073741824 as 'Disk Total (GB)' FROM Metric FACET service.name SINCE 5 minutes ago LIMIT 100"
+                "query": "SELECT latest(service.name) as 'Service', latest(nightona.sandbox.cpu.utilization) as 'CPU %', latest(nightona.sandbox.cpu.`limit`) as 'CPU Cores', latest(nightona.sandbox.memory.utilization) as 'Memory %', latest(nightona.sandbox.memory.usage) / 1073741824 as 'Memory Used (GB)', latest(nightona.sandbox.memory.`limit`) / 1073741824 as 'Memory Limit (GB)', latest(nightona.sandbox.filesystem.utilization) as 'Disk %', latest(nightona.sandbox.filesystem.usage) / 1073741824 as 'Disk Used (GB)', latest(nightona.sandbox.filesystem.total) / 1073741824 as 'Disk Total (GB)' FROM Metric FACET service.name SINCE 5 minutes ago LIMIT 100"
               }
             ]
           }
@@ -96,7 +96,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.cpu.utilization) as 'CPU %' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.cpu.utilization) as 'CPU %' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -121,7 +121,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.memory.utilization) as 'Memory %' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.memory.utilization) as 'Memory %' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -146,7 +146,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -171,7 +171,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.cpu.utilization) as 'Avg CPU %' FROM Metric FACET service.name SINCE 1 hour ago LIMIT 10"
+                "query": "SELECT average(nightona.sandbox.cpu.utilization) as 'Avg CPU %' FROM Metric FACET service.name SINCE 1 hour ago LIMIT 10"
               }
             ]
           }
@@ -192,7 +192,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.memory.utilization) as 'Avg Memory %' FROM Metric FACET service.name SINCE 1 hour ago LIMIT 10"
+                "query": "SELECT average(nightona.sandbox.memory.utilization) as 'Avg Memory %' FROM Metric FACET service.name SINCE 1 hour ago LIMIT 10"
               }
             ]
           }
@@ -213,7 +213,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.filesystem.utilization) as 'Avg Disk %' FROM Metric FACET service.name SINCE 1 hour ago LIMIT 10"
+                "query": "SELECT average(nightona.sandbox.filesystem.utilization) as 'Avg Disk %' FROM Metric FACET service.name SINCE 1 hour ago LIMIT 10"
               }
             ]
           }
@@ -234,7 +234,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(service.name) as 'Service', latest(daytona.sandbox.cpu.utilization) as 'CPU %', latest(daytona.sandbox.memory.utilization) as 'Memory %', latest(daytona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric WHERE daytona.sandbox.cpu.utilization > 80 OR daytona.sandbox.memory.utilization > 80 OR daytona.sandbox.filesystem.utilization > 80 FACET service.name SINCE 5 minutes ago"
+                "query": "SELECT latest(service.name) as 'Service', latest(nightona.sandbox.cpu.utilization) as 'CPU %', latest(nightona.sandbox.memory.utilization) as 'Memory %', latest(nightona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric WHERE nightona.sandbox.cpu.utilization > 80 OR nightona.sandbox.memory.utilization > 80 OR nightona.sandbox.filesystem.utilization > 80 FACET service.name SINCE 5 minutes ago"
               }
             ]
           }
@@ -255,7 +255,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT (average(daytona.sandbox.cpu.utilization) * 0.33) + (average(daytona.sandbox.memory.utilization) * 0.33) + (average(daytona.sandbox.filesystem.utilization) * 0.34) as 'Resource Pressure Score' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT (average(nightona.sandbox.cpu.utilization) * 0.33) + (average(nightona.sandbox.memory.utilization) * 0.33) + (average(nightona.sandbox.filesystem.utilization) * 0.34) as 'Resource Pressure Score' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -286,7 +286,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.cpu.utilization) as 'CPU %' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.cpu.utilization) as 'CPU %' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -311,7 +311,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.cpu.utilization) as 'CPU %' FROM Metric FACET service.name SINCE 1 minute ago"
+                "query": "SELECT latest(nightona.sandbox.cpu.utilization) as 'CPU %' FROM Metric FACET service.name SINCE 1 minute ago"
               }
             ],
             "thresholds": [
@@ -342,7 +342,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.cpu.`limit`) as 'CPU Cores Limit', average(daytona.sandbox.cpu.utilization) as 'Avg CPU %', max(daytona.sandbox.cpu.utilization) as 'Peak CPU %' FROM Metric FACET service.name SINCE 1 hour ago"
+                "query": "SELECT latest(nightona.sandbox.cpu.`limit`) as 'CPU Cores Limit', average(nightona.sandbox.cpu.utilization) as 'Avg CPU %', max(nightona.sandbox.cpu.utilization) as 'Peak CPU %' FROM Metric FACET service.name SINCE 1 hour ago"
               }
             ]
           }
@@ -363,7 +363,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT histogram(daytona.sandbox.cpu.utilization, 10, 10) FROM Metric FACET service.name SINCE 1 hour ago"
+                "query": "SELECT histogram(nightona.sandbox.cpu.utilization, 10, 10) FROM Metric FACET service.name SINCE 1 hour ago"
               }
             ]
           }
@@ -390,7 +390,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.memory.utilization) as 'Memory %' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.memory.utilization) as 'Memory %' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -415,7 +415,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.memory.utilization) as 'Memory %' FROM Metric FACET service.name SINCE 1 minute ago"
+                "query": "SELECT latest(nightona.sandbox.memory.utilization) as 'Memory %' FROM Metric FACET service.name SINCE 1 minute ago"
               }
             ],
             "thresholds": [
@@ -446,7 +446,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.memory.usage) / 1073741824 as 'Used GB' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.memory.usage) / 1073741824 as 'Used GB' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ]
           }
@@ -467,7 +467,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.memory.usage) / 1073741824 as 'Used (GB)', latest(daytona.sandbox.memory.`limit`) / 1073741824 as 'Limit (GB)', average(daytona.sandbox.memory.utilization) as 'Avg %', max(daytona.sandbox.memory.utilization) as 'Peak %' FROM Metric FACET service.name SINCE 1 hour ago"
+                "query": "SELECT latest(nightona.sandbox.memory.usage) / 1073741824 as 'Used (GB)', latest(nightona.sandbox.memory.`limit`) / 1073741824 as 'Limit (GB)', average(nightona.sandbox.memory.utilization) as 'Avg %', max(nightona.sandbox.memory.utilization) as 'Peak %' FROM Metric FACET service.name SINCE 1 hour ago"
               }
             ]
           }
@@ -494,7 +494,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -519,7 +519,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric FACET service.name SINCE 1 minute ago"
+                "query": "SELECT latest(nightona.sandbox.filesystem.utilization) as 'Disk %' FROM Metric FACET service.name SINCE 1 minute ago"
               }
             ],
             "thresholds": [
@@ -550,7 +550,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT average(daytona.sandbox.filesystem.usage) / 1073741824 as 'Used GB', average(daytona.sandbox.filesystem.total) / 1073741824 as 'Total GB' FROM Metric FACET service.name TIMESERIES AUTO"
+                "query": "SELECT average(nightona.sandbox.filesystem.usage) / 1073741824 as 'Used GB', average(nightona.sandbox.filesystem.total) / 1073741824 as 'Total GB' FROM Metric FACET service.name TIMESERIES AUTO"
               }
             ]
           }
@@ -571,7 +571,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.filesystem.usage) / 1073741824 as 'Used (GB)', latest(daytona.sandbox.filesystem.available) / 1073741824 as 'Available (GB)', latest(daytona.sandbox.filesystem.total) / 1073741824 as 'Total (GB)', average(daytona.sandbox.filesystem.utilization) as 'Avg %', max(daytona.sandbox.filesystem.utilization) as 'Peak %' FROM Metric FACET service.name SINCE 1 hour ago"
+                "query": "SELECT latest(nightona.sandbox.filesystem.usage) / 1073741824 as 'Used (GB)', latest(nightona.sandbox.filesystem.available) / 1073741824 as 'Available (GB)', latest(nightona.sandbox.filesystem.total) / 1073741824 as 'Total (GB)', average(nightona.sandbox.filesystem.utilization) as 'Avg %', max(nightona.sandbox.filesystem.utilization) as 'Peak %' FROM Metric FACET service.name SINCE 1 hour ago"
               }
             ]
           }
@@ -598,7 +598,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.used_cpu) as 'Used CPU', latest(daytona.sandbox.total_cpu) as 'Total CPU' FROM Metric FACET region.id"
+                "query": "SELECT latest(nightona.sandbox.used_cpu) as 'Used CPU', latest(nightona.sandbox.total_cpu) as 'Total CPU' FROM Metric FACET region.id"
               }
             ]
           }
@@ -619,7 +619,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.used_ram) as 'Used RAM', latest(daytona.sandbox.total_ram) as 'Total RAM' FROM Metric FACET region.id"
+                "query": "SELECT latest(nightona.sandbox.used_ram) as 'Used RAM', latest(nightona.sandbox.total_ram) as 'Total RAM' FROM Metric FACET region.id"
               }
             ]
           }
@@ -640,7 +640,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.used_storage) as 'Used Storage', latest(daytona.sandbox.total_storage) as 'Total Storage' FROM Metric FACET region.id"
+                "query": "SELECT latest(nightona.sandbox.used_storage) as 'Used Storage', latest(nightona.sandbox.total_storage) as 'Total Storage' FROM Metric FACET region.id"
               }
             ]
           }
@@ -661,7 +661,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT (latest(daytona.sandbox.used_cpu) / latest(daytona.sandbox.total_cpu)) * 100 as 'CPU Quota %' FROM Metric FACET region.id TIMESERIES AUTO"
+                "query": "SELECT (latest(nightona.sandbox.used_cpu) / latest(nightona.sandbox.total_cpu)) * 100 as 'CPU Quota %' FROM Metric FACET region.id TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -686,7 +686,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT (latest(daytona.sandbox.used_ram) / latest(daytona.sandbox.total_ram)) * 100 as 'Memory Quota %' FROM Metric FACET region.id TIMESERIES AUTO"
+                "query": "SELECT (latest(nightona.sandbox.used_ram) / latest(nightona.sandbox.total_ram)) * 100 as 'Memory Quota %' FROM Metric FACET region.id TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -711,7 +711,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT (latest(daytona.sandbox.used_storage) / latest(daytona.sandbox.total_storage)) * 100 as 'Storage Quota %' FROM Metric FACET region.id TIMESERIES AUTO"
+                "query": "SELECT (latest(nightona.sandbox.used_storage) / latest(nightona.sandbox.total_storage)) * 100 as 'Storage Quota %' FROM Metric FACET region.id TIMESERIES AUTO"
               }
             ],
             "yAxisLeft": {
@@ -736,7 +736,7 @@
             "nrqlQueries": [
               {
                 "accountIds": [],
-                "query": "SELECT latest(daytona.sandbox.used_cpu) as 'Used CPU', latest(daytona.sandbox.total_cpu) as 'Total CPU', latest(daytona.sandbox.used_ram) as 'Used RAM (GiB)', latest(daytona.sandbox.total_ram) as 'Total RAM (GiB)', latest(daytona.sandbox.used_storage) as 'Used Storage (GiB)', latest(daytona.sandbox.total_storage) as 'Total Storage (GiB)' FROM Metric FACET region.id SINCE 5 minutes ago"
+                "query": "SELECT latest(nightona.sandbox.used_cpu) as 'Used CPU', latest(nightona.sandbox.total_cpu) as 'Total CPU', latest(nightona.sandbox.used_ram) as 'Used RAM (GiB)', latest(nightona.sandbox.total_ram) as 'Total RAM (GiB)', latest(nightona.sandbox.used_storage) as 'Used Storage (GiB)', latest(nightona.sandbox.total_storage) as 'Total Storage (GiB)' FROM Metric FACET region.id SINCE 5 minutes ago"
               }
             ]
           }

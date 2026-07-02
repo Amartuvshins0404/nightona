@@ -1,17 +1,17 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package volume
 
 import (
-	"github.com/daytonaio/daytona/cli/internal"
+	"github.com/Amartuvshins0404/nightona/apps/cli/internal"
 	"github.com/spf13/cobra"
 )
 
 var VolumeCmd = &cobra.Command{
 	Use:     "volume",
-	Short:   "Manage Daytona volumes",
-	Long:    "Commands for managing Daytona volumes",
+	Short:   "Manage Nightona volumes",
+	Long:    "Commands for managing Nightona volumes",
 	Aliases: []string{"volumes"},
 	GroupID: internal.SANDBOX_GROUP,
 }

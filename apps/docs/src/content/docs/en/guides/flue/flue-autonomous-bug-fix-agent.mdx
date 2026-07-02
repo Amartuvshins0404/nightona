@@ -1,17 +1,17 @@
 ---
-title: Build an Autonomous Bug-Fix Agent with Flue and Daytona
-description: Use Flue's agent harness and a Daytona sandbox to reproduce a GitHub issue with a failing test, fix it, and open a real pull request, end to end.
+title: Build an Autonomous Bug-Fix Agent with Flue and Nightona
+description: Use Flue's agent harness and a Nightona sandbox to reproduce a GitHub issue with a failing test, fix it, and open a real pull request, end to end.
 ---
 
-This guide builds an autonomous bug-fix agent using [Flue](https://flueframework.com/) and [Daytona](https://www.daytona.io/) sandboxes. Given a GitHub issue, the agent reproduces the bug with a failing test, implements the minimal fix, runs the full test suite, and opens a real pull request.
+This guide builds an autonomous bug-fix agent using [Flue](https://flueframework.com/) and [Nightona](https://www.daytona.io/) sandboxes. Given a GitHub issue, the agent reproduces the bug with a failing test, implements the minimal fix, runs the full test suite, and opens a real pull request.
 
-A sandbox is essential for this workflow. The agent clones unknown code, installs unknown dependencies, and executes the project's test suite — operations that need strict isolation from your host. Daytona provisions a fresh isolated environment for every run and tears it down on completion, so an untrusted repository can never affect your host.
+A sandbox is essential for this workflow. The agent clones unknown code, installs unknown dependencies, and executes the project's test suite — operations that need strict isolation from your host. Nightona provisions a fresh isolated environment for every run and tears it down on completion, so an untrusted repository can never affect your host.
 
 ---
 
 ### 1. Workflow Overview
 
-You point the agent at an open issue on any GitHub repository. The agent provisions a Daytona sandbox, clones the repo into it, then executes a strict **Reproduce → Fix → Verify → PR** workflow. When it's done, it returns the URL of a real pull request you can review in the GitHub UI.
+You point the agent at an open issue on any GitHub repository. The agent provisions a Nightona sandbox, clones the repo into it, then executes a strict **Reproduce → Fix → Verify → PR** workflow. When it's done, it returns the URL of a real pull request you can review in the GitHub UI.
 
 A successful run against `vercel/ms` issue #284 looks like this in the `flue dev` terminal:
 
@@ -54,11 +54,11 @@ The HTTP response body returned to your `curl` is the structured result the agen
 
 #### Clone the Repository
 
-Clone the Daytona [repository](https://github.com/daytonaio/daytona.git) and navigate to the example directory:
+Clone the Nightona [repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/typescript/flue
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/typescript/flue
 ```
 
 #### Fork a Demo Target
@@ -81,7 +81,7 @@ cp .env.example .env
 
 | Variable | Required | Source |
 |---|---|---|
-| `DAYTONA_API_KEY` | yes | [Daytona Dashboard](https://app.daytona.io/dashboard/keys) |
+| `NIGHTONA_API_KEY` | yes | [Nightona Dashboard](https://app.daytona.io/dashboard/keys) |
 | `ANTHROPIC_API_KEY` | yes | For this agent's default model, `anthropic/claude-sonnet-4-6`. Required only if you don't override `MODEL`. (Flue itself has no default; `bug-fix.ts` picks one.) |
 | `GITHUB_TOKEN` | yes | A Personal Access Token with `repo` scope ([create one](https://github.com/settings/tokens)) |
 | `MODEL` | no | Override this agent's default model. Any `provider/model-id` recognized by [`@mariozechner/pi-ai`](https://www.npmjs.com/package/@mariozechner/pi-ai). Examples: `anthropic/claude-opus-4-7`, `openai/gpt-5.5` |
@@ -190,7 +190,7 @@ guides/typescript/flue/
 │   ├── agents/                       # one .ts file per agent (Flue scans this dir)
 │   │   └── bug-fix.ts                # orchestrator
 │   ├── connectors/                   # connector files referenced by agents
-│   │   └── daytona.ts                # Daytona → Flue SandboxFactory adapter
+│   │   └── nightona.ts                # Nightona → Flue SandboxFactory adapter
 │   └── roles/                        # role markdown files (subagent personas)
 │       └── test-driven-developer.md
 └── .agents/                          # Flue skill workspace (convention)
@@ -201,37 +201,37 @@ guides/typescript/flue/
 
 So `session.skill('bug-fix', { ... })` in our agent code maps directly to `.agents/skills/bug-fix/SKILL.md`: Flue resolves the skill by folder name by default. If you set a `name:` field in the file's frontmatter, that takes precedence over the folder name — useful when you want to keep the directory layout but rename the skill.
 
-#### The Daytona Connector
+#### The Nightona Connector
 
-Daytona is a first-class Flue connector. The canonical way to install it is to pipe Flue's connector registry to your AI coding agent:
+Nightona is a first-class Flue connector. The canonical way to install it is to pipe Flue's connector registry to your AI coding agent:
 
 ```bash
-flue add daytona | claude
+flue add nightona | claude
 # or: opencode | codex | cursor-agent | pi
 ```
 
 This requires an AI coding-agent CLI to already be installed and authenticated locally — pick whichever one you already use (`claude`, `opencode`, `codex`, `cursor-agent`, `pi`, etc.). If you don't have any installed yet, this guide ships the resulting connector pre-built so you can skip the `flue add` step entirely.
 
-`flue add daytona` fetches the official installation instructions from `https://flueframework.com/cli/connectors/daytona.md` and writes them to stdout. Your AI agent reads those instructions and writes the connector adapter (`.flue/connectors/daytona.ts`) into your project automatically. No manual file copying, no version drift.
+`flue add nightona` fetches the official installation instructions from `https://flueframework.com/cli/connectors/nightona.md` and writes them to stdout. Your AI agent reads those instructions and writes the connector adapter (`.flue/connectors/nightona.ts`) into your project automatically. No manual file copying, no version drift.
 
-This guide ships the resulting `.flue/connectors/daytona.ts` pre-built so the demo runs without an extra step, but the file is byte-identical to what `flue add daytona | <agent>` produces. Once installed, you import the connector and pass it to `init()`:
+This guide ships the resulting `.flue/connectors/nightona.ts` pre-built so the demo runs without an extra step, but the file is byte-identical to what `flue add nightona | <agent>` produces. Once installed, you import the connector and pass it to `init()`:
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
-import { daytona } from '../connectors/daytona'
+import { Nightona } from '@nightona/sdk'
+import { nightona } from '../connectors/nightona'
 
-const client = new Daytona({ apiKey: env.DAYTONA_API_KEY })
+const client = new Nightona({ apiKey: env.NIGHTONA_API_KEY })
 const sandbox = await client.create()
 
 const agent = await init({
   // cleanup: true arms sandbox.delete() to fire on agent.destroy()
   // Flue does NOT auto-destroy on handler return; see Section 5.
-  sandbox: daytona(sandbox, { cleanup: true }),
+  sandbox: nightona(sandbox, { cleanup: true }),
   model: 'anthropic/claude-sonnet-4-6',
 })
 ```
 
-The user owns the Daytona client lifecycle (you decide how the sandbox is created, reused, or cleaned up); Flue just adapts it for agent use. The `cleanup: true` option **arms** a `sandbox.delete()` callback that fires when `agent.destroy()` is called but Flue does NOT auto-destroy on handler return. The orchestrator must explicitly call `destroy()`, which our `try/finally` does (covered in [Section 5: Cleanup](#5-cleanup)).
+The user owns the Nightona client lifecycle (you decide how the sandbox is created, reused, or cleaned up); Flue just adapts it for agent use. The `cleanup: true` option **arms** a `sandbox.delete()` callback that fires when `agent.destroy()` is called but Flue does NOT auto-destroy on handler return. The orchestrator must explicitly call `destroy()`, which our `try/finally` does (covered in [Section 5: Cleanup](#5-cleanup)).
 
 #### The Orchestrator
 
@@ -240,7 +240,7 @@ The agent file (`.flue/agents/bug-fix.ts`) is small on purpose. It provisions th
 ```typescript
 // First agent: setup phase. cleanup: true arms sandbox.delete() on destroy().
 const setupAgent = await init({
-  sandbox: daytona(sandbox, { cleanup: true }),
+  sandbox: nightona(sandbox, { cleanup: true }),
   model,
 })
 const setup = await setupAgent.session()
@@ -251,7 +251,7 @@ const setup = await setupAgent.session()
 // so Flue discovers our SKILL.md from `.agents/skills/bug-fix/SKILL.md`.
 const projectAgent = await init({
   id: `bug-fix-${issueNumber}`,
-  sandbox: daytona(sandbox), // no cleanup option — setupAgent owns teardown
+  sandbox: nightona(sandbox), // no cleanup option — setupAgent owns teardown
   cwd: projectDir,
   model,
 })
@@ -266,7 +266,7 @@ return await session.skill('bug-fix', {
 
 A few details worth highlighting:
 
-- **Two agents, one sandbox.** The setup agent installs `gh`, configures auth, clones the repo, and installs dependencies. A second agent (given a different `id` and `cwd`) operates inside the cloned repo and discovers our `bug-fix` skill from `.agents/skills/bug-fix/SKILL.md`, which the orchestrator uploads into the cloned worktree just before init. Both agents share the same Daytona sandbox. The distinct `id` matters: a fresh `id` opens a fresh Flue session — see [What `id` actually means: sessions](#what-id-actually-means-sessions) for the full lifecycle.
+- **Two agents, one sandbox.** The setup agent installs `gh`, configures auth, clones the repo, and installs dependencies. A second agent (given a different `id` and `cwd`) operates inside the cloned repo and discovers our `bug-fix` skill from `.agents/skills/bug-fix/SKILL.md`, which the orchestrator uploads into the cloned worktree just before init. Both agents share the same Nightona sandbox. The distinct `id` matters: a fresh `id` opens a fresh Flue session — see [What `id` actually means: sessions](#what-id-actually-means-sessions) for the full lifecycle.
 - **No `AGENTS.md` upload.** Flue would happily read an `AGENTS.md` from the session cwd and prepend it to every system prompt, but that file lives at the cloned repo's root and uploading our own would overwrite the target's `AGENTS.md` if it has one. Every guardrail we'd put there (TDD discipline, minimal change, match host code style) is already covered by the `test-driven-developer` role and the `bug-fix` skill body, so the harness ships nothing at the worktree root.
 - **`.git/info/exclude` keeps the worktree clean.** After uploading `SKILL.md` to `.agents/skills/bug-fix/`, the orchestrator appends `.agents/` to the cloned repo's `.git/info/exclude` (git's local-only ignore — does NOT modify the target's `.gitignore`). The harness scaffolding stays invisible to `git status` and never accidentally lands in a commit.
 - **Two repos, one workflow.** `repo` is the user's fork (where branches and the PR land); `issueRepo` is where the issue lives (the upstream parent, auto-detected via `gh repo view --json parent` because GitHub disables issues on forks).
@@ -370,7 +370,7 @@ POST /agents/bug-fix/run-1   ← same <id> as before → REUSES session "run-1"
 **Same `<id>` reused, what actually happens:**
 
 1. Your handler function runs **from the top, every time** (it's just a function, not auto-resumed).
-2. `client.create()` makes a **new** Daytona sandbox each call (because our code calls it unconditionally).
+2. `client.create()` makes a **new** Nightona sandbox each call (because our code calls it unconditionally).
 3. But `await agent.session()` inside the handler resolves to the **same Flue session object** as the previous call with that id, so the LLM sees the previous run's message history as context for this run.
 
 So same-id reuse persists the **conversation**, not the **sandbox**. For a chat-style agent that's exactly what you want; for our one-shot bug-fix agent, it's mostly noise (the LLM might short-circuit with "I already analyzed this") and ends up confusing things.
@@ -406,12 +406,12 @@ That runs `flue run bug-fix --target node --id run-1 --env .env --payload '{}'`,
 [bug-fix] running TDD workflow (reproduce → fix → PR)...
 [flue] Agent started
   I'll work through this systematically following the test-driven approach.
-[flue] tool:start  read  /home/daytona/project/package.json
+[flue] tool:start  read  /home/nightona/project/package.json
 [flue] tool:done   read  (1477 chars)
 [flue] tool:start  glob  **/*.test.*
 [flue] tool:done   glob
-[flue] tool:start  read  /home/daytona/project/src/index.ts
-[flue] tool:start  read  /home/daytona/project/src/parse.test.ts
+[flue] tool:start  read  /home/nightona/project/src/index.ts
+[flue] tool:start  read  /home/nightona/project/src/parse.test.ts
 [flue] tool:done   read  (5864 chars)
 [flue] tool:done   read  (5082 chars)
   Now I have a clear picture. Let me verify what `format(Number.MAX_VALUE)` actually
@@ -422,12 +422,12 @@ That runs `flue run bug-fix --target node --id run-1 --env .env --payload '{}'`,
   which the regex in parse() cannot match. Setting up the branch and writing the test:
 [flue] tool:start  bash  $ git checkout -b flue/fix-issue-284
 [flue] tool:done   bash
-[flue] tool:start  edit  /home/daytona/project/src/parse.test.ts
+[flue] tool:start  edit  /home/nightona/project/src/parse.test.ts
 [flue] tool:done   edit
 [flue] tool:start  bash  $ pnpm test:nodejs
 [flue] tool:done   bash  (2102 chars)
   The tests fail as expected. Now let me implement the fix:
-[flue] tool:start  edit  /home/daytona/project/src/index.ts
+[flue] tool:start  edit  /home/nightona/project/src/index.ts
 [flue] tool:done   edit
 [flue] tool:start  bash  $ pnpm test
 [flue] tool:done   bash  (1319 chars)
@@ -445,7 +445,7 @@ That runs `flue run bug-fix --target node --id run-1 --env .env --payload '{}'`,
 [bug-fix] tearing down agents + sandbox...
 ```
 
-Reading top to bottom you can see the agent following our SKILL.md phases: it understands the project (multiple parallel `read` calls), confirms the bug interactively before changing anything (the `node -e` reproduction in `bash`), creates a branch + writes the failing test, runs the suite to confirm the test fails, makes the fix, reruns the suite, then commits, pushes, and opens the PR. The final `[bug-fix] tearing down agents + sandbox...` line is the orchestrator's `try/finally` doing its work — both agents get destroyed and the Daytona sandbox is deleted before the response is returned.
+Reading top to bottom you can see the agent following our SKILL.md phases: it understands the project (multiple parallel `read` calls), confirms the bug interactively before changing anything (the `node -e` reproduction in `bash`), creates a branch + writes the failing test, runs the suite to confirm the test fails, makes the fix, reruns the suite, then commits, pushes, and opens the PR. The final `[bug-fix] tearing down agents + sandbox...` line is the orchestrator's `try/finally` doing its work — both agents get destroyed and the Nightona sandbox is deleted before the response is returned.
 
 Note that exact wording, file paths, test counts, and PR numbers vary between runs (the LLM is non-deterministic, and the PR number depends on how many PRs your fork already has). The shape — sandbox provision → setup → four-phase TDD workflow → PR URL → cleanup — is what's deterministic.
 
@@ -544,7 +544,7 @@ The HTTP response body returned to your `curl` wraps the handler's return value 
 Open the PR URL in your browser to review the diff and merge, exactly as you would for a human-authored contribution.
 
 :::tip[Commit attribution]
-Both the commit and the PR are authored under the GitHub account that owns your `GITHUB_TOKEN`. The agent calls `gh api user` at startup to resolve your login + numeric ID, then sets `git config user.email` to the GitHub-recommended `<id>+<login>@users.noreply.github.com` noreply format. GitHub recognizes that email and attaches the commit to your profile (avatar and all). The PR body still has a small `Generated by a Flue + Daytona bug-fix agent.` footer for transparency — if you'd rather drop it (some maintainers prefer not to have third-party tags on contributions), edit the PR-body template at the bottom of `.agents/skills/bug-fix/SKILL.md` and remove that line.
+Both the commit and the PR are authored under the GitHub account that owns your `GITHUB_TOKEN`. The agent calls `gh api user` at startup to resolve your login + numeric ID, then sets `git config user.email` to the GitHub-recommended `<id>+<login>@users.noreply.github.com` noreply format. GitHub recognizes that email and attaches the commit to your profile (avatar and all). The PR body still has a small `Generated by a Flue + Nightona bug-fix agent.` footer for transparency — if you'd rather drop it (some maintainers prefer not to have third-party tags on contributions), edit the PR-body template at the bottom of `.agents/skills/bug-fix/SKILL.md` and remove that line.
 :::
 
 ### 5. Cleanup
@@ -553,7 +553,7 @@ Flue does **not** auto-destroy sessions when a handler returns — sessions pers
 
 ```ts
 try {
-  setupAgent = await init({ sandbox: daytona(sandbox, { cleanup: true }), ... })
+  setupAgent = await init({ sandbox: nightona(sandbox, { cleanup: true }), ... })
   // ... setup work + projectAgent + skill invocation
   return result
 } finally {
@@ -572,7 +572,7 @@ try {
 
 Order matters: the **project** agent is destroyed first (closes its session, no sandbox impact since it doesn't have `cleanup: true`), then the **setup** agent's destroy fires the registered `sandbox.delete()` callback. The fallback `else` branch handles the case where `init()` itself threw before `setupAgent` was created — in that scenario nothing armed `cleanup: true`, so the orchestrator calls `sandbox.delete()` directly on the already-created sandbox. (If `client.create()` itself fails earlier, no sandbox object exists at all, so there's nothing to leak.)
 
-This covers the common failure paths: successful runs, caught LLM errors, and exceptions thrown during the workflow. Cleanup is best-effort — if `destroy()` or `sandbox.delete()` itself throws (transient API error, network drop), the failure is logged but the sandbox is not retried. Confirm in your [Daytona Dashboard](https://app.daytona.io/dashboard) after each run, and clean up any orphans manually if you spot them.
+This covers the common failure paths: successful runs, caught LLM errors, and exceptions thrown during the workflow. Cleanup is best-effort — if `destroy()` or `sandbox.delete()` itself throws (transient API error, network drop), the failure is logged but the sandbox is not retried. Confirm in your [Nightona Dashboard](https://app.daytona.io/dashboard) after each run, and clean up any orphans manually if you spot them.
 
 **Key Advantages**
 
@@ -580,4 +580,4 @@ This covers the common failure paths: successful runs, caught LLM errors, and ex
 - **Real pull requests**: the agent uses `gh` inside the sandbox to push and open PRs you can merge in the GitHub UI, not just patches you copy by hand.
 - **Skill-first design**: tweak the workflow by editing markdown. No recompile, no redeploy.
 - **Structured outputs**: results are validated by Valibot schemas, so downstream automation never has to parse free-form text.
-- **Sandbox-isolated execution**: cloning, dependency installation, and test runs all happen inside Daytona, so your host stays clean even if the target repo is malicious or its dependencies are.
+- **Sandbox-isolated execution**: cloning, dependency installation, and test runs all happen inside Nightona, so your host stays clean even if the target repo is malicious or its dependencies are.

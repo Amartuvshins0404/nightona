@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 //go:build linux
@@ -161,7 +161,7 @@ func newChannelPair(t *testing.T) *channelPair {
 }
 
 // TestClientDisconnectClosesSandboxChannel is the regression test for the stale SSH
-// keepalive bug (https://github.com/daytonaio/daytona/issues/4805) at the runner layer.
+// keepalive bug (https://github.com/Amartuvshins0404/nightona/issues/4805) at the runner layer.
 //
 // When the SSH gateway closes its channel to the runner (because the external client
 // disconnected), the runner must close the downstream sandbox channel. Without this,

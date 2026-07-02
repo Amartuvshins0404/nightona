@@ -455,11 +455,11 @@ definitions:
       - SandboxStatePullingSnapshot
 info:
   contact: {}
-  description: Daytona Runner API
+  description: Nightona Runner API
   license:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  title: Daytona Runner API
+  title: Nightona Runner API
   version: v0.0.0-dev
 paths:
   /:
@@ -869,7 +869,7 @@ paths:
   /sandboxes/{sandboxId}/snapshot-from-sandbox:
     post:
       description: Commit the sandbox container filesystem and push the image to the
-        supplied registry under the canonical daytona-{hash}:daytona tag.
+        supplied registry under the canonical nightona-{hash}:nightona tag.
       operationId: SnapshotFromSandbox
       parameters:
         - description: Sandbox ID

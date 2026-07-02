@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package pty
@@ -12,8 +12,8 @@ import (
 	"syscall"
 
 	"github.com/creack/pty"
-	"github.com/daytonaio/daemon/pkg/childreap"
-	"github.com/daytonaio/daemon/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/childreap"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/common"
 	"github.com/shirou/gopsutil/v4/process"
 )
 

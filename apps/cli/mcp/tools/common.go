@@ -1,10 +1,10 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package tools
 
-import "github.com/daytonaio/daytona/cli/apiclient"
+import "github.com/Amartuvshins0404/nightona/apps/cli/apiclient"
 
-var daytonaMCPHeaders map[string]string = map[string]string{
-	apiclient.DaytonaSourceHeader: "daytona-mcp",
+var nightonaMCPHeaders map[string]string = map[string]string{
+	apiclient.NightonaSourceHeader: "nightona-mcp",
 }

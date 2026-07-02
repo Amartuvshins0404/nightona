@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package main
@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/daytonaio/proxy/cmd/proxy/config"
-	"github.com/daytonaio/proxy/pkg/proxy"
+	"github.com/Amartuvshins0404/nightona/apps/proxy/cmd/proxy/config"
+	"github.com/Amartuvshins0404/nightona/apps/proxy/pkg/proxy"
 
 	log "github.com/sirupsen/logrus"
 )

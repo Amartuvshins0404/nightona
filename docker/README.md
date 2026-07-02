@@ -1,6 +1,6 @@
-# Docker Compose Setup for Daytona
+# Docker Compose Setup for Nightona
 
-This folder contains a Docker Compose setup for running Daytona locally.
+This folder contains a Docker Compose setup for running Nightona locally.
 
 ⚠️ **Important**:
 
@@ -9,11 +9,11 @@ This folder contains a Docker Compose setup for running Daytona locally.
 
 ## Overview
 
-The Docker Compose configuration includes all the necessary services to run Daytona:
+The Docker Compose configuration includes all the necessary services to run Nightona:
 
-- **API**: Main Daytona application server
+- **API**: Main Nightona application server
 - **Proxy**: Request proxy service
-- **Runner**: Service that hosts the Daytona Runner
+- **Runner**: Service that hosts the Nightona Runner
 - **SSH Gateway**: Service that handles sandbox SSH access
 - **Database**: PostgreSQL database for data persistence
 - **Redis**: In-memory data store for caching and sessions
@@ -26,14 +26,14 @@ The Docker Compose configuration includes all the necessary services to run Dayt
 
 ## Quick Start
 
-1. Start all services (from the root of the Daytona repo):
+1. Start all services (from the root of the Nightona repo):
 
    ```bash
    docker compose -f docker/docker-compose.yaml up -d
    ```
 
 2. Access the services:
-   - Daytona Dashboard: http://localhost:3000
+   - Nightona Dashboard: http://localhost:3000
      - Access Credentials: dev@daytona.io `password`
      - Make sure that the default snapshot is active at http://localhost:3000/dashboard/snapshots
    - PgAdmin: http://localhost:5050
@@ -61,12 +61,12 @@ This configures dnsmasq with `address=/proxy.localhost/127.0.0.1`.
 
 <br><br><br>
 
-# Auth0 Configuration Guide for Daytona
+# Auth0 Configuration Guide for Nightona
 
 ## Step 1: Create Your Auth0 Tenant
 
 Begin by navigating to https://auth0.com/signup and start the signup process. Choose your account type based on your use case - select `Company` for business applications or `Personal` for individual projects.\
-On the "Let's get setup" page, you'll need to enter your application name such as `My Daytona` and select `Single Page Application (SPA)` as the application type. For authentication methods, you can start with `Email and Password` since additional social providers like Google, GitHub, or Facebook can be added later. Once you've configured these settings, click `Create Application` in the bottom right corner.
+On the "Let's get setup" page, you'll need to enter your application name such as `My Nightona` and select `Single Page Application (SPA)` as the application type. For authentication methods, you can start with `Email and Password` since additional social providers like Google, GitHub, or Facebook can be added later. Once you've configured these settings, click `Create Application` in the bottom right corner.
 
 ## Step 2: Configure Your Single Page Application
 
@@ -112,7 +112,7 @@ Click `Save` to apply these permission changes.
 
 ## Step 4: Set Up Custom API
 
-Your Daytona application will need a custom API to handle authentication and authorization. Navigate to `Applications` > `APIs` in the left sidebar and click `Create API`. Enter a descriptive name such as `My Daytona API` and provide an identifier like `my-daytona-api`. The identifier should be a unique string that will be used in your application configuration.\
+Your Nightona application will need a custom API to handle authentication and authorization. Navigate to `Applications` > `APIs` in the left sidebar and click `Create API`. Enter a descriptive name such as `My Nightona API` and provide an identifier like `my-nightona-api`. The identifier should be a unique string that will be used in your application configuration.\
 After creating the API, go to the `Permissions` tab to define the scopes your application will use. Add each of the following permissions with their corresponding descriptions:
 
 | Permission | Description |
@@ -130,7 +130,7 @@ After creating the API, go to the `Permissions` tab to define the scopes your ap
 
 ## Step 5: Configure Environment Variables
 
-Once you've completed all the Auth0 setup steps, you'll need to configure environment variables in your Daytona deployment. These variables connect your application to the Auth0 services you've just configured.
+Once you've completed all the Auth0 setup steps, you'll need to configure environment variables in your Nightona deployment. These variables connect your application to the Auth0 services you've just configured.
 
 ### Finding Your Configuration Values
 

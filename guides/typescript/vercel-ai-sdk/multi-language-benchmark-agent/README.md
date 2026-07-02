@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example builds a multi-language benchmarking agent using the [Vercel AI SDK](https://ai-sdk.dev/) and [Daytona](https://www.daytona.io/docs/en/sandboxes/) sandboxes. The agent has five tools (`runCode`, `runCommand`, `writeFile`, `readFile`, `downloadFile`) and a concrete benchmarking task: implement the Sieve of Eratosthenes in both Python and TypeScript, time them across input sizes, plot the comparison with matplotlib, and deliver two artifacts to your local disk (the chart as a PNG and the findings as a markdown report).
+This example builds a multi-language benchmarking agent using the [Vercel AI SDK](https://ai-sdk.dev/) and [Nightona](https://www.daytona.io/docs/en/sandboxes/) sandboxes. The agent has five tools (`runCode`, `runCommand`, `writeFile`, `readFile`, `downloadFile`) and a concrete benchmarking task: implement the Sieve of Eratosthenes in both Python and TypeScript, time them across input sizes, plot the comparison with matplotlib, and deliver two artifacts to your local disk (the chart as a PNG and the findings as a markdown report).
 
 ## Features
 
@@ -20,7 +20,7 @@ This example builds a multi-language benchmarking agent using the [Vercel AI SDK
 
 Create a `.env` file in the project directory with the following variables:
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys).
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys).
 - `ANTHROPIC_API_KEY`: Required for the Anthropic provider. Get it from the [Anthropic Console](https://console.anthropic.com/).
 
 ## Getting Started
@@ -49,8 +49,8 @@ When the run finishes, you will find two files in this directory: `sieve_benchma
 
 ## How It Works
 
-1. A Daytona sandbox is created. All subsequent tool calls run inside it.
-2. Five tools are defined as thin wrappers over Daytona primitives. Each one has a distinct job, and no two tools achieve the same goal.
+1. A Nightona sandbox is created. All subsequent tool calls run inside it.
+2. Five tools are defined as thin wrappers over Nightona primitives. Each one has a distinct job, and no two tools achieve the same goal.
 3. A `ToolLoopAgent` is constructed once with the model, instructions (the agent's persona and methodology), the tools, and `stopWhen: stepCountIs(25)`.
 4. The agent is invoked with the benchmarking prompt. It reasons about the task, picks the tools it needs from their descriptions and input schemas, calls them, reads the results, and continues until the task is complete or `stopWhen` fires.
 5. Progress streams live: each tool call, each result, and each text emission is printed as it happens (via `agent.stream(...)` and an async loop over `stream.fullStream`).

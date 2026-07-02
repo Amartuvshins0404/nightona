@@ -1,0 +1,9 @@
+name: nightona archive
+synopsis: Archive a sandbox
+usage: nightona archive [SANDBOX_ID] | [SANDBOX_NAME] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

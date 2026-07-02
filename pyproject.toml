@@ -11,11 +11,11 @@ requires-python = "^3.9"
 package-mode = false
 
 [tool.poetry.dependencies]
-daytona = {path = "libs/sdk-python", develop = true}
-daytona_api_client = {path = "libs/api-client-python", develop = true}
-daytona_api_client_async = {path = "libs/api-client-python-async", develop = true}
-daytona_toolbox_api_client = {path = "libs/toolbox-api-client-python", develop = true}
-daytona_toolbox_api_client_async = {path = "libs/toolbox-api-client-python-async", develop = true}
+nightona = {path = "libs/sdk-python", develop = true}
+nightona_api_client = {path = "libs/api-client-python", develop = true}
+nightona_api_client_async = {path = "libs/api-client-python-async", develop = true}
+nightona_toolbox_api_client = {path = "libs/toolbox-api-client-python", develop = true}
+nightona_toolbox_api_client_async = {path = "libs/toolbox-api-client-python-async", develop = true}
 
 [tool.poetry.group.dev.dependencies]
 pydoc-markdown = ">=4.8.0,<5.0.0"
@@ -50,7 +50,7 @@ exclude = [
     "guides",
     ".nx",
     "tmp",
-    "libs/sdk-python/src/daytona/_utils/otel_decorator.py",
+    "libs/sdk-python/src/nightona/_utils/otel_decorator.py",
     "libs/sdk-python/tests"
 ]
 reportUnknownMemberType = "none"
@@ -60,7 +60,7 @@ reportMissingTypeStubs = "none"
 reportExplicitAny = "none"
 
 [tool.isort]
-known_first_party = ["daytona", "daytona_api_client", "daytona_api_client_async", "daytona_toolbox_api_client", "daytona_toolbox_api_client_async"]
+known_first_party = ["nightona", "nightona_api_client", "nightona_api_client_async", "nightona_toolbox_api_client", "nightona_toolbox_api_client_async"]
 
 [tool.black]
 target-version = ['py310']
@@ -110,4 +110,4 @@ ignore-paths = [
 ]
 
 [tool.pytest.ini_options]
-markers = ["e2e: end-to-end tests requiring a live Daytona API"]
+markers = ["e2e: end-to-end tests requiring a live Nightona API"]

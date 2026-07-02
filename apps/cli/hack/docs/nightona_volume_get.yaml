@@ -1,0 +1,13 @@
+name: nightona volume get
+synopsis: Get volume details
+usage: nightona volume get [VOLUME_ID_OR_NAME] [flags]
+options:
+  - name: format
+    shorthand: f
+    usage: Output format. Must be one of (yaml, json)
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona volume - Manage Nightona volumes

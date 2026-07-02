@@ -1,12 +1,12 @@
-# Coding Agent Example (AgentKit + Daytona)
+# Coding Agent Example (AgentKit + Nightona)
 
 ## Overview
 
-This project demonstrates a fully autonomous coding agent capable of performing software development tasks in a [Daytona](https://daytona.io) sandbox environment. The agent is built using [AgentKit](https://agentkit.inngest.com/) and leverages Daytona sandboxes for secure, isolated execution. The agent can create simple web apps, run tests, execute scripts, and more - all by reasoning about the user's request and automating the necessary steps.
+This project demonstrates a fully autonomous coding agent capable of performing software development tasks in a [Nightona](https://daytona.io) sandbox environment. The agent is built using [AgentKit](https://agentkit.inngest.com/) and leverages Nightona sandboxes for secure, isolated execution. The agent can create simple web apps, run tests, execute scripts, and more - all by reasoning about the user's request and automating the necessary steps.
 
 ## Features
 
-- **Multi-language support:** The agent can use any language supported by Daytona sandboxes
+- **Multi-language support:** The agent can use any language supported by Nightona sandboxes
 - **Web app creation:** Automatically scaffolds and builds simple web applications.
 - **Dev server orchestration:** Detects when a development server is needed, starts it, and generates a preview link for live app inspection.
 - **File and directory management:** Creates, uploads, reads, and deletes files and directories as needed.
@@ -22,7 +22,7 @@ This project demonstrates a fully autonomous coding agent capable of performing 
 
 To run the coding agent, you need to set the following environment variables:
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `ANTHROPIC_API_KEY`: Because Anthropic is the default model provider, you must set `ANTHROPIC_API_KEY` in your environment. By default the agent uses `claude-3-5-haiku-20241022` model with a preset token limit.
 
 > [!Note]
@@ -93,7 +93,7 @@ You can inspect the terminal logs to monitor what the agent is doing, observe it
 When the agent finishes, you should see terminal output like:
 
 > ✔️ App is ready!
-> Preview: https://5173-3a828150-1573-42e3-bf9f-9793a2c2c0c2.proxy.daytona.works
+> Preview: https://5173-3a828150-1573-42e3-bf9f-9793a2c2c0c2.proxy.nightona.works
 
 You can view the app on the given preview link above. The image below shows the result generated in this run:
 
@@ -106,4 +106,4 @@ See the main project LICENSE file for details.
 ## References
 
 - [AgentKit](https://agentkit.inngest.com/)
-- [Daytona](https://daytona.io)
+- [Nightona](https://daytona.io)

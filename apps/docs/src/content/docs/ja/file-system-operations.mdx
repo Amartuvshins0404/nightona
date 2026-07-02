@@ -4,17 +4,17 @@ title: ファイルシステム操作
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona（サンドボックスという隔離されたクラウド開発環境を作成・管理するプラットフォーム）のSDKは、サンドボックス（Daytonaが管理する隔離された一時的な実行環境）内の`fs`モジュールを通じて、充実したファイルシステム操作機能を提供します。本ガイドでは、利用可能なすべてのファイルシステム操作とベストプラクティスについて説明します。
+Nightona（サンドボックスという隔離されたクラウド開発環境を作成・管理するプラットフォーム）のSDKは、サンドボックス（Nightonaが管理する隔離された一時的な実行環境）内の`fs`モジュールを通じて、充実したファイルシステム操作機能を提供します。本ガイドでは、利用可能なすべてのファイルシステム操作とベストプラクティスについて説明します。
 
 ## 基本操作
 
-Daytona SDK は、サンドボックス（Daytonaが管理する隔離された一時的な実行環境）内のファイルシステムとやり取りする機能を提供します。ファイルの一覧表示、ディレクトリ作成、ファイルの読み書きなど、さまざまな操作を実行できます。
+Nightona SDK は、サンドボックス（Nightonaが管理する隔離された一時的な実行環境）内のファイルシステムとやり取りする機能を提供します。ファイルの一覧表示、ディレクトリ作成、ファイルの読み書きなど、さまざまな操作を実行できます。
 
 簡潔さのため、ファイル操作はデフォルトでサンドボックスユーザーのホームディレクトリ直下で行われる前提です。例えば、`workspace` は `/home/[username]/workspace` を意味します。先頭にスラッシュ `/` を付けた絶対パスを作業ディレクトリとして指定することも可能です。
 
 ### ファイルとディレクトリの一覧表示
 
-Daytona SDK は、Python と TypeScript を用いてサンドボックス内のファイルやディレクトリを一覧表示できます。
+Nightona SDK は、Python と TypeScript を用いてサンドボックス内のファイルやディレクトリを一覧表示できます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -48,7 +48,7 @@ files.forEach(file => {
 
 ### ディレクトリの作成
 
-Daytona SDK は、Python と TypeScript で特定のパーミッションを指定してディレクトリを作成できます。
+Nightona SDK は、Python と TypeScript で特定のパーミッションを指定してディレクトリを作成できます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -68,7 +68,7 @@ await sandbox.fs.createFolder("workspace/new-dir", "755")
 
 ### ファイルのアップロード
 
-Daytona SDK は、Python と TypeScript を用いて、サンドボックス内でのファイルの読み取り、書き込み、アップロード、ダウンロード、削除を行うための機能を提供します。
+Nightona SDK は、Python と TypeScript を用いて、サンドボックス内でのファイルの読み取り、書き込み、アップロード、ダウンロード、削除を行うための機能を提供します。
 
 #### 単一ファイルのアップロード
 
@@ -201,11 +201,11 @@ await sandbox.fs.deleteFile("workspace/file.txt")
 
 ## 高度な操作
 
-Daytona SDK は、ファイル権限の設定・取得、検索と置換などの高度なファイルシステム操作を提供します。
+Nightona SDK は、ファイル権限の設定・取得、検索と置換などの高度なファイルシステム操作を提供します。
 
 ### ファイル権限
 
-Daytona SDK では、Python と TypeScript から、ファイル権限の設定・取得や、ディレクトリ権限の再帰的な設定が行えます。
+Nightona SDK では、Python と TypeScript から、ファイル権限の設定・取得や、ディレクトリ権限の再帰的な設定が行えます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -235,7 +235,7 @@ console.log(`Permissions: ${fileInfo.permissions}`)
 
 ### ファイルの検索と置換
 
-Daytona SDK では、Python と TypeScript から、ファイル内のテキストの検索および置換を行えます。
+Nightona SDK では、Python と TypeScript から、ファイル内のテキストの検索および置換を行えます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">

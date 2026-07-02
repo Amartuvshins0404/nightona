@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Daytona, Sandbox } from '@daytona/sdk'
+import { Nightona, Sandbox } from '@nightona/sdk'
 import { AgentResult, NetworkRun } from '@inngest/agent-kit'
 import type { TextMessage } from '@inngest/agent-kit'
 
@@ -18,12 +18,12 @@ export function extractTextMessageContent(result: AgentResult | undefined): stri
 }
 
 export async function createSandbox(network?: NetworkRun<Record<string, any>>) {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
   let sandbox: Sandbox
   try {
-    sandbox = await daytona.create()
+    sandbox = await nightona.create()
   } catch (error) {
-    throw new Error(`Failed to create Daytona sandbox: ${error}`)
+    throw new Error(`Failed to create Nightona sandbox: ${error}`)
   }
   if (network) network.state.data.sandbox = sandbox
   return sandbox

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/daytonaio/common-go/pkg/timer"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/timer"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"

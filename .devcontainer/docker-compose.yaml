@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     privileged: true
     volumes:
-      - ..:/workspaces/daytona
+      - ..:/workspaces/nightona
 
   dex:
     image: dexidp/dex:v2.42.0

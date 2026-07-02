@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -18,11 +18,11 @@ import (
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/daytonaio/common-go/pkg/utils"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	"github.com/daytonaio/runner/internal/metrics"
-	runnerapiclient "github.com/daytonaio/runner/pkg/apiclient"
-	"github.com/daytonaio/runner/pkg/docker"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/utils"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/apps/runner/internal/metrics"
+	runnerapiclient "github.com/Amartuvshins0404/nightona/apps/runner/pkg/apiclient"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/docker"
 )
 
 type ExecutorConfig struct {

@@ -1,15 +1,15 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import * as pathe from 'pathe'
 import axios from 'axios'
-import { Configuration, FileSystemApi } from '@daytona/toolbox-api-client'
-import type { FileInfo, Match, ReplaceRequest, ReplaceResult, SearchFilesResponse } from '@daytona/toolbox-api-client'
+import { Configuration, FileSystemApi } from '@nightona/toolbox-api-client'
+import type { FileInfo, Match, ReplaceRequest, ReplaceResult, SearchFilesResponse } from '@nightona/toolbox-api-client'
 import { dynamicImport } from './utils/Import'
 import { RUNTIME, Runtime } from './utils/Runtime'
-import { createDaytonaError, DaytonaError } from './errors/DaytonaError'
+import { createNightonaError, NightonaError } from './errors/NightonaError'
 import type { Readable } from 'stream'
 import {
   coerceUploadSource,
@@ -32,7 +32,7 @@ import { WithInstrumentation } from './utils/otel.decorator'
  * @example
  * const permissions: FilePermissionsParams = {
  *   mode: '644',
- *   owner: 'daytona',
+ *   owner: 'nightona',
  *   group: 'users'
  * };
  */
@@ -173,12 +173,12 @@ export type UploadStreamOptions = {
   timeout?: number
 }
 
-function createFileDownloadError(error: string, errorDetails?: FileDownloadErrorDetails): DaytonaError {
+function createFileDownloadError(error: string, errorDetails?: FileDownloadErrorDetails): NightonaError {
   if (!errorDetails) {
-    return new DaytonaError(error)
+    return new NightonaError(error)
   }
 
-  return createDaytonaError(errorDetails.message, errorDetails.statusCode, undefined, errorDetails.errorCode)
+  return createNightonaError(errorDetails.message, errorDetails.statusCode, undefined, errorDetails.errorCode)
 }
 
 /**
@@ -322,19 +322,19 @@ export class FileSystem {
     const timeout = options.timeout ?? 30 * 60
     const isNonStreamingRuntime = RUNTIME === Runtime.BROWSER || RUNTIME === Runtime.SERVERLESS
     if (isNonStreamingRuntime) {
-      throw new DaytonaError(
+      throw new NightonaError(
         'downloadFileStream is not supported in browser or serverless environments. Use downloadFile instead.',
       )
     }
 
     if (options.signal?.aborted) {
-      throw new DaytonaError('Download cancelled')
+      throw new NightonaError('Download cancelled')
     }
 
     // Pre-resolve `stream` so the sync `onFileStream` callback below is await-free.
     const { Transform } = await dynamicImport('stream', 'downloadFileStream progress tracking is not supported: ')
 
-    const toDownloadCancelledError = () => new DaytonaError('Download cancelled')
+    const toDownloadCancelledError = () => new NightonaError('Download cancelled')
     const isCanceledError = (err: unknown) => {
       const error = err as { code?: string; name?: string }
       return Boolean(axios.isCancel?.(err) || error?.name === 'CanceledError' || error?.code === 'ERR_CANCELED')
@@ -428,7 +428,7 @@ export class FileSystem {
             if (metadata?.error) {
               reject(createFileDownloadError(metadata.error, metadata.errorDetails))
             } else {
-              reject(new DaytonaError(`No file data received for: ${remotePath}`))
+              reject(new NightonaError(`No file data received for: ${remotePath}`))
             }
           }
         })
@@ -456,7 +456,7 @@ export class FileSystem {
    * Default is 30 minutes.
    * @returns {Promise<FileDownloadResponse[]>} Array of download results.
    *
-   * @throws {DaytonaError} If the request itself fails (network issues, invalid request/response, etc.). Individual
+   * @throws {NightonaError} If the request itself fails (network issues, invalid request/response, etc.). Individual
    * file download errors are returned in `FileDownloadResponse.error`. When the daemon provides structured
    * per-file metadata, it is also available in `FileDownloadResponse.errorDetails`.
    *
@@ -653,7 +653,7 @@ export class FileSystem {
    * @example
    * // Set file permissions and ownership
    * await fs.setFilePermissions('app/script.sh', {
-   *   owner: 'daytona',
+   *   owner: 'nightona',
    *   group: 'users',
    *   mode: '755'  // Execute permission for shell script
    * });
@@ -740,7 +740,7 @@ export class FileSystem {
     const isNonStreamingRuntime =
       RUNTIME === Runtime.DENO || RUNTIME === Runtime.BROWSER || RUNTIME === Runtime.SERVERLESS
     if (isNonStreamingRuntime) {
-      throw new DaytonaError(
+      throw new NightonaError(
         'uploadFileStream is not supported in browser, Deno, or serverless runtimes. Use uploadFile instead.',
       )
     }

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -7,7 +7,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/daytonaio/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
 	"github.com/google/go-containerregistry/pkg/authn"
 	"github.com/google/go-containerregistry/pkg/name"
 	v1 "github.com/google/go-containerregistry/pkg/v1"

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package cmd
@@ -17,7 +17,7 @@ var defaultDirectory = "docs"
 
 var GenerateDocsCmd = &cobra.Command{
 	Use:   "generate-docs",
-	Short: "Generate documentation for the Daytona CLI",
+	Short: "Generate documentation for the Nightona CLI",
 	Args:  cobra.NoArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		directory, err := cmd.Flags().GetString("directory")

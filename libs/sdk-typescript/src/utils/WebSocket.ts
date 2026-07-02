@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -22,8 +22,8 @@ export async function createSandboxWebSocket(
     const previewToken = await getPreviewToken()
     const separator = url.includes('?') ? '&' : '?'
     return new WebSocket(
-      `${url}${separator}DAYTONA_SANDBOX_AUTH_KEY=${previewToken}`,
-      `X-Daytona-SDK-Version~${String(headers['X-Daytona-SDK-Version'] ?? '')}`,
+      `${url}${separator}NIGHTONA_SANDBOX_AUTH_KEY=${previewToken}`,
+      `X-Nightona-SDK-Version~${String(headers['X-Nightona-SDK-Version'] ?? '')}`,
     )
   }
 

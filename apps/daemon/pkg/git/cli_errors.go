@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package git
@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/daytonaio/daemon/pkg/childreap"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/childreap"
 	go_git "github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport"
@@ -39,7 +39,7 @@ func (s *Service) gitCLIRun(op string, args []string, auth *http.BasicAuth, tail
 		return fmt.Errorf("git binary not found in PATH: %w", err)
 	}
 
-	askDir, err := os.MkdirTemp("", "daytona-git-*")
+	askDir, err := os.MkdirTemp("", "nightona-git-*")
 	if err != nil {
 		return fmt.Errorf("create askpass temp dir: %w", err)
 	}

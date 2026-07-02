@@ -1,0 +1,242 @@
+# Copyright 2025 Nightona Platforms Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+from __future__ import annotations
+
+import importlib
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from nightona_api_client import SandboxListSortDirection, SandboxListSortField, SandboxState
+    from nightona_api_client_async import GpuType, SandboxClass
+    from nightona_toolbox_api_client import SessionExecuteResponse
+
+    from ._async.computer_use import AsyncComputerUse, AsyncDisplay, AsyncKeyboard, AsyncMouse, AsyncScreenshot
+    from ._async.nightona import AsyncNightona
+    from ._async.sandbox import AsyncSandbox
+    from ._sync.nightona import Nightona
+    from ._sync.sandbox import Sandbox
+    from .common.charts import (
+        BarChart,
+        BoxAndWhiskerChart,
+        Chart,
+        ChartType,
+        CompositeChart,
+        LineChart,
+        PieChart,
+        ScatterChart,
+    )
+    from .common.code_interpreter import ExecutionError, ExecutionResult, OutputMessage
+    from .common.computer_use import ScreenshotOptions, ScreenshotRegion
+    from .common.nightona import (
+        CodeLanguage,
+        CreateSandboxBaseParams,
+        CreateSandboxFromImageParams,
+        CreateSandboxFromSnapshotParams,
+        NightonaConfig,
+    )
+    from .common.errors import (
+        NightonaAuthenticationError,
+        NightonaAuthorizationError,
+        NightonaConflictError,
+        NightonaConnectionError,
+        NightonaError,
+        NightonaNotFoundError,
+        NightonaRateLimitError,
+        NightonaTimeoutError,
+        NightonaValidationError,
+    )
+    from .common.filesystem import (
+        CancelEvent,
+        DownloadProgress,
+        FileDownloadErrorDetails,
+        FileDownloadRequest,
+        FileDownloadResponse,
+        FileUpload,
+        UploadProgress,
+    )
+    from .common.image import Image
+    from .common.lsp_server import LspCompletionPosition, LspLanguageId
+    from .common.process import CodeRunParams, ExecuteResponse, ExecutionArtifacts, OutputHandler, SessionExecuteRequest
+    from .common.pty import PtySize
+    from .common.sandbox import ListSandboxesQuery, Resources
+    from .common.snapshot import CreateSnapshotParams
+    from .common.volume import VolumeMount
+
+__all__ = [
+    "Nightona",
+    "NightonaConfig",
+    "CodeLanguage",
+    "SessionExecuteRequest",
+    "SessionExecuteResponse",
+    "NightonaError",
+    "NightonaNotFoundError",
+    "NightonaRateLimitError",
+    "LspLanguageId",
+    "CodeRunParams",
+    "Sandbox",
+    "Resources",
+    "GpuType",
+    "SandboxClass",
+    "SandboxState",
+    "SandboxListSortField",
+    "SandboxListSortDirection",
+    "ChartType",
+    "Chart",
+    "LineChart",
+    "ScatterChart",
+    "BarChart",
+    "PieChart",
+    "BoxAndWhiskerChart",
+    "CompositeChart",
+    "FileDownloadRequest",
+    "FileDownloadResponse",
+    "FileDownloadErrorDetails",
+    "DownloadProgress",
+    "UploadProgress",
+    "CancelEvent",
+    "FileUpload",
+    "VolumeMount",
+    "ListSandboxesQuery",
+    "AsyncNightona",
+    "AsyncSandbox",
+    "AsyncComputerUse",
+    "AsyncMouse",
+    "AsyncKeyboard",
+    "AsyncScreenshot",
+    "AsyncDisplay",
+    "ScreenshotRegion",
+    "ScreenshotOptions",
+    "Image",
+    "CreateSandboxBaseParams",
+    "CreateSandboxFromImageParams",
+    "CreateSandboxFromSnapshotParams",
+    "CreateSnapshotParams",
+    "PtySize",
+    "LspCompletionPosition",
+    "ExecutionArtifacts",
+    "ExecuteResponse",
+    "ExecutionResult",
+    "ExecutionError",
+    "OutputMessage",
+    "OutputHandler",
+    "NightonaTimeoutError",
+    "NightonaAuthenticationError",
+    "NightonaAuthorizationError",
+    "NightonaConflictError",
+    "NightonaValidationError",
+    "NightonaConnectionError",
+]
+
+# Mapping of symbol name -> (absolute module path, attribute name) for external packages
+_EXTERNAL_IMPORTS: dict[str, tuple[str, str]] = {
+    "GpuType": ("nightona_api_client_async.models.gpu_type", "GpuType"),
+    "SandboxClass": ("nightona_api_client_async.models.sandbox_class", "SandboxClass"),
+    "SandboxState": ("nightona_api_client.models.sandbox_state", "SandboxState"),
+    "SandboxListSortField": ("nightona_api_client.models.sandbox_list_sort_field", "SandboxListSortField"),
+    "SandboxListSortDirection": (
+        "nightona_api_client.models.sandbox_list_sort_direction",
+        "SandboxListSortDirection",
+    ),
+    "SessionExecuteResponse": ("nightona_toolbox_api_client.models.session_execute_response", "SessionExecuteResponse"),
+}
+
+# Mapping of symbol name -> relative submodule path (within the nightona package)
+_DYNAMIC_IMPORTS: dict[str, str] = {
+    # _sync
+    "Nightona": "_sync.nightona",
+    "Sandbox": "_sync.sandbox",
+    # _async
+    "AsyncNightona": "_async.nightona",
+    "AsyncSandbox": "_async.sandbox",
+    "AsyncComputerUse": "_async.computer_use",
+    "AsyncMouse": "_async.computer_use",
+    "AsyncKeyboard": "_async.computer_use",
+    "AsyncScreenshot": "_async.computer_use",
+    "AsyncDisplay": "_async.computer_use",
+    # common.charts
+    "BarChart": "common.charts",
+    "BoxAndWhiskerChart": "common.charts",
+    "Chart": "common.charts",
+    "ChartType": "common.charts",
+    "CompositeChart": "common.charts",
+    "LineChart": "common.charts",
+    "PieChart": "common.charts",
+    "ScatterChart": "common.charts",
+    # common.code_interpreter
+    "ExecutionError": "common.code_interpreter",
+    "ExecutionResult": "common.code_interpreter",
+    "OutputMessage": "common.code_interpreter",
+    # common.computer_use
+    "ScreenshotOptions": "common.computer_use",
+    "ScreenshotRegion": "common.computer_use",
+    # common.nightona
+    "CodeLanguage": "common.nightona",
+    "CreateSandboxBaseParams": "common.nightona",
+    "CreateSandboxFromImageParams": "common.nightona",
+    "CreateSandboxFromSnapshotParams": "common.nightona",
+    "NightonaConfig": "common.nightona",
+    # common.errors
+    "NightonaError": "common.errors",
+    "NightonaNotFoundError": "common.errors",
+    "NightonaRateLimitError": "common.errors",
+    "NightonaTimeoutError": "common.errors",
+    "NightonaAuthenticationError": "common.errors",
+    "NightonaAuthorizationError": "common.errors",
+    "NightonaConflictError": "common.errors",
+    "NightonaValidationError": "common.errors",
+    "NightonaConnectionError": "common.errors",
+    # common.filesystem
+    "FileDownloadErrorDetails": "common.filesystem",
+    "DownloadProgress": "common.filesystem",
+    "UploadProgress": "common.filesystem",
+    "CancelEvent": "common.filesystem",
+    "FileDownloadRequest": "common.filesystem",
+    "FileDownloadResponse": "common.filesystem",
+    "FileUpload": "common.filesystem",
+    # common.image
+    "Image": "common.image",
+    # common.lsp_server
+    "LspCompletionPosition": "common.lsp_server",
+    "LspLanguageId": "common.lsp_server",
+    # common.process
+    "CodeRunParams": "common.process",
+    "ExecuteResponse": "common.process",
+    "ExecutionArtifacts": "common.process",
+    "OutputHandler": "common.process",
+    "SessionExecuteRequest": "common.process",
+    # common.pty
+    "PtySize": "common.pty",
+    # common.sandbox
+    "ListSandboxesQuery": "common.sandbox",
+    "Resources": "common.sandbox",
+    # common.snapshot
+    "CreateSnapshotParams": "common.snapshot",
+    # common.volume
+    "VolumeMount": "common.volume",
+}
+
+
+def __getattr__(attr_name: str) -> object:
+    # Check external package imports first
+    external = _EXTERNAL_IMPORTS.get(attr_name)
+    if external is not None:
+        module_path, name = external
+        mod = importlib.import_module(module_path)
+        value = getattr(mod, name)
+        globals()[attr_name] = value
+        return value
+
+    # Check internal submodule imports
+    submodule = _DYNAMIC_IMPORTS.get(attr_name)
+    if submodule is not None:
+        mod = importlib.import_module(f".{submodule}", __name__)
+        value = getattr(mod, attr_name)
+        globals()[attr_name] = value
+        return value
+
+    raise AttributeError(f"module {__name__!r} has no attribute {attr_name!r}")
+
+
+def __dir__() -> list[str]:
+    return list(__all__)

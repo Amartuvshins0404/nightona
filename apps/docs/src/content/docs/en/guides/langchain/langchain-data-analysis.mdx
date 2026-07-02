@@ -1,6 +1,6 @@
 ---
 title: Analyze Data With LangChain AI Agent
-description: Build LangChain agents that perform secure data analysis using Daytona's isolated sandbox environment.
+description: Build LangChain agents that perform secure data analysis using Nightona's isolated sandbox environment.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
@@ -8,7 +8,7 @@ import { Image } from 'astro:assets'
 
 import chartImage from '../../../../../assets/docs/images/langchain-data-analysis-chart.png'
 
-This package provides the `DaytonaDataAnalysisTool` - LangChain tool integration that enables agents to perform secure Python data analysis in a sandboxed environment. It supports multi-step workflows, file uploads/downloads, and custom result handling, making it ideal for automating data analysis tasks with LangChain agents.
+This package provides the `NightonaDataAnalysisTool` - LangChain tool integration that enables agents to perform secure Python data analysis in a sandboxed environment. It supports multi-step workflows, file uploads/downloads, and custom result handling, making it ideal for automating data analysis tasks with LangChain agents.
 
 This page demonstrates the use of this tool with a basic example analyzing a vehicle valuations dataset. Our goal is to analyze how vehicle prices vary by manufacturing year and create a line chart showing average price per year.
 
@@ -16,7 +16,7 @@ This page demonstrates the use of this tool with a basic example analyzing a veh
 
 ### 1. Workflow Overview
 
-You upload your dataset and provide a natural language prompt describing the analysis you want. The agent reasons about your request, determines how to use the `DaytonaDataAnalysisTool` to perform the task on your dataset, and executes the analysis securely in a Daytona sandbox.
+You upload your dataset and provide a natural language prompt describing the analysis you want. The agent reasons about your request, determines how to use the `NightonaDataAnalysisTool` to perform the task on your dataset, and executes the analysis securely in a Nightona sandbox.
 
 You provide the data and describe what insights you need - the agent handles the rest.
 
@@ -24,11 +24,11 @@ You provide the data and describe what insights you need - the agent handles the
 
 #### Clone the Repository
 
-Clone the [repository](https://github.com/daytonaio/daytona) and navigate to the example directory:
+Clone the [repository](https://github.com/Amartuvshins0404/nightona) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/python/langchain/data-analysis/anthropic
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/python/langchain/data-analysis/anthropic
 ```
 
 #### Install Dependencies
@@ -42,13 +42,13 @@ Install the required packages for this example:
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```bash
-    pip install -U langchain langchain-anthropic langchain-daytona-data-analysis python-dotenv
+    pip install -U langchain langchain-anthropic langchain-nightona-data-analysis python-dotenv
     ```
 
     The packages include:
     - `langchain`: LangChain framework for building AI agents
     - `langchain-anthropic`: Integration package connecting Claude (Anthropic) APIs and LangChain
-    - `langchain-daytona-data-analysis`: Provides the `DaytonaDataAnalysisTool` for LangChain agents
+    - `langchain-nightona-data-analysis`: Provides the `NightonaDataAnalysisTool` for LangChain agents
     - `python-dotenv`: Used for loading environment variables from `.env` file
   </TabItem>
 </Tabs>
@@ -57,13 +57,13 @@ Install the required packages for this example:
 
 Get your API keys and configure your environment:
 
-1. **Daytona API key:** Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+1. **Nightona API key:** Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 2. **Anthropic API key:** Get it from [Anthropic Console](https://console.anthropic.com/)
 
 Create a `.env` file in your project:
 
 ```bash
-DAYTONA_API_KEY=dtn_***
+NIGHTONA_API_KEY=dtn_***
 ANTHROPIC_API_KEY=sk-ant-***
 ```
 
@@ -118,7 +118,7 @@ This function will extract chart data from the execution artifacts and save them
   <TabItem label="Python" icon="seti:python">
     ```python
     import base64
-    from daytona import ExecutionArtifacts
+    from nightona import ExecutionArtifacts
 
     def process_data_analysis_result(result: ExecutionArtifacts):
         # Print the standard output from code execution
@@ -145,15 +145,15 @@ This function will extract chart data from the execution artifacts and save them
 
 ### 6. Configure the Data Analysis Tool
 
-Now we'll initialize the `DaytonaDataAnalysisTool` and upload our dataset.
+Now we'll initialize the `NightonaDataAnalysisTool` and upload our dataset.
 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```python
-    from langchain_daytona_data_analysis import DaytonaDataAnalysisTool
+    from langchain_nightona_data_analysis import NightonaDataAnalysisTool
 
     # Initialize the tool with our result handler
-    DataAnalysisTool = DaytonaDataAnalysisTool(
+    DataAnalysisTool = NightonaDataAnalysisTool(
         on_result=process_data_analysis_result
     )
     
@@ -207,9 +207,9 @@ Finally, we'll create the LangChain agent with our configured model and tool, th
 
   **What happens here:**
     1. The agent receives your natural language request
-    2. It determines it needs to use the `DaytonaDataAnalysisTool`
+    2. It determines it needs to use the `NightonaDataAnalysisTool`
     3. Agent generates Python code to analyze the data
-    4. Code executes securely in the Daytona sandbox
+    4. Code executes securely in the Nightona sandbox
     5. Results are processed by our handler function
     6. Charts are saved to your local directory
     7. Sandbox resources are cleaned up at the end
@@ -248,7 +248,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Load the dataset
-df = pd.read_csv('/home/daytona/dataset.csv')
+df = pd.read_csv('/home/nightona/dataset.csv')
 
 # Display basic info about the dataset
 print("Dataset shape:", df.shape)
@@ -260,7 +260,7 @@ print("\nData types:")
 print(df.dtypes)
 ```
 
-**Step 3: Code executes in Daytona sandbox**
+**Step 3: Code executes in Nightona sandbox**
 
 The tool runs this code in a secure sandbox and returns the output:
 
@@ -312,7 +312,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Load the dataset
-df = pd.read_csv('/home/daytona/dataset.csv')
+df = pd.read_csv('/home/nightona/dataset.csv')
 
 print("Dataset shape:", df.shape)
 print("\nColumn names:")
@@ -370,7 +370,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Load the dataset
-df = pd.read_csv('/home/daytona/dataset.csv')
+df = pd.read_csv('/home/nightona/dataset.csv')
 
 print("Original dataset shape:", df.shape)
 
@@ -507,8 +507,8 @@ Here is the complete, ready-to-run example:
   from dotenv import load_dotenv
   from langchain.agents import create_agent
   from langchain_anthropic import ChatAnthropic
-  from daytona import ExecutionArtifacts
-  from langchain_daytona_data_analysis import DaytonaDataAnalysisTool
+  from nightona import ExecutionArtifacts
+  from langchain_nightona_data_analysis import NightonaDataAnalysisTool
 
   load_dotenv()
 
@@ -534,7 +534,7 @@ Here is the complete, ready-to-run example:
               result_idx += 1
 
   def main():
-      DataAnalysisTool = DaytonaDataAnalysisTool(
+      DataAnalysisTool = NightonaDataAnalysisTool(
           on_result=process_data_analysis_result
       )
 
@@ -567,14 +567,14 @@ Here is the complete, ready-to-run example:
 
 **Key advantages of this approach:**
 
-- **Secure execution:** Code runs in isolated Daytona sandbox
+- **Secure execution:** Code runs in isolated Nightona sandbox
 - **Automatic artifact capture:** Charts, tables, and outputs are automatically extracted
 - **Natural language interface:** Describe analysis tasks in plain English
 - **Framework integration:** Seamlessly works with LangChain's agent ecosystem
 
 ### 10. API Reference
 
-The following public methods are available on `DaytonaDataAnalysisTool`:
+The following public methods are available on `NightonaDataAnalysisTool`:
 
 #### download_file
 
@@ -596,7 +596,7 @@ Downloads a file from the sandbox by its remote path.
 
 ```python
 # Download a file from the sandbox
-file_bytes = tool.download_file("/home/daytona/results.csv")
+file_bytes = tool.download_file("/home/nightona/results.csv")
 ```
 
 #### upload_file
@@ -605,7 +605,7 @@ file_bytes = tool.download_file("/home/daytona/results.csv")
 def upload_file(file: IO, description: str) -> SandboxUploadedFile
 ```
 
-Uploads a file to the sandbox. The file is placed in `/home/daytona/`.
+Uploads a file to the sandbox. The file is placed in `/home/nightona/`.
 
 **Arguments**:
 
@@ -659,7 +659,7 @@ def get_sandbox() -> Sandbox
 
 Gets the current sandbox instance.
 
-This method provides access to the Daytona sandbox instance, allowing you to inspect sandbox properties and metadata, as well as perform any sandbox-related operations. For details on available attributes and methods, see the [Sandbox](#sandbox) data structure section below.
+This method provides access to the Nightona sandbox instance, allowing you to inspect sandbox properties and metadata, as well as perform any sandbox-related operations. For details on available attributes and methods, see the [Sandbox](#sandbox) data structure section below.
 
 **Arguments**:
 
@@ -692,7 +692,7 @@ Installs one or more Python packages in the sandbox using pip.
 - None
 
 :::note
-The list of preinstalled packages in a sandbox can be found at [Daytona's Default Snapshot documentation](https://www.daytona.io/docs/en/snapshots/#default-snapshots).
+The list of preinstalled packages in a sandbox can be found at [Nightona's Default Snapshot documentation](https://www.daytona.io/docs/en/snapshots/#default-snapshots).
 :::
 
 **Example**:
@@ -742,6 +742,6 @@ Represents metadata about a file uploaded to the sandbox.
 - `description`: `str` - Description provided during upload
 
 #### Sandbox
-Represents a Daytona sandbox instance.
+Represents a Nightona sandbox instance.
 
-See the full structure and API in the [Daytona Python SDK Sandbox documentation](https://www.daytona.io/docs/en/python-sdk/sync/sandbox/#sandbox).
+See the full structure and API in the [Nightona Python SDK Sandbox documentation](https://www.daytona.io/docs/en/python-sdk/sync/sandbox/#sandbox).

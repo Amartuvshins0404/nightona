@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -e
@@ -15,8 +15,8 @@ fi
 
 poetry build
 
-mv src/daytona src/daytona_sdk
-sed -i 's/^name = "[^"]*"/name = "daytona_sdk"/' pyproject.toml
+mv src/nightona src/nightona_sdk
+sed -i 's/^name = "[^"]*"/name = "nightona_sdk"/' pyproject.toml
 poetry build
-mv src/daytona_sdk src/daytona
-sed -i 's/^name = "[^"]*"/name = "daytona"/' pyproject.toml
+mv src/nightona_sdk src/nightona
+sed -i 's/^name = "[^"]*"/name = "nightona"/' pyproject.toml

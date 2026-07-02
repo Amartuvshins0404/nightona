@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package services
@@ -7,10 +7,10 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/daytonaio/runner/pkg/cache"
-	"github.com/daytonaio/runner/pkg/docker"
-	"github.com/daytonaio/runner/pkg/models"
-	"github.com/daytonaio/runner/pkg/models/enums"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/cache"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/docker"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models/enums"
 )
 
 type SandboxService struct {

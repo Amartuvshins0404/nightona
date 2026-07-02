@@ -1,8 +1,8 @@
-# LangGraph Plan-and-Execute Data Agent (LangGraph + Daytona)
+# LangGraph Plan-and-Execute Data Agent (LangGraph + Nightona)
 
 ## Overview
 
-This example demonstrates how to build a [LangGraph](https://langchain-ai.github.io/langgraph/) **plan-and-execute** data agent that runs an end-to-end ETL + analytical-SQL workflow inside a [Daytona](https://daytona.io) sandbox. The LLM plans the work as an ordered list of atomic steps, writes Python for each step, and the sandbox executes it. The graph is hand-wired as a six-node state machine (`provision -> plan -> execute -> check -> summarize -> cleanup`). The `check` node sits between `execute` and the next stage and inspects the result: on success it routes forward (advance to the next plan step, or to `summarize` when the plan is complete), on failure it routes back to `execute` with the failing code as context so the LLM can retry. Every node and edge in the agent's control flow is explicit and inspectable.
+This example demonstrates how to build a [LangGraph](https://langchain-ai.github.io/langgraph/) **plan-and-execute** data agent that runs an end-to-end ETL + analytical-SQL workflow inside a [Nightona](https://daytona.io) sandbox. The LLM plans the work as an ordered list of atomic steps, writes Python for each step, and the sandbox executes it. The graph is hand-wired as a six-node state machine (`provision -> plan -> execute -> check -> summarize -> cleanup`). The `check` node sits between `execute` and the next stage and inspects the result: on success it routes forward (advance to the next plan step, or to `summarize` when the plan is complete), on failure it routes back to `execute` with the failing code as context so the LLM can retry. Every node and edge in the agent's control flow is explicit and inspectable.
 
 In this example, the agent profiles the maintenance health of the public [`langchain-ai/langgraph`](https://github.com/langchain-ai/langgraph) GitHub repository: extract issues + pull requests from the public GitHub REST API, transform and normalize them, load them into a SQLite database in the sandbox, run three analytical SQL queries, and summarize findings. The LangGraph state machine handles planning, sequential execution, per-step retries on failure, and cleanup.
 
@@ -24,7 +24,7 @@ In this example, the agent profiles the maintenance health of the public [`langc
 
 ## Environment Variables
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `ANTHROPIC_API_KEY`: Required for Claude model access. Get it from [Anthropic Console](https://console.anthropic.com/)
 
 Copy `.env.example` to `.env` and fill in your API keys before running.
@@ -41,13 +41,13 @@ Copy `.env.example` to `.env` and fill in your API keys before running.
 2. Install dependencies:
 
    ```bash
-   pip install -U langgraph langchain-core langchain-anthropic daytona pydantic python-dotenv
+   pip install -U langgraph langchain-core langchain-anthropic nightona pydantic python-dotenv
    ```
 
 3. Set your API keys in `.env`:
 
    ```bash
-   DAYTONA_API_KEY=your_daytona_api_key
+   NIGHTONA_API_KEY=your_nightona_api_key
    ANTHROPIC_API_KEY=your_anthropic_api_key
    ```
 
@@ -59,7 +59,7 @@ Copy `.env.example` to `.env` and fill in your API keys before running.
 
 ## How It Works
 
-1. **`provision`**: `Daytona().create()` provisions a fresh sandbox and stores it in graph state
+1. **`provision`**: `Nightona().create()` provisions a fresh sandbox and stores it in graph state
 2. **`plan`**: the LLM (called via `with_structured_output(Plan)`) emits an ordered `list[str]` of plan steps into `state["plan"]`
 3. **`execute`**: given the original user request, the full plan, the current step index, all prior steps' code and stdout, and any previous-attempt error, the LLM emits Python for the current step; the graph runs it in the sandbox via `sandbox.code_interpreter.run_code(code)`, which executes inside the sandbox's persistent shared interpreter context so imports and variables from earlier steps remain in scope
 4. **`check`**: deterministic. On success it advances `step_idx` and resets `attempts`. On failure it increments `attempts`. Then a conditional edge routes back to `execute` (retry or advance) or forward to `summarize` (done or gave up after `max_attempts`)
@@ -71,7 +71,7 @@ Copy `.env.example` to `.env` and fill in your API keys before running.
 The agent typically emits a 6-step plan, executes each step in the persistent interpreter context, runs three analytical SQL queries, and summarizes. Because variables and imports survive across steps, an `import requests` in step 1 is still in scope when step 2 calls `requests.get(...)`, so well-formed code rarely needs the retry path. The canonical run below completes all six steps on the first attempt:
 
 ```
-[provision] creating Daytona sandbox...
+[provision] creating Nightona sandbox...
 [provision] sandbox ready (id=b9cf758d-9b93-4117-96b3-9a406c86b1b8)
 
 [plan] asking the LLM for a multi-step plan...
@@ -129,4 +129,4 @@ See the main project LICENSE file for details.
 ## References
 
 - [LangGraph](https://langchain-ai.github.io/langgraph/)
-- [Daytona](https://daytona.io)
+- [Nightona](https://daytona.io)

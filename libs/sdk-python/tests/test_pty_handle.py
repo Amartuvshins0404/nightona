@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -9,8 +9,8 @@ import pytest
 from httpx_ws import WebSocketDisconnect
 from wsproto.events import BytesMessage, CloseConnection, TextMessage
 
-from daytona.common.errors import DaytonaConnectionError, DaytonaError, DaytonaTimeoutError
-from daytona.common.pty import PtySize
+from nightona.common.errors import NightonaConnectionError, NightonaError, NightonaTimeoutError
+from nightona.common.pty import PtySize
 
 
 def _text(data: str) -> TextMessage:
@@ -23,7 +23,7 @@ def _binary(data: bytes) -> BytesMessage:
 
 class TestPtyHandle:
     def _make_handle(self):
-        from daytona.handle.pty_handle import PtyHandle
+        from nightona.handle.pty_handle import PtyHandle
 
         ws = MagicMock()
         return PtyHandle(ws, "session-1"), ws
@@ -48,7 +48,7 @@ class TestPtyHandle:
         handle, _ws = self._make_handle()
         handle._ws = None
 
-        with pytest.raises(DaytonaConnectionError, match="not available"):
+        with pytest.raises(NightonaConnectionError, match="not available"):
             handle.wait_for_connection()
 
     def test_wait_for_connection_processes_connected_control_message(self):
@@ -63,16 +63,16 @@ class TestPtyHandle:
         handle, ws = self._make_handle()
         ws.receive.side_effect = [_text('{"type":"control","status":"error","error":"boom"}')]
 
-        with pytest.raises(DaytonaConnectionError, match="boom"):
+        with pytest.raises(NightonaConnectionError, match="boom"):
             handle.wait_for_connection(timeout=0.2)
 
     def test_wait_for_connection_times_out(self, monkeypatch):
         handle, ws = self._make_handle()
         ws.receive.side_effect = TimeoutError()
         times = iter([0.0, 0.2])
-        monkeypatch.setattr("daytona.handle.pty_handle.time.time", lambda: next(times))
+        monkeypatch.setattr("nightona.handle.pty_handle.time.time", lambda: next(times))
 
-        with pytest.raises(DaytonaTimeoutError, match="connection timeout"):
+        with pytest.raises(NightonaTimeoutError, match="connection timeout"):
             handle.wait_for_connection(timeout=0.1)
 
     def test_send_input_encodes_string(self):
@@ -93,33 +93,33 @@ class TestPtyHandle:
         handle, _ws = self._make_handle()
         handle._connected = False
 
-        with pytest.raises(DaytonaConnectionError, match="not connected"):
+        with pytest.raises(NightonaConnectionError, match="not connected"):
             handle.send_input("hi")
 
     def test_resize_raises_without_handler(self):
         handle, _ws = self._make_handle()
 
-        with pytest.raises(DaytonaError, match="Resize handler not available"):
+        with pytest.raises(NightonaError, match="Resize handler not available"):
             handle.resize(PtySize(rows=24, cols=80))
 
     def test_resize_wraps_handler_errors(self):
         handle, _ws = self._make_handle()
         handle._handle_resize = MagicMock(side_effect=RuntimeError("bad resize"))
 
-        with pytest.raises(DaytonaError, match="Failed to resize PTY: bad resize"):
+        with pytest.raises(NightonaError, match="Failed to resize PTY: bad resize"):
             handle.resize(PtySize(rows=24, cols=80))
 
     def test_kill_raises_without_handler(self):
         handle, _ws = self._make_handle()
 
-        with pytest.raises(DaytonaError, match="Kill handler not available"):
+        with pytest.raises(NightonaError, match="Kill handler not available"):
             handle.kill()
 
     def test_kill_wraps_handler_errors(self):
         handle, _ws = self._make_handle()
         handle._handle_kill = MagicMock(side_effect=RuntimeError("bad kill"))
 
-        with pytest.raises(DaytonaError, match="Failed to kill PTY: bad kill"):
+        with pytest.raises(NightonaError, match="Failed to kill PTY: bad kill"):
             handle.kill()
 
     def test_iterator_yields_text_and_bytes_but_skips_control_messages(self):
@@ -169,7 +169,7 @@ class TestPtyHandle:
         assert handle.is_connected() is False
 
     def test_disconnect_uses_context_manager_when_provided(self):
-        from daytona.handle.pty_handle import PtyHandle
+        from nightona.handle.pty_handle import PtyHandle
 
         ws = MagicMock()
         ws_cm = MagicMock()
@@ -200,7 +200,7 @@ class TestPtyHandle:
 
 class TestAsyncPtyHandle:
     async def _build_handle(self, monkeypatch, ws: AsyncMock | None = None):
-        from daytona.handle.async_pty_handle import AsyncPtyHandle
+        from nightona.handle.async_pty_handle import AsyncPtyHandle
 
         async def noop(self):
             return None
@@ -234,7 +234,7 @@ class TestAsyncPtyHandle:
         handle, _ws = await self._build_handle(monkeypatch)
         handle._error = "boom"
 
-        with pytest.raises(DaytonaConnectionError, match="boom"):
+        with pytest.raises(NightonaConnectionError, match="boom"):
             await handle.wait_for_connection()
         await handle.disconnect()
 
@@ -252,7 +252,7 @@ class TestAsyncPtyHandle:
     async def test_send_input_raises_when_disconnected(self, monkeypatch):
         handle, _ws = await self._build_handle(monkeypatch)
 
-        with pytest.raises(DaytonaConnectionError, match="not connected"):
+        with pytest.raises(NightonaConnectionError, match="not connected"):
             await handle.send_input("hi")
         await handle.disconnect()
 
@@ -272,16 +272,16 @@ class TestAsyncPtyHandle:
     async def test_resize_and_kill_require_handlers(self, monkeypatch):
         handle, _ws = await self._build_handle(monkeypatch)
 
-        with pytest.raises(DaytonaError, match="Resize handler not available"):
+        with pytest.raises(NightonaError, match="Resize handler not available"):
             await handle.resize(PtySize(rows=24, cols=80))
-        with pytest.raises(DaytonaError, match="Kill handler not available"):
+        with pytest.raises(NightonaError, match="Kill handler not available"):
             await handle.kill()
         await handle.disconnect()
 
     @pytest.mark.asyncio
     async def test_handle_message_routes_text_and_binary_to_callback(self, monkeypatch):
         received: list[bytes] = []
-        from daytona.handle.async_pty_handle import AsyncPtyHandle
+        from nightona.handle.async_pty_handle import AsyncPtyHandle
 
         async def noop(self):
             return None

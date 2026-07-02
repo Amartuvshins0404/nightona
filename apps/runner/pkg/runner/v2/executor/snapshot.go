@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -8,9 +8,9 @@ package executor
 import (
 	"context"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	"github.com/daytonaio/runner/cmd/runner/config"
-	"github.com/daytonaio/runner/pkg/api/dto"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/apps/runner/cmd/runner/config"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
 )
 
 func (e *Executor) buildSnapshot(ctx context.Context, job *apiclient.Job) (any, error) {

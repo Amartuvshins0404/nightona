@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -11,11 +11,11 @@ import pytest
 from httpx_ws import WebSocketDisconnect
 from wsproto.events import CloseConnection, TextMessage
 
-from daytona.common.errors import DaytonaConnectionError, DaytonaTimeoutError
+from nightona.common.errors import NightonaConnectionError, NightonaTimeoutError
 
 
 def _make_interpreter():
-    from daytona._sync.code_interpreter import CodeInterpreter
+    from nightona._sync.code_interpreter import CodeInterpreter
 
     api_client = MagicMock()
     api_client._execute_interpreter_code_serialize.return_value = (
@@ -57,7 +57,7 @@ class TestCodeInterpreterRunCode:
             ]
         )
 
-        with patch("daytona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
+        with patch("nightona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
             result = interpreter.run_code(
                 "print('hi')",
                 on_stdout=lambda msg: stdout_messages.append(msg.output),
@@ -81,7 +81,7 @@ class TestCodeInterpreterRunCode:
         ws, ws_cm = _make_ws_cm([CloseConnection(code=1000, reason=None)])
         context = SimpleNamespace(id="ctx-1")
 
-        with patch("daytona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
+        with patch("nightona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
             interpreter.run_code(
                 "print('hi')",
                 context=context,
@@ -106,7 +106,7 @@ class TestCodeInterpreterRunCode:
             ]
         )
 
-        with patch("daytona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
+        with patch("nightona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
             result = interpreter.run_code("print('hi')")
 
         assert result.stdout == ""
@@ -118,8 +118,8 @@ class TestCodeInterpreterRunCode:
 
         _ws, ws_cm = _make_ws_cm([WebSocketDisconnect(code=4008, reason="timed out")])
 
-        with patch("daytona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
-            with pytest.raises(DaytonaTimeoutError, match="Execution timed out"):
+        with patch("nightona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
+            with pytest.raises(NightonaTimeoutError, match="Execution timed out"):
                 interpreter.run_code("print('hi')")
 
     def test_run_code_raises_connection_error_on_unexpected_disconnect(self):
@@ -127,8 +127,8 @@ class TestCodeInterpreterRunCode:
 
         _ws, ws_cm = _make_ws_cm([WebSocketDisconnect(code=4001, reason="socket ended")])
 
-        with patch("daytona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
-            with pytest.raises(DaytonaConnectionError, match=r"socket ended \(close code 4001\)"):
+        with patch("nightona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
+            with pytest.raises(NightonaConnectionError, match=r"socket ended \(close code 4001\)"):
                 interpreter.run_code("print('hi')")
 
     def test_run_code_raises_connection_error_via_close_frame(self):
@@ -136,8 +136,8 @@ class TestCodeInterpreterRunCode:
 
         _ws, ws_cm = _make_ws_cm([CloseConnection(code=4100, reason="writer closed")])
 
-        with patch("daytona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
-            with pytest.raises(DaytonaConnectionError, match=r"writer closed \(close code 4100\)"):
+        with patch("nightona._sync.code_interpreter.httpx_ws.connect_ws", return_value=ws_cm):
+            with pytest.raises(NightonaConnectionError, match=r"writer closed \(close code 4100\)"):
                 interpreter.run_code("print('hi')")
 
     def test_maybe_raise_from_close_normal_close_does_not_raise(self):

@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -91,7 +91,7 @@ export function PrivacyPreferencesDialog({ open, onOpenChange, preferences, onSa
               <div className="space-y-1">
                 <p className="font-medium text-sm">Marketing</p>
                 <p className="text-xs text-muted-foreground">
-                  Used for communications about Daytona features and updates.
+                  Used for communications about Nightona features and updates.
                 </p>
               </div>
               <Switch

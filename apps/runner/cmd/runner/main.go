@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package main
@@ -11,23 +11,23 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/daytonaio/common-go/pkg/log"
-	"github.com/daytonaio/common-go/pkg/telemetry"
-	"github.com/daytonaio/runner/cmd/runner/config"
-	"github.com/daytonaio/runner/internal"
-	"github.com/daytonaio/runner/internal/metrics"
-	"github.com/daytonaio/runner/pkg/api"
-	"github.com/daytonaio/runner/pkg/cache"
-	"github.com/daytonaio/runner/pkg/daemon"
-	"github.com/daytonaio/runner/pkg/docker"
-	"github.com/daytonaio/runner/pkg/netrules"
-	"github.com/daytonaio/runner/pkg/runner"
-	"github.com/daytonaio/runner/pkg/runner/v2/executor"
-	"github.com/daytonaio/runner/pkg/runner/v2/healthcheck"
-	"github.com/daytonaio/runner/pkg/runner/v2/poller"
-	"github.com/daytonaio/runner/pkg/services"
-	"github.com/daytonaio/runner/pkg/sshgateway"
-	"github.com/daytonaio/runner/pkg/telemetry/filters"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/telemetry"
+	"github.com/Amartuvshins0404/nightona/apps/runner/cmd/runner/config"
+	"github.com/Amartuvshins0404/nightona/apps/runner/internal"
+	"github.com/Amartuvshins0404/nightona/apps/runner/internal/metrics"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/cache"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/daemon"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/docker"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/netrules"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner/v2/executor"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner/v2/healthcheck"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner/v2/poller"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/services"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/sshgateway"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/telemetry/filters"
 	"github.com/docker/docker/client"
 	"github.com/lmittmann/tint"
 	"github.com/mattn/go-isatty"
@@ -63,7 +63,7 @@ func run() int {
 		telemetryConfig := telemetry.Config{
 			Endpoint:       cfg.OtelEndpoint,
 			Headers:        cfg.GetOtelHeaders(),
-			ServiceName:    "daytona-runner",
+			ServiceName:    "nightona-runner",
 			ServiceVersion: internal.Version,
 			Environment:    cfg.Environment,
 		}
@@ -88,7 +88,7 @@ func run() int {
 		telemetryConfig := telemetry.Config{
 			Endpoint:       cfg.OtelEndpoint,
 			Headers:        cfg.GetOtelHeaders(),
-			ServiceName:    "daytona-runner",
+			ServiceName:    "nightona-runner",
 			ServiceVersion: internal.Version,
 			Environment:    cfg.Environment,
 		}
@@ -133,7 +133,7 @@ func run() int {
 		return 2
 	}
 
-	pluginPath, err := daemon.WriteStaticBinary("daytona-computer-use")
+	pluginPath, err := daemon.WriteStaticBinary("nightona-computer-use")
 	if err != nil {
 		logger.Error("Error writing plugin binary", "error", err)
 		return 2

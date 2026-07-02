@@ -1,12 +1,12 @@
 [project]
 name = "dspy-rlms"
 version = "0.1.0"
-description = "DSPy Recursive Language Models with Daytona sandboxed code execution"
+description = "DSPy Recursive Language Models with Nightona sandboxed code execution"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "dspy>=2.6.0",
-    "daytona>=0.136.0",
+    "nightona>=0.136.0",
     "python-dotenv>=1.0.0",
 ]
 
@@ -20,4 +20,4 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-py-modules = ["daytona_interpreter"]
+py-modules = ["nightona_interpreter"]

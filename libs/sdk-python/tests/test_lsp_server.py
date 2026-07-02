@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -6,11 +6,11 @@ from __future__ import annotations
 import warnings
 from unittest.mock import MagicMock
 
-from daytona.common.lsp_server import LspCompletionPosition, LspLanguageId
+from nightona.common.lsp_server import LspCompletionPosition, LspLanguageId
 
 
 def _make_lsp(language_id: str | LspLanguageId = LspLanguageId.PYTHON, path_to_project: str = "/workspace/project"):
-    from daytona._sync.lsp_server import LspServer
+    from nightona._sync.lsp_server import LspServer
 
     api_client = MagicMock()
     return LspServer(language_id, path_to_project, api_client), api_client

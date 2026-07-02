@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package proxy
@@ -17,9 +17,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"golang.org/x/oauth2"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	"github.com/daytonaio/common-go/pkg/utils"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/utils"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 )
 
 func (p *Proxy) AuthCallback(ctx *gin.Context) {
@@ -214,7 +214,7 @@ func (p *Proxy) getUserApiClient(ctx context.Context, authToken string) *apiclie
 	clientConfig := apiclient.NewConfiguration()
 	clientConfig.Servers = apiclient.ServerConfigurations{
 		{
-			URL: p.config.DaytonaApiUrl,
+			URL: p.config.NightonaApiUrl,
 		},
 	}
 	clientConfig.HTTPClient = p.userAPIHTTPClient

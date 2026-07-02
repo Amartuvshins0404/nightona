@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { SnapshotManagerCredentials } from '@daytona/api-client'
+import { SnapshotManagerCredentials } from '@nightona/api-client'
 import { useMutation } from '@tanstack/react-query'
 import { useApi } from '../useApi'
 import { mutationKeys } from './mutationKeys'

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/containerd/errdefs"
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	"github.com/daytonaio/runner/pkg/api/dto"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"
 	"github.com/vishvananda/netlink"
@@ -20,16 +20,16 @@ const (
 	// linkNetworkPrefix is prepended to the owner sandbox id to form the per-owner
 	// link-network name. Presence of a network with this prefix is the single source
 	// of truth for "this sandbox owns a link network" during Destroy.
-	linkNetworkPrefix = "daytona-link-"
+	linkNetworkPrefix = "nightona-link-"
 
 	// sandboxNameLabel carries the human-readable sandbox name on the container.
 	// It is used as the DNS alias when attaching to a link network so other linked
 	// sandboxes can resolve each other by name.
-	sandboxNameLabel = "daytona.sandbox_name"
+	sandboxNameLabel = "nightona.sandbox_name"
 
 	// linkOwnerLabel is attached to the link network itself (not the container)
 	// and records which sandbox id owns the network.
-	linkOwnerLabel = "daytona.link_network_owner"
+	linkOwnerLabel = "nightona.link_network_owner"
 )
 
 // linkNetworkName returns the per-owner link-network name for the given owner sandbox id.
@@ -38,7 +38,7 @@ func linkNetworkName(ownerId string) string {
 }
 
 // networkAliasForOwner resolves the alias to use when attaching the owner container
-// to its link network. Prefers the daytona.sandbox_name label; falls back to the
+// to its link network. Prefers the nightona.sandbox_name label; falls back to the
 // sandbox id for containers created before that label existed.
 func networkAliasForOwner(owner *container.InspectResponse) string {
 	if owner != nil && owner.Config != nil {

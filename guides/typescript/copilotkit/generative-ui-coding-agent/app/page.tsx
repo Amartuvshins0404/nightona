@@ -315,10 +315,10 @@ export default function Page() {
         }}
       >
         <h1 style={{ margin: 0, fontSize: 16, fontWeight: 600 }}>
-          CopilotKit + Daytona Coding Agent
+          CopilotKit + Nightona Coding Agent
         </h1>
         <p style={{ margin: '4px 0 0', fontSize: 13, color: '#64748b' }}>
-          The agent has access to a Daytona sandbox. Ask it to build, debug, run, or analyze code.
+          The agent has access to a Nightona sandbox. Ask it to build, debug, run, or analyze code.
         </p>
       </header>
       <div style={{ flex: 1, minHeight: 0 }}>

@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Daytona Runner API",
-    "title": "Daytona Runner API",
+    "description": "Nightona Runner API",
+    "title": "Nightona Runner API",
     "contact": {},
     "license": {
       "name": "Apache-2.0",
@@ -575,7 +575,7 @@
     },
     "/sandboxes/{sandboxId}/snapshot-from-sandbox": {
       "post": {
-        "description": "Commit the sandbox container filesystem and push the image to the supplied registry under the canonical daytona-{hash}:daytona tag.",
+        "description": "Commit the sandbox container filesystem and push the image to the supplied registry under the canonical nightona-{hash}:nightona tag.",
         "produces": ["application/json"],
         "tags": ["sandbox"],
         "summary": "Snapshot a running sandbox",

@@ -1,15 +1,15 @@
-# LiteLLM Data Analysis Example (LiteLLM + Daytona)
+# LiteLLM Data Analysis Example (LiteLLM + Nightona)
 
 ## Overview
 
-This example demonstrates how to build a data analysis tool using [LiteLLM](https://litellm.ai/) and [Daytona](https://daytona.io) sandboxes. The script executes Python code in an isolated environment to analyze cafe sales data, enabling automated data analysis workflows with natural language prompts.
+This example demonstrates how to build a data analysis tool using [LiteLLM](https://litellm.ai/) and [Nightona](https://daytona.io) sandboxes. The script executes Python code in an isolated environment to analyze cafe sales data, enabling automated data analysis workflows with natural language prompts.
 
 In this example, the agent analyzes a cafe sales dataset to find the three highest revenue products for January and visualizes the results in a bar chart.
 
 ## Features
 
 - **Multiple LLM Providers:** Easily switch between different LLM providers including Anthropic, OpenAI, Mistral, and more through LiteLLM
-- **Secure sandbox execution:** All Python code runs in isolated Daytona sandboxes
+- **Secure sandbox execution:** All Python code runs in isolated Nightona sandboxes
 - **Natural language interface:** Describe your analysis task in plain English
 - **Automatic chart generation:** Visualizations are automatically saved as PNG files
 - **File handling:** Upload datasets and process results within the sandbox
@@ -27,7 +27,7 @@ To run this example, you need to set the following environment variables:
 
 ### Required
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 
 ### LLM Provider API Keys (choose one based on your provider)
 
@@ -66,7 +66,7 @@ Create a `.env` file in the project directory with the appropriate variables for
 ## How It Works
 
 1. An LLM call generates Python code based on the data format and prompt
-2. A new Daytona sandbox is created, containing the data file
+2. A new Nightona sandbox is created, containing the data file
 3. The Python code is executed in the sandbox
 4. Any generated charts are saved as PNG files
 5. A second LLM call summarizes the code execution results
@@ -131,4 +131,4 @@ See the main project LICENSE file for details.
 
 - [LiteLLM Documentation](https://docs.litellm.ai/docs/)
 - [LiteLLM Providers](https://docs.litellm.ai/docs/providers)
-- [Daytona Documentation](https://www.daytona.io/docs)
+- [Nightona Documentation](https://www.daytona.io/docs)

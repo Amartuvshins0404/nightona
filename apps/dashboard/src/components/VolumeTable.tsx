@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -37,7 +37,7 @@ import {
   getTableColumnMaxResizeSize,
   getTableSizeStyles,
 } from '@/lib/utils/table'
-import { OrganizationRolePermissionsEnum, VolumeDto, VolumeState } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum, VolumeDto, VolumeState } from '@nightona/api-client'
 import {
   ColumnDef,
   ColumnFiltersState,

@@ -1,11 +1,11 @@
 ---
-title: "DaytonaConfig"
+title: "NightonaConfig"
 hideTitleOnPage: true
 ---
 
-## DaytonaConfig
+## NightonaConfig
 
-Configuration used to initialize a `Daytona` client.
+Configuration used to initialize a `Nightona` client.
 
 Contains API authentication settings, API endpoint URL, and the default target region used
 when creating new Sandboxes.
@@ -28,7 +28,7 @@ Returns the API key used to authenticate SDK requests.
 public String getApiUrl()
 ```
 
-Returns the Daytona API base URL.
+Returns the Nightona API base URL.
 
 **Returns**:
 
@@ -60,9 +60,9 @@ of instrumentation landing in a future release.
 
 - `boolean` - `true` if OpenTelemetry tracing is enabled
 
-## DaytonaConfig.Builder
+## NightonaConfig.Builder
 
-Builder for creating immutable `DaytonaConfig` instances.
+Builder for creating immutable `NightonaConfig` instances.
 
 ### Methods
 
@@ -75,7 +75,7 @@ Sets the API key used for authenticating SDK requests.
 
 **Parameters**:
 
-- `apiKey` _String_ - Daytona API key
+- `apiKey` _String_ - Nightona API key
 
 **Returns**:
 
@@ -86,7 +86,7 @@ Sets the API key used for authenticating SDK requests.
 public Builder apiUrl(String apiUrl)
 ```
 
-Sets the Daytona API base URL.
+Sets the Nightona API base URL.
 
 **Parameters**:
 
@@ -132,11 +132,11 @@ of instrumentation landing in a future release.
 
 #### build()
 ```java
-public DaytonaConfig build()
+public NightonaConfig build()
 ```
 
-Builds a new immutable `DaytonaConfig`.
+Builds a new immutable `NightonaConfig`.
 
 **Returns**:
 
-- `DaytonaConfig` - configured `DaytonaConfig` instance
+- `NightonaConfig` - configured `NightonaConfig` instance

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,7 +10,7 @@ import {
   ForkSandboxPayloadSchema,
   PauseSandboxPayloadSchema,
   RegistrySchema,
-} from '@daytona/runner-proto'
+} from '@nightona/runner-proto'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository, IsNull, Not } from 'typeorm'
 import {
@@ -41,7 +41,7 @@ import {
   UpdateNetworkSettingsDTO,
   InspectSnapshotInRegistryRequest,
   RecoverSandboxDTO,
-} from '@daytona/runner-api-client'
+} from '@nightona/runner-api-client'
 import { SnapshotStateError } from '../errors/snapshot-state-error'
 
 /**

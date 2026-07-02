@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -44,11 +44,11 @@ exports.onExecutePostLogin = async (event, api) => {
     return
   }
 
-  // Deny access if this user doesn't exist in the Daytona database
+  // Deny access if this user doesn't exist in the Nightona database
   try {
-    const response = await fetch(`${event.secrets.DAYTONA_API_URL}/users/${event.user.user_id}`, {
+    const response = await fetch(`${event.secrets.NIGHTONA_API_URL}/users/${event.user.user_id}`, {
       headers: {
-        Authorization: `Bearer ${event.secrets.DAYTONA_API_KEY}`,
+        Authorization: `Bearer ${event.secrets.NIGHTONA_API_KEY}`,
       },
     })
 
@@ -56,7 +56,7 @@ exports.onExecutePostLogin = async (event, api) => {
       return api.access.deny('Something went wrong, please try again later')
     }
   } catch (error) {
-    console.error('Failed to fetch Daytona users:', error)
+    console.error('Failed to fetch Nightona users:', error)
     return api.access.deny('Something went wrong, please try again later')
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -23,7 +23,7 @@ import {
   TierApi,
   UsageApi,
   WalletApi,
-} from '@daytona/billing-api-client'
+} from '@nightona/billing-api-client'
 import { AxiosInstance } from 'axios'
 
 export class BillingApiClient {

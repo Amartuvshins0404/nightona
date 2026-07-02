@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: AGPL-3.0
 version: 2
 updates:
@@ -112,7 +112,7 @@ updates:
     directories:
       - "/apps/cli"
       - "/apps/daemon"
-      - "/apps/daytona-e2e"
+      - "/apps/nightona-e2e"
       - "/apps/otel-collector/exporter"
       - "/apps/proxy"
       - "/apps/runner"

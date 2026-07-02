@@ -1,12 +1,12 @@
 import asyncio
 
-from daytona import AsyncDaytona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
+from nightona import AsyncNightona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
+    async with AsyncNightona() as nightona:
         print("Creating sandbox")
-        sandbox = await daytona.create()
+        sandbox = await nightona.create()
         print("Sandbox created")
 
         _ = await sandbox.set_labels(
@@ -16,24 +16,24 @@ async def main():
         )
 
         print("Stopping sandbox")
-        await daytona.stop(sandbox)
+        await nightona.stop(sandbox)
         print("Sandbox stopped")
 
         print("Starting sandbox")
-        await daytona.start(sandbox)
+        await nightona.start(sandbox)
         print("Sandbox started")
 
         print("Getting existing sandbox")
-        existing_sandbox = await daytona.get(sandbox.id)
+        existing_sandbox = await nightona.get(sandbox.id)
         print("Get existing sandbox")
 
-        response = await existing_sandbox.process.exec('echo "Hello World from exec!"', cwd="/home/daytona", timeout=10)
+        response = await existing_sandbox.process.exec('echo "Hello World from exec!"', cwd="/home/nightona", timeout=10)
         if response.exit_code != 0:
             print(f"Error: {response.exit_code} {response.result}")
         else:
             print(response.result)
 
-        async for sb in daytona.list(
+        async for sb in nightona.list(
             ListSandboxesQuery(
                 limit=10,
                 labels={"env": "dev"},
@@ -45,7 +45,7 @@ async def main():
             print(sb.id)
 
         print("Removing sandbox")
-        await daytona.delete(sandbox)
+        await nightona.delete(sandbox)
         print("Sandbox removed")
 
 

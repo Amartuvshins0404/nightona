@@ -1,0 +1,13 @@
+name: nightona organization
+synopsis: Manage Nightona organizations
+description: Commands for managing Nightona organizations
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI
+  - nightona organization create - Create a new organization and set it as active
+  - nightona organization delete - Delete an organization
+  - nightona organization list - List all organizations
+  - nightona organization use - Set active organization

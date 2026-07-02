@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, Daytona, Sandbox } from '@daytona/sdk'
+import { CreateSandboxFromImageParams, CreateSandboxFromSnapshotParams, Nightona, Sandbox } from '@nightona/sdk'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from 'react-oidc-context'
 import { useConfig } from '../useConfig'
@@ -27,7 +27,7 @@ export const useCreateSandboxMutation = () => {
       }
 
       const { target, ...createParams } = params
-      const client = new Daytona({
+      const client = new Nightona({
         jwtToken: user.access_token,
         apiUrl,
         organizationId: selectedOrganization.id,

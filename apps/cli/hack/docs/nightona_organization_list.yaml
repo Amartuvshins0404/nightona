@@ -1,0 +1,13 @@
+name: nightona organization list
+synopsis: List all organizations
+usage: nightona organization list [flags]
+options:
+  - name: format
+    shorthand: f
+    usage: Output format. Must be one of (yaml, json)
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona organization - Manage Nightona organizations

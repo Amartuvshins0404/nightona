@@ -1,17 +1,17 @@
 import time
 
-from daytona import (
+from nightona import (
     CreateSandboxFromImageParams,
     CreateSandboxFromSnapshotParams,
     CreateSnapshotParams,
-    Daytona,
+    Nightona,
     Image,
     Resources,
 )
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
     # Generate unique name for the snapshot to avoid conflicts
     snapshot_name = f"python-example:{int(time.time())}"
@@ -26,17 +26,17 @@ def main():
         .pip_install(["numpy", "pandas", "matplotlib", "scipy", "scikit-learn", "jupyter"])
         .run_commands(
             "apt-get update && apt-get install -y git",
-            "groupadd -r daytona && useradd -r -g daytona -m daytona",
-            "mkdir -p /home/daytona/workspace",
+            "groupadd -r nightona && useradd -r -g nightona -m nightona",
+            "mkdir -p /home/nightona/workspace",
         )
-        .workdir("/home/daytona/workspace")
+        .workdir("/home/nightona/workspace")
         .env({"MY_ENV_VAR": "My Environment Variable"})
-        .add_local_file("file_example.txt", "/home/daytona/workspace/file_example.txt")
+        .add_local_file("file_example.txt", "/home/nightona/workspace/file_example.txt")
     )
 
     # Create the snapshot
     print(f"=== Creating Snapshot: {snapshot_name} ===")
-    _ = daytona.snapshot.create(
+    _ = nightona.snapshot.create(
         CreateSnapshotParams(
             name=snapshot_name,
             image=image,
@@ -51,7 +51,7 @@ def main():
 
     # Create first sandbox using the pre-built image
     print("\n=== Creating Sandbox from Pre-built Image ===")
-    sandbox1 = daytona.create(CreateSandboxFromSnapshotParams(snapshot=snapshot_name))
+    sandbox1 = nightona.create(CreateSandboxFromSnapshotParams(snapshot=snapshot_name))
 
     try:
         # Verify the first sandbox environment
@@ -66,7 +66,7 @@ def main():
         print(response.result)
     finally:
         # Clean up first sandbox
-        daytona.delete(sandbox1)
+        nightona.delete(sandbox1)
 
     # Create second sandbox with a new dynamic image
     print("=== Creating Sandbox with Dynamic Image ===")
@@ -75,13 +75,13 @@ def main():
     dynamic_image = (
         Image.debian_slim("3.11")
         .pip_install(["pytest", "pytest-cov", "black", "isort", "mypy", "ruff"])
-        .run_commands("apt-get update && apt-get install -y git", "mkdir -p /home/daytona/project")
-        .workdir("/home/daytona/project")
+        .run_commands("apt-get update && apt-get install -y git", "mkdir -p /home/nightona/project")
+        .workdir("/home/nightona/project")
         .env({"ENV_VAR": "My Environment Variable"})
     )
 
     # Create sandbox with the dynamic image
-    sandbox2 = daytona.create(
+    sandbox2 = nightona.create(
         CreateSandboxFromImageParams(
             image=dynamic_image,
         ),
@@ -97,7 +97,7 @@ def main():
         print(response.result)
     finally:
         # Clean up second sandbox
-        daytona.delete(sandbox2)
+        nightona.delete(sandbox2)
 
 
 if __name__ == "__main__":

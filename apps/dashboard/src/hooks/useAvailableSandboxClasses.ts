@@ -1,10 +1,10 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { useMemo } from 'react'
-import { SandboxClass } from '@daytona/api-client'
+import { SandboxClass } from '@nightona/api-client'
 import { useOrganizationUsageOverviewQuery } from '@/hooks/queries/useOrganizationUsageOverviewQuery'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 

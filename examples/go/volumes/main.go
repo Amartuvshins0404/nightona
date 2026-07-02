@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -7,13 +7,13 @@ import (
 	"context"
 	"log"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-	// Create a new Daytona client using environment variables
-	// Set DAYTONA_API_KEY before running
-	client, err := daytona.NewClient()
+	// Create a new Nightona client using environment variables
+	// Set NIGHTONA_API_KEY before running
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}

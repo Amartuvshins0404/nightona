@@ -13,40 +13,40 @@ const DEFAULT_LOCAL_PATH = join(__dirname, '../../cli/hack/docs')
 // content to appear above the commands outline
 const prepend = `---
 title: CLI
-description: A reference of supported operations using the Daytona CLI.
+description: A reference of supported operations using the Nightona CLI.
 sidebar:
-  label: Daytona CLI Reference
+  label: Nightona CLI Reference
 ---
 import { TabItem, Tabs } from "@astrojs/starlight/components";
 import Aside from "@components/Aside.astro";
 import Label from "@components/Label.astro";
 
-Daytona provides command-line access to core features for interacting with Daytona Sandboxes, including managing their lifecycle, snapshots, and more.
+Nightona provides command-line access to core features for interacting with Nightona Sandboxes, including managing their lifecycle, snapshots, and more.
 
-The CLI reference lists all commands supported by the \`daytona\` command-line tool, complete with a description of their behavior, and any supported flags.
-You can access this documentation on a per-command basis by appending the \`--help\`/\`-h\` flag when invoking \`daytona\`.
+The CLI reference lists all commands supported by the \`nightona\` command-line tool, complete with a description of their behavior, and any supported flags.
+You can access this documentation on a per-command basis by appending the \`--help\`/\`-h\` flag when invoking \`nightona\`.
 
 ## Installation
 
-Install the Daytona CLI to interact with Daytona sandboxes from the command line.
+Install the Nightona CLI to interact with Nightona sandboxes from the command line.
 
 <Tabs syncKey="language">
 <TabItem label="Mac">
 
 \`\`\`bash
-brew install daytonaio/cli/daytona
+brew install daytonaio/cli/nightona
 \`\`\`
 
-Trust the tap once so routine \`brew upgrade\` keeps the Daytona CLI up to date. Recent Homebrew versions require third-party taps to be explicitly trusted; without it, a bare \`brew upgrade\` skips the Daytona tap and the CLI goes stale:
+Trust the tap once so routine \`brew upgrade\` keeps the Nightona CLI up to date. Recent Homebrew versions require third-party taps to be explicitly trusted; without it, a bare \`brew upgrade\` skips the Nightona tap and the CLI goes stale:
 
 \`\`\`bash
 brew trust daytonaio/cli
 \`\`\`
 
-To upgrade the Daytona CLI to the latest version:
+To upgrade the Nightona CLI to the latest version:
 
 \`\`\`bash
-brew upgrade daytonaio/cli/daytona
+brew upgrade daytonaio/cli/nightona
 \`\`\`
 
 Alternatively, install directly without Homebrew:
@@ -54,13 +54,13 @@ Alternatively, install directly without Homebrew:
 For Apple Silicon (\`arm64\`):
 
   \`\`\`bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-darwin-arm64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-darwin-arm64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   \`\`\`
 
 For Intel (\`amd64\`):
 
   \`\`\`bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-darwin-amd64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-darwin-amd64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   \`\`\`
 
 </TabItem>
@@ -71,13 +71,13 @@ Choose the command for your Linux architecture. Both commands download the lates
 For \`amd64\` (\`x86_64\`):
 
   \`\`\`bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-linux-amd64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-linux-amd64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   \`\`\`
 
 For \`arm64\` (\`aarch64\`):
 
   \`\`\`bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-linux-arm64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-linux-arm64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   \`\`\`
 
 </TabItem>
@@ -90,14 +90,14 @@ powershell -Command "irm https://get.daytona.io/windows | iex"
 </TabItem>
 </Tabs>
 
-After installing the Daytona CLI, use the \`daytona\` command to interact with Daytona sandboxes from the command line.
+After installing the Nightona CLI, use the \`nightona\` command to interact with Nightona sandboxes from the command line.
 `
 
 // content to appear below the commands outline
 const append = ``
 
 const notes = {
-  'daytona autocomplete': `\n<Aside type="note">
+  'nightona autocomplete': `\n<Aside type="note">
 If using bash shell environment, make sure you have bash-completion installed in order to get full autocompletion functionality.
 Linux Installation: \`\`\`sudo apt-get install bash-completion\`\`\`
 macOS Installation: \`\`\`brew install bash-completion\`\`\`
@@ -106,7 +106,7 @@ macOS Installation: \`\`\`brew install bash-completion\`\`\`
 
 async function fetchRawDocs(ref) {
   const url =
-    'https://api.github.com/repos/daytonaio/daytona/contents/apps/cli/hack/docs'
+    'https://api.github.com/repos/daytonaio/nightona/contents/apps/cli/hack/docs'
   const request = await fetch(`${url}?ref=${ref}`)
   const response = await request.json()
 

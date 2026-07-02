@@ -1,4 +1,4 @@
-import { Daytona, Image, Sandbox } from '@daytona/sdk'
+import { Nightona, Image, Sandbox } from '@nightona/sdk'
 
 /**
  * Runs `curl` against a URL inside the sandbox and reports whether the request
@@ -12,7 +12,7 @@ async function checkAccess(sandbox: Sandbox, url: string) {
 }
 
 async function main() {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
   // A domain allow list is a comma-separated list of domains the sandbox is
   // allowed to reach. Everything else is blocked. Wildcards match subdomains:
@@ -21,7 +21,7 @@ async function main() {
   const domainAllowList = 'google.com,*.google.com'
 
   // The image just needs curl so we can demonstrate the allow list in action.
-  const sandbox = await daytona.create(
+  const sandbox = await nightona.create(
     {
       image: Image.base('ubuntu:22.04').runCommands(
         'apt-get update',
@@ -53,7 +53,7 @@ async function main() {
     await checkAccess(sandbox, 'https://www.google.com') // now blocked
   } finally {
     // cleanup
-    await daytona.delete(sandbox)
+    await nightona.delete(sandbox)
   }
 }
 

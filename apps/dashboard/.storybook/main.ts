@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -22,7 +22,7 @@ const config: StorybookConfig = {
       resolve: {
         alias: [
           {
-            find: '@daytona/sdk',
+            find: '@nightona/sdk',
             replacement: path.resolve(__dirname, '../../../libs/sdk-typescript/src'),
           },
           {

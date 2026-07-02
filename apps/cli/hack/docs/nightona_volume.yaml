@@ -1,0 +1,13 @@
+name: nightona volume
+synopsis: Manage Nightona volumes
+description: Commands for managing Nightona volumes
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI
+  - nightona volume create - Create a volume
+  - nightona volume delete - Delete a volume
+  - nightona volume get - Get volume details
+  - nightona volume list - List all volumes

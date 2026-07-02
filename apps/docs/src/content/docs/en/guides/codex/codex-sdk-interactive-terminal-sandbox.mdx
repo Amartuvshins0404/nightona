@@ -1,19 +1,19 @@
 ---
-title: Build a Coding Agent Using Codex SDK and Daytona
-description: Step-by-step guide to building an autonomous coding agent using OpenAI Codex and Daytona sandboxes.
+title: Build a Coding Agent Using Codex SDK and Nightona
+description: Step-by-step guide to building an autonomous coding agent using OpenAI Codex and Nightona sandboxes.
 ---
 
 import { Image } from 'astro:assets'
 
 import codexSdkLunarLanderResult from '../../../../../assets/docs/images/codex-sdk-lunar-lander-result.gif'
 
-This guide demonstrates how to run an autonomous coding agent based on [OpenAI Codex](https://chatgpt.com/features/codex) inside a Daytona sandbox environment. The agent can develop full-stack web apps, write code in any language, install dependencies, and run scripts. It can also start and manage dev servers, and generate preview links for live apps.
+This guide demonstrates how to run an autonomous coding agent based on [OpenAI Codex](https://chatgpt.com/features/codex) inside a Nightona sandbox environment. The agent can develop full-stack web apps, write code in any language, install dependencies, and run scripts. It can also start and manage dev servers, and generate preview links for live apps.
 
 ---
 
 ### 1. Workflow Overview
 
-When you launch the main module, a Daytona sandbox is created and a Node.js agent is initialized inside it. The agent is based on the [Codex SDK](https://developers.openai.com/codex/sdk/).
+When you launch the main module, a Nightona sandbox is created and a Node.js agent is initialized inside it. The agent is based on the [Codex SDK](https://developers.openai.com/codex/sdk/).
 
 You interact with the main program via a command line chat interface. The program sends your prompts to the agent inside the sandbox, which executes them and returns the results:
 
@@ -26,18 +26,18 @@ User: create a 3d animated web-based, lunar lander game
 Thinking...
 🔨 ✓ Run: /bin/sh -lc ls
 🔨 ✓ Run: /bin/sh -lc 'ls -a'
-🔨 ✓ Run: /bin/sh -lc 'ls .daytona'
-🔨 ✓ Run: /bin/sh -lc 'find /home/daytona -maxdepth 4 -name .git'
-📝 Add /home/daytona/index.html
-📝 Add /home/daytona/style.css
-📝 Add /home/daytona/main.js
-📝 Update /home/daytona/main.js
+🔨 ✓ Run: /bin/sh -lc 'ls .nightona'
+🔨 ✓ Run: /bin/sh -lc 'find /home/nightona -maxdepth 4 -name .git'
+📝 Add /home/nightona/index.html
+📝 Add /home/nightona/style.css
+📝 Add /home/nightona/main.js
+📝 Update /home/nightona/main.js
 - Built a self-contained 3D lunar lander experience with HUD in index.html wired to main.js.
 - Styled a glassy mission card, typography, and neon accents in style.css.
 - Implemented the Three.js scene in main.js: starfield + noisy terrain with a flattened pad, modeled lander, thrust/fuel/rotation controls, gravity/drag physics, landing/crash checks, exhaust particles, and a chase camera. Controls: Space/↑ thrust, ←/→ yaw, W/S pitch, R restart.
 
 Next steps:
-1) Serve locally (e.g., cd /home/daytona && python3 -m http.server 8080) and open https://8080-e7c5deb5-7723-4bb8-93c6-25258d9b7c53.proxy.daytona.works.
+1) Serve locally (e.g., cd /home/nightona && python3 -m http.server 8080) and open https://8080-e7c5deb5-7723-4bb8-93c6-25258d9b7c53.proxy.nightona.works.
 2) Tune physics constants or terrain size if you want a harder/easier landing.
 🗒️ To-do list:
 - [x] Inspect workspace and set up project structure for web-based lunar lander game
@@ -46,9 +46,9 @@ Next steps:
 Usage Summary: Cached: 71936, Input: 103238, Output: 11311
 User: start the server
 Thinking...
-🔨 ✓ Run: /bin/sh -lc 'cd /home/daytona && nohup python3 -m http.server 8080 --bind 0.0.0.0 >/home/daytona/server.log 2>&1 & echo $!'
+🔨 ✓ Run: /bin/sh -lc 'cd /home/nightona && nohup python3 -m http.server 8080 --bind 0.0.0.0 >/home/nightona/server.log 2>&1 & echo $!'
 Server started on port 8080 (pid 274). Open the game at:
-https://8080-e7c5deb5-7723-4bb8-93c6-25258d9b7c53.proxy.daytona.works
+https://8080-e7c5deb5-7723-4bb8-93c6-25258d9b7c53.proxy.nightona.works
 
 If you need to stop it later: kill 274.
 Usage Summary: Cached: 4096, Input: 22231, Output: 272
@@ -56,7 +56,7 @@ User:
 Cleaning up...
 ```
 
-The agent can also host web apps and provide you with a preview link using the [Daytona Preview Links](https://www.daytona.io/docs/en/preview/) feature. When your task involves running or previewing a web application, the agent automatically reasons about this need, hosts the app, and generates a preview link for you to inspect the live result:
+The agent can also host web apps and provide you with a preview link using the [Nightona Preview Links](https://www.daytona.io/docs/en/preview/) feature. When your task involves running or previewing a web application, the agent automatically reasons about this need, hosts the app, and generates a preview link for you to inspect the live result:
 
 <Image
   src={codexSdkLunarLanderResult}
@@ -71,29 +71,29 @@ You can continue interacting with your agent until you are finished. When you ex
 
 #### Clone the Repository
 
-First, clone the daytona [repository](https://github.com/daytonaio/daytona.git) and navigate to the example directory:
+First, clone the nightona [repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/typescript/openai/codex-sdk
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/typescript/openai/codex-sdk
 ```
 
 #### Configure Environment
 
 Get your API keys:
 
-- **Daytona API key:** [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- **Nightona API key:** [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - **OpenAI API key:** [OpenAI Developer Platform](https://platform.openai.com/api-keys)
 
 Copy `.env.example` to `.env` and add your keys:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_key
+NIGHTONA_API_KEY=your_nightona_key
 SANDBOX_OPENAI_API_KEY=your_openai_key
 ```
 
 :::caution[API Key Security]
-Note: The `SANDBOX_OPENAI_API_KEY` key is passed into the Daytona sandbox environment and is accessible to any code executed inside the sandbox.
+Note: The `SANDBOX_OPENAI_API_KEY` key is passed into the Nightona sandbox environment and is accessible to any code executed inside the sandbox.
 :::
 
 #### Local Usage
@@ -120,14 +120,14 @@ The agent will start and wait for your prompt.
 
 This example consists of two main components:
 
-- **Main Program:** The main program is a Node.js script (`src/index.ts`) that runs on your local machine. It uses the Daytona SDK to create and manage a Daytona sandbox. The main program provides a command line interface for interacting with the agent inside the sandbox.
-- **Sandbox Agent:** The sandbox agent is a Node.js script (`agent/index.ts`) that runs inside the Daytona sandbox. It uses the Codex SDK to create a customized coding agent.
+- **Main Program:** The main program is a Node.js script (`src/index.ts`) that runs on your local machine. It uses the Nightona SDK to create and manage a Nightona sandbox. The main program provides a command line interface for interacting with the agent inside the sandbox.
+- **Sandbox Agent:** The sandbox agent is a Node.js script (`agent/index.ts`) that runs inside the Nightona sandbox. It uses the Codex SDK to create a customized coding agent.
 
 #### Initialization
 
 On initialization, the main program:
-1. Creates a new [Daytona sandbox](/docs/en/sandboxes) with your OpenAI API key included in the environment variables.
-2. Configures the Codex system prompt with Daytona-specific instructions and writes it to a `.codex/config.toml` file in the sandbox.
+1. Creates a new [Nightona sandbox](/docs/en/sandboxes) with your OpenAI API key included in the environment variables.
+2. Configures the Codex system prompt with Nightona-specific instructions and writes it to a `.codex/config.toml` file in the sandbox.
 3. Uploads the agent package to the sandbox with [file uploading](/docs/en/file-system-operations#upload-a-single-file).
 4. Installs the agent dependencies by running `npm install` in the uploaded agent directory.
 5. Waits for user input and runs the agent asynchronously for each prompt.
@@ -138,8 +138,8 @@ Custom system prompts for Codex must be configured via a `.codex/config.toml` fi
 
 ```typescript
 const systemPrompt = [
-  'You are running in a Daytona sandbox.',
-  'Use the /home/daytona directory instead of /workspace for file operations.',
+  'You are running in a Nightona sandbox.',
+  'Use the /home/nightona directory instead of /workspace for file operations.',
   `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
 ].join(' ')
 const config = `developer_instructions = "${systemPrompt}"`
@@ -147,9 +147,9 @@ await sandbox.fs.createFolder('.codex', '755')
 await sandbox.fs.uploadFile(Buffer.from(config, 'utf8'), '.codex/config.toml')
 ```
 
-This prompt instructs the agent to use the correct file paths and preview link format for Daytona sandboxes.
+This prompt instructs the agent to use the correct file paths and preview link format for Nightona sandboxes.
 
-After installing dependencies, the main program enters a loop to read user input and send it to the agent. For each user prompt it receives, it creates a new Daytona process session to run the agent command asynchronously and stream back the output:
+After installing dependencies, the main program enters a loop to read user input and send it to the agent. For each user prompt it receives, it creates a new Nightona process session to run the agent command asynchronously and stream back the output:
 
 ```typescript
 // Create a session to stream the agent output
@@ -186,7 +186,7 @@ The agent is initialized with custom options that include the workspace director
 ```typescript
 // Configure Codex options
 const options: ThreadOptions = {
-  workingDirectory: '/home/daytona',
+  workingDirectory: '/home/nightona',
   skipGitRepoCheck: true,
   sandboxMode: 'danger-full-access',
 }
@@ -206,11 +206,11 @@ Additional code to stream agent responses follows the examples in OpenAI's [Code
 
 #### Clean up
 
-When you exit the main program, the Daytona sandbox and all files are automatically deleted.
+When you exit the main program, the Nightona sandbox and all files are automatically deleted.
 
 **Key advantages:**
 
-- Secure, isolated execution in Daytona sandboxes
+- Secure, isolated execution in Nightona sandboxes
 - Communicate with the agent directly in your terminal
 - Automatic dev server detection and live preview links
 - Multi-language and full-stack support

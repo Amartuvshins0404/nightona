@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -9,8 +9,8 @@ import (
 	"context"
 	"fmt"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	"github.com/daytonaio/runner/pkg/common"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/common"
 )
 
 type snapshotSandboxJobResult struct {

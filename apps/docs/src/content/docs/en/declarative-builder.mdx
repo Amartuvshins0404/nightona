@@ -5,7 +5,7 @@ description: Build sandboxes with images programmatically with on-demand depende
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Declarative Builder provides a powerful, code-first approach to defining dependencies for Daytona Sandboxes. Instead of importing images from a container registry, you can programmatically define them using the Daytona SDK.
+Declarative Builder provides a powerful, code-first approach to defining dependencies for Nightona Sandboxes. Instead of importing images from a container registry, you can programmatically define them using the Nightona SDK.
 
 The declarative builder system supports two primary workflows:
 
@@ -14,7 +14,7 @@ The declarative builder system supports two primary workflows:
 
 ## Build declarative images
 
-Daytona provides an option to create declarative images on-the-fly when creating sandboxes. This is ideal for iterating quickly without creating separate snapshots.
+Nightona provides an option to create declarative images on-the-fly when creating sandboxes. This is ideal for iterating quickly without creating separate snapshots.
 
 Declarative images are cached for 24 hours, and are automatically reused when running the same script. Thus, subsequent runs on the same runner will be almost instantaneous.
 
@@ -26,11 +26,11 @@ Declarative images are cached for 24 hours, and are automatically reused when ru
 declarative_image = (
   Image.debian_slim("3.12")
   .pip_install(["requests", "pytest"])
-  .workdir("/home/daytona")
+  .workdir("/home/nightona")
 )
 
 # Create a new sandbox with the declarative image and stream the build logs
-sandbox = daytona.create(
+sandbox = nightona.create(
   CreateSandboxFromImageParams(image=declarative_image),
   timeout=0,
   on_snapshot_create_logs=print,
@@ -44,10 +44,10 @@ sandbox = daytona.create(
 // Define a declarative image with python packages
 const declarativeImage = Image.debianSlim('3.12')
   .pipInstall(['requests', 'pytest'])
-  .workdir('/home/daytona')
+  .workdir('/home/nightona')
 
 // Create a new sandbox with the declarative image and stream the build logs
-const sandbox = await daytona.create(
+const sandbox = await nightona.create(
   {
     image: declarativeImage,
   },
@@ -64,14 +64,14 @@ const sandbox = await daytona.create(
 
 ```ruby
 # Define a simple declarative image with Python packages
-declarative_image = Daytona::Image
+declarative_image = Nightona::Image
   .debian_slim('3.12')
   .pip_install(['requests', 'pytest'])
-  .workdir('/home/daytona')
+  .workdir('/home/nightona')
 
 # Create a new Sandbox with the declarative image and stream the build logs
-sandbox = daytona.create(
-  Daytona::CreateSandboxFromImageParams.new(image: declarative_image),
+sandbox = nightona.create(
+  Nightona::CreateSandboxFromImageParams.new(image: declarative_image),
   on_snapshot_create_logs: proc { |chunk| puts chunk }
 )
 ```
@@ -82,9 +82,9 @@ sandbox = daytona.create(
 ```go
 // Define a declarative image with python packages
 version := "3.12"
-declarativeImage := daytona.DebianSlim(&version).
+declarativeImage := nightona.DebianSlim(&version).
   PipInstall([]string{"requests", "pytest"}).
-  Workdir("/home/daytona")
+  Workdir("/home/nightona")
 
 // Create a new sandbox with the declarative image and stream the build logs
 logChan := make(chan string)
@@ -109,12 +109,12 @@ if err != nil {
 // Define a declarative image with python packages
 Image declarativeImage = Image.debianSlim("3.12")
     .pipInstall("requests", "pytest")
-    .workdir("/home/daytona");
+    .workdir("/home/nightona");
 
 // Create a new sandbox with the declarative image and stream the build logs
 CreateSandboxFromImageParams params = new CreateSandboxFromImageParams();
 params.setImage(declarativeImage);
-Sandbox sandbox = daytona.create(params, 0L, System.out::println);
+Sandbox sandbox = nightona.create(params, 0L, System.out::println);
 ```
 
 </TabItem>
@@ -136,9 +136,9 @@ Use the following best practices when working with the declarative builder:
 
 ## Create pre-built Snapshots
 
-Daytona provides an option to [create pre-built snapshots](/docs/snapshots#create-snapshots) that can be reused across multiple sandboxes.
+Nightona provides an option to [create pre-built snapshots](/docs/snapshots#create-snapshots) that can be reused across multiple sandboxes.
 
-The snapshot remains visible in the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/snapshots) and is permanently cached, ensuring instant availability without rebuilding.
+The snapshot remains visible in the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/snapshots) and is permanently cached, ensuring instant availability without rebuilding.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -150,11 +150,11 @@ snapshot_name = "data-science-snapshot"
 image = (
   Image.debian_slim("3.12")
   .pip_install(["pandas", "numpy"])
-  .workdir("/home/daytona")
+  .workdir("/home/nightona")
 )
 
 # Create the snapshot and stream the build logs
-daytona.snapshot.create(
+nightona.snapshot.create(
   CreateSnapshotParams(
     name=snapshot_name,
     image=image,
@@ -163,7 +163,7 @@ on_logs=print,
 )
 
 # Create a new sandbox using the pre-built snapshot
-sandbox = daytona.create(
+sandbox = nightona.create(
 CreateSandboxFromSnapshotParams(snapshot=snapshot_name)
 )
 ```
@@ -177,10 +177,10 @@ const snapshotName = 'data-science-snapshot'
 
 const image = Image.debianSlim('3.12')
   .pipInstall(['pandas', 'numpy'])
-  .workdir('/home/daytona')
+  .workdir('/home/nightona')
 
 // Create the snapshot and stream the build logs
-await daytona.snapshot.create(
+await nightona.snapshot.create(
   {
     name: snapshotName,
     image,
@@ -191,7 +191,7 @@ await daytona.snapshot.create(
 )
 
 // Create a new sandbox using the pre-built snapshot
-const sandbox = await daytona.create({
+const sandbox = await nightona.create({
   snapshot: snapshotName,
 })
 ```
@@ -203,14 +203,14 @@ const sandbox = await daytona.create({
 # Create a simple Python data science image
 snapshot_name = 'data-science-snapshot'
 
-image = Daytona::Image
+image = Nightona::Image
   .debian_slim('3.12')
   .pip_install(['pandas', 'numpy'])
-  .workdir('/home/daytona')
+  .workdir('/home/nightona')
 
 # Create the Snapshot and stream the build logs
-daytona.snapshot.create(
-  Daytona::CreateSnapshotParams.new(
+nightona.snapshot.create(
+  Nightona::CreateSnapshotParams.new(
     name: snapshot_name,
     image: image
   ),
@@ -218,8 +218,8 @@ daytona.snapshot.create(
 )
 
 # Create a new Sandbox using the pre-built Snapshot
-sandbox = daytona.create(
-  Daytona::CreateSandboxFromSnapshotParams.new(snapshot: snapshot_name)
+sandbox = nightona.create(
+  Nightona::CreateSandboxFromSnapshotParams.new(snapshot: snapshot_name)
 )
 ```
 
@@ -231,9 +231,9 @@ sandbox = daytona.create(
 snapshotName := "data-science-snapshot"
 
 version := "3.12"
-image := daytona.DebianSlim(&version).
+image := nightona.DebianSlim(&version).
   PipInstall([]string{"pandas", "numpy"}).
-  Workdir("/home/daytona")
+  Workdir("/home/nightona")
 
 // Create the snapshot and stream the build logs
 _, logChan, err := client.Snapshot.Create(ctx, &types.CreateSnapshotParams{
@@ -265,15 +265,15 @@ String snapshotName = "data-science-snapshot";
 
 Image image = Image.debianSlim("3.12")
     .pipInstall("pandas", "numpy")
-    .workdir("/home/daytona");
+    .workdir("/home/nightona");
 
 // Create the snapshot and stream the build logs
-daytona.snapshot().create(snapshotName, image, System.out::println);
+nightona.snapshot().create(snapshotName, image, System.out::println);
 
 // Create a new sandbox using the pre-built snapshot
 CreateSandboxFromSnapshotParams snapshotParams = new CreateSandboxFromSnapshotParams();
 snapshotParams.setSnapshot(snapshotName);
-Sandbox sandbox = daytona.create(snapshotParams);
+Sandbox sandbox = nightona.create(snapshotParams);
 ```
 
 </TabItem>
@@ -281,13 +281,13 @@ Sandbox sandbox = daytona.create(snapshotParams);
 
 ## Image configuration
 
-Daytona provides an option to define images programmatically using the Daytona SDK. You can specify base images, install packages, add files, set environment variables, and more.
+Nightona provides an option to define images programmatically using the Nightona SDK. You can specify base images, install packages, add files, set environment variables, and more.
 
-For a complete API reference and method signatures, see the [Python](/docs/python-sdk/common/image), [TypeScript](/docs/typescript-sdk/image), [Ruby](/docs/ruby-sdk/image), [Go](/docs/go-sdk/daytona#type-DockerImage), and [Java](/docs/java-sdk/image) SDK references.
+For a complete API reference and method signatures, see the [Python](/docs/python-sdk/common/image), [TypeScript](/docs/typescript-sdk/image), [Ruby](/docs/ruby-sdk/image), [Go](/docs/go-sdk/nightona#type-DockerImage), and [Java](/docs/java-sdk/image) SDK references.
 
 ### Base image selection
 
-Daytona provides an option to select base images. The following snippets demonstrate how to select and configure base images:
+Nightona provides an option to select base images. The following snippets demonstrate how to select and configure base images:
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -317,10 +317,10 @@ const image = Image.debianSlim('3.12')
 
 ```ruby
 # Create an image from a base
-image = Daytona::Image.base('python:3.12-slim-bookworm')
+image = Nightona::Image.base('python:3.12-slim-bookworm')
 
 # Use a Debian slim image with Python 3.12
-image = Daytona::Image.debian_slim('3.12')
+image = Nightona::Image.debian_slim('3.12')
 ```
 
 </TabItem>
@@ -328,11 +328,11 @@ image = Daytona::Image.debian_slim('3.12')
 
 ```go
 // Create an image from a base
-image := daytona.Base("python:3.12-slim-bookworm")
+image := nightona.Base("python:3.12-slim-bookworm")
 
 // Use a Debian slim image with Python 3.12
 version := "3.12"
-image := daytona.DebianSlim(&version)
+image := nightona.DebianSlim(&version)
 ```
 
 </TabItem>
@@ -351,7 +351,7 @@ image = Image.debianSlim("3.12");
 
 ### Package management
 
-Daytona provides an option to install packages and dependencies to your image.
+Nightona provides an option to install packages and dependencies to your image.
 The following snippets demonstrate how to install packages and dependencies to your image:
 
 <Tabs syncKey="language">
@@ -388,13 +388,13 @@ const image = Image.debianSlim('3.12').pipInstallFromPyproject('pyproject.toml',
 <TabItem label="Ruby" icon="seti:ruby">
 ```ruby
 # Add pip packages
-image = Daytona::Image.debian_slim('3.12').pip_install(['requests', 'pandas'])
+image = Nightona::Image.debian_slim('3.12').pip_install(['requests', 'pandas'])
 
 # Install from requirements.txt
-image = Daytona::Image.debian_slim('3.12').pip_install_from_requirements('requirements.txt')
+image = Nightona::Image.debian_slim('3.12').pip_install_from_requirements('requirements.txt')
 
 # Install from pyproject.toml (with optional dependencies)
-image = Daytona::Image.debian_slim('3.12').pip_install_from_pyproject('pyproject.toml',
+image = Nightona::Image.debian_slim('3.12').pip_install_from_pyproject('pyproject.toml',
   optional_dependencies: ['dev']
 )
 ```
@@ -405,15 +405,15 @@ image = Daytona::Image.debian_slim('3.12').pip_install_from_pyproject('pyproject
 ```go
 // Add pip packages
 version := "3.12"
-image := daytona.DebianSlim(&version).PipInstall([]string{"requests", "pandas"})
+image := nightona.DebianSlim(&version).PipInstall([]string{"requests", "pandas"})
 
 // Install from requirements.txt
-image := daytona.DebianSlim(&version).
+image := nightona.DebianSlim(&version).
   AddLocalFile("requirements.txt", "/tmp/requirements.txt").
   Run("pip install -r /tmp/requirements.txt")
 
 // Install from pyproject.toml (with optional dependencies)
-image := daytona.DebianSlim(&version).
+image := nightona.DebianSlim(&version).
   AddLocalFile("pyproject.toml", "/tmp/pyproject.toml").
   Run("pip install /tmp[dev]")
 ```
@@ -431,7 +431,7 @@ Image image = Image.debianSlim("3.12").pipInstall("requests", "pandas");
 
 ### File system operations
 
-Daytona provides an option to add files and directories to your image.
+Nightona provides an option to add files and directories to your image.
 The following snippets demonstrate how to add files and directories to your image:
 
 <Tabs syncKey="language">
@@ -439,10 +439,10 @@ The following snippets demonstrate how to add files and directories to your imag
 
 ```python
 # Add a local file
-image = Image.debian_slim("3.12").add_local_file("package.json", "/home/daytona/package.json")
+image = Image.debian_slim("3.12").add_local_file("package.json", "/home/nightona/package.json")
 
 # Add a local directory
-image = Image.debian_slim("3.12").add_local_dir("src", "/home/daytona/src")
+image = Image.debian_slim("3.12").add_local_dir("src", "/home/nightona/src")
 ```
 
 </TabItem>
@@ -450,10 +450,10 @@ image = Image.debian_slim("3.12").add_local_dir("src", "/home/daytona/src")
 
 ```typescript
 // Add a local file
-const image = Image.debianSlim('3.12').addLocalFile('package.json', '/home/daytona/package.json')
+const image = Image.debianSlim('3.12').addLocalFile('package.json', '/home/nightona/package.json')
 
 // Add a local directory
-const image = Image.debianSlim('3.12').addLocalDir('src', '/home/daytona/src')
+const image = Image.debianSlim('3.12').addLocalDir('src', '/home/nightona/src')
 ```
 
 </TabItem>
@@ -461,10 +461,10 @@ const image = Image.debianSlim('3.12').addLocalDir('src', '/home/daytona/src')
 
 ```ruby
 # Add a local file
-image = Daytona::Image.debian_slim('3.12').add_local_file('package.json', '/home/daytona/package.json')
+image = Nightona::Image.debian_slim('3.12').add_local_file('package.json', '/home/nightona/package.json')
 
 # Add a local directory
-image = Daytona::Image.debian_slim('3.12').add_local_dir('src', '/home/daytona/src')
+image = Nightona::Image.debian_slim('3.12').add_local_dir('src', '/home/nightona/src')
 ```
 
 </TabItem>
@@ -473,10 +473,10 @@ image = Daytona::Image.debian_slim('3.12').add_local_dir('src', '/home/daytona/s
 ```go
 // Add a local file
 version := "3.12"
-image := daytona.DebianSlim(&version).AddLocalFile("package.json", "/home/daytona/package.json")
+image := nightona.DebianSlim(&version).AddLocalFile("package.json", "/home/nightona/package.json")
 
 // Add a local directory
-image := daytona.DebianSlim(&version).AddLocalDir("src", "/home/daytona/src")
+image := nightona.DebianSlim(&version).AddLocalDir("src", "/home/nightona/src")
 ```
 
 </TabItem>
@@ -484,7 +484,7 @@ image := daytona.DebianSlim(&version).AddLocalDir("src", "/home/daytona/src")
 
 ### Environment configuration
 
-Daytona provides an option to configure environment variables and working directories.
+Nightona provides an option to configure environment variables and working directories.
 The following snippets demonstrate how to configure environment variables and working directories:
 
 <Tabs syncKey="language">
@@ -492,10 +492,10 @@ The following snippets demonstrate how to configure environment variables and wo
 
 ```python
 # Set environment variables
-image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/daytona"})
+image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/nightona"})
 
 # Set working directory
-image = Image.debian_slim("3.12").workdir("/home/daytona")
+image = Image.debian_slim("3.12").workdir("/home/nightona")
 ```
 
 </TabItem>
@@ -503,10 +503,10 @@ image = Image.debian_slim("3.12").workdir("/home/daytona")
 
 ```typescript
 // Set environment variables
-const image = Image.debianSlim('3.12').env({ PROJECT_ROOT: '/home/daytona' })
+const image = Image.debianSlim('3.12').env({ PROJECT_ROOT: '/home/nightona' })
 
 // Set working directory
-const image = Image.debianSlim('3.12').workdir('/home/daytona')
+const image = Image.debianSlim('3.12').workdir('/home/nightona')
 ```
 
 </TabItem>
@@ -514,10 +514,10 @@ const image = Image.debianSlim('3.12').workdir('/home/daytona')
 
 ```ruby
 # Set environment variables
-image = Daytona::Image.debian_slim('3.12').env({ 'PROJECT_ROOT' => '/home/daytona' })
+image = Nightona::Image.debian_slim('3.12').env({ 'PROJECT_ROOT' => '/home/nightona' })
 
 # Set working directory
-image = Daytona::Image.debian_slim('3.12').workdir('/home/daytona')
+image = Nightona::Image.debian_slim('3.12').workdir('/home/nightona')
 ```
 
 </TabItem>
@@ -526,10 +526,10 @@ image = Daytona::Image.debian_slim('3.12').workdir('/home/daytona')
 ```go
 // Set environment variables
 version := "3.12"
-image := daytona.DebianSlim(&version).Env("PROJECT_ROOT", "/home/daytona")
+image := nightona.DebianSlim(&version).Env("PROJECT_ROOT", "/home/nightona")
 
 // Set working directory
-image := daytona.DebianSlim(&version).Workdir("/home/daytona")
+image := nightona.DebianSlim(&version).Workdir("/home/nightona")
 ```
 
 </TabItem>
@@ -538,10 +538,10 @@ image := daytona.DebianSlim(&version).Workdir("/home/daytona")
 ```java
 // Set environment variables
 Image image = Image.debianSlim("3.12")
-    .env(java.util.Map.of("PROJECT_ROOT", "/home/daytona"));
+    .env(java.util.Map.of("PROJECT_ROOT", "/home/nightona"));
 
 // Set working directory
-image = Image.debianSlim("3.12").workdir("/home/daytona");
+image = Image.debianSlim("3.12").workdir("/home/nightona");
 ```
 
 </TabItem>
@@ -549,7 +549,7 @@ image = Image.debianSlim("3.12").workdir("/home/daytona");
 
 ### Commands and entrypoints
 
-Daytona provides an option to execute commands during build and configure container startup behavior.
+Nightona provides an option to execute commands during build and configure container startup behavior.
 The following snippets demonstrate how to execute commands during build and configure container startup behavior:
 
 <Tabs syncKey="language">
@@ -559,8 +559,8 @@ The following snippets demonstrate how to execute commands during build and conf
 # Run shell commands during build
 image = Image.debian_slim("3.12").run_commands(
     'apt-get update && apt-get install -y git',
-    'groupadd -r daytona && useradd -r -g daytona -m daytona',
-    'mkdir -p /home/daytona/workspace'
+    'groupadd -r nightona && useradd -r -g nightona -m nightona',
+    'mkdir -p /home/nightona/workspace'
 )
 
 # Set entrypoint
@@ -577,8 +577,8 @@ image = Image.debian_slim("3.12").cmd(["/bin/bash"])
 // Run shell commands during build
 const image = Image.debianSlim('3.12').runCommands(
     'apt-get update && apt-get install -y git',
-    'groupadd -r daytona && useradd -r -g daytona -m daytona',
-    'mkdir -p /home/daytona/workspace'
+    'groupadd -r nightona && useradd -r -g nightona -m nightona',
+    'mkdir -p /home/nightona/workspace'
 )
 
 // Set entrypoint
@@ -593,17 +593,17 @@ const image = Image.debianSlim('3.12').cmd(['/bin/bash'])
 
 ```ruby
 # Run shell commands during build
-image = Daytona::Image.debian_slim('3.12').run_commands(
+image = Nightona::Image.debian_slim('3.12').run_commands(
   'apt-get update && apt-get install -y git',
-  'groupadd -r daytona && useradd -r -g daytona -m daytona',
-  'mkdir -p /home/daytona/workspace'
+  'groupadd -r nightona && useradd -r -g nightona -m nightona',
+  'mkdir -p /home/nightona/workspace'
 )
 
 # Set entrypoint
-image = Daytona::Image.debian_slim('3.12').entrypoint(['/bin/bash'])
+image = Nightona::Image.debian_slim('3.12').entrypoint(['/bin/bash'])
 
 # Set default command
-image = Daytona::Image.debian_slim('3.12').cmd(['/bin/bash'])
+image = Nightona::Image.debian_slim('3.12').cmd(['/bin/bash'])
 ```
 
 </TabItem>
@@ -612,16 +612,16 @@ image = Daytona::Image.debian_slim('3.12').cmd(['/bin/bash'])
 ```go
 // Run shell commands during build
 version := "3.12"
-image := daytona.DebianSlim(&version).
+image := nightona.DebianSlim(&version).
   Run("apt-get update && apt-get install -y git").
-  Run("groupadd -r daytona && useradd -r -g daytona -m daytona").
-  Run("mkdir -p /home/daytona/workspace")
+  Run("groupadd -r nightona && useradd -r -g nightona -m nightona").
+  Run("mkdir -p /home/nightona/workspace")
 
 // Set entrypoint
-image := daytona.DebianSlim(&version).Entrypoint([]string{"/bin/bash"})
+image := nightona.DebianSlim(&version).Entrypoint([]string{"/bin/bash"})
 
 // Set default command
-image := daytona.DebianSlim(&version).Cmd([]string{"/bin/bash"})
+image := nightona.DebianSlim(&version).Cmd([]string{"/bin/bash"})
 ```
 
 </TabItem>
@@ -631,8 +631,8 @@ image := daytona.DebianSlim(&version).Cmd([]string{"/bin/bash"})
 // Run shell commands during build
 Image image = Image.debianSlim("3.12").runCommands(
     "apt-get update && apt-get install -y git",
-    "groupadd -r daytona && useradd -r -g daytona -m daytona",
-    "mkdir -p /home/daytona/workspace"
+    "groupadd -r nightona && useradd -r -g nightona -m nightona",
+    "mkdir -p /home/nightona/workspace"
 );
 
 // Set entrypoint
@@ -647,7 +647,7 @@ image = Image.debianSlim("3.12").cmd("/bin/bash");
 
 ### Dockerfile integration
 
-Daytona provides an option to integrate existing Dockerfiles or add custom Dockerfile commands.
+Nightona provides an option to integrate existing Dockerfiles or add custom Dockerfile commands.
 The following snippets demonstrate how to integrate existing Dockerfiles or add custom Dockerfile commands:
 
 <Tabs syncKey="language">
@@ -683,13 +683,13 @@ const image = Image.fromDockerfile("app/Dockerfile").pipInstall(['numpy'])
 
 ```ruby
 # Add custom Dockerfile commands
-image = Daytona::Image.debian_slim('3.12').dockerfile_commands(['RUN echo "Hello, world!"'])
+image = Nightona::Image.debian_slim('3.12').dockerfile_commands(['RUN echo "Hello, world!"'])
 
 # Use an existing Dockerfile
-image = Daytona::Image.from_dockerfile('Dockerfile')
+image = Nightona::Image.from_dockerfile('Dockerfile')
 
 # Extend an existing Dockerfile
-image = Daytona::Image.from_dockerfile('app/Dockerfile').pip_install(['numpy'])
+image = Nightona::Image.from_dockerfile('app/Dockerfile').pip_install(['numpy'])
 ```
 
 </TabItem>
@@ -701,14 +701,14 @@ content, err := os.ReadFile("Dockerfile")
 if err != nil {
   // handle error
 }
-image := daytona.FromDockerfile(string(content))
+image := nightona.FromDockerfile(string(content))
 
 // Extend an existing Dockerfile with additional commands
 content, err = os.ReadFile("app/Dockerfile")
 if err != nil {
   // handle error
 }
-image := daytona.FromDockerfile(string(content)).
+image := nightona.FromDockerfile(string(content)).
   PipInstall([]string{"numpy"})
 ```
 
@@ -717,7 +717,7 @@ image := daytona.FromDockerfile(string(content)).
 
 ### System package installation
 
-Daytona provides an option to install OS-level packages during the image build. Use this pattern when your sandbox needs CLI tools or system libraries that are not available through `pip`.
+Nightona provides an option to install OS-level packages during the image build. Use this pattern when your sandbox needs CLI tools or system libraries that are not available through `pip`.
 
 Each string passed to `run_commands` becomes a separate Dockerfile `RUN` instruction, and every `RUN` produces an immutable layer. To keep the image small, chain the package install and the apt cache cleanup together with `&&` inside a single string so the cache is never persisted in any layer.
 
@@ -747,7 +747,7 @@ const image = Image.debianSlim('3.12').runCommands(
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-image = Daytona::Image
+image = Nightona::Image
   .debian_slim('3.12')
   .run_commands(
     'apt-get update ' \
@@ -761,7 +761,7 @@ image = Daytona::Image
 
 ```go
 version := "3.12"
-image := daytona.DebianSlim(&version).
+image := nightona.DebianSlim(&version).
   AptGet([]string{"git", "curl", "ffmpeg", "jq"})
 ```
 
@@ -781,7 +781,7 @@ Image image = Image.debianSlim("3.12").runCommands(
 
 ### Non-root user setup
 
-Daytona provides an option to define a non-root user for application workloads. Run all installation steps as `root` first, then create the user, fix ownership of the working directory, and switch to the new user with the `USER` directive. Subsequent commands and the sandbox runtime then operate without root privileges.
+Nightona provides an option to define a non-root user for application workloads. Run all installation steps as `root` first, then create the user, fix ownership of the working directory, and switch to the new user with the `USER` directive. Subsequent commands and the sandbox runtime then operate without root privileges.
 
 Place all installation steps before the `USER` directive. After switching to the non-root user, commands that write to system locations (such as `apt-get install` or `pip install` without `--user`) will fail with permission errors.
 
@@ -793,11 +793,11 @@ image = (
   Image.debian_slim("3.12")
   .pip_install(["fastapi", "uvicorn"])
   .run_commands(
-    "groupadd -r daytona && useradd -r -g daytona -m -d /home/daytona daytona",
-    "chown -R daytona:daytona /home/daytona",
+    "groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona",
+    "chown -R nightona:nightona /home/nightona",
   )
-  .workdir("/home/daytona")
-  .dockerfile_commands(["USER daytona"])
+  .workdir("/home/nightona")
+  .dockerfile_commands(["USER nightona"])
 )
 ```
 
@@ -808,26 +808,26 @@ image = (
 const image = Image.debianSlim('3.12')
   .pipInstall(['fastapi', 'uvicorn'])
   .runCommands(
-    'groupadd -r daytona && useradd -r -g daytona -m -d /home/daytona daytona',
-    'chown -R daytona:daytona /home/daytona',
+    'groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona',
+    'chown -R nightona:nightona /home/nightona',
   )
-  .workdir('/home/daytona')
-  .dockerfileCommands(['USER daytona'])
+  .workdir('/home/nightona')
+  .dockerfileCommands(['USER nightona'])
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-image = Daytona::Image
+image = Nightona::Image
   .debian_slim('3.12')
   .pip_install(['fastapi', 'uvicorn'])
   .run_commands(
-    'groupadd -r daytona && useradd -r -g daytona -m -d /home/daytona daytona',
-    'chown -R daytona:daytona /home/daytona'
+    'groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona',
+    'chown -R nightona:nightona /home/nightona'
   )
-  .workdir('/home/daytona')
-  .dockerfile_commands(['USER daytona'])
+  .workdir('/home/nightona')
+  .dockerfile_commands(['USER nightona'])
 ```
 
 </TabItem>
@@ -835,12 +835,12 @@ image = Daytona::Image
 
 ```go
 version := "3.12"
-image := daytona.DebianSlim(&version).
+image := nightona.DebianSlim(&version).
   PipInstall([]string{"fastapi", "uvicorn"}).
-  Run("groupadd -r daytona && useradd -r -g daytona -m -d /home/daytona daytona").
-  Run("chown -R daytona:daytona /home/daytona").
-  Workdir("/home/daytona").
-  User("daytona")
+  Run("groupadd -r nightona && useradd -r -g nightona -m -d /home/nightona nightona").
+  Run("chown -R nightona:nightona /home/nightona").
+  Workdir("/home/nightona").
+  User("nightona")
 ```
 
 </TabItem>
@@ -848,7 +848,7 @@ image := daytona.DebianSlim(&version).
 
 ### Multi-language runtimes
 
-Daytona provides an option to combine multiple language runtimes in a single image. The following pattern adds Node.js 20 to a Python base image by installing it from the NodeSource repository. The same approach works for adding Go, Ruby, Java, or any other runtime that distributes a Linux installer.
+Nightona provides an option to combine multiple language runtimes in a single image. The following pattern adds Node.js 20 to a Python base image by installing it from the NodeSource repository. The same approach works for adding Go, Ruby, Java, or any other runtime that distributes a Linux installer.
 
 Chain the apt operations, the NodeSource installer, and the cache cleanup into a single `RUN` instruction. If the cache cleanup runs in a separate `RUN`, the apt cache is already persisted in the earlier layers and the final image keeps those bytes.
 
@@ -888,7 +888,7 @@ const image = Image.debianSlim('3.12')
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-image = Daytona::Image
+image = Nightona::Image
   .debian_slim('3.12')
   .run_commands(
     'apt-get update ' \
@@ -905,7 +905,7 @@ image = Daytona::Image
 
 ```go
 version := "3.12"
-image := daytona.DebianSlim(&version).
+image := nightona.DebianSlim(&version).
   Run("apt-get update " +
     "&& apt-get install -y --no-install-recommends curl ca-certificates " +
     "&& curl -fsSL https://deb.nodesource.com/setup_20.x | bash - " +

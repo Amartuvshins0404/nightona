@@ -1,0 +1,9 @@
+name: nightona autocomplete
+synopsis: Adds a completion script for your shell environment
+usage: nightona autocomplete [bash|zsh|fish|powershell] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

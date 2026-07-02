@@ -1,10 +1,10 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import { FileSystem } from '../FileSystem'
-import { DaytonaNotFoundError } from '../errors/DaytonaError'
+import { NightonaNotFoundError } from '../errors/NightonaError'
 
 describe('FileSystem.downloadFile', () => {
   function newFileSystem() {
@@ -31,7 +31,7 @@ describe('FileSystem.downloadFile', () => {
     const fileSystem = newFileSystem()
 
     await expect(FileSystem.prototype.downloadFile.call(fileSystem, '/workspace/missing.txt')).rejects.toBeInstanceOf(
-      DaytonaNotFoundError,
+      NightonaNotFoundError,
     )
 
     await expect(FileSystem.prototype.downloadFile.call(fileSystem, '/workspace/missing.txt')).rejects.toMatchObject({
@@ -45,7 +45,7 @@ describe('FileSystem.downloadFile', () => {
 
     await expect(
       FileSystem.prototype.downloadFile.call(fileSystem, '/workspace/missing.txt', '/tmp/out.txt'),
-    ).rejects.toBeInstanceOf(DaytonaNotFoundError)
+    ).rejects.toBeInstanceOf(NightonaNotFoundError)
 
     await expect(
       FileSystem.prototype.downloadFile.call(fileSystem, '/workspace/missing.txt', '/tmp/out.txt'),

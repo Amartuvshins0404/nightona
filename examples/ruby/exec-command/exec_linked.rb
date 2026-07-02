@@ -1,18 +1,18 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'daytona'
+require 'nightona'
 
 def main
-  daytona = Daytona::Daytona.new
+  nightona = Nightona::Nightona.new
 
-  owner = daytona.create
+  owner = nightona.create
   puts "Owner sandbox ready: id=#{owner.id}"
 
   # Linked sandboxes must be ephemeral — `ephemeral: true` sets
   # `auto_delete_interval=0` automatically.
-  follower = daytona.create(
-    Daytona::CreateSandboxFromSnapshotParams.new(
+  follower = nightona.create(
+    Nightona::CreateSandboxFromSnapshotParams.new(
       linked_sandbox: owner.id,
       ephemeral: true
     )
@@ -60,9 +60,9 @@ def main
     puts "Response from owner: #{curl_res.result.strip}"
   ensure
     puts "\nDeleting follower #{follower.id}"
-    daytona.delete(follower)
+    nightona.delete(follower)
     puts "Deleting owner #{owner.id}"
-    daytona.delete(owner)
+    nightona.delete(owner)
   end
 end
 

@@ -5,18 +5,18 @@ description: Execute code in your sandboxes using stateless and stateful executi
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
 
-Daytona provides process and code execution capabilities through the `process` module in sandboxes.
+Nightona provides process and code execution capabilities through the `process` module in sandboxes.
 
 ## Code execution
 
-Daytona provides methods to execute code in sandboxes. You can run code snippets in multiple languages with support for both stateless execution and stateful interpretation with persistent contexts.
+Nightona provides methods to execute code in sandboxes. You can run code snippets in multiple languages with support for both stateless execution and stateful interpretation with persistent contexts.
 
 - [Run code (stateless)](#run-code-stateless): run independent code snippets where each execution starts from a clean interpreter state; inherits the sandbox language that you choose at [sandbox creation](/docs/en/sandboxes#create-sandboxes).
 - [Run code (stateful)](#run-code-stateful): run code in a persistent interpreter context with variables, imports, and state to carry across executions; executes Python code and is available for every SDK.
 
 ### Run code (stateless)
 
-Daytona provides methods to run code snippets in sandboxes using stateless execution. Each invocation starts from a clean interpreter, making it ideal for independent code snippets.
+Nightona provides methods to run code snippets in sandboxes using stateless execution. Each invocation starts from a clean interpreter, making it ideal for independent code snippets.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -26,7 +26,7 @@ response = sandbox.process.code_run('''
 def greet(name):
     return f"Hello, {name}!"
 
-print(greet("Daytona"))
+print(greet("Nightona"))
 ''')
 
 print(response.result)
@@ -41,7 +41,7 @@ function greet(name: string): string {
     return \`Hello, \${name}!\`;
 }
 
-console.log(greet("Daytona"));
+console.log(greet("Nightona"));
 `);
 console.log(response.result);
 
@@ -52,7 +52,7 @@ response = await sandbox.process.codeRun(
     console.log(\`FOO: \${process.env.FOO}\`);
     `,
     { 
-      argv: ["Daytona"],
+      argv: ["Nightona"],
       env: { FOO: "BAR" }
     }
 );
@@ -76,7 +76,7 @@ response = sandbox.process.code_run(code: <<~PYTHON)
   def greet(name):
       return f"Hello, {name}!"
 
-  print(greet("Daytona"))
+  print(greet("Nightona"))
 PYTHON
 
 puts response.result
@@ -92,7 +92,7 @@ result, err := sandbox.Process.ExecuteCommand(ctx, `python3 -c '
 def greet(name):
     return f"Hello, {name}!"
 
-print(greet("Daytona"))
+print(greet("Nightona"))
 '`)
 if err != nil {
 	log.Fatal(err)
@@ -122,7 +122,7 @@ fmt.Println(result.Result)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.ExecuteResponse;
+import io.nightona.sdk.model.ExecuteResponse;
 import java.util.Map;
 
 // Run code (stateless; language matches the sandbox image)
@@ -131,7 +131,7 @@ ExecuteResponse response = sandbox.process.codeRun(
     def greet(name):
         return f"Hello, {name}!"
 
-    print(greet("Daytona"))
+    print(greet("Nightona"))
     """
 );
 System.out.println(response.getResult());
@@ -160,7 +160,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/code-run' \
   --request POST \
   --header 'Content-Type: application/json' \
   --data '{
-  "code": "def greet(name):\n    return f\"Hello, {name}!\"\n\nprint(greet(\"Daytona\"))",
+  "code": "def greet(name):\n    return f\"Hello, {name}!\"\n\nprint(greet(\"Nightona\"))",
   "env": {
     "FOO": "BAR"
   },
@@ -173,19 +173,19 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/code-run' \
 
 ### Run code (stateful)
 
-Daytona provides methods to run code with persistent state using the code interpreter. You can maintain variables and imports between calls, create isolated contexts, and control environment variables.
+Nightona provides methods to run code with persistent state using the code interpreter. You can maintain variables and imports between calls, create isolated contexts, and control environment variables.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, OutputMessage
+from nightona import Nightona, OutputMessage
 
 def handle_stdout(message: OutputMessage):
     print(f"[STDOUT] {message.output}")
 
-daytona = Daytona()
-sandbox = daytona.create()
+nightona = Nightona()
+sandbox = nightona.create()
 
 # Shared default context
 result = sandbox.code_interpreter.run_code(
@@ -213,12 +213,12 @@ finally:
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
-const daytona = new Daytona()
+const nightona = new Nightona()
 
 async function main() {
-    const sandbox = await daytona.create()
+    const sandbox = await nightona.create()
 
     // Shared default context
     await sandbox.codeInterpreter.runCode(
@@ -252,10 +252,10 @@ main()
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 
 # Shared default context
 sandbox.code_interpreter.run_code(
@@ -315,7 +315,7 @@ if err != nil {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.RunCodeOptions;
+import io.nightona.sdk.RunCodeOptions;
 
 // Default interpreter context (Python)
 sandbox.codeInterpreter.runCode(
@@ -356,13 +356,13 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/interpreter/conte
 
 ## Command execution
 
-Daytona provides methods to execute shell commands in sandboxes. You can run commands with working directory, timeout, and environment variable options.
+Nightona provides methods to execute shell commands in sandboxes. You can run commands with working directory, timeout, and environment variable options.
 
-The working directory defaults to the sandbox working directory. It uses the WORKDIR specified in the Dockerfile if present, or falls back to the user's home directory if not (e.g., `workspace/repo` implies `/home/daytona/workspace/repo`). You can override it with an absolute path by starting the path with `/`.
+The working directory defaults to the sandbox working directory. It uses the WORKDIR specified in the Dockerfile if present, or falls back to the user's home directory if not (e.g., `workspace/repo` implies `/home/nightona/workspace/repo`). You can override it with an absolute path by starting the path with `/`.
 
 ### Execute commands
 
-Daytona provides methods to execute shell commands in sandboxes by providing the command string and optional parameters for working directory, timeout, and environment variables. You can also use the `daytona exec` CLI command for quick command execution.
+Nightona provides methods to execute shell commands in sandboxes by providing the command string and optional parameters for working directory, timeout, and environment variables. You can also use the `nightona exec` CLI command for quick command execution.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -380,7 +380,7 @@ print(response.result)
 # Passing environment variables
 
 response = sandbox.process.exec("echo $CUSTOM_SECRET", env={
-        "CUSTOM_SECRET": "DAYTONA"
+        "CUSTOM_SECRET": "NIGHTONA"
     }
 )
 print(response.result)
@@ -401,7 +401,7 @@ console.log(response2.result);
 
 // Passing environment variables
 const response3 = await sandbox.process.executeCommand("echo $CUSTOM_SECRET", ".", {
-        "CUSTOM_SECRET": "DAYTONA"
+        "CUSTOM_SECRET": "NIGHTONA"
     }
 );
 console.log(response3.result);
@@ -422,7 +422,7 @@ puts response.result
 # Passing environment variables
 response = sandbox.process.exec(
   command: 'echo $CUSTOM_SECRET',
-  env: { 'CUSTOM_SECRET' => 'DAYTONA' }
+  env: { 'CUSTOM_SECRET' => 'NIGHTONA' }
 )
 puts response.result
 ```
@@ -450,7 +450,7 @@ fmt.Println(response.Result)
 
 // Passing environment variables
 response, err = sandbox.Process.ExecuteCommand(ctx, "echo $CUSTOM_SECRET",
-	options.WithCommandEnv(map[string]string{"CUSTOM_SECRET": "DAYTONA"}),
+	options.WithCommandEnv(map[string]string{"CUSTOM_SECRET": "NIGHTONA"}),
 )
 if err != nil {
 	log.Fatal(err)
@@ -462,7 +462,7 @@ fmt.Println(response.Result)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.ExecuteResponse;
+import io.nightona.sdk.model.ExecuteResponse;
 import java.util.Map;
 
 // Execute any shell command
@@ -477,7 +477,7 @@ System.out.println(response.getResult());
 response = sandbox.process.executeCommand(
     "echo $CUSTOM_SECRET",
     ".",
-    Map.of("CUSTOM_SECRET", "DAYTONA"),
+    Map.of("CUSTOM_SECRET", "NIGHTONA"),
     null
 );
 System.out.println(response.getResult());
@@ -488,13 +488,13 @@ System.out.println(response.getResult());
 
 ```bash
 # Execute any shell command
-daytona exec my-sandbox -- ls -la
+nightona exec my-sandbox -- ls -la
 
 # Setting a working directory and a timeout
-daytona exec my-sandbox --cwd workspace/src --timeout 5 -- sleep 3
+nightona exec my-sandbox --cwd workspace/src --timeout 5 -- sleep 3
 
 # Passing environment variables (use shell syntax)
-daytona exec my-sandbox -- sh -c 'CUSTOM_SECRET=DAYTONA echo $CUSTOM_SECRET'
+nightona exec my-sandbox -- sh -c 'CUSTOM_SECRET=NIGHTONA echo $CUSTOM_SECRET'
 ```
 
 </TabItem>
@@ -516,11 +516,11 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/execute' \
 
 ## Session operations
 
-Daytona provides methods to manage background process sessions in sandboxes. You can create sessions, execute commands, monitor status, and manage long-running processes.
+Nightona provides methods to manage background process sessions in sandboxes. You can create sessions, execute commands, monitor status, and manage long-running processes.
 
 ### Get session status
 
-Daytona provides methods to get session status and list all sessions in a sandbox by providing the session ID.
+Nightona provides methods to get session status and list all sessions in a sandbox by providing the session ID.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -606,8 +606,8 @@ for _, sess := range sessions {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.Command;
-import io.daytona.sdk.model.Session;
+import io.nightona.sdk.model.Command;
+import io.nightona.sdk.model.Session;
 
 // Check session's executed commands
 Session session = sandbox.process.getSession(sessionId);
@@ -638,7 +638,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/session'
 
 ### Entrypoint session
 
-Daytona provides methods to retrieve information about the internal entrypoint session in sandboxes. In each sandbox, the configured entrypoint command is executed inside a dedicated internal session, and you can fetch the session details (including the commands) and read its logs.
+Nightona provides methods to retrieve information about the internal entrypoint session in sandboxes. In each sandbox, the configured entrypoint command is executed inside a dedicated internal session, and you can fetch the session details (including the commands) and read its logs.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -757,9 +757,9 @@ for msg := range stdout {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.Command;
-import io.daytona.sdk.model.Session;
-import io.daytona.sdk.model.SessionCommandLogsResponse;
+import io.nightona.sdk.model.Command;
+import io.nightona.sdk.model.Session;
+import io.nightona.sdk.model.SessionCommandLogsResponse;
 
 // Entrypoint session details
 Session session = sandbox.process.getEntrypointSession();
@@ -799,7 +799,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/session/entrypoin
 
 ### Execute interactive commands
 
-Daytona provides methods to execute interactive commands in sessions. You can send input to running commands that expect user interaction, such as confirmations or interactive tools like database CLIs and package managers.
+Nightona provides methods to execute interactive commands in sessions. You can send input to running commands that expect user interaction, such as confirmations or interactive tools like database CLIs and package managers.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -874,7 +874,7 @@ sandbox.process.create_session(session_id)
 # Execute command that requires confirmation
 interactive_command = sandbox.process.execute_session_command(
   session_id: session_id,
-  req: Daytona::SessionExecuteRequest.new(
+  req: Nightona::SessionExecuteRequest.new(
     command: 'pip uninstall requests',
     run_async: true
   )
@@ -942,8 +942,8 @@ for msg := range stdout {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.SessionExecuteRequest;
-import io.daytona.sdk.model.SessionExecuteResponse;
+import io.nightona.sdk.model.SessionExecuteRequest;
+import io.nightona.sdk.model.SessionExecuteResponse;
 
 String sessionId = "interactive-session";
 sandbox.process.createSession(sessionId);
@@ -1003,7 +1003,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/session/{sessionI
 
 ## Resource management
 
-Daytona provides methods to manage session resources. You should use sessions for long-running operations, clean up sessions after execution, and handle exceptions properly.
+Nightona provides methods to manage session resources. You should use sessions for long-running operations, clean up sessions after execution, and handle exceptions properly.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1064,7 +1064,7 @@ Daytona provides methods to manage session resources. You should use sessions fo
 </TabItem>
 <TabItem label="Java" icon="seti:java">
    ```java
-   import io.daytona.sdk.model.Session;
+   import io.nightona.sdk.model.Session;
 
    // Clean up session
    String sessionId = "long-running-cmd";
@@ -1094,25 +1094,25 @@ Daytona provides methods to manage session resources. You should use sessions fo
 
 ## Error handling
 
-Daytona provides methods to handle errors when executing processes. You should handle process exceptions properly, log error details for debugging, and use try-catch blocks for error handling.
+Nightona provides methods to handle errors when executing processes. You should handle process exceptions properly, log error details for debugging, and use try-catch blocks for error handling.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 ```python
-from daytona import DaytonaError
+from nightona import NightonaError
 
 try:
     response = sandbox.process.code_run("invalid python code")
     if response.exit_code != 0:
         print(f"Exit code: {response.exit_code}")
         print(f"Error output: {response.result}")
-except DaytonaError as e:
+except NightonaError as e:
     print(f"Execution failed: {e}")
 ```
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-import { DaytonaError } from '@daytona/sdk'
+import { NightonaError } from '@nightona/sdk'
 
 try {
     const response = await sandbox.process.codeRun("invalid typescript code");
@@ -1121,7 +1121,7 @@ try {
         console.error("Error output:", response.result);
     }
 } catch (e) {
-    if (e instanceof DaytonaError) {
+    if (e instanceof NightonaError) {
         console.error("Execution failed:", e);
     }
 }
@@ -1155,8 +1155,8 @@ if result != nil && result.ExitCode != 0 {
 </TabItem>
 <TabItem label="Java" icon="seti:java">
 ```java
-import io.daytona.sdk.exception.DaytonaException;
-import io.daytona.sdk.model.ExecuteResponse;
+import io.nightona.sdk.exception.NightonaException;
+import io.nightona.sdk.model.ExecuteResponse;
 
 try {
     ExecuteResponse response = sandbox.process.codeRun("invalid python code");
@@ -1164,7 +1164,7 @@ try {
         System.out.println("Exit code: " + response.getExitCode());
         System.out.println("Error output: " + response.getResult());
     }
-} catch (DaytonaException e) {
+} catch (NightonaException e) {
     System.out.println("Execution failed: " + e.getMessage());
 }
 ```
@@ -1190,7 +1190,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/execute' \
 
 ## Common issues
 
-Daytona provides solutions for troubleshooting common issues related to process and code execution.
+Nightona provides solutions for troubleshooting common issues related to process and code execution.
 
 | **Issue**                | **Solutions**                                                                                                   |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------- |

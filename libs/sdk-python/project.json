@@ -89,9 +89,9 @@
         "cwd": "{projectRoot}",
         "commands": [
           "poetry publish --username __token__ --password $PYPI_TOKEN --no-interaction",
-          "sed -i 's/^name = \"[^\"]*\"/name = \"daytona_sdk\"/' pyproject.toml",
+          "sed -i 's/^name = \"[^\"]*\"/name = \"nightona_sdk\"/' pyproject.toml",
           "poetry publish --username __token__ --password $PYPI_TOKEN --no-interaction",
-          "sed -i 's/^name = \"[^\"]*\"/name = \"daytona\"/' pyproject.toml"
+          "sed -i 's/^name = \"[^\"]*\"/name = \"nightona\"/' pyproject.toml"
         ],
         "parallel": false
       },

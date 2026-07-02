@@ -1,14 +1,14 @@
-# Running RL Rollouts on Sandboxes Guide (TRL + Daytona)
+# Running RL Rollouts on Sandboxes Guide (TRL + Nightona)
 
 ## Overview
 
-This guide demonstrates how to integrate Daytona with TRL ([Transformer Reinforcement Learning](https://github.com/huggingface/trl)) in order to run the code generated in rollouts, in Daytona sandboxes. We combine TRL's synchronous trainer with parallelized, asynchronous execution in sandboxes.
+This guide demonstrates how to integrate Nightona with TRL ([Transformer Reinforcement Learning](https://github.com/huggingface/trl)) in order to run the code generated in rollouts, in Nightona sandboxes. We combine TRL's synchronous trainer with parallelized, asynchronous execution in sandboxes.
 
 In the guide, we use GRPO to train `Qwen3-1.7B-Base` model on two code writing tasks: a sorting function, and a function to find the maximal contiguous subarray sum.
 
 ## Features
 
-- **Sandboxed code execution:** Generated code runs in isolated Daytona sandboxes, preventing harmful code from affecting your system
+- **Sandboxed code execution:** Generated code runs in isolated Nightona sandboxes, preventing harmful code from affecting your system
 - **Parallel evaluation:** Multiple completions are evaluated concurrently across a pool of sandboxes
 - **Test-based rewards:** Reward signal uses the test pass rate
 - **vLLM integration:** Uses vLLM in colocate mode for running both training and generation on 1 GPU
@@ -21,7 +21,7 @@ In the guide, we use GRPO to train `Qwen3-1.7B-Base` model on two code writing t
 
 ## Environment Variables
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 
 ## Getting Started
 
@@ -40,7 +40,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e .
 ```
 
-3. Set your Daytona API key in `.env` (copy from `.env.example`):
+3. Set your Nightona API key in `.env` (copy from `.env.example`):
 
 ```bash
 cp .env.example .env
@@ -59,7 +59,7 @@ The script has several configurable parameters:
 
 ### Sandbox Settings
 
-- `EFFECTIVE_BATCH_SIZE`: The effective batch size for training, also equal to the number of Daytona sandboxes to create (default: 500).
+- `EFFECTIVE_BATCH_SIZE`: The effective batch size for training, also equal to the number of Nightona sandboxes to create (default: 500).
 - `MAX_TIMEOUT_SECONDS`: Timeout for code execution in each sandbox (default: 1 second). Prevents infinite loops from blocking training.
 
 ### Model Settings
@@ -98,10 +98,10 @@ TASKS = {
 
 The script runs reinforcement learning training using TRL's GRPOTrainer.
 
-1. **Sandbox pool:** Daytona sandboxes are created upfront for safe, parallel code execution
+1. **Sandbox pool:** Nightona sandboxes are created upfront for safe, parallel code execution
 2. **Generation:** The model generates N completions per prompt via vLLM
 3. **Sanitization:** Completions using banned patterns (e.g., using built-in functions) are rejected
-4. **Evaluation:** Each completion runs in a Daytona sandbox against the test suite
+4. **Evaluation:** Each completion runs in a Nightona sandbox against the test suite
 5. **Reward:** -1 for errors or banned patterns; otherwise, the reward is the fraction of tests passed
 6. **Policy update:** GRPO reinforces completions that scored higher than their group average
 7. **Cleanup:** When training finishes, sandboxes are deleted
@@ -117,5 +117,5 @@ See the main project LICENSE file for details.
 ## References
 
 - [TRL (Transformer Reinforcement Learning)](https://huggingface.co/docs/trl/)
-- [Daytona](https://daytona.io)
+- [Nightona](https://daytona.io)
 - [vLLM](https://docs.vllm.ai/)

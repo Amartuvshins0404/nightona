@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -11,7 +11,7 @@ import { useApi } from '@/hooks/useApi'
 import { useOrganizationRoles } from '@/hooks/useOrganizationRoles'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { handleApiError } from '@/lib/error-handling'
-import { OrganizationRolePermissionsEnum } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum } from '@nightona/api-client'
 import { PlusIcon } from 'lucide-react'
 import React, { useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'

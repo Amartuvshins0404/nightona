@@ -12,7 +12,7 @@ class FileSystem()
 Provides file system operations within a Sandbox.
 
 This class implements a high-level interface to file system operations that can
-be performed within a Daytona Sandbox.
+be performed within a Nightona Sandbox.
 
 #### FileSystem.\_\_init\_\_
 
@@ -169,7 +169,7 @@ directly to an HTTP response, written to a file incrementally, or processed on t
   cumulative bytes received and total bytes, when known, as the download progresses.
   Default is None.
 - `cancel_event` _CancelEvent | None_ - Optional ``threading.Event``-compatible token. When
-  set during streaming, the next chunk raises ``DaytonaError`` and the underlying
+  set during streaming, the next chunk raises ``NightonaError`` and the underlying
   HTTP connection is closed.
   
 
@@ -180,7 +180,7 @@ directly to an HTTP response, written to a file incrementally, or processed on t
 
 **Raises**:
 
-- `DaytonaError` - If the file does not exist, access is denied, or the download is
+- `NightonaError` - If the file does not exist, access is denied, or the download is
   cancelled via ``cancel_event``.
   
 
@@ -523,8 +523,8 @@ sandbox.fs.set_file_permissions(
 # Change file owner
 sandbox.fs.set_file_permissions(
     path="workspace/data/file.txt",
-    owner="daytona",
-    group="daytona"
+    owner="nightona",
+    group="nightona"
 )
 ```
 
@@ -659,13 +659,13 @@ the upload — no advance size is needed.
 - `on_progress` _Callable[[UploadProgress], None] | None_ - Optional callback invoked
   with cumulative bytes sent.
 - `cancel_event` _CancelEvent | None_ - Optional ``threading.Event``-compatible token.
-  When set during streaming, the next chunk read raises ``DaytonaError`` and
+  When set during streaming, the next chunk read raises ``NightonaError`` and
   tears down the request.
   
 
 **Raises**:
 
-- `DaytonaError` - If the upload fails or is cancelled via ``cancel_event``.
+- `NightonaError` - If the upload fails or is cancelled via ``cancel_event``.
   
 
 **Example**:
@@ -693,7 +693,7 @@ class CancelEvent(Protocol)
 Duck-typed cancellation token. Compatible with ``threading.Event`` and
 ``asyncio.Event`` (both expose ``is_set()``). When supplied to a streaming
 download, the next chunk read after the event becomes set raises
-``DaytonaError``, closing the underlying HTTP connection.
+``NightonaError``, closing the underlying HTTP connection.
 
 ## FileUpload
 
@@ -784,10 +784,10 @@ Structured error metadata for a failed bulk file download item.
 #### create\_file\_download\_error
 
 ```python
-def create_file_download_error(response: FileDownloadResponse) -> DaytonaError
+def create_file_download_error(response: FileDownloadResponse) -> NightonaError
 ```
 
-Create the appropriate Daytona exception for a failed file download response.
+Create the appropriate Nightona exception for a failed file download response.
 
 #### raise\_if\_stream\_error
 

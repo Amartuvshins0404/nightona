@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -11,9 +11,9 @@ import (
 	"log/slog"
 	"time"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	runnerapiclient "github.com/daytonaio/runner/pkg/apiclient"
-	"github.com/daytonaio/runner/pkg/runner/v2/executor"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	runnerapiclient "github.com/Amartuvshins0404/nightona/apps/runner/pkg/apiclient"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner/v2/executor"
 )
 
 type PollerServiceConfig struct {

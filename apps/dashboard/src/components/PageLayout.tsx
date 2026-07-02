@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { DAYTONA_DOCS_URL } from '@/constants/ExternalLinks'
+import { NIGHTONA_DOCS_URL } from '@/constants/ExternalLinks'
 import { useTheme } from '@/contexts/ThemeContext'
 import { RoutePath } from '@/enums/RoutePath'
 import { useUserOrganizationInvitations } from '@/hooks/useUserOrganizationInvitations'
@@ -75,7 +75,7 @@ function PageHeader(props: ComponentProps<'header'>) {
         <>
           <PageHeaderExternalAction
             label="Docs"
-            href={DAYTONA_DOCS_URL}
+            href={NIGHTONA_DOCS_URL}
             icon={<BookOpen className="size-4" />}
             variant="link"
           />

@@ -1,11 +1,11 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import type { OrganizationWallet } from '@daytona/billing-api-client'
+import type { OrganizationWallet } from '@nightona/billing-api-client'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
-import { OrganizationUserRoleEnum } from '@daytona/api-client'
+import { OrganizationUserRoleEnum } from '@nightona/api-client'
 import { UseQueryOptions } from '@tanstack/react-query'
 import { useOrganizationInvoicesQuery } from './useOrganizationInvoicesQuery'
 import { useOrganizationTierQuery } from './useOrganizationTierQuery'

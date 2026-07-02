@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -e
@@ -17,10 +17,10 @@ if [ -n "$PYPI_PKG_VERSION" ]; then
   for attempt in $(seq 1 "$max_attempts"); do
     echo "Attempt $attempt/$max_attempts: installing API clients"
     if output=$(poetry add \
-      "daytona_api_client@$PYPI_PKG_VERSION" \
-      "daytona_api_client_async@$PYPI_PKG_VERSION" \
-      "daytona_toolbox_api_client@$PYPI_PKG_VERSION" \
-      "daytona_toolbox_api_client_async@$PYPI_PKG_VERSION" 2>&1); then
+      "nightona_api_client@$PYPI_PKG_VERSION" \
+      "nightona_api_client_async@$PYPI_PKG_VERSION" \
+      "nightona_toolbox_api_client@$PYPI_PKG_VERSION" \
+      "nightona_toolbox_api_client_async@$PYPI_PKG_VERSION" 2>&1); then
       echo "Successfully added API clients on attempt $attempt"
       break
     fi

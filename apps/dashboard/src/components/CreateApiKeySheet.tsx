@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -29,7 +29,7 @@ import { useCreateApiKeyMutation } from '@/hooks/mutations/useCreateApiKeyMutati
 import { useCopyToClipboard } from '@/hooks/useCopyToClipboard'
 import { handleApiError } from '@/lib/error-handling'
 import { getMaskedToken } from '@/lib/utils'
-import { ApiKeyResponse, CreateApiKeyPermissionsEnum } from '@daytona/api-client'
+import { ApiKeyResponse, CreateApiKeyPermissionsEnum } from '@nightona/api-client'
 import { useForm } from '@tanstack/react-form'
 import React, { Ref, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'

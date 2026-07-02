@@ -5,7 +5,7 @@ hideTitleOnPage: true
 
 ## Sandbox
 
-Sandbox class for Daytona SDK.
+Sandbox class for Nightona SDK.
 
 ### Constructors
 
@@ -200,7 +200,7 @@ def state()
 
 **Returns**:
 
-- `DaytonaApiClient:SandboxState` - The state of the sandbox
+- `NightonaApiClient:SandboxState` - The state of the sandbox
 
 #### desired_state()
 
@@ -211,7 +211,7 @@ def desired_state()
 
 **Returns**:
 
-- `DaytonaApiClient:SandboxDesiredState` - The desired state of the sandbox
+- `NightonaApiClient:SandboxDesiredState` - The desired state of the sandbox
 
 #### error_reason()
 
@@ -291,7 +291,7 @@ def volumes()
 
 **Returns**:
 
-- `Array\<DaytonaApiClient:SandboxVolume\>, nil` - Volumes attached to the sandbox.
+- `Array\<NightonaApiClient:SandboxVolume\>, nil` - Volumes attached to the sandbox.
 Not returned by list results; call #refresh on each item to populate.
 
 #### build_info()
@@ -303,7 +303,7 @@ def build_info()
 
 **Returns**:
 
-- `DaytonaApiClient:BuildInfo, nil` - Build information for the sandbox if it was
+- `NightonaApiClient:BuildInfo, nil` - Build information for the sandbox if it was
 created from a dynamic build.
 Not returned by list results; call #refresh on each item to populate.
 
@@ -360,7 +360,7 @@ def config()
 
 **Returns**:
 
-- `Daytona:Config`
+- `Nightona:Config`
 
 #### sandbox_api()
 
@@ -371,7 +371,7 @@ def sandbox_api()
 
 **Returns**:
 
-- `DaytonaApiClient:SandboxApi`
+- `NightonaApiClient:SandboxApi`
 
 #### process()
 
@@ -382,7 +382,7 @@ def process()
 
 **Returns**:
 
-- `Daytona:Process`
+- `Nightona:Process`
 
 #### fs()
 
@@ -393,7 +393,7 @@ def fs()
 
 **Returns**:
 
-- `Daytona:FileSystem`
+- `Nightona:FileSystem`
 
 #### git()
 
@@ -404,7 +404,7 @@ def git()
 
 **Returns**:
 
-- `Daytona:Git`
+- `Nightona:Git`
 
 #### computer_use()
 
@@ -415,7 +415,7 @@ def computer_use()
 
 **Returns**:
 
-- `Daytona:ComputerUse`
+- `Nightona:ComputerUse`
 
 #### code_interpreter()
 
@@ -426,7 +426,7 @@ def code_interpreter()
 
 **Returns**:
 
-- `Daytona:CodeInterpreter`
+- `Nightona:CodeInterpreter`
 
 #### archive()
 
@@ -465,7 +465,7 @@ The Sandbox will automatically archive after being continuously stopped for the 
 
 **Raises**:
 
-- `Daytona:Sdk:Error` -
+- `Nightona:Sdk:Error` -
 
 #### auto_delete_interval=()
 
@@ -487,7 +487,7 @@ The Sandbox will automatically delete after being continuously stopped for the s
 
 **Raises**:
 
-- `Daytona:Sdk:Error` -
+- `Nightona:Sdk:Error` -
 
 #### update_network_settings()
 
@@ -510,7 +510,7 @@ Updates outbound network policy on the runner (block all, restore access, or CID
 
 **Raises**:
 
-- `Daytona:Sdk:Error` -
+- `Nightona:Sdk:Error` -
 
 #### auto_stop_interval=()
 
@@ -534,7 +534,7 @@ Interactions using Sandbox Previews are not included.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` -
+- `Nightona:Sdk:Error` -
 
 #### create_ssh_access()
 
@@ -551,7 +551,7 @@ Creates an SSH access token for the sandbox.
 
 **Returns**:
 
-- `DaytonaApiClient:SshAccessDto`
+- `NightonaApiClient:SshAccessDto`
 
 #### delete()
 
@@ -641,7 +641,7 @@ to the URL.
 
 **Returns**:
 
-- `DaytonaApiClient:PortPreviewUrl`
+- `NightonaApiClient:PortPreviewUrl`
 
 #### create_signed_preview_url()
 
@@ -660,7 +660,7 @@ will be valid for. Defaults to 60 seconds.
 
 **Returns**:
 
-- `DaytonaApiClient:SignedPortPreviewUrl` - The signed preview URL response object
+- `NightonaApiClient:SignedPortPreviewUrl` - The signed preview URL response object
 
 **Examples:**
 
@@ -786,7 +786,7 @@ Recovers the Sandbox from a recoverable error and waits for it to be ready.
 **Examples:**
 
 ```ruby
-sandbox = daytona.get('my-sandbox-id')
+sandbox = nightona.get('my-sandbox-id')
 sandbox.recover(timeout: 40)  # Wait up to 40 seconds
 puts 'Sandbox recovered successfully'
 
@@ -825,7 +825,7 @@ only grow. GPU is not resizable — to change GPU, create a new sandbox.
 
 **Parameters**:
 
-- `resources` _Daytona:Resources_ - New resource configuration (cpu, memory, disk only)
+- `resources` _Nightona:Resources_ - New resource configuration (cpu, memory, disk only)
 - `timeout` _Numeric_ - Maximum wait time in seconds (defaults to 60 s)
 
 **Returns**:
@@ -839,13 +839,13 @@ only grow. GPU is not resizable — to change GPU, create a new sandbox.
 **Examples:**
 
 ```ruby
-sandbox.resize(Daytona::Resources.new(cpu: 4, memory: 8))
+sandbox.resize(Nightona::Resources.new(cpu: 4, memory: 8))
 
 ```
 
 ```ruby
 sandbox.stop
-sandbox.resize(Daytona::Resources.new(cpu: 2, memory: 4, disk: 30))
+sandbox.resize(Nightona::Resources.new(cpu: 2, memory: 4, disk: 30))
 
 ```
 
@@ -880,13 +880,13 @@ diagnostics, and more.
 
 **Parameters**:
 
-- `language_id` _Symbol_ - The language server type (e.g., Daytona::LspServer::Language::PYTHON)
+- `language_id` _Symbol_ - The language server type (e.g., Nightona::LspServer::Language::PYTHON)
 - `path_to_project` _String_ - Path to the project root directory. Relative paths are resolved
 based on the sandbox working directory.
 
 **Returns**:
 
-- `Daytona:LspServer`
+- `Nightona:LspServer`
 
 #### validate_ssh_access()
 
@@ -903,7 +903,7 @@ Validates an SSH access token for the sandbox.
 
 **Returns**:
 
-- `DaytonaApiClient:SshAccessValidationDto`
+- `NightonaApiClient:SshAccessValidationDto`
 
 #### wait_for_sandbox_start()
 
@@ -960,7 +960,7 @@ with the same disk contents but operates independently from that point on.
 
 **Returns**:
 
-- `Daytona:Sandbox` - The forked Sandbox
+- `Nightona:Sandbox` - The forked Sandbox
 
 #### experimental_create_snapshot()
 

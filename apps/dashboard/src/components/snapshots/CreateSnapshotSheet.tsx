@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -30,8 +30,8 @@ import { GPU_TYPE_LABELS } from '@/lib/gpu-types'
 import { EMPTY_REGIONS } from '@/lib/regions'
 import { imageNameSchema } from '@/lib/schema'
 import { cn, getRegionFullDisplayName } from '@/lib/utils'
-import type { SnapshotDto } from '@daytona/api-client'
-import { GpuType, SandboxClass } from '@daytona/api-client'
+import type { SnapshotDto } from '@nightona/api-client'
+import { GpuType, SandboxClass } from '@nightona/api-client'
 import { useForm, useStore } from '@tanstack/react-form'
 import { Ref, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'

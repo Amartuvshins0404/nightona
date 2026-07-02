@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package fs
@@ -82,7 +82,7 @@ func TestUploadFilesStreamsToDisk(t *testing.T) {
 			t.Fatalf("readdir %s: %v", filepath.Dir(w.path), err)
 		}
 		for _, e := range entries {
-			if strings.Contains(e.Name(), ".daytona-upload-") {
+			if strings.Contains(e.Name(), ".nightona-upload-") {
 				t.Fatalf("leftover temp file: %s", filepath.Join(filepath.Dir(w.path), e.Name()))
 			}
 		}
@@ -100,7 +100,7 @@ func TestUploadFilesTruncatedBodyReturnsErrorWithoutHanging(t *testing.T) {
 	tempDir := t.TempDir()
 	dest := filepath.Join(tempDir, "partial.bin")
 
-	boundary := "DaytonaTestBoundary"
+	boundary := "NightonaTestBoundary"
 	body := &bytes.Buffer{}
 	body.WriteString("--" + boundary + "\r\n")
 	body.WriteString("Content-Disposition: form-data; name=\"files[0].path\"\r\n\r\n")

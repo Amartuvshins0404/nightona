@@ -1,19 +1,19 @@
 ---
-title: Fix Bugs Automatically With AG2 and Daytona
-description: Build a multi-agent bug fixer that analyzes broken code, proposes fixes, and verifies them in isolated Daytona sandboxes.
+title: Fix Bugs Automatically With AG2 and Nightona
+description: Build a multi-agent bug fixer that analyzes broken code, proposes fixes, and verifies them in isolated Nightona sandboxes.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This guide demonstrates how to use `DaytonaCodeExecutor` for [AG2](https://ag2.ai/) to build a multi-agent system that automatically fixes broken code in a secure sandbox environment. The executor enables agents to run Python, JavaScript, TypeScript, and Bash code within isolated Daytona sandboxes, with no risk to your local machine.
+This guide demonstrates how to use `NightonaCodeExecutor` for [AG2](https://ag2.ai/) to build a multi-agent system that automatically fixes broken code in a secure sandbox environment. The executor enables agents to run Python, JavaScript, TypeScript, and Bash code within isolated Nightona sandboxes, with no risk to your local machine.
 
-In this example, we build a bug fixer that takes broken code as input, analyzes the bug, proposes a fix, and verifies it by actually executing the code in a Daytona sandbox. If the fix fails, the agent sees the error output and retries with a different approach, continuing until the code passes or the maximum number of attempts is reached.
+In this example, we build a bug fixer that takes broken code as input, analyzes the bug, proposes a fix, and verifies it by actually executing the code in a Nightona sandbox. If the fix fails, the agent sees the error output and retries with a different approach, continuing until the code passes or the maximum number of attempts is reached.
 
 ---
 
 ### 1. Workflow Overview
 
-You provide broken code. The `bug_fixer` agent (LLM) analyzes it and proposes a fix wrapped in a fenced code block. The `code_executor` agent extracts the code block and runs it in a Daytona sandbox. If execution fails, the bug fixer sees the full error output and tries again. Once the code passes, the agents terminate and the sandbox is automatically deleted.
+You provide broken code. The `bug_fixer` agent (LLM) analyzes it and proposes a fix wrapped in a fenced code block. The `code_executor` agent extracts the code block and runs it in a Nightona sandbox. If execution fails, the bug fixer sees the full error output and tries again. Once the code passes, the agents terminate and the sandbox is automatically deleted.
 
 The key benefit: every fix attempt is verified by actually running the code — not just reviewed by the LLM.
 
@@ -21,11 +21,11 @@ The key benefit: every fix attempt is verified by actually running the code — 
 
 #### Clone the Repository
 
-Clone the Daytona repository and navigate to the example directory:
+Clone the Nightona repository and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona
-cd daytona/guides/python/ag2/bug-fixer-agent/openai
+git clone https://github.com/Amartuvshins0404/nightona
+cd nightona/guides/python/ag2/bug-fixer-agent/openai
 ```
 
 #### Install Dependencies
@@ -39,11 +39,11 @@ Install the required packages for this example:
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```bash
-    pip install "ag2[daytona,openai]" python-dotenv
+    pip install "ag2[nightona,openai]" python-dotenv
     ```
 
     The packages include:
-    - `ag2[daytona,openai]`: AG2 with the Daytona code executor and OpenAI model support
+    - `ag2[nightona,openai]`: AG2 with the Nightona code executor and OpenAI model support
     - `python-dotenv`: Loads environment variables from a `.env` file
   </TabItem>
 </Tabs>
@@ -52,13 +52,13 @@ Install the required packages for this example:
 
 Get your API keys and configure your environment:
 
-1. **Daytona API key:** Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+1. **Nightona API key:** Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 2. **OpenAI API key:** Get it from [OpenAI Platform](https://platform.openai.com/api-keys)
 
 Create a `.env` file in your project directory:
 
 ```bash
-DAYTONA_API_KEY=dtn_***
+NIGHTONA_API_KEY=dtn_***
 OPENAI_API_KEY=sk-***
 ```
 
@@ -70,9 +70,9 @@ Before diving into the implementation, let's understand the key components:
 
 `ConversableAgent` is AG2's general-purpose agent. Each agent can be configured as either an LLM agent (with a model and system prompt) or a non-LLM agent (`llm_config=False`) that responds through registered reply handlers — in our case, code execution via `code_execution_config`. The two agents communicate by passing messages back and forth until a termination condition is met.
 
-#### DaytonaCodeExecutor
+#### NightonaCodeExecutor
 
-`DaytonaCodeExecutor` implements the AG2 `CodeExecutor` protocol. When used as a context manager, it creates a Daytona sandbox on entry and automatically deletes it on exit. It reuses the same sandbox across all code executions within the session, extracting and running fenced code blocks from agent messages. The language is inferred from the code block tag (` ```python `, ` ```javascript `, ` ```typescript `).
+`NightonaCodeExecutor` implements the AG2 `CodeExecutor` protocol. When used as a context manager, it creates a Nightona sandbox on entry and automatically deletes it on exit. It reuses the same sandbox across all code executions within the session, extracting and running fenced code blocks from agent messages. The language is inferred from the code block tag (` ```python `, ` ```javascript `, ` ```typescript `).
 
 ### 4. Implementation
 
@@ -82,7 +82,7 @@ Before diving into the implementation, let's understand the key components:
 import os
 
 from autogen import ConversableAgent, LLMConfig
-from autogen.coding import DaytonaCodeExecutor
+from autogen.coding import NightonaCodeExecutor
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -126,7 +126,7 @@ def fix_bug(broken_code: str, error_description: str = "") -> None:
         }
     )
 
-    with DaytonaCodeExecutor(timeout=60) as executor:
+    with NightonaCodeExecutor(timeout=60) as executor:
         bug_fixer = ConversableAgent(
             name="bug_fixer",
             system_message=BUG_FIXER_SYSTEM_MESSAGE,
@@ -144,7 +144,7 @@ def fix_bug(broken_code: str, error_description: str = "") -> None:
         )
 ```
 
-`DaytonaCodeExecutor` is used as a context manager so the sandbox is automatically cleaned up when `fix_bug` returns. `bug_fixer` owns the LLM reasoning; `code_executor` owns sandbox execution and never calls the LLM itself (`llm_config=False`).
+`NightonaCodeExecutor` is used as a context manager so the sandbox is automatically cleaned up when `fix_bug` returns. `bug_fixer` owns the LLM reasoning; `code_executor` owns sandbox execution and never calls the LLM itself (`llm_config=False`).
 
 The optional `error_description` parameter can be used to pass additional context about the failure — for example, a stack trace, a known symptom, or a hint about the cause. In the examples below we leave it empty, as the agent is capable of identifying and fixing the bugs purely from the assertion output.
 
@@ -311,13 +311,13 @@ Tracing the session above step by step:
 
 1. `code_executor.run(recipient=bug_fixer, ...)` — AG2 starts the loop and `code_executor` sends the broken code as plain text to `bug_fixer`. Nothing is executed yet.
 2. `bug_fixer` (LLM) analyzes the code and replies with the fix wrapped in a ` ```python ` block.
-3. AG2 calls `_generate_code_execution_reply_using_executor` on `code_executor` — a reply method registered automatically when `code_execution_config` is set. It scans `bug_fixer`'s last message for fenced code blocks, extracts the block, and calls `DaytonaCodeExecutor.execute_code_blocks()`.
-4. Daytona runs the code in the sandbox and returns the exit code and output.
+3. AG2 calls `_generate_code_execution_reply_using_executor` on `code_executor` — a reply method registered automatically when `code_execution_config` is set. It scans `bug_fixer`'s last message for fenced code blocks, extracts the block, and calls `NightonaCodeExecutor.execute_code_blocks()`.
+4. Nightona runs the code in the sandbox and returns the exit code and output.
 5. AG2 forwards the result (`exitcode: 0 (execution succeeded)\nCode output: All postfix tests passed!`) back to `bug_fixer` as `code_executor`'s reply.
 6. `bug_fixer` sees the successful output and replies with `TERMINATE`.
 7. AG2 checks `is_termination_msg` on the incoming message — returns `True`, conversation stops, the sandbox is deleted.
 
-Note that the original broken code is never executed — only `bug_fixer`'s proposed fix goes into Daytona.
+Note that the original broken code is never executed — only `bug_fixer`'s proposed fix goes into Nightona.
 
 :::note
 `>>>>>>>> USING AUTO REPLY...` is printed by AG2 before each automatic agent reply to indicate no human intervention is taking place.
@@ -329,7 +329,7 @@ Note that the original broken code is never executed — only `bug_fixer`'s prop
 import os
 
 from autogen import ConversableAgent, LLMConfig
-from autogen.coding import DaytonaCodeExecutor
+from autogen.coding import NightonaCodeExecutor
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -358,7 +358,7 @@ def fix_bug(broken_code: str, error_description: str = "") -> None:
         }
     )
 
-    with DaytonaCodeExecutor(timeout=60) as executor:
+    with NightonaCodeExecutor(timeout=60) as executor:
         bug_fixer = ConversableAgent(
             name="bug_fixer",
             system_message=BUG_FIXER_SYSTEM_MESSAGE,
@@ -477,11 +477,11 @@ console.log("All max subarray tests passed!");
 **Key advantages of this approach:**
 
 - **Execution-verified fixes:** Every proposed fix is actually run in a sandbox — the agent only terminates when the code passes, not just when it looks correct
-- **Secure execution:** Fix attempts run in isolated Daytona sandboxes, not on your machine
+- **Secure execution:** Fix attempts run in isolated Nightona sandboxes, not on your machine
 - **Multi-language support:** Python, JavaScript, TypeScript, and Bash — language is inferred automatically from the LLM's fenced code block
 - **Iterative refinement:** If a fix fails, the agent sees the full error output and retries automatically
 - **Automatic cleanup:** The sandbox is deleted as soon as `fix_bug` returns, regardless of outcome
 
 ### 7. API Reference
 
-For the complete API reference of `DaytonaCodeExecutor`, including all configuration options and supported parameters, see the [DaytonaCodeExecutor documentation](https://docs.ag2.ai/latest/docs/api-reference/autogen/coding/DaytonaCodeExecutor/).
+For the complete API reference of `NightonaCodeExecutor`, including all configuration options and supported parameters, see the [NightonaCodeExecutor documentation](https://docs.ag2.ai/latest/docs/api-reference/autogen/coding/NightonaCodeExecutor/).

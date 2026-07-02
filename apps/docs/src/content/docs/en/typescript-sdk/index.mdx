@@ -1,40 +1,40 @@
 ---
 title: TypeScript SDK Reference
-description: Interact with Daytona Sandboxes using the TypeScript SDK
-next: /docs/typescript-sdk/daytona
+description: Interact with Nightona Sandboxes using the TypeScript SDK
+next: /docs/typescript-sdk/nightona
 ---
 
-The Daytona TypeScript SDK provides a powerful interface for programmatically interacting with Daytona Sandboxes.
+The Nightona TypeScript SDK provides a powerful interface for programmatically interacting with Nightona Sandboxes.
 
 ## Installation
 
-Install the Daytona TypeScript SDK using npm:
+Install the Nightona TypeScript SDK using npm:
 
 ```bash
-npm install @daytona/sdk
+npm install @nightona/sdk
 ```
 
 Or using yarn:
 
 ```bash
-yarn add @daytona/sdk
+yarn add @nightona/sdk
 ```
 
 ## Getting Started
 
 ### Create a Sandbox
 
-Create a Daytona Sandbox to run your code securely in an isolated environment. The following snippet is an example “Hello World” program that runs securely inside a Daytona Sandbox.
+Create a Nightona Sandbox to run your code securely in an isolated environment. The following snippet is an example “Hello World” program that runs securely inside a Nightona Sandbox.
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
 async function main() {
   // Initialize the SDK (uses environment variables by default)
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
   // Create a new sandbox
-  const sandbox = await daytona.create({
+  const sandbox = await nightona.create({
     language: 'typescript',
     envVars: { NODE_ENV: 'development' },
   })
@@ -49,23 +49,23 @@ main().catch(console.error)
 
 ## Configuration
 
-The Daytona SDK can be configured using environment variables or by passing options to the constructor:
+The Nightona SDK can be configured using environment variables or by passing options to the constructor:
 
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
-// Using environment variables (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
-const daytona = new Daytona();
+// Using environment variables (NIGHTONA_API_KEY, NIGHTONA_API_URL, NIGHTONA_TARGET)
+const nightona = new Nightona();
 
 // Using explicit configuration
-const daytona = new Daytona({
+const nightona = new Nightona({
   apiKey: 'YOUR_API_KEY',
   apiUrl: 'https://app.daytona.io/api',
   target: 'us'
 });
 ```
 
-For more information on configuring the Daytona SDK, see [configuration](/docs/en/configuration).
+For more information on configuring the Nightona SDK, see [configuration](/docs/en/configuration).
 
 ## Multiple runtime support
 
@@ -77,10 +77,10 @@ For **Cloudflare Workers**, set the Node.js compatibility flag in your `wrangler
 compatibility_flags = ["nodejs_compat"]
 ```
 
-For **Deno**, install with `deno add npm:@daytona/sdk` or import directly with the `npm:` specifier:
+For **Deno**, install with `deno add npm:@nightona/sdk` or import directly with the `npm:` specifier:
 
 ```typescript
-import { Daytona, Image } from 'npm:@daytona/sdk'
+import { Nightona, Image } from 'npm:@nightona/sdk'
 ```
 
 For **browser apps with Vite** (or any browser bundler), install [`vite-plugin-node-polyfills`](https://www.npmjs.com/package/vite-plugin-node-polyfills) and add it to your `vite.config.ts`:
@@ -94,6 +94,6 @@ export default defineConfig({
 })
 ```
 
-The SDK uses Node's `Buffer` for binary data (downloaded files, multipart bodies). Browsers don't ship `Buffer`, so the polyfill provides it. Without it, basic operations like `Image.base()` and `daytona.list()` still work, but methods that handle binary payloads (`fs.downloadFile`, `fs.downloadFiles`) will throw.
+The SDK uses Node's `Buffer` for binary data (downloaded files, multipart bodies). Browsers don't ship `Buffer`, so the polyfill provides it. Without it, basic operations like `Image.base()` and `nightona.list()` still work, but methods that handle binary payloads (`fs.downloadFile`, `fs.downloadFiles`) will throw.
 
 Some runtimes don't expose the full set of Node.js APIs (browsers and edge runtimes have no filesystem, no `crypto`, etc.). Methods that depend on those APIs throw a clear runtime error instead of silently producing wrong results.

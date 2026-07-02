@@ -8,7 +8,7 @@ const fs = _fs.promises
 // content to appear above the commands outline
 const prepend = `---
 title: API
-description: A reference of supported operations using the Daytona API.
+description: A reference of supported operations using the Nightona API.
 ---
 
 import Label from '@components/Label.astro'

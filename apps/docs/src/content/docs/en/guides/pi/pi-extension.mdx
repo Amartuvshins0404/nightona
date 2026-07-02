@@ -1,19 +1,19 @@
 ---
-title: Run Pi with the Daytona Extension
-description: Use the Daytona Pi extension to run every Pi tool call inside a remote Daytona sandbox, with each session synced to its own GitHub branch.
+title: Run Pi with the Nightona Extension
+description: Use the Nightona Pi extension to run every Pi tool call inside a remote Nightona sandbox, with each session synced to its own GitHub branch.
 ---
 
 import piExtensionGif from '../../../../../assets/docs/images/pi-extension.gif'
 
-This guide demonstrates how to run the [Daytona Pi extension](https://www.npmjs.com/package/@daytona/pi) which integrates Daytona sandboxes and [Pi](https://pi.dev/). When the extension is active, the agent runs on your machine while every tool call — `bash`, file I/O, and search — runs inside a secure Daytona sandbox. Each session gets its own sandbox, and your work is synced to a per-session GitHub branch.
+This guide demonstrates how to run the [Nightona Pi extension](https://www.npmjs.com/package/@nightona/pi) which integrates Nightona sandboxes and [Pi](https://pi.dev/). When the extension is active, the agent runs on your machine while every tool call — `bash`, file I/O, and search — runs inside a secure Nightona sandbox. Each session gets its own sandbox, and your work is synced to a per-session GitHub branch.
 
 ### 1. Workflow Overview
 
-When you launch Pi with `--daytona`, a sandbox is created for the session and the repo you launched Pi in is cloned into it. From then on, every tool call — running code, installing dependencies, starting servers — happens in the sandbox rather than on your host.
+When you launch Pi with `--nightona`, a sandbox is created for the session and the repo you launched Pi in is cloned into it. From then on, every tool call — running code, installing dependencies, starting servers — happens in the sandbox rather than on your host.
 
 <img
   src={piExtensionGif.src}
-  alt="Pi running with the Daytona extension — sandbox status and a synced GitHub branch"
+  alt="Pi running with the Nightona extension — sandbox status and a synced GitHub branch"
   width="600"
   style="max-width: 100%; height: auto; margin: 1rem 0;"
 />
@@ -32,20 +32,20 @@ See the [Pi documentation](https://pi.dev/) for other install options.
 
 #### Add the Extension
 
-Add the Daytona extension to Pi:
+Add the Nightona extension to Pi:
 
 ```bash
-pi install npm:@daytona/pi
+pi install npm:@nightona/pi
 ```
 
 To update it later, run `pi update` — `pi install` will not refresh an existing install.
 
 #### Configure Environment
 
-This extension requires a [Daytona account](https://www.daytona.io/) and [Daytona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
+This extension requires a [Nightona account](https://www.daytona.io/) and [Nightona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
 
 ```bash
-export DAYTONA_API_KEY="your-api-key"
+export NIGHTONA_API_KEY="your-api-key"
 ```
 
 If no key is set, Pi prompts you for one once per session. To enable GitHub branch sync, also authenticate the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
@@ -56,23 +56,23 @@ Run Pi from inside a git repository:
 
 ```bash
 cd my-project
-pi --daytona
+pi --nightona
 ```
 
 The repo you're in is cloned into the sandbox and your work is synced to a GitHub branch. Point at a different repository with `--repo`, or run outside a git repo for a blank workspace.
 
 | Flag                | Description                                            |
 | ------------------- | ----------------------------------------------------- |
-| `--daytona`         | Run tools inside a Daytona sandbox                     |
+| `--nightona`         | Run tools inside a Nightona sandbox                     |
 | `--repo <url>`      | Git repo to clone (defaults to the repo you're in)    |
 | `--branch <name>`   | Branch to clone (defaults to your current branch)     |
-| `--snapshot <name>` | Choose a Daytona snapshot / base image                |
+| `--snapshot <name>` | Choose a Nightona snapshot / base image                |
 | `--public`          | Create a public sandbox so preview URLs need no token |
 | `--idle-stop <min>` | Minutes idle before the sandbox pauses (default 15)   |
 
 #### Slash commands
 
-While Pi is running with `--daytona`, you can manage the active sandbox:
+While Pi is running with `--nightona`, you can manage the active sandbox:
 
 - `/sandbox` — show the active sandbox's status: state, working directory, branch, sync status, and its GitHub branch link
 - `/github` — open this session's branch on GitHub
@@ -87,7 +87,7 @@ The extension is a single Pi extension that splits work between your machine and
 |                   | On your machine (host)         | In the sandbox (Linux)                                                              |
 | ----------------- | ------------------------------ | ---------------------------------------------------------------------------------- |
 | **Agent & tools** | The agent (LLM, TUI, sessions) | File operations and commands (`bash`, `read`, `write`, `edit`, `ls`, `find`, `grep`) |
-| **Git & GitHub**  | GitHub authorization with `gh`, and `/merge` via the GitHub API | Git operations (clone and push) via the [Daytona git API](/docs/en/git-operations) |
+| **Git & GitHub**  | GitHub authorization with `gh`, and `/merge` via the GitHub API | Git operations (clone and push) via the [Nightona git API](/docs/en/git-operations) |
 
 A session flows through it like this:
 
@@ -99,7 +99,7 @@ A session flows through it like this:
 
 #### 1. Tool registration
 
-Each built-in tool is re-registered so that, when a sandbox is active, it runs against it through the [Daytona SDK](https://www.npmjs.com/package/@daytona/sdk). A small `sandboxTool` helper wraps a local tool with a per-call rebuild against the active sandbox:
+Each built-in tool is re-registered so that, when a sandbox is active, it runs against it through the [Nightona SDK](https://www.npmjs.com/package/@nightona/sdk). A small `sandboxTool` helper wraps a local tool with a per-call rebuild against the active sandbox:
 
 ```typescript
 // Wrap a local tool so it runs against the sandbox (rebuilt per call) when one is active.
@@ -107,7 +107,7 @@ function sandboxTool(local, makeRemote) {
   return {
     ...local,
     execute: (...args) => {
-      const active = requireSandbox(); // throws when --daytona is set but no sandbox; null when off
+      const active = requireSandbox(); // throws when --nightona is set but no sandbox; null when off
       const tool = active ? makeRemote(active.cwd, active.sandbox) : local;
       return tool.execute(...args);
     },
@@ -127,9 +127,9 @@ On `session_start` the extension reattaches the sandbox it created earlier for t
 pi.on("session_start", async (event, ctx) => {
   const prev = lastSandboxFor(ctx); // recorded in a session entry on first run
   active = prev
-    ? await daytona.get(prev.sandboxId) // resume → reattach
-    : await daytona.create({
-        labels: { "created-by": "pi-daytona", "session-id": sessionId },
+    ? await nightona.get(prev.sandboxId) // resume → reattach
+    : await nightona.create({
+        labels: { "created-by": "pi-nightona", "session-id": sessionId },
       }); // new → create
 });
 ```
@@ -143,10 +143,10 @@ A `before_agent_start` hook rewrites the agent's working-directory line to the s
 ```typescript
 pi.on("before_agent_start", (event) => {
   if (!active) return;
-  const cwdLine = `Current working directory: ${active.cwd} (Daytona sandbox ${shortId(active.sandbox.id)})`;
+  const cwdLine = `Current working directory: ${active.cwd} (Nightona sandbox ${shortId(active.sandbox.id)})`;
   let systemPrompt = event.systemPrompt.replace(/Current working directory: .*/g, cwdLine);
   systemPrompt +=
-    "\n\nThis project is a git repository inside a Daytona sandbox. After you finish a unit of work, " +
+    "\n\nThis project is a git repository inside a Nightona sandbox. After you finish a unit of work, " +
     'commit it with git. Do not push — pushing is handled automatically.';
   return { systemPrompt };
 });
@@ -154,7 +154,7 @@ pi.on("before_agent_start", (event) => {
 
 #### 4. GitHub branch sync
 
-When you're in a github.com repo and authenticated with `gh`, each session gets its own branch. The host only uses `gh` to mint a token and call the GitHub REST API (to create the branch and merge it); all git transfer — clone, commit, push — runs **inside the sandbox** via the Daytona git API.
+When you're in a github.com repo and authenticated with `gh`, each session gets its own branch. The host only uses `gh` to mint a token and call the GitHub REST API (to create the branch and merge it); all git transfer — clone, commit, push — runs **inside the sandbox** via the Nightona git API.
 
 The agent commits its own work; after each turn the extension pushes any new commits to the branch:
 
@@ -173,12 +173,12 @@ When you're not in a github.com repo (or `gh` isn't authenticated), push is disa
 
 #### 5. Reconciliation
 
-Pi has no "session deleted" event, so the extension reconciles: on `session_start` and `session_shutdown` it reaps any sandbox whose session no longer exists by comparing Daytona's labelled sandboxes against Pi's live sessions.
+Pi has no "session deleted" event, so the extension reconciles: on `session_start` and `session_shutdown` it reaps any sandbox whose session no longer exists by comparing Nightona's labelled sandboxes against Pi's live sessions.
 
 ```typescript
-async function reapOrphans(daytona) {
+async function reapOrphans(nightona) {
   const live = new Set((await SessionManager.listAll()).map((s) => s.id));
-  for await (const sandbox of daytona.list({ labels: { "created-by": "pi-daytona" } })) {
+  for await (const sandbox of nightona.list({ labels: { "created-by": "pi-nightona" } })) {
     const sessionId = sandbox.labels?.["session-id"];
     if (sessionId && !live.has(sessionId)) await sandbox.delete();
   }
@@ -189,7 +189,7 @@ So deleting a session from Pi's resume menu cleans up its sandbox on the next la
 
 **Key advantages:**
 
-- Secure, isolated execution: every Pi tool call runs in a Daytona sandbox, and never on your host when `--daytona` is set
+- Secure, isolated execution: every Pi tool call runs in a Nightona sandbox, and never on your host when `--nightona` is set
 - One sandbox per session, reattached on resume and deleted only when you delete the session
 - Optional GitHub branch sync: each session gets a `pi/<id>` branch you can review and merge
 - Live [preview links](/docs/en/preview/) when a server starts in the sandbox

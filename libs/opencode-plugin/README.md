@@ -1,6 +1,6 @@
-# Daytona Sandbox Plugin for OpenCode
+# Nightona Sandbox Plugin for OpenCode
 
-This is an OpenCode plugin that automatically runs OpenCode sessions in Daytona sandboxes. Each session has its own remote sandbox which is automatically synced to a local git branch.
+This is an OpenCode plugin that automatically runs OpenCode sessions in Nightona sandboxes. Each session has its own remote sandbox which is automatically synced to a local git branch.
 
 ## Features
 
@@ -18,28 +18,28 @@ To add the plugin to a project, edit `opencode.json` in the project directory:
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["@daytona/opencode"]
+  "plugin": ["@nightona/opencode"]
 }
 ```
 
-Now that the Daytona plugin is in the plugins list, it will automatically be downloaded when OpenCode starts.
+Now that the Nightona plugin is in the plugins list, it will automatically be downloaded when OpenCode starts.
 
 To install the plugin globally, edit `~/.config/opencode/opencode.json`.
 
 ### Environment Configuration
 
-This plugin requires a [Daytona account](https://www.daytona.io/) and [Daytona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
+This plugin requires a [Nightona account](https://www.daytona.io/) and [Nightona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
 
-Set your Daytona API key and URL as environment variables:
+Set your Nightona API key and URL as environment variables:
 
 ```bash
-export DAYTONA_API_KEY="your-api-key"
+export NIGHTONA_API_KEY="your-api-key"
 ```
 
 Or create a `.env` file in your project root:
 
 ```env
-DAYTONA_API_KEY=your-api-key
+NIGHTONA_API_KEY=your-api-key
 ```
 
 ### Running OpenCode
@@ -56,7 +56,7 @@ Now start OpenCode in your project using the OpenCode command:
 opencode
 ```
 
-To check that the plugin is working, type `pwd` in the chat. You should see a response like `/home/daytona/project`, and a toast notification that a new sandbox was created.
+To check that the plugin is working, type `pwd` in the chat. You should see a response like `/home/nightona/project`, and a toast notification that a new sandbox was created.
 
 OpenCode will create new branches using the format `opencode/1`, `opencode/2`, etc. To work with these changes, use normal git commands in a separate terminal window. List branches:
 
@@ -73,7 +73,7 @@ git checkout [branch]
 To view live logs from the plugin for debugging, run this command in a separate terminal:
 
 ```bash
-tail -f ~/.local/share/opencode/log/daytona.log
+tail -f ~/.local/share/opencode/log/nightona.log
 ```
 
 ## How It Works
@@ -84,7 +84,7 @@ The plugin uses git to synchronize files between the sandbox and your local syst
 
 #### Sandbox Setup
 
-When a new Daytona sandbox is created:
+When a new Nightona sandbox is created:
 
 1. The plugin looks for a git repository in the local directory. If none is found, file synchronization will be disabled.
 2. A parallel repository is created in the sandbox with a single `opencode` branch, mirroring the checked out local branch.
@@ -108,8 +108,8 @@ The plugin only synchronizes changes from the sandbox to your system. To pass lo
 
 The plugin keeps track of which sandbox belongs to each OpenCode project using local state files. This data is stored in a separate JSON file for each project:
 
-- On macOS: `~/.local/share/opencode/storage/daytona/[projectid].json`.
-- On Windows: `%LOCALAPPDATA%\opencode\storage\daytona\[projectid].json`.
+- On macOS: `~/.local/share/opencode/storage/nightona/[projectid].json`.
+- On Windows: `%LOCALAPPDATA%\opencode\storage\nightona\[projectid].json`.
 
 Each JSON file contains the sandbox metadata for each session in the project, including when the sandbox was created, and when it was last used.
 
@@ -117,15 +117,15 @@ The plugin uses [XDG Base Directory](https://specifications.freedesktop.org/base
 
 ## Development
 
-This plugin is part of the Daytona monorepo.
+This plugin is part of the Nightona monorepo.
 
 ### Setup
 
-First, clone the Daytona monorepo:
+First, clone the Nightona monorepo:
 
 ```bash
-git clone https://github.com/daytonaio/daytona
-cd daytona
+git clone https://github.com/Amartuvshins0404/nightona
+cd nightona
 ```
 
 Install dependencies:
@@ -148,7 +148,7 @@ cd myproject
 Add a symlink from the project directory to the plugin source code:
 
 ```
-ln -s [ABSOLUTE_PATH_TO_DAYTONA]/libs/opencode-plugin/.opencode .opencode
+ln -s [ABSOLUTE_PATH_TO_NIGHTONA]/libs/opencode-plugin/.opencode .opencode
 ```
 
 Initialize git to enable file syncing:
@@ -180,13 +180,13 @@ This compiles the TypeScript source files in `.opencode/` to JavaScript in `dist
 
 #### Test the built package
 
-After building, create a test project and add a plugin file to load the built plugin (replace `[ABSOLUTE_PATH_TO_DAYTONA]` with your clone path, e.g. `/Users/you/daytona`):
+After building, create a test project and add a plugin file to load the built plugin (replace `[ABSOLUTE_PATH_TO_NIGHTONA]` with your clone path, e.g. `/Users/you/nightona`):
 
 ```bash
 mkdir -p ~/myproject && cd ~/myproject
 mkdir -p .opencode/plugins
-cat > .opencode/plugins/daytona-local.js << 'EOF'
-module.exports = require('[ABSOLUTE_PATH_TO_DAYTONA]/dist/libs/opencode-plugin/.opencode/plugin')
+cat > .opencode/plugins/nightona-local.js << 'EOF'
+module.exports = require('[ABSOLUTE_PATH_TO_NIGHTONA]/dist/libs/opencode-plugin/.opencode/plugin')
 EOF
 ```
 
@@ -219,7 +219,7 @@ This will publish to npm with public access and use the version number from `pac
 libs/opencode-plugin/
 ├── .opencode/                     # Source TypeScript files
 │   ├── plugin/
-│   │   ├── daytona/               # Main Daytona integration
+│   │   ├── nightona/               # Main Nightona integration
 │   │   │   └── ...
 │   │   └── index.ts               # Plugin entry point
 ├── dist/                          # Build output

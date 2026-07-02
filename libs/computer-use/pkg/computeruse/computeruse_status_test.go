@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package computeruse
@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	toolbox "github.com/daytonaio/daemon/pkg/toolbox/computeruse"
+	toolbox "github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
 )
 
 func TestAtspiStatusUsesA11yHealth(t *testing.T) {
@@ -114,7 +114,7 @@ func TestAtspiStatusRechecksAfterTTL(t *testing.T) {
 
 func TestInitializeProcessesRegistersAtspiAsBootstrap(t *testing.T) {
 	addAtspiLauncherToPath(t)
-	t.Setenv("DBUS_SESSION_BUS_ADDRESS", "unix:path=/tmp/daytona-test-bus")
+	t.Setenv("DBUS_SESSION_BUS_ADDRESS", "unix:path=/tmp/nightona-test-bus")
 
 	c := &ComputerUse{
 		processes: make(map[string]*Process),

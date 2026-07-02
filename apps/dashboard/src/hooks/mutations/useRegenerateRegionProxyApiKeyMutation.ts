@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { RegenerateApiKeyResponse } from '@daytona/api-client'
+import { RegenerateApiKeyResponse } from '@nightona/api-client'
 import { useMutation } from '@tanstack/react-query'
 import { useApi } from '../useApi'
 import { mutationKeys } from './mutationKeys'

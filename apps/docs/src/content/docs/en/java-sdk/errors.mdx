@@ -3,67 +3,67 @@ title: "Errors"
 hideTitleOnPage: true
 ---
 
-## DaytonaException
+## NightonaException
 
-Base exception for all Daytona SDK errors.
+Base exception for all Nightona SDK errors.
 
 Subclasses map to specific HTTP status codes and allow callers to catch
 precise failure conditions without string-parsing error messages:
 ```java
 try {
-Sandbox sandbox = daytona.sandbox().get("nonexistent-id");
-} catch (DaytonaNotFoundException e) {
+Sandbox sandbox = nightona.sandbox().get("nonexistent-id");
+} catch (NightonaNotFoundException e) {
 // sandbox does not exist
-} catch (DaytonaAuthenticationException e) {
+} catch (NightonaAuthenticationException e) {
 // invalid API key
-} catch (DaytonaException e) {
+} catch (NightonaException e) {
 // other SDK error
 }
 ```
 
 ### Constructors
 
-#### new DaytonaException()
+#### new NightonaException()
 ```java
-public DaytonaException(String message)
+public NightonaException(String message)
 ```
 
-Creates a generic Daytona exception.
+Creates a generic Nightona exception.
 
 **Parameters**:
 
 - `message` _String_ - error description
 
-#### new DaytonaException()
+#### new NightonaException()
 ```java
-public DaytonaException(String message, Throwable cause)
+public NightonaException(String message, Throwable cause)
 ```
 
-Creates a generic Daytona exception with a cause.
+Creates a generic Nightona exception with a cause.
 
 **Parameters**:
 
 - `message` _String_ - error description
 - `cause` _Throwable_ - root cause
 
-#### new DaytonaException()
+#### new NightonaException()
 ```java
-public DaytonaException(int statusCode, String message)
+public NightonaException(int statusCode, String message)
 ```
 
-Creates a Daytona exception with explicit HTTP status code.
+Creates a Nightona exception with explicit HTTP status code.
 
 **Parameters**:
 
 - `statusCode` _int_ - HTTP status code
 - `message` _String_ - error description
 
-#### new DaytonaException()
+#### new NightonaException()
 ```java
-public DaytonaException(int statusCode, String message, Throwable cause)
+public NightonaException(int statusCode, String message, Throwable cause)
 ```
 
-Creates a Daytona exception with explicit HTTP status code and a cause.
+Creates a Nightona exception with explicit HTTP status code and a cause.
 
 **Parameters**:
 
@@ -71,12 +71,12 @@ Creates a Daytona exception with explicit HTTP status code and a cause.
 - `message` _String_ - error description
 - `cause` _Throwable_ - root cause
 
-#### new DaytonaException()
+#### new NightonaException()
 ```java
-public DaytonaException(int statusCode, String message, Map<String, String> headers)
+public NightonaException(int statusCode, String message, Map<String, String> headers)
 ```
 
-Creates a Daytona exception with HTTP status code and headers.
+Creates a Nightona exception with HTTP status code and headers.
 
 **Parameters**:
 
@@ -108,22 +108,22 @@ Returns the HTTP response headers, or an empty map if not available.
 
 - `Map\<String, String\>` -
 
-## DaytonaAuthenticationException
+## NightonaAuthenticationException
 
 Raised when API credentials are missing or invalid (HTTP 401).
 ```java
 try {
-daytona.sandbox().create();
-} catch (DaytonaAuthenticationException e) {
+nightona.sandbox().create();
+} catch (NightonaAuthenticationException e) {
 System.err.println("Invalid or missing API key");
 }
 ```
 
 ### Constructors
 
-#### new DaytonaAuthenticationException()
+#### new NightonaAuthenticationException()
 ```java
-public DaytonaAuthenticationException(String message)
+public NightonaAuthenticationException(String message)
 ```
 
 Creates an authentication exception.
@@ -132,9 +132,9 @@ Creates an authentication exception.
 
 - `message` _String_ - error description from the API
 
-#### new DaytonaAuthenticationException()
+#### new NightonaAuthenticationException()
 ```java
-public DaytonaAuthenticationException(String message, Throwable cause)
+public NightonaAuthenticationException(String message, Throwable cause)
 ```
 
 **Parameters**:
@@ -142,22 +142,22 @@ public DaytonaAuthenticationException(String message, Throwable cause)
 - `message` _String_ - error description from the API
 - `cause` _Throwable_ - root cause
 
-## DaytonaBadRequestException
+## NightonaBadRequestException
 
 Raised when the request is malformed or contains invalid parameters (HTTP 400).
 ```java
 try {
-daytona.sandbox().create(params);
-} catch (DaytonaBadRequestException e) {
+nightona.sandbox().create(params);
+} catch (NightonaBadRequestException e) {
 System.err.println("Invalid request parameters: " + e.getMessage());
 }
 ```
 
 ### Constructors
 
-#### new DaytonaBadRequestException()
+#### new NightonaBadRequestException()
 ```java
-public DaytonaBadRequestException(String message)
+public NightonaBadRequestException(String message)
 ```
 
 Creates a bad-request exception.
@@ -166,9 +166,9 @@ Creates a bad-request exception.
 
 - `message` _String_ - error description from the API
 
-#### new DaytonaBadRequestException()
+#### new NightonaBadRequestException()
 ```java
-public DaytonaBadRequestException(String message, Throwable cause)
+public NightonaBadRequestException(String message, Throwable cause)
 ```
 
 **Parameters**:
@@ -176,7 +176,7 @@ public DaytonaBadRequestException(String message, Throwable cause)
 - `message` _String_ - error description from the API
 - `cause` _Throwable_ - root cause
 
-## DaytonaConflictException
+## NightonaConflictException
 
 Raised when an operation conflicts with the current state (HTTP 409).
 
@@ -184,17 +184,17 @@ Common causes: creating a resource with a name that already exists,
 or performing an operation incompatible with the resource's current state.
 ```java
 try {
-daytona.snapshot().create(params);
-} catch (DaytonaConflictException e) {
+nightona.snapshot().create(params);
+} catch (NightonaConflictException e) {
 System.err.println("A snapshot with this name already exists");
 }
 ```
 
 ### Constructors
 
-#### new DaytonaConflictException()
+#### new NightonaConflictException()
 ```java
-public DaytonaConflictException(String message)
+public NightonaConflictException(String message)
 ```
 
 Creates a conflict exception.
@@ -203,9 +203,9 @@ Creates a conflict exception.
 
 - `message` _String_ - error description from the API
 
-#### new DaytonaConflictException()
+#### new NightonaConflictException()
 ```java
-public DaytonaConflictException(String message, Throwable cause)
+public NightonaConflictException(String message, Throwable cause)
 ```
 
 **Parameters**:
@@ -213,25 +213,25 @@ public DaytonaConflictException(String message, Throwable cause)
 - `message` _String_ - error description from the API
 - `cause` _Throwable_ - root cause
 
-## DaytonaConnectionException
+## NightonaConnectionException
 
 Raised for network-level connection failures (no HTTP response received).
 
-Raised when the SDK cannot reach the Daytona API due to network issues
+Raised when the SDK cannot reach the Nightona API due to network issues
 such as DNS failure, connection refused, or TLS errors.
 ```java
 try {
-daytona.sandbox().create();
-} catch (DaytonaConnectionException e) {
-System.err.println("Cannot reach Daytona API: " + e.getMessage());
+nightona.sandbox().create();
+} catch (NightonaConnectionException e) {
+System.err.println("Cannot reach Nightona API: " + e.getMessage());
 }
 ```
 
 ### Constructors
 
-#### new DaytonaConnectionException()
+#### new NightonaConnectionException()
 ```java
-public DaytonaConnectionException(String message)
+public NightonaConnectionException(String message)
 ```
 
 Creates a connection exception.
@@ -240,9 +240,9 @@ Creates a connection exception.
 
 - `message` _String_ - connection failure description
 
-#### new DaytonaConnectionException()
+#### new NightonaConnectionException()
 ```java
-public DaytonaConnectionException(String message, Throwable cause)
+public NightonaConnectionException(String message, Throwable cause)
 ```
 
 Creates a connection exception with a cause.
@@ -252,22 +252,22 @@ Creates a connection exception with a cause.
 - `message` _String_ - connection failure description
 - `cause` _Throwable_ - root cause
 
-## DaytonaForbiddenException
+## NightonaForbiddenException
 
 Raised when the authenticated user lacks permission to perform an operation (HTTP 403).
 ```java
 try {
-daytona.sandbox().delete(sandboxId);
-} catch (DaytonaForbiddenException e) {
+nightona.sandbox().delete(sandboxId);
+} catch (NightonaForbiddenException e) {
 System.err.println("Not authorized to delete this sandbox");
 }
 ```
 
 ### Constructors
 
-#### new DaytonaForbiddenException()
+#### new NightonaForbiddenException()
 ```java
-public DaytonaForbiddenException(String message)
+public NightonaForbiddenException(String message)
 ```
 
 Creates a forbidden exception.
@@ -276,9 +276,9 @@ Creates a forbidden exception.
 
 - `message` _String_ - error description from the API
 
-#### new DaytonaForbiddenException()
+#### new NightonaForbiddenException()
 ```java
-public DaytonaForbiddenException(String message, Throwable cause)
+public NightonaForbiddenException(String message, Throwable cause)
 ```
 
 **Parameters**:
@@ -286,15 +286,15 @@ public DaytonaForbiddenException(String message, Throwable cause)
 - `message` _String_ - error description from the API
 - `cause` _Throwable_ - root cause
 
-## DaytonaNotFoundException
+## NightonaNotFoundException
 
 Raised when a requested resource does not exist (HTTP 404).
 
 ### Constructors
 
-#### new DaytonaNotFoundException()
+#### new NightonaNotFoundException()
 ```java
-public DaytonaNotFoundException(String message)
+public NightonaNotFoundException(String message)
 ```
 
 Creates a not-found exception.
@@ -303,9 +303,9 @@ Creates a not-found exception.
 
 - `message` _String_ - error description from the API
 
-#### new DaytonaNotFoundException()
+#### new NightonaNotFoundException()
 ```java
-public DaytonaNotFoundException(String message, Throwable cause)
+public NightonaNotFoundException(String message, Throwable cause)
 ```
 
 **Parameters**:
@@ -313,15 +313,15 @@ public DaytonaNotFoundException(String message, Throwable cause)
 - `message` _String_ - error description from the API
 - `cause` _Throwable_ - root cause
 
-## DaytonaRateLimitException
+## NightonaRateLimitException
 
 Raised when API rate limits are exceeded (HTTP 429).
 
 ### Constructors
 
-#### new DaytonaRateLimitException()
+#### new NightonaRateLimitException()
 ```java
-public DaytonaRateLimitException(String message)
+public NightonaRateLimitException(String message)
 ```
 
 Creates a rate-limit exception.
@@ -330,9 +330,9 @@ Creates a rate-limit exception.
 
 - `message` _String_ - error description from the API
 
-#### new DaytonaRateLimitException()
+#### new NightonaRateLimitException()
 ```java
-public DaytonaRateLimitException(String message, Throwable cause)
+public NightonaRateLimitException(String message, Throwable cause)
 ```
 
 **Parameters**:
@@ -340,24 +340,24 @@ public DaytonaRateLimitException(String message, Throwable cause)
 - `message` _String_ - error description from the API
 - `cause` _Throwable_ - root cause
 
-## DaytonaServerException
+## NightonaServerException
 
 Raised for unexpected server-side failures (HTTP 5xx).
 
 These are typically transient and safe to retry with exponential backoff.
 ```java
 try {
-daytona.sandbox().create();
-} catch (DaytonaServerException e) {
+nightona.sandbox().create();
+} catch (NightonaServerException e) {
 System.err.println("Server error (status " + e.getStatusCode() + "), retry later");
 }
 ```
 
 ### Constructors
 
-#### new DaytonaServerException()
+#### new NightonaServerException()
 ```java
-public DaytonaServerException(int statusCode, String message)
+public NightonaServerException(int statusCode, String message)
 ```
 
 Creates a server exception.
@@ -367,9 +367,9 @@ Creates a server exception.
 - `statusCode` _int_ - HTTP status code (typically 5xx)
 - `message` _String_ - error description from the API
 
-#### new DaytonaServerException()
+#### new NightonaServerException()
 ```java
-public DaytonaServerException(int statusCode, String message, Throwable cause)
+public NightonaServerException(int statusCode, String message, Throwable cause)
 ```
 
 **Parameters**:
@@ -378,7 +378,7 @@ public DaytonaServerException(int statusCode, String message, Throwable cause)
 - `message` _String_ - error description from the API
 - `cause` _Throwable_ - root cause
 
-## DaytonaTimeoutException
+## NightonaTimeoutException
 
 Raised when an SDK operation times out.
 
@@ -386,9 +386,9 @@ This exception is generated client-side and is not tied to a single HTTP status 
 
 ### Constructors
 
-#### new DaytonaTimeoutException()
+#### new NightonaTimeoutException()
 ```java
-public DaytonaTimeoutException(String message, Throwable cause)
+public NightonaTimeoutException(String message, Throwable cause)
 ```
 
 Creates a timeout exception with a cause.
@@ -398,9 +398,9 @@ Creates a timeout exception with a cause.
 - `message` _String_ - timeout description
 - `cause` _Throwable_ - root cause
 
-#### new DaytonaTimeoutException()
+#### new NightonaTimeoutException()
 ```java
-public DaytonaTimeoutException(String message)
+public NightonaTimeoutException(String message)
 ```
 
 Creates a timeout exception.
@@ -409,7 +409,7 @@ Creates a timeout exception.
 
 - `message` _String_ - timeout description
 
-## DaytonaValidationException
+## NightonaValidationException
 
 Raised for semantic validation failures (HTTP 422).
 
@@ -417,17 +417,17 @@ Raised when the request is well-formed but the values fail business logic
 validation (e.g., unsupported resource class, invalid configuration).
 ```java
 try {
-daytona.sandbox().create(params);
-} catch (DaytonaValidationException e) {
+nightona.sandbox().create(params);
+} catch (NightonaValidationException e) {
 System.err.println("Validation failed: " + e.getMessage());
 }
 ```
 
 ### Constructors
 
-#### new DaytonaValidationException()
+#### new NightonaValidationException()
 ```java
-public DaytonaValidationException(String message)
+public NightonaValidationException(String message)
 ```
 
 Creates a validation exception.
@@ -436,9 +436,9 @@ Creates a validation exception.
 
 - `message` _String_ - error description from the API
 
-#### new DaytonaValidationException()
+#### new NightonaValidationException()
 ```java
-public DaytonaValidationException(String message, Throwable cause)
+public NightonaValidationException(String message, Throwable cause)
 ```
 
 **Parameters**:

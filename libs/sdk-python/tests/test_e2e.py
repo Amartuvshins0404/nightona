@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -11,10 +11,10 @@ import uuid
 
 import pytest
 
-from daytona import (
+from nightona import (
     CreateSandboxFromImageParams,
     CreateSandboxFromSnapshotParams,
-    Daytona,
+    Nightona,
     DownloadProgress,
     FileDownloadRequest,
     FileUpload,
@@ -24,10 +24,10 @@ from daytona import (
     SessionExecuteRequest,
     UploadProgress,
 )
-from daytona.common.errors import DaytonaError
+from nightona.common.errors import NightonaError
 
-if not os.getenv("DAYTONA_API_KEY"):
-    raise RuntimeError("DAYTONA_API_KEY environment variable is required for E2E tests")
+if not os.getenv("NIGHTONA_API_KEY"):
+    raise RuntimeError("NIGHTONA_API_KEY environment variable is required for E2E tests")
 
 pytestmark = [pytest.mark.e2e]
 
@@ -46,17 +46,17 @@ def _error_message(exc: Exception) -> str:
 
 
 @pytest.fixture(scope="module")
-def daytona_client() -> Daytona:
-    return Daytona()
+def nightona_client() -> Nightona:
+    return Nightona()
 
 
 @pytest.fixture(scope="module")
-def sandbox(daytona_client: Daytona):
+def sandbox(nightona_client: Nightona):
     params = CreateSandboxFromSnapshotParams(language="python")
-    sb = daytona_client.create(params, timeout=120)
+    sb = nightona_client.create(params, timeout=120)
     yield sb
     try:
-        daytona_client.delete(sb)
+        nightona_client.delete(sb)
     except Exception:
         pass
 
@@ -136,30 +136,30 @@ def test_refresh_data_updates_sandbox(sandbox):
 
 
 # ===========================================================================
-# Daytona Client Operations
+# Nightona Client Operations
 # ===========================================================================
 
 
-def test_list_sandboxes(daytona_client, sandbox):
-    sandboxes = list(daytona_client.list())
+def test_list_sandboxes(nightona_client, sandbox):
+    sandboxes = list(nightona_client.list())
     assert len(sandboxes) > 0, "Expected at least one sandbox"
 
 
-def test_list_with_limit_hint(daytona_client, sandbox):
-    from daytona import ListSandboxesQuery
+def test_list_with_limit_hint(nightona_client, sandbox):
+    from nightona import ListSandboxesQuery
 
     # ``limit`` controls the per-page fetch size, not a total cap. We exercise
     # iteration and early termination here.
     yielded = 0
-    for _ in daytona_client.list(ListSandboxesQuery(limit=1)):
+    for _ in nightona_client.list(ListSandboxesQuery(limit=1)):
         yielded += 1
         if yielded >= 1:
             break
     assert yielded >= 1
 
 
-def test_get_sandbox_by_id(daytona_client, sandbox):
-    fetched = daytona_client.get(sandbox.id)
+def test_get_sandbox_by_id(nightona_client, sandbox):
+    fetched = nightona_client.get(sandbox.id)
     assert fetched.id == sandbox.id, f"Expected id {sandbox.id}, got {fetched.id}"
     assert fetched.name == sandbox.name
 
@@ -264,7 +264,7 @@ def test_download_file_stream_on_progress(sandbox: Sandbox):
 
 
 def test_download_file_stream_nonexistent_file_raises(sandbox):
-    with pytest.raises(DaytonaError):
+    with pytest.raises(NightonaError):
         b"".join(sandbox.fs.download_file_stream(f"{FS_TEST_DIR}/stream-does-not-exist.txt"))
 
 
@@ -348,38 +348,38 @@ def test_upload_binary_content(sandbox):
     assert content == binary_data, "Binary content should round-trip exactly"
 
 
-def test_file_transfer_survives_dropped_daytona_reference():
-    """Regression test for an issue where ``Daytona().create()`` left the
+def test_file_transfer_survives_dropped_nightona_reference():
+    """Regression test for an issue where ``Nightona().create()`` left the
     returned Sandbox with a closed shared ``httpx.Client``.
 
-    The bug: a ``weakref.finalize`` on the ``Daytona`` instance closed the
-    shared http client as soon as the (unreferenced) ``Daytona`` was GC'd,
+    The bug: a ``weakref.finalize`` on the ``Nightona`` instance closed the
+    shared http client as soon as the (unreferenced) ``Nightona`` was GC'd,
     even though the returned ``Sandbox`` still held that client for
     uploads/downloads. The first ``sandbox.fs.upload_file`` then raised
-    ``DaytonaError: Failed to upload files: Cannot send a request, as the
+    ``NightonaError: Failed to upload files: Cannot send a request, as the
     client has been closed.``
 
-    This test deliberately drops the only reference to ``Daytona`` after
+    This test deliberately drops the only reference to ``Nightona`` after
     obtaining the sandbox, forces a GC cycle, and then exercises every
     file-transfer code path (upload bytes, upload stream, download bytes,
     download stream). All of them must keep working — i.e. the shared
     client must survive as long as any sandbox produced by the parent
-    Daytona is still reachable.
+    Nightona is still reachable.
     """
     import gc
 
-    daytona = Daytona()
-    sb = daytona.create(CreateSandboxFromSnapshotParams(language="python"), timeout=120)
+    nightona = Nightona()
+    sb = nightona.create(CreateSandboxFromSnapshotParams(language="python"), timeout=120)
     try:
-        # Drop the only reference to the parent Daytona and force GC. With
+        # Drop the only reference to the parent Nightona and force GC. With
         # the bug, this triggered the finalizer that closed the shared
         # httpx.Client; with the fix, the client stays alive because the
         # sandbox still references it.
-        del daytona
+        del nightona
         gc.collect()
 
         path = f"e2e-orphan-{uuid.uuid4().hex}.txt"
-        payload = b"orphan-daytona-upload"
+        payload = b"orphan-nightona-upload"
 
         # upload_file (multipart, the original failing path)
         sb.fs.upload_file(payload, path)
@@ -394,9 +394,9 @@ def test_file_transfer_survives_dropped_daytona_reference():
         assert b"".join(sb.fs.download_file_stream(stream_path)) == stream_payload
     finally:
         try:
-            # Recreate a Daytona to clean up; the sandbox keeps working
+            # Recreate a Nightona to clean up; the sandbox keeps working
             # because it carries its own SandboxApi reference.
-            Daytona().delete(sb)
+            Nightona().delete(sb)
         except Exception:
             pass
 
@@ -859,7 +859,7 @@ def test_long_running_command_execution(sandbox):
 # ===========================================================================
 
 
-def test_declarative_image_build(daytona_client):
+def test_declarative_image_build(nightona_client):
     cache_key = f"e2e-build-{uuid.uuid4().hex}"
     build_logs: list[str] = []
 
@@ -873,7 +873,7 @@ def test_declarative_image_build(daytona_client):
         language="python",
         name=f"sdk-py-e2e-build-{uuid.uuid4().hex[:8]}",
     )
-    sb = daytona_client.create(params, timeout=300, on_snapshot_create_logs=on_build_log)
+    sb = nightona_client.create(params, timeout=300, on_snapshot_create_logs=on_build_log)
 
     try:
         state = str(getattr(sb.state, "value", sb.state)).lower()
@@ -885,7 +885,7 @@ def test_declarative_image_build(daytona_client):
         assert result.result.strip()
     finally:
         try:
-            daytona_client.delete(sb)
+            nightona_client.delete(sb)
         except Exception:
             pass
 
@@ -920,20 +920,20 @@ def test_sandbox_remains_usable_after_archive_cycle(sandbox):
 VOLUME_NAME = f"e2e-vol-{uuid.uuid4().hex[:8]}"
 
 
-def test_volume_create(daytona_client):
-    vol = daytona_client.volume.create(VOLUME_NAME)
+def test_volume_create(nightona_client):
+    vol = nightona_client.volume.create(VOLUME_NAME)
     assert vol.name == VOLUME_NAME, f"Expected name {VOLUME_NAME}, got {vol.name}"
     assert vol.id, "Volume should have an ID"
 
 
-def test_volume_list_includes_created(daytona_client):
-    volumes = daytona_client.volume.list()
+def test_volume_list_includes_created(nightona_client):
+    volumes = nightona_client.volume.list()
     names = [v.name for v in volumes]
     assert VOLUME_NAME in names, f"Expected {VOLUME_NAME} in {names}"
 
 
-def test_volume_get_by_name(daytona_client):
-    vol = daytona_client.volume.get(VOLUME_NAME)
+def test_volume_get_by_name(nightona_client):
+    vol = nightona_client.volume.get(VOLUME_NAME)
     assert vol.name == VOLUME_NAME
 
 
@@ -951,28 +951,28 @@ def _wait_volume_ready(client, name, max_wait=30):
     return client.volume.get(name)
 
 
-def test_volume_delete(daytona_client):
-    vol = _wait_volume_ready(daytona_client, VOLUME_NAME)
-    daytona_client.volume.delete(vol)
+def test_volume_delete(nightona_client):
+    vol = _wait_volume_ready(nightona_client, VOLUME_NAME)
+    nightona_client.volume.delete(vol)
     for _ in range(15):
-        volumes = daytona_client.volume.list()
+        volumes = nightona_client.volume.list()
         names = [v.name for v in volumes]
         if VOLUME_NAME not in names:
             break
         time.sleep(1)
     else:
-        volumes = daytona_client.volume.list()
+        volumes = nightona_client.volume.list()
         names = [v.name for v in volumes]
         assert VOLUME_NAME not in names, f"Volume should have been deleted, still in {names}"
 
 
-def test_volume_get_with_create_flag(daytona_client):
-    vol = daytona_client.volume.get(VOLUME_NAME, create=True)
+def test_volume_get_with_create_flag(nightona_client):
+    vol = nightona_client.volume.get(VOLUME_NAME, create=True)
     assert vol.name == VOLUME_NAME
-    vol = _wait_volume_ready(daytona_client, VOLUME_NAME)
-    daytona_client.volume.delete(vol)
+    vol = _wait_volume_ready(nightona_client, VOLUME_NAME)
+    nightona_client.volume.delete(vol)
     for _ in range(15):
-        volumes = daytona_client.volume.list()
+        volumes = nightona_client.volume.list()
         if VOLUME_NAME not in [v.name for v in volumes]:
             break
         time.sleep(1)
@@ -983,21 +983,21 @@ def test_volume_get_with_create_flag(daytona_client):
 # ===========================================================================
 
 
-def test_snapshot_list_returns_results(daytona_client):
-    result = daytona_client.snapshot.list()
+def test_snapshot_list_returns_results(nightona_client):
+    result = nightona_client.snapshot.list()
     assert result.total > 0, f"Expected at least one snapshot, got total={result.total}"
     assert len(result.items) > 0
 
 
-def test_snapshot_list_with_pagination(daytona_client):
-    result = daytona_client.snapshot.list(page=1, limit=2)
+def test_snapshot_list_with_pagination(nightona_client):
+    result = nightona_client.snapshot.list(page=1, limit=2)
     assert len(result.items) <= 2, f"Expected at most 2 items, got {len(result.items)}"
     assert result.page == 1
 
 
-def test_snapshot_get_by_name(daytona_client):
-    listing = daytona_client.snapshot.list(page=1, limit=1)
+def test_snapshot_get_by_name(nightona_client):
+    listing = nightona_client.snapshot.list(page=1, limit=1)
     assert len(listing.items) > 0, "Need at least one snapshot to test get"
     name = listing.items[0].name
-    snapshot = daytona_client.snapshot.get(name)
+    snapshot = nightona_client.snapshot.get(name)
     assert snapshot.name == name, f"Expected name {name!r}, got {snapshot.name!r}"

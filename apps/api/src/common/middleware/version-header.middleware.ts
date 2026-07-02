@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -17,7 +17,7 @@ export class VersionHeaderMiddleware implements NestMiddleware {
 
   use(req: Request, res: Response, next: NextFunction) {
     if (this.version) {
-      res.setHeader('X-Daytona-Api-Version', `${this.version}`)
+      res.setHeader('X-Nightona-Api-Version', `${this.version}`)
     }
     next()
   }

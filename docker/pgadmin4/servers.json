@@ -1,7 +1,7 @@
 {
   "Servers": {
     "1": {
-      "Name": "Daytona",
+      "Name": "Nightona",
       "Group": "Servers",
       "Host": "db",
       "Port": 5432,

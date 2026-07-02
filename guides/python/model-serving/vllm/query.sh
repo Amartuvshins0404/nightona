@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 # ENDPOINT and TOKEN are printed by serve_vllm.py.
@@ -7,7 +7,7 @@
 : "${TOKEN:?set TOKEN to the preview token}"
 
 curl -sS --connect-timeout 30 --max-time 120 "$ENDPOINT/v1/chat/completions" \
-  -H "x-daytona-preview-token: $TOKEN" \
+  -H "x-nightona-preview-token: $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gemma-4-moe",

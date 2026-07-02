@@ -7,7 +7,7 @@ hideTitleOnPage: true
 # options
 
 ```go
-import "github.com/daytonaio/daytona/libs/sdk-go/pkg/options"
+import "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/options"
 ```
 
 Package options provides functional option types for configuring SDK operations.
@@ -341,7 +341,7 @@ Extra indexes are checked in addition to the main index URL. Useful for installi
 Example:
 
 ```
-image := daytona.Base("python:3.11").PipInstall(
+image := nightona.Base("python:3.11").PipInstall(
     []string{"mypackage"},
     options.WithExtraIndexURLs("https://private.example.com/simple/"),
 )
@@ -361,7 +361,7 @@ Use this for pip options not covered by other With\* functions.
 Example:
 
 ```
-image := daytona.Base("python:3.11").PipInstall(
+image := nightona.Base("python:3.11").PipInstall(
     []string{"mypackage"},
     options.WithExtraOptions("--no-cache-dir --upgrade"),
 )
@@ -381,7 +381,7 @@ Find\-links URLs are searched for packages before the package index. Useful for 
 Example:
 
 ```
-image := daytona.Base("python:3.11").PipInstall(
+image := nightona.Base("python:3.11").PipInstall(
     []string{"mypackage"},
     options.WithFindLinks("/path/to/wheels", "https://example.com/wheels/"),
 )
@@ -439,7 +439,7 @@ Replaces the default PyPI \(https://pypi.org/simple\) with a custom index.
 Example:
 
 ```
-image := daytona.Base("python:3.11").PipInstall(
+image := nightona.Base("python:3.11").PipInstall(
     []string{"mypackage"},
     options.WithIndexURL("https://my-pypi.example.com/simple/"),
 )
@@ -595,7 +595,7 @@ WithPre enables installation of pre\-release and development versions.
 Example:
 
 ```
-image := daytona.Base("python:3.11").PipInstall(
+image := nightona.Base("python:3.11").PipInstall(
     []string{"mypackage"},
     options.WithPre(),
 )
@@ -753,7 +753,7 @@ err := sandbox.Git.Clone(ctx, url, path,
 func WithWaitForStart(waitForStart bool) func(*CreateSandbox)
 ```
 
-WithWaitForStart controls whether \[daytona.Client.Create\] waits for the sandbox to reach the started state before returning.
+WithWaitForStart controls whether \[nightona.Client.Create\] waits for the sandbox to reach the started state before returning.
 
 When true \(the default\), Create blocks until the sandbox is fully started and ready for use. When false, Create returns immediately after the sandbox is created, which may be in a pending or building state.
 
@@ -769,7 +769,7 @@ sandbox, err := client.Create(ctx, params,
 <a name="CodeRun"></a>
 ## type CodeRun
 
-CodeRun holds optional parameters for \[daytona.ProcessService.CodeRun\].
+CodeRun holds optional parameters for \[nightona.ProcessService.CodeRun\].
 
 ```go
 type CodeRun struct {
@@ -782,7 +782,7 @@ type CodeRun struct {
 <a name="CreateFolder"></a>
 ## type CreateFolder
 
-CreateFolder holds optional parameters for \[daytona.FileSystemService.CreateFolder\].
+CreateFolder holds optional parameters for \[nightona.FileSystemService.CreateFolder\].
 
 ```go
 type CreateFolder struct {
@@ -793,7 +793,7 @@ type CreateFolder struct {
 <a name="CreatePty"></a>
 ## type CreatePty
 
-CreatePty holds optional parameters for \[daytona.ProcessService.CreatePty\].
+CreatePty holds optional parameters for \[nightona.ProcessService.CreatePty\].
 
 ```go
 type CreatePty struct {
@@ -805,7 +805,7 @@ type CreatePty struct {
 <a name="CreateSandbox"></a>
 ## type CreateSandbox
 
-CreateSandbox holds optional parameters for \[daytona.Client.Create\].
+CreateSandbox holds optional parameters for \[nightona.Client.Create\].
 
 ```go
 type CreateSandbox struct {
@@ -818,7 +818,7 @@ type CreateSandbox struct {
 <a name="ExecuteCommand"></a>
 ## type ExecuteCommand
 
-ExecuteCommand holds optional parameters for \[daytona.ProcessService.ExecuteCommand\].
+ExecuteCommand holds optional parameters for \[nightona.ProcessService.ExecuteCommand\].
 
 ```go
 type ExecuteCommand struct {
@@ -831,7 +831,7 @@ type ExecuteCommand struct {
 <a name="GitClone"></a>
 ## type GitClone
 
-GitClone holds optional parameters for \[daytona.GitService.Clone\].
+GitClone holds optional parameters for \[nightona.GitService.Clone\].
 
 Fields are pointers to distinguish between unset values and zero values. Use the corresponding With\* functions to set these options.
 
@@ -848,7 +848,7 @@ type GitClone struct {
 <a name="GitCommit"></a>
 ## type GitCommit
 
-GitCommit holds optional parameters for \[daytona.GitService.Commit\].
+GitCommit holds optional parameters for \[nightona.GitService.Commit\].
 
 ```go
 type GitCommit struct {
@@ -859,7 +859,7 @@ type GitCommit struct {
 <a name="GitDeleteBranch"></a>
 ## type GitDeleteBranch
 
-GitDeleteBranch holds optional parameters for \[daytona.GitService.DeleteBranch\].
+GitDeleteBranch holds optional parameters for \[nightona.GitService.DeleteBranch\].
 
 ```go
 type GitDeleteBranch struct {
@@ -870,7 +870,7 @@ type GitDeleteBranch struct {
 <a name="GitPull"></a>
 ## type GitPull
 
-GitPull holds optional parameters for \[daytona.GitService.Pull\].
+GitPull holds optional parameters for \[nightona.GitService.Pull\].
 
 ```go
 type GitPull struct {
@@ -882,7 +882,7 @@ type GitPull struct {
 <a name="GitPush"></a>
 ## type GitPush
 
-GitPush holds optional parameters for \[daytona.GitService.Push\].
+GitPush holds optional parameters for \[nightona.GitService.Push\].
 
 ```go
 type GitPush struct {
@@ -894,7 +894,7 @@ type GitPush struct {
 <a name="PipInstall"></a>
 ## type PipInstall
 
-PipInstall holds optional parameters for \[daytona.Image.PipInstall\].
+PipInstall holds optional parameters for \[nightona.Image.PipInstall\].
 
 ```go
 type PipInstall struct {
@@ -909,7 +909,7 @@ type PipInstall struct {
 <a name="PtySession"></a>
 ## type PtySession
 
-PtySession holds optional parameters for \[daytona.ProcessService.CreatePtySession\].
+PtySession holds optional parameters for \[nightona.ProcessService.CreatePtySession\].
 
 ```go
 type PtySession struct {
@@ -921,7 +921,7 @@ type PtySession struct {
 <a name="RunCode"></a>
 ## type RunCode
 
-RunCode holds optional parameters for \[daytona.CodeInterpreterService.RunCode\].
+RunCode holds optional parameters for \[nightona.CodeInterpreterService.RunCode\].
 
 ```go
 type RunCode struct {
@@ -934,7 +934,7 @@ type RunCode struct {
 <a name="SetFilePermissions"></a>
 ## type SetFilePermissions
 
-SetFilePermissions holds optional parameters for \[daytona.FileSystemService.SetFilePermissions\].
+SetFilePermissions holds optional parameters for \[nightona.FileSystemService.SetFilePermissions\].
 
 ```go
 type SetFilePermissions struct {

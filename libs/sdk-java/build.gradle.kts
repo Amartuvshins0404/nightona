@@ -4,7 +4,7 @@ plugins {
     signing
 }
 
-group = "io.daytona"
+group = "io.nightona"
 version = "0.0.0-dev"
 
 val depVersion = version.toString()
@@ -22,8 +22,8 @@ repositories {
 }
 
 dependencies {
-    api("io.daytona:api-client:$depVersion")
-    api("io.daytona:toolbox-api-client:$depVersion")
+    api("io.nightona:api-client:$depVersion")
+    api("io.nightona:toolbox-api-client:$depVersion")
     api("com.squareup.okhttp3:okhttp:4.12.0")
     api("com.fasterxml.jackson.core:jackson-databind:2.17.2")
     api("com.fasterxml.jackson.core:jackson-annotations:2.17.2")
@@ -45,7 +45,7 @@ tasks.test {
 }
 
 tasks.register<Test>("testE2E") {
-    description = "Runs the end-to-end test suite (requires DAYTONA_API_KEY)."
+    description = "Runs the end-to-end test suite (requires NIGHTONA_API_KEY)."
     group = "verification"
     useJUnitPlatform()
     include("**/E2ETest.class")
@@ -66,9 +66,9 @@ publishing {
             from(components["java"])
 
             pom {
-                name.set("Daytona Java SDK")
-                description.set("Official Java SDK for Daytona — secure, elastic cloud infrastructure for running AI-generated code")
-                url.set("https://github.com/daytonaio/daytona")
+                name.set("Nightona Java SDK")
+                description.set("Official Java SDK for Nightona — secure, elastic cloud infrastructure for running AI-generated code")
+                url.set("https://github.com/Amartuvshins0404/nightona")
 
                 licenses {
                     license {
@@ -80,15 +80,15 @@ publishing {
                 developers {
                     developer {
                         id.set("daytonaio")
-                        name.set("Daytona Platforms Inc.")
+                        name.set("Nightona Platforms Inc.")
                         email.set("support@daytona.io")
                     }
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/daytonaio/daytona.git")
-                    developerConnection.set("scm:git:ssh://github.com:daytonaio/daytona.git")
-                    url.set("https://github.com/daytonaio/daytona")
+                    connection.set("scm:git:git://github.com/Amartuvshins0404/nightona.git")
+                    developerConnection.set("scm:git:ssh://github.com:daytonaio/nightona.git")
+                    url.set("https://github.com/Amartuvshins0404/nightona")
                 }
             }
         }

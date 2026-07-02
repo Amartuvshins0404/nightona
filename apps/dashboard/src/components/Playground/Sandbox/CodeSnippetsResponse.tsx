@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -21,7 +21,7 @@ import { usePlayground } from '@/hooks/usePlayground'
 import { usePlaygroundSandbox } from '@/hooks/usePlaygroundSandbox'
 import { createErrorMessageOutput } from '@/lib/playground'
 import { cn } from '@/lib/utils'
-import { CodeLanguage, Sandbox } from '@daytona/sdk'
+import { CodeLanguage, Sandbox } from '@nightona/sdk'
 import { ChevronUpIcon, Loader2, PanelBottom, Play, XIcon } from 'lucide-react'
 import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Group, Panel, usePanelRef } from 'react-resizable-panels'

@@ -1,8 +1,8 @@
-import { Daytona, Image } from '@daytona/sdk'
+import { Nightona, Image } from '@nightona/sdk'
 import fs from 'fs'
 
 async function main() {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
   // Generate unique name for the snapshot to avoid conflicts
   const snapshotName = `node-example:${Date.now()}`
@@ -16,16 +16,16 @@ async function main() {
   // Create a Python image with common data science packages
   const image = Image.debianSlim('3.12')
     .pipInstall(['numpy', 'pandas', 'matplotlib', 'scipy', 'scikit-learn'])
-    .runCommands('apt-get update && apt-get install -y git', 'mkdir -p /home/daytona/workspace')
-    .workdir('/home/daytona/workspace')
+    .runCommands('apt-get update && apt-get install -y git', 'mkdir -p /home/nightona/workspace')
+    .workdir('/home/nightona/workspace')
     .env({
       MY_ENV_VAR: 'My Environment Variable',
     })
-    .addLocalFile(localFilePath, '/home/daytona/workspace/file_example.txt')
+    .addLocalFile(localFilePath, '/home/nightona/workspace/file_example.txt')
 
   // Create the snapshot
   console.log(`=== Creating Snapshot: ${snapshotName} ===`)
-  await daytona.snapshot.create(
+  await nightona.snapshot.create(
     {
       name: snapshotName,
       image,
@@ -42,7 +42,7 @@ async function main() {
 
   // Create first sandbox using the pre-built image
   console.log('\n=== Creating Sandbox from Pre-built Snapshot ===')
-  const sandbox1 = await daytona.create({
+  const sandbox1 = await nightona.create({
     snapshot: snapshotName,
   })
 
@@ -59,7 +59,7 @@ async function main() {
     console.log(fileContent.result)
   } finally {
     // Clean up first sandbox
-    await daytona.delete(sandbox1)
+    await nightona.delete(sandbox1)
   }
 
   // Create second sandbox with a new dynamic image
@@ -68,14 +68,14 @@ async function main() {
   // Define a new dynamic image for the second sandbox
   const dynamicImage = Image.debianSlim('3.13')
     .pipInstall(['pytest', 'pytest-cov', 'black', 'isort', 'mypy', 'ruff'])
-    .runCommands('apt-get update && apt-get install -y git', 'mkdir -p /home/daytona/project')
-    .workdir('/home/daytona/project')
+    .runCommands('apt-get update && apt-get install -y git', 'mkdir -p /home/nightona/project')
+    .workdir('/home/nightona/project')
     .env({
       NODE_ENV: 'development',
     })
 
   // Create sandbox with the dynamic image
-  const sandbox2 = await daytona.create(
+  const sandbox2 = await nightona.create(
     {
       image: dynamicImage,
     },
@@ -93,7 +93,7 @@ async function main() {
     console.log(toolsResponse.result)
   } finally {
     // Clean up second sandbox
-    await daytona.delete(sandbox2)
+    await nightona.delete(sandbox2)
   }
 }
 

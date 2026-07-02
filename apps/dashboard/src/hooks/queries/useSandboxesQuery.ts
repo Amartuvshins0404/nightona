@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -14,7 +14,7 @@ import {
   SandboxListSortField,
   SandboxState,
   ListSandboxesResponse,
-} from '@daytona/api-client'
+} from '@nightona/api-client'
 import { queryKeys } from './queryKeys'
 
 type ListSandboxesQueryResponse = ListSandboxesResponse | SandboxListItem[]

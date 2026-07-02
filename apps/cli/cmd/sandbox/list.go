@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package sandbox
@@ -7,10 +7,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/daytonaio/daytona/cli/apiclient"
-	"github.com/daytonaio/daytona/cli/cmd/common"
-	"github.com/daytonaio/daytona/cli/config"
-	"github.com/daytonaio/daytona/cli/views/sandbox"
+	"github.com/Amartuvshins0404/nightona/apps/cli/apiclient"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/common"
+	"github.com/Amartuvshins0404/nightona/apps/cli/config"
+	"github.com/Amartuvshins0404/nightona/apps/cli/views/sandbox"
 	"github.com/spf13/cobra"
 )
 

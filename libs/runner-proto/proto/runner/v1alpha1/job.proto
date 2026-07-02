@@ -1,11 +1,11 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 syntax = "proto3";
 
 package runner.v1alpha1;
 
-option go_package = "github.com/daytonaio/daytona/gen/proto/runner/v1alpha1;runnerv1alpha1";
+option go_package = "github.com/Amartuvshins0404/nightona/gen/proto/runner/v1alpha1;runnerv1alpha1";
 
 enum JobType {
   JOB_TYPE_UNSPECIFIED      = 0;

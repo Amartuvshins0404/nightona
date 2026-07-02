@@ -1,10 +1,10 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { DEFAULT_TABLE_COLUMN } from '@/lib/utils/table'
-import { Invoice } from '@daytona/billing-api-client'
+import { Invoice } from '@nightona/billing-api-client'
 import {
   ColumnFiltersState,
   getCoreRowModel,

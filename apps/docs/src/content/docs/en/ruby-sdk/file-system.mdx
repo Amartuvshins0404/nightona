@@ -21,8 +21,8 @@ Initializes a new FileSystem instance.
 **Parameters**:
 
 - `sandbox_id` _String_ - The Sandbox ID
-- `toolbox_api` _DaytonaToolboxApiClient:FileSystemApi_ - API client for Sandbox operations
-- `otel_state` _Daytona:OtelState, nil_ -
+- `toolbox_api` _NightonaToolboxApiClient:FileSystemApi_ - API client for Sandbox operations
+- `otel_state` _Nightona:OtelState, nil_ -
 
 **Returns**:
 
@@ -50,7 +50,7 @@ def toolbox_api()
 
 **Returns**:
 
-- `DaytonaToolboxApiClient:FileSystemApi` - API client for Sandbox operations
+- `NightonaToolboxApiClient:FileSystemApi` - API client for Sandbox operations
 
 #### create_folder()
 
@@ -74,7 +74,7 @@ on the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -107,7 +107,7 @@ Deletes a file from the Sandbox.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -137,11 +137,11 @@ on the sandbox working directory.
 
 **Returns**:
 
-- `DaytonaApiClient:FileInfo` - Detailed file information
+- `NightonaApiClient:FileInfo` - Detailed file information
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -174,11 +174,11 @@ based on the sandbox working directory.
 
 **Returns**:
 
-- `Array\<DaytonaApiClient:FileInfo\>` - List of file and directory information
+- `Array\<NightonaApiClient:FileInfo\>` - List of file and directory information
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -220,7 +220,7 @@ on the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -253,11 +253,11 @@ Enumerator if no block is given.
 based on the sandbox working directory.
 - `timeout` _Integer_ - Timeout for the download operation in seconds. 0 means no timeout.
 Default is 30 minutes.
-- `on_progress` _Proc, nil_ - Optional callback invoked with a Daytona::DownloadProgress
+- `on_progress` _Proc, nil_ - Optional callback invoked with a Nightona::DownloadProgress
 struct containing bytes_received (Integer) and total_bytes (Integer or nil).
 - `cancel_event` _#set?, nil_ - Optional cancellation token (anything responding to +set?+;
 the standard library's +Concurrent::Event+ or a small ad-hoc object both work). When set
-during streaming, the next chunk raises Daytona::Sdk::Error and the underlying HTTP
+during streaming, the next chunk raises Nightona::Sdk::Error and the underlying HTTP
 connection is torn down.
 
 **Returns**:
@@ -266,7 +266,7 @@ connection is torn down.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the file does not exist, the operation fails, or
+- `Nightona:Sdk:Error` - If the file does not exist, the operation fails, or
 +cancel_event+ is set during streaming
 
 **Examples:**
@@ -306,7 +306,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -342,10 +342,10 @@ raw bytes (still streamed, just from memory).
 - `remote_path` _String_ - Destination path in the Sandbox.
 - `timeout` _Integer_ - Timeout in seconds. 0 means no timeout. Default 30 minutes.
 - `on_progress` _Proc, nil_ - Optional callback invoked with a
-+Daytona::UploadProgress+ struct as libcurl reports bytes actually uploaded.
++Nightona::UploadProgress+ struct as libcurl reports bytes actually uploaded.
 - `cancel_event` _#set?, nil_ - Optional cancellation token. When set while
 staging a non-file source or during the libcurl upload, the operation raises
-Daytona::Sdk::Error and the in-progress upload is aborted (no destination file
+Nightona::Sdk::Error and the in-progress upload is aborted (no destination file
 is left on the sandbox thanks to the daemon's atomic-rename behaviour).
 
 **Returns**:
@@ -354,7 +354,7 @@ is left on the sandbox thanks to the daemon's atomic-rename behaviour).
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails or +cancel_event+ is set.
+- `Nightona:Sdk:Error` - If the operation fails or +cancel_event+ is set.
 
 **Examples:**
 
@@ -386,7 +386,7 @@ they will be overwritten.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -419,11 +419,11 @@ on the sandbox working directory.
 
 **Returns**:
 
-- `Array\<DaytonaApiClient:Match\>` - List of matches found in files
+- `Array\<NightonaApiClient:Match\>` - List of matches found in files
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -455,11 +455,11 @@ patterns (e.g., "*.rb" for Ruby files).
 
 **Returns**:
 
-- `DaytonaApiClient:SearchFilesResponse`
+- `NightonaApiClient:SearchFilesResponse`
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -496,7 +496,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -539,11 +539,11 @@ resolved based on the sandbox working directory.
 
 **Returns**:
 
-- `Array\<DaytonaApiClient:ReplaceResult\>` - List of results indicating replacements made in each file
+- `Array\<NightonaApiClient:ReplaceResult\>` - List of results indicating replacements made in each file
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -590,7 +590,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the operation fails
+- `Nightona:Sdk:Error` - If the operation fails
 
 **Examples:**
 
@@ -604,8 +604,8 @@ sandbox.fs.set_file_permissions(
 # Change file owner
 sandbox.fs.set_file_permissions(
   path: "workspace/data/file.txt",
-  owner: "daytona",
-  group: "daytona"
+  owner: "nightona",
+  group: "nightona"
 )
 
 ```

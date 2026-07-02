@@ -21,10 +21,10 @@ Initialize a new Process instance
 **Parameters**:
 
 - `sandbox_id` _String_ - The ID of the Sandbox
-- `toolbox_api` _DaytonaToolboxApiClient:ProcessApi_ - API client for Sandbox operations
+- `toolbox_api` _NightonaToolboxApiClient:ProcessApi_ - API client for Sandbox operations
 - `get_preview_link` _Proc_ - Function to get preview link for a port
 - `language` _String_ - The language for code execution
-- `otel_state` _Daytona:OtelState, nil_ -
+- `otel_state` _Nightona:OtelState, nil_ -
 
 **Returns**:
 
@@ -52,7 +52,7 @@ def toolbox_api()
 
 **Returns**:
 
-- `DaytonaToolboxApiClient:ProcessApi` - API client for Sandbox operations
+- `NightonaToolboxApiClient:ProcessApi` - API client for Sandbox operations
 
 #### get_preview_link()
 
@@ -191,7 +191,7 @@ Gets a session in the Sandbox
 
 **Returns**:
 
-- `DaytonaApiClient:Session` - Session information including session_id and commands
+- `NightonaApiClient:Session` - Session information including session_id and commands
 
 **Examples:**
 
@@ -214,7 +214,7 @@ Gets the Sandbox entrypoint session
 
 **Returns**:
 
-- `DaytonaApiClient:Session` - Entrypoint session information including session_id and commands
+- `NightonaApiClient:Session` - Entrypoint session information including session_id and commands
 
 **Examples:**
 
@@ -242,7 +242,7 @@ Gets information about a specific command executed in a session
 
 **Returns**:
 
-- `DaytonaApiClient:Command` - Command information including id, command, and exit_code
+- `NightonaApiClient:Command` - Command information including id, command, and exit_code
 
 **Examples:**
 
@@ -266,11 +266,11 @@ Executes a command in the session
 **Parameters**:
 
 - `session_id` _String_ - Unique identifier of the session to use
-- `req` _Daytona:SessionExecuteRequest_ - Command execution request containing command and run_async
+- `req` _Nightona:SessionExecuteRequest_ - Command execution request containing command and run_async
 
 **Returns**:
 
-- `Daytona:SessionExecuteResponse` - Command execution results containing cmd_id, output, stdout, stderr, and exit_code
+- `Nightona:SessionExecuteResponse` - Command execution results containing cmd_id, output, stdout, stderr, and exit_code
 
 **Examples:**
 
@@ -279,15 +279,15 @@ Executes a command in the session
 session_id = "my-session"
 
 # Change directory
-req = Daytona::SessionExecuteRequest.new(command: "cd /workspace")
+req = Nightona::SessionExecuteRequest.new(command: "cd /workspace")
 sandbox.process.execute_session_command(session_id:, req:)
 
 # Create a file
-req = Daytona::SessionExecuteRequest.new(command: "echo 'Hello' > test.txt")
+req = Nightona::SessionExecuteRequest.new(command: "echo 'Hello' > test.txt")
 sandbox.process.execute_session_command(session_id:, req:)
 
 # Read the file
-req = Daytona::SessionExecuteRequest.new(command: "cat test.txt")
+req = Nightona::SessionExecuteRequest.new(command: "cat test.txt")
 result = sandbox.process.execute_session_command(session_id:, req:)
 puts "Command stdout: #{result.stdout}"
 puts "Command stderr: #{result.stderr}"
@@ -310,7 +310,7 @@ Get the logs for a command executed in a session
 
 **Returns**:
 
-- `Daytona:SessionCommandLogsResponse` - Command logs including output, stdout, and stderr
+- `Nightona:SessionCommandLogsResponse` - Command logs including output, stdout, and stderr
 
 **Examples:**
 
@@ -364,7 +364,7 @@ Get the sandbox entrypoint logs
 
 **Returns**:
 
-- `Daytona:SessionCommandLogsResponse` - Entrypoint logs including output, stdout, and stderr
+- `Nightona:SessionCommandLogsResponse` - Entrypoint logs including output, stdout, and stderr
 
 **Examples:**
 
@@ -434,7 +434,7 @@ def list_sessions()
 
 **Returns**:
 
-- `Array\<DaytonaApiClient:Session\>` - List of all sessions in the Sandbox
+- `Array\<NightonaApiClient:Session\>` - List of all sessions in the Sandbox
 
 **Examples:**
 
@@ -499,7 +499,7 @@ receive output, resize the terminal, and manage the session lifecycle.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the PTY session creation fails or the session ID is already in use.
+- `Nightona:Sdk:Error` - If the PTY session creation fails or the session ID is already in use.
 
 **Examples:**
 
@@ -508,7 +508,7 @@ receive output, resize the terminal, and manage the session lifecycle.
 pty_handle = sandbox.process.create_pty_session(id: "my-pty")
 
 # Create a PTY session with specific size and environment
-pty_size = Daytona::PtySize.new(rows: 30, cols: 120)
+pty_size = Nightona::PtySize.new(rows: 30, cols: 120)
 pty_handle = sandbox.process.create_pty_session(
   id: "my-pty",
   cwd: "/workspace",
@@ -546,7 +546,7 @@ interact with a previously created terminal session.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - If the PTY session doesn't exist or connection fails.
+- `Nightona:Sdk:Error` - If the PTY session doesn't exist or connection fails.
 
 **Examples:**
 
@@ -576,12 +576,12 @@ Resizes a PTY session to the specified dimensions
 
 **Returns**:
 
-- `DaytonaApiClient:PtySessionInfo` - Updated PTY session information
+- `NightonaApiClient:PtySessionInfo` - Updated PTY session information
 
 **Examples:**
 
 ```ruby
-pty_size = Daytona::PtySize.new(rows: 30, cols: 120)
+pty_size = Nightona::PtySize.new(rows: 30, cols: 120)
 session_info = sandbox.process.resize_pty_session("my-pty", pty_size)
 puts "PTY resized to #{session_info.cols}x#{session_info.rows}"
 
@@ -622,7 +622,7 @@ Lists all PTY sessions in the Sandbox
 
 **Returns**:
 
-- `Array\<DaytonaApiClient:PtySessionInfo\>` - List of PTY session information
+- `Array\<NightonaApiClient:PtySessionInfo\>` - List of PTY session information
 
 **Examples:**
 
@@ -652,7 +652,7 @@ configuration, and metadata.
 
 **Returns**:
 
-- `DaytonaApiClient:PtySessionInfo` - Detailed information about the PTY session including ID, state,
+- `NightonaApiClient:PtySessionInfo` - Detailed information about the PTY session including ID, state,
 creation time, working directory, environment variables, and more
 
 **Examples:**

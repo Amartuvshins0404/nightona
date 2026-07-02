@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -25,7 +25,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { DEFAULT_PAGE_SIZE } from '@/constants/Pagination'
 import { cn } from '@/lib/utils'
 import { DEFAULT_TABLE_COLUMN, getColumnSizeStyles, getTableSizeStyles } from '@/lib/utils/table'
-import { OrganizationRole, OrganizationRolePermissionsEnum } from '@daytona/api-client'
+import { OrganizationRole, OrganizationRolePermissionsEnum } from '@nightona/api-client'
 import {
   ColumnDef,
   flexRender,

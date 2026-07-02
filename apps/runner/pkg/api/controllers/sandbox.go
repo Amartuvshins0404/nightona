@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package controllers
@@ -8,13 +8,13 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/daytonaio/runner/pkg/api/dto"
-	"github.com/daytonaio/runner/pkg/common"
-	"github.com/daytonaio/runner/pkg/models/enums"
-	"github.com/daytonaio/runner/pkg/runner"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models/enums"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner"
 	"github.com/gin-gonic/gin"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
 )
 
 var errInvalidSnapshotFromSandboxRegistry = errors.New("registry is required for sandbox snapshot")
@@ -153,7 +153,7 @@ func CreateBackup(logger *slog.Logger) gin.HandlerFunc {
 //
 //	@Tags			sandbox
 //	@Summary		Snapshot a running sandbox
-//	@Description	Commit the sandbox container filesystem and push the image to the supplied registry under the canonical daytona-{hash}:daytona tag.
+//	@Description	Commit the sandbox container filesystem and push the image to the supplied registry under the canonical nightona-{hash}:nightona tag.
 //	@Produce		json
 //	@Param			sandboxId	path		string									true	"Sandbox ID"
 //	@Param			body		body		dto.CreateSnapshotFromSandboxRequestDTO	true	"Snapshot from sandbox"

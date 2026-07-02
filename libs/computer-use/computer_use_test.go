@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package main
@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse"
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse/manager"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse/manager"
 	"github.com/hashicorp/go-hclog"
 	hc_plugin "github.com/hashicorp/go-plugin"
 	"github.com/stretchr/testify/assert"
@@ -40,7 +40,7 @@ func NewTestClient() (*TestClient, error) {
 	client := hc_plugin.NewClient(&hc_plugin.ClientConfig{
 		HandshakeConfig: manager.ComputerUseHandshakeConfig,
 		Plugins: map[string]hc_plugin.Plugin{
-			"daytona-computer-use": &computeruse.ComputerUsePlugin{},
+			"nightona-computer-use": &computeruse.ComputerUsePlugin{},
 		},
 		Cmd:     exec.Command("./test-computer-use"),
 		Logger:  hclog.New(&hclog.LoggerOptions{Level: hclog.Error}),
@@ -55,7 +55,7 @@ func NewTestClient() (*TestClient, error) {
 	}
 
 	// Get the plugin instance
-	raw, err := rpcClient.Dispense("daytona-computer-use")
+	raw, err := rpcClient.Dispense("nightona-computer-use")
 	if err != nil {
 		client.Kill()
 		return nil, fmt.Errorf("failed to dispense plugin: %v", err)

@@ -1,33 +1,33 @@
 ---
-title: Daytona Documentation
-description: Daytona でサンドボックスの管理を始めましょう。
+title: Nightona Documentation
+description: Nightona でサンドボックスの管理を始めましょう。
 template: doc
 head:
   - tag: title
-    content: Documentation · Daytona
+    content: Documentation · Nightona
   - tag: meta
     attrs:
         property: og:title
-        content: Documentation · Daytona
+        content: Documentation · Nightona
   - tag: meta
     attrs:
         name: twitter:title
-        content: Documentation · Daytona
+        content: Documentation · Nightona
 tableOfContents: false
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import ExploreMore from '@components/ExploreMore.astro';
 
-Daytona SDK は Daytona と対話するための公式の Python および TypeScript インターフェースを提供し、開発環境をプログラムから管理してコードを実行できます。
+Nightona SDK は Nightona と対話するための公式の Python および TypeScript インターフェースを提供し、開発環境をプログラムから管理してコードを実行できます。
 
 ### クイックスタート
 
-Daytona のサンドボックスで最初のコードを実行しましょう。AI アシスタントとの開発を加速するために、[LLMs のコンテキストファイル](/docs/ja/getting-started#additional-examples)を活用してください。
+Nightona のサンドボックスで最初のコードを実行しましょう。AI アシスタントとの開発を加速するために、[LLMs のコンテキストファイル](/docs/ja/getting-started#additional-examples)を活用してください。
 
 #### 1. APIキーを取得する
 
-- Daytona の[ダッシュボード](https://app.daytona.io/dashboard)に移動します。
+- Nightona の[ダッシュボード](https://app.daytona.io/dashboard)に移動します。
 - 新しい[APIキー](https://app.daytona.io/dashboard/keys)を作成します。安全な場所に保存してください。再表示はされません。
 
 #### 2. SDK をインストールする
@@ -35,13 +35,13 @@ Daytona のサンドボックスで最初のコードを実行しましょう。
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
     ```bash
-    pip install daytona
+    pip install nightona
     ```
   </TabItem>
 
   <TabItem label="TypeScript" icon="seti:typescript">
     ```bash
-    npm install @daytona/sdk
+    npm install @nightona/sdk
     ```
   </TabItem>
 </Tabs>
@@ -53,19 +53,19 @@ Daytona のサンドボックスで最初のコードを実行しましょう。
     次の名前のファイルを作成します: `main.py`
 
     ```python
-    from daytona import Daytona, DaytonaConfig
+    from nightona import Nightona, NightonaConfig
 
     # 設定を定義
 
-    config = DaytonaConfig(api_key="your-api-key")
+    config = NightonaConfig(api_key="your-api-key")
 
-    # Daytona クライアントを初期化
+    # Nightona クライアントを初期化
 
-    daytona = Daytona(config)
+    nightona = Nightona(config)
 
     # サンドボックスのインスタンスを作成
 
-    sandbox = daytona.create()
+    sandbox = nightona.create()
 
     # サンドボックス内で安全にコードを実行
 
@@ -86,13 +86,13 @@ Daytona のサンドボックスで最初のコードを実行しましょう。
     次の名前のファイルを作成します: `index.mts`
 
     ```typescript
-    import { Daytona } from '@daytona/sdk';
+    import { Nightona } from '@nightona/sdk';
 
-    // Daytona クライアントを初期化
-    const daytona = new Daytona({ apiKey: 'your-api-key' });
+    // Nightona クライアントを初期化
+    const nightona = new Nightona({ apiKey: 'your-api-key' });
 
     // サンドボックスのインスタンスを作成
-    const sandbox = await daytona.create({
+    const sandbox = await nightona.create({
       language: 'typescript',
     });
 
@@ -107,7 +107,7 @@ Daytona のサンドボックスで最初のコードを実行しましょう。
 </Tabs>
 
 :::note
-`your-api-key` は Daytona ダッシュボードで取得した値に置き換えてください。
+`your-api-key` は Nightona ダッシュボードで取得した値に置き換えてください。
 :::
 
 #### 4. 実行する
@@ -128,11 +128,11 @@ Daytona のサンドボックスで最初のコードを実行しましょう。
 
 #### ✅ 今やったこと
 
-- Daytona SDK をインストールしました。
+- Nightona SDK をインストールしました。
 - セキュアなサンドボックス環境を作成しました。
 - そのサンドボックス内でコードをリモート実行しました。
 - 出力をローカルで取得して表示しました。
 
-これで、Daytona を使ったセキュアで分離されたコード実行を開始できます。
+これで、Nightona を使ったセキュアで分離されたコード実行を開始できます。
 
 <ExploreMore />

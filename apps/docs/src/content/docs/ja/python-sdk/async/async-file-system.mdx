@@ -11,7 +11,7 @@ class AsyncFileSystem()
 
 サンドボックス内でのファイルシステム操作を提供します。
 
-このクラスは、Daytona サンドボックス内で実行できるファイルシステム操作に対する高水準インターフェースを実装します。
+このクラスは、Nightona サンドボックス内で実行できるファイルシステム操作に対する高水準インターフェースを実装します。
 
 #### AsyncFileSystem.\_\_init\_\_
 
@@ -397,8 +397,8 @@ await sandbox.fs.set_file_permissions(
 # ファイルの所有者を変更する
 await sandbox.fs.set_file_permissions(
     path="workspace/data/file.txt",
-    owner="daytona",
-    group="daytona"
+    owner="nightona",
+    group="nightona"
 )
 ```
 

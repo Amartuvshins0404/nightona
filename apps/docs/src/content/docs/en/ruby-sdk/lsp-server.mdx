@@ -5,7 +5,7 @@ hideTitleOnPage: true
 
 ## LspServer
 
-LspServer class for Daytona SDK.
+LspServer class for Nightona SDK.
 
 ### Constructors
 
@@ -20,9 +20,9 @@ def initialize(language_id:, path_to_project:, toolbox_api:, sandbox_id:, otel_s
 
 - `language_id` _Symbol_ -
 - `path_to_project` _String_ -
-- `toolbox_api` _DaytonaToolboxApiClient:LspApi_ -
+- `toolbox_api` _NightonaToolboxApiClient:LspApi_ -
 - `sandbox_id` _String_ -
-- `otel_state` _Daytona:OtelState, nil_ -
+- `otel_state` _Nightona:OtelState, nil_ -
 
 **Returns**:
 
@@ -61,7 +61,7 @@ def toolbox_api()
 
 **Returns**:
 
-- `DaytonaToolboxApiClient:LspApi`
+- `NightonaToolboxApiClient:LspApi`
 
 #### sandbox_id()
 
@@ -86,11 +86,11 @@ Gets completion suggestions at a position in a file
 **Parameters**:
 
 - `path` _String_ -
-- `position` _Daytona:LspServer:Position_ -
+- `position` _Nightona:LspServer:Position_ -
 
 **Returns**:
 
-- `DaytonaApiClient:CompletionList`
+- `NightonaApiClient:CompletionList`
 
 #### did_close()
 
@@ -146,7 +146,7 @@ Gets symbol information (functions, classes, variables, etc.) from a document.
 
 **Returns**:
 
-- `Array\<DaytonaToolboxApiClient:LspSymbol]`
+- `Array\<NightonaToolboxApiClient:LspSymbol]`
 
 #### sandbox_symbols()
 
@@ -164,7 +164,7 @@ in the Sandbox.
 
 **Returns**:
 
-- `Array\<DaytonaToolboxApiClient:LspSymbol]`
+- `Array\<NightonaToolboxApiClient:LspSymbol]`
 
 #### start()
 

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package options
@@ -6,10 +6,10 @@ package options
 import (
 	"time"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
-// ExecuteCommand holds optional parameters for [daytona.ProcessService.ExecuteCommand].
+// ExecuteCommand holds optional parameters for [nightona.ProcessService.ExecuteCommand].
 type ExecuteCommand struct {
 	Cwd     *string           // Working directory for command execution
 	Env     map[string]string // Environment variables
@@ -60,7 +60,7 @@ func WithExecuteTimeout(timeout time.Duration) func(*ExecuteCommand) {
 	}
 }
 
-// CodeRun holds optional parameters for [daytona.ProcessService.CodeRun].
+// CodeRun holds optional parameters for [nightona.ProcessService.CodeRun].
 type CodeRun struct {
 	Params   *types.CodeRunParams // Code execution parameters
 	Timeout  *time.Duration       // Execution timeout
@@ -92,7 +92,7 @@ func WithCodeRunTimeout(timeout time.Duration) func(*CodeRun) {
 	}
 }
 
-// PtySession holds optional parameters for [daytona.ProcessService.CreatePtySession].
+// PtySession holds optional parameters for [nightona.ProcessService.CreatePtySession].
 type PtySession struct {
 	PtySize *types.PtySize    // Terminal dimensions (rows and columns)
 	Env     map[string]string // Environment variables for the PTY session
@@ -124,7 +124,7 @@ func WithPtyEnv(env map[string]string) func(*PtySession) {
 	}
 }
 
-// CreatePty holds optional parameters for [daytona.ProcessService.CreatePty].
+// CreatePty holds optional parameters for [nightona.ProcessService.CreatePty].
 type CreatePty struct {
 	PtySize *types.PtySize    // Terminal dimensions (rows and columns)
 	Env     map[string]string // Environment variables for the PTY session

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package git
@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/daytonaio/daemon/pkg/gitprovider"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/gitprovider"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 )
@@ -70,15 +70,15 @@ type Service struct {
 
 // Set to "true" to opt into the git-CLI clone path (bounded memory, needs `git` in PATH).
 // Deprecated: prefer experimentalUseGitCLIEnv which covers all network git operations.
-const experimentalUseGitCloneCLIEnv = "DAYTONA_EXPERIMENTAL_USE_GIT_CLONE_CLI"
+const experimentalUseGitCloneCLIEnv = "NIGHTONA_EXPERIMENTAL_USE_GIT_CLONE_CLI"
 
 // Set to "true" to opt into git-CLI paths for all network operations (clone, push, pull).
 // Bounded memory via native git's mmap-based pack handling.
-const experimentalUseGitCLIEnv = "DAYTONA_EXPERIMENTAL_USE_GIT_CLI"
+const experimentalUseGitCLIEnv = "NIGHTONA_EXPERIMENTAL_USE_GIT_CLI"
 
-// isGitCLIModeEnabled reports whether the umbrella `DAYTONA_EXPERIMENTAL_USE_GIT_CLI`
+// isGitCLIModeEnabled reports whether the umbrella `NIGHTONA_EXPERIMENTAL_USE_GIT_CLI`
 // env var is set. Push and pull only check this flag; clone additionally honors
-// the legacy `DAYTONA_EXPERIMENTAL_USE_GIT_CLONE_CLI` for backward compatibility.
+// the legacy `NIGHTONA_EXPERIMENTAL_USE_GIT_CLONE_CLI` for backward compatibility.
 func isGitCLIModeEnabled() bool {
 	return os.Getenv(experimentalUseGitCLIEnv) == "true"
 }

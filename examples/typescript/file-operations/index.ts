@@ -1,12 +1,12 @@
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 import * as fs from 'fs'
 import * as path from 'path'
 
 async function main() {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
   //  first, create a sandbox
-  const sandbox = await daytona.create()
+  const sandbox = await nightona.create()
 
   try {
     console.log(`Created sandbox with ID: ${sandbox.id}`)
@@ -151,7 +151,7 @@ Script: ${scriptResult.exitCode === 0 ? 'Executed successfully' : 'Failed'}
     console.error('Error:', error)
   } finally {
     //  cleanup
-    await daytona.delete(sandbox)
+    await nightona.delete(sandbox)
   }
 }
 

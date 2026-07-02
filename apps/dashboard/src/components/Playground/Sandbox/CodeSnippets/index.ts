@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { CodeLanguage } from '@daytona/sdk'
+import { CodeLanguage } from '@nightona/sdk'
 import { PythonSnippetGenerator } from './python'
 import { CodeSnippetGenerator } from './types'
 import { TypeScriptSnippetGenerator } from './typescript'

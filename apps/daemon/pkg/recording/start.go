@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package recording
@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/daytonaio/daemon/pkg/childreap"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/childreap"
 	"github.com/google/uuid"
 )
 

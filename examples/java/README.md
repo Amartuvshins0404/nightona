@@ -1,15 +1,15 @@
 # Java SDK Examples
 
-This directory contains example projects demonstrating how to use the Daytona Java SDK.
+This directory contains example projects demonstrating how to use the Nightona Java SDK.
 
 ## Prerequisites
 
 1. **Environment Variables** - Configure your API credentials:
 
    ```bash
-   export DAYTONA_API_KEY="your-api-key"
-   export DAYTONA_API_URL="https://app.daytona.io/api"  # optional, this is the default
-   export DAYTONA_TARGET="us"  # optional
+   export NIGHTONA_API_KEY="your-api-key"
+   export NIGHTONA_API_URL="https://app.daytona.io/api"  # optional, this is the default
+   export NIGHTONA_TARGET="us"  # optional
    ```
 
 2. **Java** - Ensure JDK 11+ is installed (the devcontainer includes JDK 21)

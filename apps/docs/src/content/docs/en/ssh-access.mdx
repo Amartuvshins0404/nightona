@@ -5,11 +5,11 @@ description: Access your sandboxes using SSH token-based authentication.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona provides SSH access to your sandboxes using token-based authentication. This allows you to connect from local terminals, IDEs, and development tools without installing additional software.
+Nightona provides SSH access to your sandboxes using token-based authentication. This allows you to connect from local terminals, IDEs, and development tools without installing additional software.
 
 ## Access from Dashboard
 
-Create an SSH access token directly from the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/sandboxes).
+Create an SSH access token directly from the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/sandboxes).
 
 1. Navigate to [Sandboxes ↗](https://app.daytona.io/dashboard/sandboxes)
 2. Locate the sandbox you want to create an SSH access token for
@@ -18,28 +18,28 @@ Create an SSH access token directly from the [Daytona Dashboard ↗](https://app
 5. Set the expiration time (defaults to 60 minutes)
 6. Click **Create**
 
-Daytona generates a token and displays it in the modal. Copy the token and use it to connect to your sandbox.
+Nightona generates a token and displays it in the modal. Copy the token and use it to connect to your sandbox.
 
 ## Access via CLI
 
-Daytona provides a CLI command to create an SSH access token for a sandbox:
+Nightona provides a CLI command to create an SSH access token for a sandbox:
 
 ```shell  
-daytona create
+nightona create
 ```
 
-When you create a sandbox, Daytona displays the SSH command automatically in the output:
+When you create a sandbox, Nightona displays the SSH command automatically in the output:
 
 ```text
 Sandbox '<sandboxId>' created successfully
-Connect via SSH:         daytona ssh <sandboxId>
-Open the Web Terminal:   https://22222-<sandboxId>.proxy.daytona.work
+Connect via SSH:         nightona ssh <sandboxId>
+Open the Web Terminal:   https://22222-<sandboxId>.proxy.nightona.work
 ```
 
 To SSH into an existing sandbox, use the following command:
 
 ```bash
-daytona ssh <sandbox> --expires 60
+nightona ssh <sandbox> --expires 60
 ```
 
 ## Access via token
@@ -50,10 +50,10 @@ You can create SSH access tokens programmatically. The token can then be used to
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona
+from nightona import Nightona
 
-daytona = Daytona()
-sandbox = daytona.get("sandbox-abc123")
+nightona = Nightona()
+sandbox = nightona.get("sandbox-abc123")
 
 # Create SSH access token
 ssh_access = sandbox.create_ssh_access(expires_in_minutes=60)
@@ -64,10 +64,10 @@ print(f"SSH Token: {ssh_access.token}")
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
-const daytona = new Daytona()
-const sandbox = await daytona.get('sandbox-abc123')
+const nightona = new Nightona()
+const sandbox = await nightona.get('sandbox-abc123')
 
 // Create SSH access token
 const sshAccess = await sandbox.createSshAccess(60)
@@ -78,10 +78,10 @@ console.log(`SSH Token: ${sshAccess.token}`)
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.get('sandbox-abc123')
+nightona = Nightona::Nightona.new
+sandbox = nightona.get('sandbox-abc123')
 
 # Create SSH access token
 ssh_access = sandbox.create_ssh_access(expires_in_minutes: 60)

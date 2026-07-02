@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package netrules
@@ -10,8 +10,8 @@ import (
 )
 
 const (
-	// ChainPrefix is the prefix used for all Daytona sandbox chains
-	ChainPrefix = "DAYTONA-SB-"
+	// ChainPrefix is the prefix used for all Nightona sandbox chains
+	ChainPrefix = "NIGHTONA-SB-"
 )
 
 // ParseCidrNetworks parses a comma-separated list of CIDR networks and returns them as an array
@@ -49,7 +49,7 @@ func ParseRuleArguments(rule string) ([]string, error) {
 	return nil, fmt.Errorf("invalid rule format: %s", rule)
 }
 
-// formatChainName adds the DAYTONA-SB- prefix to a chain name if it doesn't already have it
+// formatChainName adds the NIGHTONA-SB- prefix to a chain name if it doesn't already have it
 func formatChainName(name string) string {
 	if strings.HasPrefix(name, ChainPrefix) {
 		return name

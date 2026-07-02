@@ -4,15 +4,15 @@ title: プロセスとコード実行
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-DaytonaのTS SDK / Python SDKは、サンドボックス内の`process`モジュールを通じて強力なプロセスとコード実行機能を提供します。本ガイドでは、利用可能なプロセス操作のすべてとベストプラクティスを解説します。
+NightonaのTS SDK / Python SDKは、サンドボックス内の`process`モジュールを通じて強力なプロセスとコード実行機能を提供します。本ガイドでは、利用可能なプロセス操作のすべてとベストプラクティスを解説します。
 
 ## プロセスとコード実行
 
-Daytona SDK は、Python と TypeScript でコードを実行できます。
+Nightona SDK は、Python と TypeScript でコードを実行できます。
 
 ### コードの実行
 
-Daytona SDK は、Python と TypeScript のコードスニペット実行に対応しています。入力、タイムアウト、環境変数を指定して実行できます。
+Nightona SDK は、Python と TypeScript のコードスニペット実行に対応しています。入力、タイムアウト、環境変数を指定して実行できます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -22,7 +22,7 @@ response = sandbox.process.code_run('''
 def greet(name):
     return f"Hello, {name}!"
 
-print(greet("Daytona"))
+print(greet("Nightona"))
 ''')
 
 print(response.result)
@@ -37,7 +37,7 @@ function greet(name: string): string {
     return \`Hello, \${name}!\`;
 }
 
-console.log(greet("Daytona"));
+console.log(greet("Nightona"));
 `);
 console.log(response.result);
 
@@ -48,7 +48,7 @@ response = await sandbox.process.codeRun(
     console.log(\`FOO: \${process.env.FOO}\`);
     `,
     { 
-      argv: ["Daytona"],
+      argv: ["Nightona"],
       env: { FOO: "BAR" }
     }
 );
@@ -68,11 +68,11 @@ console.log(response.result);
 
 ## プロセスとコード実行
 
-Daytona SDK は、サンドボックス（Daytonaが管理する隔離された一時的な実行環境）内でシェルコマンドを実行し、バックグラウンドプロセスを管理できます。実行時の作業ディレクトリはデフォルトで現在のサンドボックスユーザーのホーム配下です。たとえば `workspace/repo` は `/home/[username]/workspace/repo` を指しますが、絶対パス（先頭を `/` にする）を指定して上書きできます。
+Nightona SDK は、サンドボックス（Nightonaが管理する隔離された一時的な実行環境）内でシェルコマンドを実行し、バックグラウンドプロセスを管理できます。実行時の作業ディレクトリはデフォルトで現在のサンドボックスユーザーのホーム配下です。たとえば `workspace/repo` は `/home/[username]/workspace/repo` を指しますが、絶対パス（先頭を `/` にする）を指定して上書きできます。
 
 ### コマンドの実行
 
-Daytona SDK は、Python と TypeScript からシェルコマンドを実行できます。標準入力、タイムアウト、環境変数を指定してコマンドを実行可能です。
+Nightona SDK は、Python と TypeScript からシェルコマンドを実行できます。標準入力、タイムアウト、環境変数を指定してコマンドを実行可能です。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -87,7 +87,7 @@ print(response.result)
 
 # 環境変数を渡す
 response = sandbox.process.exec("echo $CUSTOM_SECRET", env={
-        "CUSTOM_SECRET": "DAYTONA"
+        "CUSTOM_SECRET": "NIGHTONA"
     }
 )
 print(response.result)
@@ -107,7 +107,7 @@ console.log(response2.result);
 
 // 環境変数を渡す
 const response3 = await sandbox.process.executeCommand("echo $CUSTOM_SECRET", "~", {
-        "CUSTOM_SECRET": "DAYTONA"
+        "CUSTOM_SECRET": "NIGHTONA"
     }
 );
 console.log(response3.result);
@@ -119,11 +119,11 @@ console.log(response3.result);
 
 ## セッション（バックグラウンドプロセス）
 
-Daytona SDK は、サンドボックス（Daytonaが管理する隔離された一時的な実行環境）内でバックグラウンドプロセスのセッションを開始・停止・管理する機能を提供します。長時間実行のコマンドを走らせ、プロセスの状態を監視し、稼働中のすべてのプロセスを一覧できます。
+Nightona SDK は、サンドボックス（Nightonaが管理する隔離された一時的な実行環境）内でバックグラウンドプロセスのセッションを開始・停止・管理する機能を提供します。長時間実行のコマンドを走らせ、プロセスの状態を監視し、稼働中のすべてのプロセスを一覧できます。
 
 ### 長時間実行プロセスの管理
 
-Daytona SDK は、バックグラウンドプロセスの開始および停止機能を提供します。長時間実行のコマンドを実行し、プロセスの状態を監視できます。
+Nightona SDK は、バックグラウンドプロセスの開始および停止機能を提供します。長時間実行のコマンドを実行し、プロセスの状態を監視できます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -160,7 +160,7 @@ for (const session of sessions) {
 
 ## ベストプラクティス
 
-Daytona SDK は、サンドボックス（Daytonaが管理する隔離された一時的な実行環境）におけるプロセスとコード実行（サンドボックス内でのコマンド／コード実行モジュール）のベストプラクティスを提供します。
+Nightona SDK は、サンドボックス（Nightonaが管理する隔離された一時的な実行環境）におけるプロセスとコード実行（サンドボックス内でのコマンド／コード実行モジュール）のベストプラクティスを提供します。
 
 1. **リソース管理**
 
@@ -230,7 +230,7 @@ try {
 
 ## よくある問題
 
-Daytona SDK は、プロセスとコードの実行（プロセスとコード実行）に関する一般的な問題のトラブルシューティング手段を提供します。
+Nightona SDK は、プロセスとコードの実行（プロセスとコード実行）に関する一般的な問題のトラブルシューティング手段を提供します。
 
 ### プロセス実行に失敗する
 

@@ -2,7 +2,7 @@
 #
 # Runs automatically when nx affected detects changes to E2E-relevant projects
 # (apps, SDKs, API clients). Builds from source, starts infrastructure + services,
-# and runs daytona-e2e suite plus SDK E2E tests.
+# and runs nightona-e2e suite plus SDK E2E tests.
 
 name: '[E2E] PR Sandbox Tests'
 
@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   e2e-pr-tests:
-    if: github.repository == 'daytonaio/daytona'
+    if: github.repository == 'daytonaio/nightona'
     name: E2E sandbox lifecycle (from source)
     runs-on: blacksmith-4vcpu-ubuntu-2404
     timeout-minutes: 30
@@ -59,7 +59,7 @@ jobs:
             exit 1
           fi
           echo "Affected projects: $AFFECTED"
-          if echo "$AFFECTED" | grep -qE 'daytona-e2e|^api$|^runner$|^proxy$|^daemon$|^dashboard$|sdk-typescript|sdk-python|sdk-go|sdk-ruby|sdk-java|api-client|toolbox-api-client'; then
+          if echo "$AFFECTED" | grep -qE 'nightona-e2e|^api$|^runner$|^proxy$|^daemon$|^dashboard$|sdk-typescript|sdk-python|sdk-go|sdk-ruby|sdk-java|api-client|toolbox-api-client'; then
             echo "affected=true" >> $GITHUB_OUTPUT
           else
             echo "affected=false" >> $GITHUB_OUTPUT
@@ -84,8 +84,8 @@ jobs:
       - name: Start infrastructure (postgres, redis, dex, registry)
         if: steps.affected.outputs.affected == 'true'
         run: |
-          docker compose -f apps/daytona-e2e/docker-compose.e2e.yaml up -d --wait
-          docker compose -f apps/daytona-e2e/docker-compose.e2e.yaml ps
+          docker compose -f apps/nightona-e2e/docker-compose.e2e.yaml up -d --wait
+          docker compose -f apps/nightona-e2e/docker-compose.e2e.yaml ps
 
       - name: Build services needed for E2E
         if: steps.affected.outputs.affected == 'true'
@@ -95,7 +95,7 @@ jobs:
 
       - name: Copy E2E env to API
         if: steps.affected.outputs.affected == 'true'
-        run: cp apps/daytona-e2e/.env.e2e apps/api/.env
+        run: cp apps/nightona-e2e/.env.e2e apps/api/.env
 
       - name: Run DB migrations
         if: steps.affected.outputs.affected == 'true'
@@ -109,7 +109,7 @@ jobs:
         if: steps.affected.outputs.affected == 'true'
         run: |
           set -a
-          source apps/daytona-e2e/.env.e2e
+          source apps/nightona-e2e/.env.e2e
           set +a
 
           npx nx serve api --configuration=development > /tmp/api.log 2>&1 &
@@ -141,7 +141,7 @@ jobs:
         if: steps.affected.outputs.affected == 'true'
         run: |
           set -a
-          source apps/daytona-e2e/.env.e2e
+          source apps/nightona-e2e/.env.e2e
           set +a
 
           npx nx serve proxy --configuration=development > /tmp/proxy.log 2>&1 &
@@ -174,7 +174,7 @@ jobs:
           echo "$BODY" | jq . 2>/dev/null || echo "$BODY"
           echo ""
           echo "=== Runner DB entry (state inspection) ==="
-          docker compose -f apps/daytona-e2e/docker-compose.e2e.yaml exec -T db \
+          docker compose -f apps/nightona-e2e/docker-compose.e2e.yaml exec -T db \
             psql -U user -d application_ctx -x -c \
             'SELECT id, domain, "apiUrl", "proxyUrl", region, name, state, "appVersion", "apiVersion", "lastChecked", unschedulable, draining, "availabilityScore", "currentSnapshotCount", "serviceHealth", "createdAt", "updatedAt" FROM runner;' \
             || echo "Failed to query runner table"
@@ -186,12 +186,12 @@ jobs:
           tail -50 /tmp/api.log 2>/dev/null || echo "No API logs found"
           exit 1
 
-      - name: Run daytona-e2e tests
+      - name: Run nightona-e2e tests
         if: steps.affected.outputs.affected == 'true'
         env:
-          DAYTONA_API_URL: http://localhost:3001/api
-          DAYTONA_API_KEY: e2e_admin_api_key
-        run: yarn nx e2e daytona-e2e
+          NIGHTONA_API_URL: http://localhost:3001/api
+          NIGHTONA_API_KEY: e2e_admin_api_key
+        run: yarn nx e2e nightona-e2e
 
       - name: Install Python test dependencies
         if: steps.affected.outputs.affected == 'true'
@@ -208,8 +208,8 @@ jobs:
       - name: Run SDK E2E tests
         if: steps.affected.outputs.affected == 'true'
         env:
-          DAYTONA_API_URL: http://localhost:3001/api
-          DAYTONA_API_KEY: e2e_admin_api_key
+          NIGHTONA_API_URL: http://localhost:3001/api
+          NIGHTONA_API_KEY: e2e_admin_api_key
         run: yarn test:e2e
 
       - name: Install Bun
@@ -235,16 +235,16 @@ jobs:
       - name: Run TypeScript SDK runtime compatibility tests
         if: steps.affected.outputs.sdk_ts_affected == 'true'
         env:
-          DAYTONA_API_URL: http://localhost:3001/api
-          DAYTONA_API_KEY: e2e_admin_api_key
+          NIGHTONA_API_URL: http://localhost:3001/api
+          NIGHTONA_API_KEY: e2e_admin_api_key
         run: yarn nx run sdk-typescript:test:runtime
 
       - name: Cleanup stale E2E sandboxes
         if: always() && steps.affected.outputs.affected == 'true'
         env:
-          DAYTONA_API_URL: http://localhost:3001/api
-          DAYTONA_API_KEY: e2e_admin_api_key
-        run: yarn nx e2e:cleanup daytona-e2e
+          NIGHTONA_API_URL: http://localhost:3001/api
+          NIGHTONA_API_KEY: e2e_admin_api_key
+        run: yarn nx e2e:cleanup nightona-e2e
 
       - name: Dump service logs
         if: always() && steps.affected.outputs.affected == 'true'
@@ -265,4 +265,4 @@ jobs:
 
       - name: Tear down infrastructure
         if: always() && steps.affected.outputs.affected == 'true'
-        run: docker compose -f apps/daytona-e2e/docker-compose.e2e.yaml down -v
+        run: docker compose -f apps/nightona-e2e/docker-compose.e2e.yaml down -v

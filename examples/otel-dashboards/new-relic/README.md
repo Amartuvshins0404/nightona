@@ -1,6 +1,6 @@
-# New Relic Dashboard for Daytona Sandbox Monitoring
+# New Relic Dashboard for Nightona Sandbox Monitoring
 
-This directory contains a pre-configured New Relic dashboard for monitoring Daytona Sandbox resources including CPU, Memory, and Disk utilization.
+This directory contains a pre-configured New Relic dashboard for monitoring Nightona Sandbox resources including CPU, Memory, and Disk utilization.
 
 ## Dashboard Overview
 
@@ -59,7 +59,7 @@ This will create `dashboard-configured.json` ready for import.
 
 4. **Verify**:
    - The dashboard should now appear in your dashboards list
-   - Named: "Daytona Sandbox Resource Monitoring - Multi-Service"
+   - Named: "Nightona Sandbox Resource Monitoring - Multi-Service"
 
 ## Dashboard Widgets
 
@@ -92,7 +92,7 @@ The dashboard includes pre-configured alert severities:
 
 ## Metrics Tracked
 
-All metrics are prefixed with `daytona.sandbox.`:
+All metrics are prefixed with `nightona.sandbox.`:
 
 - `cpu.utilization`: CPU usage percentage
 - `cpu.limit`: CPU cores limit

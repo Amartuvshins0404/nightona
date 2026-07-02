@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Volume(VolumeDto)
 ```
 
-Daytona のボリュームを表し、サンドボックス向けの共有ストレージボリュームです。
+Nightona のボリュームを表し、サンドボックス向けの共有ストレージボリュームです。
 
 **属性**:
 
@@ -28,7 +28,7 @@ Daytona のボリュームを表し、サンドボックス向けの共有スト
 class VolumeService()
 ```
 
-Daytonaのボリュームを管理するサービス。ボリュームの一覧、取得、作成、削除に利用できます。
+Nightonaのボリュームを管理するサービス。ボリュームの一覧、取得、作成、削除に利用できます。
 
 #### VolumeService.list
 
@@ -46,8 +46,8 @@ def list() -> List[Volume]
 **例**:
 
 ```python
-daytona = Daytona()
-volumes = daytona.volume.list()
+nightona = Nightona()
+volumes = nightona.volume.list()
 for volume in volumes:
     print(f"{volume.name} ({volume.id})")
 ```
@@ -74,8 +74,8 @@ def get(name: str, create: bool = False) -> Volume
 **例**:
 
 ```python
-daytona = Daytona()
-volume = daytona.volume.get("test-volume-name", create=True)
+nightona = Nightona()
+volume = nightona.volume.get("test-volume-name", create=True)
 print(f"{volume.name} ({volume.id})")
 ```
 
@@ -100,8 +100,8 @@ def create(name: str) -> Volume
 **例**:
 
 ```python
-daytona = Daytona()
-volume = daytona.volume.create("test-volume")
+nightona = Nightona()
+volume = nightona.volume.create("test-volume")
 print(f"{volume.name} ({volume.id}); state: {volume.state}")
 ```
 
@@ -121,9 +121,9 @@ def delete(volume: Volume) -> None
 **例**:
 
 ```python
-daytona = Daytona()
-volume = daytona.volume.get("test-volume")
-daytona.volume.delete(volume)
+nightona = Nightona()
+volume = nightona.volume.get("test-volume")
+nightona.volume.delete(volume)
 print("Volume deleted")
 ```
 

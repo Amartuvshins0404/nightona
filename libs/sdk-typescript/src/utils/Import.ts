@@ -1,12 +1,12 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  *
  * post-build.js rewrites every `require(` in the ESM output of this file to
  * `__esmRequire(` — avoid that literal token in string literals here.
  */
 
-import { DaytonaError } from '../errors/DaytonaError'
+import { NightonaError } from '../errors/NightonaError'
 import { RUNTIME } from './Runtime'
 
 const loaderMap = {
@@ -66,7 +66,7 @@ export async function dynamicImport<K extends keyof ModuleMap>(
 ): Promise<Awaited<ReturnType<ModuleMap[K]>>> {
   const loader = loaderMap[name]
   if (!loader) {
-    throw new DaytonaError(`${errorPrefix || ''} Unknown module "${name}"`)
+    throw new NightonaError(`${errorPrefix || ''} Unknown module "${name}"`)
   }
 
   let mod: any
@@ -75,11 +75,11 @@ export async function dynamicImport<K extends keyof ModuleMap>(
     mod = unwrapInterop(mod)
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
-    throw new DaytonaError(`${errorPrefix || ''} Module "${name}" is not available in the "${RUNTIME}" runtime: ${msg}`)
+    throw new NightonaError(`${errorPrefix || ''} Module "${name}" is not available in the "${RUNTIME}" runtime: ${msg}`)
   }
 
   if (validateMap[name] && !validateMap[name](mod)) {
-    throw new DaytonaError(
+    throw new NightonaError(
       `${errorPrefix || ''} Module "${name}" didn't pass import validation in the "${RUNTIME}" runtime`,
     )
   }
@@ -99,7 +99,7 @@ function unwrapInterop(mod: any): any {
 export function dynamicRequire<K extends keyof RequireMap>(name: K, errorPrefix?: string): ReturnType<RequireMap[K]> {
   const loader = requireMap[name]
   if (!loader) {
-    throw new DaytonaError(`${errorPrefix || ''} Unknown module "${name}"`)
+    throw new NightonaError(`${errorPrefix || ''} Unknown module "${name}"`)
   }
 
   let mod: any
@@ -108,11 +108,11 @@ export function dynamicRequire<K extends keyof RequireMap>(name: K, errorPrefix?
     mod = unwrapInterop(mod)
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
-    throw new DaytonaError(`${errorPrefix || ''} Module "${name}" is not available in the "${RUNTIME}" runtime: ${msg}`)
+    throw new NightonaError(`${errorPrefix || ''} Module "${name}" is not available in the "${RUNTIME}" runtime: ${msg}`)
   }
 
   if (validateMap[name] && !validateMap[name](mod)) {
-    throw new DaytonaError(
+    throw new NightonaError(
       `${errorPrefix || ''} Module "${name}" didn't pass import validation in the "${RUNTIME}" runtime`,
     )
   }
@@ -128,7 +128,7 @@ export function getPackageInfo(): { name: string; version: string } {
     const pkg = require('../../package.json')
     _packageInfo = { name: pkg.name, version: pkg.version }
   } catch {
-    _packageInfo = { name: '@daytona/sdk', version: '0.0.0' }
+    _packageInfo = { name: '@nightona/sdk', version: '0.0.0' }
   }
   return _packageInfo
 }

@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Volume(VolumeDto)
 ```
 
-Represents a Daytona Volume which is a shared storage volume for Sandboxes.
+Represents a Nightona Volume which is a shared storage volume for Sandboxes.
 
 **Attributes**:
 
@@ -28,7 +28,7 @@ Represents a Daytona Volume which is a shared storage volume for Sandboxes.
 class VolumeService()
 ```
 
-Service for managing Daytona Volumes. Can be used to list, get, create and delete Volumes.
+Service for managing Nightona Volumes. Can be used to list, get, create and delete Volumes.
 
 #### VolumeService.list
 
@@ -46,8 +46,8 @@ List all Volumes.
 **Example**:
 
 ```python
-daytona = Daytona()
-volumes = daytona.volume.list()
+nightona = Nightona()
+volumes = nightona.volume.list()
 for volume in volumes:
     print(f"{volume.name} ({volume.id})")
 ```
@@ -75,8 +75,8 @@ Get a Volume by name.
 **Example**:
 
 ```python
-daytona = Daytona()
-volume = daytona.volume.get("test-volume-name", create=True)
+nightona = Nightona()
+volume = nightona.volume.get("test-volume-name", create=True)
 print(f"{volume.name} ({volume.id})")
 ```
 
@@ -102,8 +102,8 @@ Create a new Volume.
 **Example**:
 
 ```python
-daytona = Daytona()
-volume = daytona.volume.create("test-volume")
+nightona = Nightona()
+volume = nightona.volume.create("test-volume")
 print(f"{volume.name} ({volume.id}); state: {volume.state}")
 ```
 
@@ -124,9 +124,9 @@ Delete a Volume.
 **Example**:
 
 ```python
-daytona = Daytona()
-volume = daytona.volume.get("test-volume")
-daytona.volume.delete(volume)
+nightona = Nightona()
+volume = nightona.volume.get("test-volume")
+nightona.volume.delete(volume)
 print("Volume deleted")
 ```
 

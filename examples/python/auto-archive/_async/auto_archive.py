@@ -1,12 +1,12 @@
 import asyncio
 
-from daytona import AsyncDaytona, CreateSandboxFromSnapshotParams
+from nightona import AsyncNightona, CreateSandboxFromSnapshotParams
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
+    async with AsyncNightona() as nightona:
         # Default interval
-        sandbox1 = await daytona.create()
+        sandbox1 = await nightona.create()
         print(sandbox1.auto_archive_interval)
 
         # Set interval to 1 hour
@@ -14,11 +14,11 @@ async def main():
         print(sandbox1.auto_archive_interval)
 
         # Max interval
-        sandbox2 = await daytona.create(params=CreateSandboxFromSnapshotParams(auto_archive_interval=0))
+        sandbox2 = await nightona.create(params=CreateSandboxFromSnapshotParams(auto_archive_interval=0))
         print(sandbox2.auto_archive_interval)
 
         # 1 day interval
-        sandbox3 = await daytona.create(params=CreateSandboxFromSnapshotParams(auto_archive_interval=1440))
+        sandbox3 = await nightona.create(params=CreateSandboxFromSnapshotParams(auto_archive_interval=1440))
         print(sandbox3.auto_archive_interval)
 
         await sandbox1.delete()

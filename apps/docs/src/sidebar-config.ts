@@ -748,7 +748,7 @@ export const getSidebarConfig = (
         {
           type: 'link',
           href: localizePath(
-            '/docs/guides/reinforcement-learning/verl-retool-daytona',
+            '/docs/guides/reinforcement-learning/verl-retool-nightona',
             locale
           ),
           label: t('sidebarconfig.verl'),
@@ -938,8 +938,8 @@ export const getSidebarConfig = (
         },
         {
           type: 'link',
-          href: localizePath('/docs/typescript-sdk/daytona', locale),
-          label: t('sidebarconfig.daytona'),
+          href: localizePath('/docs/typescript-sdk/nightona', locale),
+          label: t('sidebarconfig.nightona'),
         },
         {
           type: 'link',
@@ -972,8 +972,8 @@ export const getSidebarConfig = (
       entries: [
         {
           type: 'link',
-          href: localizePath('/docs/python-sdk/sync/daytona', locale),
-          label: t('sidebarconfig.daytona'),
+          href: localizePath('/docs/python-sdk/sync/nightona', locale),
+          label: t('sidebarconfig.nightona'),
         },
         {
           type: 'link',
@@ -991,8 +991,8 @@ export const getSidebarConfig = (
       entries: [
         {
           type: 'link',
-          href: localizePath('/docs/python-sdk/async/async-daytona', locale),
-          label: t('sidebarconfig.asyncDaytona'),
+          href: localizePath('/docs/python-sdk/async/async-nightona', locale),
+          label: t('sidebarconfig.asyncNightona'),
         },
         {
           type: 'link',
@@ -1010,8 +1010,8 @@ export const getSidebarConfig = (
       entries: [
         {
           type: 'link',
-          href: localizePath('/docs/ruby-sdk/daytona', locale),
-          label: t('sidebarconfig.daytona'),
+          href: localizePath('/docs/ruby-sdk/nightona', locale),
+          label: t('sidebarconfig.nightona'),
         },
         {
           type: 'link',
@@ -1029,8 +1029,8 @@ export const getSidebarConfig = (
       entries: [
         {
           type: 'link',
-          href: localizePath('/docs/go-sdk/daytona', locale),
-          label: t('sidebarconfig.daytona'),
+          href: localizePath('/docs/go-sdk/nightona', locale),
+          label: t('sidebarconfig.nightona'),
         },
       ],
     },
@@ -1043,8 +1043,8 @@ export const getSidebarConfig = (
       entries: [
         {
           type: 'link',
-          href: localizePath('/docs/java-sdk/daytona', locale),
-          label: t('sidebarconfig.daytona'),
+          href: localizePath('/docs/java-sdk/nightona', locale),
+          label: t('sidebarconfig.nightona'),
         },
         {
           type: 'link',

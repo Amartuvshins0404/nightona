@@ -21,8 +21,8 @@ Initializes a new Git handler instance.
 **Parameters**:
 
 - `sandbox_id` _String_ - The Sandbox ID.
-- `toolbox_api` _DaytonaToolboxApiClient:GitApi_ - API client for Sandbox operations.
-- `otel_state` _Daytona:OtelState, nil_ -
+- `toolbox_api` _NightonaToolboxApiClient:GitApi_ - API client for Sandbox operations.
+- `otel_state` _Nightona:OtelState, nil_ -
 
 **Returns**:
 
@@ -50,7 +50,7 @@ def toolbox_api()
 
 **Returns**:
 
-- `DaytonaToolboxApiClient:GitApi` - API client for Sandbox operations
+- `NightonaToolboxApiClient:GitApi` - API client for Sandbox operations
 
 #### add()
 
@@ -74,7 +74,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if adding files fails
+- `Nightona:Sdk:Error` - if adding files fails
 
 **Examples:**
 
@@ -107,11 +107,11 @@ the sandbox working directory.
 
 **Returns**:
 
-- `DaytonaApiClient:ListBranchResponse` - List of branches in the repository.
+- `NightonaApiClient:ListBranchResponse` - List of branches in the repository.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if listing branches fails
+- `Nightona:Sdk:Error` - if listing branches fails
 
 **Examples:**
 
@@ -153,7 +153,7 @@ credentials, if supplied, are transmitted over an unverified TLS connection.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if cloning repository fails
+- `Nightona:Sdk:Error` - if cloning repository fails
 
 **Examples:**
 
@@ -207,7 +207,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if committing changes fails
+- `Nightona:Sdk:Error` - if committing changes fails
 
 **Examples:**
 
@@ -249,7 +249,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if pushing changes fails
+- `Nightona:Sdk:Error` - if pushing changes fails
 
 **Examples:**
 
@@ -289,7 +289,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if pulling changes fails
+- `Nightona:Sdk:Error` - if pulling changes fails
 
 **Examples:**
 
@@ -322,11 +322,11 @@ the sandbox working directory.
 
 **Returns**:
 
-- `DaytonaToolboxApiClient:GitStatus` - Repository status information including:
+- `NightonaToolboxApiClient:GitStatus` - Repository status information including:
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if getting status fails
+- `Nightona:Sdk:Error` - if getting status fails
 
 **Examples:**
 
@@ -359,7 +359,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if checking out branch fails
+- `Nightona:Sdk:Error` - if checking out branch fails
 
 **Examples:**
 
@@ -390,7 +390,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if creating branch fails
+- `Nightona:Sdk:Error` - if creating branch fails
 
 **Examples:**
 
@@ -421,7 +421,7 @@ the sandbox working directory.
 
 **Raises**:
 
-- `Daytona:Sdk:Error` - if deleting branch fails
+- `Nightona:Sdk:Error` - if deleting branch fails
 
 **Examples:**
 

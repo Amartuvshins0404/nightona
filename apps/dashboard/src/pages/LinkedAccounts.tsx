@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -57,7 +57,7 @@ const LinkedAccounts: React.FC = () => {
     <Card>
       <CardHeader className="p-4">
         <CardTitle>Linked Accounts</CardTitle>
-        <CardDescription>View and manage accounts linked to your Daytona account.</CardDescription>
+        <CardDescription>View and manage accounts linked to your Nightona account.</CardDescription>
       </CardHeader>
       {accountProvidersQuery.isLoading ? (
         <CardContent className="flex flex-col gap-5">

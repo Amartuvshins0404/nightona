@@ -1,7 +1,7 @@
 {
-  "name": "daytonaclaw",
+  "name": "nightonaclaw",
   "version": "1.0.0",
-  "description": "OpenClaw AI assistant running in a Daytona sandbox.",
+  "description": "OpenClaw AI assistant running in a Nightona sandbox.",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,7 @@
     "serve": "tsx src/index.ts"
   },
   "dependencies": {
-    "@daytona/sdk": "^0.163.0",
+    "@nightona/sdk": "^0.163.0",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {

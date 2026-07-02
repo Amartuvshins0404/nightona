@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Sandbox(SandboxDto)
 ```
 
-Represents a Daytona Sandbox.
+Represents a Nightona Sandbox.
 
 **Attributes**:
 
@@ -22,7 +22,7 @@ Represents a Daytona Sandbox.
 - `id` _str_ - Unique identifier for the Sandbox.
 - `name` _str_ - Name of the Sandbox.
 - `organization_id` _str_ - Organization ID of the Sandbox.
-- `snapshot` _str | None_ - Daytona snapshot used to create the Sandbox.
+- `snapshot` _str | None_ - Nightona snapshot used to create the Sandbox.
 - `user` _str_ - OS user running in the Sandbox.
 - `env` _dict[str, str] | None_ - Environment variables set in the Sandbox (not returned by list
   results; call `refresh_data()` on each item to populate).
@@ -236,13 +236,13 @@ Starts the Sandbox and waits for it to be ready.
 
 **Raises**:
 
-- `DaytonaError` - If timeout is negative. If sandbox fails to start or times out.
+- `NightonaError` - If timeout is negative. If sandbox fails to start or times out.
   
 
 **Example**:
 
 ```python
-sandbox = daytona.get("my-sandbox-id")
+sandbox = nightona.get("my-sandbox-id")
 sandbox.start(timeout=40)  # Wait up to 40 seconds
 print("Sandbox started successfully")
 ```
@@ -264,13 +264,13 @@ Recovers the Sandbox from a recoverable error and waits for it to be ready.
 
 **Raises**:
 
-- `DaytonaError` - If timeout is negative. If sandbox fails to recover or times out.
+- `NightonaError` - If timeout is negative. If sandbox fails to recover or times out.
   
 
 **Example**:
 
 ```python
-sandbox = daytona.get("my-sandbox-id")
+sandbox = nightona.get("my-sandbox-id")
 sandbox.recover(timeout=40)  # Wait up to 40 seconds
 print("Sandbox recovered successfully")
 ```
@@ -294,13 +294,13 @@ Stops the Sandbox and waits for it to be fully stopped.
 
 **Raises**:
 
-- `DaytonaError` - If timeout is negative; If sandbox fails to stop or times out
+- `NightonaError` - If timeout is negative; If sandbox fails to stop or times out
   
 
 **Example**:
 
 ```python
-sandbox = daytona.get("my-sandbox-id")
+sandbox = nightona.get("my-sandbox-id")
 sandbox.stop()
 print("Sandbox stopped successfully")
 ```
@@ -341,7 +341,7 @@ reaches the 'started' state, encounters an error or times out.
 
 **Raises**:
 
-- `DaytonaError` - If timeout is negative; If Sandbox fails to start or times out
+- `NightonaError` - If timeout is negative; If Sandbox fails to start or times out
 
 #### Sandbox.wait\_for\_sandbox\_stop
 
@@ -365,7 +365,7 @@ Treats destroyed as stopped to cover ephemeral sandboxes that are automatically 
 
 **Raises**:
 
-- `DaytonaError` - If timeout is negative. If Sandbox fails to stop or times out.
+- `NightonaError` - If timeout is negative. If Sandbox fails to stop or times out.
 
 #### Sandbox.set\_autostop\_interval
 
@@ -389,7 +389,7 @@ Interactions using Sandbox Previews are not included.
 
 **Raises**:
 
-- `DaytonaValidationError` - If interval is negative
+- `NightonaValidationError` - If interval is negative
   
 
 **Example**:
@@ -421,7 +421,7 @@ The Sandbox will automatically archive after being continuously stopped for the 
 
 **Raises**:
 
-- `DaytonaValidationError` - If interval is negative
+- `NightonaValidationError` - If interval is negative
   
 
 **Example**:
@@ -486,7 +486,7 @@ Updates outbound network policy on the runner (block all, restore access, or CID
 
 **Raises**:
 
-- `DaytonaValidationError` - If neither argument is set.
+- `NightonaValidationError` - If neither argument is set.
   
 
 **Example**:
@@ -602,7 +602,7 @@ grow. GPU is not resizable — to change GPU, create a new Sandbox.
 
 **Raises**:
 
-- `DaytonaError` - If hot-resize constraints are violated, disk resize is attempted on
+- `NightonaError` - If hot-resize constraints are violated, disk resize is attempted on
   a running Sandbox, disk decrease is attempted, no fields are provided, gpu or
   gpu_type is set, or the operation times out.
   
@@ -636,7 +636,7 @@ the state is no longer 'resizing'.
 
 **Raises**:
 
-- `DaytonaError` - If timeout is negative. If resize operation times out.
+- `NightonaError` - If timeout is negative. If resize operation times out.
 
 #### Sandbox.create\_ssh\_access
 
@@ -720,7 +720,7 @@ not consume CPU cycles.
 
 **Raises**:
 
-- `DaytonaError` - If timeout is negative or the operation fails/times out.
+- `NightonaError` - If timeout is negative or the operation fails/times out.
 
 
 ## Resources

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -15,7 +15,7 @@ import { MiddleTruncate } from '@/components/ui/middle-truncate'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { getRelativeTimeString } from '@/lib/utils'
 import { getTableColumnMaxResizeSize } from '@/lib/utils/table'
-import { SandboxDesiredState, SandboxListItem } from '@daytona/api-client'
+import { SandboxDesiredState, SandboxListItem } from '@nightona/api-client'
 import { Column, ColumnDef, RowData, Table } from '@tanstack/react-table'
 import { Loader2 } from 'lucide-react'
 import React from 'react'

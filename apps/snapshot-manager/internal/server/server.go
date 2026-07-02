@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/daytonaio/snapshot-manager/internal"
+	"github.com/Amartuvshins0404/nightona/apps/snapshot-manager/internal"
 	"github.com/distribution/distribution/v3/configuration"
 	_ "github.com/distribution/distribution/v3/registry/auth/htpasswd"
 	"github.com/distribution/distribution/v3/registry/handlers"
@@ -74,7 +74,7 @@ func (s *Server) Start(ctx context.Context) error {
 		Handler: mux,
 	}
 
-	s.logger.Info("Daytona snapshot-manager started",
+	s.logger.Info("Nightona snapshot-manager started",
 		slog.String("version", internal.Version),
 		slog.String("addr", s.config.HTTP.Addr),
 		slog.Any("storage", s.getStorageInfo()),
@@ -108,7 +108,7 @@ func (s *Server) Start(ctx context.Context) error {
 
 // Shutdown gracefully shuts down the registry server
 func (s *Server) Shutdown(ctx context.Context) error {
-	s.logger.Info("Shutting down Daytona snapshot-manager...")
+	s.logger.Info("Shutting down Nightona snapshot-manager...")
 	if s.server != nil {
 		return s.server.Shutdown(ctx)
 	}

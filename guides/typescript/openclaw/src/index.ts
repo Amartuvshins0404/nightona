@@ -1,11 +1,11 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import 'dotenv/config'
-import { Daytona } from '@daytona/sdk'
-import type { Sandbox } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
+import type { Sandbox } from '@nightona/sdk'
 import { randomBytes } from 'crypto'
 import { readFileSync } from 'fs'
 import { join } from 'path'
@@ -16,7 +16,7 @@ const OPENCLAW_PORT = 18789 // OpenClaw Gateway and Control UI port
 const SHOW_LOGS = true // Stream OpenClaw stdout/stderr to the terminal
 const MAKE_PUBLIC = true // Expose the sandbox for public internet access
 const PERSIST_SANDBOX = true // Keep the sandbox running after the script exits
-const DAYTONA_SNAPSHOT = 'daytona-medium' // This snapshot has openclaw installed
+const NIGHTONA_SNAPSHOT = 'nightona-medium' // This snapshot has openclaw installed
 
 // Paths
 const USER_CONFIG_PATH = join(process.cwd(), 'openclaw.json')
@@ -43,7 +43,7 @@ async function shutdown() {
   process.exit(0)
 }
 
-// OpenClaw config to run in a Daytona sandbox
+// OpenClaw config to run in a Nightona sandbox
 const OPENCLAW_CONFIG = {
   gateway: {
     mode: 'local' as const,
@@ -61,13 +61,13 @@ const OPENCLAW_CONFIG = {
 
 // Main function
 async function main() {
-  // Create a new Daytona instance
-  const daytona = new Daytona()
+  // Create a new Nightona instance
+  const nightona = new Nightona()
 
   // Create a new sandbox
-  console.log('Creating Daytona sandbox...')
-  const sandbox = await daytona.create({
-    snapshot: DAYTONA_SNAPSHOT,
+  console.log('Creating Nightona sandbox...')
+  const sandbox = await nightona.create({
+    snapshot: NIGHTONA_SNAPSHOT,
     autoStopInterval: 0,
     envVars: readEnvFile(ENV_SANDBOX_PATH),
     public: MAKE_PUBLIC,

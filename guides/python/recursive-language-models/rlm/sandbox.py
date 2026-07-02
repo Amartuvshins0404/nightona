@@ -1,7 +1,7 @@
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-"""Daytona sandbox management for deeper-rlm."""
+"""Nightona sandbox management for deeper-rlm."""
 
 import logging
 from dataclasses import dataclass
@@ -9,10 +9,10 @@ from typing import TYPE_CHECKING, Any
 
 from rlm.budget import SandboxBudget
 
-from daytona import CreateSandboxFromImageParams, Daytona, DaytonaConfig, Image
+from nightona import CreateSandboxFromImageParams, Nightona, NightonaConfig, Image
 
 if TYPE_CHECKING:
-    from daytona import Sandbox
+    from nightona import Sandbox
 
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,7 @@ class SandboxInfo:
 
 class SandboxManager:
     """
-    Manages Daytona sandboxes for RLM agents.
+    Manages Nightona sandboxes for RLM agents.
 
     Handles:
     - Sandbox creation from GitHub repos
@@ -45,14 +45,14 @@ class SandboxManager:
         Initialize the sandbox manager.
 
         Args:
-            api_key: Daytona API key
+            api_key: Nightona API key
             budget: Shared sandbox budget tracker
         """
         self.budget = budget
 
-        # Initialize Daytona client
-        daytona_config = DaytonaConfig(api_key=api_key)
-        self.daytona = Daytona(daytona_config)
+        # Initialize Nightona client
+        nightona_config = NightonaConfig(api_key=api_key)
+        self.nightona = Nightona(nightona_config)
 
         # Track active sandboxes
         self._active_sandboxes: dict[str, "Sandbox"] = {}
@@ -90,7 +90,7 @@ class SandboxManager:
             )
 
             logger.info(f"Creating sandbox from base image for repo: {repo_url}")
-            sandbox = self.daytona.create(
+            sandbox = self.nightona.create(
                 CreateSandboxFromImageParams(image=base_image),
                 timeout=0,  # No timeout for image build
                 on_snapshot_create_logs=lambda msg: logger.debug(f"Image build: {msg}"),
@@ -163,7 +163,7 @@ class SandboxManager:
 
 class SandboxExecutor:
     """
-    Executes commands in a Daytona sandbox.
+    Executes commands in a Nightona sandbox.
 
     Wraps commands with conda environment activation.
     """
@@ -173,7 +173,7 @@ class SandboxExecutor:
         Initialize the executor.
 
         Args:
-            sandbox: Daytona sandbox instance
+            sandbox: Nightona sandbox instance
             cwd: Default working directory
             conda_env: Conda environment to activate
         """

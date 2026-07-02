@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 
 session_id = 'exec-session-1'
 sandbox.process.create_session(session_id)
@@ -15,7 +15,7 @@ puts session
 # Execute first command in the session
 first_command = sandbox.process.execute_session_command(
   session_id: session_id,
-  req: Daytona::SessionExecuteRequest.new(command: 'export FOO=BAR')
+  req: Nightona::SessionExecuteRequest.new(command: 'export FOO=BAR')
 )
 
 if first_command.exit_code == 0
@@ -35,7 +35,7 @@ puts command
 # Execute second command in the session and observe the environment variable is set
 second_command = sandbox.process.execute_session_command(
   session_id: session_id,
-  req: Daytona::SessionExecuteRequest.new(command: 'echo $FOO')
+  req: Nightona::SessionExecuteRequest.new(command: 'echo $FOO')
 )
 
 if second_command.exit_code == 0
@@ -53,7 +53,7 @@ puts "[STDERR] #{logs.stderr}"
 puts "\n--- Testing send_session_command_input ---"
 interactive_command = sandbox.process.execute_session_command(
   session_id: session_id,
-  req: Daytona::SessionExecuteRequest.new(
+  req: Nightona::SessionExecuteRequest.new(
     command: 'printf "Enter your name: \n" && read name && printf "Hello, %s\n" "$name"',
     run_async: true
   )
@@ -89,4 +89,4 @@ puts sessions
 sandbox.process.delete_session(session_id)
 
 # Cleanup resources
-daytona.delete(sandbox)
+nightona.delete(sandbox)

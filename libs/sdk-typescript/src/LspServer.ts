@@ -1,11 +1,11 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { LspApi } from '@daytona/toolbox-api-client'
-import type { CompletionList, LspSymbol } from '@daytona/toolbox-api-client'
-import { DaytonaValidationError } from './errors/DaytonaError'
+import { LspApi } from '@nightona/toolbox-api-client'
+import type { CompletionList, LspSymbol } from '@nightona/toolbox-api-client'
+import { NightonaValidationError } from './errors/NightonaError'
 import { WithInstrumentation } from './utils/otel.decorator'
 
 /**
@@ -56,7 +56,7 @@ export class LspServer {
     private readonly apiClient: LspApi,
   ) {
     if (!Object.values(LspLanguageId).includes(this.languageId)) {
-      throw new DaytonaValidationError(
+      throw new NightonaValidationError(
         `Invalid languageId: ${this.languageId}. Supported values are: ${Object.values(LspLanguageId).join(', ')}`,
       )
     }

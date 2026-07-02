@@ -5,7 +5,7 @@ hideTitleOnPage: true
 
 ## VolumeService
 
-Service for managing Daytona Volumes.
+Service for managing Nightona Volumes.
 
 Volumes provide persistent shared storage that can be mounted into Sandboxes.
 
@@ -28,7 +28,7 @@ Creates a new volume.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if creation fails
+- `io.nightona.sdk.exception.NightonaException` - if creation fails
 
 #### list()
 ```java
@@ -43,7 +43,7 @@ Lists all accessible volumes.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if the API request fails
+- `io.nightona.sdk.exception.NightonaException` - if the API request fails
 
 #### getByName()
 ```java
@@ -62,7 +62,7 @@ Retrieves a volume by name.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if no volume is found or request fails
+- `io.nightona.sdk.exception.NightonaException` - if no volume is found or request fails
 
 #### delete()
 ```java
@@ -77,4 +77,4 @@ Deletes a volume by ID.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if deletion fails
+- `io.nightona.sdk.exception.NightonaException` - if deletion fails

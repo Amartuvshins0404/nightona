@@ -9,7 +9,7 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}",
-        "commands": ["rm -f *.gem", "bundle install", "gem build daytona_api_client.gemspec"],
+        "commands": ["rm -f *.gem", "bundle install", "gem build nightona_api_client.gemspec"],
         "parallel": false
       },
       "dependsOn": ["set-version"],
@@ -20,11 +20,11 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}",
-        "command": "if [ -n \"$RUBYGEMS_PKG_VERSION\" ]; then sed -i \"s/VERSION = '[^']*'/VERSION = '$RUBYGEMS_PKG_VERSION'/\" lib/daytona_api_client/version.rb && echo \"Changed version to $RUBYGEMS_PKG_VERSION\"; else echo \"Using version from version.rb\"; fi"
+        "command": "if [ -n \"$RUBYGEMS_PKG_VERSION\" ]; then sed -i \"s/VERSION = '[^']*'/VERSION = '$RUBYGEMS_PKG_VERSION'/\" lib/nightona_api_client/version.rb && echo \"Changed version to $RUBYGEMS_PKG_VERSION\"; else echo \"Using version from version.rb\"; fi"
       },
       "cache": true,
       "inputs": [{ "env": "RUBYGEMS_PKG_VERSION" }, { "env": "VERSION" }],
-      "outputs": ["{projectRoot}/lib/daytona_api_client/version.rb"]
+      "outputs": ["{projectRoot}/lib/nightona_api_client/version.rb"]
     },
     "generate:api-client": {
       "executor": "nx:run-commands",
@@ -32,9 +32,9 @@
       "options": {
         "commands": [
           "rm -rf libs/api-client-ruby/lib",
-          "yarn run openapi-generator-cli generate -i dist/apps/api/openapi.json -g ruby -t hack/ruby-client/openapi-templates --additional-properties=gemAuthor=daytonaio,gemAuthorEmail=support@daytona.io,gemDescription=\\\"Daytona API Client\\\",gemHomepage=\\\"https://github.com/daytonaio/daytona\\\",gemVersion=$DEFAULT_GEM_VERSION,gemName=daytona_api_client,enumUnknownDefaultCase=true -o libs/api-client-ruby",
+          "yarn run openapi-generator-cli generate -i dist/apps/api/openapi.json -g ruby -t hack/ruby-client/openapi-templates --additional-properties=gemAuthor=daytonaio,gemAuthorEmail=support@daytona.io,gemDescription=\\\"Nightona API Client\\\",gemHomepage=\\\"https://github.com/Amartuvshins0404/nightona\\\",gemVersion=$DEFAULT_GEM_VERSION,gemName=nightona_api_client,enumUnknownDefaultCase=true -o libs/api-client-ruby",
           "bash libs/api-client-ruby/fix-gemspec.sh",
-          "sed -i 's|OpenAPI-Generator/#{VERSION}/ruby|api-client-ruby/#{VERSION}|' libs/api-client-ruby/lib/daytona_api_client/api_client.rb",
+          "sed -i 's|OpenAPI-Generator/#{VERSION}/ruby|api-client-ruby/#{VERSION}|' libs/api-client-ruby/lib/nightona_api_client/api_client.rb",
           "cd libs/api-client-ruby && bundle install"
         ],
         "parallel": false
@@ -58,7 +58,7 @@
         "cwd": "{projectRoot}",
         "commands": [
           "mkdir -p ~/.gem && echo \":rubygems: $RUBYGEMS_API_KEY\" > ~/.gem/credentials && chmod 0600 ~/.gem/credentials",
-          "gem push daytona_api_client-*.gem --key rubygems --host https://rubygems.org"
+          "gem push nightona_api_client-*.gem --key rubygems --host https://rubygems.org"
         ],
         "parallel": false
       },

@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Snapshot(SyncSnapshotDto)
 ```
 
-Represents a Daytona Snapshot which is a pre-configured sandbox.
+Represents a Nightona Snapshot which is a pre-configured sandbox.
 
 **Attributes**:
 
@@ -37,7 +37,7 @@ Represents a Daytona Snapshot which is a pre-configured sandbox.
 class SnapshotService()
 ```
 
-Service for managing Daytona Snapshots. Can be used to list, get, create and delete Snapshots.
+Service for managing Nightona Snapshots. Can be used to list, get, create and delete Snapshots.
 
 #### SnapshotService.list
 
@@ -64,8 +64,8 @@ Returns paginated list of Snapshots.
 **Example**:
 
 ```python
-daytona = Daytona()
-result = daytona.snapshot.list(page=2, limit=10)
+nightona = Nightona()
+result = nightona.snapshot.list(page=2, limit=10)
 for snapshot in result.items:
     print(f"{snapshot.name} ({snapshot.image_name})")
 ```
@@ -88,9 +88,9 @@ Delete a Snapshot.
 **Example**:
 
 ```python
-daytona = Daytona()
-snapshot = daytona.snapshot.get("test-snapshot")
-daytona.snapshot.delete(snapshot)
+nightona = Nightona()
+snapshot = nightona.snapshot.get("test-snapshot")
+nightona.snapshot.delete(snapshot)
 print("Snapshot deleted")
 ```
 
@@ -117,8 +117,8 @@ Get a Snapshot by name.
 **Example**:
 
 ```python
-daytona = Daytona()
-snapshot = daytona.snapshot.get("test-snapshot-name")
+nightona = Nightona()
+snapshot = nightona.snapshot.get("test-snapshot-name")
 print(f"{snapshot.name} ({snapshot.image_name})")
 ```
 
@@ -146,7 +146,7 @@ Creates and registers a new snapshot from the given Image definition.
 
 ```python
 image = Image.debianSlim('3.12').pipInstall('numpy')
-daytona.snapshot.create(
+nightona.snapshot.create(
     CreateSnapshotParams(name='my-snapshot', image=image),
     on_logs=lambda chunk: print(chunk, end=""),
 )
@@ -194,7 +194,7 @@ Processes the image context by uploading it to object storage.
 class PaginatedSnapshots(PaginatedSnapshotsDto)
 ```
 
-Represents a paginated list of Daytona Snapshots.
+Represents a paginated list of Nightona Snapshots.
 
 **Attributes**:
 
@@ -216,7 +216,7 @@ Parameters for creating a new snapshot.
 - `name` _str_ - Name of the snapshot.
 - `image` _str | Image_ - Image of the snapshot. If a string is provided,
   it should be available on some registry. If an Image instance is provided,
-  it will be used to create a new image in Daytona.
+  it will be used to create a new image in Nightona.
 - `resources` _Resources | None_ - Resources of the snapshot.
 - `entrypoint` _list[str] | None_ - Entrypoint of the snapshot.
 - `region_id` _str | None_ - ID of the region where the snapshot will be available.

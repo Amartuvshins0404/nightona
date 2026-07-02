@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -16,7 +16,7 @@ import (
 // Resolution order:
 //  1. Android-device containers prefer their link network IP. Their ADB/emulator
 //     socat forwarders bind to eth0, which for followers is the link network.
-//  2. The runner bridge network (daytona-internal inter-sandbox network).
+//  2. The runner bridge network (nightona-internal inter-sandbox network).
 //  3. The default Docker bridge.
 //
 // Returns an empty string when no known network is attached.

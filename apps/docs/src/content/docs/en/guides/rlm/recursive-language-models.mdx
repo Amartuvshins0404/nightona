@@ -1,13 +1,13 @@
 ---
 title: Build deep Recursive Language Models
-description: Implement recursive language model agents where each agent runs in its own isolated Daytona sandbox.
+description: Implement recursive language model agents where each agent runs in its own isolated Nightona sandbox.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This guide demonstrates how to build a recursive language model (RLM) agent system that uses Daytona sandboxes, based on the approach pioneered in [Recursive Language Models](https://arxiv.org/abs/2512.24601) (Zhang, Kraska, Khattab) and further explored by [Prime Intellect](https://www.primeintellect.ai/blog/rlm).
+This guide demonstrates how to build a recursive language model (RLM) agent system that uses Nightona sandboxes, based on the approach pioneered in [Recursive Language Models](https://arxiv.org/abs/2512.24601) (Zhang, Kraska, Khattab) and further explored by [Prime Intellect](https://www.primeintellect.ai/blog/rlm).
 
-While the original paper and Prime Intellect's implementation focus on single-level recursion (depth=1), this guide extends the concept to **unlimited recursion depth** — agents can spawn sub-agents, which can spawn their own sub-agents, and so on. Each agent runs in its own isolated Daytona sandbox with a fresh clone of the target repository.
+While the original paper and Prime Intellect's implementation focus on single-level recursion (depth=1), this guide extends the concept to **unlimited recursion depth** — agents can spawn sub-agents, which can spawn their own sub-agents, and so on. Each agent runs in its own isolated Nightona sandbox with a fresh clone of the target repository.
 
 ---
 
@@ -15,7 +15,7 @@ While the original paper and Prime Intellect's implementation focus on single-le
 
 The system implements a recursive agent architecture where agents can delegate subtasks to child agents:
 
-1. **Initialize**: Root agent receives a task and gets a Daytona sandbox with a fresh repository clone
+1. **Initialize**: Root agent receives a task and gets a Nightona sandbox with a fresh repository clone
 2. **Iterate**: Agent runs a loop: LLM call → extract Python code → execute in REPL
 3. **Delegate**: Code can call `rlm_query()` to spawn sub-agents, each with their own sandbox
 4. **Aggregate**: Sub-agents return results; parent synthesizes findings and optionally runs more code
@@ -31,17 +31,17 @@ Root Agent (depth=0)
     └── Sub-Agent B2 (depth=2)
 ```
 
-Each agent runs in its own isolated Daytona sandbox with a fresh repository clone, enabling parallel exploration.
+Each agent runs in its own isolated Nightona sandbox with a fresh repository clone, enabling parallel exploration.
 
 ### 2. Setup
 
 #### Clone the Repository
 
-Clone the [Daytona repository](https://github.com/daytonaio/daytona.git) and navigate to the example directory:
+Clone the [Nightona repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/python/recursive-language-models
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/python/recursive-language-models
 ```
 
 #### Create Virtual Environment
@@ -58,17 +58,17 @@ pip install -e .
 ```
 
 This installs:
-- `daytona` - Daytona SDK for sandbox management
+- `nightona` - Nightona SDK for sandbox management
 - `litellm` - Unified LLM interface for any provider
 - `typer` - CLI framework
 - `pyyaml` - Configuration parsing
 
 #### Configure Environment
 
-Get your Daytona API key from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys) and create a `.env` file:
+Get your Nightona API key from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys) and create a `.env` file:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_api_key
+NIGHTONA_API_KEY=your_nightona_api_key
 LLM_API_KEY=your_llm_api_key
 ```
 
@@ -273,7 +273,7 @@ The root agent (depth=0) examines the repository structure, identifies all sklea
   </TabItem>
 </Tabs>
 
-Each of these 25 sub-agents gets its own Daytona sandbox with a fresh clone of scikit-learn.
+Each of these 25 sub-agents gets its own Nightona sandbox with a fresh clone of scikit-learn.
 
 **Step 2: Depth-1 agents spawn depth-2 agents**
 

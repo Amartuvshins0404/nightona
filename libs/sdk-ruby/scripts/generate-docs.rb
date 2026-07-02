@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 # frozen_string_literal: true
 
@@ -9,25 +9,25 @@ require 'yard'
 
 # Configuration
 DOCS_OUTPUT_DIR = File.expand_path('../../../apps/docs/src/content/docs/en/ruby-sdk', __dir__)
-LIB_DIR = File.expand_path('../lib/daytona', __dir__)
+LIB_DIR = File.expand_path('../lib/nightona', __dir__)
 
 # Classes to document: [file_path, output_filename, class_name]
 CLASSES_TO_DOCUMENT = [
-  ['config.rb', 'config.mdx', 'Daytona::Config'],
-  ['daytona.rb', 'daytona.mdx', 'Daytona::Daytona'],
-  ['sandbox.rb', 'sandbox.mdx', 'Daytona::Sandbox'],
-  ['file_system.rb', 'file-system.mdx', 'Daytona::FileSystem'],
-  ['git.rb', 'git.mdx', 'Daytona::Git'],
-  ['process.rb', 'process.mdx', 'Daytona::Process'],
-  ['lsp_server.rb', 'lsp-server.mdx', 'Daytona::LspServer'],
-  ['volume.rb', 'volume.mdx', 'Daytona::Volume'],
-  ['object_storage.rb', 'object-storage.mdx', 'Daytona::ObjectStorage'],
-  ['computer_use.rb', 'computer-use.mdx', 'Daytona::ComputerUse'],
-  ['computer_use.rb', 'computer-use.mdx', 'Daytona::ComputerUse::Accessibility'],
-  ['snapshot_service.rb', 'snapshot.mdx', 'Daytona::SnapshotService'],
-  ['volume_service.rb', 'volume-service.mdx', 'Daytona::VolumeService'],
-  ['common/charts.rb', 'charts.mdx', 'Daytona::Chart'],
-  ['common/image.rb', 'image.mdx', 'Daytona::Image']
+  ['config.rb', 'config.mdx', 'Nightona::Config'],
+  ['nightona.rb', 'nightona.mdx', 'Nightona::Nightona'],
+  ['sandbox.rb', 'sandbox.mdx', 'Nightona::Sandbox'],
+  ['file_system.rb', 'file-system.mdx', 'Nightona::FileSystem'],
+  ['git.rb', 'git.mdx', 'Nightona::Git'],
+  ['process.rb', 'process.mdx', 'Nightona::Process'],
+  ['lsp_server.rb', 'lsp-server.mdx', 'Nightona::LspServer'],
+  ['volume.rb', 'volume.mdx', 'Nightona::Volume'],
+  ['object_storage.rb', 'object-storage.mdx', 'Nightona::ObjectStorage'],
+  ['computer_use.rb', 'computer-use.mdx', 'Nightona::ComputerUse'],
+  ['computer_use.rb', 'computer-use.mdx', 'Nightona::ComputerUse::Accessibility'],
+  ['snapshot_service.rb', 'snapshot.mdx', 'Nightona::SnapshotService'],
+  ['volume_service.rb', 'volume-service.mdx', 'Nightona::VolumeService'],
+  ['common/charts.rb', 'charts.mdx', 'Nightona::Chart'],
+  ['common/image.rb', 'image.mdx', 'Nightona::Image']
 ]
 
 def extract_class_name_from_path(class_name)
@@ -89,7 +89,7 @@ def extract_class_description(obj)
     # If still empty, generate a basic description
     if description.empty?
       simple_name = extract_class_name_from_path(obj.path)
-      description = "#{simple_name} class for Daytona SDK."
+      description = "#{simple_name} class for Nightona SDK."
     end
   end
 

@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -124,20 +124,20 @@ export class OrgMetricsExporterService {
         { key: 'sandbox.class', value: { stringValue: rq.sandboxClass } },
       ]
 
-      this.addDataPoint(metrics, 'daytona.sandbox.used_cpu', attrs, usage.currentCpuUsage, nowNano)
-      this.addDataPoint(metrics, 'daytona.sandbox.used_ram', attrs, usage.currentMemoryUsage, nowNano)
-      this.addDataPoint(metrics, 'daytona.sandbox.used_storage', attrs, usage.currentDiskUsage, nowNano)
+      this.addDataPoint(metrics, 'nightona.sandbox.used_cpu', attrs, usage.currentCpuUsage, nowNano)
+      this.addDataPoint(metrics, 'nightona.sandbox.used_ram', attrs, usage.currentMemoryUsage, nowNano)
+      this.addDataPoint(metrics, 'nightona.sandbox.used_storage', attrs, usage.currentDiskUsage, nowNano)
       if (rq.totalCpuQuota > 0) {
-        this.addDataPoint(metrics, 'daytona.sandbox.total_cpu', attrs, rq.totalCpuQuota, nowNano)
+        this.addDataPoint(metrics, 'nightona.sandbox.total_cpu', attrs, rq.totalCpuQuota, nowNano)
       }
       if (rq.totalMemoryQuota > 0) {
-        this.addDataPoint(metrics, 'daytona.sandbox.total_ram', attrs, rq.totalMemoryQuota, nowNano)
+        this.addDataPoint(metrics, 'nightona.sandbox.total_ram', attrs, rq.totalMemoryQuota, nowNano)
       }
       if (rq.totalDiskQuota > 0) {
-        this.addDataPoint(metrics, 'daytona.sandbox.total_storage', attrs, rq.totalDiskQuota, nowNano)
+        this.addDataPoint(metrics, 'nightona.sandbox.total_storage', attrs, rq.totalDiskQuota, nowNano)
       }
       if (rq.totalGpuQuota > 0) {
-        this.addDataPoint(metrics, 'daytona.sandbox.total_gpu', attrs, rq.totalGpuQuota, nowNano)
+        this.addDataPoint(metrics, 'nightona.sandbox.total_gpu', attrs, rq.totalGpuQuota, nowNano)
       }
     }
 
@@ -149,7 +149,7 @@ export class OrgMetricsExporterService {
           },
           scopeMetrics: [
             {
-              scope: { name: 'daytona.api.org_metrics', version: '1.0.0' },
+              scope: { name: 'nightona.api.org_metrics', version: '1.0.0' },
               metrics,
             },
           ],
@@ -162,12 +162,12 @@ export class OrgMetricsExporterService {
 
   private createMetricDefinitions(): OtlpMetric[] {
     const defs = [
-      { name: 'daytona.sandbox.used_cpu', description: 'Total CPU usage', unit: '{cpu}' },
-      { name: 'daytona.sandbox.used_ram', description: 'Total memory usage', unit: 'GiBy' },
-      { name: 'daytona.sandbox.used_storage', description: 'Total disk usage', unit: 'GiBy' },
-      { name: 'daytona.sandbox.total_cpu', description: 'Total CPU quota', unit: '{cpu}' },
-      { name: 'daytona.sandbox.total_ram', description: 'Total memory quota', unit: 'GiBy' },
-      { name: 'daytona.sandbox.total_storage', description: 'Total disk quota', unit: 'GiBy' },
+      { name: 'nightona.sandbox.used_cpu', description: 'Total CPU usage', unit: '{cpu}' },
+      { name: 'nightona.sandbox.used_ram', description: 'Total memory usage', unit: 'GiBy' },
+      { name: 'nightona.sandbox.used_storage', description: 'Total disk usage', unit: 'GiBy' },
+      { name: 'nightona.sandbox.total_cpu', description: 'Total CPU quota', unit: '{cpu}' },
+      { name: 'nightona.sandbox.total_ram', description: 'Total memory quota', unit: 'GiBy' },
+      { name: 'nightona.sandbox.total_storage', description: 'Total disk quota', unit: 'GiBy' },
     ]
 
     return defs.map((d) => ({

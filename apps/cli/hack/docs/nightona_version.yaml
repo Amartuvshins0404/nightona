@@ -1,0 +1,9 @@
+name: nightona version
+synopsis: Print the version number
+usage: nightona version [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

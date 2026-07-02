@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -21,7 +21,7 @@ import { RegionType } from './region/enums/region-type.enum'
 import { RunnerState } from './sandbox/enums/runner-state.enum'
 import { OrganizationResourcePermission } from './organization/enums/organization-resource-permission.enum'
 
-export const DAYTONA_ADMIN_USER_ID = 'daytona-admin'
+export const NIGHTONA_ADMIN_USER_ID = 'nightona-admin'
 
 @Injectable()
 export class AppService implements OnApplicationBootstrap, OnApplicationShutdown {
@@ -170,13 +170,13 @@ export class AppService implements OnApplicationBootstrap, OnApplicationShutdown
   }
 
   private async initializeAdminUser(): Promise<void> {
-    if (await this.userService.findOne(DAYTONA_ADMIN_USER_ID)) {
+    if (await this.userService.findOne(NIGHTONA_ADMIN_USER_ID)) {
       return
     }
 
     const user = await this.userService.create({
-      id: DAYTONA_ADMIN_USER_ID,
-      name: 'Daytona Admin',
+      id: NIGHTONA_ADMIN_USER_ID,
+      name: 'Nightona Admin',
       personalOrganizationQuota: {
         totalCpuQuota: this.configService.getOrThrow('admin.totalCpuQuota'),
         totalMemoryQuota: this.configService.getOrThrow('admin.totalMemoryQuota'),
@@ -195,7 +195,7 @@ export class AppService implements OnApplicationBootstrap, OnApplicationShutdown
     const { value } = await this.apiKeyService.createApiKey(
       personalOrg.id,
       user.id,
-      DAYTONA_ADMIN_USER_ID,
+      NIGHTONA_ADMIN_USER_ID,
       Object.values(OrganizationResourcePermission),
       undefined,
       this.configService.getOrThrow('admin.apiKey'),
@@ -314,7 +314,7 @@ Admin user created with API key: ${value}
   }
 
   private async initializeDefaultSnapshot(): Promise<void> {
-    const adminPersonalOrg = await this.organizationService.findPersonal(DAYTONA_ADMIN_USER_ID)
+    const adminPersonalOrg = await this.organizationService.findPersonal(NIGHTONA_ADMIN_USER_ID)
 
     try {
       const existingSnapshot = await this.snapshotService.getSnapshotByName(

@@ -1,11 +1,11 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package options
 
 import "time"
 
-// CreateSandbox holds optional parameters for [daytona.Client.Create].
+// CreateSandbox holds optional parameters for [nightona.Client.Create].
 type CreateSandbox struct {
 	Timeout      *time.Duration // Maximum time to wait for sandbox creation
 	WaitForStart bool           // Whether to wait for the sandbox to reach started state
@@ -28,7 +28,7 @@ func WithTimeout(timeout time.Duration) func(*CreateSandbox) {
 	}
 }
 
-// WithWaitForStart controls whether [daytona.Client.Create] waits for the sandbox
+// WithWaitForStart controls whether [nightona.Client.Create] waits for the sandbox
 // to reach the started state before returning.
 //
 // When true (the default), Create blocks until the sandbox is fully started and ready

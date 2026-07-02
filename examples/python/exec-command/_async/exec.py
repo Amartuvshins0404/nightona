@@ -1,10 +1,10 @@
 import asyncio
 
-from daytona import (
-    AsyncDaytona,
+from nightona import (
+    AsyncNightona,
     AsyncSandbox,
     CreateSandboxFromImageParams,
-    DaytonaTimeoutError,
+    NightonaTimeoutError,
     ExecutionError,
     OutputMessage,
     Resources,
@@ -12,7 +12,7 @@ from daytona import (
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
+    async with AsyncNightona() as nightona:
         params = CreateSandboxFromImageParams(
             image="python:3.9.23-slim",
             language="python",
@@ -22,7 +22,7 @@ async def main():
                 disk=3,
             ),
         )
-        sandbox = await daytona.create(params, timeout=150, on_snapshot_create_logs=print)
+        sandbox = await nightona.create(params, timeout=150, on_snapshot_create_logs=print)
 
         try:
             # Run the code securely inside the sandbox
@@ -41,7 +41,7 @@ async def main():
 
             await stateful_code_interpreter(sandbox)
         finally:
-            await daytona.delete(sandbox)
+            await nightona.delete(sandbox)
 
 
 async def stateful_code_interpreter(sandbox: AsyncSandbox):
@@ -112,7 +112,7 @@ print('Finished!')
             on_stderr=handle_stderr,
             on_error=handle_error,
         )
-    except DaytonaTimeoutError as exc:
+    except NightonaTimeoutError as exc:
         print(f"Timed out as expected: {exc}")
 
 

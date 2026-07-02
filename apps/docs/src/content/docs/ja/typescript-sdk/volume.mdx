@@ -6,7 +6,7 @@ hideTitleOnPage: true
 
 ## VolumeService
 
-Daytonaのボリューム（S3互換オブジェクトストレージをバックエンドとするFUSEベースの共有ストレージマウント）を管理するサービス。
+Nightonaのボリューム（S3互換オブジェクトストレージをバックエンドとするFUSEベースの共有ストレージマウント）を管理するサービス。
 
 このサービスは、ボリュームの一覧取得、参照、作成、削除の各メソッドを提供します。
 
@@ -53,8 +53,8 @@ create(name: string): Promise<Volume>
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volume = await daytona.volume.create("my-data-volume");
+const nightona = new Nightona();
+const volume = await nightona.volume.create("my-data-volume");
 console.log(`Created volume ${volume.name} with ID ${volume.id}`);
 ```
 
@@ -84,9 +84,9 @@ delete(volume: Volume): Promise<void>
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volume = await daytona.volume.get("volume-name");
-await daytona.volume.delete(volume);
+const nightona = new Nightona();
+const volume = await nightona.volume.get("volume-name");
+await nightona.volume.delete(volume);
 console.log("Volume deleted successfully");
 ```
 
@@ -117,8 +117,8 @@ get(name: string, create: boolean): Promise<Volume>
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volume = await daytona.volume.get("volume-name", true);
+const nightona = new Nightona();
+const volume = await nightona.volume.get("volume-name", true);
 console.log(`Volume ${volume.name} is in state ${volume.state}`);
 ```
 
@@ -139,8 +139,8 @@ list(): Promise<Volume[]>
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volumes = await daytona.volume.list();
+const nightona = new Nightona();
+const volumes = await nightona.volume.list();
 console.log(`Found ${volumes.length} volumes`);
 volumes.forEach(vol => console.log(`${vol.name} (${vol.id})`));
 ```
@@ -156,7 +156,7 @@ type Volume = VolumeDto & {
 };
 ```
 
-Daytona（サンドボックスを作成・管理するプラットフォーム）のボリューム（S3互換オブジェクトストレージをバックエンドとするFUSEベースの共有ストレージマウント）を表します。サンドボックス（Daytonaが管理する隔離された一時的なコンピュート環境）間で共有されるストレージです。
+Nightona（サンドボックスを作成・管理するプラットフォーム）のボリューム（S3互換オブジェクトストレージをバックエンドとするFUSEベースの共有ストレージマウント）を表します。サンドボックス（Nightonaが管理する隔離された一時的なコンピュート環境）間で共有されるストレージです。
 
 **型定義**:
 

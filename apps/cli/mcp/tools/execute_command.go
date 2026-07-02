@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package tools
@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	apiclient_cli "github.com/daytonaio/daytona/cli/apiclient"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	apiclient_cli "github.com/Amartuvshins0404/nightona/apps/cli/apiclient"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 	"github.com/mark3labs/mcp-go/mcp"
 
 	log "github.com/sirupsen/logrus"
@@ -30,14 +30,14 @@ type CommandResult struct {
 
 func GetExecuteCommandTool() mcp.Tool {
 	return mcp.NewTool("execute_command",
-		mcp.WithDescription("Execute shell commands in the ephemeral Daytona Linux environment. Returns full stdout and stderr output with exit codes. Commands have sandbox user permissions and can install packages, modify files, and interact with running services. Always use /tmp directory. Use verbose flags where available for better output."),
+		mcp.WithDescription("Execute shell commands in the ephemeral Nightona Linux environment. Returns full stdout and stderr output with exit codes. Commands have sandbox user permissions and can install packages, modify files, and interact with running services. Always use /tmp directory. Use verbose flags where available for better output."),
 		mcp.WithString("command", mcp.Required(), mcp.Description("Command to execute.")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("ID of the sandbox to execute the command in.")),
 	)
 }
 
 func ExecuteCommand(ctx context.Context, request mcp.CallToolRequest, args ExecuteCommandArgs) (*mcp.CallToolResult, error) {
-	apiClient, err := apiclient_cli.GetApiClient(nil, daytonaMCPHeaders)
+	apiClient, err := apiclient_cli.GetApiClient(nil, nightonaMCPHeaders)
 	if err != nil {
 		return &mcp.CallToolResult{IsError: true}, err
 	}

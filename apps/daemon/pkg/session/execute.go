@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package session
@@ -13,11 +13,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/daytonaio/daemon/internal/util"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal/util"
 	"github.com/google/uuid"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	"github.com/daytonaio/common-go/pkg/log"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
 )
 
 func (s *SessionService) Execute(sessionId, cmdId, cmd string, async, isCombinedOutput, skipServerDemux, suppressInputEcho bool) (*SessionExecute, error) {

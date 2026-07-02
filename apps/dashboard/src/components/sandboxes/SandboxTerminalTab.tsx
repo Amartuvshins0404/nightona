@@ -1,16 +1,16 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { DAYTONA_DOCS_URL } from '@/constants/ExternalLinks'
+import { NIGHTONA_DOCS_URL } from '@/constants/ExternalLinks'
 import { useTerminalSessionQuery } from '@/hooks/queries/useTerminalSessionQuery'
 import { useSandboxSessionContext } from '@/hooks/useSandboxSessionContext'
 import { isStoppable } from '@/lib/utils/sandbox'
-import { SandboxListItem } from '@daytona/api-client'
+import { SandboxListItem } from '@nightona/api-client'
 import { Spinner } from '@/components/ui/spinner'
 import { ArrowUpRight, RefreshCw, TerminalSquare } from 'lucide-react'
 
@@ -56,7 +56,7 @@ export function SandboxTerminalTab({ sandbox }: { sandbox: SandboxListItem }) {
               <EmptyTitle>Sandbox is not running</EmptyTitle>
               <EmptyDescription>
                 Start the sandbox to access the terminal.{' '}
-                <a href={`${DAYTONA_DOCS_URL}/en/web-terminal`} target="_blank" rel="noopener noreferrer">
+                <a href={`${NIGHTONA_DOCS_URL}/en/web-terminal`} target="_blank" rel="noopener noreferrer">
                   Learn more
                 </a>
                 .

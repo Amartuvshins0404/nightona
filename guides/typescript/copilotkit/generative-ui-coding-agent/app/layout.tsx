@@ -4,8 +4,8 @@ import { CopilotKitRoot } from '@/components/CopilotKitRoot'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'CopilotKit + Daytona Coding Agent',
-  description: 'A generative-UI coding agent that builds Vite apps live in a Daytona sandbox.',
+  title: 'CopilotKit + Nightona Coding Agent',
+  description: 'A generative-UI coding agent that builds Vite apps live in a Nightona sandbox.',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

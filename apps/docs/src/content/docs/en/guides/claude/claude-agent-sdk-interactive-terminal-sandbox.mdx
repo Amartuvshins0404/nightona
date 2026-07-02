@@ -1,13 +1,13 @@
 ---
-title: Build a Coding Agent Using Claude Agent SDK and Daytona
-description: Step-by-step guide to building an autonomous coding agent using Claude Code and Daytona sandboxes.
+title: Build a Coding Agent Using Claude Agent SDK and Nightona
+description: Step-by-step guide to building an autonomous coding agent using Claude Code and Nightona sandboxes.
 ---
 
 import { Image } from 'astro:assets'
 
 import claudeAgentSDKInteractiveTerminalSandboxResult from '../../../../../assets/docs/images/claude-agent-sdk-interactive-terminal-sandbox-result.gif'
 
-This guide demonstrates how to run an autonomous coding agent based on [Claude Code](https://code.claude.com/docs/en/overview) inside a Daytona sandbox environment. The agent uses the [Claude Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) to follow user prompts.
+This guide demonstrates how to run an autonomous coding agent based on [Claude Code](https://code.claude.com/docs/en/overview) inside a Nightona sandbox environment. The agent uses the [Claude Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) to follow user prompts.
 
 The agent can develop full-stack web apps, write code in any language, install dependencies, and run scripts. It can also start and manage dev servers, and generate preview links for live apps.
 
@@ -15,7 +15,7 @@ The agent can develop full-stack web apps, write code in any language, install d
 
 ### 1. Workflow Overview
 
-When you launch the main module, a Daytona sandbox is created and a Python agent is initialized inside it. The agent is based on the [Claude Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview).
+When you launch the main module, a Nightona sandbox is created and a Python agent is initialized inside it. The agent is based on the [Claude Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview).
 
 You interact with the main program via a command line chat interface. The program sends your prompts to the agent inside the sandbox, which executes them and returns the results:
 
@@ -61,7 +61,7 @@ Perfect! I've created a Zelda-like game called "Programmer's Quest" for you! �
 - Track your progress in the HUD
 
 ## Play Now:
-🎯 [Click here to play the game!](https://80-8e2c4d23-212a-4f1e-bb6c-abfa71aeed3a.proxy.daytona.works)
+🎯 [Click here to play the game!](https://80-8e2c4d23-212a-4f1e-bb6c-abfa71aeed3a.proxy.nightona.works)
 
 The game features smooth movement, collision detection with trees and rocks, and an immersive dialog system. Try to find and talk to all 5 famous programmers to learn their wisdom! Each has 3 different quotes that cycle as you keep talking to them.
 
@@ -69,7 +69,7 @@ Enjoy your adventure! 🗡️✨
 User:
 ```
 
-The agent can also host web apps and provide you with a preview link using the [Daytona Preview Links](https://www.daytona.io/docs/en/preview/) feature. When your task involves running or previewing a web application, the agent automatically reasons about this need, hosts the app, and generates a preview link for you to inspect the live result:
+The agent can also host web apps and provide you with a preview link using the [Nightona Preview Links](https://www.daytona.io/docs/en/preview/) feature. When your task involves running or previewing a web application, the agent automatically reasons about this need, hosts the app, and generates a preview link for you to inspect the live result:
 
 <Image
   src={claudeAgentSDKInteractiveTerminalSandboxResult}
@@ -84,29 +84,29 @@ You can continue interacting with your agent until you are finished. When you ex
 
 #### Clone the Repository
 
-First, clone the daytona [repository](https://github.com/daytonaio/daytona.git) and navigate to the example directory:
+First, clone the nightona [repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/typescript/anthropic/single-claude-agent-sdk
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/typescript/anthropic/single-claude-agent-sdk
 ```
 
 #### Configure Environment
 
 Get your API keys:
 
-- **Daytona API key:** [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- **Nightona API key:** [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - **Anthropic API key:** [Anthropic Console](https://console.anthropic.com/)
 
 Copy `.env.example` to `.env` and add your keys:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_key
+NIGHTONA_API_KEY=your_nightona_key
 SANDBOX_ANTHROPIC_API_KEY=your_anthropic_key
 ```
 
 :::caution[API Key Security]
-Note: The `SANDBOX_ANTHROPIC_API_KEY` key is passed into the Daytona sandbox environment and is accessible to any code executed inside the sandbox.
+Note: The `SANDBOX_ANTHROPIC_API_KEY` key is passed into the Nightona sandbox environment and is accessible to any code executed inside the sandbox.
 :::
 
 #### Local Usage
@@ -198,7 +198,7 @@ Perfect! 🎉 I've created a fun and colorful pet store landing page in Svelte! 
 
 ## Live Preview:
 
-Your pet store is now running at: https://80-b3739199-d90e-4bde-ab18-450d74c950e8.proxy.daytona.works
+Your pet store is now running at: https://80-b3739199-d90e-4bde-ab18-450d74c950e8.proxy.nightona.works
 
 The page includes:
 
@@ -218,14 +218,14 @@ User:
 
 This example consists of two main components:
 
-- **Main Program:** The main program is a Node.js script (`index.ts`) that runs on your local machine. It uses the Daytona SDK to create and manage a Daytona sandbox. The main program provides a command line interface for interacting with the agent inside the sandbox.
-- **Sandbox Agent:** The sandbox agent is a Python script (`coding_agent.py`) that runs inside the Daytona sandbox. It uses the Claude Agent SDK to create a customized coding agent similar to Claude Code.
+- **Main Program:** The main program is a Node.js script (`index.ts`) that runs on your local machine. It uses the Nightona SDK to create and manage a Nightona sandbox. The main program provides a command line interface for interacting with the agent inside the sandbox.
+- **Sandbox Agent:** The sandbox agent is a Python script (`coding_agent.py`) that runs inside the Nightona sandbox. It uses the Claude Agent SDK to create a customized coding agent similar to Claude Code.
 
 #### Initialization
 
 On initialization, the main program:
 
-1. Creates a new [Daytona sandbox](/docs/en/sandboxes) with your Anthropic API key included in the environment variables.
+1. Creates a new [Nightona sandbox](/docs/en/sandboxes) with your Anthropic API key included in the environment variables.
 2. Installs the Claude Agent SDK by running `pip install` in the sandbox with [process execution](/docs/en/process-code-execution#command-execution).
 3. Creates a new [code interpreter context](/docs/en/process-code-execution#run-code-stateful).
 4. Uploads the coding agent script to the sandbox with [file uploading](/docs/en/file-system-operations#upload-a-single-file).
@@ -258,8 +258,8 @@ The agent is initialized with a system prompt that includes the workspace direct
 
 ```python
 system_prompt = """
-You are running in a Daytona sandbox.
-Use the /home/daytona directory instead of /workspace for file operations.
+You are running in a Nightona sandbox.
+Use the /home/nightona directory instead of /workspace for file operations.
 Your public preview URL for port 80 is: {}.
 """.format(preview_url)
 ```
@@ -280,11 +280,11 @@ The code to run queries and receive responses follows the examples in Anthropic'
 
 #### Clean up
 
-When you exit the main program, the Daytona sandbox and all files are automatically deleted.
+When you exit the main program, the Nightona sandbox and all files are automatically deleted.
 
 **Key advantages:**
 
-- Secure, isolated execution in Daytona sandboxes
+- Secure, isolated execution in Nightona sandboxes
 - Communicate with the agent directly in your terminal
 - Automatic dev server detection and live preview links
 - Multi-language and full-stack support

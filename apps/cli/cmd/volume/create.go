@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package volume
@@ -7,10 +7,10 @@ import (
 	"context"
 	"fmt"
 
-	apiclient_cli "github.com/daytonaio/daytona/cli/apiclient"
-	"github.com/daytonaio/daytona/cli/cmd/common"
-	view_common "github.com/daytonaio/daytona/cli/views/common"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	apiclient_cli "github.com/Amartuvshins0404/nightona/apps/cli/apiclient"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/common"
+	view_common "github.com/Amartuvshins0404/nightona/apps/cli/views/common"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 	"github.com/spf13/cobra"
 )
 

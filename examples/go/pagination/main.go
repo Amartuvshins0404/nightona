@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-	client, err := daytona.NewClient()
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -21,12 +21,12 @@ func main() {
 
 	// Example 1: Iterate through sandboxes (Go 1.23+ range-over-func)
 	limit := 10
-	sort := daytona.SandboxListSortFieldCreatedAt
-	order := daytona.SandboxListSortDirectionDesc
-	for sandbox, err := range client.ListSeq(ctx, &daytona.ListSandboxesQuery{
+	sort := nightona.SandboxListSortFieldCreatedAt
+	order := nightona.SandboxListSortDirectionDesc
+	for sandbox, err := range client.ListSeq(ctx, &nightona.ListSandboxesQuery{
 		Limit:  &limit,
 		Labels: map[string]string{"env": "dev"},
-		States: []daytona.SandboxState{daytona.SandboxStateStarted},
+		States: []nightona.SandboxState{nightona.SandboxStateStarted},
 		Sort:   &sort,
 		Order:  &order,
 	}) {

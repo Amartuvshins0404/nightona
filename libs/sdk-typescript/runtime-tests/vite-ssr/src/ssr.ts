@@ -1,14 +1,14 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Daytona, Image } from '@daytona/sdk'
+import { Nightona, Image } from '@nightona/sdk'
 
 export async function run() {
   const image = Image.base('alpine').env({ FOO: 'bar' })
   if (!image.dockerfile.includes('FROM alpine')) throw new Error('Image.base failed')
 
-  const daytona = new Daytona()
-  const iter = daytona.list()
+  const nightona = new Nightona()
+  const iter = nightona.list()
   if (typeof (iter as any)[Symbol.asyncIterator] !== 'function') {
     throw new Error('list() did not return an async iterator')
   }

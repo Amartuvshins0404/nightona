@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -12,10 +12,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/daytonaio/common-go/pkg/log"
-	"github.com/daytonaio/runner/cmd/runner/config"
-	"github.com/daytonaio/runner/pkg/api/dto"
-	"github.com/daytonaio/runner/pkg/storage"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
+	"github.com/Amartuvshins0404/nightona/apps/runner/cmd/runner/config"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/storage"
 
 	"github.com/docker/docker/api/types/build"
 	docker_registry "github.com/docker/docker/api/types/registry"

@@ -1,10 +1,10 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 import { createApiResponse } from './helpers'
-import { DaytonaValidationError } from '../errors/DaytonaError'
+import { NightonaValidationError } from '../errors/NightonaError'
 
-jest.mock('@daytona/toolbox-api-client', () => ({}), { virtual: true })
+jest.mock('@nightona/toolbox-api-client', () => ({}), { virtual: true })
 
 describe('LspServer', () => {
   const apiClient = {
@@ -30,7 +30,7 @@ describe('LspServer', () => {
     const { LspServer } = await import('../LspServer')
 
     expect(() => new LspServer('rust' as never, '/workspace/project', apiClient as never)).toThrow(
-      DaytonaValidationError,
+      NightonaValidationError,
     )
     expect(() => new LspServer('rust' as never, '/workspace/project', apiClient as never)).toThrow(
       'Invalid languageId: rust. Supported values are: python, typescript, javascript',

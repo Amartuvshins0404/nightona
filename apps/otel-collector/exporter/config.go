@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package exporter
@@ -6,7 +6,7 @@ package exporter
 import (
 	"time"
 
-	"github.com/daytonaio/common-go/pkg/cache"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/cache"
 	"go.opentelemetry.io/collector/config/configretry"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
 )
@@ -33,10 +33,10 @@ type Config struct {
 	// RetrySettings defines the retry behavior for failed exports.
 	RetrySettings configretry.BackOffConfig `mapstructure:"retry_on_failure"`
 
-	// SendingQueue configures the queueing and batching behavior for sending requests to Daytona API.
+	// SendingQueue configures the queueing and batching behavior for sending requests to Nightona API.
 	SendingQueue exporterhelper.QueueBatchConfig `mapstructure:"sending_queue"`
 
-	// Daytona API configuration.
+	// Nightona API configuration.
 	ApiUrl string `mapstructure:"api_url"`
 	ApiKey string `mapstructure:"api_key"`
 

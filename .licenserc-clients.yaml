@@ -1,12 +1,12 @@
 header:
   license:
     spdx-id: Apache-2.0
-    copyright-owner: Daytona Platforms Inc.
+    copyright-owner: Nightona Platforms Inc.
     content: |
-      Copyright Daytona Platforms Inc.
+      Copyright Nightona Platforms Inc.
       SPDX-License-Identifier: Apache-2.0
     pattern: |
-      Copyright (\d{4} )?Daytona Platforms Inc\.
+      Copyright (\d{4} )?Nightona Platforms Inc\.
       SPDX-License-Identifier: Apache-2\.0
   paths:
     - 'libs/**/*.go'

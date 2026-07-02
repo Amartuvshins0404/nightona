@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -20,7 +20,7 @@ import { useOrganizationUsageQuery } from '@/hooks/queries/useOrganizationUsageQ
 import { usePastOrganizationUsageQuery } from '@/hooks/queries/usePastOrganizationUsageQuery'
 import { useConfig } from '@/hooks/useConfig'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
-import { BillableMetricCode, OrganizationUsage } from '@daytona/billing-api-client/src/models'
+import { BillableMetricCode, OrganizationUsage } from '@nightona/billing-api-client/src/models'
 import { addDays, differenceInCalendarDays, subDays } from 'date-fns'
 import { AlertCircle, BarChart3, RefreshCw } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'

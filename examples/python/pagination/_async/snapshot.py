@@ -1,11 +1,11 @@
 import asyncio
 
-from daytona import AsyncDaytona
+from nightona import AsyncNightona
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
-        result = await daytona.snapshot.list(page=2, limit=10)
+    async with AsyncNightona() as nightona:
+        result = await nightona.snapshot.list(page=2, limit=10)
         for snapshot in result.items:
             print(f"{snapshot.name} ({snapshot.image_name})")
 

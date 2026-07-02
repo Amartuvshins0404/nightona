@@ -1,9 +1,9 @@
-module github.com/daytonaio/otel-collector/exporter
+module github.com/Amartuvshins0404/nightona/apps/otel-collector/exporter
 
 go 1.25.4
 
 require (
-	github.com/daytonaio/daytona/libs/api-client-go v0.190.0
+	github.com/Amartuvshins0404/nightona/libs/api-client-go v0.190.0
 	go.opentelemetry.io/collector/client v1.50.0
 	go.opentelemetry.io/collector/component v1.50.0
 	go.opentelemetry.io/collector/config/configoptional v1.50.0

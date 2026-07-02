@@ -14,11 +14,11 @@ env:
   VERSION: ${{ inputs.version }}
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
   POETRY_VIRTUALENVS_IN_PROJECT: true
-  GONOSUMDB: github.com/daytonaio/daytona
+  GONOSUMDB: github.com/Amartuvshins0404/nightona
 
 jobs:
   publish:
-    if: github.repository == 'daytonaio/daytona'
+    if: github.repository == 'daytonaio/nightona'
     runs-on: blacksmith-4vcpu-ubuntu-2404
     permissions:
       contents: write
@@ -51,8 +51,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.name "Daytona Release Bot"
-          git config --global user.email "daytona-release@users.noreply.github.com"
+          git config --global user.name "Nightona Release Bot"
+          git config --global user.email "nightona-release@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
 
       - name: Tag Go modules
@@ -64,7 +64,7 @@ jobs:
 
       - name: Go work sync
         run: |
-          GONOSUMDB=github.com/daytonaio/daytona go work sync
+          GONOSUMDB=github.com/Amartuvshins0404/nightona go work sync
           go env -w GOFLAGS="-buildvcs=false"
 
         # Write version to required folders so nx release can run
@@ -92,9 +92,9 @@ jobs:
             "version": "0.0.0"
           }' > apps/runner/package.json
           echo '{
-            "name": "daytona-e2e",
+            "name": "nightona-e2e",
             "version": "0.0.0"
-          }' > apps/daytona-e2e/package.json
+          }' > apps/nightona-e2e/package.json
 
       - name: Create release
         run: yarn nx release "$VERSION" --skip-publish --verbose
@@ -102,8 +102,8 @@ jobs:
       - name: Cleanup credentials
         if: always()
         run: |
-          git config --global --fixed-value --unset-all user.name "Daytona Release Bot" 2>/dev/null || true
-          git config --global --fixed-value --unset-all user.email "daytona-release@users.noreply.github.com" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.name "Nightona Release Bot" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.email "nightona-release@users.noreply.github.com" 2>/dev/null || true
           git config --global --fixed-value --unset-all safe.directory "$GITHUB_WORKSPACE" 2>/dev/null || true
           git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}" 2>/dev/null || true
 
@@ -114,12 +114,12 @@ jobs:
       contents: write
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      DAYTONA_API_URL: ${{ secrets.DAYTONA_API_URL }}
-      DAYTONA_AUTH0_DOMAIN: ${{ secrets.DAYTONA_AUTH0_DOMAIN }}
-      DAYTONA_AUTH0_CLIENT_ID: ${{ secrets.DAYTONA_AUTH0_CLIENT_ID }}
-      DAYTONA_AUTH0_CALLBACK_PORT: ${{ secrets.DAYTONA_AUTH0_CALLBACK_PORT }}
-      DAYTONA_AUTH0_CLIENT_SECRET: ${{ secrets.DAYTONA_AUTH0_CLIENT_SECRET }}
-      DAYTONA_AUTH0_AUDIENCE: ${{ secrets.DAYTONA_AUTH0_AUDIENCE }}
+      NIGHTONA_API_URL: ${{ secrets.NIGHTONA_API_URL }}
+      NIGHTONA_AUTH0_DOMAIN: ${{ secrets.NIGHTONA_AUTH0_DOMAIN }}
+      NIGHTONA_AUTH0_CLIENT_ID: ${{ secrets.NIGHTONA_AUTH0_CLIENT_ID }}
+      NIGHTONA_AUTH0_CALLBACK_PORT: ${{ secrets.NIGHTONA_AUTH0_CALLBACK_PORT }}
+      NIGHTONA_AUTH0_CLIENT_SECRET: ${{ secrets.NIGHTONA_AUTH0_CLIENT_SECRET }}
+      NIGHTONA_AUTH0_AUDIENCE: ${{ secrets.NIGHTONA_AUTH0_AUDIENCE }}
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
     steps:
@@ -139,8 +139,8 @@ jobs:
       - name: Configure git
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.name "Daytona Release Bot"
-          git config --global user.email "daytona-release@users.noreply.github.com"
+          git config --global user.name "Nightona Release Bot"
+          git config --global user.email "nightona-release@users.noreply.github.com"
 
       - name: Build projects
         run: |
@@ -164,25 +164,25 @@ jobs:
 
       - name: Upload runner to release assets
         run: |
-          gh release upload "$VERSION" "dist/apps/runner-amd64#daytona-runner-${VERSION}-amd64" --clobber
+          gh release upload "$VERSION" "dist/apps/runner-amd64#nightona-runner-${VERSION}-amd64" --clobber
 
       - name: Upload runner .deb to release assets
         run: |
           DEB_VERSION="${VERSION#v}"
-          gh release upload "$VERSION" "dist/apps/runner-deb/daytona-runner_${DEB_VERSION}_amd64.deb#daytona-runner-${DEB_VERSION}-amd64.deb" --clobber
+          gh release upload "$VERSION" "dist/apps/runner-deb/nightona-runner_${DEB_VERSION}_amd64.deb#nightona-runner-${DEB_VERSION}-amd64.deb" --clobber
 
       - name: Upload daemon to release assets
         run: |
-          gh release upload "$VERSION" "dist/apps/daemon-amd64#daytona-daemon-${VERSION}-amd64" --clobber
+          gh release upload "$VERSION" "dist/apps/daemon-amd64#nightona-daemon-${VERSION}-amd64" --clobber
 
       - name: Upload CLI to release assets
         run: |
-          gh release upload "$VERSION" "dist/apps/cli/daytona-linux-amd64#daytona-cli-${VERSION}-linux-amd64" --clobber
-          gh release upload "$VERSION" "dist/apps/cli/daytona-linux-arm64#daytona-cli-${VERSION}-linux-arm64" --clobber
-          gh release upload "$VERSION" "dist/apps/cli/daytona-darwin-amd64#daytona-cli-${VERSION}-darwin-amd64" --clobber
-          gh release upload "$VERSION" "dist/apps/cli/daytona-darwin-arm64#daytona-cli-${VERSION}-darwin-arm64" --clobber
-          gh release upload "$VERSION" "dist/apps/cli/daytona-windows-amd64.exe#daytona-cli-${VERSION}-windows-amd64.exe" --clobber
-          gh release upload "$VERSION" "dist/apps/cli/daytona-windows-arm64.exe#daytona-cli-${VERSION}-windows-arm64.exe" --clobber
+          gh release upload "$VERSION" "dist/apps/cli/nightona-linux-amd64#nightona-cli-${VERSION}-linux-amd64" --clobber
+          gh release upload "$VERSION" "dist/apps/cli/nightona-linux-arm64#nightona-cli-${VERSION}-linux-arm64" --clobber
+          gh release upload "$VERSION" "dist/apps/cli/nightona-darwin-amd64#nightona-cli-${VERSION}-darwin-amd64" --clobber
+          gh release upload "$VERSION" "dist/apps/cli/nightona-darwin-arm64#nightona-cli-${VERSION}-darwin-arm64" --clobber
+          gh release upload "$VERSION" "dist/apps/cli/nightona-windows-amd64.exe#nightona-cli-${VERSION}-windows-amd64.exe" --clobber
+          gh release upload "$VERSION" "dist/apps/cli/nightona-windows-arm64.exe#nightona-cli-${VERSION}-windows-arm64.exe" --clobber
 
       - name: Upload computer-use artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -203,8 +203,8 @@ jobs:
       - name: Cleanup credentials
         if: always()
         run: |
-          git config --global --fixed-value --unset-all user.name "Daytona Release Bot" 2>/dev/null || true
-          git config --global --fixed-value --unset-all user.email "daytona-release@users.noreply.github.com" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.name "Nightona Release Bot" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.email "nightona-release@users.noreply.github.com" 2>/dev/null || true
           git config --global --fixed-value --unset-all safe.directory "$GITHUB_WORKSPACE" 2>/dev/null || true
           git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}" 2>/dev/null || true
 
@@ -269,7 +269,7 @@ jobs:
 
       - name: Generate go.work.sum
         run: |
-          GONOSUMDB=github.com/daytonaio/daytona go work sync
+          GONOSUMDB=github.com/Amartuvshins0404/nightona go work sync
           touch go.work.sum
 
       - name: Log in to the Container registry
@@ -378,8 +378,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.name "Daytona Release Bot"
-          git config --global user.email "daytona-release@users.noreply.github.com"
+          git config --global user.name "Nightona Release Bot"
+          git config --global user.email "nightona-release@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
 
       - name: Project dependencies
@@ -397,7 +397,7 @@ jobs:
       - name: Sync go.sum and create PR
         run: |
           git checkout -b "sync-gosum-$VERSION"
-          GONOSUMDB=github.com/daytonaio/daytona go work sync
+          GONOSUMDB=github.com/Amartuvshins0404/nightona go work sync
           if git diff --quiet -- **/go.sum; then
             echo "No go.sum changes detected; skipping commit and PR creation."
           else
@@ -416,7 +416,7 @@ jobs:
       - name: Cleanup credentials
         if: always()
         run: |
-          git config --global --fixed-value --unset-all user.name "Daytona Release Bot" 2>/dev/null || true
-          git config --global --fixed-value --unset-all user.email "daytona-release@users.noreply.github.com" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.name "Nightona Release Bot" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.email "nightona-release@users.noreply.github.com" 2>/dev/null || true
           git config --global --fixed-value --unset-all safe.directory "$GITHUB_WORKSPACE" 2>/dev/null || true
           git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}" 2>/dev/null || true

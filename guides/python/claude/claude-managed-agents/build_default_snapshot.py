@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -13,7 +13,7 @@ import sys
 import dotenv
 import host_lib
 
-from daytona import CreateSnapshotParams, Daytona, DaytonaNotFoundError, Image, Resources
+from nightona import CreateSnapshotParams, Nightona, NightonaNotFoundError, Image, Resources
 
 dotenv.load_dotenv(override=True)
 
@@ -28,16 +28,16 @@ def main() -> int:
 
     name = host_lib.default_snapshot_name()
 
-    daytona = Daytona()
+    nightona = Nightona()
     try:
-        existing = daytona.snapshot.get(name)
+        existing = nightona.snapshot.get(name)
         print(f"snapshot {name} already exists (id {existing.id}); skipping build")
         return 0
-    except DaytonaNotFoundError:
+    except NightonaNotFoundError:
         pass
 
     print(f"building snapshot {name} from {DOCKERFILE} (this is slow)...")
-    snapshot = daytona.snapshot.create(
+    snapshot = nightona.snapshot.create(
         CreateSnapshotParams(
             name=name,
             image=Image.from_dockerfile(str(DOCKERFILE)),

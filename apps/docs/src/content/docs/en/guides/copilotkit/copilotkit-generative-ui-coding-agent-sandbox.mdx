@@ -1,13 +1,13 @@
 ---
-title: Build a Generative-UI Coding Agent with CopilotKit and Daytona
-description: Wire a CopilotKit Built-in Agent to a Daytona sandbox with full shell and filesystem access, where every tool call streams into the chat as generative UI and any hosted process embeds as a live iframe.
+title: Build a Generative-UI Coding Agent with CopilotKit and Nightona
+description: Wire a CopilotKit Built-in Agent to a Nightona sandbox with full shell and filesystem access, where every tool call streams into the chat as generative UI and any hosted process embeds as a live iframe.
 ---
 
 import { Image } from 'astro:assets'
 
 import copilotkitSnakeGame from '../../../../../assets/docs/images/copilotkit_snake_game.gif'
 
-This guide demonstrates how to build a [CopilotKit](https://docs.showcase.copilotkit.ai/) Built-in Agent backed by a [Daytona](https://www.daytona.io/) sandbox with full shell and filesystem access. The agent handles whatever a developer might do at a terminal: build apps, debug or analyze code, run scripts, work with data, install packages.
+This guide demonstrates how to build a [CopilotKit](https://docs.showcase.copilotkit.ai/) Built-in Agent backed by a [Nightona](https://www.daytona.io/) sandbox with full shell and filesystem access. The agent handles whatever a developer might do at a terminal: build apps, debug or analyze code, run scripts, work with data, install packages.
 
 Every tool call streams into the chat as generative UI: shell commands render as terminal cards, file edits as syntax-highlighted code, listings and grep results as structured cards, and any hosted process (dev server, static site, API) as a live `<iframe>` directly in the message stream.
 
@@ -27,18 +27,18 @@ Node.js 20 or newer is required to run this example. Please ensure your environm
 
 #### Clone the Repository
 
-Clone the [Daytona repository](https://github.com/daytonaio/daytona) and navigate to the example directory:
+Clone the [Nightona repository](https://github.com/Amartuvshins0404/nightona) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/typescript/copilotkit/generative-ui-coding-agent
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/typescript/copilotkit/generative-ui-coding-agent
 ```
 
 #### Configure Environment
 
 Get your API keys:
 
-- **Daytona API key**, from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- **Nightona API key**, from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - **OpenAI API key**, from [platform.openai.com](https://platform.openai.com/api-keys)
 
 Copy `.env.example` to `.env` and fill them in:
@@ -48,7 +48,7 @@ cp .env.example .env
 ```
 
 ```bash
-DAYTONA_API_KEY=your_daytona_key
+NIGHTONA_API_KEY=your_nightona_key
 OPENAI_API_KEY=your_openai_key
 ```
 
@@ -95,11 +95,11 @@ Each renderer maps a tool call to a React component, so the chat shows live, str
 
 #### Tool surface
 
-The agent exposes 11 tools, defined with `defineTool` from `@copilotkit/runtime/v2`. Each is a thin wrapper around a [Daytona TypeScript SDK](https://www.daytona.io/docs/en/typescript-sdk/) call:
+The agent exposes 11 tools, defined with `defineTool` from `@copilotkit/runtime/v2`. Each is a thin wrapper around a [Nightona TypeScript SDK](https://www.daytona.io/docs/en/typescript-sdk/) call:
 
-| Tool | Daytona SDK call |
+| Tool | Nightona SDK call |
 |---|---|
-| `createSandbox` (with optional `envVars`, `labels`, `autoStopInterval`) | `daytona.create({ public: true, envVars, labels, autoStopInterval })` |
+| `createSandbox` (with optional `envVars`, `labels`, `autoStopInterval`) | `nightona.create({ public: true, envVars, labels, autoStopInterval })` |
 | `runCommand` (with optional `background`) | `sandbox.process.executeCommand` / `executeSessionCommand(..., { runAsync: true })` |
 | `writeFile` | `sandbox.fs.uploadFile` |
 | `readFile` | `sandbox.fs.downloadFile` |
@@ -117,7 +117,7 @@ The full backend lives in `app/api/copilotkit/route.ts`. The frontend is split a
 
 #### Step 1: Imports and the system prompt
 
-The backend pulls the runtime helpers from `@copilotkit/runtime`, the v2 agent + tool helpers from `@copilotkit/runtime/v2`, the Daytona client, the Next.js request type, and Zod for tool parameter schemas:
+The backend pulls the runtime helpers from `@copilotkit/runtime`, the v2 agent + tool helpers from `@copilotkit/runtime/v2`, the Nightona client, the Next.js request type, and Zod for tool parameter schemas:
 
 ```typescript
 import {
@@ -125,23 +125,23 @@ import {
   copilotRuntimeNextJSAppRouterEndpoint,
 } from '@copilotkit/runtime'
 import { BuiltInAgent, defineTool } from '@copilotkit/runtime/v2'
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 import type { NextRequest } from 'next/server'
 import { z } from 'zod'
 
-const daytona = new Daytona({ apiKey: process.env.DAYTONA_API_KEY })
+const nightona = new Nightona({ apiKey: process.env.NIGHTONA_API_KEY })
 ```
 
 The system prompt frames the agent and lists every tool with its arguments. The model uses this verbatim to decide what to do on each turn:
 
 ```text
-You are a coding agent with shell access to a fresh Daytona sandbox.
+You are a coding agent with shell access to a fresh Nightona sandbox.
 
 The user can ask you anything a developer might do at a terminal: build apps,
 debug or analyze code, run scripts, work with data, install packages, write
 tests, whatever fits the request.
 
-Work under /home/daytona by default. Reuse the same sandboxId across every
+Work under /home/nightona by default. Reuse the same sandboxId across every
 tool call. The sandbox auto-deletes after a period of inactivity; if a tool
 call fails because the sandbox no longer exists, call createSandbox again
 and continue with the new sandboxId.
@@ -153,7 +153,7 @@ When the user wants to see a running web app:
    react-ts --yes` or similar. Avoid `create-react-app`; it is deprecated and
    has very slow first-compile times.
 
-2. ALWAYS bind the dev server to 0.0.0.0 or the Daytona proxy will not reach
+2. ALWAYS bind the dev server to 0.0.0.0 or the Nightona proxy will not reach
    it. Cheat sheet:
    - Vite: `vite --host 0.0.0.0 --port 5173` (CLI flag) AND write a
      `vite.config.ts` with `server: { host: '0.0.0.0', port: 5173, strictPort:
@@ -182,7 +182,7 @@ Each tool is a `defineTool({ name, description, parameters, execute })` block. T
 const createSandbox = defineTool({
   name: 'createSandbox',
   description:
-    'Create a fresh Daytona sandbox with public preview URLs enabled. Call ONCE at session start; reuse the returned sandboxId for every subsequent tool call. Optionally inject environment variables, labels, or change the auto-stop interval.',
+    'Create a fresh Nightona sandbox with public preview URLs enabled. Call ONCE at session start; reuse the returned sandboxId for every subsequent tool call. Optionally inject environment variables, labels, or change the auto-stop interval.',
   parameters: z.object({
     envVars: z
       .record(z.string())
@@ -197,7 +197,7 @@ const createSandbox = defineTool({
       .describe('Minutes of inactivity before the sandbox auto-stops. 0 disables, default 15.'),
   }),
   execute: async ({ envVars, labels, autoStopInterval }) => {
-    const sandbox = await daytona.create({
+    const sandbox = await nightona.create({
       public: true,
       ephemeral: true,
       envVars,
@@ -218,7 +218,7 @@ const runCommand = defineTool({
     'Execute a shell command in the sandbox. Set background:true for long-lived fire-and-forget processes (test watchers, build watchers, log followers) the agent will not need to interact with again. Use plain commands (rm, mv, mkdir, chmod, ...) for filesystem ops that do not need structured output. For dev servers the user should see in a browser, use startWebServer instead — it returns the preview URL atomically.',
   parameters: z.object({
     sandboxId: z.string(),
-    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/daytona && ...`.'),
+    command: z.string().describe('Shell command. Use && to chain. Absolute paths or `cd /home/nightona && ...`.'),
     background: z
       .boolean()
       .optional()
@@ -227,7 +227,7 @@ const runCommand = defineTool({
       ),
   }),
   execute: async ({ sandboxId, command, background }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     if (background) {
       const sessionId = `bg-${Date.now()}`
       await sandbox.process.createSession(sessionId)
@@ -251,18 +251,18 @@ const writeFile = defineTool({
   description: 'Write a file with the FULL new content. Overwrites if it exists.',
   parameters: z.object({
     sandboxId: z.string(),
-    path: z.string().describe('Absolute path, e.g. "/home/daytona/app/src/App.tsx".'),
+    path: z.string().describe('Absolute path, e.g. "/home/nightona/app/src/App.tsx".'),
     content: z.string().describe('Complete new file content.'),
   }),
   execute: async ({ sandboxId, path, content }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     await sandbox.fs.uploadFile(Buffer.from(content), path)
     return { path, bytesWritten: Buffer.byteLength(content) }
   },
 })
 ```
 
-`getPreviewUrl` returns the Daytona proxy URL for any port the sandbox has open. It is the standalone counterpart to `startWebServer`: use it when the agent has already brought up a hosted process by other means (a previous `runCommand`, an already-running service) and just needs the URL to surface as an iframe, without spawning a new dev server:
+`getPreviewUrl` returns the Nightona proxy URL for any port the sandbox has open. It is the standalone counterpart to `startWebServer`: use it when the agent has already brought up a hosted process by other means (a previous `runCommand`, an already-running service) and just needs the URL to surface as an iframe, without spawning a new dev server:
 
 ```typescript
 const getPreviewUrl = defineTool({
@@ -274,14 +274,14 @@ const getPreviewUrl = defineTool({
     port: z.number().describe('Port the hosted process is listening on.'),
   }),
   execute: async ({ sandboxId, port }) => {
-    const sandbox = await daytona.get(sandboxId)
+    const sandbox = await nightona.get(sandboxId)
     const preview = await sandbox.getPreviewLink(port)
     return { url: preview.url, port }
   },
 })
 ```
 
-The remaining six tools (`readFile`, `listFiles`, `findFiles`, `searchFiles`, `replaceInFiles`, `getFileDetails`) follow the same shape: a Zod schema for inputs, a one-call wrapper around the Daytona SDK in `execute`, and a structured object returned to the frontend.
+The remaining six tools (`readFile`, `listFiles`, `findFiles`, `searchFiles`, `replaceInFiles`, `getFileDetails`) follow the same shape: a Zod schema for inputs, a one-call wrapper around the Nightona SDK in `execute`, and a structured object returned to the frontend.
 
 #### Step 3: Mount the agent on `/api/copilotkit`
 
@@ -355,7 +355,7 @@ function parseResult<T>(result: unknown): T | undefined {
 }
 ```
 
-Each render hook references a named Zod schema and a result type declared at the top of `app/page.tsx`. The renderer for `startWebServer` (and the fallback `getPreviewUrl`) is the one users notice most: while either tool is `inProgress`/`executing` the card shows a shimmering skeleton, and once `complete` it flips to a live `<iframe>` pointing at the Daytona preview URL. Both tools share the same `PreviewCard` component because the shape of the data the card needs (`url` and `port`) is identical; the `getPreviewUrl` registration is shown below:
+Each render hook references a named Zod schema and a result type declared at the top of `app/page.tsx`. The renderer for `startWebServer` (and the fallback `getPreviewUrl`) is the one users notice most: while either tool is `inProgress`/`executing` the card shows a shimmering skeleton, and once `complete` it flips to a live `<iframe>` pointing at the Nightona preview URL. Both tools share the same `PreviewCard` component because the shape of the data the card needs (`url` and `port`) is identical; the `getPreviewUrl` registration is shown below:
 
 ```tsx
 const getPreviewUrlParams = z.object({
@@ -415,7 +415,7 @@ A typical first turn looks like this:
 ✓  Sandbox ready                              a0ffcc3d-7753-4d52-89d0-6c595c60626a
 
 ✓  done
-$ cd /home/daytona && npm create vite@latest snake-game -- --template react-ts --yes && cd snake-game && npm install
+$ cd /home/nightona && npm create vite@latest snake-game -- --template react-ts --yes && cd snake-game && npm install
 
 npm warn exec The following package was not found and will be installed: create-vite@9.0.7
 
@@ -423,7 +423,7 @@ npm warn exec The following package was not found and will be installed: create-
 > "create-vite" snake-game --template react-ts --yes
 
 │
-◇  Scaffolding project in /home/daytona/snake-game...
+◇  Scaffolding project in /home/nightona/snake-game...
 │
 └  Done. Now run:
 
@@ -438,16 +438,16 @@ added 152 packages, and audited 153 packages in 17s
 
 found 0 vulnerabilities
 
-✓  wrote  /home/daytona/snake-game/src/App.tsx                             4492 B
+✓  wrote  /home/nightona/snake-game/src/App.tsx                             4492 B
 
-✓  wrote  /home/daytona/snake-game/src/App.css                             1527 B
+✓  wrote  /home/nightona/snake-game/src/App.css                             1527 B
 
-✓  wrote  /home/daytona/snake-game/src/index.css                            307 B
+✓  wrote  /home/nightona/snake-game/src/index.css                            307 B
 
-✓  wrote  /home/daytona/snake-game/vite.config.ts                           273 B
+✓  wrote  /home/nightona/snake-game/vite.config.ts                           273 B
 
 ✓  done
-$ cd /home/daytona/snake-game && npm run build
+$ cd /home/nightona/snake-game && npm run build
 
 > snake-game@0.0.0 build
 > tsc -b && vite build
@@ -463,14 +463,14 @@ dist/assets/index-BAnbeFU0.js   192.33 kB │ gzip: 60.80 kB
 ✓ built in 161ms
 
 ●  Live preview
-<iframe src="https://5173-a0ffcc3d-7753-4d52-89d0-6c595c60626a.daytonaproxy01.net" /> — live preview of the running Snake game
+<iframe src="https://5173-a0ffcc3d-7753-4d52-89d0-6c595c60626a.nightonaproxy01.net" /> — live preview of the running Snake game
 
-Done — the Snake game is running here: https://5173-a0ffcc3d-7753-4d52-89d0-6c595c60626a.daytonaproxy01.net
+Done — the Snake game is running here: https://5173-a0ffcc3d-7753-4d52-89d0-6c595c60626a.nightonaproxy01.net
 ```
 
 <Image
   src={copilotkitSnakeGame}
-  alt="Snake game built and previewed live in the chat by the CopilotKit + Daytona coding agent"
+  alt="Snake game built and previewed live in the chat by the CopilotKit + Nightona coding agent"
   width={600}
   style="max-width: 100%; height: auto; margin: 1rem 0;"
 />
@@ -478,7 +478,7 @@ Done — the Snake game is running here: https://5173-a0ffcc3d-7753-4d52-89d0-6c
 On follow-up turns, the agent edits files in place and the iframe reloads instantly with the new changes. For example, asking **"Make it red themed"** triggers:
 
 ```text
-✓  wrote  /home/daytona/snake-game/src/App.css                             1529 B
+✓  wrote  /home/nightona/snake-game/src/App.css                             1529 B
 
 Done — the app now uses a red theme.
 ```
@@ -491,4 +491,4 @@ Done — the app now uses a red theme.
 - **Live streaming of every tool call.** Each step surfaces as a structured card as it happens, so you can introspect exactly what the agent is doing in real time rather than waiting for a final summary.
 - **Any hosted process embeds as an `<iframe>` directly in the chat**, with no link-outs or screenshots.
 - **Conversational edit loop with HMR**, no manual refresh.
-- **All code execution happens inside an isolated Daytona sandbox**, never on the host running the chat.
+- **All code execution happens inside an isolated Nightona sandbox**, never on the host running the chat.

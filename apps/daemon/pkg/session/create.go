@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package session
@@ -11,10 +11,10 @@ import (
 	"os/exec"
 	"syscall"
 
-	"github.com/daytonaio/daemon/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/common"
 	cmap "github.com/orcaman/concurrent-map/v2"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
 )
 
 func (s *SessionService) Create(sessionId string, isLegacy bool) error {

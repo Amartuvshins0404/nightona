@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -12,7 +12,7 @@ import {
   SandboxListSortField,
   SandboxState,
   SnapshotDto,
-} from '@daytona/api-client'
+} from '@nightona/api-client'
 import { ColumnFiltersState, SortingState, Table } from '@tanstack/react-table'
 import type { Ref } from 'react'
 import { ResourceFilterValue } from './filters/ResourceFilter'

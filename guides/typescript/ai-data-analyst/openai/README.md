@@ -1,14 +1,14 @@
-# OpenAI Data Analysis Example (OpenAI + Daytona)
+# OpenAI Data Analysis Example (OpenAI + Nightona)
 
 ## Overview
 
-This example demonstrates how to build a data analysis tool using [OpenAI's API](https://platform.openai.com/) and [Daytona](https://daytona.io) sandboxes. The script executes Python code in an isolated environment to analyze cafe sales data, enabling automated data analysis workflows with natural language prompts.
+This example demonstrates how to build a data analysis tool using [OpenAI's API](https://platform.openai.com/) and [Nightona](https://daytona.io) sandboxes. The script executes Python code in an isolated environment to analyze cafe sales data, enabling automated data analysis workflows with natural language prompts.
 
 In this example, the agent analyzes a cafe sales dataset to find the three highest revenue products for January and visualizes the results in a bar chart.
 
 ## Features
 
-- **Secure sandbox execution:** All Python code runs in isolated Daytona sandboxes
+- **Secure sandbox execution:** All Python code runs in isolated Nightona sandboxes
 - **Natural language interface:** Describe your analysis task in plain English
 - **Automatic chart generation:** Visualizations are automatically saved as PNG files
 - **File handling:** Upload datasets and process results within the sandbox
@@ -22,7 +22,7 @@ In this example, the agent analyzes a cafe sales dataset to find the three highe
 
 To run this example, you need to set the following environment variables:
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `OPENAI_API_KEY`: Required for OpenAI API access. Get it from [OpenAI Platform](https://platform.openai.com/api-keys)
 
 Create a `.env` file in the project directory with these variables.
@@ -46,7 +46,7 @@ Create a `.env` file in the project directory with these variables.
 ## How It Works
 
 1. An LLM call generates Python code based on the data format and prompt
-2. A new Daytona sandbox is created, containing the data file
+2. A new Nightona sandbox is created, containing the data file
 3. The Python code is executed in the sandbox
 4. Any generated charts are saved as PNG files
 5. A second LLM call summarizes the code execution results
@@ -103,4 +103,4 @@ See the main project LICENSE file for details.
 ## References
 
 - [OpenAI API Documentation](https://platform.openai.com/docs/api-reference)
-- [Daytona Documentation](https://www.daytona.io/docs)
+- [Nightona Documentation](https://www.daytona.io/docs)

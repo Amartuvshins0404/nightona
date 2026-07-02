@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -7,47 +7,47 @@ from unittest.mock import patch
 
 import pytest
 
-from daytona._utils.env import DaytonaEnvReader
+from nightona._utils.env import NightonaEnvReader
 
 
-class TestDaytonaEnvReader:
-    def test_get_rejects_non_daytona_variable_names(self):
-        reader = DaytonaEnvReader()
+class TestNightonaEnvReader:
+    def test_get_rejects_non_nightona_variable_names(self):
+        reader = NightonaEnvReader()
 
-        with pytest.raises(ValueError, match="must start with 'DAYTONA_'"):
+        with pytest.raises(ValueError, match="must start with 'NIGHTONA_'"):
             reader.get("OTHER_VAR")
 
     def test_runtime_env_takes_precedence(self, monkeypatch):
-        monkeypatch.setenv("DAYTONA_API_KEY", "runtime")
+        monkeypatch.setenv("NIGHTONA_API_KEY", "runtime")
 
         with patch.object(
-            DaytonaEnvReader, "_load", side_effect=[{"DAYTONA_API_KEY": "local"}, {"DAYTONA_API_KEY": "env"}]
+            NightonaEnvReader, "_load", side_effect=[{"NIGHTONA_API_KEY": "local"}, {"NIGHTONA_API_KEY": "env"}]
         ):
-            reader = DaytonaEnvReader()
+            reader = NightonaEnvReader()
 
-        assert reader.get("DAYTONA_API_KEY") == "runtime"
+        assert reader.get("NIGHTONA_API_KEY") == "runtime"
 
     def test_env_local_takes_precedence_over_env_file(self, monkeypatch):
-        monkeypatch.delenv("DAYTONA_API_KEY", raising=False)
+        monkeypatch.delenv("NIGHTONA_API_KEY", raising=False)
 
         with patch.object(
-            DaytonaEnvReader, "_load", side_effect=[{"DAYTONA_API_KEY": "local"}, {"DAYTONA_API_KEY": "env"}]
+            NightonaEnvReader, "_load", side_effect=[{"NIGHTONA_API_KEY": "local"}, {"NIGHTONA_API_KEY": "env"}]
         ):
-            reader = DaytonaEnvReader()
+            reader = NightonaEnvReader()
 
-        assert reader.get("DAYTONA_API_KEY") == "local"
+        assert reader.get("NIGHTONA_API_KEY") == "local"
 
     def test_get_returns_none_for_missing_variable(self, monkeypatch):
-        monkeypatch.delenv("DAYTONA_API_KEY", raising=False)
+        monkeypatch.delenv("NIGHTONA_API_KEY", raising=False)
 
-        with patch.object(DaytonaEnvReader, "_load", side_effect=[{}, {}]):
-            reader = DaytonaEnvReader()
+        with patch.object(NightonaEnvReader, "_load", side_effect=[{}, {}]):
+            reader = NightonaEnvReader()
 
-        assert reader.get("DAYTONA_API_KEY") is None
+        assert reader.get("NIGHTONA_API_KEY") is None
 
-    def test_load_filters_non_daytona_and_none_values(self):
+    def test_load_filters_non_nightona_and_none_values(self):
         with patch(
-            "daytona._utils.env.dotenv_values",
-            return_value={"DAYTONA_API_KEY": "key", "OTHER": "nope", "DAYTONA_TARGET": None},
+            "nightona._utils.env.dotenv_values",
+            return_value={"NIGHTONA_API_KEY": "key", "OTHER": "nope", "NIGHTONA_TARGET": None},
         ):
-            assert DaytonaEnvReader._load(".env") == {"DAYTONA_API_KEY": "key"}
+            assert NightonaEnvReader._load(".env") == {"NIGHTONA_API_KEY": "key"}

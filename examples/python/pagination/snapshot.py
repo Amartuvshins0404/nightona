@@ -1,10 +1,10 @@
-from daytona import Daytona
+from nightona import Nightona
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
-    result = daytona.snapshot.list(page=2, limit=10)
+    result = nightona.snapshot.list(page=2, limit=10)
     for snapshot in result.items:
         print(f"{snapshot.name} ({snapshot.image_name})")
 

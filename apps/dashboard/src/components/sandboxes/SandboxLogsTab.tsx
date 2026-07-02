@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -13,10 +13,10 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { DAYTONA_DOCS_URL } from '@/constants/ExternalLinks'
+import { NIGHTONA_DOCS_URL } from '@/constants/ExternalLinks'
 import { LogsQueryParams, useSandboxLogs } from '@/hooks/useSandboxLogs'
 import { cn } from '@/lib/utils'
-import { LogEntry } from '@daytona/api-client'
+import { LogEntry } from '@nightona/api-client'
 import { format, subHours } from 'date-fns'
 import { ChevronDown, ChevronLeft, ChevronRight, FileText, RefreshCw } from 'lucide-react'
 import { useQueryStates } from 'nuqs'
@@ -94,7 +94,7 @@ function LogsEmptyState({ hasFilters, onClearFilters }: { hasFilters: boolean; o
         ) : (
           <EmptyDescription>
             Logs will appear here when the sandbox emits telemetry.{' '}
-            <a href={`${DAYTONA_DOCS_URL}/en/observability/otel-collection`} target="_blank" rel="noopener noreferrer">
+            <a href={`${NIGHTONA_DOCS_URL}/en/observability/otel-collection`} target="_blank" rel="noopener noreferrer">
               Learn more about observability
             </a>
             .

@@ -1,0 +1,13 @@
+name: nightona volume list
+synopsis: List all volumes
+usage: nightona volume list [flags]
+options:
+  - name: format
+    shorthand: f
+    usage: Output format. Must be one of (yaml, json)
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona volume - Manage Nightona volumes

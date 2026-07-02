@@ -5,17 +5,17 @@ description: Interact with Git repositories in your sandboxes.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona provides built-in Git support through the `git` module in sandboxes.
+Nightona provides built-in Git support through the `git` module in sandboxes.
 
 ## Basic operations
 
-Daytona provides methods to clone, check status, and manage Git repositories in sandboxes.
+Nightona provides methods to clone, check status, and manage Git repositories in sandboxes.
 
 Similar to [file system operations](/docs/en/file-system-operations), the starting cloning directory is the current sandbox working directory. It uses the WORKDIR specified in the Dockerfile if present, or falls back to the user's home directory if not - e.g. `workspace/repo` implies `/my-work-dir/workspace/repo`, but you are free to provide an absolute `workDir` path as well (by starting the path with `/`).
 
 ### Clone repositories
 
-Daytona provides methods to clone Git repositories into sandboxes. You can clone public or private repositories, specific branches, and authenticate using personal access tokens.
+Nightona provides methods to clone Git repositories into sandboxes. You can clone public or private repositories, specific branches, and authenticate using personal access tokens.
 
 Clones verify the remote's TLS certificate by default. For clones against internal Git servers that use self-signed or private-CA certificates, pass `insecure_skip_tls=true` (`insecureSkipTls: true` in TypeScript / Java). The bypass is per-request and disables TLS verification for that clone only; credentials, if supplied, are transmitted over an unverified TLS connection and are exposed to any MITM on the route. Prefer adding the server's CA to the sandbox base image's trust store when possible.
 
@@ -222,7 +222,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/clone' \
 
 ### Get repository status
 
-Daytona provides methods to check the status of Git repositories in sandboxes. You can get the current branch, modified files, number of commits ahead and behind main branch.
+Nightona provides methods to check the status of Git repositories in sandboxes. You can get the current branch, modified files, number of commits ahead and behind main branch.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -312,7 +312,7 @@ for _, branch := range branches {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.GitStatus;
+import io.nightona.sdk.model.GitStatus;
 import java.util.List;
 
 // Get repository status
@@ -345,11 +345,11 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/status?path='
 
 ## Branch operations
 
-Daytona provides methods to manage branches in Git repositories. You can create, switch, and delete branches.
+Nightona provides methods to manage branches in Git repositories. You can create, switch, and delete branches.
 
 ### Create branches
 
-Daytona provides methods to create branches in Git repositories. The following snippet creates a new branch called `new-feature`.
+Nightona provides methods to create branches in Git repositories. The following snippet creates a new branch called `new-feature`.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -404,7 +404,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/branches' \
 
 ### Checkout branches
 
-Daytona provides methods to checkout branches in Git repositories. The following snippet checks out the branch called `feature-branch`.
+Nightona provides methods to checkout branches in Git repositories. The following snippet checks out the branch called `feature-branch`.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -459,7 +459,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/checkout' \
 
 ### Delete branches
 
-Daytona provides methods to delete branches in Git repositories. The following snippet deletes the branch called `old-feature`.
+Nightona provides methods to delete branches in Git repositories. The following snippet deletes the branch called `old-feature`.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -514,7 +514,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/branches' \
 
 ## Stage changes
 
-Daytona provides methods to stage changes in Git repositories. You can stage specific files, all changes, and commit with a message. The following snippet stages the file `file.txt` and the `src` directory.
+Nightona provides methods to stage changes in Git repositories. You can stage specific files, all changes, and commit with a message. The following snippet stages the file `file.txt` and the `src` directory.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -615,7 +615,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/add' \
 
 ## Commit changes
 
-Daytona provides methods to commit changes in Git repositories. You can commit with a message, author, and email. The following snippet commits the changes with the message `Update documentation` and the author `John Doe` and email `john@example.com`.
+Nightona provides methods to commit changes in Git repositories. You can commit with a message, author, and email. The following snippet commits the changes with the message `Update documentation` and the author `John Doe` and email `john@example.com`.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -682,7 +682,7 @@ fmt.Printf("Commit SHA: %s\n", response.SHA)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.GitCommitResponse;
+import io.nightona.sdk.model.GitCommitResponse;
 import java.util.List;
 
 // Stage and commit changes
@@ -717,11 +717,11 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/commit' \
 
 ## Remote operations
 
-Daytona provides methods to work with remote repositories in Git. You can push and pull changes from remote repositories.
+Nightona provides methods to work with remote repositories in Git. You can push and pull changes from remote repositories.
 
 ### Push changes
 
-Daytona provides methods to push changes to remote repositories. The following snippet pushes the changes to a public repository.
+Nightona provides methods to push changes to remote repositories. The following snippet pushes the changes to a public repository.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -806,7 +806,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/push' \
 
 ### Pull changes
 
-Daytona provides methods to pull changes from remote repositories. The following snippet pulls the changes from a public repository.
+Nightona provides methods to pull changes from remote repositories. The following snippet pulls the changes from a public repository.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">

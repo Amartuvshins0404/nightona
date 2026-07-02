@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -17,7 +17,7 @@ import { useCommandPaletteAnalytics } from '@/hooks/useCommandPaletteAnalytics'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { cn } from '@/lib/utils'
 import { DEFAULT_TABLE_COLUMN, getColumnSizeStyles, getTableSizeStyles } from '@/lib/utils/table'
-import { OrganizationRolePermissionsEnum, SnapshotDto, SnapshotState } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum, SnapshotDto, SnapshotState } from '@nightona/api-client'
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 import { Box } from 'lucide-react'
 import { AnimatePresence } from 'motion/react'

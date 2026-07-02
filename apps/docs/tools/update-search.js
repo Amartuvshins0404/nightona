@@ -353,8 +353,8 @@ function parseOpenAPISpec(specPath, apiName, baseUrl) {
             ? tags[0]
             : path.split('/').filter(Boolean)[0] || 'default'
 
-        // For toolbox API, use 'daytona-toolbox' in the URL hash
-        const hashApiName = apiName === 'toolbox' ? 'daytona-toolbox' : apiName
+        // For toolbox API, use 'nightona-toolbox' in the URL hash
+        const hashApiName = apiName === 'toolbox' ? 'nightona-toolbox' : apiName
 
         // Format URL to match the hash format: #apiName/tag/tagName/METHOD/path
         const scalarHash = `${hashApiName}/tag/${primaryTag}/${method.toUpperCase()}${path}`
@@ -439,7 +439,7 @@ function searchDocs() {
 
   const mainApiRecords = parseOpenAPISpec(
     MAIN_API_PATH,
-    'daytona',
+    'nightona',
     '/docs/tools/api'
   )
   const toolboxApiRecords = parseOpenAPISpec(

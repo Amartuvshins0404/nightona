@@ -1,0 +1,12 @@
+name: nightona mcp
+synopsis: Manage Nightona MCP Server
+description: Commands for managing Nightona MCP Server
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI
+  - nightona mcp config - Outputs JSON configuration for Nightona MCP Server
+  - 'nightona mcp init - Initialize Nightona MCP Server with an agent (currently supported: claude, windsurf, cursor)'
+  - nightona mcp start - Start Nightona MCP Server

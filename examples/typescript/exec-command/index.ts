@@ -1,4 +1,4 @@
-import { Daytona, Sandbox, Image, DaytonaTimeoutError, ExecutionError, OutputMessage } from '@daytona/sdk'
+import { Nightona, Sandbox, Image, NightonaTimeoutError, ExecutionError, OutputMessage } from '@nightona/sdk'
 
 async function basicExec(sandbox: Sandbox) {
   //  run some typescript code directly
@@ -158,7 +158,7 @@ print('Finished!')`,
       },
     )
   } catch (error) {
-    if (error instanceof DaytonaTimeoutError) {
+    if (error instanceof NightonaTimeoutError) {
       console.log(`Timed out as expected: ${error.message}`)
     } else {
       throw error
@@ -167,10 +167,10 @@ print('Finished!')`,
 }
 
 async function main() {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
   //  first, create a sandbox
-  const sandbox = await daytona.create(
+  const sandbox = await nightona.create(
     {
       image: Image.base('ubuntu:22.04').runCommands(
         'apt-get update',
@@ -199,7 +199,7 @@ async function main() {
     console.error('Error executing commands:', error)
   } finally {
     //  cleanup
-    await daytona.delete(sandbox)
+    await nightona.delete(sandbox)
   }
 }
 

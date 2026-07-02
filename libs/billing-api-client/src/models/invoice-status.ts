@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Daytona Billing API
- * Daytona Billing API
+ * Nightona Billing API
+ * Nightona Billing API
  *
  * The version of the OpenAPI document: v0.0.0-dev
  * 

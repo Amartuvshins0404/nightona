@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package toolbox
@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/daytonaio/daemon/internal"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal"
 	"github.com/gin-gonic/gin"
 )
 

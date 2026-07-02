@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """Code Generator & Tester Agent Example."""
@@ -6,7 +6,7 @@
 import asyncio
 import logging
 
-from daytona_adk import DaytonaPlugin  # pylint: disable=import-error
+from nightona_adk import NightonaPlugin  # pylint: disable=import-error
 from dotenv import load_dotenv
 from google.adk.agents import Agent  # pylint: disable=import-error
 from google.adk.apps import App  # pylint: disable=import-error
@@ -59,7 +59,7 @@ Only include tests in your response if the user explicitly asks for them.
 
 async def main() -> None:
     """Run the code generator agent example."""
-    plugin = DaytonaPlugin(
+    plugin = NightonaPlugin(
         labels={"example": "code-generator"},
     )
 

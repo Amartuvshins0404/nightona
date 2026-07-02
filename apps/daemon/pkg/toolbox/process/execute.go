@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package process
@@ -15,10 +15,10 @@ import (
 	"syscall"
 	"time"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
 
-	"github.com/daytonaio/daemon/pkg/childreap"
-	"github.com/daytonaio/daemon/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/childreap"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/common"
 	"github.com/gin-gonic/gin"
 )
 

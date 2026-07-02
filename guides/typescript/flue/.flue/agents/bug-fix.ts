@@ -1,10 +1,10 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { FlueContext } from '@flue/sdk/client'
-import { Daytona } from '@daytona/sdk'
-import { daytona } from '../connectors/daytona'
+import { Nightona } from '@nightona/sdk'
+import { nightona } from '../connectors/nightona'
 import * as v from 'valibot'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -54,14 +54,14 @@ export default async function ({ init, payload, env }: FlueContext) {
     throw new Error(`Invalid issueNumber: ${issueNumber} (must be a positive integer)`)
   }
 
-  const daytonaApiKey = requireEnv(env, 'DAYTONA_API_KEY')
+  const nightonaApiKey = requireEnv(env, 'NIGHTONA_API_KEY')
   const githubToken = requireEnv(env, 'GITHUB_TOKEN')
   const model = env.MODEL ?? 'anthropic/claude-sonnet-4-6'
-  const projectDir = '/home/daytona/project'
+  const projectDir = '/home/nightona/project'
 
   console.log(`[bug-fix] target: ${repo}#${issueNumber} (model: ${model})`)
 
-  const client = new Daytona({ apiKey: daytonaApiKey })
+  const client = new Nightona({ apiKey: nightonaApiKey })
   const sandbox = await client.create({
     envVars: { GH_TOKEN: githubToken },
   })
@@ -73,7 +73,7 @@ export default async function ({ init, payload, env }: FlueContext) {
 
   try {
     setupAgent = await init({
-      sandbox: daytona(sandbox, { cleanup: true }),
+      sandbox: nightona(sandbox, { cleanup: true }),
       model,
     })
     const setup = await setupAgent.session()
@@ -177,7 +177,7 @@ export default async function ({ init, payload, env }: FlueContext) {
 
     projectAgent = await init({
       id: `bug-fix-${issueNumber}`,
-      sandbox: daytona(sandbox),
+      sandbox: nightona(sandbox),
       cwd: projectDir,
       model,
     })

@@ -2,13 +2,13 @@
 
 require 'fileutils'
 require 'json'
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-params = Daytona::CreateSandboxFromSnapshotParams.new(language: Daytona::CodeLanguage::PYTHON)
+nightona = Nightona::Nightona.new
+params = Nightona::CreateSandboxFromSnapshotParams.new(language: Nightona::CodeLanguage::PYTHON)
 
 # Create a Sandbox
-sandbox = daytona.create(params)
+sandbox = nightona.create(params)
 puts "Created sandbox ##{sandbox.id}"
 
 # List files in the Sandbox
@@ -33,9 +33,9 @@ script = <<~BASH
   exit 0
 BASH
 sandbox.fs.upload_files(
-  [Daytona::FileUpload.new(local_file_path, File.join(project_files, 'example.txt')),
-   Daytona::FileUpload.new(config_data, File.join(project_files, 'config.json')),
-   Daytona::FileUpload.new(script, File.join(project_files, 'script.sh'))]
+  [Nightona::FileUpload.new(local_file_path, File.join(project_files, 'example.txt')),
+   Nightona::FileUpload.new(config_data, File.join(project_files, 'config.json')),
+   Nightona::FileUpload.new(script, File.join(project_files, 'script.sh'))]
 )
 
 # Execute commands on the sandbox to verify files and make them executable
@@ -89,4 +89,4 @@ puts "Streamed content: #{chunks.join}"
 # Cleanup
 FileUtils.rm_f('local-config.json')
 FileUtils.rm_f('example.txt')
-daytona.delete(sandbox)
+nightona.delete(sandbox)

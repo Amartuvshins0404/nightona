@@ -2,14 +2,14 @@
 
 ## Overview
 
-This example demonstrates how to build an AI-powered bug fixer using two [AG2](https://ag2.ai/) agents and [Daytona](https://daytona.io) sandboxes. A `bug_fixer` LLM agent analyzes broken code and proposes fixes, while a `code_executor` agent runs each fix attempt inside an isolated Daytona sandbox. If execution fails, the bug fixer sees the full error output and retries — looping until the code passes or the turn limit is reached.
+This example demonstrates how to build an AI-powered bug fixer using two [AG2](https://ag2.ai/) agents and [Nightona](https://daytona.io) sandboxes. A `bug_fixer` LLM agent analyzes broken code and proposes fixes, while a `code_executor` agent runs each fix attempt inside an isolated Nightona sandbox. If execution fails, the bug fixer sees the full error output and retries — looping until the code passes or the turn limit is reached.
 
 The executor supports Python, JavaScript, TypeScript, and Bash — inferring the language automatically from the code block returned by the LLM.
 
 ## Features
 
 - **Execution-verified fixes:** Every proposed fix is actually run in a sandbox — the agent only terminates when the code passes, not just when it looks correct
-- **Secure execution:** Fix attempts run in isolated Daytona sandboxes, not on your machine
+- **Secure execution:** Fix attempts run in isolated Nightona sandboxes, not on your machine
 - **Multi-language support:** Python, JavaScript, TypeScript, and Bash — language is inferred automatically from the LLM's fenced code block
 - **Iterative refinement:** If a fix fails, the agent sees the full error output and retries automatically
 - **Automatic cleanup:** The sandbox is deleted as soon as `fix_bug` returns, regardless of outcome
@@ -20,7 +20,7 @@ The executor supports Python, JavaScript, TypeScript, and Bash — inferring the
 
 ## Environment Variables
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `OPENAI_API_KEY`: Required for GPT-4o-mini access. Get it from [OpenAI Platform](https://platform.openai.com/api-keys)
 
 ## Getting Started
@@ -35,13 +35,13 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 2. Install dependencies:
 
 ```bash
-pip install "ag2[daytona,openai]" python-dotenv
+pip install "ag2[nightona,openai]" python-dotenv
 ```
 
 3. Set your API keys in `.env`:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_api_key
+NIGHTONA_API_KEY=your_nightona_api_key
 OPENAI_API_KEY=your_openai_api_key
 ```
 
@@ -55,7 +55,7 @@ python main.py
 
 1. `code_executor` sends the broken code to `bug_fixer` as the opening message
 2. `bug_fixer` (GPT-4o-mini) analyzes it and replies with a fix wrapped in a fenced code block
-3. AG2 detects the code block, runs it in a Daytona sandbox via `DaytonaCodeExecutor`, and sends the result back
+3. AG2 detects the code block, runs it in a Nightona sandbox via `NightonaCodeExecutor`, and sends the result back
 4. If execution fails, `bug_fixer` sees the error output and proposes a new fix
 5. The loop continues until the code passes or `max_turns` is reached
 6. The sandbox is automatically deleted when `fix_bug` returns
@@ -107,7 +107,7 @@ TERMINATE
 
 ## API Reference
 
-For the complete API reference, see the [DaytonaCodeExecutor documentation](https://docs.ag2.ai/latest/docs/api-reference/autogen/coding/DaytonaCodeExecutor).
+For the complete API reference, see the [NightonaCodeExecutor documentation](https://docs.ag2.ai/latest/docs/api-reference/autogen/coding/NightonaCodeExecutor).
 
 ## License
 
@@ -116,5 +116,5 @@ See the main project LICENSE file for details.
 ## References
 
 - [AG2](https://ag2.ai/)
-- [AG2 DaytonaCodeExecutor](https://docs.ag2.ai/latest/docs/api-reference/autogen/coding/DaytonaCodeExecutor)
-- [Daytona](https://daytona.io)
+- [AG2 NightonaCodeExecutor](https://docs.ag2.ai/latest/docs/api-reference/autogen/coding/NightonaCodeExecutor)
+- [Nightona](https://daytona.io)

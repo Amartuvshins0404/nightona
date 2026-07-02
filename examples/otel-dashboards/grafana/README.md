@@ -1,6 +1,6 @@
-# Grafana Dashboard for Daytona Sandbox Monitoring
+# Grafana Dashboard for Nightona Sandbox Monitoring
 
-This directory contains a pre-configured Grafana dashboard for monitoring Daytona Sandbox resources including CPU, Memory, and Disk utilization using Prometheus metrics.
+This directory contains a pre-configured Grafana dashboard for monitoring Nightona Sandbox resources including CPU, Memory, and Disk utilization using Prometheus metrics.
 
 ## Dashboard Overview
 
@@ -14,7 +14,7 @@ The dashboard provides comprehensive monitoring across multiple pages:
 ## Prerequisites
 
 - Grafana Cloud account (free tier available)
-- Daytona account with access to Experimental settings
+- Nightona account with access to Experimental settings
 
 ## Setup
 
@@ -33,16 +33,16 @@ The dashboard provides comprehensive monitoring across multiple pages:
    - **Choose your infrastructure**: Select **Linux**
 4. **Create a Grafana Cloud Access token**:
    - Click **Create a Grafana Cloud Access token for your application**
-   - Name it something like `daytona-otel-token`
+   - Name it something like `nightona-otel-token`
    - Select **All scopes**
    - Click **Create** and **save the token**
 5. **Get your configuration values** from the instrumentation instructions:
    - Note the `OTEL_EXPORTER_OTLP_ENDPOINT` value (e.g., `https://otlp-gateway-prod-eu-central-0.grafana.net/otlp`)
    - Note the `OTEL_EXPORTER_OTLP_HEADERS` value (e.g., `Authorization=Basic MTUxNzAz...`)
 
-### Step 3: Configure Daytona
+### Step 3: Configure Nightona
 
-1. Go to the [Daytona Dashboard](https://app.daytona.io)
+1. Go to the [Nightona Dashboard](https://app.daytona.io)
 2. Navigate to **Settings** → **Experimental**
 3. Enter the values from Step 2:
    - **OTLP Endpoint**: The endpoint URL from Grafana (e.g., `https://otlp-gateway-prod-eu-central-0.grafana.net/otlp`)
@@ -51,12 +51,12 @@ The dashboard provides comprehensive monitoring across multiple pages:
 
 ### Step 4: Verify Metrics Are Flowing
 
-1. Create a sandbox in Daytona and let it run for a few minutes
+1. Create a sandbox in Nightona and let it run for a few minutes
 2. In Grafana Cloud, go to **Observability** → **Application** to see your sandboxes
 3. Or go to **Explore**, select your Prometheus data source, and run:
 
    ```promql
-   {__name__=~"daytona_sandbox.*"}
+   {__name__=~"nightona_sandbox.*"}
    ```
 
 4. You should see metrics appearing for each sandbox
@@ -151,15 +151,15 @@ All metrics follow the OTEL to Prometheus naming convention (dots become undersc
 
 | OTEL Metric | Prometheus Metric | Description | Unit |
 |-------------|-------------------|-------------|------|
-| `daytona.sandbox.cpu.utilization` | `daytona_sandbox_cpu_utilization_percent` | CPU usage percentage | % (0-100) |
-| `daytona.sandbox.cpu.limit` | `daytona_sandbox_cpu_limit_cores` | CPU cores limit | cores |
-| `daytona.sandbox.memory.utilization` | `daytona_sandbox_memory_utilization_percent` | Memory usage percentage | % (0-100) |
-| `daytona.sandbox.memory.usage` | `daytona_sandbox_memory_usage_bytes` | Memory used | bytes |
-| `daytona.sandbox.memory.limit` | `daytona_sandbox_memory_limit_bytes` | Memory limit | bytes |
-| `daytona.sandbox.filesystem.utilization` | `daytona_sandbox_filesystem_utilization_percent` | Disk usage percentage | % (0-100) |
-| `daytona.sandbox.filesystem.usage` | `daytona_sandbox_filesystem_usage_bytes` | Disk space used | bytes |
-| `daytona.sandbox.filesystem.available` | `daytona_sandbox_filesystem_available_bytes` | Available disk space | bytes |
-| `daytona.sandbox.filesystem.total` | `daytona_sandbox_filesystem_total_bytes` | Total disk space | bytes |
+| `nightona.sandbox.cpu.utilization` | `nightona_sandbox_cpu_utilization_percent` | CPU usage percentage | % (0-100) |
+| `nightona.sandbox.cpu.limit` | `nightona_sandbox_cpu_limit_cores` | CPU cores limit | cores |
+| `nightona.sandbox.memory.utilization` | `nightona_sandbox_memory_utilization_percent` | Memory usage percentage | % (0-100) |
+| `nightona.sandbox.memory.usage` | `nightona_sandbox_memory_usage_bytes` | Memory used | bytes |
+| `nightona.sandbox.memory.limit` | `nightona_sandbox_memory_limit_bytes` | Memory limit | bytes |
+| `nightona.sandbox.filesystem.utilization` | `nightona_sandbox_filesystem_utilization_percent` | Disk usage percentage | % (0-100) |
+| `nightona.sandbox.filesystem.usage` | `nightona_sandbox_filesystem_usage_bytes` | Disk space used | bytes |
+| `nightona.sandbox.filesystem.available` | `nightona_sandbox_filesystem_available_bytes` | Available disk space | bytes |
+| `nightona.sandbox.filesystem.total` | `nightona_sandbox_filesystem_total_bytes` | Total disk space | bytes |
 
 ### Labels
 
@@ -172,7 +172,7 @@ All metrics include the `service_name` label identifying the sandbox.
 1. **Verify metrics are being received**: Run this PromQL query in Grafana Explore:
 
    ```promql
-   daytona_sandbox_cpu_utilization_percent
+   nightona_sandbox_cpu_utilization_percent
    ```
 
 2. **Check data source connection**: Go to **Connections** → **Data Sources** → your Prometheus source → **Test**
@@ -189,7 +189,7 @@ If you have many sandboxes, consider:
 
 ### Panel Shows "No Data"
 
-- Verify the metric exists in Grafana Explore using `{__name__=~"daytona.*"}`
+- Verify the metric exists in Grafana Explore using `{__name__=~"nightona.*"}`
 - Check label names match: `service_name` (not `service.name`)
 - Ensure sandboxes are running and generating metrics
 
@@ -215,7 +215,7 @@ If you have many sandboxes, consider:
 4. Example for custom metric:
 
    ```promql
-   avg(daytona_sandbox_cpu_utilization_percent{service_name=~"$service"}) by (service_name)
+   avg(nightona_sandbox_cpu_utilization_percent{service_name=~"$service"}) by (service_name)
    ```
 
 ### Adjusting Thresholds

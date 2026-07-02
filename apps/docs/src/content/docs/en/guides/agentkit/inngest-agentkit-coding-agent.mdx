@@ -1,42 +1,42 @@
 ---
-title: Build Coding Agent Using AgentKit and Daytona
-description: Step-by-step guide to building an autonomous coding agent using AgentKit framework and Daytona sandboxes.
+title: Build Coding Agent Using AgentKit and Nightona
+description: Step-by-step guide to building an autonomous coding agent using AgentKit framework and Nightona sandboxes.
 ---
 
 import { Image } from 'astro:assets'
 
 import notesAppResult from '../../../../../assets/docs/images/inngest-agentkit-notes-app.gif'
 
-This guide demonstrates how to set up and use a fully autonomous coding agent that performs software development tasks in a [Daytona](https://daytona.io) sandbox environment. The agent is built using [AgentKit](https://agentkit.inngest.com/) and leverages Daytona sandboxes for secure, isolated execution. It can create web apps, run tests, execute scripts, and more; automating multi-step workflows based on user prompts.
+This guide demonstrates how to set up and use a fully autonomous coding agent that performs software development tasks in a [Nightona](https://daytona.io) sandbox environment. The agent is built using [AgentKit](https://agentkit.inngest.com/) and leverages Nightona sandboxes for secure, isolated execution. It can create web apps, run tests, execute scripts, and more; automating multi-step workflows based on user prompts.
 
 ---
 
 ### 1. Workflow Overview
 
-You provide a natural language prompt describing the software task. The agent reasons about your request, plans the steps, and executes them securely in a Daytona sandbox; handling everything from project setup to live previews.
+You provide a natural language prompt describing the software task. The agent reasons about your request, plans the steps, and executes them securely in a Nightona sandbox; handling everything from project setup to live previews.
 
 ### 2. Project Setup
 
 #### Clone the Repository
 
-Clone the [repository](https://github.com/daytonaio/daytona) and navigate to the example directory:
+Clone the [repository](https://github.com/Amartuvshins0404/nightona) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/typescript/agentkit-inngest/coding-agent/anthropic
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/typescript/agentkit-inngest/coding-agent/anthropic
 ```
 
 #### Configure Environment
 
 Get your API keys:
 
-- **Daytona API key:** [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- **Nightona API key:** [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - **Anthropic API key:** [Anthropic Console](https://console.anthropic.com/)
 
 Copy `.env.example` to `.env` and add your keys:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_key
+NIGHTONA_API_KEY=your_nightona_key
 ANTHROPIC_API_KEY=your_anthropic_key
 ```
 
@@ -98,7 +98,7 @@ Terminal output example:
 
 ```
 ✔️ App is ready!
-Preview: https://5173-3a828150-1573-42e3-bf9f-9793a2c2c0c2.proxy.daytona.works
+Preview: https://5173-3a828150-1573-42e3-bf9f-9793a2c2c0c2.proxy.nightona.works
 ```
 
 The image below shows the result generated in this run:
@@ -112,7 +112,7 @@ The image below shows the result generated in this run:
 
 ### 5. Understanding the Agent's Execution Flow
 
-The agent operates by leveraging a large language model (LLM) under the hood and has access to a suite of specialized tools. These tools enable the agent to perform everything needed inside the Daytona sandbox environment; from project setup to app deployment. At each step, the agent reasons about the current goal, decides which tool to call, and orchestrates the workflow to achieve the desired outcome.
+The agent operates by leveraging a large language model (LLM) under the hood and has access to a suite of specialized tools. These tools enable the agent to perform everything needed inside the Nightona sandbox environment; from project setup to app deployment. At each step, the agent reasons about the current goal, decides which tool to call, and orchestrates the workflow to achieve the desired outcome.
 
 Below is a step-by-step breakdown of how the agent builds the demo Notes app showing each iteration, the agent's message, and the tool used:
 

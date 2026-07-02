@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -15,8 +15,8 @@ import {
   PaymentMethod,
   PaymentUrl,
   Tier,
-} from '@daytona/billing-api-client'
-import { DaytonaConfiguration } from '@daytona/api-client/src'
+} from '@nightona/billing-api-client'
+import { NightonaConfiguration } from '@nightona/api-client/src'
 import { bypass, http, HttpResponse } from 'msw'
 
 const BILLING_API_URL = 'http://localhost:3000/api/billing'
@@ -26,7 +26,7 @@ export const handlers = [
   http.get(`${API_URL}/config`, async () => {
     const originalConfig = await fetch(bypass(`${API_URL}/config`)).then((res) => res.json())
 
-    return HttpResponse.json<Partial<DaytonaConfiguration>>({
+    return HttpResponse.json<Partial<NightonaConfiguration>>({
       ...originalConfig,
       billingApiUrl: BILLING_API_URL,
     })
@@ -113,7 +113,7 @@ export const handlers = [
   }),
   http.get(`${BILLING_API_URL}/v2/organization/:organizationId/billing-info`, async () => {
     return HttpResponse.json<BillingInfo>({
-      name: 'Daytona Demo',
+      name: 'Nightona Demo',
       email: 'billing@example.com',
       address: {
         line1: '123 Main St',

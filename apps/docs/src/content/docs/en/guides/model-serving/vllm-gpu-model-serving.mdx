@@ -1,11 +1,11 @@
 ---
 title: Serve LLMs on GPU Sandboxes with vLLM
-description: Spin up an OpenAI-compatible vLLM endpoint on a Daytona GPU sandbox and query it from anywhere.
+description: Spin up an OpenAI-compatible vLLM endpoint on a Nightona GPU sandbox and query it from anywhere.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This guide demonstrates how to serve an open-weights model on a Daytona [GPU sandbox](/docs/en/sandboxes#gpu-sandboxes) with [vLLM](https://docs.vllm.ai/en/stable/) and query it from anywhere through a token-authenticated preview URL.
+This guide demonstrates how to serve an open-weights model on a Nightona [GPU sandbox](/docs/en/sandboxes#gpu-sandboxes) with [vLLM](https://docs.vllm.ai/en/stable/) and query it from anywhere through a token-authenticated preview URL.
 
 The serving side is a single script: it creates the sandbox, starts vLLM inside it, and prints the endpoint and its access token once the server is healthy. The endpoint is OpenAI-compatible, so existing clients work without modification; the guide shows examples querying it with curl, the OpenAI SDK, and LiteLLM. The model served is `google/gemma-4-26B-A4B-it`, but any model vLLM can serve works the same way.
 
@@ -26,11 +26,11 @@ All four are handled by a single script, `serve_vllm.py`; once it finishes, the 
 
 #### Clone the Repository
 
-Clone the [Daytona repository](https://github.com/daytonaio/daytona.git) and navigate to the example directory:
+Clone the [Nightona repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/python/model-serving/vllm
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/python/model-serving/vllm
 ```
 
 #### Create Virtual Environment
@@ -46,11 +46,11 @@ source venv/bin/activate
 pip install -e .
 ```
 
-This installs the `daytona` SDK along with the `openai` and `litellm` clients used by the query examples.
+This installs the `nightona` SDK along with the `openai` and `litellm` clients used by the query examples.
 
 #### Configure Environment
 
-Get your Daytona API key from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys) and set it in a `.env` file:
+Get your Nightona API key from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys) and set it in a `.env` file:
 
 ```bash
 cp .env.example .env
@@ -77,10 +77,10 @@ The script targets `us-east-1`, currently the region for GPU sandboxes, and crea
     import requests
     from dotenv import load_dotenv
 
-    from daytona import (
+    from nightona import (
         CreateSandboxFromImageParams,
-        Daytona,
-        DaytonaConfig,
+        Nightona,
+        NightonaConfig,
         GpuType,
         Image,
         Resources,
@@ -97,9 +97,9 @@ The script targets `us-east-1`, currently the region for GPU sandboxes, and crea
     SESSION = "vllm"  # name of the background session the server runs in
     BOOT_TIMEOUT = 900  # max seconds to wait for the server to come up
 
-    daytona = Daytona(DaytonaConfig(target=TARGET))
+    nightona = Nightona(NightonaConfig(target=TARGET))
     env_vars = {"HF_TOKEN": os.environ["HF_TOKEN"]} if os.environ.get("HF_TOKEN") else {}
-    sb = daytona.create(
+    sb = nightona.create(
         CreateSandboxFromImageParams(
             image=Image.base(VLLM_IMAGE),
             resources=Resources(
@@ -164,7 +164,7 @@ Model download and loading take a few minutes. While waiting, the script streams
   <TabItem label="Python" icon="seti:python">
     ```python
     pv = sb.get_preview_link(PORT)
-    hdr = {"x-daytona-preview-token": pv.token}
+    hdr = {"x-nightona-preview-token": pv.token}
 
     deadline = time.time() + BOOT_TIMEOUT
     ready = False
@@ -192,7 +192,7 @@ Model download and loading take a few minutes. While waiting, the script streams
   </TabItem>
 </Tabs>
 
-The preview link is the piece that exposes the server outside the sandbox: `pv.url` is reachable from anywhere, and requests authenticate with the `x-daytona-preview-token` header. The URL follows the structure `https://{port}-{sandboxId}.{daytonaProxyDomain}`, as described in the [preview docs](/docs/en/preview). The same URL and token the script uses for health checks are the ones your clients will use for inference.
+The preview link is the piece that exposes the server outside the sandbox: `pv.url` is reachable from anywhere, and requests authenticate with the `x-nightona-preview-token` header. The URL follows the structure `https://{port}-{sandboxId}.{nightonaProxyDomain}`, as described in the [preview docs](/docs/en/preview). The same URL and token the script uses for health checks are the ones your clients will use for inference.
 
 If the server process dies during boot, the script notices the exit code immediately, saves the full server log next to the script, and exits instead of waiting out the timeout.
 
@@ -200,12 +200,12 @@ Once healthy, the script prints the handoff:
 
 ```
 ready - paste into your shell:
-export ENDPOINT=https://8000-{sandboxId}.{daytonaProxyDomain}
+export ENDPOINT=https://8000-{sandboxId}.{nightonaProxyDomain}
 export TOKEN={previewToken}
 
 sandbox left UP: {sandboxId}
-  reconnect:  daytona.get('{sandboxId}')
-  delete:     daytona.get('{sandboxId}').delete()
+  reconnect:  nightona.get('{sandboxId}')
+  delete:     nightona.get('{sandboxId}').delete()
 ```
 
 The sandbox stays up either way: on success so the endpoint keeps serving, on failure so the already-downloaded weights aren't lost. Delete it when you're done.
@@ -218,7 +218,7 @@ Paste the printed `export` lines into your shell, then use any OpenAI-compatible
   <TabItem label="curl" icon="seti:shell">
     ```bash
     curl -sS --connect-timeout 30 --max-time 120 "$ENDPOINT/v1/chat/completions" \
-      -H "x-daytona-preview-token: $TOKEN" \
+      -H "x-nightona-preview-token: $TOKEN" \
       -H "Content-Type: application/json" \
       -d '{
         "model": "gemma-4-moe",
@@ -234,7 +234,7 @@ Paste the printed `export` lines into your shell, then use any OpenAI-compatible
     client = OpenAI(
         base_url=f"{os.environ['ENDPOINT']}/v1",
         api_key="EMPTY",  # vLLM doesn't check it; auth is the preview-token header
-        default_headers={"x-daytona-preview-token": os.environ["TOKEN"]},
+        default_headers={"x-nightona-preview-token": os.environ["TOKEN"]},
     )
 
     resp = client.chat.completions.create(
@@ -253,7 +253,7 @@ Paste the printed `export` lines into your shell, then use any OpenAI-compatible
         model="hosted_vllm/gemma-4-moe",  # OpenAI-compatible vLLM server
         api_base=f"{os.environ['ENDPOINT']}/v1",
         api_key="EMPTY",
-        extra_headers={"x-daytona-preview-token": os.environ["TOKEN"]},
+        extra_headers={"x-nightona-preview-token": os.environ["TOKEN"]},
         messages=[{"role": "user", "content": "Write a haiku about agents running code in the cloud."}],
         max_tokens=64,
     )
@@ -262,7 +262,7 @@ Paste the printed `export` lines into your shell, then use any OpenAI-compatible
   </TabItem>
 </Tabs>
 
-The only Daytona-specific detail in any of these is the `x-daytona-preview-token` header. Everything else is the standard OpenAI API surface. The next three examples continue with the OpenAI SDK, following `query_openai.py` through streaming, reasoning, and tool calling.
+The only Nightona-specific detail in any of these is the `x-nightona-preview-token` header. Everything else is the standard OpenAI API surface. The next three examples continue with the OpenAI SDK, following `query_openai.py` through streaming, reasoning, and tool calling.
 
 #### Streaming
 
@@ -354,9 +354,9 @@ The script finishes with tool calling. Because the server was started with `--en
 
 ### 5. Access and Authentication
 
-Two independent layers decide who can reach the model: Daytona's preview proxy in front of the sandbox, and vLLM's own API key check inside it. The guide has used one mode of the proxy layer so far; here is the full picture.
+Two independent layers decide who can reach the model: Nightona's preview proxy in front of the sandbox, and vLLM's own API key check inside it. The guide has used one mode of the proxy layer so far; here is the full picture.
 
-#### The Daytona Layer: Preview Links
+#### The Nightona Layer: Preview Links
 
 Every request so far carried the preview token as a header. That is the default mode and the best fit for code you control, since the secret stays out of URLs, logs, and browser history. Preview links support two more modes for when the header is a poor fit.
 
@@ -379,9 +379,9 @@ Anything that accepts only a base URL can now call the model: chat frontends, no
 
 Every query example sets `api_key="EMPTY"`. That is because vLLM, unless told otherwise, accepts any key; the field exists only to satisfy client constructors. Add `--api-key your-secret-key` to the `vllm serve` command (or set `VLLM_API_KEY` in the sandbox's `env_vars`) and the check becomes real: the server requires `Authorization: Bearer your-secret-key`, which is exactly what OpenAI-compatible clients send as their `api_key`.
 
-The two layers do not guard the same surface, though. The vLLM key covers the inference routes (`/v1` and similar prefixes), while [other endpoints on the same server](https://docs.vllm.ai/en/stable/usage/security/) accept requests without it. The Daytona token gates everything on the port.
+The two layers do not guard the same surface, though. The vLLM key covers the inference routes (`/v1` and similar prefixes), while [other endpoints on the same server](https://docs.vllm.ai/en/stable/usage/security/) accept requests without it. The Nightona token gates everything on the port.
 
-That makes **public preview plus vLLM API key** a combination for sharing with people you broadly trust: the endpoint behaves like a standard OpenAI-style API, configured with nothing but a base URL and an `api_key`, so it works in any tool that accepts only those two fields. For anything more exposed than that, the Daytona layer is the better fit.
+That makes **public preview plus vLLM API key** a combination for sharing with people you broadly trust: the endpoint behaves like a standard OpenAI-style API, configured with nothing but a base URL and an `api_key`, so it works in any tool that accepts only those two fields. For anything more exposed than that, the Nightona layer is the better fit.
 
 | Setup | Client needs | Good for |
 |-------|--------------|----------|
@@ -397,8 +397,8 @@ Everything above governs requests arriving from outside. Code running inside the
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```python
-    daytona = Daytona(DaytonaConfig(target="us-east-1"))
-    sb = daytona.get("sandbox-id")  # printed by serve_vllm.py
+    nightona = Nightona(NightonaConfig(target="us-east-1"))
+    sb = nightona.get("sandbox-id")  # printed by serve_vllm.py
 
     print(sb.process.code_run("""
     from openai import OpenAI
@@ -431,9 +431,9 @@ For gated models, set `HF_TOKEN` in your `.env`; the script forwards it into the
 
 ### 7. Going Further: Sandboxes as Tool Runtimes
 
-In the tool calling example above, `get_weather` runs in the same process as the client. Daytona makes a stronger pattern natural: give each chat session its own CPU sandbox, and execute the model's tool calls there. The GPU sandbox keeps serving every session, while each conversation gets an isolated runtime where model-written code can run, install packages, and touch files without affecting anyone else. When the session ends, delete its sandbox.
+In the tool calling example above, `get_weather` runs in the same process as the client. Nightona makes a stronger pattern natural: give each chat session its own CPU sandbox, and execute the model's tool calls there. The GPU sandbox keeps serving every session, while each conversation gets an isolated runtime where model-written code can run, install packages, and touch files without affecting anyone else. When the session ends, delete its sandbox.
 
-Only the tool function's body changes; instead of computing the result locally, it runs the model's request in the session's sandbox, with `sandbox.process.code_run(...)` for code or `sandbox.process.exec(...)` for shell commands, and returns the output. The sandbox can also carry whatever harness the tools need: interpreters, test runners, project dependencies. The tool-calling loop stays exactly the same. Both halves of the application run on Daytona: the GPU sandbox where the model thinks, and the CPU sandboxes where its decisions execute.
+Only the tool function's body changes; instead of computing the result locally, it runs the model's request in the session's sandbox, with `sandbox.process.code_run(...)` for code or `sandbox.process.exec(...)` for shell commands, and returns the output. The sandbox can also carry whatever harness the tools need: interpreters, test runners, project dependencies. The tool-calling loop stays exactly the same. Both halves of the application run on Nightona: the GPU sandbox where the model thinks, and the CPU sandboxes where its decisions execute.
 
 ### 8. Configuration Options
 

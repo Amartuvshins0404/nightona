@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -7,7 +7,7 @@ import warnings
 
 import pytest
 
-from daytona.common.charts import (
+from nightona.common.charts import (
     BarChart,
     BoxAndWhiskerChart,
     Chart,
@@ -19,15 +19,15 @@ from daytona.common.charts import (
     ScatterChart,
     parse_chart,
 )
-from daytona.common.computer_use import ScreenshotOptions
-from daytona.common.daytona import (
+from nightona.common.computer_use import ScreenshotOptions
+from nightona.common.nightona import (
     CodeLanguage,
     CreateSandboxFromImageParams,
     CreateSandboxFromSnapshotParams,
-    DaytonaConfig,
+    NightonaConfig,
 )
-from daytona.common.errors import DaytonaNotFoundError, DaytonaValidationError
-from daytona.common.filesystem import (
+from nightona.common.errors import NightonaNotFoundError, NightonaValidationError
+from nightona.common.filesystem import (
     FileDownloadErrorDetails,
     FileDownloadRequest,
     FileDownloadResponse,
@@ -35,10 +35,10 @@ from daytona.common.filesystem import (
     create_file_download_error,
     parse_file_download_error_payload,
 )
-from daytona.common.git import GitCommitResponse
-from daytona.common.image import Image
-from daytona.common.lsp_server import LspCompletionPosition, LspLanguageId
-from daytona.common.process import (
+from nightona.common.git import GitCommitResponse
+from nightona.common.image import Image
+from nightona.common.lsp_server import LspCompletionPosition, LspLanguageId
+from nightona.common.process import (
     STDERR_PREFIX,
     STDOUT_PREFIX,
     CodeRunParams,
@@ -48,23 +48,23 @@ from daytona.common.process import (
     SessionExecuteRequest,
     SessionExecuteResponse,
 )
-from daytona.common.pty import PtyResult, PtySize
-from daytona.common.sandbox import Resources
-from daytona.common.snapshot import CreateSnapshotParams
-from daytona.common.volume import Volume, VolumeMount
-from daytona_toolbox_api_client import Chart as GeneratedChart
-from daytona_toolbox_api_client import ChartElement as GeneratedChartElement
+from nightona.common.pty import PtyResult, PtySize
+from nightona.common.sandbox import Resources
+from nightona.common.snapshot import CreateSnapshotParams
+from nightona.common.volume import Volume, VolumeMount
+from nightona_toolbox_api_client import Chart as GeneratedChart
+from nightona_toolbox_api_client import ChartElement as GeneratedChartElement
 
 
-class TestDaytonaConfig:
+class TestNightonaConfig:
     def test_basic_config(self):
-        config = DaytonaConfig(api_key="key123", api_url="https://api.test.io")
+        config = NightonaConfig(api_key="key123", api_url="https://api.test.io")
         assert config.api_key == "key123"
         assert config.api_url == "https://api.test.io"
         assert config.target is None
 
     def test_config_with_all_fields(self):
-        config = DaytonaConfig(
+        config = NightonaConfig(
             api_key="key",
             api_url="https://api.test.io",
             target="us",
@@ -80,14 +80,14 @@ class TestDaytonaConfig:
     def test_deprecated_server_url_sets_api_url(self):
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter("always")
-            config = DaytonaConfig(server_url="https://old.api.io")
+            config = NightonaConfig(server_url="https://old.api.io")
         assert config.api_url == "https://old.api.io"
         assert any("deprecated" in str(w.message).lower() for w in caught)
 
     def test_api_url_takes_precedence_over_server_url(self):
         with warnings.catch_warnings(record=True):
             warnings.simplefilter("always")
-            config = DaytonaConfig(api_url="https://new.api.io", server_url="https://old.api.io")
+            config = NightonaConfig(api_url="https://new.api.io", server_url="https://old.api.io")
         assert config.api_url == "https://new.api.io"
 
 
@@ -222,7 +222,7 @@ class TestFilesystemTypes:
         assert details is None
 
     def test_create_file_download_error_requires_error_message(self):
-        with pytest.raises(DaytonaValidationError, match="must not be None"):
+        with pytest.raises(NightonaValidationError, match="must not be None"):
             create_file_download_error(FileDownloadResponse(source="/tmp/file"))
 
     def test_parse_file_download_error_payload_supports_snake_case_keys(self):
@@ -241,7 +241,7 @@ class TestFilesystemTypes:
                 error_details=FileDownloadErrorDetails(message="missing", status_code=404, error_code="NOT_FOUND"),
             )
         )
-        assert isinstance(error, DaytonaNotFoundError)
+        assert isinstance(error, NightonaNotFoundError)
 
 
 class TestProcessTypes:

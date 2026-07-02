@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Image(BaseModel)
 ```
 
-Daytona のサンドボックス用イメージ定義を表します。
+Nightona のサンドボックス用イメージ定義を表します。
 このクラスを直接インスタンス化しないでください。代わりに `Image.base()`、`Image.debian_slim()`、`Image.from_dockerfile()` などの静的ファクトリメソッドを使用します。
 
 #### Image.dockerfile
@@ -148,7 +148,7 @@ def add_local_file(local_path: Union[str, Path], remote_path: str) -> "Image"
 **例**:
 
 ```python
-image = Image.debian_slim("3.12").add_local_file("package.json", "/home/daytona/package.json")
+image = Image.debian_slim("3.12").add_local_file("package.json", "/home/nightona/package.json")
 ```
 
 #### Image.add\_local\_dir
@@ -173,7 +173,7 @@ def add_local_dir(local_path: Union[str, Path], remote_path: str) -> "Image"
 **例**:
 
 ```python
-image = Image.debian_slim("3.12").add_local_dir("src", "/home/daytona/src")
+image = Image.debian_slim("3.12").add_local_dir("src", "/home/nightona/src")
 ```
 
 #### Image.run\_commands
@@ -224,7 +224,7 @@ def env(env_vars: dict[str, str]) -> "Image"
 **例**:
 
 ```python
-image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/daytona"})
+image = Image.debian_slim("3.12").env({"PROJECT_ROOT": "/home/nightona"})
 ```
 
 #### Image.workdir
@@ -248,7 +248,7 @@ def workdir(path: Union[str, Path]) -> "Image"
 **例**:
 
 ```python
-image = Image.debian_slim("3.12").workdir("/home/daytona")
+image = Image.debian_slim("3.12").workdir("/home/nightona")
 ```
 
 #### Image.entrypoint

@@ -1,12 +1,12 @@
 [project]
-name = "daytona-verl-retool"
+name = "nightona-verl-retool"
 version = "0.1.0"
-description = "Companion files for benchmarking veRL ReTool backends with Daytona"
-authors = [{name = "Daytona Team", email = "support@daytona.io"}]
+description = "Companion files for benchmarking veRL ReTool backends with Nightona"
+authors = [{name = "Nightona Team", email = "support@daytona.io"}]
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "daytona>=0.128.1,<1.0.0",
+    "nightona>=0.128.1,<1.0.0",
 ]
 
 [build-system]

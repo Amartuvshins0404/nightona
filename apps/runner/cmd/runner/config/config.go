@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package config
@@ -17,8 +17,8 @@ import (
 )
 
 type Config struct {
-	DaytonaApiUrl                      string        `envconfig:"DAYTONA_API_URL"`
-	ApiToken                           string        `envconfig:"DAYTONA_RUNNER_TOKEN"`
+	NightonaApiUrl                      string        `envconfig:"NIGHTONA_API_URL"`
+	ApiToken                           string        `envconfig:"NIGHTONA_RUNNER_TOKEN"`
 	ApiPort                            int           `envconfig:"API_PORT"`
 	ApiLogRequests                     bool          `envconfig:"API_LOG_REQUESTS" default:"false"`
 	TLSCertFile                        string        `envconfig:"TLS_CERT_FILE"`
@@ -91,20 +91,20 @@ func GetConfig() (*Config, error) {
 		return nil, err
 	}
 
-	if config.DaytonaApiUrl == "" {
+	if config.NightonaApiUrl == "" {
 		// For backward compatibility
 		serverUrl := os.Getenv("SERVER_URL")
 		if serverUrl == "" {
-			return nil, fmt.Errorf("DAYTONA_API_URL or SERVER_URL is required")
+			return nil, fmt.Errorf("NIGHTONA_API_URL or SERVER_URL is required")
 		}
-		config.DaytonaApiUrl = serverUrl
+		config.NightonaApiUrl = serverUrl
 	}
 
 	if config.ApiToken == "" {
 		// For backward compatibility
 		apiToken := os.Getenv("API_TOKEN")
 		if apiToken == "" {
-			return nil, fmt.Errorf("DAYTONA_RUNNER_TOKEN or API_TOKEN is required")
+			return nil, fmt.Errorf("NIGHTONA_RUNNER_TOKEN or API_TOKEN is required")
 		}
 		config.ApiToken = apiToken
 	}
@@ -165,10 +165,10 @@ func GetForceSnapshotRemoval() bool {
 
 func GetBuildLogFilePath(snapshotRef string) (string, error) {
 	// Extract image name from various snapshot ref formats:
-	// - registry:5000/daytona/daytona-<hash>
-	// - daytona-<hash>
-	// - daytona-<hash>:tag
-	// - cr.preprod.daytona.io/sbox/daytona/daytona-<hash>:daytona
+	// - registry:5000/nightona/nightona-<hash>
+	// - nightona-<hash>
+	// - nightona-<hash>:tag
+	// - cr.preprod.daytona.io/sbox/nightona/nightona-<hash>:nightona
 
 	buildId := snapshotRef
 

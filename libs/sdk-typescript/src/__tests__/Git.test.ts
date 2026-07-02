@@ -1,10 +1,10 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 import { createApiResponse } from './helpers'
 import { Git } from '../Git'
 
-jest.mock('@daytona/toolbox-api-client', () => ({}), { virtual: true })
+jest.mock('@nightona/toolbox-api-client', () => ({}), { virtual: true })
 
 describe('Git', () => {
   const apiClient = {

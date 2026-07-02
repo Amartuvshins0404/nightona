@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package controllers
@@ -16,12 +16,12 @@ import (
 
 	"context"
 
-	"github.com/daytonaio/runner/cmd/runner/config"
-	"github.com/daytonaio/runner/pkg/api/dto"
-	"github.com/daytonaio/runner/pkg/runner"
+	"github.com/Amartuvshins0404/nightona/apps/runner/cmd/runner/config"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner"
 	"github.com/gin-gonic/gin"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
 )
 
 // TagImage godoc
@@ -355,8 +355,8 @@ func GetBuildLogs(logger *slog.Logger) gin.HandlerFunc {
 		checkSnapshotRef := snapshotRef
 
 		// Fixed tag for instances where we are not looking for an entry with snapshot ID
-		if strings.HasPrefix(snapshotRef, "daytona") {
-			checkSnapshotRef = snapshotRef + ":daytona"
+		if strings.HasPrefix(snapshotRef, "nightona") {
+			checkSnapshotRef = snapshotRef + ":nightona"
 		}
 
 		flusher, ok := ctx.Writer.(http.Flusher)

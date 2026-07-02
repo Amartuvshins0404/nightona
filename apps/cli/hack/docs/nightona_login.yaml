@@ -1,0 +1,12 @@
+name: nightona login
+synopsis: Log in to Nightona
+usage: nightona login [flags]
+options:
+  - name: api-key
+    usage: API key to use for authentication
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package recordingdashboard
@@ -12,9 +12,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/daytonaio/daemon/pkg/recording"
-	recordingcontroller "github.com/daytonaio/daemon/pkg/toolbox/computeruse/recording"
-	"github.com/daytonaio/daemon/pkg/toolbox/config"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/recording"
+	recordingcontroller "github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse/recording"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/config"
 	"github.com/gin-gonic/gin"
 )
 

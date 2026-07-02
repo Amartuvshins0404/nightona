@@ -1,11 +1,11 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { handleApiError } from '@/lib/error-handling'
 import { downloadBlob } from '@/lib/utils'
-import { FileInfo } from '@daytona/toolbox-api-client'
+import { FileInfo } from '@nightona/toolbox-api-client'
 import { Buffer } from 'buffer'
 import { format } from 'date-fns'
 import { toast } from 'sonner'

@@ -33,7 +33,7 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}",
-        "command": "go test -v -tags=e2e -run TestE2E -timeout 180s -count=1 ./pkg/daytona/"
+        "command": "go test -v -tags=e2e -run TestE2E -timeout 180s -count=1 ./pkg/nightona/"
       },
       "dependsOn": ["build"]
     },
@@ -97,7 +97,7 @@
       "options": {
         "cwd": "{projectRoot}",
         "commands": [
-          "gomarkdoc --template-file file=templates/file.gotxt --template-file example=templates/example.gotxt --template-file func=templates/func.gotxt --template-file type=templates/type.gotxt -o ../../apps/docs/src/content/docs/en/go-sdk/daytona.mdx ./pkg/daytona",
+          "gomarkdoc --template-file file=templates/file.gotxt --template-file example=templates/example.gotxt --template-file func=templates/func.gotxt --template-file type=templates/type.gotxt -o ../../apps/docs/src/content/docs/en/go-sdk/nightona.mdx ./pkg/nightona",
           "gomarkdoc --template-file file=templates/file.gotxt --template-file example=templates/example.gotxt --template-file func=templates/func.gotxt --template-file type=templates/type.gotxt -o ../../apps/docs/src/content/docs/en/go-sdk/types.mdx ./pkg/types",
           "gomarkdoc --template-file file=templates/file.gotxt --template-file example=templates/example.gotxt --template-file func=templates/func.gotxt --template-file type=templates/type.gotxt -o ../../apps/docs/src/content/docs/en/go-sdk/errors.mdx ./pkg/errors",
           "gomarkdoc --template-file file=templates/file.gotxt --template-file example=templates/example.gotxt --template-file func=templates/func.gotxt --template-file type=templates/type.gotxt -o ../../apps/docs/src/content/docs/en/go-sdk/options.mdx ./pkg/options"
@@ -119,10 +119,10 @@
       "executor": "nx:run-commands",
       "cache": true,
       "inputs": [{ "env": "VERSION" }],
-      "outputs": ["{projectRoot}/pkg/daytona/VERSION"],
+      "outputs": ["{projectRoot}/pkg/nightona/VERSION"],
       "options": {
         "cwd": "{projectRoot}",
-        "commands": ["echo \"${VERSION:-v0.0.0-dev}\" > pkg/daytona/VERSION"],
+        "commands": ["echo \"${VERSION:-v0.0.0-dev}\" > pkg/nightona/VERSION"],
         "parallel": false
       }
     },
@@ -132,7 +132,7 @@
       "options": {
         "cwd": "{projectRoot}",
         "commands": [
-          "git add pkg/daytona/VERSION",
+          "git add pkg/nightona/VERSION",
           "git add ../../libs/api-client-go/VERSION ../../libs/toolbox-api-client-go/VERSION",
           "git add go.mod ../../apps/cli/go.mod ../../apps/otel-collector/exporter/go.mod",
           "git commit -s -m \"chore(sdk-go): bump to ${VERSION:-v0.0.0-dev}\" || true"

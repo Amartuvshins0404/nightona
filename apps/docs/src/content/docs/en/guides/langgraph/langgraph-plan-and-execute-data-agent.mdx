@@ -1,6 +1,6 @@
 ---
-title: Build a Plan-and-Execute Data Agent With LangGraph and Daytona
-description: Wire a six-node LangGraph state machine that runs an end-to-end ETL plus analytical-SQL workflow in an isolated Daytona sandbox, with structured planning and per-step retry recovery.
+title: Build a Plan-and-Execute Data Agent With LangGraph and Nightona
+description: Wire a six-node LangGraph state machine that runs an end-to-end ETL plus analytical-SQL workflow in an isolated Nightona sandbox, with structured planning and per-step retry recovery.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
@@ -8,7 +8,7 @@ import { Image } from 'astro:assets'
 
 import workflowDiagram from '../../../../../assets/docs/images/langgraph-plan-and-execute-workflow.svg'
 
-This guide demonstrates how to build a [LangGraph](https://langchain-ai.github.io/langgraph/) **plan-and-execute** data agent that runs an end-to-end ETL plus analytical-SQL workflow inside a [Daytona](https://daytona.io) sandbox. The graph is hand-wired as a six-node state machine. Every node and every edge is explicit, so the agent's control flow is fully inspectable.
+This guide demonstrates how to build a [LangGraph](https://langchain-ai.github.io/langgraph/) **plan-and-execute** data agent that runs an end-to-end ETL plus analytical-SQL workflow inside a [Nightona](https://daytona.io) sandbox. The graph is hand-wired as a six-node state machine. Every node and every edge is explicit, so the agent's control flow is fully inspectable.
 
 In this example, we ask the agent to profile the maintenance health of the public [`langchain-ai/langgraph`](https://github.com/langchain-ai/langgraph) GitHub repository: extract issues and pull requests from the public GitHub REST API, transform and normalize them into a relational schema, load them into a SQLite database in the sandbox, run three analytical SQL queries, and report findings.
 
@@ -16,7 +16,7 @@ In this example, we ask the agent to profile the maintenance health of the publi
 
 ### 1. Workflow Overview
 
-You ask the agent a natural-language data question. The planner emits an ordered list of atomic plan steps as structured output. For each step the executor generates Python code and runs it in a Daytona sandbox. A deterministic `check` node advances to the next step on success, retries the current step (with the failing code as context, up to `max_attempts`) on failure, or routes to the summarizer once the plan is complete. The summarizer produces a final natural-language answer and a `cleanup` node deletes the sandbox.
+You ask the agent a natural-language data question. The planner emits an ordered list of atomic plan steps as structured output. For each step the executor generates Python code and runs it in a Nightona sandbox. A deterministic `check` node advances to the next step on success, retries the current step (with the failing code as context, up to `max_attempts`) on failure, or routes to the summarizer once the plan is complete. The summarizer produces a final natural-language answer and a `cleanup` node deletes the sandbox.
 
 The key benefit: every node, edge, and retry decision lives in plain Python you can read, not inside a prebuilt agent loop.
 
@@ -31,11 +31,11 @@ The key benefit: every node, edge, and retry decision lives in plain Python you 
 
 #### Clone the Repository
 
-Clone the [Daytona repository](https://github.com/daytonaio/daytona) and navigate to the example directory:
+Clone the [Nightona repository](https://github.com/Amartuvshins0404/nightona) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/python/langgraph/plan-and-execute-data-agent
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/python/langgraph/plan-and-execute-data-agent
 ```
 
 #### Create Virtual Environment
@@ -54,14 +54,14 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```bash
-    pip install -U langgraph langchain-core langchain-anthropic daytona pydantic python-dotenv
+    pip install -U langgraph langchain-core langchain-anthropic nightona pydantic python-dotenv
     ```
 
     The packages include:
     - `langgraph`: Graph-structured orchestration (provides `StateGraph` and conditional-edge routing)
     - `langchain-core`: Message types (`HumanMessage`, `SystemMessage`, `BaseMessage`)
     - `langchain-anthropic`: `ChatAnthropic` chat model, including the Anthropic-specific `with_structured_output` implementation we use for the planner
-    - `daytona`: Daytona Python SDK for sandbox provisioning and code execution
+    - `nightona`: Nightona Python SDK for sandbox provisioning and code execution
     - `pydantic`: Defines the structured plan schema returned by the planner LLM call
     - `python-dotenv`: Loads environment variables from `.env`
 
@@ -72,19 +72,19 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 Get your API keys and configure your environment:
 
-1. **Daytona API key:** Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+1. **Nightona API key:** Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 2. **Anthropic API key:** Get it from [Anthropic Console](https://console.anthropic.com/)
 
 Create a `.env` file in your project:
 
 ```bash
-DAYTONA_API_KEY=dtn_***
+NIGHTONA_API_KEY=dtn_***
 ANTHROPIC_API_KEY=sk-ant-***
 ```
 
 ### 3. Understanding the Core Components
 
-Before walking through the implementation, here are the key concepts the code relies on: the choice of agent pattern (plan-and-execute vs. ReAct), LangGraph's `StateGraph` with task-specific state, how state updates flow through nodes, structured-output planning, and the Daytona code interpreter.
+Before walking through the implementation, here are the key concepts the code relies on: the choice of agent pattern (plan-and-execute vs. ReAct), LangGraph's `StateGraph` with task-specific state, how state updates flow through nodes, structured-output planning, and the Nightona code interpreter.
 
 #### Plan-and-Execute vs. ReAct
 
@@ -141,9 +141,9 @@ One last detail worth knowing: when a conditional edge fires after a node, the r
 
 The `plan` node uses `model.with_structured_output(Plan)` where `Plan` is a Pydantic model with one field, `steps: list[str]`. The Anthropic adapter converts this into a tool-style schema and forces the LLM to return a parseable list rather than free-form prose. This is more reliable than parsing markdown-bulleted lists by regex.
 
-#### Daytona SDK
+#### Nightona SDK
 
-`Daytona().create()` provisions a sandbox. The LLM-generated code from each `execute` step is run by `sandbox.code_interpreter.run_code(code)`. We use the `code_interpreter` API specifically because it preserves the Python execution context across calls: imports, variables, and functions defined in one plan step are still in scope in the next.
+`Nightona().create()` provisions a sandbox. The LLM-generated code from each `execute` step is run by `sandbox.code_interpreter.run_code(code)`. We use the `code_interpreter` API specifically because it preserves the Python execution context across calls: imports, variables, and functions defined in one plan step are still in scope in the next.
 
 ### 4. Implementation
 
@@ -152,7 +152,7 @@ The `plan` node uses `model.with_structured_output(Plan)` where `Plan` is a Pyda
 ```python
 from typing import TypedDict
 from pydantic import BaseModel, Field
-from daytona import Sandbox
+from nightona import Sandbox
 
 
 class Plan(BaseModel):
@@ -191,7 +191,7 @@ Three system prompts shape the three LLM calls that the graph makes. They are de
 PLAN_SYSTEM_PROMPT = """You are the planner stage of a plan-and-execute data agent.
 
 Produce an ordered list of 4-8 atomic plan steps. Each step is one natural-language sentence describing
-a single chunk of Python code that the executor stage will then write and run in a persistent Daytona sandbox.
+a single chunk of Python code that the executor stage will then write and run in a persistent Nightona sandbox.
 
 Rules:
 - Sandbox state PERSISTS across steps. Imports, variables, and files from step N are visible in step N+1.
@@ -211,7 +211,7 @@ Rules:
 EXECUTE_SYSTEM_PROMPT = """You are the executor stage of a plan-and-execute data agent.
 
 You receive the user's original request, the full plan, and the index of the current step. You must output
-ONLY Python code that accomplishes the current step. The code runs in a persistent Daytona sandbox; prior
+ONLY Python code that accomplishes the current step. The code runs in a persistent Nightona sandbox; prior
 steps' variables, imports, and files are still in scope. Always `print()` the relevant output so later
 stages can see the results.
 
@@ -245,7 +245,7 @@ plan_llm = model.with_structured_output(Plan)
 
 
 def provision(state: AgentState) -> dict:
-    sandbox = Daytona().create()
+    sandbox = Nightona().create()
     return {"sandbox": sandbox}
 
 
@@ -456,7 +456,7 @@ The agent typically emits a 6-step plan, executes each step in the persistent in
 #### Example Output
 
 ```text
-[provision] creating Daytona sandbox...
+[provision] creating Nightona sandbox...
 [provision] sandbox ready (id=b9cf758d-9b93-4117-96b3-9a406c86b1b8)
 
 [plan] asking the LLM for a multi-step plan...
@@ -532,6 +532,6 @@ The graph topology is task-agnostic. To profile a different repository, change t
 
 - **Inspectable plan:** The list of steps lives in graph state as data (`state["plan"]`), not implicit in chat history, so you can log it, modify it, or replay any individual step.
 - **Explicit retry control:** Failure handling is your code, not a prebuilt agent's black box. `max_attempts`, the routing logic in `route_from_check`, and the prompt context shown on each retry are all readable and tunable.
-- **Persistent interpreter context:** Daytona's `code_interpreter.run_code` shares one Python interpreter across all `execute` calls, so imports, variables, and functions defined in earlier steps stay in scope, exactly the behavior the LLM's plan assumes.
-- **Secure sandbox execution:** Every line of LLM-generated Python runs in an isolated Daytona sandbox, not on your machine.
+- **Persistent interpreter context:** Nightona's `code_interpreter.run_code` shares one Python interpreter across all `execute` calls, so imports, variables, and functions defined in earlier steps stay in scope, exactly the behavior the LLM's plan assumes.
+- **Secure sandbox execution:** Every line of LLM-generated Python runs in an isolated Nightona sandbox, not on your machine.
 - **Task-agnostic topology:** The same six-node graph works for any analytical workflow by swapping `USER_REQUEST`. The provision/plan/execute/check/summarize/cleanup machinery doesn't depend on the specific task.

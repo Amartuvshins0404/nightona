@@ -1,30 +1,30 @@
 ---
 title: Java SDK Reference
-description: Interact with Daytona Sandboxes using the Java SDK
-next: /docs/en/java-sdk/daytona
+description: Interact with Nightona Sandboxes using the Java SDK
+next: /docs/en/java-sdk/nightona
 ---
 
-The Daytona Java SDK provides a robust interface for programmatically interacting with Daytona Sandboxes. It targets Java 11+ and uses OkHttp and Jackson.
+The Nightona Java SDK provides a robust interface for programmatically interacting with Nightona Sandboxes. It targets Java 11+ and uses OkHttp and Jackson.
 
 ## Installation
 
 ### Gradle
 
-Add the Daytona SDK dependency to your `build.gradle.kts`:
+Add the Nightona SDK dependency to your `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("io.daytona:sdk:x.y.z")
+    implementation("io.nightona:sdk:x.y.z")
 }
 ```
 
 ### Maven
 
-Add the Daytona SDK dependency to your `pom.xml`:
+Add the Nightona SDK dependency to your `pom.xml`:
 
 ```xml
 <dependency>
-  <groupId>io.daytona</groupId>
+  <groupId>io.nightona</groupId>
   <artifactId>sdk</artifactId>
   <version>x.y.z</version>
 </dependency>
@@ -34,19 +34,19 @@ Add the Daytona SDK dependency to your `pom.xml`:
 
 ### Create a Sandbox
 
-Create a Daytona Sandbox to run your code securely in an isolated environment. The following snippet is an example "Hello World" program that runs securely inside a Daytona Sandbox.
+Create a Nightona Sandbox to run your code securely in an isolated environment. The following snippet is an example "Hello World" program that runs securely inside a Nightona Sandbox.
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.ExecuteResponse;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.ExecuteResponse;
 
 public class Main {
     public static void main(String[] args) {
         // Initialize the SDK (uses environment variables by default)
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             // Create a new sandbox
-            Sandbox sandbox = daytona.create();
+            Sandbox sandbox = nightona.create();
 
             // Execute a command
             ExecuteResponse response = sandbox.getProcess().executeCommand("echo 'Hello, World!'");
@@ -61,21 +61,21 @@ public class Main {
 
 ## Configuration
 
-The Daytona SDK can be configured using environment variables or by passing a configuration object:
+The Nightona SDK can be configured using environment variables or by passing a configuration object:
 
 ```java
-// Using environment variables (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
-Daytona daytona = new Daytona();
+// Using environment variables (NIGHTONA_API_KEY, NIGHTONA_API_URL, NIGHTONA_TARGET)
+Nightona nightona = new Nightona();
 ```
 
 ```java
 // Using explicit configuration
-DaytonaConfig config = new DaytonaConfig.Builder()
+NightonaConfig config = new NightonaConfig.Builder()
     .apiKey("YOUR_API_KEY")
     .apiUrl("YOUR_API_URL")
     .target("us")
     .build();
-Daytona daytona = new Daytona(config);
+Nightona nightona = new Nightona(config);
 ```
 
-For more information on configuring the Daytona SDK, see [configuration](/docs/en/configuration).
+For more information on configuring the Nightona SDK, see [configuration](/docs/en/configuration).

@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Organization, OrganizationRolePermissionsEnum, OrganizationUser } from '@daytona/api-client'
+import { Organization, OrganizationRolePermissionsEnum, OrganizationUser } from '@nightona/api-client'
 
 import { createContext } from 'react'
 

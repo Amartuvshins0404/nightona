@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package git
@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/daytonaio/daemon/pkg/gitprovider"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/gitprovider"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	"github.com/stretchr/testify/require"
 )
@@ -31,7 +31,7 @@ func TestBuildCloneArgs(t *testing.T) {
 		{
 			name: "https URL with branch",
 			repo: &gitprovider.GitRepository{
-				Url:    "https://github.com/daytonaio/daytona",
+				Url:    "https://github.com/Amartuvshins0404/nightona",
 				Branch: "main",
 			},
 			workDir: "/work-dir",
@@ -40,13 +40,13 @@ func TestBuildCloneArgs(t *testing.T) {
 				"-c", "core.hooksPath=/dev/null",
 				"clone", "--single-branch", "--progress",
 				"--branch", "main",
-				"--", "https://github.com/daytonaio/daytona", "/work-dir",
+				"--", "https://github.com/Amartuvshins0404/nightona", "/work-dir",
 			},
 		},
 		{
 			name: "http URL with branch",
 			repo: &gitprovider.GitRepository{
-				Url:    "http://localhost:3000/daytonaio/daytona",
+				Url:    "http://localhost:3000/daytonaio/nightona",
 				Branch: "main",
 			},
 			workDir: "/work-dir",
@@ -55,13 +55,13 @@ func TestBuildCloneArgs(t *testing.T) {
 				"-c", "core.hooksPath=/dev/null",
 				"clone", "--single-branch", "--progress",
 				"--branch", "main",
-				"--", "http://localhost:3000/daytonaio/daytona", "/work-dir",
+				"--", "http://localhost:3000/daytonaio/nightona", "/work-dir",
 			},
 		},
 		{
 			name: "URL without protocol gets https:// prefix",
 			repo: &gitprovider.GitRepository{
-				Url:    "github.com/daytonaio/daytona",
+				Url:    "github.com/Amartuvshins0404/nightona",
 				Branch: "main",
 			},
 			workDir: "/work-dir",
@@ -70,20 +70,20 @@ func TestBuildCloneArgs(t *testing.T) {
 				"-c", "core.hooksPath=/dev/null",
 				"clone", "--single-branch", "--progress",
 				"--branch", "main",
-				"--", "https://github.com/daytonaio/daytona", "/work-dir",
+				"--", "https://github.com/Amartuvshins0404/nightona", "/work-dir",
 			},
 		},
 		{
 			name: "no branch omits --branch flag",
 			repo: &gitprovider.GitRepository{
-				Url: "https://github.com/daytonaio/daytona",
+				Url: "https://github.com/Amartuvshins0404/nightona",
 			},
 			workDir: "/work-dir",
 			expected: []string{
 				"-c", "credential.helper=",
 				"-c", "core.hooksPath=/dev/null",
 				"clone", "--single-branch", "--progress",
-				"--", "https://github.com/daytonaio/daytona", "/work-dir",
+				"--", "https://github.com/Amartuvshins0404/nightona", "/work-dir",
 			},
 		},
 		{
@@ -125,7 +125,7 @@ func TestBuildCloneArgs_NeverEmbedsCredsInURL(t *testing.T) {
 	// user:pass@ in the URL, which persisted into .git/config. The new impl
 	// must never do that — creds flow through GIT_ASKPASS env only.
 	repo := &gitprovider.GitRepository{
-		Url:    "https://github.com/daytonaio/daytona",
+		Url:    "https://github.com/Amartuvshins0404/nightona",
 		Branch: "main",
 	}
 	args := buildCloneArgs(repo, "/work-dir", false)
@@ -170,13 +170,13 @@ func TestBuildCloneEnv_OverridesBaseEnv(t *testing.T) {
 		"GIT_ASKPASS=/wrong/path",
 		"GIT_USERNAME=inherited-user",
 		"GIT_PASSWORD=inherited-pass",
-		"HOME=/home/daytona",
+		"HOME=/home/nightona",
 	}
 	env := buildCloneEnv(base, "/tmp/askpass.sh", testCreds)
 
 	// Base env unrelated to git is preserved.
 	require.Contains(t, env, "PATH=/usr/bin")
-	require.Contains(t, env, "HOME=/home/daytona")
+	require.Contains(t, env, "HOME=/home/nightona")
 
 	// Managed keys from baseEnv are dropped; our values are the only ones.
 	countPrefix := func(prefix string) int {
@@ -198,11 +198,11 @@ func TestBuildCloneEnv_OverridesBaseEnv(t *testing.T) {
 }
 
 func TestBuildCloneEnv_PreservesBaseEnv(t *testing.T) {
-	base := []string{"PATH=/usr/bin", "HOME=/home/daytona"}
+	base := []string{"PATH=/usr/bin", "HOME=/home/nightona"}
 	env := buildCloneEnv(base, "/tmp/askpass.sh", nil)
 
 	require.Contains(t, env, "PATH=/usr/bin")
-	require.Contains(t, env, "HOME=/home/daytona")
+	require.Contains(t, env, "HOME=/home/nightona")
 }
 
 func TestBuildCheckoutArgs(t *testing.T) {

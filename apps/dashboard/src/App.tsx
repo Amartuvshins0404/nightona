@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -9,7 +9,7 @@ import { OrganizationsProvider } from '@/providers/OrganizationsProvider'
 import { SelectedOrganizationProvider } from '@/providers/SelectedOrganizationProvider'
 import { UserOrganizationInvitationsProvider } from '@/providers/UserOrganizationInvitationsProvider'
 import { initPylon } from '@/vendor/pylon'
-import { OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@nightona/api-client'
 import { ShieldAlert } from 'lucide-react'
 import { useFeatureFlagEnabled, usePostHog } from 'posthog-js/react'
 import { Suspense, useEffect, type ReactNode } from 'react'
@@ -41,7 +41,7 @@ import {
   DialogTitle,
 } from './components/ui/dialog'
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from './components/ui/empty'
-import { DAYTONA_DOCS_URL, DAYTONA_SLACK_URL } from './constants/ExternalLinks'
+import { NIGHTONA_DOCS_URL, NIGHTONA_SLACK_URL } from './constants/ExternalLinks'
 import { FeatureFlags } from './enums/FeatureFlags'
 import { getRouteSubPath, RoutePath, trimLeadingSlash } from './enums/RoutePath'
 import { useConfig } from './hooks/useConfig'
@@ -328,8 +328,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: trimLeadingSlash(RoutePath.LOGOUT), element: <Logout /> },
-      { path: trimLeadingSlash(RoutePath.DOCS), loader: () => redirect(DAYTONA_DOCS_URL) },
-      { path: trimLeadingSlash(RoutePath.SLACK), loader: () => redirect(DAYTONA_SLACK_URL) },
+      { path: trimLeadingSlash(RoutePath.DOCS), loader: () => redirect(NIGHTONA_DOCS_URL) },
+      { path: trimLeadingSlash(RoutePath.SLACK), loader: () => redirect(NIGHTONA_SLACK_URL) },
       {
         path: trimLeadingSlash(RoutePath.DASHBOARD),
         element: <DashboardOutlet />,

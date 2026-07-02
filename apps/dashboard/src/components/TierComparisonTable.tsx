@@ -1,11 +1,11 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { ComparisonSection, ComparisonTable } from './ComparisonTable'
 
-import { OrganizationTier, Tier } from '@daytona/billing-api-client'
+import { OrganizationTier, Tier } from '@nightona/billing-api-client'
 import { TIER_RATE_LIMITS } from '@/constants/limits'
 import { Skeleton } from './ui/skeleton'
 

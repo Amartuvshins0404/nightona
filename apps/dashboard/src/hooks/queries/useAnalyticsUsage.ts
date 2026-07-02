@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -12,7 +12,7 @@ import {
   ModelsSandboxUsage,
   ModelsUsageChartPoint,
   ModelsUsagePeriod,
-} from '@daytona/analytics-api-client'
+} from '@nightona/analytics-api-client'
 
 export interface AnalyticsUsageParams {
   from: Date

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package organization
@@ -6,7 +6,7 @@ package organization
 import (
 	"testing"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 )
 
 func TestResolveRegion(t *testing.T) {

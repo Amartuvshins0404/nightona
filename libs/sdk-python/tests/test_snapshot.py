@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -7,14 +7,14 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from daytona.common.errors import DaytonaError
-from daytona.common.image import Image
-from daytona.common.snapshot import Snapshot
+from nightona.common.errors import NightonaError
+from nightona.common.image import Image
+from nightona.common.snapshot import Snapshot
 
 
 class TestSyncSnapshotService:
     def _make_service(self):
-        from daytona._sync.snapshot import SnapshotService
+        from nightona._sync.snapshot import SnapshotService
 
         mock_snapshots_api = MagicMock()
         mock_object_storage_api = MagicMock()
@@ -58,12 +58,12 @@ class TestSyncSnapshotService:
 
     def test_list_invalid_page_raises(self):
         service, _ = self._make_service()
-        with pytest.raises(DaytonaError, match="page must be a positive integer"):
+        with pytest.raises(NightonaError, match="page must be a positive integer"):
             service.list(page=0)
 
     def test_list_invalid_limit_raises(self):
         service, _ = self._make_service()
-        with pytest.raises(DaytonaError, match="limit must be a positive integer"):
+        with pytest.raises(NightonaError, match="limit must be a positive integer"):
             service.list(limit=0)
 
     def test_get(self):
@@ -117,7 +117,7 @@ class TestSyncSnapshotService:
 
 class TestAsyncSnapshotService:
     def _make_service(self):
-        from daytona._async.snapshot import AsyncSnapshotService
+        from nightona._async.snapshot import AsyncSnapshotService
 
         mock_snapshots_api = AsyncMock()
         mock_object_storage_api = AsyncMock()
@@ -162,7 +162,7 @@ class TestAsyncSnapshotService:
     @pytest.mark.asyncio
     async def test_list_invalid_page_raises(self):
         service, _ = self._make_service()
-        with pytest.raises(DaytonaError, match="page must be a positive integer"):
+        with pytest.raises(NightonaError, match="page must be a positive integer"):
             await service.list(page=0)
 
     @pytest.mark.asyncio

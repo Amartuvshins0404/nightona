@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -9,9 +9,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/daytonaio/runner/cmd/runner/config"
-	"github.com/daytonaio/runner/pkg/api/dto"
-	"github.com/daytonaio/runner/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/runner/cmd/runner/config"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/common"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/api/types/strslice"
@@ -29,8 +29,8 @@ const (
 )
 
 // androidDeviceLabel is set on containers created for sandboxes tagged as "android-device".
-// The Start path reads it to skip the daytona daemon exec/wait that regular sandboxes need.
-const androidDeviceLabel = "daytona.android_device"
+// The Start path reads it to skip the nightona daemon exec/wait that regular sandboxes need.
+const androidDeviceLabel = "nightona.android_device"
 
 // isAndroidDeviceContainer reports whether an already-created container was provisioned for
 // an android-device sandbox, based on the label written at create time.
@@ -63,9 +63,9 @@ func (d *DockerClient) getContainerCreateConfig(sandboxDto dto.CreateSandboxDTO,
 	}
 
 	envVars := []string{
-		"DAYTONA_SANDBOX_ID=" + sandboxDto.Id,
-		"DAYTONA_SANDBOX_SNAPSHOT=" + sandboxDto.Snapshot,
-		"DAYTONA_SANDBOX_USER=" + sandboxDto.OsUser,
+		"NIGHTONA_SANDBOX_ID=" + sandboxDto.Id,
+		"NIGHTONA_SANDBOX_SNAPSHOT=" + sandboxDto.Snapshot,
+		"NIGHTONA_SANDBOX_USER=" + sandboxDto.OsUser,
 	}
 
 	// GPU sandboxes run non-privileged so CDI's per-device cgroup rules
@@ -89,15 +89,15 @@ func (d *DockerClient) getContainerCreateConfig(sandboxDto dto.CreateSandboxDTO,
 	}
 
 	if sandboxDto.OtelEndpoint != nil && *sandboxDto.OtelEndpoint != "" {
-		envVars = append(envVars, "DAYTONA_OTEL_ENDPOINT="+*sandboxDto.OtelEndpoint)
+		envVars = append(envVars, "NIGHTONA_OTEL_ENDPOINT="+*sandboxDto.OtelEndpoint)
 	}
 
 	if sandboxDto.OrganizationId != nil && *sandboxDto.OrganizationId != "" {
-		envVars = append(envVars, "DAYTONA_ORGANIZATION_ID="+*sandboxDto.OrganizationId)
+		envVars = append(envVars, "NIGHTONA_ORGANIZATION_ID="+*sandboxDto.OrganizationId)
 	}
 
 	if sandboxDto.RegionId != nil && *sandboxDto.RegionId != "" {
-		envVars = append(envVars, "DAYTONA_REGION_ID="+*sandboxDto.RegionId)
+		envVars = append(envVars, "NIGHTONA_REGION_ID="+*sandboxDto.RegionId)
 	}
 
 	labels := make(map[string]string)
@@ -109,14 +109,14 @@ func (d *DockerClient) getContainerCreateConfig(sandboxDto dto.CreateSandboxDTO,
 		for i, v := range sandboxDto.Volumes {
 			volumeMountPaths[i] = v.MountPath
 		}
-		labels["daytona.volume_mount_paths"] = strings.Join(volumeMountPaths, ",")
+		labels["nightona.volume_mount_paths"] = strings.Join(volumeMountPaths, ",")
 	}
 	if sandboxDto.Metadata != nil {
 		if orgID, ok := sandboxDto.Metadata["organizationId"]; ok && orgID != "" {
-			labels["daytona.organization_id"] = orgID
+			labels["nightona.organization_id"] = orgID
 		}
 		if orgName, ok := sandboxDto.Metadata["organizationName"]; ok && orgName != "" {
-			labels["daytona.organization_name"] = orgName
+			labels["nightona.organization_name"] = orgName
 		}
 	}
 	if gpuIndex != nil {
@@ -124,7 +124,7 @@ func (d *DockerClient) getContainerCreateConfig(sandboxDto dto.CreateSandboxDTO,
 	}
 
 	// Android-device sandboxes run the image's native entrypoint (e.g. the docker-android
-	// emulator bootstrap) and never host the daytona daemon. We mark the container with a
+	// emulator bootstrap) and never host the nightona daemon. We mark the container with a
 	// label so the Start path can detect this later without needing the original DTO.
 	if sandboxDto.IsAndroidSandbox() {
 		labels[androidDeviceLabel] = "true"
@@ -148,7 +148,7 @@ func (d *DockerClient) getContainerCreateConfig(sandboxDto dto.CreateSandboxDTO,
 
 		// If workingDir is empty, append flag env var to envVars
 		if workingDir == "" {
-			envVars = append(envVars, "DAYTONA_USER_HOME_AS_WORKDIR=true")
+			envVars = append(envVars, "NIGHTONA_USER_HOME_AS_WORKDIR=true")
 		}
 
 		entrypoint = []string{common.DAEMON_PATH}
@@ -179,7 +179,7 @@ func (d *DockerClient) getContainerCreateConfig(sandboxDto dto.CreateSandboxDTO,
 
 func (d *DockerClient) getContainerHostConfig(sandboxDto dto.CreateSandboxDTO, volumeMountPathBinds []string, gpuIndex *int) (*container.HostConfig, error) {
 	// Android-device sandboxes run on plain docker runtime, without the bundled
-	// daytona daemon, and require /dev/kvm to be mounted for emulator acceleration.
+	// nightona daemon, and require /dev/kvm to be mounted for emulator acceleration.
 	if sandboxDto.IsAndroidSandbox() {
 		return d.getAndroidDeviceHostConfig(sandboxDto, volumeMountPathBinds), nil
 	}
@@ -190,7 +190,7 @@ func (d *DockerClient) getContainerHostConfig(sandboxDto dto.CreateSandboxDTO, v
 
 	// Mount the plugin if available
 	if d.computerUsePluginPath != "" {
-		binds = append(binds, fmt.Sprintf("%s:/usr/local/lib/daytona-computer-use:ro", d.computerUsePluginPath))
+		binds = append(binds, fmt.Sprintf("%s:/usr/local/lib/nightona-computer-use:ro", d.computerUsePluginPath))
 	}
 
 	if len(volumeMountPathBinds) > 0 {

@@ -5,9 +5,9 @@ description: Interact with pseudo terminal sessions in your sandboxes.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona provides powerful pseudo terminal (PTY) capabilities through the `process` module in sandboxes. PTY sessions allow you to create interactive terminal sessions that can execute commands, handle user input, and manage terminal operations.
+Nightona provides powerful pseudo terminal (PTY) capabilities through the `process` module in sandboxes. PTY sessions allow you to create interactive terminal sessions that can execute commands, handle user input, and manage terminal operations.
 
-A PTY (Pseudo Terminal) is a virtual terminal interface that allows programs to interact with a shell as if they were connected to a real terminal. PTY sessions in Daytona enable:
+A PTY (Pseudo Terminal) is a virtual terminal interface that allows programs to interact with a shell as if they were connected to a real terminal. PTY sessions in Nightona enable:
 
 - **Interactive Development**: REPLs, debuggers, and development tools
 - **Build Processes**: Running and monitoring compilation, testing, or deployment
@@ -16,13 +16,13 @@ A PTY (Pseudo Terminal) is a virtual terminal interface that allows programs to 
 
 ## Create PTY session
 
-Daytona provides methods to create an interactive terminal session that can execute commands and handle user input.
+Nightona provides methods to create an interactive terminal session that can execute commands and handle user input.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona.common.pty import PtySize
+from nightona.common.pty import PtySize
 
 pty_handle = sandbox.process.create_pty_session(
     id="my-session",
@@ -70,7 +70,7 @@ await ptyHandle.disconnect()
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-pty_size = Daytona::PtySize.new(rows: 30, cols: 120)
+pty_size = Nightona::PtySize.new(rows: 30, cols: 120)
 pty_handle = sandbox.process.create_pty_session(
   id: 'my-interactive-session',
   cwd: '/workspace',
@@ -130,9 +130,9 @@ fmt.Printf("PTY session completed with exit code: %d\n", *result.ExitCode)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyCreateOptions;
-import io.daytona.sdk.PtyHandle;
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyCreateOptions;
+import io.nightona.sdk.PtyHandle;
+import io.nightona.sdk.PtyResult;
 import java.nio.charset.StandardCharsets;
 
 PtyCreateOptions options = new PtyCreateOptions()
@@ -179,7 +179,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/pty' \
 
 ## Connect to PTY session
 
-Daytona provides methods to establish a connection to an existing PTY session, enabling interaction with a previously created terminal.
+Nightona provides methods to establish a connection to an existing PTY session, enabling interaction with a previously created terminal.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -270,9 +270,9 @@ fmt.Printf("Session exited with code: %d\n", *result.ExitCode)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyCreateOptions;
-import io.daytona.sdk.PtyHandle;
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyCreateOptions;
+import io.nightona.sdk.PtyHandle;
+import io.nightona.sdk.PtyResult;
 import java.nio.charset.StandardCharsets;
 
 PtyCreateOptions options = new PtyCreateOptions()
@@ -301,7 +301,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/pty/{sessionId}/c
 
 ## List PTY sessions
 
-Daytona provides methods to list PTY sessions, allowing you to retrieve information about all PTY sessions, both active and inactive, that have been created in the sandbox.
+Nightona provides methods to list PTY sessions, allowing you to retrieve information about all PTY sessions, both active and inactive, that have been created in the sandbox.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -368,7 +368,7 @@ for _, session := range sessions {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.toolbox.client.model.PtySessionInfo;
+import io.nightona.toolbox.client.model.PtySessionInfo;
 import java.util.List;
 
 List<PtySessionInfo> sessions = sandbox.process.listPtySessions();
@@ -392,7 +392,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/pty'
 
 ## Get PTY session info
 
-Daytona provides methods to get information about a specific PTY session, allowing you to retrieve comprehensive information about a specific PTY session including its current state, configuration, and metadata.
+Nightona provides methods to get information about a specific PTY session, allowing you to retrieve comprehensive information about a specific PTY session including its current state, configuration, and metadata.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -461,7 +461,7 @@ if session.ProcessId != nil {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.toolbox.client.model.PtySessionInfo;
+import io.nightona.toolbox.client.model.PtySessionInfo;
 
 PtySessionInfo session = sandbox.process.getPtySessionInfo("my-session");
 System.out.println("Session ID: " + session.getId());
@@ -482,7 +482,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/session/{sessionI
 
 ## Kill PTY session
 
-Daytona provides methods to kill a PTY session, allowing you to forcefully terminate a PTY session and cleans up all associated resources.
+Nightona provides methods to kill a PTY session, allowing you to forcefully terminate a PTY session and cleans up all associated resources.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -552,7 +552,7 @@ for _, session := range sessions {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.toolbox.client.model.PtySessionInfo;
+import io.nightona.toolbox.client.model.PtySessionInfo;
 import java.util.List;
 
 sandbox.process.killPtySession("my-session");
@@ -576,13 +576,13 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/session/{sessionI
 
 ## Resize PTY session
 
-Daytona provides methods to resize a PTY session, allowing you to change the terminal dimensions of an active PTY session. This sends a SIGWINCH signal to the shell process, allowing terminal applications to adapt to the new size.
+Nightona provides methods to resize a PTY session, allowing you to change the terminal dimensions of an active PTY session. This sends a SIGWINCH signal to the shell process, allowing terminal applications to adapt to the new size.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona.common.pty import PtySize
+from nightona.common.pty import PtySize
 
 # Resize a PTY session to a larger terminal
 new_size = PtySize(rows=40, cols=150)
@@ -611,7 +611,7 @@ await ptyHandle.resize(150, 40) // cols, rows
 
 ```ruby
 # Resize a PTY session to a larger terminal
-pty_size = Daytona::PtySize.new(rows: 40, cols: 150)
+pty_size = Nightona::PtySize.new(rows: 40, cols: 150)
 session_info = sandbox.process.resize_pty_session('my-session', pty_size)
 
 puts "Terminal resized to #{session_info.cols}x#{session_info.rows}"
@@ -668,15 +668,15 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/process/pty/{sessionId}/r
 
 ## Interactive commands
 
-Daytona provides methods to handle interactive commands with PTY sessions, allowing you to handle interactive commands that require user input and can be resized during execution.
+Nightona provides methods to handle interactive commands with PTY sessions, allowing you to handle interactive commands that require user input and can be resized during execution.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
 import time
-from daytona import Daytona, Sandbox
-from daytona.common.pty import PtySize
+from nightona import Nightona, Sandbox
+from nightona.common.pty import PtySize
 
 def handle_pty_data(data: bytes):
     text = data.decode("utf-8", errors="replace")
@@ -711,7 +711,7 @@ print(f"Session completed with exit code: {pty_handle.exit_code}")
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona, Sandbox } from '@daytona/sdk'
+import { Nightona, Sandbox } from '@nightona/sdk'
 
 // Create PTY session
 const ptyHandle = await sandbox.process.createPty({
@@ -755,12 +755,12 @@ console.log(`Session completed with exit code: ${result.exitCode}`)
 
 <TabItem label="Ruby" icon="seti:ruby">
 ```ruby
-require 'daytona'
+require 'nightona'
 
 # Create PTY session
 pty_handle = sandbox.process.create_pty_session(
   id: 'interactive-session',
-  pty_size: Daytona::PtySize.new(cols: 300, rows: 100)
+  pty_size: Nightona::PtySize.new(cols: 300, rows: 100)
 )
 
 # Handle output in a separate thread
@@ -774,7 +774,7 @@ sleep(1)
 pty_handle.send_input("y\n")
 
 # Resize terminal
-pty_handle.resize(Daytona::PtySize.new(cols: 210, rows: 110))
+pty_handle.resize(Nightona::PtySize.new(cols: 210, rows: 110))
 puts "\nPTY session resized"
 
 # Exit the session
@@ -837,9 +837,9 @@ fmt.Printf("Session completed with exit code: %d\n", *result.ExitCode)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyCreateOptions;
-import io.daytona.sdk.PtyHandle;
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyCreateOptions;
+import io.nightona.sdk.PtyHandle;
+import io.nightona.sdk.PtyResult;
 import java.nio.charset.StandardCharsets;
 
 PtyCreateOptions options = new PtyCreateOptions()
@@ -870,7 +870,7 @@ System.out.println("Session completed with exit code: " + result.getExitCode());
 
 ## Long-running processes
 
-Daytona provides methods to manage long-running processes with PTY sessions, allowing you to manage long-running processes that need to be monitored or terminated.
+Nightona provides methods to manage long-running processes with PTY sessions, allowing you to manage long-running processes that need to be monitored or terminated.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -878,8 +878,8 @@ Daytona provides methods to manage long-running processes with PTY sessions, all
 ```python
 import time
 import threading
-from daytona import Daytona, Sandbox
-from daytona.common.pty import PtySize
+from nightona import Nightona, Sandbox
+from nightona.common.pty import PtySize
 
 def handle_pty_data(data: bytes):
     text = data.decode("utf-8", errors="replace")
@@ -914,7 +914,7 @@ if pty_handle.error:
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona, Sandbox } from '@daytona/sdk'
+import { Nightona, Sandbox } from '@nightona/sdk'
 
 // Create PTY session
 const ptyHandle = await sandbox.process.createPty({
@@ -948,12 +948,12 @@ if (result.error) {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
 # Create PTY session
 pty_handle = sandbox.process.create_pty_session(
   id: 'long-running-session',
-  pty_size: Daytona::PtySize.new(cols: 120, rows: 30)
+  pty_size: Nightona::PtySize.new(cols: 120, rows: 30)
 )
 
 # Handle output in a separate thread
@@ -1022,9 +1022,9 @@ if result.Error != nil {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyCreateOptions;
-import io.daytona.sdk.PtyHandle;
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyCreateOptions;
+import io.nightona.sdk.PtyHandle;
+import io.nightona.sdk.PtyResult;
 import java.nio.charset.StandardCharsets;
 
 PtyCreateOptions options = new PtyCreateOptions()
@@ -1054,7 +1054,7 @@ if (result.getError() != null) {
 
 ## Resource management
 
-Daytona provides methods to manage resource leaks with PTY sessions, allowing you to always clean up PTY sessions to prevent resource leaks.
+Nightona provides methods to manage resource leaks with PTY sessions, allowing you to always clean up PTY sessions to prevent resource leaks.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1094,7 +1094,7 @@ pty_handle = nil
 begin
   pty_handle = sandbox.process.create_pty_session(
     id: 'session',
-    pty_size: Daytona::PtySize.new(cols: 120, rows: 30)
+    pty_size: Nightona::PtySize.new(cols: 120, rows: 30)
   )
   # Do work...
 ensure
@@ -1125,8 +1125,8 @@ defer handle.Kill(ctx)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyCreateOptions;
-import io.daytona.sdk.PtyHandle;
+import io.nightona.sdk.PtyCreateOptions;
+import io.nightona.sdk.PtyHandle;
 
 PtyHandle handle = null;
 try {
@@ -1147,11 +1147,11 @@ try {
 
 ## PtyHandle methods
 
-Daytona provides methods to interact with PTY sessions, allowing you to send input, resize the terminal, wait for completion, and manage the WebSocket connection to a PTY session.
+Nightona provides methods to interact with PTY sessions, allowing you to send input, resize the terminal, wait for completion, and manage the WebSocket connection to a PTY session.
 
 ### Send input
 
-Daytona provides methods to send input to a PTY session, allowing you to send input data (keystrokes or commands) to the PTY session.
+Nightona provides methods to send input to a PTY session, allowing you to send input data (keystrokes or commands) to the PTY session.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1213,7 +1213,7 @@ ptyHandle.sendInput(new byte[] { 0x03 });
 
 ### Wait for completion
 
-Daytona provides methods to wait for a PTY process to exit and return the result, allowing you to wait for a PTY process to exit and return the result.
+Nightona provides methods to wait for a PTY process to exit and return the result, allowing you to wait for a PTY process to exit and return the result.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1283,7 +1283,7 @@ if result.ExitCode != nil && *result.ExitCode == 0 {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyResult;
 
 PtyResult result = ptyHandle.waitForExit();
 
@@ -1302,7 +1302,7 @@ if (result.getExitCode() == 0) {
 
 ### Wait for connection
 
-Daytona provides methods to wait for the WebSocket connection to be established before sending input, allowing you to wait for the WebSocket connection to be established before sending input.
+Nightona provides methods to wait for the WebSocket connection to be established before sending input, allowing you to wait for the WebSocket connection to be established before sending input.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1360,7 +1360,7 @@ ptyHandle.sendInput("echo \"Connected!\"\n");
 
 ### Kill PTY process
 
-Daytona provides methods to kill a PTY process and terminate the session from the handle.
+Nightona provides methods to kill a PTY process and terminate the session from the handle.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1412,7 +1412,7 @@ fmt.Printf("Process terminated with exit code: %d\n", *result.ExitCode)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyResult;
 
 ptyHandle.kill();
 
@@ -1425,13 +1425,13 @@ System.out.println("Process terminated with exit code: " + result.getExitCode())
 
 ### Resize from handle
 
-Daytona provides methods to resize the PTY terminal dimensions directly from the handle.
+Nightona provides methods to resize the PTY terminal dimensions directly from the handle.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona.common.pty import PtySize
+from nightona.common.pty import PtySize
 
 pty_handle.resize(PtySize(cols=120, rows=30))
 ```
@@ -1449,7 +1449,7 @@ await ptyHandle.resize(120, 30)
 
 ```ruby
 # Resize to 120x30
-pty_handle.resize(Daytona::PtySize.new(cols: 120, rows: 30))
+pty_handle.resize(Nightona::PtySize.new(cols: 120, rows: 30))
 ```
 
 </TabItem>
@@ -1477,7 +1477,7 @@ ptyHandle.resize(120, 30);
 
 ### Disconnect
 
-Daytona provides methods to disconnect from a PTY session and clean up resources without killing the process.
+Nightona provides methods to disconnect from a PTY session and clean up resources without killing the process.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1540,7 +1540,7 @@ try {
 
 ### Check connection status
 
-Daytona provides methods to check if a PTY session is still connected.
+Nightona provides methods to check if a PTY session is still connected.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1592,7 +1592,7 @@ if (ptyHandle.isConnected()) {
 
 ### Exit code and error
 
-Daytona provides methods to access the exit code and error message after a PTY process terminates.
+Nightona provides methods to access the exit code and error message after a PTY process terminates.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1641,7 +1641,7 @@ if errMsg := handle.Error(); errMsg != nil {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyResult;
 
 PtyResult result = ptyHandle.waitForExit();
 System.out.println("Exit code: " + result.getExitCode());
@@ -1655,7 +1655,7 @@ if (result.getError() != null) {
 
 ### Iterate over output (Python)
 
-Daytona provides methods to iterate over a PTY handle to receive output data.
+Nightona provides methods to iterate over a PTY handle to receive output data.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1714,7 +1714,7 @@ fmt.Printf("Session ended with exit code: %d\n", *handle.ExitCode())
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyCreateOptions;
+import io.nightona.sdk.PtyCreateOptions;
 import java.nio.charset.StandardCharsets;
 
 PtyHandle ptyHandle = sandbox.process.createPty(
@@ -1728,7 +1728,7 @@ PtyHandle ptyHandle = sandbox.process.createPty(
 
 ## Error handling
 
-Daytona provides methods to monitor exit codes and handle errors appropriately with PTY sessions.
+Nightona provides methods to monitor exit codes and handle errors appropriately with PTY sessions.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -1786,7 +1786,7 @@ if result.ExitCode != nil && *result.ExitCode != 0 {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.PtyResult;
+import io.nightona.sdk.PtyResult;
 
 PtyResult result = ptyHandle.waitForExit();
 if (result.getExitCode() != 0) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -7,7 +7,7 @@ import { DEFAULT_PAGE_SIZE } from '@/constants/Pagination'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { cn } from '@/lib/utils'
 import { DEFAULT_TABLE_COLUMN, getColumnSizeStyles, getTableSizeStyles } from '@/lib/utils/table'
-import { DockerRegistry, OrganizationRolePermissionsEnum } from '@daytona/api-client'
+import { DockerRegistry, OrganizationRolePermissionsEnum } from '@nightona/api-client'
 import {
   ColumnDef,
   flexRender,

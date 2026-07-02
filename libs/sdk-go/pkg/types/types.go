@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package types
@@ -6,8 +6,8 @@ package types
 import (
 	"time"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	toolbox "github.com/daytonaio/daytona/libs/toolbox-api-client-go"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	toolbox "github.com/Amartuvshins0404/nightona/libs/toolbox-api-client-go"
 )
 
 const CodeToolboxLanguageLabel = "code-toolbox-language"
@@ -42,15 +42,15 @@ const (
 	SandboxClassAndroid   SandboxClass = apiclient.SANDBOXCLASS_ANDROID
 )
 
-// ExperimentalConfig holds experimental feature flags for the Daytona client.
+// ExperimentalConfig holds experimental feature flags for the Nightona client.
 type ExperimentalConfig struct {
-	// Deprecated: use DaytonaConfig.OtelEnabled. Kept for backwards compatibility.
+	// Deprecated: use NightonaConfig.OtelEnabled. Kept for backwards compatibility.
 	OtelEnabled bool
 }
 
-// DaytonaConfig represents the configuration for the Daytona client.
+// NightonaConfig represents the configuration for the Nightona client.
 // When a field is nil, the client will fall back to environment variables or defaults.
-type DaytonaConfig struct {
+type NightonaConfig struct {
 	APIKey         string
 	JWTToken       string
 	OrganizationID string
@@ -131,7 +131,7 @@ type PaginatedSnapshots struct {
 	TotalPages int
 }
 
-// Volume represents a Daytona volume
+// Volume represents a Nightona volume
 type Volume struct {
 	ID             string    `json:"id"`
 	Name           string    `json:"name"`
@@ -143,7 +143,7 @@ type Volume struct {
 	LastUsedAt     time.Time `json:"lastUsedAt,omitempty"`
 }
 
-// Snapshot represents a Daytona snapshot
+// Snapshot represents a Nightona snapshot
 type Snapshot struct {
 	ID             string     `json:"id"`
 	OrganizationID string     `json:"organizationId,omitempty"`

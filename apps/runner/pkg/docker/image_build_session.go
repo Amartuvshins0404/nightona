@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -25,7 +25,7 @@ func (d *DockerClient) runDockerImageBuildWithBuildKitSession(
 	buildOpts build.ImageBuildOptions,
 	writer io.Writer,
 ) error {
-	sess, err := session.NewSession(ctx, "daytona-runner-image-build")
+	sess, err := session.NewSession(ctx, "nightona-runner-image-build")
 	if err != nil {
 		return fmt.Errorf("buildkit session: %w", err)
 	}

@@ -1,15 +1,15 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { VolumesApi } from '@daytona/api-client'
-import type { VolumeDto } from '@daytona/api-client'
-import { DaytonaNotFoundError } from './errors/DaytonaError'
+import { VolumesApi } from '@nightona/api-client'
+import type { VolumeDto } from '@nightona/api-client'
+import { NightonaNotFoundError } from './errors/NightonaError'
 import { WithInstrumentation } from './utils/otel.decorator'
 
 /**
- * Represents a Daytona Volume which is a shared storage volume for Sandboxes.
+ * Represents a Nightona Volume which is a shared storage volume for Sandboxes.
  *
  * @property {string} id - Unique identifier for the Volume
  * @property {string} name - Name of the Volume
@@ -22,7 +22,7 @@ import { WithInstrumentation } from './utils/otel.decorator'
 export type Volume = VolumeDto & { __brand: 'Volume' }
 
 /**
- * Service for managing Daytona Volumes.
+ * Service for managing Nightona Volumes.
  *
  * This service provides methods to list, get, create, and delete Volumes.
  *
@@ -41,8 +41,8 @@ export class VolumeService {
    * @returns {Promise<Volume[]>} List of all Volumes accessible to the user
    *
    * @example
-   * const daytona = new Daytona();
-   * const volumes = await daytona.volume.list();
+   * const nightona = new Nightona();
+   * const volumes = await nightona.volume.list();
    * console.log(`Found ${volumes.length} volumes`);
    * volumes.forEach(vol => console.log(`${vol.name} (${vol.id})`));
    */
@@ -60,8 +60,8 @@ export class VolumeService {
    * @throws {Error} If the Volume does not exist or cannot be accessed
    *
    * @example
-   * const daytona = new Daytona();
-   * const volume = await daytona.volume.get("volume-name", true);
+   * const nightona = new Nightona();
+   * const volume = await nightona.volume.get("volume-name", true);
    * console.log(`Volume ${volume.name} is in state ${volume.state}`);
    */
   @WithInstrumentation()
@@ -70,7 +70,7 @@ export class VolumeService {
       const response = await this.volumesApi.getVolumeByName(name)
       return response.data as Volume
     } catch (error) {
-      if (error instanceof DaytonaNotFoundError && create) {
+      if (error instanceof NightonaNotFoundError && create) {
         return await this.create(name)
       }
       throw error
@@ -85,8 +85,8 @@ export class VolumeService {
    * @throws {Error} If the Volume cannot be created
    *
    * @example
-   * const daytona = new Daytona();
-   * const volume = await daytona.volume.create("my-data-volume");
+   * const nightona = new Nightona();
+   * const volume = await nightona.volume.create("my-data-volume");
    * console.log(`Created volume ${volume.name} with ID ${volume.id}`);
    */
   @WithInstrumentation()
@@ -103,9 +103,9 @@ export class VolumeService {
    * @throws {Error} If the Volume does not exist or cannot be deleted
    *
    * @example
-   * const daytona = new Daytona();
-   * const volume = await daytona.volume.get("volume-name");
-   * await daytona.volume.delete(volume);
+   * const nightona = new Nightona();
+   * const volume = await nightona.volume.get("volume-name");
+   * await nightona.volume.delete(volume);
    * console.log("Volume deleted successfully");
    */
   @WithInstrumentation()

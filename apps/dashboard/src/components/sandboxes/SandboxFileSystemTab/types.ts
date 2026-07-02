@@ -1,13 +1,13 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import type { Daytona } from '@daytona/sdk'
+import type { Nightona } from '@nightona/sdk'
 
 export type PreviewKind = 'binary' | 'image' | 'text'
 
-export type SandboxInstance = Awaited<ReturnType<Daytona['get']>>
+export type SandboxInstance = Awaited<ReturnType<Nightona['get']>>
 
 export type SandboxFileSystemNode = {
   group: string

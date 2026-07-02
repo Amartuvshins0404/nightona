@@ -37,7 +37,7 @@ permissions: {}
 
 jobs:
   publish:
-    if: github.repository == 'daytonaio/daytona'
+    if: github.repository == 'daytonaio/nightona'
     runs-on: blacksmith-16vcpu-ubuntu-2404
     permissions:
       contents: read
@@ -97,8 +97,8 @@ jobs:
       - name: Configure git
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.name "Daytona Release Bot"
-          git config --global user.email "daytona-release@users.noreply.github.com"
+          git config --global user.name "Nightona Release Bot"
+          git config --global user.email "nightona-release@users.noreply.github.com"
 
       - name: Configure RubyGems credentials
         if: matrix.projects == 'sdk-ruby'
@@ -124,13 +124,13 @@ jobs:
           rm -f ~/.gem/credentials 2>/dev/null || true
           docker logout docker.io 2>/dev/null || true
           docker logout ghcr.io 2>/dev/null || true
-          git config --global --fixed-value --unset-all user.name "Daytona Release Bot" 2>/dev/null || true
-          git config --global --fixed-value --unset-all user.email "daytona-release@users.noreply.github.com" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.name "Nightona Release Bot" 2>/dev/null || true
+          git config --global --fixed-value --unset-all user.email "nightona-release@users.noreply.github.com" 2>/dev/null || true
           git config --global --fixed-value --unset-all safe.directory "$GITHUB_WORKSPACE" 2>/dev/null || true
           git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}" 2>/dev/null || true
 
   update-homebrew-tap:
-    if: ${{ github.repository == 'daytonaio/daytona' && inputs.npm_tag == 'latest' }}
+    if: ${{ github.repository == 'daytonaio/nightona' && inputs.npm_tag == 'latest' }}
     runs-on: blacksmith-4vcpu-ubuntu-2404
     permissions: {}
     name: Update Homebrew CLI tap

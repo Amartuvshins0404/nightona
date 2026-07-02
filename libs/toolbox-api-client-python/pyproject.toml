@@ -1,13 +1,13 @@
 [project]
-name = "daytona_toolbox_api_client"
+name = "nightona_toolbox_api_client"
 version = "0.0.0-dev"
-description = "Daytona Toolbox API"
+description = "Nightona Toolbox API"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
 ]
 license = { text = "Apache-2.0" }
 readme = "README.md"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Daytona Toolbox API"]
+keywords = ["OpenAPI", "OpenAPI-Generator", "Nightona Toolbox API"]
 requires-python = ">=3.9"
 
 dependencies = [
@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/daytonaio/daytona"
+Repository = "https://github.com/Amartuvshins0404/nightona"
 
 [tool.poetry]
 requires-poetry = ">=2.0"
@@ -41,7 +41,7 @@ extension-pkg-whitelist = "pydantic"
 
 [tool.mypy]
 files = [
-  "daytona_toolbox_api_client",
+  "nightona_toolbox_api_client",
   #"test",  # auto-generated tests
   "tests", # hand-written tests
 ]
@@ -79,7 +79,7 @@ disallow_any_generics = true
 
 [[tool.mypy.overrides]]
 module = [
-  "daytona_toolbox_api_client.configuration",
+  "nightona_toolbox_api_client.configuration",
 ]
 warn_unused_ignores = true
 strict_equality = true

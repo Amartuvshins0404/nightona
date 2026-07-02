@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package errors
@@ -8,158 +8,158 @@ import (
 	"fmt"
 	"net/http"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	"github.com/daytonaio/daytona/libs/toolbox-api-client-go"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/libs/toolbox-api-client-go"
 )
 
-// DaytonaError is the base error type for all Daytona SDK errors
-type DaytonaError struct {
+// NightonaError is the base error type for all Nightona SDK errors
+type NightonaError struct {
 	Message    string
 	StatusCode int
 	Headers    http.Header
 }
 
-func (e *DaytonaError) Error() string {
+func (e *NightonaError) Error() string {
 	if e.StatusCode != 0 {
-		return fmt.Sprintf("Daytona error (status %d): %s", e.StatusCode, e.Message)
+		return fmt.Sprintf("Nightona error (status %d): %s", e.StatusCode, e.Message)
 	}
-	return fmt.Sprintf("Daytona error: %s", e.Message)
+	return fmt.Sprintf("Nightona error: %s", e.Message)
 }
 
-// NewDaytonaError creates a new DaytonaError
-func NewDaytonaError(message string, statusCode int, headers http.Header) *DaytonaError {
-	return &DaytonaError{
+// NewNightonaError creates a new NightonaError
+func NewNightonaError(message string, statusCode int, headers http.Header) *NightonaError {
+	return &NightonaError{
 		Message:    message,
 		StatusCode: statusCode,
 		Headers:    headers,
 	}
 }
 
-// DaytonaNotFoundError represents a resource not found error (404)
-type DaytonaNotFoundError struct {
-	*DaytonaError
+// NightonaNotFoundError represents a resource not found error (404)
+type NightonaNotFoundError struct {
+	*NightonaError
 }
 
-func (e *DaytonaNotFoundError) Error() string {
+func (e *NightonaNotFoundError) Error() string {
 	return fmt.Sprintf("Resource not found: %s", e.Message)
 }
 
-// NewDaytonaNotFoundError creates a new DaytonaNotFoundError
-func NewDaytonaNotFoundError(message string, headers http.Header) *DaytonaNotFoundError {
-	return &DaytonaNotFoundError{
-		DaytonaError: NewDaytonaError(message, http.StatusNotFound, headers),
+// NewNightonaNotFoundError creates a new NightonaNotFoundError
+func NewNightonaNotFoundError(message string, headers http.Header) *NightonaNotFoundError {
+	return &NightonaNotFoundError{
+		NightonaError: NewNightonaError(message, http.StatusNotFound, headers),
 	}
 }
 
-// DaytonaRateLimitError represents a rate limit error (429)
-type DaytonaRateLimitError struct {
-	*DaytonaError
+// NightonaRateLimitError represents a rate limit error (429)
+type NightonaRateLimitError struct {
+	*NightonaError
 }
 
-func (e *DaytonaRateLimitError) Error() string {
+func (e *NightonaRateLimitError) Error() string {
 	return fmt.Sprintf("Rate limit exceeded: %s", e.Message)
 }
 
-// NewDaytonaRateLimitError creates a new DaytonaRateLimitError
-func NewDaytonaRateLimitError(message string, headers http.Header) *DaytonaRateLimitError {
-	return &DaytonaRateLimitError{
-		DaytonaError: NewDaytonaError(message, http.StatusTooManyRequests, headers),
+// NewNightonaRateLimitError creates a new NightonaRateLimitError
+func NewNightonaRateLimitError(message string, headers http.Header) *NightonaRateLimitError {
+	return &NightonaRateLimitError{
+		NightonaError: NewNightonaError(message, http.StatusTooManyRequests, headers),
 	}
 }
 
-// DaytonaAuthenticationError represents an authentication error (401)
-type DaytonaAuthenticationError struct {
-	*DaytonaError
+// NightonaAuthenticationError represents an authentication error (401)
+type NightonaAuthenticationError struct {
+	*NightonaError
 }
 
-func (e *DaytonaAuthenticationError) Error() string {
+func (e *NightonaAuthenticationError) Error() string {
 	return fmt.Sprintf("Authentication failed: %s", e.Message)
 }
 
-func NewDaytonaAuthenticationError(message string, headers http.Header) *DaytonaAuthenticationError {
-	return &DaytonaAuthenticationError{
-		DaytonaError: NewDaytonaError(message, http.StatusUnauthorized, headers),
+func NewNightonaAuthenticationError(message string, headers http.Header) *NightonaAuthenticationError {
+	return &NightonaAuthenticationError{
+		NightonaError: NewNightonaError(message, http.StatusUnauthorized, headers),
 	}
 }
 
-// DaytonaForbiddenError represents a forbidden/authorization error (403)
-type DaytonaForbiddenError struct {
-	*DaytonaError
+// NightonaForbiddenError represents a forbidden/authorization error (403)
+type NightonaForbiddenError struct {
+	*NightonaError
 }
 
-func (e *DaytonaForbiddenError) Error() string {
+func (e *NightonaForbiddenError) Error() string {
 	return fmt.Sprintf("Forbidden: %s", e.Message)
 }
 
-func NewDaytonaForbiddenError(message string, headers http.Header) *DaytonaForbiddenError {
-	return &DaytonaForbiddenError{
-		DaytonaError: NewDaytonaError(message, http.StatusForbidden, headers),
+func NewNightonaForbiddenError(message string, headers http.Header) *NightonaForbiddenError {
+	return &NightonaForbiddenError{
+		NightonaError: NewNightonaError(message, http.StatusForbidden, headers),
 	}
 }
 
-// DaytonaConflictError represents a conflict error (409)
-type DaytonaConflictError struct {
-	*DaytonaError
+// NightonaConflictError represents a conflict error (409)
+type NightonaConflictError struct {
+	*NightonaError
 }
 
-func (e *DaytonaConflictError) Error() string {
+func (e *NightonaConflictError) Error() string {
 	return fmt.Sprintf("Conflict: %s", e.Message)
 }
 
-func NewDaytonaConflictError(message string, headers http.Header) *DaytonaConflictError {
-	return &DaytonaConflictError{
-		DaytonaError: NewDaytonaError(message, http.StatusConflict, headers),
+func NewNightonaConflictError(message string, headers http.Header) *NightonaConflictError {
+	return &NightonaConflictError{
+		NightonaError: NewNightonaError(message, http.StatusConflict, headers),
 	}
 }
 
-// DaytonaValidationError represents a validation/bad request error (400)
-type DaytonaValidationError struct {
-	*DaytonaError
+// NightonaValidationError represents a validation/bad request error (400)
+type NightonaValidationError struct {
+	*NightonaError
 }
 
-func (e *DaytonaValidationError) Error() string {
+func (e *NightonaValidationError) Error() string {
 	return fmt.Sprintf("Validation error: %s", e.Message)
 }
 
-func NewDaytonaValidationError(message string, headers http.Header) *DaytonaValidationError {
-	return &DaytonaValidationError{
-		DaytonaError: NewDaytonaError(message, http.StatusBadRequest, headers),
+func NewNightonaValidationError(message string, headers http.Header) *NightonaValidationError {
+	return &NightonaValidationError{
+		NightonaError: NewNightonaError(message, http.StatusBadRequest, headers),
 	}
 }
 
-// DaytonaServerError represents a server error (5xx)
-type DaytonaServerError struct {
-	*DaytonaError
+// NightonaServerError represents a server error (5xx)
+type NightonaServerError struct {
+	*NightonaError
 }
 
-func (e *DaytonaServerError) Error() string {
+func (e *NightonaServerError) Error() string {
 	return fmt.Sprintf("Server error: %s", e.Message)
 }
 
-func NewDaytonaServerError(message string, statusCode int, headers http.Header) *DaytonaServerError {
-	return &DaytonaServerError{
-		DaytonaError: NewDaytonaError(message, statusCode, headers),
+func NewNightonaServerError(message string, statusCode int, headers http.Header) *NightonaServerError {
+	return &NightonaServerError{
+		NightonaError: NewNightonaError(message, statusCode, headers),
 	}
 }
 
-// DaytonaTimeoutError represents a timeout error
-type DaytonaTimeoutError struct {
-	*DaytonaError
+// NightonaTimeoutError represents a timeout error
+type NightonaTimeoutError struct {
+	*NightonaError
 }
 
-func (e *DaytonaTimeoutError) Error() string {
+func (e *NightonaTimeoutError) Error() string {
 	return fmt.Sprintf("Operation timed out: %s", e.Message)
 }
 
-func NewDaytonaTimeoutError(message string) *DaytonaTimeoutError {
-	return &DaytonaTimeoutError{
-		DaytonaError: NewDaytonaError(message, 0, nil),
+func NewNightonaTimeoutError(message string) *NightonaTimeoutError {
+	return &NightonaTimeoutError{
+		NightonaError: NewNightonaError(message, 0, nil),
 	}
 }
 
-// NewDaytonaErrorFromBody parses a JSON response body and maps the status code
+// NewNightonaErrorFromBody parses a JSON response body and maps the status code
 // to the appropriate SDK error type. Falls back to the raw body as the message.
-func NewDaytonaErrorFromBody(body []byte, statusCode int, headers http.Header) error {
+func NewNightonaErrorFromBody(body []byte, statusCode int, headers http.Header) error {
 	var message string
 
 	if len(body) > 0 {
@@ -189,11 +189,11 @@ func NewDaytonaErrorFromBody(body []byte, statusCode int, headers http.Header) e
 
 	switch statusCode {
 	case http.StatusNotFound:
-		return NewDaytonaNotFoundError(message, headers)
+		return NewNightonaNotFoundError(message, headers)
 	case http.StatusTooManyRequests:
-		return NewDaytonaRateLimitError(message, headers)
+		return NewNightonaRateLimitError(message, headers)
 	default:
-		return NewDaytonaError(message, statusCode, headers)
+		return NewNightonaError(message, statusCode, headers)
 	}
 }
 
@@ -298,22 +298,22 @@ func ConvertToolboxError(err error, httpResp *http.Response) error {
 func mapStatusCodeToError(statusCode int, message string, headers http.Header) error {
 	switch {
 	case statusCode == http.StatusBadRequest:
-		return NewDaytonaValidationError(message, headers)
+		return NewNightonaValidationError(message, headers)
 	case statusCode == http.StatusUnauthorized:
-		return NewDaytonaAuthenticationError(message, headers)
+		return NewNightonaAuthenticationError(message, headers)
 	case statusCode == http.StatusForbidden:
-		return NewDaytonaForbiddenError(message, headers)
+		return NewNightonaForbiddenError(message, headers)
 	case statusCode == http.StatusNotFound:
-		return NewDaytonaNotFoundError(message, headers)
+		return NewNightonaNotFoundError(message, headers)
 	case statusCode == http.StatusConflict:
-		return NewDaytonaConflictError(message, headers)
+		return NewNightonaConflictError(message, headers)
 	case statusCode == http.StatusTooManyRequests:
-		return NewDaytonaRateLimitError(message, headers)
+		return NewNightonaRateLimitError(message, headers)
 	case statusCode >= 500 && statusCode <= 599:
-		return NewDaytonaServerError(message, statusCode, headers)
+		return NewNightonaServerError(message, statusCode, headers)
 	case statusCode == 0:
-		return NewDaytonaError(message, 0, nil)
+		return NewNightonaError(message, 0, nil)
 	default:
-		return NewDaytonaError(message, statusCode, headers)
+		return NewNightonaError(message, statusCode, headers)
 	}
 }

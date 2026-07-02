@@ -1,11 +1,11 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 # frozen_string_literal: true
 
 require 'logger'
 require 'webmock/rspec'
-require 'daytona'
+require 'nightona'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -24,24 +24,24 @@ RSpec.configure do |config|
 
   # Silence SDK logger during tests
   config.before(:suite) do
-    Daytona::Sdk.logger.level = Logger::FATAL
+    Nightona::Sdk.logger.level = Logger::FATAL
   end
 
   # Auth/url resolution must be deterministic in tests, so:
   #   1. Stub Dotenv.parse so .env / .env.local files are never consulted.
-  #   2. Snapshot and clear DAYTONA_* ENV vars around each example, so the
+  #   2. Snapshot and clear NIGHTONA_* ENV vars around each example, so the
   #      developer's shell or local-service env can't leak into a unit test
   #      that asserts on the absence of credentials.
-  # E2E specs read DAYTONA_API_KEY / DAYTONA_API_URL up front (in before(:all)
+  # E2E specs read NIGHTONA_API_KEY / NIGHTONA_API_URL up front (in before(:all)
   # / before(:suite) hooks that run prior to each example's around block, or
   # via a manually re-set ENV inside the spec) and so remain unaffected.
-  daytona_env_keys = %w[
-    DAYTONA_API_KEY
-    DAYTONA_JWT_TOKEN
-    DAYTONA_API_URL
-    DAYTONA_SERVER_URL
-    DAYTONA_TARGET
-    DAYTONA_ORGANIZATION_ID
+  nightona_env_keys = %w[
+    NIGHTONA_API_KEY
+    NIGHTONA_JWT_TOKEN
+    NIGHTONA_API_URL
+    NIGHTONA_SERVER_URL
+    NIGHTONA_TARGET
+    NIGHTONA_ORGANIZATION_ID
   ].freeze
 
   config.before do |example|
@@ -49,7 +49,7 @@ RSpec.configure do |config|
   end
 
   config.around do |example|
-    saved = daytona_env_keys.to_h { |key| [key, ENV.delete(key)] }
+    saved = nightona_env_keys.to_h { |key| [key, ENV.delete(key)] }
     example.run
   ensure
     saved.each { |key, value| value ? ENV[key] = value : ENV.delete(key) }
@@ -66,7 +66,7 @@ def build_sandbox_dto(overrides = {}) # rubocop:disable Metrics/MethodLength
     name: 'sandbox-123',
     organization_id: 'org-1',
     snapshot: 'default-snapshot',
-    user: 'daytona',
+    user: 'nightona',
     env: {},
     labels: { 'code-toolbox-language' => 'python' },
     public: false,
@@ -95,9 +95,9 @@ def build_sandbox_dto(overrides = {}) # rubocop:disable Metrics/MethodLength
     toolbox_proxy_url: 'https://proxy.example.com/'
   }.merge(overrides)
 
-  # Use a real instance (not instance_double) so that is_a?(DaytonaApiClient::Sandbox)
+  # Use a real instance (not instance_double) so that is_a?(NightonaApiClient::Sandbox)
   # checks in Sandbox#process_response take the full-DTO branch.
-  DaytonaApiClient::Sandbox.new(**attrs)
+  NightonaApiClient::Sandbox.new(**attrs)
 end
 
 def build_volume_dto(overrides = {})
@@ -112,7 +112,7 @@ def build_volume_dto(overrides = {})
     error_reason: nil
   }.merge(overrides)
 
-  instance_double(DaytonaApiClient::VolumeDto, **attrs)
+  instance_double(NightonaApiClient::VolumeDto, **attrs)
 end
 
 def build_snapshot_dto(overrides = {})
@@ -136,7 +136,7 @@ def build_snapshot_dto(overrides = {})
     build_info: nil
   }.merge(overrides)
 
-  instance_double(DaytonaApiClient::SnapshotDto, **attrs)
+  instance_double(NightonaApiClient::SnapshotDto, **attrs)
 end
 
 def build_config(overrides = {})
@@ -146,5 +146,5 @@ def build_config(overrides = {})
     target: 'us'
   }.merge(overrides)
 
-  Daytona::Config.new(**attrs)
+  Nightona::Config.new(**attrs)
 end

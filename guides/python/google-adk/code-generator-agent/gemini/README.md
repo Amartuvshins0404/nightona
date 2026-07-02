@@ -1,14 +1,14 @@
-# Code Generator Agent Example (Google ADK + Daytona)
+# Code Generator Agent Example (Google ADK + Nightona)
 
 ## Overview
 
-This example demonstrates how to build a [Google ADK](https://google.github.io/adk-docs/) agent that generates and verifies code using [Daytona](https://daytona.io) sandboxes. The agent uses the `DaytonaPlugin` to execute code in an isolated environment, enabling automated code generation workflows with built-in testing.
+This example demonstrates how to build a [Google ADK](https://google.github.io/adk-docs/) agent that generates and verifies code using [Nightona](https://daytona.io) sandboxes. The agent uses the `NightonaPlugin` to execute code in an isolated environment, enabling automated code generation workflows with built-in testing.
 
 In this example, the agent is tasked with writing a TypeScript `groupBy` function that takes an array and a key function, then groups array elements by the key. The agent generates the implementation, creates test cases, executes them in the sandbox, and iterates until all tests pass before returning the verified code.
 
 ## Features
 
-- **Secure sandbox execution:** All code runs in isolated Daytona sandboxes
+- **Secure sandbox execution:** All code runs in isolated Nightona sandboxes
 - **Multi-language support:** Generate code in Python, JavaScript, or TypeScript
 - **Automatic testing:** Agent creates and runs tests to verify implementations
 - **Iterative refinement:** Agent fixes code until tests pass before responding
@@ -25,7 +25,7 @@ In this example, the agent is tasked with writing a TypeScript `groupBy` functio
 
 To run this example, you need to set the following environment variables:
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `GOOGLE_API_KEY`: Required for Gemini model access. Get it from [Google AI Studio](https://aistudio.google.com/apikey)
 
 See the `.env.example` file for the exact structure. Copy `.env.example` to `.env` and fill in your API keys before running.
@@ -49,7 +49,7 @@ Before proceeding, complete the following steps:
 2. Install dependencies:
 
    ```bash
-   pip install -U google-adk daytona-adk python-dotenv
+   pip install -U google-adk nightona-adk python-dotenv
    ```
 
 3. Run the example:
@@ -69,7 +69,7 @@ When you run the example, the agent follows this workflow:
 1. **Receive Request:** The agent receives your natural language description of a function
 2. **Generate Code:** Agent writes the function implementation in the specified language
 3. **Create Tests:** Agent generates test cases to verify the implementation
-4. **Execute in Sandbox:** Code and tests run in an isolated Daytona sandbox
+4. **Execute in Sandbox:** Code and tests run in an isolated Nightona sandbox
 5. **Iterate:** If tests fail, agent fixes the code and re-executes until tests pass
 6. **Return Result:** Once verified, the agent returns only the working function code
 7. **Cleanup:** Sandbox resources are automatically cleaned up
@@ -105,7 +105,7 @@ The agent has already tested this code in the sandbox before returning it, so yo
 
 ## API Reference
 
-For the complete API reference, see the [daytona-adk documentation](https://github.com/daytonaio/daytona-adk-plugin#available-tools).
+For the complete API reference, see the [nightona-adk documentation](https://github.com/Amartuvshins0404/nightona-adk-plugin#available-tools).
 
 ## License
 
@@ -114,5 +114,5 @@ See the main project LICENSE file for details.
 ## References
 
 - [Google ADK Documentation](https://google.github.io/adk-docs/)
-- [Daytona ADK Plugin](https://pypi.org/project/daytona-adk/)
-- [Daytona](https://daytona.io)
+- [Nightona ADK Plugin](https://pypi.org/project/nightona-adk/)
+- [Nightona](https://daytona.io)

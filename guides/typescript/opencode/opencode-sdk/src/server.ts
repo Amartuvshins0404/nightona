@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Sandbox } from '@daytona/sdk'
+import { Sandbox } from '@nightona/sdk'
 
 const PORT = 4096
 const HOSTNAME = '0.0.0.0'
@@ -16,24 +16,24 @@ function injectEnvVar(name: string, content: string): string {
 }
 
 export class Server {
-  // Start an OpenCode server in the sandbox with Daytona-aware agent config
+  // Start an OpenCode server in the sandbox with Nightona-aware agent config
   static async start(sandbox: Sandbox): Promise<{ baseUrl: string; ready: Promise<void> }> {
     const previewLink = await sandbox.getPreviewLink(PORT)
     const baseUrl = previewLink.url.replace(/\/$/, '')
     const previewUrlPattern = (await sandbox.getPreviewLink(1234)).url.replace(/1234/, '{PORT}')
     const systemPrompt = [
-      'You are running in a Daytona sandbox.',
-      'Use the /home/daytona directory instead of /workspace for file operations.',
+      'You are running in a Nightona sandbox.',
+      'Use the /home/nightona directory instead of /workspace for file operations.',
       `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
       'When starting a server, always give the user the preview URL to access it.',
       'When starting a server, start it in the background with & so the command does not block further instructions.',
     ].join(' ')
     const opencodeConfig = JSON.stringify({
       $schema: 'https://opencode.ai/config.json',
-      default_agent: 'daytona',
+      default_agent: 'nightona',
       agent: {
-        daytona: {
-          description: 'Daytona sandbox-aware coding agent',
+        nightona: {
+          description: 'Nightona sandbox-aware coding agent',
           mode: 'primary',
           prompt: systemPrompt,
         },

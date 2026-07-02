@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/daytonaio/snapshot-manager/internal/config"
+	"github.com/Amartuvshins0404/nightona/apps/snapshot-manager/internal/config"
 	"github.com/distribution/distribution/v3/configuration"
 	"golang.org/x/crypto/bcrypt"
 )

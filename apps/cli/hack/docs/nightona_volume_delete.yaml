@@ -1,0 +1,9 @@
+name: nightona volume delete
+synopsis: Delete a volume
+usage: nightona volume delete [VOLUME_ID_OR_NAME] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona volume - Manage Nightona volumes

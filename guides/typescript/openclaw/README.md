@@ -1,14 +1,14 @@
-# OpenClaw Daytona Sandbox
+# OpenClaw Nightona Sandbox
 
 ## Overview
 
-This example runs [OpenClaw](https://openclaw.ai/), a general purpose AI assistant, inside a Daytona sandbox. You can interact with OpenClaw via its Control UI using a [Daytona preview link](https://www.daytona.io/docs/en/preview-and-authentication/#fetching-a-preview-link).
+This example runs [OpenClaw](https://openclaw.ai/), a general purpose AI assistant, inside a Nightona sandbox. You can interact with OpenClaw via its Control UI using a [Nightona preview link](https://www.daytona.io/docs/en/preview-and-authentication/#fetching-a-preview-link).
 
 ## Features
 
 - **Secure sandbox execution:** OpenClaw runs in a controlled environment, along with any code or commands run by agents.
 - **Multi-channel gateway:** Can connect to WhatsApp, Telegram, Discord, and more simultaneously.
-- **Preview Control UI:** Use Daytona preview links to access the OpenClaw web dashboard with no local install.
+- **Preview Control UI:** Use Nightona preview links to access the OpenClaw web dashboard with no local install.
 - **Flexible LLM support:** Connect to Anthropic, OpenAI, and other providers; configure models via `openclaw.json` and `.env.sandbox`.
 
 ## Prerequisites
@@ -21,7 +21,7 @@ To run this example, you need to set the following environment variables:
 
 **`.env`** (used by the main script only):
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 
 **`.env.sandbox`** (available inside the OpenClaw sandbox):
 
@@ -50,21 +50,21 @@ Create these files in the project directory (copy from `.env.example` and `.env.
 
 When this example is run, the agent follows the following workflow:
 
-1. A new Daytona sandbox is created (using the `daytona-medium` snapshot with OpenClaw preinstalled).
+1. A new Nightona sandbox is created (using the `nightona-medium` snapshot with OpenClaw preinstalled).
 2. OpenClaw is configured with your `openclaw.json` and `.env.sandbox` secrets.
 3. The OpenClaw gateway starts inside the sandbox.
-4. A Daytona preview link is shown pointing to the OpenClaw Control UI.
+4. A Nightona preview link is shown pointing to the OpenClaw Control UI.
 5. When the script is terminated (Ctrl+C), the sandbox is deleted—unless `PERSIST_SANDBOX` is set to `true`, in which case the sandbox is left running.
 
 ## Example Output
 
 ```
-Creating Daytona sandbox...
+Creating Nightona sandbox...
 Configuring OpenClaw...
 Starting OpenClaw...
 (Ctrl+C to shut down and delete the sandbox)
 
-🔗 Secret link to Control UI: https://18789-898f722f-76fc-4ec6-85ca-a82bb30f3d72.proxy.daytona.works?token=7e38c7347437c5642c57bc769f630e53fe118e001d7b6c6c
+🔗 Secret link to Control UI: https://18789-898f722f-76fc-4ec6-85ca-a82bb30f3d72.proxy.nightona.works?token=7e38c7347437c5642c57bc769f630e53fe118e001d7b6c6c
 
 OpenClaw logs:
 --------------------------------
@@ -92,7 +92,7 @@ You will find several constants in `src/index.ts` which control the behavior of 
 | `SHOW_LOGS` | true | Stream OpenClaw stdout/stderr to the terminal. |
 | `MAKE_PUBLIC` | true | Expose the sandbox for public internet access. |
 | `PERSIST_SANDBOX` | true | When true, the sandbox is not deleted when the script exits. |
-| `DAYTONA_SNAPSHOT` | daytona-medium | Sandbox image with OpenClaw preinstalled. |
+| `NIGHTONA_SNAPSHOT` | nightona-medium | Sandbox image with OpenClaw preinstalled. |
 
 ### OpenClaw Configuration
 
@@ -143,4 +143,4 @@ See the main project LICENSE file for details.
 ## References
 
 - [OpenClaw Documentation](https://docs.openclaw.ai/)
-- [Daytona Documentation](https://www.daytona.io/docs)
+- [Nightona Documentation](https://www.daytona.io/docs)

@@ -1,9 +1,9 @@
-from daytona import Daytona, SessionExecuteRequest
+from nightona import Nightona, SessionExecuteRequest
 
 
 def main():
-    daytona = Daytona()
-    sandbox = daytona.create()
+    nightona = Nightona()
+    sandbox = nightona.create()
 
     exec_session_id = "exec-session-1"
     sandbox.process.create_session(exec_session_id)
@@ -46,7 +46,7 @@ def main():
     # And of course you can delete the session at any time
     sandbox.process.delete_session(exec_session_id)
 
-    daytona.delete(sandbox)
+    nightona.delete(sandbox)
 
 
 if __name__ == "__main__":

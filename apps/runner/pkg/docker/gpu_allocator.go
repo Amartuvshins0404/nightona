@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -15,7 +15,7 @@ import (
 // GpuIndexLabel is set on every GPU sandbox container with the index of the
 // physical GPU the container has been pinned to. The allocator scans this
 // label on existing containers to determine which indices are still free.
-const GpuIndexLabel = "daytona.gpu_index"
+const GpuIndexLabel = "nightona.gpu_index"
 
 // gpuAllocator hands out GPU device indices to GPU sandboxes on a runner.
 // Allocation is serialized by a mutex so concurrent sandbox creations cannot
@@ -30,7 +30,7 @@ func newGpuAllocator(total int) *gpuAllocator {
 }
 
 // Acquire locks the allocator, scans all containers on the runner for the
-// daytona.gpu_index label, and returns the lowest free GPU index in
+// nightona.gpu_index label, and returns the lowest free GPU index in
 // [0, total). The caller MUST defer the returned release() and MUST call
 // ContainerCreate (which sets the label on the new container) BEFORE
 // release() runs so concurrent allocators see the new label on their next

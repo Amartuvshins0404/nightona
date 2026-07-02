@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -90,7 +90,7 @@ export class SandboxWarmPoolService {
       })
       if (!snapshot) {
         throw new BadRequestError(
-          `Snapshot ${sandboxSnapshot} not found. Did you add it through the Daytona Dashboard?`,
+          `Snapshot ${sandboxSnapshot} not found. Did you add it through the Nightona Dashboard?`,
         )
       }
     } else {

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package common
@@ -12,9 +12,9 @@ import (
 	"regexp"
 	"strings"
 
-	apiclient_cli "github.com/daytonaio/daytona/cli/apiclient"
-	"github.com/daytonaio/daytona/cli/pkg/minio"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	apiclient_cli "github.com/Amartuvshins0404/nightona/apps/cli/apiclient"
+	"github.com/Amartuvshins0404/nightona/apps/cli/pkg/minio"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 )
 
 // Create MinIO client from access parameters

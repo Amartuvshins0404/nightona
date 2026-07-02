@@ -18,7 +18,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 
 RUN apk add --no-cache git
 
-WORKDIR /daytona
+WORKDIR /nightona
 
 # Yarn caching layer
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -35,7 +35,7 @@ COPY libs/api-client-go/go.mod libs/api-client-go/go.sum libs/api-client-go/
 RUN head -1 go.work > go.work.tmp && printf '\nuse (\n\t./apps/proxy\n\t./libs/common-go\n\t./libs/api-client-go\n)\n' >> go.work.tmp && mv go.work.tmp go.work
 
 ENV NX_DAEMON=false
-ENV GONOSUMDB=github.com/daytonaio/daytona
+ENV GONOSUMDB=github.com/Amartuvshins0404/nightona
 
 RUN go -C apps/proxy mod download && go -C libs/common-go mod download && go -C libs/api-client-go mod download
 
@@ -55,10 +55,10 @@ RUN apk update && apk upgrade --no-cache openssl pcre2 \
 
 WORKDIR /usr/local/bin
 
-COPY --from=build /daytona/dist/apps/proxy daytona-proxy
+COPY --from=build /nightona/dist/apps/proxy nightona-proxy
 
-RUN chmod +x daytona-proxy
+RUN chmod +x nightona-proxy
 
 HEALTHCHECK CMD [ "curl", "-f", "http://localhost:4000/health" ]
 
-ENTRYPOINT ["daytona-proxy"]
+ENTRYPOINT ["nightona-proxy"]

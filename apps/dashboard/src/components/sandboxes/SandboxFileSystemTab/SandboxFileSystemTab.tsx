@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -9,7 +9,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { handleApiError } from '@/lib/error-handling'
 import { cn } from '@/lib/utils'
 import { isStoppable } from '@/lib/utils/sandbox'
-import { SandboxListItem } from '@daytona/api-client'
+import { SandboxListItem } from '@nightona/api-client'
 import { useQueryClient } from '@tanstack/react-query'
 import { HardDriveIcon } from 'lucide-react'
 import { memo, startTransition, useCallback, useEffect, useRef, useState } from 'react'

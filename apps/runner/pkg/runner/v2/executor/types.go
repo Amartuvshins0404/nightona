@@ -1,11 +1,11 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 package executor
 
-import "github.com/daytonaio/runner/pkg/api/dto"
+import "github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
 
 type StartSandboxPayload struct {
 	AuthToken *string           `json:"authToken,omitempty"`

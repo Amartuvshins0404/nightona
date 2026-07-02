@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -7,15 +7,15 @@ import 'dotenv/config'
 
 import { z } from 'zod'
 import { createAgent, createNetwork, createTool, anthropic } from '@inngest/agent-kit'
-import { CodeRunParams, DaytonaError } from '@daytona/sdk'
+import { CodeRunParams, NightonaError } from '@nightona/sdk'
 import { getSandbox, extractTextMessageContent, logDebug } from './utils.js'
-import type { FileUpload } from '@daytona/sdk/src/FileSystem.js'
+import type { FileUpload } from '@nightona/sdk/src/FileSystem.js'
 import { Buffer } from 'buffer'
 
 async function main() {
   const codeRunTool = createTool({
     name: 'codeRunTool',
-    description: `Executes code in the Daytona sandbox. Use this tool to run code snippets, scripts, or application entry points.
+    description: `Executes code in the Nightona sandbox. Use this tool to run code snippets, scripts, or application entry points.
 Parameters:
     - code: Code to execute.
     - argv: Command line arguments to pass to the code.
@@ -40,7 +40,7 @@ Parameters:
         return responseMessage
       } catch (error) {
         console.error('Error executing code:', error)
-        if (error instanceof DaytonaError) return `Code execution Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `Code execution Nightona error: ${error.message}`
         else return 'Error executing code'
       }
     },
@@ -48,7 +48,7 @@ Parameters:
 
   const shellTool = createTool({
     name: 'shellTool',
-    description: `Executes a shell command inside the Daytona sandbox environment. Use this tool for tasks like installing packages, running scripts, or manipulating files via shell commands. Never use this tool to start a development server; always use startDevServerTool for this purpose.
+    description: `Executes a shell command inside the Nightona sandbox environment. Use this tool for tasks like installing packages, running scripts, or manipulating files via shell commands. Never use this tool to start a development server; always use startDevServerTool for this purpose.
 Parameters:
     - shellCommand: Shell command to execute (e.g., "npm install", "ls -la").
     - env: Environment variables to set for the command as key-value pairs (e.g. { "NODE_ENV": "production" }).`,
@@ -68,7 +68,7 @@ Parameters:
         return responseMessage
       } catch (error) {
         console.error('Error executing shell command:', error)
-        if (error instanceof DaytonaError) return `Shell command execution Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `Shell command execution Nightona error: ${error.message}`
         else return 'Error executing shell command'
       }
     },
@@ -76,7 +76,7 @@ Parameters:
 
   const uploadFilesTool = createTool({
     name: 'uploadFilesTool',
-    description: `Uploads one or more files to the Daytona sandbox. Use this tool to transfer source code, configuration files, or other assets required for execution or setup. If a file already exists at the specified path, its contents will be replaced with the new content provided. To update a file, simply upload it again with the desired content.
+    description: `Uploads one or more files to the Nightona sandbox. Use this tool to transfer source code, configuration files, or other assets required for execution or setup. If a file already exists at the specified path, its contents will be replaced with the new content provided. To update a file, simply upload it again with the desired content.
 Parameters:
   - files: Array of files to upload. Each file object must have:
     - path (string): The destination file path in the sandbox.
@@ -122,7 +122,7 @@ Note: Always use double quotes (") for the outer 'content' string property. When
         return uploadFilesMessage
       } catch (error) {
         console.error('Error creating/uploading files:', error)
-        if (error instanceof DaytonaError) return `Files create/upload Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `Files create/upload Nightona error: ${error.message}`
         else return 'Error creating/uploading files'
       }
     },
@@ -130,7 +130,7 @@ Note: Always use double quotes (") for the outer 'content' string property. When
 
   const readFileTool = createTool({
     name: 'readFileTool',
-    description: `Reads the contents of a file from the Daytona sandbox. Use this tool to retrieve source code, configuration files, or other assets for analysis or processing.`,
+    description: `Reads the contents of a file from the Nightona sandbox. Use this tool to retrieve source code, configuration files, or other assets for analysis or processing.`,
     parameters: z.object({
       filePath: z.string(),
     }),
@@ -145,7 +145,7 @@ Note: Always use double quotes (") for the outer 'content' string property. When
         return fileContent
       } catch (error) {
         console.error('Error reading file:', error)
-        if (error instanceof DaytonaError) return `File reading Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `File reading Nightona error: ${error.message}`
         else return 'Error reading file'
       }
     },
@@ -153,7 +153,7 @@ Note: Always use double quotes (") for the outer 'content' string property. When
 
   const deleteFileTool = createTool({
     name: 'deleteFileTool',
-    description: `Deletes a file from the Daytona sandbox. Use this tool to remove unnecessary or temporary files from the sandbox environment.`,
+    description: `Deletes a file from the Nightona sandbox. Use this tool to remove unnecessary or temporary files from the sandbox environment.`,
     parameters: z.object({
       filePath: z.string(),
     }),
@@ -167,7 +167,7 @@ Note: Always use double quotes (") for the outer 'content' string property. When
         return deleteFileMessage
       } catch (error) {
         console.error('Error deleting file:', error)
-        if (error instanceof DaytonaError) return `File deletion Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `File deletion Nightona error: ${error.message}`
         else return 'Error deleting file'
       }
     },
@@ -175,7 +175,7 @@ Note: Always use double quotes (") for the outer 'content' string property. When
 
   const createDirectoryTool = createTool({
     name: 'createDirectoryTool',
-    description: `Creates a new directory in the Daytona sandbox. Use this tool to prepare folder structures for projects, uploads, or application data.
+    description: `Creates a new directory in the Nightona sandbox. Use this tool to prepare folder structures for projects, uploads, or application data.
 Parameters:
     - directoryPath: The directory path to create.`,
     parameters: z.object({
@@ -191,7 +191,7 @@ Parameters:
         return createDirectoryMessage
       } catch (error) {
         console.error('Error creating directory:', error)
-        if (error instanceof DaytonaError) return `Directory creation Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `Directory creation Nightona error: ${error.message}`
         else return 'Error creating directory'
       }
     },
@@ -199,7 +199,7 @@ Parameters:
 
   const deleteDirectoryTool = createTool({
     name: 'deleteDirectoryTool',
-    description: `Deletes a directory from the Daytona sandbox. Use this tool to remove unnecessary or temporary directories from the sandbox environment.`,
+    description: `Deletes a directory from the Nightona sandbox. Use this tool to remove unnecessary or temporary directories from the sandbox environment.`,
     parameters: z.object({
       directoryPath: z.string(),
     }),
@@ -213,7 +213,7 @@ Parameters:
         return deleteDirectoryMessage
       } catch (error) {
         console.error('Error deleting directory:', error)
-        if (error instanceof DaytonaError) return `Directory deletion Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `Directory deletion Nightona error: ${error.message}`
         else return 'Error deleting directory'
       }
     },
@@ -249,7 +249,7 @@ Parameters:
         return startDevServerMessage
       } catch (error) {
         console.error('Error starting dev server:', error)
-        if (error instanceof DaytonaError) return `Dev server start Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `Dev server start Nightona error: ${error.message}`
         else return 'Error starting dev server'
       }
     },
@@ -273,7 +273,7 @@ Parameters:
         return healthMessage
       } catch (error) {
         console.error('Error checking dev server health:', error)
-        if (error instanceof DaytonaError) return `Dev server health check Daytona error: ${error.message}`
+        if (error instanceof NightonaError) return `Dev server health check Nightona error: ${error.message}`
         return `Error checking dev server health`
       }
     },
@@ -281,8 +281,8 @@ Parameters:
 
   const codingAgent = createAgent({
     name: 'Coding Agent',
-    description: 'An autonomous coding agent for building software in a Daytona sandbox',
-    system: `You are a coding agent designed to help the user achieve software development tasks. You have access to a Daytona sandbox environment.
+    description: 'An autonomous coding agent for building software in a Nightona sandbox',
+    system: `You are a coding agent designed to help the user achieve software development tasks. You have access to a Nightona sandbox environment.
 
 Capabilities:
 - You can execute code snippets or scripts.

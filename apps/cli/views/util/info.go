@@ -1,11 +1,11 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package util
 
 import (
 	"github.com/charmbracelet/lipgloss"
-	"github.com/daytonaio/daytona/cli/views/common"
+	"github.com/Amartuvshins0404/nightona/apps/cli/views/common"
 )
 
 const PropertyNameWidth = 16

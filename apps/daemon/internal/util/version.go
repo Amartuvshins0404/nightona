@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package util
@@ -13,12 +13,12 @@ import (
 )
 
 // ExtractSdkVersionFromHeader extracts the SDK version from the headers.
-// If the X-Daytona-SDK-Version header is not present, it looks through
+// If the X-Nightona-SDK-Version header is not present, it looks through
 // the Sec-WebSocket-Protocol header looking for the version protocol formatted like
-// X-Daytona-SDK-Version/<version>.
+// X-Nightona-SDK-Version/<version>.
 // If no version is found, it returns an empty string.
 func ExtractSdkVersionFromHeader(header http.Header) string {
-	if v := header.Get("X-Daytona-SDK-Version"); v != "" {
+	if v := header.Get("X-Nightona-SDK-Version"); v != "" {
 		return v
 	}
 
@@ -36,7 +36,7 @@ func ExtractSdkVersionFromHeader(header http.Header) string {
 }
 
 // ExtractSdkVersionSubprotocol extracts the SDK version subprotocol from request headers
-// It looks for the X-Daytona-SDK-Version~<version> subprotocol in the Sec-WebSocket-Protocol header.
+// It looks for the X-Nightona-SDK-Version~<version> subprotocol in the Sec-WebSocket-Protocol header.
 // Returns an empty string if no SDK version subprotocol is found.
 func ExtractSdkVersionSubprotocol(header http.Header) string {
 	subprotocols := header.Get("Sec-WebSocket-Protocol")
@@ -44,7 +44,7 @@ func ExtractSdkVersionSubprotocol(header http.Header) string {
 		return ""
 	}
 
-	const prefix = "X-Daytona-SDK-Version~"
+	const prefix = "X-Nightona-SDK-Version~"
 	// split comma-separated protocols
 	for _, subprotocol := range strings.Split(subprotocols, ",") {
 		subprotocol = strings.TrimSpace(subprotocol)

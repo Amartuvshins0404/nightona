@@ -5,7 +5,7 @@
 This example demonstrates a **two-agent system** where:
 
 - A **Project Manager Agent** runs locally with its own Claude instance
-- A **Developer Agent** runs inside a Daytona sandbox with the full capabilities of Claude Code
+- A **Developer Agent** runs inside a Nightona sandbox with the full capabilities of Claude Code
 
 The Project Manager receives user requests, breaks them down into tasks, delegates coding work to the Developer Agent, reviews the outputs, and communicates results back to the user. This creates a hierarchical agent architecture where high-level planning is separated from low-level code execution.
 
@@ -15,9 +15,9 @@ The Project Manager receives user requests, breaks them down into tasks, delegat
 
 - **Dual-agent architecture:** Project Manager oversees tasks while Developer Agent executes code
 - **Color-coded output:** Project Manager messages in green, Developer Agent in white for easy differentiation
-- **Secure sandbox execution:** Developer Agent operates within a controlled Daytona environment
+- **Secure sandbox execution:** Developer Agent operates within a controlled Nightona environment
 - **Claude Agent SDK integration:** Developer Agent has full abilities including reading/editing files and running shell commands
-- **Preview deployed apps:** Use Daytona preview links to view and interact with deployed applications
+- **Preview deployed apps:** Use Nightona preview links to view and interact with deployed applications
 - **Intelligent delegation:** Project Manager analyzes outputs and decides if more work is needed
 
 ## Prerequisites
@@ -28,7 +28,7 @@ The Project Manager receives user requests, breaks them down into tasks, delegat
 
 To run this example, you need to set the following environment variables:
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `ANTHROPIC_API_KEY`: Required for the **Project Manager Agent** (runs locally). Get it from [Claude Developer Platform](https://console.anthropic.com/settings/keys)
 - `SANDBOX_ANTHROPIC_API_KEY`: **Optional** for the **Developer Agent** (runs in sandbox). If not provided, defaults to using `ANTHROPIC_API_KEY`. Get it from [Claude Developer Platform](https://console.anthropic.com/settings/keys)
 
@@ -57,7 +57,7 @@ Create a `.env` file in the project directory with these variables.
 The two-agent system follows this workflow:
 
 1. **Initialization:**
-   - A new Daytona sandbox is created for the Developer Agent
+   - A new Nightona sandbox is created for the Developer Agent
    - The Claude Agent SDK is installed in the sandbox
    - The Project Manager Agent is initialized locally
 
@@ -95,7 +95,7 @@ The two-agent system follows this workflow:
             │
             ▼
 ┌─────────────────────────┐
-│   Developer Agent       │ (Daytona Sandbox) [WHITE OUTPUT]
+│   Developer Agent       │ (Nightona Sandbox) [WHITE OUTPUT]
 │  - Executes code        │
 │  - Manages files        │
 │  - Starts services      │
@@ -118,7 +118,7 @@ Initializing Project Manager Agent...
 
 === Two-Agent System Ready ===
 Project Manager Agent: Manages tasks and delegates to Developer (Green text)
-Developer Agent: Executes code in Daytona sandbox (White text)
+Developer Agent: Executes code in Nightona sandbox (White text)
 Press Ctrl+C at any time to exit.
 
 User: make a lunar lander web app
@@ -147,7 +147,7 @@ I'll help you create a lunar lander web app! Let me build a complete game with p
 Perfect! The web server is now running.
 
 Your Lunar Lander game is live at:
-🌐 https://80-17ac1c0f-d684-4122-93b5-8f52fd5393f8.proxy.daytona.works
+🌐 https://80-17ac1c0f-d684-4122-93b5-8f52fd5393f8.proxy.nightona.works
 
 [Project Manager]: Excellent! The Developer Agent has successfully created your lunar lander web app. The game is now running and accessible at the preview URL above. The implementation includes:
 
@@ -179,4 +179,4 @@ See the main project LICENSE file for details.
 
 - [Claude Agent SDK Overview](https://platform.claude.com/docs/en/agent-sdk/overview)
 - [Claude Agent SDK Reference (Python)](https://platform.claude.com/docs/en/agent-sdk/python)
-- [Daytona Documentation](https://www.daytona.io/docs)
+- [Nightona Documentation](https://www.daytona.io/docs)

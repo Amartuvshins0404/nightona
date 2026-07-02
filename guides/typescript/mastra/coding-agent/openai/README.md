@@ -19,7 +19,7 @@ This template demonstrates how to build an AI coding assistant that can work wit
 ## Prerequisites
 
 - Node.js 20 or higher
-- API key for Daytona ([Daytona](https://www.daytona.io/))
+- API key for Nightona ([Nightona](https://www.daytona.io/))
 - API key for your chosen model provider
 
 ## Setup
@@ -39,10 +39,10 @@ This template demonstrates how to build an AI coding assistant that can work wit
    # Edit .env and add your API keys
    ```
 
-   **Configure Daytona and your model provider** by setting the API keys:
+   **Configure Nightona and your model provider** by setting the API keys:
 
    ```env
-   DAYTONA_API_KEY="your-daytona-api-key-here"
+   NIGHTONA_API_KEY="your-nightona-api-key-here"
    OPENAI_API_KEY="your-openai-api-key-here"
    ```
 
@@ -81,7 +81,7 @@ The main agent with comprehensive development capabilities:
 
 #### **Sandbox Tools** (`src/mastra/tools/`)
 
-Complete toolkit for sandbox interaction with Daytona:
+Complete toolkit for sandbox interaction with Nightona:
 
 **Sandbox Management:**
 
@@ -130,7 +130,7 @@ The agent includes a configured memory system:
 **Sandbox Provider:**
 
 ```bash
-DAYTONA_API_KEY=your_daytona_api_key_here
+NIGHTONA_API_KEY=your_nightona_api_key_here
 ```
 
 **Model Provider:**
@@ -160,9 +160,9 @@ export const codingAgent = new Agent({
 
 ### "Sandbox creation failed"
 
-- Check Daytona API key and account status
+- Check Nightona API key and account status
 - Ensure you haven't exceeded sandbox limits
-- Verify network connectivity to Daytona services
+- Verify network connectivity to Nightona services
 
 ### "Code execution timeout"
 
@@ -189,10 +189,10 @@ src/mastra/
       agents/
         coding-agent.ts              # Main coding agent with development capabilities
       tools/
-        index.ts                     # Daytona tool exports
-        daytona/
-          tools.ts                   # Daytona sandbox implementation
-          utils.ts                   # Daytona helper functions
+        index.ts                     # Nightona tool exports
+        nightona/
+          tools.ts                   # Nightona sandbox implementation
+          utils.ts                   # Nightona helper functions
       index.ts                       # Mastra configuration with storage and logging
 ```
 
@@ -203,4 +203,4 @@ See the main project LICENSE file for details.
 ## References
 
 - [Mastra](https://mastra.ai/)
-- [Daytona](https://daytona.io)
+- [Nightona](https://daytona.io)

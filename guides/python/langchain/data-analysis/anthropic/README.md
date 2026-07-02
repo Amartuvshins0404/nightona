@@ -1,14 +1,14 @@
-# LangChain Data Analysis Example (LangChain + Daytona)
+# LangChain Data Analysis Example (LangChain + Nightona)
 
 ## Overview
 
-This example demonstrates how to build a [LangChain](https://www.langchain.com/) agent that performs secure data analysis using [Daytona](https://daytona.io) sandboxes. The agent uses the `DaytonaDataAnalysisTool` to execute Python code in an isolated environment, enabling automated data analysis workflows with natural language prompts.
+This example demonstrates how to build a [LangChain](https://www.langchain.com/) agent that performs secure data analysis using [Nightona](https://daytona.io) sandboxes. The agent uses the `NightonaDataAnalysisTool` to execute Python code in an isolated environment, enabling automated data analysis workflows with natural language prompts.
 
 In this example, the agent analyzes a vehicle valuations dataset to understand how vehicle prices vary by manufacturing year and generates a line chart showing average price per year.
 
 ## Features
 
-- **Secure sandbox execution:** All Python code runs in isolated Daytona sandboxes
+- **Secure sandbox execution:** All Python code runs in isolated Nightona sandboxes
 - **Natural language interface:** Describe your analysis task in plain English
 - **Automatic artifact handling:** Charts and outputs are automatically captured and saved
 - **Multi-step reasoning:** Agent breaks down complex analysis into logical steps
@@ -26,7 +26,7 @@ In this example, the agent analyzes a vehicle valuations dataset to understand h
 
 To run this example, you need to set the following environment variables:
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `ANTHROPIC_API_KEY`: Required for Claude AI model access. Get it from [Anthropic Console](https://console.anthropic.com/)
 
 See the `.env.example` file for the exact structure. Copy `.env.example` to `.env` and fill in your API keys before running.
@@ -51,7 +51,7 @@ Before proceeding, complete the following steps:
 2. Install dependencies:
 
    ```bash
-   pip install -U langchain langchain-anthropic langchain-daytona-data-analysis python-dotenv
+   pip install -U langchain langchain-anthropic langchain-nightona-data-analysis python-dotenv
    ```
 
 3. Download the dataset:
@@ -80,10 +80,10 @@ Before proceeding, complete the following steps:
 
 When you run the example, the agent follows this workflow:
 
-1. **Dataset Upload:** The CSV file is uploaded to the Daytona sandbox with metadata describing its structure
+1. **Dataset Upload:** The CSV file is uploaded to the Nightona sandbox with metadata describing its structure
 2. **Agent Reasoning:** The agent receives your natural language request and plans the analysis steps
 3. **Code Generation:** Agent generates Python code to explore, clean, and analyze the data
-4. **Sandbox Execution:** Code runs securely in the Daytona sandbox environment
+4. **Sandbox Execution:** Code runs securely in the Nightona sandbox environment
 5. **Artifact Processing:** Charts and outputs are captured and processed by your custom handler
 6. **Cleanup:** Sandbox resources are automatically cleaned up
 
@@ -146,7 +146,7 @@ The agent generates a professional line chart showing how average vehicle prices
 
 ## API Reference
 
-The `DaytonaDataAnalysisTool` provides these key methods:
+The `NightonaDataAnalysisTool` provides these key methods:
 
 ### download_file
 
@@ -189,4 +189,4 @@ See the main project LICENSE file for details.
 ## References
 
 - [LangChain](https://docs.langchain.com/)
-- [Daytona](https://daytona.io)
+- [Nightona](https://daytona.io)

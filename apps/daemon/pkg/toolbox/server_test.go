@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package toolbox
@@ -12,7 +12,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/daytonaio/daemon/pkg/toolbox/fs"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/fs"
 )
 
 func TestFilesRoutesAcceptSlashAndNoSlash(t *testing.T) {

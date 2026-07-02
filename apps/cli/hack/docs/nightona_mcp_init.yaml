@@ -1,0 +1,10 @@
+name: nightona mcp init
+synopsis: |
+  Initialize Nightona MCP Server with an agent (currently supported: claude, windsurf, cursor)
+usage: nightona mcp init [AGENT_NAME] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona mcp - Manage Nightona MCP Server

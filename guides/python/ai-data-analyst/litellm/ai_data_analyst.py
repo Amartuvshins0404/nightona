@@ -1,4 +1,4 @@
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 import base64
@@ -8,7 +8,7 @@ from pathlib import Path
 # pylint: disable=import-error
 from litellm import completion  # pylint: disable=import-error
 
-from daytona import CreateSandboxFromSnapshotParams, Daytona
+from nightona import CreateSandboxFromSnapshotParams, Nightona
 
 CODING_MODEL = "anthropic/claude-sonnet-4-0"
 SUMMARY_MODEL = "anthropic/claude-haiku-4-5"
@@ -20,14 +20,14 @@ def extract_python(text: str) -> str:
     return match.group(1).strip() if match else ""
 
 
-# Make sure you have the DAYTONA_API_KEY environment variable set
+# Make sure you have the NIGHTONA_API_KEY environment variable set
 def main() -> None:
-    daytona = Daytona()
+    nightona = Nightona()
     sandbox = None
 
     try:
         # Create a Python sandbox
-        sandbox = daytona.create(CreateSandboxFromSnapshotParams(language="python"))
+        sandbox = nightona.create(CreateSandboxFromSnapshotParams(language="python"))
 
         csv_path = "cafe_sales_data.csv"
         sandbox_csv_path = csv_path
@@ -103,7 +103,7 @@ def main() -> None:
 
     finally:
         if sandbox is not None:
-            daytona.delete(sandbox)
+            nightona.delete(sandbox)
 
 
 if __name__ == "__main__":

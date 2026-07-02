@@ -1,0 +1,13 @@
+name: nightona info
+synopsis: Get sandbox info
+usage: nightona info [SANDBOX_ID] | [SANDBOX_NAME] [flags]
+options:
+  - name: format
+    shorthand: f
+    usage: Output format. Must be one of (yaml, json)
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

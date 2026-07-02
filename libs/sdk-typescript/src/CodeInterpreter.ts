@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,15 +8,15 @@
  */
 
 import WebSocket from 'isomorphic-ws'
-import { InterpreterApi } from '@daytona/toolbox-api-client'
-import type { InterpreterContext } from '@daytona/toolbox-api-client'
-import { Configuration } from '@daytona/api-client'
+import { InterpreterApi } from '@nightona/toolbox-api-client'
+import type { InterpreterContext } from '@nightona/toolbox-api-client'
+import { Configuration } from '@nightona/api-client'
 import {
-  DaytonaConnectionError,
-  DaytonaError,
-  DaytonaTimeoutError,
-  DaytonaValidationError,
-} from './errors/DaytonaError'
+  NightonaConnectionError,
+  NightonaError,
+  NightonaTimeoutError,
+  NightonaValidationError,
+} from './errors/NightonaError'
 import type { ExecutionError, ExecutionResult, RunCodeOptions } from './types/CodeInterpreter'
 import { createSandboxWebSocket } from './utils/WebSocket'
 
@@ -75,7 +75,7 @@ export class CodeInterpreter {
    */
   public async runCode(code: string, options: RunCodeOptions = {}): Promise<ExecutionResult> {
     if (!code || !code.trim()) {
-      throw new DaytonaValidationError('Code is required for execution')
+      throw new NightonaValidationError('Code is required for execution')
     }
 
     const url = `${this.clientConfig.basePath.replace(/^http/, 'ws')}/process/interpreter/execute`
@@ -184,7 +184,7 @@ export class CodeInterpreter {
       }
 
       const handleError = (error: Error) => {
-        fail(new DaytonaConnectionError(`Failed to execute code: ${error.message ?? String(error)}`))
+        fail(new NightonaConnectionError(`Failed to execute code: ${error.message ?? String(error)}`))
       }
 
       const detach = () => {
@@ -218,7 +218,7 @@ export class CodeInterpreter {
         ;(ws as any).on('close', handleClose)
         ;(ws as any).on('error', handleError)
       } else {
-        throw new DaytonaError('Unsupported WebSocket implementation')
+        throw new NightonaError('Unsupported WebSocket implementation')
       }
     })
   }
@@ -313,15 +313,15 @@ export class CodeInterpreter {
     }
   }
 
-  private createCloseError(code: number, message?: string): DaytonaError {
+  private createCloseError(code: number, message?: string): NightonaError {
     if (code === WEBSOCKET_TIMEOUT_CODE) {
-      return new DaytonaTimeoutError(
+      return new NightonaTimeoutError(
         'Execution timed out: operation exceeded the configured `timeout`. Provide a larger value if needed.',
       )
     }
     if (message) {
-      return new DaytonaConnectionError(message + ` (close code ${code})`)
+      return new NightonaConnectionError(message + ` (close code ${code})`)
     }
-    return new DaytonaConnectionError(`Code execution failed: WebSocket closed with code ${code}`)
+    return new NightonaConnectionError(`Code execution failed: WebSocket closed with code ${code}`)
   }
 }

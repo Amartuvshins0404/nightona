@@ -1,4 +1,4 @@
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """Main entry point for deeper-rlm."""
@@ -83,7 +83,7 @@ def main(
     try:
         # Get API keys from environment
         model_api_key = os.environ["LLM_API_KEY"]
-        daytona_api_key = os.environ["DAYTONA_API_KEY"]
+        nightona_api_key = os.environ["NIGHTONA_API_KEY"]
 
         # Create LLM client
         client = create_client(
@@ -94,7 +94,7 @@ def main(
         # Create sandbox budget and manager
         budget = SandboxBudget(config.rlm.max_sandboxes)
         sandbox_manager = SandboxManager(
-            api_key=daytona_api_key,
+            api_key=nightona_api_key,
             budget=budget,
         )
 

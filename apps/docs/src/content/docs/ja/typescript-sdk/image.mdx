@@ -6,7 +6,7 @@ hideTitleOnPage: true
 
 ## Image
 
-Daytona のサンドボックス用イメージ定義を表します。
+Nightona のサンドボックス用イメージ定義を表します。
 このクラスを直接インスタンス化しないでください。代わりに `Image.base()`、`Image.debianSlim()`、`Image.fromDockerfile()` などの静的ファクトリメソッドを使用してください。
 
 ### Accessors
@@ -139,7 +139,7 @@ addLocalDir(localPath: string, remotePath: string): Image
 ```ts
 const image = Image
  .debianSlim('3.12')
- .addLocalDir('src', '/home/daytona/src')
+ .addLocalDir('src', '/home/nightona/src')
 ```
 
 ***
@@ -167,7 +167,7 @@ addLocalFile(localPath: string, remotePath: string): Image
 ```ts
 const image = Image
  .debianSlim('3.12')
- .addLocalFile('requirements.txt', '/home/daytona/requirements.txt')
+ .addLocalFile('requirements.txt', '/home/nightona/requirements.txt')
 ```
 
 ***
@@ -407,7 +407,7 @@ workdir(dirPath: string): Image
 ```ts
 const image = Image
  .debianSlim('3.12')
- .workdir('/home/daytona')
+ .workdir('/home/nightona')
 ```
 
 ***

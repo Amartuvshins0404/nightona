@@ -43,7 +43,7 @@ const toolboxApiSpec = {
   servers: [{ url: 'https://proxy.app.daytona.io/toolbox/{sandboxId}' }],
   info: {
     ...toolboxApiSpecRaw.info,
-    description: `${toolboxApiSpecRaw.info.description || 'Daytona Toolbox API'}
+    description: `${toolboxApiSpecRaw.info.description || 'Nightona Toolbox API'}
     `,
   },
 }
@@ -60,15 +60,15 @@ const toolboxApiSpec = {
     configuration={{
       sources: [
         {
-          title: 'Daytona API',
-          slug: 'daytona',
+          title: 'Nightona API',
+          slug: 'nightona',
           content: mainApiSpec,
           default: true,
           url: 'https://app.daytona.io/api',
         },
         {
-          title: 'Daytona Toolbox API',
-          slug: 'daytona-toolbox',
+          title: 'Nightona Toolbox API',
+          slug: 'nightona-toolbox',
           content: toolboxApiSpec,
           url: 'https://proxy.daytona.io/api',
         },
@@ -93,17 +93,17 @@ const toolboxApiSpec = {
         }
       `,
       metaData: {
-        title: 'Daytona API Reference',
-        ogTitle: 'Daytona API Reference',
+        title: 'Nightona API Reference',
+        ogTitle: 'Nightona API Reference',
         description:
-          'A reference of supported operations using the Daytona API.',
+          'A reference of supported operations using the Nightona API.',
         ogDescription:
-          'A reference of supported operations using the Daytona API.',
-        image: 'https://daytona.io/docs/daytona.png',
-        ogImage: 'https://daytona.io/docs/daytona.png',
+          'A reference of supported operations using the Nightona API.',
+        image: 'https://daytona.io/docs/nightona.png',
+        ogImage: 'https://daytona.io/docs/nightona.png',
         ogImageWidth: 1248,
         ogImageHeight: 628,
-        ogImageAlt: 'Daytona API Reference',
+        ogImageAlt: 'Nightona API Reference',
         twitterCard: 'summary_large_image',
       },
     }}
@@ -366,7 +366,7 @@ const toolboxApiSpec = {
 
   function resyncScalarHashNavigation(): void {
     const targetHash = window.location.hash
-    if (!targetHash || !/^#(daytona|daytona-toolbox)(\/|$)/.test(targetHash)) {
+    if (!targetHash || !/^#(nightona|nightona-toolbox)(\/|$)/.test(targetHash)) {
       return
     }
 

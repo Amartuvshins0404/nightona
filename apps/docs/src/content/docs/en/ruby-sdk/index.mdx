@@ -1,17 +1,17 @@
 ---
 title: Ruby SDK Reference
-description: Interact with Daytona Sandboxes using the Ruby SDK
-next: /docs/ruby-sdk/daytona
+description: Interact with Nightona Sandboxes using the Ruby SDK
+next: /docs/ruby-sdk/nightona
 ---
 
-The Daytona Ruby SDK provides a robust interface for programmatically interacting with Daytona Sandboxes.
+The Nightona Ruby SDK provides a robust interface for programmatically interacting with Nightona Sandboxes.
 
 ## Installation
 
-Install the Daytona Ruby SDK using Bundler by adding it to your Gemfile:
+Install the Nightona Ruby SDK using Bundler by adding it to your Gemfile:
 
 ```ruby
-gem 'daytona'
+gem 'nightona'
 ```
 
 Then run:
@@ -23,28 +23,28 @@ bundle install
 Or install it directly:
 
 ```bash
-gem install daytona
+gem install nightona
 ```
 
 ## Getting Started
 
-Here's a simple example to help you get started with the Daytona Ruby SDK:
+Here's a simple example to help you get started with the Nightona Ruby SDK:
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
 # Initialize the SDK (uses environment variables by default)
-daytona = Daytona::Daytona.new
+nightona = Nightona::Nightona.new
 
 # Create a new sandbox
-sandbox = daytona.create
+sandbox = nightona.create
 
 # Execute a command
 response = sandbox.process.exec(command: "echo 'Hello, World!'")
 puts response.result
 
 # Clean up
-daytona.delete(sandbox)
+nightona.delete(sandbox)
 ```
 
 ## Configuration
@@ -52,18 +52,18 @@ daytona.delete(sandbox)
 The SDK can be configured using environment variables or by passing options to the constructor:
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-# Using environment variables (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
-daytona = Daytona::Daytona.new
+# Using environment variables (NIGHTONA_API_KEY, NIGHTONA_API_URL, NIGHTONA_TARGET)
+nightona = Nightona::Nightona.new
 
 # Using explicit configuration
-config = Daytona::Config.new(
+config = Nightona::Config.new(
   api_key: 'your-api-key',
   api_url: 'https://app.daytona.io/api',
   target: 'us'
 )
-daytona = Daytona::Daytona.new(config)
+nightona = Nightona::Nightona.new(config)
 ```
 
 ## Environment Variables
@@ -72,9 +72,9 @@ The SDK supports the following environment variables:
 
 | Variable | Description |
 |----------|-------------|
-| `DAYTONA_API_KEY` | API key for authentication |
-| `DAYTONA_API_URL` | URL of the Daytona API (defaults to `https://app.daytona.io/api`) |
-| `DAYTONA_TARGET` | Target location for Sandboxes |
-| `DAYTONA_JWT_TOKEN` | JWT token for authentication (alternative to API key) |
-| `DAYTONA_ORGANIZATION_ID` | Organization ID (required when using JWT token) |
+| `NIGHTONA_API_KEY` | API key for authentication |
+| `NIGHTONA_API_URL` | URL of the Nightona API (defaults to `https://app.daytona.io/api`) |
+| `NIGHTONA_TARGET` | Target location for Sandboxes |
+| `NIGHTONA_JWT_TOKEN` | JWT token for authentication (alternative to API key) |
+| `NIGHTONA_ORGANIZATION_ID` | Organization ID (required when using JWT token) |
 

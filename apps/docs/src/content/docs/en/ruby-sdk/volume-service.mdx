@@ -5,7 +5,7 @@ hideTitleOnPage: true
 
 ## VolumeService
 
-Service for managing Daytona Volumes. Can be used to list, get, create and delete Volumes.
+Service for managing Nightona Volumes. Can be used to list, get, create and delete Volumes.
 
 ### Constructors
 
@@ -16,12 +16,12 @@ def initialize(volumes_api, otel_state:)
 
 ```
 
-Service for managing Daytona Volumes. Can be used to list, get, create and delete Volumes.
+Service for managing Nightona Volumes. Can be used to list, get, create and delete Volumes.
 
 **Parameters**:
 
-- `volumes_api` _DaytonaApiClient:VolumesApi_ -
-- `otel_state` _Daytona:OtelState, nil_ -
+- `volumes_api` _NightonaApiClient:VolumesApi_ -
+- `otel_state` _Nightona:OtelState, nil_ -
 
 **Returns**:
 
@@ -44,7 +44,7 @@ Create new Volume.
 
 **Returns**:
 
-- `Daytona:Volume`
+- `Nightona:Volume`
 
 #### delete()
 
@@ -57,7 +57,7 @@ Delete a Volume.
 
 **Parameters**:
 
-- `volume` _Daytona:Volume_ -
+- `volume` _Nightona:Volume_ -
 
 **Returns**:
 
@@ -79,7 +79,7 @@ Get a Volume by name.
 
 **Returns**:
 
-- `Daytona:Volume`
+- `Nightona:Volume`
 
 #### list()
 
@@ -92,4 +92,4 @@ List all Volumes.
 
 **Returns**:
 
-- `Array\<Daytona:Volume\>`
+- `Array\<Nightona:Volume\>`

@@ -8,7 +8,7 @@ permissions: {}
 
 jobs:
   build:
-    if: github.repository == 'daytonaio/daytona'
+    if: github.repository == 'daytonaio/nightona'
     runs-on: blacksmith-4vcpu-ubuntu-2404
     permissions:
       contents: read
@@ -34,8 +34,8 @@ jobs:
           # see: https://github.com/devcontainers/ci/issues/191#issuecomment-1603857155
           BUILDX_NO_DEFAULT_ATTESTATIONS: true
         with:
-          imageName: ghcr.io/daytonaio/daytona-devcontainer
-          cacheFrom: ghcr.io/daytonaio/daytona-devcontainer
+          imageName: ghcr.io/daytonaio/nightona-devcontainer
+          cacheFrom: ghcr.io/daytonaio/nightona-devcontainer
           platform: linux/amd64,linux/arm64
           imageTag: main,latest
           configFile: .devcontainer/devcontainer.build.json

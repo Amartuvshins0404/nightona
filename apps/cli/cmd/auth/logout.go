@@ -1,18 +1,18 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package auth
 
 import (
-	"github.com/daytonaio/daytona/cli/config"
-	"github.com/daytonaio/daytona/cli/internal"
-	"github.com/daytonaio/daytona/cli/views/common"
+	"github.com/Amartuvshins0404/nightona/apps/cli/config"
+	"github.com/Amartuvshins0404/nightona/apps/cli/internal"
+	"github.com/Amartuvshins0404/nightona/apps/cli/views/common"
 	"github.com/spf13/cobra"
 )
 
 var LogoutCmd = &cobra.Command{
 	Use:     "logout",
-	Short:   "Logout from Daytona",
+	Short:   "Logout from Nightona",
 	Args:    cobra.NoArgs,
 	GroupID: internal.USER_GROUP,
 	RunE: func(cmd *cobra.Command, args []string) error {

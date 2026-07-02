@@ -1,0 +1,30 @@
+/**
+ * Copyright Nightona Platforms Inc.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { z } from 'zod'
+import type { PluginInput } from '@opencode-ai/plugin'
+import type { ToolContext } from '@opencode-ai/plugin/tool'
+import type { NightonaSessionManager } from '../core/session-manager'
+
+export const globTool = (
+  sessionManager: NightonaSessionManager,
+  projectId: string,
+  worktree: string,
+  pluginCtx: PluginInput,
+) => ({
+  description: 'Searches for files matching a pattern in Nightona sandbox',
+  args: {
+    pattern: z.string(),
+  },
+  async execute(args: { pattern: string }, ctx: ToolContext) {
+    const sandbox = await sessionManager.getSandbox(ctx.sessionID, projectId, worktree, pluginCtx)
+    const workDir = await sandbox.getWorkDir()
+    if (!workDir) {
+      throw new Error('Work directory not available')
+    }
+    const result = await sandbox.fs.searchFiles(workDir, args.pattern)
+    return result.files.join('\n')
+  },
+})

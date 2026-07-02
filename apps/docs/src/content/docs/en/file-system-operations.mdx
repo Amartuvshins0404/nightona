@@ -5,17 +5,17 @@ description: Interact with the file system in your sandboxes.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona provides comprehensive file system operations through the `fs` module in sandboxes.
+Nightona provides comprehensive file system operations through the `fs` module in sandboxes.
 
 ## Basic operations
 
-Daytona provides methods to interact with the file system in sandboxes. You can perform various operations like listing files, creating directories, reading and writing files, and more.
+Nightona provides methods to interact with the file system in sandboxes. You can perform various operations like listing files, creating directories, reading and writing files, and more.
 
 File operations assume you are operating in the sandbox user's home directory (e.g. `workspace` implies `/home/[username]/workspace`). Use a leading `/` when providing absolute paths.
 
 ### List files and directories
 
-Daytona provides methods to list files and directories in a sandbox by providing the path to the directory. If the path is not provided, the method will list the files and directories in the sandbox working directory.
+Nightona provides methods to list files and directories in a sandbox by providing the path to the directory. If the path is not provided, the method will list the files and directories in the sandbox working directory.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -85,7 +85,7 @@ for _, file := range files {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.FileInfo;
+import io.nightona.sdk.model.FileInfo;
 import java.util.List;
 
 List<FileInfo> files = sandbox.fs.listFiles("workspace");
@@ -109,7 +109,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files'
 
 ### Get directory or file information
 
-Daytona provides methods to get directory or file information such as group, directory, modified time, mode, name, owner, permissions, and size by providing the path to the directory or file.
+Nightona provides methods to get directory or file information such as group, directory, modified time, mode, name, owner, permissions, and size by providing the path to the directory or file.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -178,7 +178,7 @@ if info.IsDirectory {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.model.FileInfo;
+import io.nightona.sdk.model.FileInfo;
 
 FileInfo info = sandbox.fs.getFileDetails("workspace/data/file.txt");
 System.out.println("Size: " + info.getSize() + " bytes");
@@ -203,7 +203,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files/info?path='
 
 ### Create directories
 
-Daytona provides methods to create directories by providing the path to the directory and the permissions to set on the directory.
+Nightona provides methods to create directories by providing the path to the directory and the permissions to set on the directory.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -265,11 +265,11 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files/folder?path=&mode='
 
 ### Upload files
 
-Daytona provides methods to upload a single or multiple files in sandboxes.
+Nightona provides methods to upload a single or multiple files in sandboxes.
 
 #### Upload a single file
 
-Daytona provides methods to upload a single file in sandboxes by providing the content to upload and the path to the file to upload it to.
+Nightona provides methods to upload a single file in sandboxes by providing the content to upload and the path to the file to upload it to.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -349,7 +349,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files/upload?path=' \
 
 #### Upload multiple files
 
-Daytona provides methods to upload multiple files in sandboxes by providing the content to upload and their destination paths.
+Nightona provides methods to upload multiple files in sandboxes by providing the content to upload and their destination paths.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -451,21 +451,21 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files/bulk-upload' \
 
 ### Download files
 
-Daytona provides methods to download files from sandboxes.
+Nightona provides methods to download files from sandboxes.
 
 #### Download a single file
 
-Daytona provides methods to download a single file from sandboxes by providing the path to the file to download.
+Nightona provides methods to download a single file from sandboxes by providing the path to the file to download.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import DaytonaNotFoundError
+from nightona import NightonaNotFoundError
 
 try:
     content = sandbox.fs.download_file("file1.txt")
-except DaytonaNotFoundError as error:
+except NightonaNotFoundError as error:
     print(f"Missing file: {error}")
 else:
     with open("local_file.txt", "wb") as f:
@@ -478,13 +478,13 @@ else:
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { DaytonaNotFoundError } from '@daytona/sdk'
+import { NightonaNotFoundError } from '@nightona/sdk'
 
 try {
   const downloadedFile = await sandbox.fs.downloadFile('file1.txt')
   console.log('File content:', downloadedFile.toString())
 } catch (error) {
-  if (error instanceof DaytonaNotFoundError) {
+  if (error instanceof NightonaNotFoundError) {
     console.error(`Missing file: ${error.message}`)
   } else {
     throw error
@@ -549,11 +549,11 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files/download?path='
 </TabItem>
 </Tabs>
 
-In the Python and TypeScript SDKs, `download_file` and `downloadFile` raise typed Daytona exceptions when the daemon returns structured per-file error metadata. Missing files map to not-found errors, invalid paths such as directories map to validation errors, and permission failures map to authorization errors.
+In the Python and TypeScript SDKs, `download_file` and `downloadFile` raise typed Nightona exceptions when the daemon returns structured per-file error metadata. Missing files map to not-found errors, invalid paths such as directories map to validation errors, and permission failures map to authorization errors.
 
 #### Download multiple files
 
-Daytona provides methods to download multiple files from sandboxes by providing the paths to the files to download.
+Nightona provides methods to download multiple files from sandboxes by providing the paths to the files to download.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -679,7 +679,7 @@ The toolbox bulk-download API returns successful files as multipart `file` parts
 
 ### Delete files
 
-Daytona provides methods to delete files or directories from sandboxes by providing the path to the file or directory to delete.
+Nightona provides methods to delete files or directories from sandboxes by providing the path to the file or directory to delete.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -743,11 +743,11 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files?path=' \
 
 ## Advanced operations
 
-Daytona provides advanced file system operations such as file permissions, search and replace, and move files.
+Nightona provides advanced file system operations such as file permissions, search and replace, and move files.
 
 ### File permissions
 
-Daytona provides methods to set file permissions, ownership, and group for a file or directory by providing the path to the file or directory and the permissions to set.
+Nightona provides methods to set file permissions, ownership, and group for a file or directory by providing the path to the file or directory and the permissions to set.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -786,8 +786,8 @@ sandbox.fs.set_file_permissions(
 # Change file owner
 sandbox.fs.set_file_permissions(
   path: "workspace/data/file.txt",
-  owner: "daytona",
-  group: "daytona"
+  owner: "nightona",
+  group: "nightona"
 )
 ```
 
@@ -805,8 +805,8 @@ if err != nil {
 
 // Set owner and group
 err = sandbox.FileSystem.SetFilePermissions(ctx, "workspace/file.txt",
-	options.WithOwner("daytona"),
-	options.WithGroup("daytona"),
+	options.WithOwner("nightona"),
+	options.WithGroup("nightona"),
 )
 if err != nil {
 	log.Fatal(err)
@@ -833,7 +833,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files/permissions?path=' 
 
 ### Find and replace text in files
 
-Daytona provides methods to find and replace text in files by providing the path to the directory to search in and the pattern to search for.
+Nightona provides methods to find and replace text in files by providing the path to the directory to search in and the pattern to search for.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -987,7 +987,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/files/replace' \
 
 ### Move or rename directory or file
 
-Daytona provides methods to move or rename a directory or file in sandboxes by providing the path to the file or directory (source) and the new path to the file or directory (destination).
+Nightona provides methods to move or rename a directory or file in sandboxes by providing the path to the file or directory (source) and the new path to the file or directory (destination).
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">

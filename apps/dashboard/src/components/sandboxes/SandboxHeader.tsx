@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -8,7 +8,7 @@ import { SandboxState } from './SandboxState'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Spinner } from '@/components/ui/spinner'
-import { SandboxListItem } from '@daytona/api-client'
+import { SandboxListItem } from '@nightona/api-client'
 import { ArrowLeft, RefreshCw } from 'lucide-react'
 import { SandboxActionsSegmented } from './SandboxActionsSegmented'
 

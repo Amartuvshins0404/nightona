@@ -1,0 +1,13 @@
+name: nightona snapshot
+synopsis: Manage Nightona snapshots
+description: Commands for managing Nightona snapshots
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI
+  - nightona snapshot create - Create a snapshot
+  - nightona snapshot delete - Delete a snapshot
+  - nightona snapshot list - List all snapshots
+  - nightona snapshot push - Push local snapshot

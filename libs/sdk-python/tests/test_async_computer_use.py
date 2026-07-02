@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -8,11 +8,11 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from daytona.common.computer_use import ScreenshotOptions, ScreenshotRegion
+from nightona.common.computer_use import ScreenshotOptions, ScreenshotRegion
 
 
 def _make_async_computer_use():
-    from daytona._async.computer_use import AsyncComputerUse
+    from nightona._async.computer_use import AsyncComputerUse
 
     api_client = AsyncMock()
     return AsyncComputerUse(api_client), api_client

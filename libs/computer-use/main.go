@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package main
@@ -6,9 +6,9 @@ package main
 import (
 	"os"
 
-	cu "github.com/daytonaio/computer-use/pkg/computeruse"
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse"
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse/manager"
+	cu "github.com/Amartuvshins0404/nightona/libs/computer-use/pkg/computeruse"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse/manager"
 	"github.com/hashicorp/go-hclog"
 	hc_plugin "github.com/hashicorp/go-plugin"
 )
@@ -22,7 +22,7 @@ func main() {
 	hc_plugin.Serve(&hc_plugin.ServeConfig{
 		HandshakeConfig: manager.ComputerUseHandshakeConfig,
 		Plugins: map[string]hc_plugin.Plugin{
-			"daytona-computer-use": &computeruse.ComputerUsePlugin{Impl: &cu.ComputerUse{}},
+			"nightona-computer-use": &computeruse.ComputerUsePlugin{Impl: &cu.ComputerUse{}},
 		},
 		Logger: logger,
 	})

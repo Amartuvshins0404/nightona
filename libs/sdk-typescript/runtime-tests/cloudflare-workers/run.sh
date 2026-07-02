@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -euo pipefail
@@ -10,8 +10,8 @@ npm install --silent "$API_CLIENT_TARBALL" "$TOOLBOX_API_CLIENT_TARBALL" "$SDK_T
 PORT=${RUNTIME_TEST_PORT:-3804}
 
 cat > .dev.vars <<EOF
-DAYTONA_API_KEY=$DAYTONA_API_KEY
-DAYTONA_API_URL=$DAYTONA_API_URL
+NIGHTONA_API_KEY=$NIGHTONA_API_KEY
+NIGHTONA_API_URL=$NIGHTONA_API_URL
 EOF
 
 npx wrangler dev --local --port "$PORT" >/tmp/wrangler-runtime.log 2>&1 &

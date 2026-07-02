@@ -8,11 +8,11 @@
       "executor": "nx:run-commands",
       "cache": true,
       "inputs": ["pythonApiClient"],
-      "outputs": ["{projectRoot}/daytona_api_client_async"],
+      "outputs": ["{projectRoot}/nightona_api_client_async"],
       "options": {
         "commands": [
-          "rm -rf {projectRoot}/daytona_api_client_async",
-          "yarn run openapi-generator-cli generate --git-repo-id=daytona --git-user-id=daytonaio -i dist/apps/api/openapi.json -g python -t hack/python-client/openapi-templates --additional-properties=packageName=daytona_api_client_async,projectName=daytona_api_client_async,packageVersion=$DEFAULT_PACKAGE_VERSION,pythonPackageName=daytona_api_client_async,disallowAdditionalPropertiesIfNotPresent=false,library=asyncio,enumUnknownDefaultCase=true -o {projectRoot}",
+          "rm -rf {projectRoot}/nightona_api_client_async",
+          "yarn run openapi-generator-cli generate --git-repo-id=nightona --git-user-id=daytonaio -i dist/apps/api/openapi.json -g python -t hack/python-client/openapi-templates --additional-properties=packageName=nightona_api_client_async,projectName=nightona_api_client_async,packageVersion=$DEFAULT_PACKAGE_VERSION,pythonPackageName=nightona_api_client_async,disallowAdditionalPropertiesIfNotPresent=false,library=asyncio,enumUnknownDefaultCase=true -o {projectRoot}",
           "bash hack/python-client/postprocess.sh {projectRoot}"
         ],
         "parallel": false
@@ -41,7 +41,7 @@
         "cwd": "{projectRoot}",
         "commands": [
           "poetry publish --username __token__ --password $PYPI_TOKEN --no-interaction",
-          "for i in $(seq 1 20); do if pip download daytona_api_client_async==${PYPI_PKG_VERSION} -q -d /tmp; then echo \"daytona_api_client_async==${PYPI_PKG_VERSION} is now downloadable from PyPI\" && sleep 5 && exit 0; else printf '.\n' && sleep 5; fi; done; echo \"Timeout waiting for daytona_api_client_async==${PYPI_PKG_VERSION} on PyPI\" >&2; exit 1"
+          "for i in $(seq 1 20); do if pip download nightona_api_client_async==${PYPI_PKG_VERSION} -q -d /tmp; then echo \"nightona_api_client_async==${PYPI_PKG_VERSION} is now downloadable from PyPI\" && sleep 5 && exit 0; else printf '.\n' && sleep 5; fi; done; echo \"Timeout waiting for nightona_api_client_async==${PYPI_PKG_VERSION} on PyPI\" >&2; exit 1"
         ],
         "parallel": false
       }

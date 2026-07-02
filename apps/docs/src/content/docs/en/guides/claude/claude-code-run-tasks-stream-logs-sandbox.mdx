@@ -1,27 +1,27 @@
 ---
-title: Running Claude Code with Daytona
-description: Step-by-step guide to running Claude Code with Daytona sandboxes.
+title: Running Claude Code with Nightona
+description: Step-by-step guide to running Claude Code with Nightona sandboxes.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Claude Code allows you to automate and orchestrate tasks using natural language and code. With Daytona, you can easily run Claude Code inside isolated sandboxes, making it simple to experiment and execute tasks securely.
+Claude Code allows you to automate and orchestrate tasks using natural language and code. With Nightona, you can easily run Claude Code inside isolated sandboxes, making it simple to experiment and execute tasks securely.
 
-## Running Claude Code in a Daytona Sandbox
+## Running Claude Code in a Nightona Sandbox
 
-You can run Claude Code and execute tasks with it directly inside a Daytona sandbox. The following examples show how to set up a sandbox, install Claude Code, run tasks programmatically, and stream logs in real time.
+You can run Claude Code and execute tasks with it directly inside a Nightona sandbox. The following examples show how to set up a sandbox, install Claude Code, run tasks programmatically, and stream logs in real time.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
-> **Note:** While both sync and async modes support streaming PTY output, `AsyncDaytona` is recommended as it provides automatic background callbacks via `on_data`. The synchronous API requires blocking iteration or manual threading to handle output.
+> **Note:** While both sync and async modes support streaming PTY output, `AsyncNightona` is recommended as it provides automatic background callbacks via `on_data`. The synchronous API requires blocking iteration or manual threading to handle output.
 ```python
 import os
 import asyncio
-from daytona import AsyncDaytona
+from nightona import AsyncNightona
 
 async def run_claude_code():
-    async with AsyncDaytona() as daytona:
-        sandbox = await daytona.create()
+    async with AsyncNightona() as nightona:
+        sandbox = await nightona.create()
 
         # Define the Claude Code command to be executed
         claude_command = "claude --dangerously-skip-permissions -p 'write a dad joke about penguins' --output-format stream-json --verbose"
@@ -55,12 +55,12 @@ if __name__ == "__main__":
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-import { Daytona } from "@daytona/sdk";
+import { Nightona } from "@nightona/sdk";
 
-const daytona = new Daytona();
+const nightona = new Nightona();
 
 try {
-    const sandbox = await daytona.create();
+    const sandbox = await nightona.create();
 
     // Define the Claude Code command to be executed
     const claudeCommand =
@@ -91,7 +91,7 @@ try {
     // If you are done and have closed the PTY terminal, it is recommended to clean up resources by deleting the sandbox
     // await sandbox.delete();
 } catch (error) {
-    console.error("Failed to run Claude Code in Daytona sandbox:", error);
+    console.error("Failed to run Claude Code in Nightona sandbox:", error);
 }
 ````
 

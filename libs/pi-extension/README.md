@@ -1,10 +1,10 @@
-# Daytona Sandbox Extension for Pi
+# Nightona Sandbox Extension for Pi
 
-This is a Pi extension that runs every Pi tool call inside a Daytona sandbox. The agent runs on your machine, while `bash`, file I/O, and search execute in a remote sandbox that is created when you launch Pi with `--daytona`, kept with your session (and reattached when you resume it), and deleted when you delete that session.
+This is a Pi extension that runs every Pi tool call inside a Nightona sandbox. The agent runs on your machine, while `bash`, file I/O, and search execute in a remote sandbox that is created when you launch Pi with `--nightona`, kept with your session (and reattached when you resume it), and deleted when you delete that session.
 
 ## Features
 
-- Runs Pi's tool calls in an isolated Daytona sandbox while the agent stays on your machine
+- Runs Pi's tool calls in an isolated Nightona sandbox while the agent stays on your machine
 - Clones the repo you're in (or a `--repo` you pass) into the sandbox automatically
 - Syncs each session to its own GitHub branch — the agent commits, the extension pushes
 - Keeps one sandbox per session and reattaches it when you resume
@@ -22,10 +22,10 @@ npm install -g @earendil-works/pi-coding-agent
 
 See [pi.dev](https://pi.dev) for other install options.
 
-Then add the Daytona extension to Pi:
+Then add the Nightona extension to Pi:
 
 ```bash
-pi install npm:@daytona/pi
+pi install npm:@nightona/pi
 ```
 
 > [!NOTE]
@@ -33,18 +33,18 @@ pi install npm:@daytona/pi
 
 ### Environment Configuration
 
-This extension requires a [Daytona account](https://www.daytona.io/) and [Daytona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
+This extension requires a [Nightona account](https://www.daytona.io/) and [Nightona API key](https://app.daytona.io/dashboard/keys) to create sandboxes.
 
-Set your Daytona API key as an environment variable (e.g. in your shell profile):
+Set your Nightona API key as an environment variable (e.g. in your shell profile):
 
 ```bash
-export DAYTONA_API_KEY="your-api-key"
+export NIGHTONA_API_KEY="your-api-key"
 ```
 
 The extension also reads these optional variables:
 
-- `DAYTONA_API_URL` — defaults to `https://app.daytona.io/api`.
-- `DAYTONA_TARGET` — e.g. `us`.
+- `NIGHTONA_API_URL` — defaults to `https://app.daytona.io/api`.
+- `NIGHTONA_TARGET` — e.g. `us`.
 
 If no key is set and a UI is available, Pi prompts you for one once per session.
 
@@ -54,7 +54,7 @@ Run Pi from inside a git repository:
 
 ```bash
 cd my-project
-pi --daytona
+pi --nightona
 ```
 
 The extension clones the repo you're in into the sandbox and syncs your work to a GitHub branch (see [GitHub branch sync](#github-branch-sync)).
@@ -62,7 +62,7 @@ The extension clones the repo you're in into the sandbox and syncs your work to 
 Or point at a different repository:
 
 ```bash
-pi --daytona --repo github.com/acme/api --branch dev
+pi --nightona --repo github.com/acme/api --branch dev
 ```
 
 Or run outside a git repo to get a blank workspace.
@@ -71,15 +71,15 @@ Or run outside a git repo to get a blank workspace.
 
 | Flag                | Description                                                         |
 | ------------------- | ------------------------------------------------------------------- |
-| `--daytona`         | Run tools inside a Daytona sandbox                                  |
+| `--nightona`         | Run tools inside a Nightona sandbox                                  |
 | `--repo <url>`      | Git repo to clone into the sandbox (defaults to the repo you're in) |
 | `--branch <name>`   | Branch to clone (defaults to your current branch)                   |
-| `--snapshot <name>` | Choose a Daytona snapshot / base image                              |
+| `--snapshot <name>` | Choose a Nightona snapshot / base image                              |
 | `--public`          | Create a public sandbox so preview URLs need no token               |
 
 #### Slash commands
 
-While Pi is running with `--daytona`, you can manage the active sandbox:
+While Pi is running with `--nightona`, you can manage the active sandbox:
 
 - `/sandbox` — show the active sandbox's status: state, working directory, branch, sync status, and its GitHub branch link
 - `/github` — open this session's branch on GitHub
@@ -89,7 +89,7 @@ While Pi is running with `--daytona`, you can manage the active sandbox:
 
 ## How It Works
 
-The agent runs on your machine. Pi's tool layer is pluggable, so this extension substitutes Daytona-backed implementations of `bash`, `read`, `write`, `edit`, and `ls`, plus dedicated in-sandbox tools for `find` and `grep`. A footer badge is the always-visible signal that work is remote.
+The agent runs on your machine. Pi's tool layer is pluggable, so this extension substitutes Nightona-backed implementations of `bash`, `read`, `write`, `edit`, and `ls`, plus dedicated in-sandbox tools for `find` and `grep`. A footer badge is the always-visible signal that work is remote.
 
 ### Lifecycle
 
@@ -103,11 +103,11 @@ The agent runs on your machine. Pi's tool layer is pluggable, so this extension 
 If you're in a **github.com** repo and logged in via the GitHub CLI (`gh auth login`), each session gets its own branch and the agent's commits are pushed there automatically. The repo comes from `--repo`, or — when you omit it — is **detected from the git project you launched Pi in** (its `origin` and current branch).
 
 - On start, the extension creates `pi/<short-session-id>` on GitHub (off your current branch, or `--branch`) and clones it into the sandbox over HTTPS.
-- The agent **commits its own work** — it's prompted to commit after making changes, and not to push. After each turn the extension pushes those commits to the branch via the Daytona git API. A branch with nothing new is skipped.
+- The agent **commits its own work** — it's prompted to commit after making changes, and not to push. After each turn the extension pushes those commits to the branch via the Nightona git API. A branch with nothing new is skipped.
 - `/merge` merges the branch into its base, and `/pr` opens a pull request.
 - **Forks** start a fresh sandbox and branch off the parent session's branch.
 
-All network git operations (clone/push) run **inside the sandbox** through Daytona; the host only uses `gh` to mint a token and call the GitHub API. A temporary git identity is configured in the sandbox so commits work out of the box.
+All network git operations (clone/push) run **inside the sandbox** through Nightona; the host only uses `gh` to mint a token and call the GitHub API. A temporary git identity is configured in the sandbox so commits work out of the box.
 
 > [!NOTE]
 > When you're not in a github.com repo (or `gh` isn't authenticated), push is disabled. The sandbox still gets a local git repo so the agent can commit, but nothing is pushed.
@@ -127,15 +127,15 @@ All network git operations (clone/push) run **inside the sandbox** through Dayto
 
 ## Development
 
-This extension is part of the Daytona monorepo.
+This extension is part of the Nightona monorepo.
 
 ### Setup
 
-First, clone the Daytona monorepo:
+First, clone the Nightona monorepo:
 
 ```bash
-git clone https://github.com/daytonaio/daytona
-cd daytona
+git clone https://github.com/Amartuvshins0404/nightona
+cd nightona
 ```
 
 Install dependencies:
@@ -159,7 +159,7 @@ Install the extension's own dependencies once (needed for running it and for the
 cd libs/pi-extension && npm install
 ```
 
-This is needed even after `yarn install` at the repo root, which doesn't make `@daytona/sdk` resolvable at runtime.
+This is needed even after `yarn install` at the repo root, which doesn't make `@nightona/sdk` resolvable at runtime.
 
 #### Run from source
 
@@ -167,7 +167,7 @@ Remove any previously installed copy (loading two copies makes every tool and fl
 
 ```bash
 pi list                        # shows installed packages and their exact source
-pi uninstall <source>          # e.g. npm:@daytona/pi — use the source shown by `pi list`
+pi uninstall <source>          # e.g. npm:@nightona/pi — use the source shown by `pi list`
 ```
 
 Install the local directory:
@@ -179,7 +179,7 @@ pi install ./libs/pi-extension    # add --local to scope it to the current proje
 Run Pi:
 
 ```bash
-DAYTONA_API_KEY=dtn_... pi --daytona
+NIGHTONA_API_KEY=dtn_... pi --nightona
 ```
 
 Edits to the source take effect on the next run — no reinstall needed.
@@ -187,7 +187,7 @@ Edits to the source take effect on the next run — no reinstall needed.
 Alternatively, load the source for a single run without installing:
 
 ```bash
-DAYTONA_API_KEY=dtn_... pi -e ./libs/pi-extension/index.ts --daytona
+NIGHTONA_API_KEY=dtn_... pi -e ./libs/pi-extension/index.ts --nightona
 ```
 
 #### Tests
@@ -197,7 +197,7 @@ npx nx run pi-extension:type-check   # type-check (from the repo root; needs the
 
 cd libs/pi-extension
 npm run smoke                     # offline: load the extension and check it registers (no API key/network)
-npm run test:live                 # end-to-end against real Daytona (needs DAYTONA_API_KEY)
+npm run test:live                 # end-to-end against real Nightona (needs NIGHTONA_API_KEY)
 ```
 
 ### Publishing
@@ -215,15 +215,15 @@ This will publish to npm with public access and use the version number from `pac
 ```
 libs/pi-extension/
 ├── index.ts            # Extension entry point: flags, lifecycle, commands
-├── src/                # Daytona-backed tool implementations
+├── src/                # Nightona-backed tool implementations
 │   ├── tools.ts        # Tool registration (sandbox-backed tools + preview_url)
-│   ├── auth.ts         # Daytona API key resolution
+│   ├── auth.ts         # Nightona API key resolution
 │   ├── sandbox.ts      # Sandbox resilience layer (auto-restart, exec)
-│   ├── ops.ts          # Daytona-backed bash/read/write/edit/ls operations
+│   ├── ops.ts          # Nightona-backed bash/read/write/edit/ls operations
 │   ├── find-tool.ts    # In-sandbox find (ripgrep/find)
 │   ├── grep-tool.ts    # In-sandbox grep (ripgrep/grep)
 │   ├── github.ts       # Host gh control-plane (token + GitHub API)
-│   ├── sync.ts         # Sandbox-side git push (Daytona git API)
+│   ├── sync.ts         # Sandbox-side git push (Nightona git API)
 │   └── util.ts         # Small shared helpers
 ├── scripts/            # Offline smoke + live integration tests
 ├── package.json        # Package metadata (includes the "pi" extensions field)

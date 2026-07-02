@@ -1,17 +1,17 @@
 ---
 title: OpenTelemetry Collection
-description: Enable distributed tracing for Daytona SDK operations using OpenTelemetry.
+description: Enable distributed tracing for Nightona SDK operations using OpenTelemetry.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-OpenTelemetry (OTEL) tracing allows you to monitor and debug your Daytona SDK operations by collecting distributed traces. This is particularly useful for understanding performance bottlenecks, debugging issues, and gaining visibility into your sandbox operations.
+OpenTelemetry (OTEL) tracing allows you to monitor and debug your Nightona SDK operations by collecting distributed traces. This is particularly useful for understanding performance bottlenecks, debugging issues, and gaining visibility into your sandbox operations.
 
 ---
 
 ## Sandbox Telemetry Collection
 
-Daytona can collect traces, logs, and metrics directly from your sandboxes. This provides complete observability across your entire Daytona environment, from [SDK calls](#sdk-tracing-configuration) to sandbox runtime behavior.
+Nightona can collect traces, logs, and metrics directly from your sandboxes. This provides complete observability across your entire Nightona environment, from [SDK calls](#sdk-tracing-configuration) to sandbox runtime behavior.
 
 ### What Gets Collected from Sandboxes
 
@@ -19,15 +19,15 @@ When sandbox telemetry is enabled, the following data is collected:
 
 **Metrics:**
 
-- `daytona.sandbox.cpu.utilization` - CPU usage percentage (0-100%)
-- `daytona.sandbox.cpu.limit` - CPU cores limit
-- `daytona.sandbox.memory.utilization` - Memory usage percentage (0-100%)
-- `daytona.sandbox.memory.usage` - Memory used in bytes
-- `daytona.sandbox.memory.limit` - Memory limit in bytes
-- `daytona.sandbox.filesystem.utilization` - Disk usage percentage (0-100%)
-- `daytona.sandbox.filesystem.usage` - Disk space used in bytes
-- `daytona.sandbox.filesystem.available` - Disk space available in bytes
-- `daytona.sandbox.filesystem.total` - Total disk space in bytes
+- `nightona.sandbox.cpu.utilization` - CPU usage percentage (0-100%)
+- `nightona.sandbox.cpu.limit` - CPU cores limit
+- `nightona.sandbox.memory.utilization` - Memory usage percentage (0-100%)
+- `nightona.sandbox.memory.usage` - Memory used in bytes
+- `nightona.sandbox.memory.limit` - Memory limit in bytes
+- `nightona.sandbox.filesystem.utilization` - Disk usage percentage (0-100%)
+- `nightona.sandbox.filesystem.usage` - Disk space used in bytes
+- `nightona.sandbox.filesystem.available` - Disk space available in bytes
+- `nightona.sandbox.filesystem.total` - Total disk space in bytes
 
 **Traces:**
 
@@ -42,16 +42,16 @@ When sandbox telemetry is enabled, the following data is collected:
 
 ### Viewing Telemetry in the Dashboard
 
-Logs, traces, and metrics collected from sandboxes can be viewed directly in the Daytona Dashboard. Open the **Sandbox Details** sheet for any sandbox and use the **Logs**, **Traces**, and **Metrics** tabs to inspect the collected telemetry data.
+Logs, traces, and metrics collected from sandboxes can be viewed directly in the Nightona Dashboard. Open the **Sandbox Details** sheet for any sandbox and use the **Logs**, **Traces**, and **Metrics** tabs to inspect the collected telemetry data.
 
 :::note
-Daytona retains sandbox telemetry data for **3 days**. If you need to keep the data for longer, it is recommended that you connect your own OTLP-compatible collector using the [sandbox collection configuration](#configure-sandbox-collection).
+Nightona retains sandbox telemetry data for **3 days**. If you need to keep the data for longer, it is recommended that you connect your own OTLP-compatible collector using the [sandbox collection configuration](#configure-sandbox-collection).
 :::
 
 :::tip
 Sandbox telemetry collection works independently from SDK tracing. You can enable one or both depending on your observability needs:
 
-- **SDK tracing only**: Monitor Daytona API operations and SDK calls
+- **SDK tracing only**: Monitor Nightona API operations and SDK calls
 - **Sandbox telemetry only**: Monitor application behavior inside sandboxes
 - **Both**: Get complete end-to-end observability across your entire stack
   :::
@@ -60,7 +60,7 @@ Sandbox telemetry collection works independently from SDK tracing. You can enabl
 
 To enable telemetry collection from sandboxes:
 
-1. Navigate to the [Daytona Dashboard](https://app.daytona.io)
+1. Navigate to the [Nightona Dashboard](https://app.daytona.io)
 2. Go to **Settings** and find the **OpenTelemetry** card (visible to organization owners)
 3. Configure the following fields:
 
@@ -73,16 +73,16 @@ Once configured, all sandboxes will automatically export their telemetry data to
 
 All sandbox telemetry is automatically annotated with the following OTel resource attributes:
 
-- `daytona_organization_id` - The organization the sandbox belongs to
-- `daytona_region_id` - The region the sandbox is running in
-- `daytona_snapshot` - The snapshot used to create the sandbox
+- `nightona_organization_id` - The organization the sandbox belongs to
+- `nightona_region_id` - The region the sandbox is running in
+- `nightona_snapshot` - The snapshot used to create the sandbox
 
 #### Custom Resource Labels
 
-You can attach additional resource labels by setting the `DAYTONA_SANDBOX_OTEL_EXTRA_LABELS` environment variable on a sandbox. Labels are specified as a comma-separated list of `key=value` pairs:
+You can attach additional resource labels by setting the `NIGHTONA_SANDBOX_OTEL_EXTRA_LABELS` environment variable on a sandbox. Labels are specified as a comma-separated list of `key=value` pairs:
 
 ```bash
-DAYTONA_SANDBOX_OTEL_EXTRA_LABELS="team=backend,env=staging,app=my-service"
+NIGHTONA_SANDBOX_OTEL_EXTRA_LABELS="team=backend,env=staging,app=my-service"
 ```
 
 These labels are added as OTel resource attributes to all traces, logs, and metrics emitted by the sandbox. This is useful for filtering and grouping telemetry data by custom dimensions in your observability platform.
@@ -91,18 +91,18 @@ These labels are added as OTel resource attributes to all traces, logs, and metr
 
 ## Organization-Level Metrics
 
-In addition to per-sandbox telemetry, Daytona exports organization-level resource metrics to your configured OTLP endpoint. These metrics are pushed every 60 seconds and provide a high-level view of resource consumption and quotas across your organization.
+In addition to per-sandbox telemetry, Nightona exports organization-level resource metrics to your configured OTLP endpoint. These metrics are pushed every 60 seconds and provide a high-level view of resource consumption and quotas across your organization.
 
 ### Exported Metrics
 
 | Metric                          | Unit      | Description                                         |
 | ------------------------------- | --------- | --------------------------------------------------- |
-| `daytona.sandbox.used_cpu`      | cpu cores | Total CPU currently consumed by active sandboxes    |
-| `daytona.sandbox.used_ram`      | GiB       | Total memory currently consumed by active sandboxes |
-| `daytona.sandbox.used_storage`  | GiB       | Total disk currently consumed by sandboxes          |
-| `daytona.sandbox.total_cpu`     | cpu cores | Total CPU quota for the organization                |
-| `daytona.sandbox.total_ram`     | GiB       | Total memory quota for the organization             |
-| `daytona.sandbox.total_storage` | GiB       | Total disk quota for the organization               |
+| `nightona.sandbox.used_cpu`      | cpu cores | Total CPU currently consumed by active sandboxes    |
+| `nightona.sandbox.used_ram`      | GiB       | Total memory currently consumed by active sandboxes |
+| `nightona.sandbox.used_storage`  | GiB       | Total disk currently consumed by sandboxes          |
+| `nightona.sandbox.total_cpu`     | cpu cores | Total CPU quota for the organization                |
+| `nightona.sandbox.total_ram`     | GiB       | Total memory quota for the organization             |
+| `nightona.sandbox.total_storage` | GiB       | Total disk quota for the organization               |
 
 ### Metric Attributes
 
@@ -119,71 +119,71 @@ Organization metrics are automatically exported when you have a [sandbox collect
 
 ## SDK Tracing Configuration
 
-When enabled, the Daytona SDK automatically instruments all SDK operations including:
+When enabled, the Nightona SDK automatically instruments all SDK operations including:
 
 - Sandbox creation, starting, stopping, and deletion
 - File system operations
 - Code execution
 - Process management
-- HTTP requests to the Daytona API
+- HTTP requests to the Nightona API
 
 Traces are exported using the OTLP (OpenTelemetry Protocol) format and can be sent to any OTLP-compatible backend such as New Relic, Jaeger, or Zipkin.
 
 ### 1. Enable OTEL in SDK
 
-To enable OpenTelemetry tracing, pass the `otelEnabled` flag when initializing the Daytona client:
+To enable OpenTelemetry tracing, pass the `otelEnabled` flag when initializing the Nightona client:
 
-Alternatively, you can set the `DAYTONA_OTEL_ENABLED` environment variable to `true` instead of passing the configuration option:
+Alternatively, you can set the `NIGHTONA_OTEL_ENABLED` environment variable to `true` instead of passing the configuration option:
 
 ```bash
-export DAYTONA_OTEL_ENABLED=true
+export NIGHTONA_OTEL_ENABLED=true
 ```
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
     ```python
-    from daytona import Daytona, DaytonaConfig
+    from nightona import Nightona, NightonaConfig
 
     # Using async context manager (recommended)
-    async with Daytona(DaytonaConfig(otel_enabled=True)) as daytona:
-        sandbox = await daytona.create()
+    async with Nightona(NightonaConfig(otel_enabled=True)) as nightona:
+        sandbox = await nightona.create()
         # All operations will be traced
     # OpenTelemetry traces are flushed on close
     ```
 
     Or without context manager:
     ```python
-    daytona = Daytona(DaytonaConfig(otel_enabled=True))
+    nightona = Nightona(NightonaConfig(otel_enabled=True))
     try:
-        sandbox = await daytona.create()
+        sandbox = await nightona.create()
         # All operations will be traced
     finally:
-        await daytona.close()  # Flushes traces
+        await nightona.close()  # Flushes traces
     ```
 
   </TabItem>
 
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
-    import { Daytona } from '@daytona/sdk'
+    import { Nightona } from '@nightona/sdk'
 
     // Using async dispose (recommended)
-    await using daytona = new Daytona({ otelEnabled: true })
+    await using nightona = new Nightona({ otelEnabled: true })
 
-    const sandbox = await daytona.create()
+    const sandbox = await nightona.create()
     // All operations will be traced
     // Traces are automatically flushed on dispose
     ```
 
     Or with explicit disposal:
     ```typescript
-    const daytona = new Daytona({ otelEnabled: true })
+    const nightona = new Nightona({ otelEnabled: true })
 
     try {
-      const sandbox = await daytona.create()
+      const sandbox = await nightona.create()
       // All operations will be traced
     } finally {
-      await daytona[Symbol.asyncDispose]()  // Flushes traces
+      await nightona[Symbol.asyncDispose]()  // Flushes traces
     }
     ```
 
@@ -195,11 +195,11 @@ export DAYTONA_OTEL_ENABLED=true
         "context"
         "log"
 
-        "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-        "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+        "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+        "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
     )
 
-    client, err := daytona.NewClientWithConfig(&types.DaytonaConfig{
+    client, err := nightona.NewClientWithConfig(&types.NightonaConfig{
         OtelEnabled: true,
     })
     if err != nil {
@@ -215,27 +215,27 @@ export DAYTONA_OTEL_ENABLED=true
 
   <TabItem label="Ruby" icon="seti:ruby">
     ```ruby
-    require 'daytona'
+    require 'nightona'
 
-    config = Daytona::Config.new(otel_enabled: true)
-    daytona = Daytona::Daytona.new(config)
+    config = Nightona::Config.new(otel_enabled: true)
+    nightona = Nightona::Nightona.new(config)
 
-    sandbox = daytona.create
+    sandbox = nightona.create
     # All operations will be traced
 
-    daytona.close # Flushes traces
+    nightona.close # Flushes traces
     ```
 
     Or with `ensure` block:
     ```ruby
-    daytona = Daytona::Daytona.new(
-      Daytona::Config.new(otel_enabled: true)
+    nightona = Nightona::Nightona.new(
+      Nightona::Config.new(otel_enabled: true)
     )
     begin
-      sandbox = daytona.create
+      sandbox = nightona.create
       # All operations will be traced
     ensure
-      daytona.close # Flushes traces
+      nightona.close # Flushes traces
     end
     ```
 
@@ -243,7 +243,7 @@ export DAYTONA_OTEL_ENABLED=true
 </Tabs>
 
 :::note
-The legacy `_experimental.otelEnabled` option (and the `DAYTONA_EXPERIMENTAL_OTEL_ENABLED` env var) still work as deprecated aliases for backwards compatibility.
+The legacy `_experimental.otelEnabled` option (and the `NIGHTONA_EXPERIMENTAL_OTEL_ENABLED` env var) still work as deprecated aliases for backwards compatibility.
 :::
 
 ### 2. Configure OTLP Exporter
@@ -284,7 +284,7 @@ OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp-gateway-prod-<region>.grafana.net/otlp
 OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic <BASE64_ENCODED_CREDENTIALS>"
 ```
 
-Setup: Go to [Grafana Cloud Portal](https://grafana.com) → **Connections** → **Add new connection** → Search for **OpenTelemetry (OTLP)** → Follow the wizard to create an access token. The endpoint and headers will be provided in the instrumentation instructions. See the [Grafana dashboard example](https://github.com/daytonaio/daytona/tree/main/examples/otel-dashboards/grafana) for detailed setup steps.
+Setup: Go to [Grafana Cloud Portal](https://grafana.com) → **Connections** → **Add new connection** → Search for **OpenTelemetry (OTLP)** → Follow the wizard to create an access token. The endpoint and headers will be provided in the instrumentation instructions. See the [Grafana dashboard example](https://github.com/Amartuvshins0404/nightona/tree/main/examples/otel-dashboards/grafana) for detailed setup steps.
 
 ### Datadog
 
@@ -306,9 +306,9 @@ When configuring Datadog as your [sandbox collection endpoint](#configure-sandbo
 | US5                   | `https://otlp.us5.datadoghq.com` |
 | AP1                   | `https://otlp.ap1.datadoghq.com` |
 
-Use the base endpoint without a `/v1/...` path — the path is appended automatically. Generate an API key under **Datadog → Organization Settings → API Keys**. See the [Datadog dashboard example](https://github.com/daytonaio/daytona/tree/main/examples/otel-dashboards/datadog) for an importable dashboard and verification steps.
+Use the base endpoint without a `/v1/...` path — the path is appended automatically. Generate an API key under **Datadog → Organization Settings → API Keys**. See the [Datadog dashboard example](https://github.com/Amartuvshins0404/nightona/tree/main/examples/otel-dashboards/datadog) for an importable dashboard and verification steps.
 
-Once data is flowing, your metrics appear under **Metrics → Summary** (search for `daytona.sandbox`), where you can also confirm the exact tag keys (e.g. `service`, `region.id`) Datadog assigned.
+Once data is flowing, your metrics appear under **Metrics → Summary** (search for `nightona.sandbox`), where you can also confirm the exact tag keys (e.g. `service`, `region.id`) Datadog assigned.
 
 :::caution
 
@@ -324,25 +324,25 @@ Datadog's OTLP intake has a few limitations to be aware of:
 
 ## Complete Example
 
-Here's a complete example showing how to use OpenTelemetry tracing with the Daytona SDK:
+Here's a complete example showing how to use OpenTelemetry tracing with the Nightona SDK:
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
     ```python
     import asyncio
     import os
-    from daytona import Daytona, DaytonaConfig
+    from nightona import Nightona, NightonaConfig
 
     # Set OTEL configuration
     os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = "https://otlp.nr-data.net:4317"
     os.environ["OTEL_EXPORTER_OTLP_HEADERS"] = "api-key=YOUR_API_KEY"
 
     async def main():
-        # Initialize Daytona with OTEL enabled
-        async with Daytona(DaytonaConfig(otel_enabled=True)) as daytona:
+        # Initialize Nightona with OTEL enabled
+        async with Nightona(NightonaConfig(otel_enabled=True)) as nightona:
 
             # Create a sandbox - this operation will be traced
-            sandbox = await daytona.create()
+            sandbox = await nightona.create()
             print(f"Created sandbox: {sandbox.id}")
 
             # Execute code - this operation will be traced
@@ -354,10 +354,10 @@ print(f"NumPy version: {np.__version__}")
             print(f"Execution result: {result.result}")
 
             # Upload a file - this operation will be traced
-            await sandbox.fs.upload_file("local.txt", "/home/daytona/remote.txt")
+            await sandbox.fs.upload_file("local.txt", "/home/nightona/remote.txt")
 
             # Delete sandbox - this operation will be traced
-            await daytona.delete(sandbox)
+            await nightona.delete(sandbox)
 
         # Traces are automatically flushed when exiting the context manager
 
@@ -373,14 +373,14 @@ print(f"NumPy version: {np.__version__}")
     process.env.OTEL_EXPORTER_OTLP_ENDPOINT = "https://otlp.nr-data.net:4317"
     process.env.OTEL_EXPORTER_OTLP_HEADERS = "api-key=YOUR_API_KEY"
 
-    import { Daytona } from '@daytona/sdk'
+    import { Nightona } from '@nightona/sdk'
 
     async function main() {
-      // Initialize Daytona with OTEL enabled
-      await using daytona = new Daytona({ otelEnabled: true })
+      // Initialize Nightona with OTEL enabled
+      await using nightona = new Nightona({ otelEnabled: true })
 
       // Create a sandbox - this operation will be traced
-      const sandbox = await daytona.create()
+      const sandbox = await nightona.create()
       console.log(`Created sandbox: ${sandbox.id}`)
 
       // Execute code - this operation will be traced
@@ -392,12 +392,12 @@ print(f"NumPy version: {np.__version__}")
       console.log(`Execution result: ${result.result}`)
 
       // Upload a file - this operation will be traced
-      await sandbox.fs.uploadFile('local.txt', '/home/daytona/remote.txt')
+      await sandbox.fs.uploadFile('local.txt', '/home/nightona/remote.txt')
 
       // Delete sandbox - this operation will be traced
-      await daytona.delete(sandbox)
+      await nightona.delete(sandbox)
 
-      // Traces are automatically flushed when the daytona instance is disposed
+      // Traces are automatically flushed when the nightona instance is disposed
     }
 
     main().catch(console.error)
@@ -415,8 +415,8 @@ print(f"NumPy version: {np.__version__}")
         "log"
         "os"
 
-        "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-        "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+        "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+        "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
     )
 
     func main() {
@@ -426,8 +426,8 @@ print(f"NumPy version: {np.__version__}")
 
         ctx := context.Background()
 
-        // Initialize Daytona with OTEL enabled
-        client, err := daytona.NewClientWithConfig(&types.DaytonaConfig{
+        // Initialize Nightona with OTEL enabled
+        client, err := nightona.NewClientWithConfig(&types.NightonaConfig{
             OtelEnabled: true,
         })
         if err != nil {
@@ -456,7 +456,7 @@ print(f"NumPy version: {np.__version__}")
         fmt.Printf("Execution result: %s\n", result.Result)
 
         // Upload a file - this operation will be traced
-        err = sandbox.Fs.UploadFile(ctx, "local.txt", "/home/daytona/remote.txt")
+        err = sandbox.Fs.UploadFile(ctx, "local.txt", "/home/nightona/remote.txt")
         if err != nil {
           log.Fatal(err)
         }
@@ -475,19 +475,19 @@ print(f"NumPy version: {np.__version__}")
 
   <TabItem label="Ruby" icon="seti:ruby">
     ```ruby
-    require 'daytona'
+    require 'nightona'
 
     # Set OTEL configuration
     ENV["OTEL_EXPORTER_OTLP_ENDPOINT"] = "https://otlp.nr-data.net:4317"
     ENV["OTEL_EXPORTER_OTLP_HEADERS"] = "api-key=YOUR_API_KEY"
 
-    # Initialize Daytona with OTEL enabled
-    config = Daytona::Config.new(otel_enabled: true)
-    daytona = Daytona::Daytona.new(config)
+    # Initialize Nightona with OTEL enabled
+    config = Nightona::Config.new(otel_enabled: true)
+    nightona = Nightona::Nightona.new(config)
 
     begin
       # Create a sandbox - this operation will be traced
-      sandbox = daytona.create
+      sandbox = nightona.create
       puts "Created sandbox: #{sandbox.id}"
 
       # Execute code - this operation will be traced
@@ -499,12 +499,12 @@ print(f'NumPy version: {np.__version__}')
       puts "Execution result: #{result.result}"
 
       # Upload a file - this operation will be traced
-      sandbox.fs.upload_file("local.txt", "/home/daytona/remote.txt")
+      sandbox.fs.upload_file("local.txt", "/home/nightona/remote.txt")
 
       # Delete sandbox - this operation will be traced
-      daytona.delete(sandbox)
+      nightona.delete(sandbox)
     ensure
-      daytona.close # Flushes traces
+      nightona.close # Flushes traces
     end
     ```
 
@@ -515,7 +515,7 @@ print(f'NumPy version: {np.__version__}')
 
 ## What Gets Traced
 
-The Daytona SDK automatically instruments the following operations:
+The Nightona SDK automatically instruments the following operations:
 
 ### SDK-Level Operations
 
@@ -529,7 +529,7 @@ The Daytona SDK automatically instruments the following operations:
 
 ### HTTP Requests
 
-- All API calls to the Daytona backend
+- All API calls to the Nightona backend
 - Request duration and response status codes
 - Error information for failed requests
 
@@ -547,9 +547,9 @@ Each trace includes valuable metadata such as:
 
 ## Dashboard Examples
 
-- [New Relic](https://github.com/daytonaio/daytona/tree/main/examples/otel-dashboards/new-relic)
-- [Grafana](https://github.com/daytonaio/daytona/tree/main/examples/otel-dashboards/grafana)
-- [Datadog](https://github.com/daytonaio/daytona/tree/main/examples/otel-dashboards/datadog)
+- [New Relic](https://github.com/Amartuvshins0404/nightona/tree/main/examples/otel-dashboards/new-relic)
+- [Grafana](https://github.com/Amartuvshins0404/nightona/tree/main/examples/otel-dashboards/grafana)
+- [Datadog](https://github.com/Amartuvshins0404/nightona/tree/main/examples/otel-dashboards/datadog)
 
 ## Troubleshooting
 
@@ -567,7 +567,7 @@ Each trace includes valuable metadata such as:
 
 - Ensure `otelEnabled: true` is set in the configuration
 - Verify OTLP endpoint and headers are correct
-- Check that you're properly closing/disposing the Daytona instance to flush traces
+- Check that you're properly closing/disposing the Nightona instance to flush traces
 
 **Connection refused:**
 
@@ -584,7 +584,7 @@ Each trace includes valuable metadata such as:
 
 ## Best Practices
 
-1. **Always close the client**: Use `async with` (Python), `await using` (TypeScript), `defer client.Close()` (Go), or `ensure daytona.close` (Ruby) to ensure traces are properly flushed
+1. **Always close the client**: Use `async with` (Python), `await using` (TypeScript), `defer client.Close()` (Go), or `ensure nightona.close` (Ruby) to ensure traces are properly flushed
 1. **Monitor trace volume**: Be aware that enabling tracing will increase network traffic and storage in your observability platform
 1. **Use in development first**: Test OTEL configuration in development before enabling in production
 1. **Configure sampling**: For high-volume applications, consider configuring trace sampling to reduce costs

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,7 +10,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Spinner } from '@/components/ui/spinner'
 import { getRelativeTimeString } from '@/lib/utils'
-import { Region, RegionType } from '@daytona/api-client'
+import { Region, RegionType } from '@nightona/api-client'
 import { ChevronDown, ChevronUp, KeyRound, Pencil, RefreshCw, Trash2, X } from 'lucide-react'
 import React, { Ref, useCallback, useImperativeHandle, useState } from 'react'
 import { CopyButton } from './CopyButton'

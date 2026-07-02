@@ -8,7 +8,7 @@ importers:
 
   .:
     dependencies:
-      '@daytona/sdk':
+      '@nightona/sdk':
         specifier: ^0.163.0
         version: 0.163.0(ws@8.20.1)
       '@mastra/core':
@@ -420,13 +420,13 @@ packages:
   '@clack/prompts@1.2.0':
     resolution: {integrity: sha512-4jmztR9fMqPMjz6H/UZXj0zEmE43ha1euENwkckKKel4XpSfokExPo5AiVStdHSAlHekz4d0CA/r45Ok1E4D3w==}
 
-  '@daytona/api-client@0.163.0':
+  '@nightona/api-client@0.163.0':
     resolution: {integrity: sha512-d3V0Z7YO2ESvpaOPm1YR42cr/SX98SqV4+liqN83NoGSr33cju5hXJ9TxR8d/co3Hwn80mWSfmAa8wVBCpoCGQ==}
 
-  '@daytona/sdk@0.163.0':
+  '@nightona/sdk@0.163.0':
     resolution: {integrity: sha512-hM5Hm8JmWqXZeqdGM1mj0faDtWUDaYxXZrhI8b+7xtYGxZOEHv/ghW8dsyJlf0v7+KFts+cExVI77iNvlcLmEw==}
 
-  '@daytona/toolbox-api-client@0.163.0':
+  '@nightona/toolbox-api-client@0.163.0':
     resolution: {integrity: sha512-L+Hsxoz+JmaU/slSzeH+N1lot/h5p8FP8I9XYH4Z0cYQ+6AGarM1oJ7gqQHaWRCpmrEBRI2qlpFNE+6R2Lo4GA==}
 
   '@esbuild/aix-ppc64@0.27.5':
@@ -4036,18 +4036,18 @@ snapshots:
       fast-wrap-ansi: 0.1.6
       sisteransi: 1.0.5
 
-  '@daytona/api-client@0.163.0':
+  '@nightona/api-client@0.163.0':
     dependencies:
       axios: 1.15.0
     transitivePeerDependencies:
       - debug
 
-  '@daytona/sdk@0.163.0(ws@8.20.1)':
+  '@nightona/sdk@0.163.0(ws@8.20.1)':
     dependencies:
       '@aws-sdk/client-s3': 3.1027.0
       '@aws-sdk/lib-storage': 3.1027.0(@aws-sdk/client-s3@3.1027.0)
-      '@daytona/api-client': 0.163.0
-      '@daytona/toolbox-api-client': 0.163.0
+      '@nightona/api-client': 0.163.0
+      '@nightona/toolbox-api-client': 0.163.0
       '@iarna/toml': 2.2.5
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/exporter-trace-otlp-http': 0.207.0(@opentelemetry/api@1.9.1)
@@ -4073,7 +4073,7 @@ snapshots:
       - supports-color
       - ws
 
-  '@daytona/toolbox-api-client@0.163.0':
+  '@nightona/toolbox-api-client@0.163.0':
     dependencies:
       axios: 1.15.0
     transitivePeerDependencies:

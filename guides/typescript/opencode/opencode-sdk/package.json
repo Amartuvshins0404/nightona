@@ -2,7 +2,7 @@
   "name": "opencode-sdk",
   "type": "module",
   "version": "1.0.0",
-  "description": "A coding agent powered by the OpenCode SDK and Daytona sandboxes.",
+  "description": "A coding agent powered by the OpenCode SDK and Nightona sandboxes.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -13,12 +13,12 @@
     "opencode",
     "sandbox",
     "typescript",
-    "daytona"
+    "nightona"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@daytona/sdk": "^0.163.0",
+    "@nightona/sdk": "^0.163.0",
     "@opencode-ai/sdk": "^1.0.0",
     "dotenv": "^16.3.1"
   },

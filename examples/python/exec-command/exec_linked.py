@@ -1,18 +1,18 @@
-from daytona import CreateSandboxFromSnapshotParams, Daytona
+from nightona import CreateSandboxFromSnapshotParams, Nightona
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
     owner = None
     follower = None
     try:
-        owner = daytona.create()
+        owner = nightona.create()
         print(f"Owner sandbox ready: id={owner.id} name={owner.name}")
 
         # Linked sandboxes must be ephemeral — `ephemeral=True` sets
         # `auto_delete_interval=0` automatically.
-        follower = daytona.create(
+        follower = nightona.create(
             CreateSandboxFromSnapshotParams(
                 linked_sandbox=owner.id,
                 ephemeral=True,
@@ -59,10 +59,10 @@ exit 1
     finally:
         if follower is not None:
             print(f"\nDeleting follower {follower.id}")
-            daytona.delete(follower)
+            nightona.delete(follower)
         if owner is not None:
             print(f"Deleting owner {owner.id}")
-            daytona.delete(owner)
+            nightona.delete(owner)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
-from daytona import Daytona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
+from nightona import Nightona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
-    for sandbox in daytona.list(
+    for sandbox in nightona.list(
         ListSandboxesQuery(
             limit=10,
             labels={"env": "dev"},

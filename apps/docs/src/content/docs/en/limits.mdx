@@ -5,7 +5,7 @@ description: Overview of your organization's resource limits and usage.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-[Daytona Limits ↗](https://app.daytona.io/dashboard/limits) provide an overview of your organization's [current usage](#current-usage), [resources](#resources), [sandbox limits](#sandbox-limits), and [rate limits](#rate-limits). Daytona uses a [tier-based](#tiers) system where organizations are placed into tiers based on verification status, with each tier providing access to a specific compute pool and rate limits. For information on spending and wallet management, see [billing](/docs/en/billing).
+[Nightona Limits ↗](https://app.daytona.io/dashboard/limits) provide an overview of your organization's [current usage](#current-usage), [resources](#resources), [sandbox limits](#sandbox-limits), and [rate limits](#rate-limits). Nightona uses a [tier-based](#tiers) system where organizations are placed into tiers based on verification status, with each tier providing access to a specific compute pool and rate limits. For information on spending and wallet management, see [billing](/docs/en/billing).
 
 ## Current usage
 
@@ -39,7 +39,7 @@ Rate limits control how many API requests you can make within a specific time wi
 | Tier 4     | 50,000                         | 600                            | 50,000                          |
 | Enterprise | Custom                         | Custom                         | Custom                          |
 
-Daytona supports managing your sandbox resources by [changing the sandbox state](/docs/sandboxes#sandbox-lifecycle). The table below summarizes how each state affects sandbox resource usage:
+Nightona supports managing your sandbox resources by [changing the sandbox state](/docs/sandboxes#sandbox-lifecycle). The table below summarizes how each state affects sandbox resource usage:
 
 | **State** | **vCPU** | **Memory** | **Storage** | **Description**                               |
 | --------- | -------- | ---------- | ----------- | --------------------------------------------- |
@@ -50,7 +50,7 @@ Daytona supports managing your sandbox resources by [changing the sandbox state]
 
 #### Rate limit headers
 
-Daytona includes rate limit information in API response headers. Header names include a suffix based on which rate limit is triggered (e.g., `-anonymous`, `-authenticated`, `-sandbox-create`, `-sandbox-lifecycle`):
+Nightona includes rate limit information in API response headers. Header names include a suffix based on which rate limit is triggered (e.g., `-anonymous`, `-authenticated`, `-sandbox-create`, `-sandbox-lifecycle`):
 
 | Header Pattern                          | Description                                                               |
 | --------------------------------------- | ------------------------------------------------------------------------- |
@@ -61,7 +61,7 @@ Daytona includes rate limit information in API response headers. Header names in
 
 #### Rate limit errors
 
-Daytona [Python](/docs/python-sdk), [TypeScript](/docs/en/typescript-sdk), [Ruby](/docs/ruby-sdk) and [Go](/docs/go-sdk) SDKs raise or throw a `DaytonaRateLimitError` exception (Python) or error (TypeScript, Ruby and Go) when you exceed a rate limit.
+Nightona [Python](/docs/python-sdk), [TypeScript](/docs/en/typescript-sdk), [Ruby](/docs/ruby-sdk) and [Go](/docs/go-sdk) SDKs raise or throw a `NightonaRateLimitError` exception (Python) or error (TypeScript, Ruby and Go) when you exceed a rate limit.
 
 The rate limit error response is a JSON object with the following properties:
 
@@ -83,9 +83,9 @@ All errors include [**`headers`**](#rate-limit-headers) and status code properti
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
     try {
-      await daytona.create()
+      await nightona.create()
     } catch (error) {
-      if (error instanceof DaytonaRateLimitError) {
+      if (error instanceof NightonaRateLimitError) {
         console.log(error.headers?.get('x-ratelimit-remaining-sandbox-create'))
         console.log(error.headers?.get('X-RateLimit-Remaining-Sandbox-Create')) // also works
       }
@@ -95,8 +95,8 @@ All errors include [**`headers`**](#rate-limit-headers) and status code properti
   <TabItem label="Python" icon="seti:python">
     ```python
     try:
-      daytona.create(snapshot="my-snapshot")
-    except DaytonaRateLimitError as e:
+      nightona.create(snapshot="my-snapshot")
+    except NightonaRateLimitError as e:
       print(e.headers['x-ratelimit-remaining-sandbox-create'])
       print(e.headers['X-RateLimit-Remaining-Sandbox-Create'])  # also works
     ```
@@ -104,17 +104,17 @@ All errors include [**`headers`**](#rate-limit-headers) and status code properti
   <TabItem label="Ruby" icon="seti:ruby">
     ```ruby
     begin
-      daytona.create
-    rescue Daytona::Sdk::Error => e
+      nightona.create
+    rescue Nightona::Sdk::Error => e
       puts "Error: #{e.message}"
     end
     ```
   </TabItem>
   <TabItem label="Go" icon="seti:go">
     ```go
-    sandbox, err := daytona.Create(ctx, nil)
+    sandbox, err := nightona.Create(ctx, nil)
     if err != nil {
-      var rateLimitErr *errors.DaytonaRateLimitError
+      var rateLimitErr *errors.NightonaRateLimitError
       if errors.As(err, &rateLimitErr) {
         fmt.Println(rateLimitErr.Headers.Get("x-ratelimit-remaining-sandbox-create"))
         fmt.Println(rateLimitErr.Headers.Get("X-RateLimit-Remaining-Sandbox-Create")) // also works
@@ -126,7 +126,7 @@ All errors include [**`headers`**](#rate-limit-headers) and status code properti
 
 ### Tiers
 
-Limits are applied to your organization's default region. To unlock higher limits, complete the following verification steps in the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/limits):
+Limits are applied to your organization's default region. To unlock higher limits, complete the following verification steps in the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/limits):
 
 | **Tier** | **Resources (vCPU / RAM / Storage)** | **Access Requirements**                                 |
 | -------- | ------------------------------------ | ------------------------------------------------------- |
@@ -165,9 +165,9 @@ async function createSandboxWithRetry() {
 
   while (retries < maxRetries) {
     try {
-      return await daytona.create({ snapshot: 'my-snapshot' })
+      return await nightona.create({ snapshot: 'my-snapshot' })
     } catch (error) {
-      if (error instanceof DaytonaRateLimitError && retries < maxRetries - 1) {
+      if (error instanceof NightonaRateLimitError && retries < maxRetries - 1) {
         // Use Retry-After header if available, otherwise exponential backoff
         const retryAfter = error.headers?.get('retry-after-sandbox-create')
         const delay = retryAfter

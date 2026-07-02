@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { WebhookEvent } from '@daytona/api-client'
+import { WebhookEvent } from '@nightona/api-client'
 
 export const WEBHOOK_EVENTS: Array<{ value: WebhookEvent; label: string; category: string }> = [
   { value: WebhookEvent.SANDBOX_CREATED, label: 'Sandbox Created', category: 'Sandbox' },

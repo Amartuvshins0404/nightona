@@ -37,9 +37,9 @@ We require that you squash all changes to a single commit. You can do this with 
 
 ## Developer's Certificate of Origin
 
-Any contributions to Daytona must only contain code that can legally be contributed to Daytona, and which the Daytona project can distribute under its license.
+Any contributions to Nightona must only contain code that can legally be contributed to Nightona, and which the Nightona project can distribute under its license.
 
-Prior to contributing to Daytona please read the [Developer's Certificate of Origin](https://developercertificate.org/) and sign-off all commits with the `--signoff` option provided by `git commit`. For example:
+Prior to contributing to Nightona please read the [Developer's Certificate of Origin](https://developercertificate.org/) and sign-off all commits with the `--signoff` option provided by `git commit`. For example:
 
 ```
 git commit --signoff --message "This is the commit message"

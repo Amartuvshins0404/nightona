@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -10,9 +10,9 @@ import pytest
 
 
 def _make_async_storage():
-    from daytona._async.object_storage import AsyncObjectStorage
+    from nightona._async.object_storage import AsyncObjectStorage
 
-    with patch("daytona._async.object_storage.S3Store") as mock_store_cls:
+    with patch("nightona._async.object_storage.S3Store") as mock_store_cls:
         mock_store = MagicMock()
         mock_store.head_async = AsyncMock()
         mock_store.put_async = AsyncMock()
@@ -30,7 +30,7 @@ class TestAsyncObjectStorage:
             await storage.upload("/missing/path", "org-1")
 
     def test_compute_archive_base_path_trims_root_prefixes(self):
-        from daytona._async.object_storage import AsyncObjectStorage
+        from nightona._async.object_storage import AsyncObjectStorage
 
         assert AsyncObjectStorage.compute_archive_base_path("/workspace/project") == "workspace/project"
         windows_style = AsyncObjectStorage.compute_archive_base_path(r"\\workspace\\project")

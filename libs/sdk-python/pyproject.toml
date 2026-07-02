@@ -3,12 +3,12 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [project]
-name = "daytona"
+name = "nightona"
 version = "0.0.0-dev"
 authors = [
-    { name = "Daytona Platforms Inc.", email = "support@daytona.io"  },
+    { name = "Nightona Platforms Inc.", email = "support@daytona.io"  },
 ]
-description = "Python SDK for Daytona"
+description = "Python SDK for Nightona"
 readme = "README.md"
 requires-python = ">=3.9,<4.0"
 dependencies = [
@@ -41,7 +41,7 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
 ]
-keywords = ["daytona", "sdk"]
+keywords = ["nightona", "sdk"]
 license = {text = "Apache-2.0"}
 
 [tool.deptry]

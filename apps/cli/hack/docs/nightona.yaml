@@ -1,0 +1,32 @@
+name: nightona
+synopsis: Nightona CLI
+description: Command line interface for Nightona Sandboxes
+usage: nightona [flags]
+options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+  - name: version
+    shorthand: v
+    default_value: 'false'
+    usage: Display the version of Nightona
+see_also:
+  - nightona archive - Archive a sandbox
+  - nightona autocomplete - Adds a completion script for your shell environment
+  - nightona create - Create a new sandbox
+  - nightona delete - Delete a sandbox
+  - nightona docs - Opens the Nightona documentation in your default browser.
+  - nightona exec - Execute a command in a sandbox
+  - nightona info - Get sandbox info
+  - nightona list - List sandboxes
+  - nightona login - Log in to Nightona
+  - nightona logout - Logout from Nightona
+  - nightona mcp - Manage Nightona MCP Server
+  - nightona organization - Manage Nightona organizations
+  - nightona preview-url - Get signed preview URL for a sandbox port
+  - nightona snapshot - Manage Nightona snapshots
+  - nightona ssh - SSH into a sandbox
+  - nightona start - Start a sandbox
+  - nightona stop - Stop a sandbox
+  - nightona version - Print the version number
+  - nightona volume - Manage Nightona volumes

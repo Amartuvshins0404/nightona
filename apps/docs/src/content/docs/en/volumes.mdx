@@ -6,7 +6,7 @@ description: Shared file access across sandboxes.
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 import Label from '@components/Label.astro'
 
-Volumes are FUSE-based mounts that provide shared file access across Daytona sandboxes. They enable sandboxes to read from large files instantly - no need to upload files manually to each sandbox. Volume data is stored in an S3-compatible object store.
+Volumes are FUSE-based mounts that provide shared file access across Nightona sandboxes. They enable sandboxes to read from large files instantly - no need to upload files manually to each sandbox. Volume data is stored in an S3-compatible object store.
 
 A sandbox reads and writes a mounted volume like any local directory, and the contents persist independently of the sandbox lifecycle. Use volumes to share datasets, model weights, build caches, or application state between sandboxes, scope per-user or per-tenant data with a `subpath`, and combine multiple volumes in the same sandbox at different mount paths.
 
@@ -15,7 +15,7 @@ A sandbox reads and writes a mounted volume like any local directory, and the co
 
 ## Create volumes
 
-Daytona provides methods to create volumes using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/volumes) or programmatically using the Daytona [Python](/docs/en/python-sdk/sync/volume), [TypeScript](/docs/en/typescript-sdk/volume), [Ruby](/docs/en/ruby-sdk/volume/), [Go](/docs/en/go-sdk/daytona/#type-volumeservice), [Java](/docs/en/java-sdk/volume-service) **SDKs**, [CLI](/docs/en/tools/cli#daytona-create), or [API](/docs/en/tools/api#daytona/tag/sandbox).
+Nightona provides methods to create volumes using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/volumes) or programmatically using the Nightona [Python](/docs/en/python-sdk/sync/volume), [TypeScript](/docs/en/typescript-sdk/volume), [Ruby](/docs/en/ruby-sdk/volume/), [Go](/docs/en/go-sdk/nightona/#type-volumeservice), [Java](/docs/en/java-sdk/volume-service) **SDKs**, [CLI](/docs/en/tools/cli#nightona-create), or [API](/docs/en/tools/api#nightona/tag/sandbox).
 
 For persistent per-user, per-tenant, or per-workspace storage, use one shared volume per use case, environment, or project (for example a volume for staging and another for production), and set a dedicated `subpath` when you create each sandbox. The sandbox sees only that prefix inside the volume; it cannot access sibling subpaths.
 
@@ -25,7 +25,7 @@ This is the default pattern we recommend because it:
 - avoids mounting a separate volume for every user or sandbox
 - continues to provide strong isolation at the mount boundary
 
-1. Navigate to [Daytona Volumes ↗](https://app.daytona.io/dashboard/volumes)
+1. Navigate to [Nightona Volumes ↗](https://app.daytona.io/dashboard/volumes)
 2. Click the **Create Volume** button
 3. Enter the volume name
 
@@ -33,30 +33,30 @@ This is the default pattern we recommend because it:
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona
+from nightona import Nightona
 
-daytona = Daytona()
-volume = daytona.volume.create("my-awesome-volume")
+nightona = Nightona()
+volume = nightona.volume.create("my-awesome-volume")
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from "@daytona/sdk";
+import { Nightona } from "@nightona/sdk";
 
-const daytona = new Daytona();
-const volume = await daytona.volume.create("my-awesome-volume");
+const nightona = new Nightona();
+const volume = await nightona.volume.create("my-awesome-volume");
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-volume = daytona.volume.create("my-awesome-volume")
+nightona = Nightona::Nightona.new
+volume = nightona.volume.create("my-awesome-volume")
 ```
 
 </TabItem>
@@ -70,11 +70,11 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-	client, err := daytona.NewClient()
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -90,13 +90,13 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.model.Volume;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.model.Volume;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
-            Volume volume = daytona.volume().create("my-awesome-volume");
+        try (Nightona nightona = new Nightona()) {
+            Volume volume = nightona.volume().create("my-awesome-volume");
         }
     }
 }
@@ -106,7 +106,7 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona volume create my-awesome-volume
+nightona volume create my-awesome-volume
 ```
 
 </TabItem>
@@ -127,13 +127,13 @@ curl 'https://app.daytona.io/api/volumes' \
 
 ## Mount volumes
 
-Daytona provides an option to mount a volume to a sandbox. Once a volume is created, it can be mounted to a sandbox by specifying it in the `CreateSandboxFromSnapshotParams` object. For per-user or multi-tenant data, pass `subpath` so only the specified folder inside the volume is visible at `mount_path`.
+Nightona provides an option to mount a volume to a sandbox. Once a volume is created, it can be mounted to a sandbox by specifying it in the `CreateSandboxFromSnapshotParams` object. For per-user or multi-tenant data, pass `subpath` so only the specified folder inside the volume is visible at `mount_path`.
 
 Mount the entire volume (omit `subpath`) when every sandbox that uses that volume should see the same tree, for example shared assets or single-tenant workloads.
 
 Volume mount paths must meet the following requirements:
 
-- **Must be absolute paths**: mount paths must start with `/` (e.g., `/home/daytona/volume`)
+- **Must be absolute paths**: mount paths must start with `/` (e.g., `/home/nightona/volume`)
 - **Cannot be root directory**: cannot mount to `/` or `//`
 - **No relative path components**: cannot contain `/../`, `/./`, or end with `/..` or `/.`
 - **No consecutive slashes**: cannot contain multiple consecutive slashes like `//` (except at the beginning)
@@ -143,43 +143,43 @@ Volume mount paths must meet the following requirements:
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import CreateSandboxFromSnapshotParams, Daytona, VolumeMount
+from nightona import CreateSandboxFromSnapshotParams, Nightona, VolumeMount
 
-daytona = Daytona()
+nightona = Nightona()
 
 # Create a new volume or get an existing one
-volume = daytona.volume.get("my-awesome-volume", create=True)
+volume = nightona.volume.get("my-awesome-volume", create=True)
 
-mount_dir = "/home/daytona/volume"
+mount_dir = "/home/nightona/volume"
 
 # Recommended for per-user / per-tenant data: one volume, unique subpath per sandbox
 params = CreateSandboxFromSnapshotParams(
     language="python",
     volumes=[VolumeMount(volume_id=volume.id, mount_path=mount_dir, subpath="users/alice")],
 )
-sandbox = daytona.create(params)
+sandbox = nightona.create(params)
 
 # Entire volume at mount path (omit subpath) when all sandboxes should share the same tree
 params_full = CreateSandboxFromSnapshotParams(
     language="python",
     volumes=[VolumeMount(volume_id=volume.id, mount_path=mount_dir)],
 )
-sandbox_shared = daytona.create(params_full)
+sandbox_shared = nightona.create(params_full)
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 import path from 'path'
 
-const daytona = new Daytona()
-const volume = await daytona.volume.get('my-awesome-volume', true)
-const mountDir = '/home/daytona/volume'
+const nightona = new Nightona()
+const volume = await nightona.volume.get('my-awesome-volume', true)
+const mountDir = '/home/nightona/volume'
 
 // Recommended for per-user / per-tenant data: one volume, unique subpath per sandbox
-const sandbox = await daytona.create({
+const sandbox = await nightona.create({
   language: 'typescript',
   volumes: [
     { volumeId: volume.id, mountPath: mountDir, subpath: 'users/alice' },
@@ -187,7 +187,7 @@ const sandbox = await daytona.create({
 })
 
 // Entire volume at mount path (omit subpath) when all sandboxes should share the same tree
-const sandboxShared = await daytona.create({
+const sandboxShared = await nightona.create({
   language: 'typescript',
   volumes: [{ volumeId: volume.id, mountPath: mountDir }],
 })
@@ -197,29 +197,29 @@ const sandboxShared = await daytona.create({
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-volume = daytona.volume.get('my-awesome-volume', create: true)
-mount_dir = '/home/daytona/volume'
+nightona = Nightona::Nightona.new
+volume = nightona.volume.get('my-awesome-volume', create: true)
+mount_dir = '/home/nightona/volume'
 
 # Recommended for per-user / per-tenant data: one volume, unique subpath per sandbox
-params = Daytona::CreateSandboxFromSnapshotParams.new(
-  language: Daytona::CodeLanguage::PYTHON,
-  volumes: [DaytonaApiClient::SandboxVolume.new(
+params = Nightona::CreateSandboxFromSnapshotParams.new(
+  language: Nightona::CodeLanguage::PYTHON,
+  volumes: [NightonaApiClient::SandboxVolume.new(
     volume_id: volume.id,
     mount_path: mount_dir,
     subpath: 'users/alice'
   )]
 )
-sandbox = daytona.create(params)
+sandbox = nightona.create(params)
 
 # Entire volume at mount path (omit subpath) when all sandboxes should share the same tree
-params_shared = Daytona::CreateSandboxFromSnapshotParams.new(
-  language: Daytona::CodeLanguage::PYTHON,
-  volumes: [DaytonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: mount_dir)]
+params_shared = Nightona::CreateSandboxFromSnapshotParams.new(
+  language: Nightona::CodeLanguage::PYTHON,
+  volumes: [NightonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: mount_dir)]
 )
-sandbox_shared = daytona.create(params_shared)
+sandbox_shared = nightona.create(params_shared)
 ```
 
 </TabItem>
@@ -230,11 +230,11 @@ import (
 	"context"
 	"log"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
-client, err := daytona.NewClient()
+client, err := nightona.NewClient()
 if err != nil {
 	log.Fatal(err)
 }
@@ -249,7 +249,7 @@ if err != nil {
 	}
 }
 
-mountDir := "/home/daytona/volume"
+mountDir := "/home/nightona/volume"
 
 // Recommended for per-user / per-tenant data: one volume, unique subpath per sandbox
 subpath := "users/alice"
@@ -283,28 +283,28 @@ if err != nil {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.exception.DaytonaNotFoundException;
-import io.daytona.sdk.model.CreateSandboxFromSnapshotParams;
-import io.daytona.sdk.model.Volume;
-import io.daytona.sdk.model.VolumeMount;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.exception.NightonaNotFoundException;
+import io.nightona.sdk.model.CreateSandboxFromSnapshotParams;
+import io.nightona.sdk.model.Volume;
+import io.nightona.sdk.model.VolumeMount;
 
 import java.util.Collections;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             Volume volume;
             try {
-                volume = daytona.volume().getByName("my-awesome-volume");
-            } catch (DaytonaNotFoundException e) {
-                volume = daytona.volume().create("my-awesome-volume");
+                volume = nightona.volume().getByName("my-awesome-volume");
+            } catch (NightonaNotFoundException e) {
+                volume = nightona.volume().create("my-awesome-volume");
             }
 
-            String mountDir = "/home/daytona/volume";
+            String mountDir = "/home/nightona/volume";
 
-            // io.daytona.sdk.model.VolumeMount has no subpath field; use the API for subpath mounts.
+            // io.nightona.sdk.model.VolumeMount has no subpath field; use the API for subpath mounts.
             // Mount the entire volume at mountPath:
             CreateSandboxFromSnapshotParams paramsFull = new CreateSandboxFromSnapshotParams();
             paramsFull.setLanguage("python");
@@ -312,7 +312,7 @@ public class App {
             mountFull.setVolumeId(volume.getId());
             mountFull.setMountPath(mountDir);
             paramsFull.setVolumes(Collections.singletonList(mountFull));
-            Sandbox sandboxShared = daytona.create(paramsFull);
+            Sandbox sandboxShared = nightona.create(paramsFull);
         }
     }
 }
@@ -322,8 +322,8 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona volume create my-awesome-volume
-daytona create --volume my-awesome-volume:/home/daytona/volume
+nightona volume create my-awesome-volume
+nightona create --volume my-awesome-volume:/home/nightona/volume
 ```
 
 The `--volume` flag accepts `VOLUME_ID_OR_NAME:MOUNT_PATH` only. For a **subpath** mount, use a [SDK](#mount-volumes) or the [API](#mount-volumes) and set `subpath` on the volume entry.
@@ -340,7 +340,7 @@ curl 'https://app.daytona.io/api/sandbox' \
   "volumes": [
     {
       "volumeId": "<VOLUME_ID>",
-      "mountPath": "/home/daytona/volume",
+      "mountPath": "/home/nightona/volume",
       "subpath": "users/alice"
     }
   ]
@@ -354,7 +354,7 @@ Omit `subpath` to mount the full volume at `mountPath`.
 
 ## Work with volumes
 
-Daytona provides an option to read from and write to the volume just like any other directory in the sandbox file system. Files written to the volume persist beyond the lifecycle of any individual sandbox.
+Nightona provides an option to read from and write to the volume just like any other directory in the sandbox file system. Files written to the volume persist beyond the lifecycle of any individual sandbox.
 
 The following snippet demonstrate how to read from and write to a volume:
 
@@ -363,7 +363,7 @@ The following snippet demonstrate how to read from and write to a volume:
 
 ```python
 # Write to a file in the mounted volume using the Sandbox file system API
-sandbox.fs.upload_file(b"Hello from Daytona volume!", "/home/daytona/volume/example.txt")
+sandbox.fs.upload_file(b"Hello from Nightona volume!", "/home/nightona/volume/example.txt")
 
 # When you're done with the sandbox, you can remove it
 # The volume will persist even after the sandbox is removed
@@ -376,13 +376,13 @@ sandbox.delete()
 ```typescript
 // Write to a file in the mounted volume using the Sandbox file system API
 await sandbox.fs.uploadFile(
-  Buffer.from('Hello from Daytona volume!'),
-  '/home/daytona/volume/example.txt'
+  Buffer.from('Hello from Nightona volume!'),
+  '/home/nightona/volume/example.txt'
 )
 
 // When you're done with the sandbox, you can remove it
 // The volume will persist even after the sandbox is removed
-await daytona.delete(sandbox)
+await nightona.delete(sandbox)
 ```
 
 </TabItem>
@@ -390,11 +390,11 @@ await daytona.delete(sandbox)
 
 ```ruby
 # Write to a file in the mounted volume using the Sandbox file system API
-sandbox.fs.upload_file('Hello from Daytona volume!', '/home/daytona/volume/example.txt')
+sandbox.fs.upload_file('Hello from Nightona volume!', '/home/nightona/volume/example.txt')
 
 # When you're done with the sandbox, you can remove it
 # The volume will persist even after the sandbox is removed
-daytona.delete(sandbox)
+nightona.delete(sandbox)
 ```
 
 </TabItem>
@@ -407,7 +407,7 @@ import (
 )
 
 // Write to a file in the mounted volume
-err := sandbox.FileSystem.UploadFile(context.Background(), []byte("Hello from Daytona volume!"), "/home/daytona/volume/example.txt")
+err := sandbox.FileSystem.UploadFile(context.Background(), []byte("Hello from Nightona volume!"), "/home/nightona/volume/example.txt")
 if err != nil {
     log.Fatal(err)
 }
@@ -428,8 +428,8 @@ import java.nio.charset.StandardCharsets;
 
 // Write to a file in the mounted volume using the Sandbox file system API
 sandbox.fs.uploadFile(
-    "Hello from Daytona volume!".getBytes(StandardCharsets.UTF_8),
-    "/home/daytona/volume/example.txt");
+    "Hello from Nightona volume!".getBytes(StandardCharsets.UTF_8),
+    "/home/nightona/volume/example.txt");
 
 // When you're done with the sandbox, you can remove it
 // The volume will persist even after the sandbox is removed
@@ -441,27 +441,27 @@ sandbox.delete();
 
 ## Get a volume by name
 
-Daytona provides an option to get a volume by its name.
+Nightona provides an option to get a volume by its name.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-daytona.volume.get("my-awesome-volume", create=True)
+nightona.volume.get("my-awesome-volume", create=True)
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-await daytona.volume.get('my-awesome-volume', true)
+await nightona.volume.get('my-awesome-volume', true)
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-daytona.volume.get('my-awesome-volume', create: true)
+nightona.volume.get('my-awesome-volume', create: true)
 ```
 
 </TabItem>
@@ -475,14 +475,14 @@ volume, err := client.Volume.Get(ctx, "my-awesome-volume")
 <TabItem label="Java" icon="seti:java">
 
 ```java
-daytona.volume().getByName("my-awesome-volume");
+nightona.volume().getByName("my-awesome-volume");
 ```
 
 </TabItem>
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona volume get my-awesome-volume
+nightona volume get my-awesome-volume
 ```
 
 </TabItem>
@@ -498,27 +498,27 @@ curl 'https://app.daytona.io/api/volumes/by-name/my-awesome-volume' \
 
 ## List volumes
 
-Daytona provides an option to list all volumes.
+Nightona provides an option to list all volumes.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-daytona.volume.list()
+nightona.volume.list()
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-await daytona.volume.list()
+await nightona.volume.list()
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-daytona.volume.list
+nightona.volume.list
 ```
 
 </TabItem>
@@ -532,14 +532,14 @@ volumes, err := client.Volume.List(ctx)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-daytona.volume().list();
+nightona.volume().list();
 ```
 
 </TabItem>
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona volume list
+nightona volume list
 ```
 
 </TabItem>
@@ -555,7 +555,7 @@ curl 'https://app.daytona.io/api/volumes' \
 
 ## Delete volumes
 
-Daytona provides an option to delete a volume. Deleted volumes cannot be recovered.
+Nightona provides an option to delete a volume. Deleted volumes cannot be recovered.
 
 The following snippet demonstrate how to delete a volume:
 
@@ -563,21 +563,21 @@ The following snippet demonstrate how to delete a volume:
 <TabItem label="Python" icon="seti:python">
 
 ```python
-daytona.volume.delete(volume)
+nightona.volume.delete(volume)
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-await daytona.volume.delete(volume)
+await nightona.volume.delete(volume)
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-daytona.volume.delete(volume)
+nightona.volume.delete(volume)
 ```
 
 </TabItem>
@@ -591,14 +591,14 @@ err := client.Volume.Delete(ctx, volume)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-daytona.volume().delete(volume.getId());
+nightona.volume().delete(volume.getId());
 ```
 
 </TabItem>
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona volume delete <VOLUME_ID>
+nightona volume delete <VOLUME_ID>
 ```
 
 </TabItem>
@@ -615,7 +615,7 @@ curl 'https://app.daytona.io/api/volumes/<VOLUME_ID>' \
 
 ## Share data between sandboxes
 
-Daytona provides an option to share data across sandboxes by mounting the same volume in each one. A producer sandbox writes to the volume and is then deleted; a separately created consumer sandbox mounts the same volume by ID and reads the data. Volume contents persist independently of any individual sandbox.
+Nightona provides an option to share data across sandboxes by mounting the same volume in each one. A producer sandbox writes to the volume and is then deleted; a separately created consumer sandbox mounts the same volume by ID and reads the data. Volume contents persist independently of any individual sandbox.
 
 Sandboxes that mount the same volume see writes immediately, but FUSE-backed volumes are not transactional. If two sandboxes write to the same path concurrently, the last write wins. Coordinate access in your application when ordering matters.
 
@@ -623,14 +623,14 @@ Sandboxes that mount the same volume see writes immediately, but FUSE-backed vol
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import CreateSandboxFromSnapshotParams, Daytona, VolumeMount
+from nightona import CreateSandboxFromSnapshotParams, Nightona, VolumeMount
 
-daytona = Daytona()
-volume = daytona.volume.get("shared-data", create=True)
-mount_dir = "/home/daytona/volume"
+nightona = Nightona()
+volume = nightona.volume.get("shared-data", create=True)
+mount_dir = "/home/nightona/volume"
 
 # Producer: write data into the volume, then delete the sandbox
-producer = daytona.create(CreateSandboxFromSnapshotParams(
+producer = nightona.create(CreateSandboxFromSnapshotParams(
     language="python",
     volumes=[VolumeMount(volume_id=volume.id, mount_path=mount_dir)],
 ))
@@ -638,7 +638,7 @@ producer.fs.upload_file(b"shared payload", f"{mount_dir}/payload.bin")
 producer.delete()
 
 # Consumer: a separate sandbox mounts the same volume by ID and reads the data
-consumer = daytona.create(CreateSandboxFromSnapshotParams(
+consumer = nightona.create(CreateSandboxFromSnapshotParams(
     language="python",
     volumes=[VolumeMount(volume_id=volume.id, mount_path=mount_dir)],
 ))
@@ -650,22 +650,22 @@ print(data.decode())
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
-const daytona = new Daytona()
-const volume = await daytona.volume.get('shared-data', true)
-const mountDir = '/home/daytona/volume'
+const nightona = new Nightona()
+const volume = await nightona.volume.get('shared-data', true)
+const mountDir = '/home/nightona/volume'
 
 // Producer: write data into the volume, then delete the sandbox
-const producer = await daytona.create({
+const producer = await nightona.create({
   language: 'typescript',
   volumes: [{ volumeId: volume.id, mountPath: mountDir }],
 })
 await producer.fs.uploadFile(Buffer.from('shared payload'), `${mountDir}/payload.bin`)
-await daytona.delete(producer)
+await nightona.delete(producer)
 
 // Consumer: a separate sandbox mounts the same volume by ID and reads the data
-const consumer = await daytona.create({
+const consumer = await nightona.create({
   language: 'typescript',
   volumes: [{ volumeId: volume.id, mountPath: mountDir }],
 })
@@ -677,25 +677,25 @@ console.log(data.toString())
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-volume = daytona.volume.get('shared-data', create: true)
-mount_dir = '/home/daytona/volume'
+nightona = Nightona::Nightona.new
+volume = nightona.volume.get('shared-data', create: true)
+mount_dir = '/home/nightona/volume'
 
-mount = DaytonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: mount_dir)
+mount = NightonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: mount_dir)
 
 # Producer: write data into the volume, then delete the sandbox
-producer = daytona.create(Daytona::CreateSandboxFromSnapshotParams.new(
-  language: Daytona::CodeLanguage::PYTHON,
+producer = nightona.create(Nightona::CreateSandboxFromSnapshotParams.new(
+  language: Nightona::CodeLanguage::PYTHON,
   volumes: [mount]
 ))
 producer.fs.upload_file('shared payload', "#{mount_dir}/payload.bin")
-daytona.delete(producer)
+nightona.delete(producer)
 
 # Consumer: a separate sandbox mounts the same volume by ID and reads the data
-consumer = daytona.create(Daytona::CreateSandboxFromSnapshotParams.new(
-  language: Daytona::CodeLanguage::PYTHON,
+consumer = nightona.create(Nightona::CreateSandboxFromSnapshotParams.new(
+  language: Nightona::CodeLanguage::PYTHON,
   volumes: [mount]
 ))
 data = consumer.fs.download_file("#{mount_dir}/payload.bin")
@@ -711,12 +711,12 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 ctx := context.Background()
-client, err := daytona.NewClient()
+client, err := nightona.NewClient()
 if err != nil {
 	log.Fatal(err)
 }
@@ -729,7 +729,7 @@ if err != nil {
 	}
 }
 
-mountDir := "/home/daytona/volume"
+mountDir := "/home/nightona/volume"
 mount := types.VolumeMount{VolumeID: volume.ID, MountPath: mountDir}
 
 // Producer: write data into the volume, then delete the sandbox
@@ -770,27 +770,27 @@ fmt.Println(string(data))
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.exception.DaytonaNotFoundException;
-import io.daytona.sdk.model.CreateSandboxFromSnapshotParams;
-import io.daytona.sdk.model.Volume;
-import io.daytona.sdk.model.VolumeMount;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.exception.NightonaNotFoundException;
+import io.nightona.sdk.model.CreateSandboxFromSnapshotParams;
+import io.nightona.sdk.model.Volume;
+import io.nightona.sdk.model.VolumeMount;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             Volume volume;
             try {
-                volume = daytona.volume().getByName("shared-data");
-            } catch (DaytonaNotFoundException e) {
-                volume = daytona.volume().create("shared-data");
+                volume = nightona.volume().getByName("shared-data");
+            } catch (NightonaNotFoundException e) {
+                volume = nightona.volume().create("shared-data");
             }
 
-            String mountDir = "/home/daytona/volume";
+            String mountDir = "/home/nightona/volume";
 
             VolumeMount mount = new VolumeMount();
             mount.setVolumeId(volume.getId());
@@ -800,7 +800,7 @@ public class App {
             CreateSandboxFromSnapshotParams producerParams = new CreateSandboxFromSnapshotParams();
             producerParams.setLanguage("python");
             producerParams.setVolumes(Collections.singletonList(mount));
-            Sandbox producer = daytona.create(producerParams);
+            Sandbox producer = nightona.create(producerParams);
             producer.fs.uploadFile(
                 "shared payload".getBytes(StandardCharsets.UTF_8),
                 mountDir + "/payload.bin");
@@ -810,7 +810,7 @@ public class App {
             CreateSandboxFromSnapshotParams consumerParams = new CreateSandboxFromSnapshotParams();
             consumerParams.setLanguage("python");
             consumerParams.setVolumes(Collections.singletonList(mount));
-            Sandbox consumer = daytona.create(consumerParams);
+            Sandbox consumer = nightona.create(consumerParams);
             byte[] data = consumer.fs.downloadFile(mountDir + "/payload.bin");
             System.out.println(new String(data, StandardCharsets.UTF_8));
         }
@@ -823,23 +823,23 @@ public class App {
 
 ## Mount multiple volumes to one sandbox
 
-Daytona provides an option to mount more than one volume to a single sandbox by passing multiple entries in the `volumes` list. Use this pattern to combine shared assets, models, or datasets in one volume with separate per-application or per-user state in another, exposed at distinct mount paths.
+Nightona provides an option to mount more than one volume to a single sandbox by passing multiple entries in the `volumes` list. Use this pattern to combine shared assets, models, or datasets in one volume with separate per-application or per-user state in another, exposed at distinct mount paths.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import CreateSandboxFromSnapshotParams, Daytona, VolumeMount
+from nightona import CreateSandboxFromSnapshotParams, Nightona, VolumeMount
 
-daytona = Daytona()
-shared_assets = daytona.volume.get("shared-assets", create=True)
-logs = daytona.volume.get("logs", create=True)
+nightona = Nightona()
+shared_assets = nightona.volume.get("shared-assets", create=True)
+logs = nightona.volume.get("logs", create=True)
 
-sandbox = daytona.create(CreateSandboxFromSnapshotParams(
+sandbox = nightona.create(CreateSandboxFromSnapshotParams(
     language="python",
     volumes=[
-        VolumeMount(volume_id=shared_assets.id, mount_path="/home/daytona/assets"),
-        VolumeMount(volume_id=logs.id, mount_path="/home/daytona/logs"),
+        VolumeMount(volume_id=shared_assets.id, mount_path="/home/nightona/assets"),
+        VolumeMount(volume_id=logs.id, mount_path="/home/nightona/logs"),
     ],
 ))
 ```
@@ -848,14 +848,14 @@ sandbox = daytona.create(CreateSandboxFromSnapshotParams(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-const sharedAssets = await daytona.volume.get('shared-assets', true)
-const logs = await daytona.volume.get('logs', true)
+const sharedAssets = await nightona.volume.get('shared-assets', true)
+const logs = await nightona.volume.get('logs', true)
 
-const sandbox = await daytona.create({
+const sandbox = await nightona.create({
   language: 'typescript',
   volumes: [
-    { volumeId: sharedAssets.id, mountPath: '/home/daytona/assets' },
-    { volumeId: logs.id, mountPath: '/home/daytona/logs' },
+    { volumeId: sharedAssets.id, mountPath: '/home/nightona/assets' },
+    { volumeId: logs.id, mountPath: '/home/nightona/logs' },
   ],
 })
 ```
@@ -864,17 +864,17 @@ const sandbox = await daytona.create({
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-shared_assets = daytona.volume.get('shared-assets', create: true)
-logs = daytona.volume.get('logs', create: true)
+shared_assets = nightona.volume.get('shared-assets', create: true)
+logs = nightona.volume.get('logs', create: true)
 
-params = Daytona::CreateSandboxFromSnapshotParams.new(
-  language: Daytona::CodeLanguage::PYTHON,
+params = Nightona::CreateSandboxFromSnapshotParams.new(
+  language: Nightona::CodeLanguage::PYTHON,
   volumes: [
-    DaytonaApiClient::SandboxVolume.new(volume_id: shared_assets.id, mount_path: '/home/daytona/assets'),
-    DaytonaApiClient::SandboxVolume.new(volume_id: logs.id, mount_path: '/home/daytona/logs')
+    NightonaApiClient::SandboxVolume.new(volume_id: shared_assets.id, mount_path: '/home/nightona/assets'),
+    NightonaApiClient::SandboxVolume.new(volume_id: logs.id, mount_path: '/home/nightona/logs')
   ]
 )
-sandbox = daytona.create(params)
+sandbox = nightona.create(params)
 ```
 
 </TabItem>
@@ -900,8 +900,8 @@ sandbox, err := client.Create(ctx, types.SnapshotParams{
 	SandboxBaseParams: types.SandboxBaseParams{
 		Language: types.CodeLanguagePython,
 		Volumes: []types.VolumeMount{
-			{VolumeID: sharedAssets.ID, MountPath: "/home/daytona/assets"},
-			{VolumeID: logs.ID, MountPath: "/home/daytona/logs"},
+			{VolumeID: sharedAssets.ID, MountPath: "/home/nightona/assets"},
+			{VolumeID: logs.ID, MountPath: "/home/nightona/logs"},
 		},
 	},
 })
@@ -916,30 +916,30 @@ if err != nil {
 ```java
 Volume sharedAssets;
 try {
-    sharedAssets = daytona.volume().getByName("shared-assets");
-} catch (DaytonaNotFoundException e) {
-    sharedAssets = daytona.volume().create("shared-assets");
+    sharedAssets = nightona.volume().getByName("shared-assets");
+} catch (NightonaNotFoundException e) {
+    sharedAssets = nightona.volume().create("shared-assets");
 }
 
 Volume logs;
 try {
-    logs = daytona.volume().getByName("logs");
-} catch (DaytonaNotFoundException e) {
-    logs = daytona.volume().create("logs");
+    logs = nightona.volume().getByName("logs");
+} catch (NightonaNotFoundException e) {
+    logs = nightona.volume().create("logs");
 }
 
 VolumeMount assetsMount = new VolumeMount();
 assetsMount.setVolumeId(sharedAssets.getId());
-assetsMount.setMountPath("/home/daytona/assets");
+assetsMount.setMountPath("/home/nightona/assets");
 
 VolumeMount logsMount = new VolumeMount();
 logsMount.setVolumeId(logs.getId());
-logsMount.setMountPath("/home/daytona/logs");
+logsMount.setMountPath("/home/nightona/logs");
 
 CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
 params.setLanguage("python");
 params.setVolumes(java.util.Arrays.asList(assetsMount, logsMount));
-Sandbox sandbox = daytona.create(params);
+Sandbox sandbox = nightona.create(params);
 ```
 
 </TabItem>
@@ -947,7 +947,7 @@ Sandbox sandbox = daytona.create(params);
 
 ## Multi-tenant isolation with subpaths
 
-Daytona provides an option to isolate per-tenant or per-user data inside a single shared volume by setting a unique `subpath` on each sandbox's volume mount. Each sandbox sees only files under its assigned subpath at `mount_path` and cannot read or write sibling subpaths within the same volume. This is the recommended pattern for multi-tenant workloads because it stays within the [per-organization volume limit](#pricing--limits) instead of creating one volume per tenant.
+Nightona provides an option to isolate per-tenant or per-user data inside a single shared volume by setting a unique `subpath` on each sandbox's volume mount. Each sandbox sees only files under its assigned subpath at `mount_path` and cannot read or write sibling subpaths within the same volume. This is the recommended pattern for multi-tenant workloads because it stays within the [per-organization volume limit](#pricing--limits) instead of creating one volume per tenant.
 
 Isolation is enforced at the FUSE mount boundary. Each sandbox sees its assigned subpath as the volume root, so a sandbox mounted at `users/alice` cannot reach `users/bob` through relative paths such as `../bob`.
 
@@ -955,21 +955,21 @@ Isolation is enforced at the FUSE mount boundary. Each sandbox sees its assigned
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import CreateSandboxFromSnapshotParams, Daytona, VolumeMount
+from nightona import CreateSandboxFromSnapshotParams, Nightona, VolumeMount
 
-daytona = Daytona()
-volume = daytona.volume.get("tenants", create=True)
-mount_dir = "/home/daytona/data"
+nightona = Nightona()
+volume = nightona.volume.get("tenants", create=True)
+mount_dir = "/home/nightona/data"
 
 # Tenant A
-alice_sandbox = daytona.create(CreateSandboxFromSnapshotParams(
+alice_sandbox = nightona.create(CreateSandboxFromSnapshotParams(
     language="python",
     volumes=[VolumeMount(volume_id=volume.id, mount_path=mount_dir, subpath="users/alice")],
 ))
 alice_sandbox.fs.upload_file(b"alice's data", f"{mount_dir}/notes.txt")
 
 # Tenant B sees only its own subpath; alice's notes.txt is invisible
-bob_sandbox = daytona.create(CreateSandboxFromSnapshotParams(
+bob_sandbox = nightona.create(CreateSandboxFromSnapshotParams(
     language="python",
     volumes=[VolumeMount(volume_id=volume.id, mount_path=mount_dir, subpath="users/bob")],
 ))
@@ -980,18 +980,18 @@ bob_sandbox.fs.upload_file(b"bob's data", f"{mount_dir}/notes.txt")
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-const volume = await daytona.volume.get('tenants', true)
-const mountDir = '/home/daytona/data'
+const volume = await nightona.volume.get('tenants', true)
+const mountDir = '/home/nightona/data'
 
 // Tenant A
-const aliceSandbox = await daytona.create({
+const aliceSandbox = await nightona.create({
   language: 'typescript',
   volumes: [{ volumeId: volume.id, mountPath: mountDir, subpath: 'users/alice' }],
 })
 await aliceSandbox.fs.uploadFile(Buffer.from("alice's data"), `${mountDir}/notes.txt`)
 
 // Tenant B sees only its own subpath; alice's notes.txt is invisible
-const bobSandbox = await daytona.create({
+const bobSandbox = await nightona.create({
   language: 'typescript',
   volumes: [{ volumeId: volume.id, mountPath: mountDir, subpath: 'users/bob' }],
 })
@@ -1002,27 +1002,27 @@ await bobSandbox.fs.uploadFile(Buffer.from("bob's data"), `${mountDir}/notes.txt
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-volume = daytona.volume.get('tenants', create: true)
-mount_dir = '/home/daytona/data'
+volume = nightona.volume.get('tenants', create: true)
+mount_dir = '/home/nightona/data'
 
 # Tenant A
-alice_params = Daytona::CreateSandboxFromSnapshotParams.new(
-  language: Daytona::CodeLanguage::PYTHON,
-  volumes: [DaytonaApiClient::SandboxVolume.new(
+alice_params = Nightona::CreateSandboxFromSnapshotParams.new(
+  language: Nightona::CodeLanguage::PYTHON,
+  volumes: [NightonaApiClient::SandboxVolume.new(
     volume_id: volume.id, mount_path: mount_dir, subpath: 'users/alice'
   )]
 )
-alice_sandbox = daytona.create(alice_params)
+alice_sandbox = nightona.create(alice_params)
 alice_sandbox.fs.upload_file("alice's data", "#{mount_dir}/notes.txt")
 
 # Tenant B sees only its own subpath; alice's notes.txt is invisible
-bob_params = Daytona::CreateSandboxFromSnapshotParams.new(
-  language: Daytona::CodeLanguage::PYTHON,
-  volumes: [DaytonaApiClient::SandboxVolume.new(
+bob_params = Nightona::CreateSandboxFromSnapshotParams.new(
+  language: Nightona::CodeLanguage::PYTHON,
+  volumes: [NightonaApiClient::SandboxVolume.new(
     volume_id: volume.id, mount_path: mount_dir, subpath: 'users/bob'
   )]
 )
-bob_sandbox = daytona.create(bob_params)
+bob_sandbox = nightona.create(bob_params)
 bob_sandbox.fs.upload_file("bob's data", "#{mount_dir}/notes.txt")
 ```
 
@@ -1037,7 +1037,7 @@ if err != nil {
 		log.Fatal(err)
 	}
 }
-mountDir := "/home/daytona/data"
+mountDir := "/home/nightona/data"
 
 // Tenant A
 aliceSubpath := "users/alice"
@@ -1089,7 +1089,7 @@ curl 'https://app.daytona.io/api/sandbox' \
   "volumes": [
     {
       "volumeId": "<VOLUME_ID>",
-      "mountPath": "/home/daytona/data",
+      "mountPath": "/home/nightona/data",
       "subpath": "users/alice"
     }
   ]
@@ -1104,7 +1104,7 @@ curl 'https://app.daytona.io/api/sandbox' \
   "volumes": [
     {
       "volumeId": "<VOLUME_ID>",
-      "mountPath": "/home/daytona/data",
+      "mountPath": "/home/nightona/data",
       "subpath": "users/bob"
     }
   ]
@@ -1120,7 +1120,7 @@ Since volumes are FUSE-based mounts, they can not be used for applications that 
 
 ## Pricing & Limits
 
-Daytona volumes are included at no additional cost. Each organization can create up to 100 volumes, and volume data does not count against your storage quota.
+Nightona volumes are included at no additional cost. Each organization can create up to 100 volumes, and volume data does not count against your storage quota.
 
-You can view your current volume usage in the [Daytona Volumes ↗](https://app.daytona.io/dashboard/volumes).
+You can view your current volume usage in the [Nightona Volumes ↗](https://app.daytona.io/dashboard/volumes).
 

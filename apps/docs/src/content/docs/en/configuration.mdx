@@ -5,7 +5,7 @@ description: Configure your environment using code, environment variables, or a 
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona supports multiple methods to configure your environment, in order of precedence:
+Nightona supports multiple methods to configure your environment, in order of precedence:
 
 1. [Configuration in code](#configuration-in-code)
 2. [Environment variables](#environment-variables)
@@ -14,19 +14,19 @@ Daytona supports multiple methods to configure your environment, in order of pre
 
 ## Configuration in code
 
-To configure your environment in code, use the `DaytonaConfig` class. The `DaytonaConfig` class accepts the following parameters:
+To configure your environment in code, use the `NightonaConfig` class. The `NightonaConfig` class accepts the following parameters:
 
-- `api_key`: Your Daytona [API Key](/docs/api-keys)
-- `api_url`: URL of your [Daytona API](/docs/en/tools/api)
+- `api_key`: Your Nightona [API Key](/docs/api-keys)
+- `api_url`: URL of your [Nightona API](/docs/en/tools/api)
 - `target`: Target region to create the Sandboxes on (`us` / `eu`)
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import DaytonaConfig
+from nightona import NightonaConfig
 
-config = DaytonaConfig(
+config = NightonaConfig(
     api_key="YOUR_API_KEY",
     api_url="YOUR_API_URL",
     target="us"
@@ -37,9 +37,9 @@ config = DaytonaConfig(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { DaytonaConfig } from '@daytona/sdk'
+import { NightonaConfig } from '@nightona/sdk'
 
-const config: DaytonaConfig = {
+const config: NightonaConfig = {
   apiKey: 'YOUR_API_KEY',
   apiUrl: 'YOUR_API_URL',
   target: 'us',
@@ -51,9 +51,9 @@ const config: DaytonaConfig = {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-config = Daytona::Config.new(
+config = Nightona::Config.new(
   api_key: 'YOUR_API_KEY',
   api_url: 'YOUR_API_URL',
   target: 'us'
@@ -67,17 +67,17 @@ config = Daytona::Config.new(
 package main
 
 import (
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-    config := daytona.Config{
+    config := nightona.Config{
         APIKey: "YOUR_API_KEY",
         APIURL: "YOUR_API_URL",
         Target: "us",
     }
 
-    client := daytona.NewClient(&config)
+    client := nightona.NewClient(&config)
     _ = client
 }
 ```
@@ -86,18 +86,18 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.DaytonaConfig;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.NightonaConfig;
 
 public class App {
     public static void main(String[] args) {
-        DaytonaConfig config = new DaytonaConfig.Builder()
+        NightonaConfig config = new NightonaConfig.Builder()
             .apiKey("YOUR_API_KEY")
             .apiUrl("YOUR_API_URL")
             .target("us")
             .build();
 
-        try (Daytona daytona = new Daytona(config)) {
+        try (Nightona nightona = new Nightona(config)) {
             // Application code
         }
     }
@@ -126,13 +126,13 @@ curl https://app.daytona.io/api/api-keys \
 
 ## Environment variables
 
-Daytona supports environment variables for configuration. The SDK automatically looks for these environment variables:
+Nightona supports environment variables for configuration. The SDK automatically looks for these environment variables:
 
 | Variable              | Description                                | Required |
 | --------------------- | ------------------------------------------ | -------- |
-| **`DAYTONA_API_KEY`** | Your Daytona API key.                      | Yes      |
-| **`DAYTONA_API_URL`** | URL of your Daytona API.                   | No       |
-| **`DAYTONA_TARGET`**  | Daytona Target to create the sandboxes on. | No       |
+| **`NIGHTONA_API_KEY`** | Your Nightona API key.                      | Yes      |
+| **`NIGHTONA_API_URL`** | URL of your Nightona API.                   | No       |
+| **`NIGHTONA_TARGET`**  | Nightona Target to create the sandboxes on. | No       |
 
 ### Shell
 
@@ -142,18 +142,18 @@ Set environment variables in your shell using the following methods:
 <TabItem label="Bash/Zsh" icon="seti:shell">
 
 ```bash
-export DAYTONA_API_KEY=your-api-key
-export DAYTONA_API_URL=https://your-api-url
-export DAYTONA_TARGET=us
+export NIGHTONA_API_KEY=your-api-key
+export NIGHTONA_API_URL=https://your-api-url
+export NIGHTONA_TARGET=us
 ```
 
 </TabItem>
 <TabItem label="Windows PowerShell" icon="seti:powershell">
 
 ```bash
-$env:DAYTONA_API_KEY="your-api-key"
-$env:DAYTONA_API_URL="https://your-api-url"
-$env:DAYTONA_TARGET="us"
+$env:NIGHTONA_API_KEY="your-api-key"
+$env:NIGHTONA_API_URL="https://your-api-url"
+$env:NIGHTONA_TARGET="us"
 ```
 
 </TabItem>
@@ -164,18 +164,18 @@ $env:DAYTONA_TARGET="us"
 Set the environment variables in a `.env` file using the following format:
 
 ```bash
-DAYTONA_API_KEY=YOUR_API_KEY
-DAYTONA_API_URL=https://your_api_url
-DAYTONA_TARGET=us
+NIGHTONA_API_KEY=YOUR_API_KEY
+NIGHTONA_API_URL=https://your_api_url
+NIGHTONA_TARGET=us
 ```
 
 ### Async Python SDK
 
-Daytona provides an additional `DAYTONA_HAPPY_EYEBALLS_DELAY` environment variable for HTTP transport tuning in the async Python SDK. Use it to reduce intermittent async connection failures, such as `aiohttp.ClientConnectorError`, that can occur on dual-stack (IPv4/IPv6) networks.
+Nightona provides an additional `NIGHTONA_HAPPY_EYEBALLS_DELAY` environment variable for HTTP transport tuning in the async Python SDK. Use it to reduce intermittent async connection failures, such as `aiohttp.ClientConnectorError`, that can occur on dual-stack (IPv4/IPv6) networks.
 
 | Variable                           | Description                                                                 | Required |
 | ---------------------------------- | --------------------------------------------------------------------------- | -------- |
-| **`DAYTONA_HAPPY_EYEBALLS_DELAY`** | Controls **`aiohttp`** Happy Eyeballs (IPv4/IPv6 connection race) delay in seconds. | No       |
+| **`NIGHTONA_HAPPY_EYEBALLS_DELAY`** | Controls **`aiohttp`** Happy Eyeballs (IPv4/IPv6 connection race) delay in seconds. | No       |
 
 - unset or empty: use `aiohttp` default behavior
 - `none` (case-insensitive): disable the IPv4/IPv6 race
@@ -183,15 +183,15 @@ Daytona provides an additional `DAYTONA_HAPPY_EYEBALLS_DELAY` environment variab
 
 ```bash
 # Disable Happy Eyeballs
-export DAYTONA_HAPPY_EYEBALLS_DELAY=none
+export NIGHTONA_HAPPY_EYEBALLS_DELAY=none
 
 # Or set an explicit delay in seconds
-export DAYTONA_HAPPY_EYEBALLS_DELAY=0.25
+export NIGHTONA_HAPPY_EYEBALLS_DELAY=0.25
 ```
 
 ## Default values
 
-If no configuration is provided, Daytona will use its built-in default values:
+If no configuration is provided, Nightona will use its built-in default values:
 
 | **Option** | **Value**                           |
 | ---------- | ----------------------------------- |

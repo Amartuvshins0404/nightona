@@ -1,7 +1,7 @@
 {
   "name": "letta-code-agent",
   "version": "1.0.0",
-  "description": "A coding agent powered by Letta Code and Daytona sandboxes.",
+  "description": "A coding agent powered by Letta Code and Nightona sandboxes.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -12,12 +12,12 @@
     "letta",
     "sandbox",
     "typescript",
-    "daytona"
+    "nightona"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@daytona/sdk": "^0.163.0",
+    "@nightona/sdk": "^0.163.0",
     "dotenv": "^16.3.1"
   },
   "devDependencies": {

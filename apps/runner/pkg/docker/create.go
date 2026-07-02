@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -13,14 +13,14 @@ import (
 	"time"
 
 	"github.com/containerd/errdefs"
-	"github.com/daytonaio/common-go/pkg/timer"
-	"github.com/daytonaio/runner/pkg/api/dto"
-	"github.com/daytonaio/runner/pkg/common"
-	"github.com/daytonaio/runner/pkg/models/enums"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/timer"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models/enums"
 	"github.com/docker/docker/api/types/image"
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
 )
 
 func (d *DockerClient) Create(ctx context.Context, sandboxDto dto.CreateSandboxDTO) (string, string, error) {
@@ -85,7 +85,7 @@ func (d *DockerClient) Create(ctx context.Context, sandboxDto dto.CreateSandboxD
 			return "", "", errors.New("sandbox IP not found? Is the sandbox started?")
 		}
 
-		// Android-device sandboxes do not run the daytona daemon; their readiness is
+		// Android-device sandboxes do not run the nightona daemon; their readiness is
 		// signaled by the ADB port accepting TCP connections. Match Start's behavior
 		// by branching on the inspected container label rather than the DTO.
 		if isAndroidDeviceContainer(c) {
@@ -159,7 +159,7 @@ func (d *DockerClient) Create(ctx context.Context, sandboxDto dto.CreateSandboxD
 
 	// Pin GPU sandboxes to a single physical card. The allocator mutex must
 	// be held across ContainerCreate so concurrent creators see the new
-	// daytona.gpu_index label on their next scan and skip this index, but it
+	// nightona.gpu_index label on their next scan and skip this index, but it
 	// must NOT be held across the subsequent Start() / network setup which
 	// can take seconds and would otherwise serialize every GPU sandbox
 	// creation on the runner.
@@ -200,7 +200,7 @@ func (d *DockerClient) Create(ctx context.Context, sandboxDto dto.CreateSandboxD
 		return "", "", err
 	}
 
-	// Container with the daytona.gpu_index label now exists; concurrent
+	// Container with the nightona.gpu_index label now exists; concurrent
 	// allocator scans will see it, so the mutex can be released even though
 	// Start() has not run yet.
 	if releaseGpu != nil {

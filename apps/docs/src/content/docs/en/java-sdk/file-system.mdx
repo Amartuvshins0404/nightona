@@ -26,7 +26,7 @@ Creates a directory in the Sandbox.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if creation fails
+- `io.nightona.sdk.exception.NightonaException` - if creation fails
 
 #### deleteFile()
 ```java
@@ -41,7 +41,7 @@ Deletes a file.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if deletion fails
+- `io.nightona.sdk.exception.NightonaException` - if deletion fails
 
 #### downloadFile()
 ```java
@@ -60,11 +60,11 @@ Downloads a file into memory.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if download or local read fails
+- `io.nightona.sdk.exception.NightonaException` - if download or local read fails
 
 #### downloadFileStream()
 ```java
-public InputStream downloadFileStream(String remotePath) throws io.daytona.sdk.exception.DaytonaException
+public InputStream downloadFileStream(String remotePath) throws io.nightona.sdk.exception.NightonaException
 ```
 
 Downloads a single file from the Sandbox as a stream without buffering the entire file
@@ -83,11 +83,11 @@ The caller is responsible for closing the returned stream.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if the file does not exist or access is denied
+- `io.nightona.sdk.exception.NightonaException` - if the file does not exist or access is denied
 
 #### downloadFileStream()
 ```java
-public InputStream downloadFileStream(String remotePath, int timeoutSeconds) throws io.daytona.sdk.exception.DaytonaException
+public InputStream downloadFileStream(String remotePath, int timeoutSeconds) throws io.nightona.sdk.exception.NightonaException
 ```
 
 Downloads a single file from the Sandbox as a stream without buffering the entire file
@@ -106,11 +106,11 @@ The caller is responsible for closing the returned stream.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if the file does not exist or access is denied
+- `io.nightona.sdk.exception.NightonaException` - if the file does not exist or access is denied
 
 #### downloadFileStream()
 ```java
-public InputStream downloadFileStream(String remotePath, DownloadStreamOptions options) throws io.daytona.sdk.exception.DaytonaException
+public InputStream downloadFileStream(String remotePath, DownloadStreamOptions options) throws io.nightona.sdk.exception.NightonaException
 ```
 
 Downloads a single file from the Sandbox as a stream with configurable options.
@@ -126,7 +126,7 @@ Downloads a single file from the Sandbox as a stream with configurable options.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if download fails
+- `io.nightona.sdk.exception.NightonaException` - if download fails
 
 #### uploadFile()
 ```java
@@ -142,7 +142,7 @@ Uploads in-memory file content to a Sandbox path.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if upload fails
+- `io.nightona.sdk.exception.NightonaException` - if upload fails
 
 #### uploadFileStream()
 ```java
@@ -161,7 +161,7 @@ request, so heap usage stays flat regardless of source size.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if upload fails
+- `io.nightona.sdk.exception.NightonaException` - if upload fails
 
 #### uploadFileStream()
 ```java
@@ -192,7 +192,7 @@ Lists files and directories under a path.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if listing fails
+- `io.nightona.sdk.exception.NightonaException` - if listing fails
 
 #### getFileDetails()
 ```java
@@ -211,7 +211,7 @@ Returns metadata for a single file or directory.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if lookup fails
+- `io.nightona.sdk.exception.NightonaException` - if lookup fails
 
 #### findFiles()
 ```java
@@ -231,7 +231,7 @@ Searches files by content pattern.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if the search request fails
+- `io.nightona.sdk.exception.NightonaException` - if the search request fails
 
 #### searchFiles()
 ```java
@@ -251,7 +251,7 @@ Searches files by file-name pattern.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if the search request fails
+- `io.nightona.sdk.exception.NightonaException` - if the search request fails
 
 #### replaceInFiles()
 ```java
@@ -268,7 +268,7 @@ Performs in-place replacement in multiple files.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if replacement fails
+- `io.nightona.sdk.exception.NightonaException` - if replacement fails
 
 #### moveFiles()
 ```java
@@ -284,4 +284,4 @@ Moves or renames a file or directory.
 
 **Throws**:
 
-- `io.daytona.sdk.exception.DaytonaException` - if move fails
+- `io.nightona.sdk.exception.NightonaException` - if move fails

@@ -33,7 +33,7 @@ const getCurrentDate = () => {
 
 const getVersionHeader = () => {
   return [
-    `# Daytona Documentation`,
+    `# Nightona Documentation`,
     `# ${DOCS_BASE_URL}`,
     `# Generated on: ${getCurrentDate()}`,
   ].join('\n')
@@ -260,15 +260,15 @@ const generateLlmsTxtFile = docsData => {
     getVersionHeader(),
     `# Full documentation: ${DOCS_BASE_URL}/llms-full.txt`,
     '',
-    '# Daytona',
+    '# Nightona',
     '',
-    'Daytona is a secure and elastic infrastructure for running AI-generated code. Daytona provides full composable computers — [sandboxes](https://daytona.io/docs/en/sandboxes.md) — with complete isolation, a dedicated kernel, filesystem, network stack, and allocated vCPU, RAM, and disk.',
+    'Nightona is a secure and elastic infrastructure for running AI-generated code. Nightona provides full composable computers — [sandboxes](https://daytona.io/docs/en/sandboxes.md) — with complete isolation, a dedicated kernel, filesystem, network stack, and allocated vCPU, RAM, and disk.',
     '',
-    'Sandboxes are the core component of the Daytona platform, spinning up in under 90ms from code to execution and running any code in Python, TypeScript, and JavaScript. Built on OCI/Docker compatibility, massive parallelization, and unlimited persistence, sandboxes deliver consistent, predictable environments for agent workflows.',
+    'Sandboxes are the core component of the Nightona platform, spinning up in under 90ms from code to execution and running any code in Python, TypeScript, and JavaScript. Built on OCI/Docker compatibility, massive parallelization, and unlimited persistence, sandboxes deliver consistent, predictable environments for agent workflows.',
     '',
-    'Agents and developers interact with sandboxes programmatically using the Daytona SDKs, API, and CLI. Operations span sandbox lifecycle management, filesystem operations, process and code execution, and runtime configuration. Our stateful environment snapshots enable persistent agent operations across sessions, making Daytona the ideal foundation for AI agent architectures.',
+    'Agents and developers interact with sandboxes programmatically using the Nightona SDKs, API, and CLI. Operations span sandbox lifecycle management, filesystem operations, process and code execution, and runtime configuration. Our stateful environment snapshots enable persistent agent operations across sessions, making Nightona the ideal foundation for AI agent architectures.',
     '',
-    '## Daytona Documentation',
+    '## Nightona Documentation',
     '',
     ...docsData.map(doc => `- [${doc.title}](${PUBLIC_WEB_URL}${doc.url})`),
   ]

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package proxy
@@ -16,10 +16,10 @@ import (
 )
 
 const (
-	SKIP_PREVIEW_WARNING_HEADER      = "X-Daytona-Skip-Preview-Warning"
-	PREVIEW_PAGE_ACCEPT_COOKIE_NAME  = "daytona-preview-page-accepted"
+	SKIP_PREVIEW_WARNING_HEADER      = "X-Nightona-Skip-Preview-Warning"
+	PREVIEW_PAGE_ACCEPT_COOKIE_NAME  = "nightona-preview-page-accepted"
 	PREVIEW_PAGE_COOKIE_MAX_AGE      = 1 * 24 * 60 * 60 // 1 day in seconds
-	ACCEPT_PREVIEW_PAGE_WARNING_PATH = "/accept-daytona-preview-warning"
+	ACCEPT_PREVIEW_PAGE_WARNING_PATH = "/accept-nightona-preview-warning"
 )
 
 // isSafeRedirect permits only same-host absolute URLs (http/https) and
@@ -133,7 +133,7 @@ func serveWarningPage(c *gin.Context, https bool) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Daytona Preview - Warning</title>
+    <title>Nightona Preview - Warning</title>
     <style>
       * {
         margin: 0;
@@ -308,7 +308,7 @@ func serveWarningPage(c *gin.Context, https bool) {
       </div>
     </div>
 
-    <div class="footer">Powered by Daytona - Secure and Elastic Infrastructure for AI-Generated Code</div>
+    <div class="footer">Powered by Nightona - Secure and Elastic Infrastructure for AI-Generated Code</div>
   </body>
 </html>`
 

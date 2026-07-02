@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package main
@@ -8,22 +8,22 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/daytonaio/daytona/cli/cmd"
-	"github.com/daytonaio/daytona/cli/cmd/auth"
-	"github.com/daytonaio/daytona/cli/cmd/mcp"
-	"github.com/daytonaio/daytona/cli/cmd/organization"
-	"github.com/daytonaio/daytona/cli/cmd/sandbox"
-	"github.com/daytonaio/daytona/cli/cmd/snapshot"
-	"github.com/daytonaio/daytona/cli/cmd/volume"
-	"github.com/daytonaio/daytona/cli/internal"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/auth"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/mcp"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/organization"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/sandbox"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/snapshot"
+	"github.com/Amartuvshins0404/nightona/apps/cli/cmd/volume"
+	"github.com/Amartuvshins0404/nightona/apps/cli/internal"
 	"github.com/joho/godotenv"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:               "daytona",
-	Short:             "Daytona CLI",
-	Long:              "Command line interface for Daytona Sandboxes",
+	Use:               "nightona",
+	Short:             "Nightona CLI",
+	Long:              "Command line interface for Nightona Sandboxes",
 	DisableAutoGenTag: true,
 	SilenceUsage:      true,
 	SilenceErrors:     true,
@@ -62,8 +62,8 @@ func init() {
 	rootCmd.AddCommand(createSandboxShortcut(sandbox.PreviewUrlCmd))
 
 	rootCmd.CompletionOptions.HiddenDefaultCmd = true
-	rootCmd.PersistentFlags().BoolP("help", "", false, "help for daytona")
-	rootCmd.Flags().BoolP("version", "v", false, "Display the version of Daytona")
+	rootCmd.PersistentFlags().BoolP("help", "", false, "help for nightona")
+	rootCmd.Flags().BoolP("version", "v", false, "Display the version of Nightona")
 
 	rootCmd.PreRun = func(command *cobra.Command, args []string) {
 		versionFlag, _ := command.Flags().GetBool("version")

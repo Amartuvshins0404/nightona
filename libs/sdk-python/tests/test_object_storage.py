@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -10,9 +10,9 @@ import pytest
 
 
 def _make_storage():
-    from daytona._sync.object_storage import ObjectStorage
+    from nightona._sync.object_storage import ObjectStorage
 
-    with patch("daytona._sync.object_storage.S3Store") as mock_store_cls:
+    with patch("nightona._sync.object_storage.S3Store") as mock_store_cls:
         mock_store = MagicMock()
         mock_store_cls.return_value = mock_store
         storage = ObjectStorage("https://s3.example", "key", "secret", "token", bucket_name="bucket")
@@ -27,7 +27,7 @@ class TestObjectStorage:
             storage.upload("/missing/path", "org-1")
 
     def test_compute_archive_base_path_trims_root_prefixes(self):
-        from daytona._sync.object_storage import ObjectStorage
+        from nightona._sync.object_storage import ObjectStorage
 
         assert ObjectStorage.compute_archive_base_path("/workspace/project") == "workspace/project"
         windows_style = ObjectStorage.compute_archive_base_path(r"\\workspace\\project")

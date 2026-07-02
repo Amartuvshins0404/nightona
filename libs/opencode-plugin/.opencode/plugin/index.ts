@@ -1,11 +1,11 @@
 /**
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
- * Main entry point for the OpenCode Daytona plugin.
- * Re-exports the default plugin from daytona.
+ * Main entry point for the OpenCode Nightona plugin.
+ * Re-exports the default plugin from nightona.
  */
 
-export { default } from './daytona/index.js'
+export { default } from './nightona/index.js'

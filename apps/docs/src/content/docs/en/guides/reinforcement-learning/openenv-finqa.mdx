@@ -1,6 +1,6 @@
 ---
-title: Multi-Turn RL Training with OpenEnv and Daytona
-description: Use parallel Daytona sandboxes with OpenEnv's FinQA environment to train Qwen3-14B on financial question answering via GRPO.
+title: Multi-Turn RL Training with OpenEnv and Nightona
+description: Use parallel Nightona sandboxes with OpenEnv's FinQA environment to train Qwen3-14B on financial question answering via GRPO.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
@@ -9,19 +9,19 @@ import { Image } from 'astro:assets'
 
 import rewardsPlot from '../../../../../assets/docs/images/openenv-finqa-rewards-plot.png'
 
-Reinforcement learning from verified rewards is driving rapid progress in reasoning, tool use, and code generation. Agents interact with environments that provide ground-truth feedback, but this requires scalable, isolated environments that can run in parallel. [OpenEnv](https://github.com/meta-pytorch/OpenEnv) is a framework for building and serving RL environments that addresses this, decoupling the environment from the training loop so each instance can run in its own container. It has native support for Daytona sandboxes, enabling parallel execution across many isolated instances.
+Reinforcement learning from verified rewards is driving rapid progress in reasoning, tool use, and code generation. Agents interact with environments that provide ground-truth feedback, but this requires scalable, isolated environments that can run in parallel. [OpenEnv](https://github.com/meta-pytorch/OpenEnv) is a framework for building and serving RL environments that addresses this, decoupling the environment from the training loop so each instance can run in its own container. It has native support for Nightona sandboxes, enabling parallel execution across many isolated instances.
 
-This guide demonstrates the OpenEnv + Daytona integration through [FinQA](https://huggingface.co/datasets/snorkelai/finqa-data), a multi-turn, tool-calling environment contributed by [Snorkel AI](https://snorkel.ai/) to OpenEnv. FinQA presents the model with financial questions based on SEC 10-K filings and gives it SQL tools to explore the underlying data before submitting an answer.
+This guide demonstrates the OpenEnv + Nightona integration through [FinQA](https://huggingface.co/datasets/snorkelai/finqa-data), a multi-turn, tool-calling environment contributed by [Snorkel AI](https://snorkel.ai/) to OpenEnv. FinQA presents the model with financial questions based on SEC 10-K filings and gives it SQL tools to explore the underlying data before submitting an answer.
 
 ---
 
-### 1. OpenEnv and Daytona
+### 1. OpenEnv and Nightona
 
 OpenEnv environments are standalone servers that expose a Gymnasium-style API (`reset`, `step`, `state`) over the network. The environment logic (e.g. a FinQA database with SQL tools, a code execution sandbox, a web browsing agent) runs inside a container; the training loop connects as a remote client. This separation means the environment and the trainer don't need to share a process, a machine, or even a language; they communicate over a standard protocol.
 
 In MCP-enabled environments like FinQA, tools are exposed via MCP (Model Context Protocol) over JSON-RPC. Clients discover available tools at runtime via `tools/list` and invoke them via `tools/call`. This is how the model's tool calls in the training loop get routed to the actual environment running inside a container.
 
-OpenEnv has a pluggable provider model for _where_ environments run: local Docker, Docker Swarm, or Daytona. The `DaytonaProvider` launches each environment instance as a Daytona sandbox, which gives you API-driven lifecycle management and the ability to run thousands of instances in parallel without local infrastructure. In the training loop below, each sandbox is an independent FinQA environment with its own persistent WebSocket connection.
+OpenEnv has a pluggable provider model for _where_ environments run: local Docker, Docker Swarm, or Nightona. The `NightonaProvider` launches each environment instance as a Nightona sandbox, which gives you API-driven lifecycle management and the ability to run thousands of instances in parallel without local infrastructure. In the training loop below, each sandbox is an independent FinQA environment with its own persistent WebSocket connection.
 
 ### 2. Workflow Overview
 
@@ -54,11 +54,11 @@ The available tools are:
 The full training requires 4 GPUs with 80GB+ VRAM each (2 for vLLM inference, 2 for training). The single-episode demo (`run.py`) does not require a GPU.
 :::
 
-Clone the [Daytona repository](https://github.com/daytonaio/daytona.git) and navigate to the example directory:
+Clone the [Nightona repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/python/reinforcement-learning/openenv
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/python/reinforcement-learning/openenv
 ```
 
 #### Create Virtual Environment
@@ -80,7 +80,7 @@ pip install -e .
 
 This installs:
 
-- `daytona` - Daytona SDK for sandbox management
+- `nightona` - Nightona SDK for sandbox management
 - `openenv-core` - OpenEnv runtime (WebSocket-based RL environment protocol)
 - `openenv-finqa-env` - The FinQA environment client (`FinQAEnv`, `CallToolAction`)
 - `python-dotenv` - Environment variable management
@@ -95,15 +95,15 @@ This adds: `torch`, `transformers`, `vllm`, `peft` (for LoRA), and `numpy`. See 
 
 #### Configure Environment
 
-Get your Daytona API key from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys) and create a `.env` file:
+Get your Nightona API key from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys) and create a `.env` file:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_api_key
+NIGHTONA_API_KEY=your_nightona_api_key
 ```
 
 #### Build the Snapshot
 
-Before running any episodes, build a Daytona snapshot that pre-packages the FinQA environment server and dataset:
+Before running any episodes, build a Nightona snapshot that pre-packages the FinQA environment server and dataset:
 
 ```bash
 python build_snapshot.py
@@ -111,7 +111,7 @@ python build_snapshot.py
 python build_snapshot.py --snapshot-name my-finqa
 ```
 
-This uses Daytona's declarative Image API to clone the FinQA environment from the OpenEnv repo, install its dependencies, and pre-download the FinQA dataset from HuggingFace, all baked into a single container image for fast sandbox startup.
+This uses Nightona's declarative Image API to clone the FinQA environment from the OpenEnv repo, install its dependencies, and pre-download the FinQA dataset from HuggingFace, all baked into a single container image for fast sandbox startup.
 
 :::note
 If you use a custom snapshot name, you'll need to update the `SNAPSHOT` constant in `run.py` and pass the `--snapshot` flag when running `train.py`.
@@ -119,7 +119,7 @@ If you use a custom snapshot name, you'll need to update the `SNAPSHOT` constant
 
 ### 4. Running a Single Episode
 
-The `run.py` script demonstrates the full OpenEnv + Daytona integration in a single episode. Run it with:
+The `run.py` script demonstrates the full OpenEnv + Nightona integration in a single episode. Run it with:
 
 ```bash
 python run.py
@@ -129,15 +129,15 @@ Let's walk through the key components.
 
 #### Sandbox Creation
 
-The `DaytonaProvider` from OpenEnv wraps the Daytona SDK, creating a sandbox from the pre-built snapshot and waiting for the FinQA server to become healthy:
+The `NightonaProvider` from OpenEnv wraps the Nightona SDK, creating a sandbox from the pre-built snapshot and waiting for the FinQA server to become healthy:
 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```python
-    from openenv.core.containers.runtime.daytona_provider import DaytonaProvider
+    from openenv.core.containers.runtime.nightona_provider import NightonaProvider
 
     def create_sandbox():
-        provider = DaytonaProvider(auto_stop_interval=0, cmd=SERVER_CMD)
+        provider = NightonaProvider(auto_stop_interval=0, cmd=SERVER_CMD)
         url = provider.start_container(f"snapshot:{SNAPSHOT}")
 
         provider.wait_for_ready(url, 120)
@@ -335,7 +335,7 @@ The training creates hundreds of sandboxes upfront from the pre-built snapshot, 
 
         async def create_one(idx: int):
             async with semaphore:
-                provider = DaytonaProvider(auto_stop_interval=0, cmd=SERVER_CMD)
+                provider = NightonaProvider(auto_stop_interval=0, cmd=SERVER_CMD)
                 url = await asyncio.to_thread(
                     provider.start_container, f"snapshot:{snapshot_name}"
                 )
@@ -1016,12 +1016,12 @@ The `train.py` script accepts the following command-line arguments:
 
 | Parameter                  | Default          | Description                                    |
 | -------------------------- | ---------------- | ---------------------------------------------- |
-| `--sandboxes`              | 500              | Number of concurrent Daytona sandboxes         |
+| `--sandboxes`              | 500              | Number of concurrent Nightona sandboxes         |
 | `--iterations`             | 10               | Training iterations                            |
 | `--group-size`             | 6                | Episodes per prompt group for GRPO             |
 | `--target-groups-per-iter` | 100              | Target number of complete groups per iteration |
 | `--max-rollout-rounds`     | 8                | Max rollout rounds per iteration               |
-| `--snapshot`               | `openenv-finqa`  | Daytona snapshot name                          |
+| `--snapshot`               | `openenv-finqa`  | Nightona snapshot name                          |
 | `--model`                  | `Qwen/Qwen3-14B` | HuggingFace model ID                           |
 | `--lr`                     | 8e-5             | Learning rate                                  |
 | `--temperature`            | 1.0              | Sampling temperature                           |

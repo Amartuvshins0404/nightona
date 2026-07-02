@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Tabs, TabsContent, TabsTrigger } from '@/components/ui/tabs'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import type { Sandbox } from '@daytona/api-client'
+import type { Sandbox } from '@nightona/api-client'
 import { ChevronsRight } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { SandboxActionsSegmented } from '../SandboxActionsSegmented'

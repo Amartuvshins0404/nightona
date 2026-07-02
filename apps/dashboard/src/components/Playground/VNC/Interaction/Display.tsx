@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,8 +10,8 @@ import {
 } from '@/contexts/PlaygroundContext'
 import { DisplayActions } from '@/enums/Playground'
 import { usePlayground } from '@/hooks/usePlayground'
-import { DisplayInfoResponse, WindowsResponse } from '@daytona/api-client'
-import { ComputerUse } from '@daytona/sdk'
+import { DisplayInfoResponse, WindowsResponse } from '@nightona/api-client'
+import { ComputerUse } from '@nightona/sdk'
 import PlaygroundActionForm from '../../ActionForm'
 
 const VNCDisplayOperations: React.FC<VNCInteractionOptionsSectionComponentProps> = ({

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -8,14 +8,14 @@ import (
 	"log"
 	"time"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/options"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/options"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	// Create Daytona client
-	client, err := daytona.NewClient()
+	// Create Nightona client
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
 	// Create LSP server for Python
 	log.Println("\nCreating LSP server for Python...")
-	lsp := daytona.NewLspServerService(sandbox.ToolboxClient, types.LspLanguagePython, workDir, client.Otel)
+	lsp := nightona.NewLspServerService(sandbox.ToolboxClient, types.LspLanguagePython, workDir, client.Otel)
 
 	// Start the LSP server
 	log.Println("Starting LSP server...")

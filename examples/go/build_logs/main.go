@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -9,16 +9,16 @@ import (
 	"log"
 	"time"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/options"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/options"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 	"github.com/google/uuid"
 )
 
 func main() {
-	// Create a new Daytona client using environment variables
-	// Set DAYTONA_API_KEY before running
-	client, err := daytona.NewClient()
+	// Create a new Nightona client using environment variables
+	// Set NIGHTONA_API_KEY before running
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -33,10 +33,10 @@ func main() {
 }
 
 // Example 1: Simple log streaming with direct output
-func simpleLogStreaming(ctx context.Context, client *daytona.Client) {
+func simpleLogStreaming(ctx context.Context, client *nightona.Client) {
 	log.Println("Creating sandbox with simple log streaming...")
 
-	image := daytona.Base("python:3.12-slim").
+	image := nightona.Base("python:3.12-slim").
 		PipInstall([]string{"requests"}, options.WithFindLinks("https://pypi.org/simple")).
 		Workdir("/app")
 

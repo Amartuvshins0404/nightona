@@ -1,29 +1,29 @@
 ---
-title: Using the OpenAI Agents SDK with Daytona Sandboxes
-description: "Core patterns for using the OpenAI Agents SDK with Daytona sandboxes: shell access, handoffs, memory, and human-in-the-loop workflows."
+title: Using the OpenAI Agents SDK with Nightona Sandboxes
+description: "Core patterns for using the OpenAI Agents SDK with Nightona sandboxes: shell access, handoffs, memory, and human-in-the-loop workflows."
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This guide walks through the core patterns for running AI agents in isolated cloud sandboxes using the [OpenAI Agents SDK](https://developers.openai.com/api/docs/guides/agents) and Daytona. We start from a simple example and progressively layer on multi-agent handoffs, memory, structured outputs, and human-in-the-loop workflows.
+This guide walks through the core patterns for running AI agents in isolated cloud sandboxes using the [OpenAI Agents SDK](https://developers.openai.com/api/docs/guides/agents) and Nightona. We start from a simple example and progressively layer on multi-agent handoffs, memory, structured outputs, and human-in-the-loop workflows.
 
-See also the [Text-to-SQL Agent with the OpenAI Agents SDK and Daytona](/docs/en/guides/openai-agents/text-to-sql-agent-openai-agents-sdk) guide for a complete project built on these patterns.
+See also the [Text-to-SQL Agent with the OpenAI Agents SDK and Nightona](/docs/en/guides/openai-agents/text-to-sql-agent-openai-agents-sdk) guide for a complete project built on these patterns.
 
 ---
 
 ## Prerequisites
 
-Install the Agents SDK with the Daytona extra:
+Install the Agents SDK with the Nightona extra:
 
 ```shell
-pip install openai-agents[daytona]
+pip install openai-agents[nightona]
 ```
 
 Set your environment variables:
 
 ```shell
 export OPENAI_API_KEY=...
-export DAYTONA_API_KEY=...        # from https://app.daytona.io/dashboard/keys
+export NIGHTONA_API_KEY=...        # from https://app.daytona.io/dashboard/keys
 ```
 
 ## 1\. Give Your Agent a Shell
@@ -40,13 +40,13 @@ The basic pattern: declare a workspace, give an agent shell access, and let it e
     from agents.sandbox import Manifest, SandboxAgent, SandboxRunConfig
     from agents.sandbox.capabilities import Shell
     from agents.sandbox.entries import File
-    from agents.extensions.sandbox import DaytonaSandboxClient, DaytonaSandboxClientOptions
+    from agents.extensions.sandbox import NightonaSandboxClient, NightonaSandboxClientOptions
 
-    DAYTONA_ROOT = "/home/daytona/workspace"
+    NIGHTONA_ROOT = "/home/nightona/workspace"
 
     # Declare workspace contents declaratively
-    # Use Daytona's home directory as root instead of the default /workspace.
-    manifest = Manifest(root=DAYTONA_ROOT, entries={
+    # Use Nightona's home directory as root instead of the default /workspace.
+    manifest = Manifest(root=NIGHTONA_ROOT, entries={
         "data/sales.csv": File(content=b"quarter,revenue\nQ1,3200000\nQ2,3600000\nQ3,4200000\nQ4,3900000"),
         "requirements.txt": File(content=b"pandas\nmatplotlib"),
     })
@@ -62,9 +62,9 @@ The basic pattern: declare a workspace, give an agent shell access, and let it e
         capabilities=[Shell()],
     )
 
-    client = DaytonaSandboxClient()
+    client = NightonaSandboxClient()
     run_config = RunConfig(
-        sandbox=SandboxRunConfig(client=client, options=DaytonaSandboxClientOptions())
+        sandbox=SandboxRunConfig(client=client, options=NightonaSandboxClientOptions())
     )
 
     result = Runner.run_streamed(
@@ -106,7 +106,7 @@ Q3 had the highest revenue at $4.2M. I've saved a trend chart to chart.png.
 - **`Manifest`** describes the workspace declaratively: files, directories, and environment variables (via `environment=Environment(value={"API_KEY": "..."})`, where `Environment` is imported from `agents.sandbox.manifest`). You can also pass `Manifest(entries={})` for an empty workspace and let the agent create everything from scratch.  
 - **`SandboxAgent`** adds `default_manifest` and `capabilities` on top of a regular `Agent`. You can still pass `tools=` (function tools) and `mcp_servers=` alongside capabilities.  
 - **`Shell`** gives the model an `exec_command` tool that can run `cat`, `ls`, `find`, `grep`, `pip install`, `python script.py`, etc. inside the sandbox. The agent can read *and* write: creating files, installing packages, and running programs are all fair game.  
-- **`DaytonaSandboxClient`** provisions a remote cloud sandbox.  
+- **`NightonaSandboxClient`** provisions a remote cloud sandbox.  
 - **`Runner.run_streamed`** streams text token-by-token and emits structured events when tools are called.
 
 The sandbox is fully isolated, so there's no risk to your host machine. The agent has full Linux access inside it.
@@ -118,8 +118,8 @@ The previous example runs a single question and exits. In practice you'll often 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```py
-    client = DaytonaSandboxClient()
-    session = await client.create(manifest=manifest, options=DaytonaSandboxClientOptions())
+    client = NightonaSandboxClient()
+    session = await client.create(manifest=manifest, options=NightonaSandboxClientOptions())
     await session.start()
 
     run_config = RunConfig(sandbox=SandboxRunConfig(session=session))
@@ -153,34 +153,34 @@ This pattern composes with everything else in this guide. You can add handoffs, 
 
 ## 3\. Pause and Resume
 
-By default, when a session shuts down the sandbox is deleted. Setting `pause_on_exit=True` changes this: on shutdown, the SDK calls Daytona's pause API (`sandbox.stop()`) instead of `sandbox.delete()`. The sandbox stays on Daytona's infrastructure in a paused state, preserving the filesystem (including any installed packages).
+By default, when a session shuts down the sandbox is deleted. Setting `pause_on_exit=True` changes this: on shutdown, the SDK calls Nightona's pause API (`sandbox.stop()`) instead of `sandbox.delete()`. The sandbox stays on Nightona's infrastructure in a paused state, preserving the filesystem (including any installed packages).
 
 To reconnect on the next run, you need two things:
 
-1. **Daytona keeps the sandbox alive**, paused on their side, identifiable by its sandbox ID.  
-2. **Your code remembers the sandbox ID**. The SDK captures this in `DaytonaSandboxSessionState`, a Pydantic model you serialize to disk.
+1. **Nightona keeps the sandbox alive**, paused on their side, identifiable by its sandbox ID.  
+2. **Your code remembers the sandbox ID**. The SDK captures this in `NightonaSandboxSessionState`, a Pydantic model you serialize to disk.
 
-When you call `client.resume(saved_state)`, the SDK uses the `sandbox_id` from that state to call `daytona.get(sandbox_id)`. If the sandbox is still there, it calls `sandbox.start()` to wake it. The workspace is already populated, so it skips full manifest apply but still reapplies ephemeral state (like environment variables) and restores snapshots if needed. If the sandbox has expired or been deleted, `resume()` falls through and creates a fresh one from the same config.
+When you call `client.resume(saved_state)`, the SDK uses the `sandbox_id` from that state to call `nightona.get(sandbox_id)`. If the sandbox is still there, it calls `sandbox.start()` to wake it. The workspace is already populated, so it skips full manifest apply but still reapplies ephemeral state (like environment variables) and restores snapshots if needed. If the sandbox has expired or been deleted, `resume()` falls through and creates a fresh one from the same config.
 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```py
     from pathlib import Path
     from agents.extensions.sandbox import (
-        DaytonaSandboxClient,
-        DaytonaSandboxClientOptions,
-        DaytonaSandboxSessionState,
+        NightonaSandboxClient,
+        NightonaSandboxClientOptions,
+        NightonaSandboxSessionState,
     )
 
     STATE_FILE = Path(".session_state.json")
 
-    client = DaytonaSandboxClient()
-    options = DaytonaSandboxClientOptions(pause_on_exit=True)
+    client = NightonaSandboxClient()
+    options = NightonaSandboxClientOptions(pause_on_exit=True)
 
     # Try to resume a previously paused sandbox
     session = None
     if STATE_FILE.exists():
-        saved = DaytonaSandboxSessionState.model_validate_json(STATE_FILE.read_text())
+        saved = NightonaSandboxSessionState.model_validate_json(STATE_FILE.read_text())
         old_sandbox_id = saved.sandbox_id  # snapshot before resume() mutates it
         try:
             session = await client.resume(saved)
@@ -206,7 +206,7 @@ When you call `client.resume(saved_state)`, the SDK uses the `sandbox_id` from t
   </TabItem>
 </Tabs>
 
-The Agents SDK also has its own **workspace persistence** mechanism (`persist_workspace`/`hydrate_workspace`) that tars up workspace files and saves them externally (local disk, S3). This is useful when the sandbox itself is gone and you need to restore contents into a new one. It's distinct from **Daytona snapshots** (`sandbox_snapshot_name`), which are pre-built sandbox templates you create sandboxes *from*.
+The Agents SDK also has its own **workspace persistence** mechanism (`persist_workspace`/`hydrate_workspace`) that tars up workspace files and saves them externally (local disk, S3). This is useful when the sandbox itself is gone and you need to restore contents into a new one. It's distinct from **Nightona snapshots** (`sandbox_snapshot_name`), which are pre-built sandbox templates you create sandboxes *from*.
 
 ## 4\. Handoffs: Routing Work Between Agents
 
@@ -220,9 +220,9 @@ A `SandboxAgent` can hand off to a regular `Agent` and vice versa. Not every age
     from agents.sandbox import Manifest, SandboxAgent, SandboxRunConfig
     from agents.sandbox.capabilities import Shell
     from agents.sandbox.entries import File
-    from agents.extensions.sandbox import DaytonaSandboxClient, DaytonaSandboxClientOptions
+    from agents.extensions.sandbox import NightonaSandboxClient, NightonaSandboxClientOptions
 
-    manifest = Manifest(root="/home/daytona/workspace", entries={
+    manifest = Manifest(root="/home/nightona/workspace", entries={
         "data/sales.csv": File(content=b"quarter,region,revenue\nQ1,NA,3200000\nQ1,EU,2100000\n..."),
     })
 
@@ -246,11 +246,11 @@ A `SandboxAgent` can hand off to a regular `Agent` and vice versa. Not every age
         handoffs=[copywriter],
     )
 
-    client = DaytonaSandboxClient()
+    client = NightonaSandboxClient()
     result = await Runner.run(
         analyst,
         "Summarize Q1 performance by region for the client.",
-        run_config=RunConfig(sandbox=SandboxRunConfig(client=client, options=DaytonaSandboxClientOptions())),
+        run_config=RunConfig(sandbox=SandboxRunConfig(client=client, options=NightonaSandboxClientOptions())),
     )
     await client.close()
     print(result.final_output)  # a polished email, written by the copywriter
@@ -318,7 +318,7 @@ Instead of handoffs (sequential), you can run sandbox agents as parallel tools u
     )
 
     # Orchestrator calls them like tools, each in its own sandbox
-    client = DaytonaSandboxClient()
+    client = NightonaSandboxClient()
     orchestrator = Agent(
         name="Deal Desk Coordinator",
         instructions="Use both review tools, then synthesize a recommendation.",
@@ -327,13 +327,13 @@ Instead of handoffs (sequential), you can run sandbox agents as parallel tools u
                 tool_name="review_pricing",
                 tool_description="Review the pricing packet.",
                 custom_output_extractor=structured_output_extractor,
-                run_config=RunConfig(sandbox=SandboxRunConfig(client=client, options=DaytonaSandboxClientOptions())),
+                run_config=RunConfig(sandbox=SandboxRunConfig(client=client, options=NightonaSandboxClientOptions())),
             ),
             rollout_agent.as_tool(
                 tool_name="review_rollout",
                 tool_description="Review the rollout plan.",
                 custom_output_extractor=structured_output_extractor,
-                run_config=RunConfig(sandbox=SandboxRunConfig(client=client, options=DaytonaSandboxClientOptions())),
+                run_config=RunConfig(sandbox=SandboxRunConfig(client=client, options=NightonaSandboxClientOptions())),
             ),
         ],
     )
@@ -465,11 +465,11 @@ Capabilities are plugins that inject tools and instructions into a sandbox agent
   </TabItem>
 </Tabs>
 
-**Note:** `resolve_exposed_port` requires the port to be predeclared in the client options, e.g. `DaytonaSandboxClientOptions(exposed_ports=(8080,))`. Without this, the call raises `ExposedPortUnavailableError`.
+**Note:** `resolve_exposed_port` requires the port to be predeclared in the client options, e.g. `NightonaSandboxClientOptions(exposed_ports=(8080,))`. Without this, the call raises `ExposedPortUnavailableError`.
 
 Use this to expose domain-specific operations (database queries, API testing, cloud storage access) as tools the agent can call.
 
-## Quick Reference: DaytonaSandboxClientOptions
+## Quick Reference: NightonaSandboxClientOptions
 
 | Option | Default | Description |
 | :---- | :---- | :---- |
@@ -495,4 +495,4 @@ Use this to expose domain-specific operations (database queries, API testing, cl
 
 ## What's Next
 
-For a complete project that puts these patterns to work, see [**Building a Text-to-SQL Agent with OpenAI Agents SDK and Daytona**](/docs/en/guides/openai-agents/text-to-sql-agent-openai-agents-sdk), a conversational agent that queries real federal spending data, combining multi-turn conversations, pause/resume, memory, and preview URLs.
+For a complete project that puts these patterns to work, see [**Building a Text-to-SQL Agent with OpenAI Agents SDK and Nightona**](/docs/en/guides/openai-agents/text-to-sql-agent-openai-agents-sdk), a conversational agent that queries real federal spending data, combining multi-turn conversations, pause/resume, memory, and preview URLs.

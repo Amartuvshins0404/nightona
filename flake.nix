@@ -1,5 +1,5 @@
 {
-  description = "Daytona development environments";
+  description = "Nightona development environments";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -158,7 +158,7 @@
 
           # Full monorepo — every language and tool
           default = pkgs.mkShell {
-            name = "daytona";
+            name = "nightona";
             packages = commonPkgs ++ goPkgs ++ nodePkgs ++ pythonPkgs ++ rubyPkgs ++ javaPkgs;
             buildInputs = bpfHeaderInputs;
             # bpf2go invokes clang with `-target bpf`; the cc-wrapper's hardening
@@ -175,7 +175,7 @@
 
           # Go services and libraries only
           go = pkgs.mkShell {
-            name = "daytona-go";
+            name = "nightona-go";
             packages = commonPkgs ++ goPkgs;
             buildInputs = bpfHeaderInputs;
             # bpf2go invokes clang with `-target bpf`; the cc-wrapper's hardening
@@ -186,28 +186,28 @@
 
           # TypeScript / Node.js apps and libraries only
           node = pkgs.mkShell {
-            name = "daytona-node";
+            name = "nightona-node";
             packages = commonPkgs ++ nodePkgs;
             shellHook = nodeShellHook;
           };
 
           # Python SDKs and libraries only
           python = pkgs.mkShell {
-            name = "daytona-python";
+            name = "nightona-python";
             packages = commonPkgs ++ pythonPkgs;
             shellHook = pythonShellHook;
           };
 
           # Ruby SDKs and libraries only
           ruby = pkgs.mkShell {
-            name = "daytona-ruby";
+            name = "nightona-ruby";
             packages = commonPkgs ++ rubyPkgs;
             shellHook = rubyShellHook;
           };
 
           # Java SDKs and libraries only
           java = pkgs.mkShell {
-            name = "daytona-java";
+            name = "nightona-java";
             packages = commonPkgs ++ javaPkgs;
             shellHook = javaShellHook;
           };

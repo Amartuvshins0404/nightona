@@ -1,23 +1,23 @@
 ---
-title: Run Claude Code in a Daytona Sandbox via CLI
-description: Learn how to run Claude Code inside a Daytona sandbox using the Daytona CLI for secure and isolated task execution.
+title: Run Claude Code in a Nightona Sandbox via CLI
+description: Learn how to run Claude Code inside a Nightona sandbox using the Nightona CLI for secure and isolated task execution.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This guide walks you through running Claude Code inside a Daytona sandbox using the Daytona CLI.
+This guide walks you through running Claude Code inside a Nightona sandbox using the Nightona CLI.
 
 ### Prerequisites
 
-- Daytona account and API key (Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys))
+- Nightona account and API key (Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys))
 - Local terminal (macOS, Linux, or Windows)
 
-### Install the Daytona CLI
+### Install the Nightona CLI
 
 <Tabs syncKey="os">
   <TabItem label="Mac/Linux">
     ```bash 
-    brew install daytonaio/cli/daytona
+    brew install daytonaio/cli/nightona
     ```
   </TabItem>
   <TabItem label="Windows">
@@ -28,31 +28,31 @@ This guide walks you through running Claude Code inside a Daytona sandbox using 
 </Tabs>
 
 :::note
-Already have the CLI? Check your version with `daytona --version`. If it's below **0.135.0**, [upgrade to the latest version](https://www.daytona.io/docs/en/getting-started/#cli).
+Already have the CLI? Check your version with `nightona --version`. If it's below **0.135.0**, [upgrade to the latest version](https://www.daytona.io/docs/en/getting-started/#cli).
 :::
 
-### Authenticate with Daytona
+### Authenticate with Nightona
 
-Log in to your Daytona account using your API key:
+Log in to your Nightona account using your API key:
 
 ```bash
-daytona login --api-key=YOUR_API_KEY
+nightona login --api-key=YOUR_API_KEY
 ```
 
-Replace `YOUR_API_KEY` with your actual Daytona API key.
+Replace `YOUR_API_KEY` with your actual Nightona API key.
 
 ### Create a Sandbox
 
 Create a new sandbox for running Claude Code:
 
 ```bash
-daytona sandbox create --name claude-sandbox
+nightona sandbox create --name claude-sandbox
 ```
 
-This creates a sandbox named `claude-sandbox`, visible in your [Dashboard](https://app.daytona.io/dashboard/sandboxes). The default Daytona snapshot includes Claude Code, so the command above is all you need.
+This creates a sandbox named `claude-sandbox`, visible in your [Dashboard](https://app.daytona.io/dashboard/sandboxes). The default Nightona snapshot includes Claude Code, so the command above is all you need.
 
 :::tip
-Need more power? Pass `--snapshot daytona-large` or `--snapshot daytona-medium` flag to increase your sandbox resources. See [default snapshots](https://www.daytona.io/docs/en/snapshots/#default-snapshots) for resource details.
+Need more power? Pass `--snapshot nightona-large` or `--snapshot nightona-medium` flag to increase your sandbox resources. See [default snapshots](https://www.daytona.io/docs/en/snapshots/#default-snapshots) for resource details.
 :::
 
 ### Connect to the Sandbox
@@ -60,7 +60,7 @@ Need more power? Pass `--snapshot daytona-large` or `--snapshot daytona-medium` 
 SSH into your sandbox:
 
 ```bash
-daytona ssh claude-sandbox
+nightona ssh claude-sandbox
 ```
 
 You now have an interactive terminal session inside the sandbox.

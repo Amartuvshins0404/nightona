@@ -4,51 +4,51 @@ title: はじめに
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona SDKはDaytonaと連携するための公式[Python](/docs/ja/python-sdk)および[TypeScript](/docs/ja/typescript-sdk)インターフェースを提供し、開発環境をプログラムで管理し、コードを実行できます。[Python SDK](/docs/ja/python-sdk)は同期・非同期の両方のプログラミングモデルをサポートしており、非同期クラスには`Async`の接頭辞が付きます。
+Nightona SDKはNightonaと連携するための公式[Python](/docs/ja/python-sdk)および[TypeScript](/docs/ja/typescript-sdk)インターフェースを提供し、開発環境をプログラムで管理し、コードを実行できます。[Python SDK](/docs/ja/python-sdk)は同期・非同期の両方のプログラミングモデルをサポートしており、非同期クラスには`Async`の接頭辞が付きます。
 
-手順に従って、AIエージェント向けの最初のDaytona サンドボックス（Daytonaが管理する隔離された一時的な実行環境）を作成・実行しましょう。
+手順に従って、AIエージェント向けの最初のNightona サンドボックス（Nightonaが管理する隔離された一時的な実行環境）を作成・実行しましょう。
 
 環境変数の設定やステージング環境での実験的機能へのアクセスなど、追加の設定手順については[Configuration](/docs/ja/configuration)を参照してください。
 
-## Daytona SDK をインストールする
+## Nightona SDK をインストールする
 
-Daytona は、Daytona プラットフォームと連携するための公式 Python および TypeScript の SDK を提供しています。お好みの方法で SDK をインストールしてください。
+Nightona は、Nightona プラットフォームと連携するための公式 Python および TypeScript の SDK を提供しています。お好みの方法で SDK をインストールしてください。
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
     ```bash
-    pip install daytona
+    pip install nightona
     ```
   </TabItem>
 
   <TabItem label="TypeScript" icon="seti:typescript">
     ```bash
     # npm を使用
-    npm install @daytona/sdk
+    npm install @nightona/sdk
 
     # yarn を使用
-    yarn add @daytona/sdk
+    yarn add @nightona/sdk
 
     # pnpm を使用
-    pnpm add @daytona/sdk
+    pnpm add @nightona/sdk
     ```
   </TabItem>
 </Tabs>
 
 ## サンドボックス内でコードを実行する
 
-次のコードを実行して、Daytona のサンドボックスを作成し、コマンドを実行します。
+次のコードを実行して、Nightona のサンドボックスを作成し、コマンドを実行します。
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
     ```python
-    from daytona import Daytona, DaytonaConfig
+    from nightona import Nightona, NightonaConfig
 
-    # Daytona クライアントを初期化
-    daytona = Daytona(DaytonaConfig(api_key="YOUR_API_KEY"))
+    # Nightona クライアントを初期化
+    nightona = Nightona(NightonaConfig(api_key="YOUR_API_KEY"))
 
     # サンドボックスのインスタンスを作成
-    sandbox = daytona.create()
+    sandbox = nightona.create()
 
     # サンドボックス内で安全にコードを実行
     response = sandbox.process.code_run('print("Sum of 3 and 4 is " + str(3 + 4))')
@@ -64,18 +64,18 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
-    import { Daytona } from '@daytona/sdk'
+    import { Nightona } from '@nightona/sdk'
 
     async function main() {
-      // Daytona クライアントを初期化
-      const daytona = new Daytona({
+      // Nightona クライアントを初期化
+      const nightona = new Nightona({
         apiKey: 'YOUR_API_KEY',
       })
 
       let sandbox;
       try {
         // サンドボックスのインスタンスを作成
-        sandbox = await daytona.create({
+        sandbox = await nightona.create({
           language: "python",
         });
         // サンドボックス内で安全にコードを実行
@@ -119,16 +119,16 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
 ## アプリをプレビュー
 
-次のスニペットは、シンプルな Flask アプリを含むファイルを Daytona のサンドボックスにアップロードします。Web サーバーはポート `3000` で起動し、提供されたプレビューURLからアクセスできます。
+次のスニペットは、シンプルな Flask アプリを含むファイルを Nightona のサンドボックスにアップロードします。Web サーバーはポート `3000` で起動し、提供されたプレビューURLからアクセスできます。
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
     ```python
-    from daytona import Daytona, DaytonaConfig, SessionExecuteRequest
+    from nightona import Nightona, NightonaConfig, SessionExecuteRequest
 
-    daytona = Daytona(DaytonaConfig(api_key="YOUR_API_KEY"))
+    nightona = Nightona(NightonaConfig(api_key="YOUR_API_KEY"))
 
-    sandbox = daytona.create()
+    sandbox = nightona.create()
 
     app_code = b'''
     from flask import Flask
@@ -146,8 +146,8 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
         </head>
         <body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #0a0a0a; font-family: Arial, sans-serif;">
             <div style="text-align: center; padding: 2rem; border-radius: 10px; background-color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <img src="https://raw.githubusercontent.com/daytonaio/daytona/main/assets/images/Daytona-logotype-black.png" alt="Daytona Logo" style="width: 180px; margin: 10px 0px;">
-                <p>This web app is running in a Daytona sandbox!</p>
+                <img src="https://raw.githubusercontent.com/daytonaio/nightona/main/assets/images/Nightona-logotype-black.png" alt="Nightona Logo" style="width: 180px; margin: 10px 0px;">
+                <p>This web app is running in a Nightona sandbox!</p>
             </div>
         </body>
         </html>
@@ -181,14 +181,14 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
   <TabItem label="TypeScript" icon="seti:typescript">
     ```typescript
-    import { Daytona } from '@daytona/sdk';
+    import { Nightona } from '@nightona/sdk';
 
-    const daytona = new Daytona(({
+    const nightona = new Nightona(({
       apiKey: "YOUR_API_KEY"
     }));
 
     async function main() {
-      const sandbox = await daytona.create();
+      const sandbox = await nightona.create();
 
       const appCode = Buffer.from(`
     from flask import Flask
@@ -206,8 +206,8 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
         </head>
         <body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #0a0a0a; font-family: Arial, sans-serif;">
             <div style="text-align: center; padding: 2rem; border-radius: 10px; background-color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <img src="https://raw.githubusercontent.com/daytonaio/daytona/main/assets/images/Daytona-logotype-black.png" alt="Daytona Logo" style="width: 180px; margin: 10px 0px;">
-                <p>This web app is running in a Daytona sandbox!</p>
+                <img src="https://raw.githubusercontent.com/daytonaio/nightona/main/assets/images/Nightona-logotype-black.png" alt="Nightona Logo" style="width: 180px; margin: 10px 0px;">
+                <p>This web app is running in a Nightona sandbox!</p>
             </div>
         </body>
         </html>
@@ -248,7 +248,7 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
 ## LLM に接続する
 
-次のスニペットは、Anthropic API を用いて LLM に接続し、Claude に 25 の階乗を求めるコードの生成を依頼し、そのコードを Daytona のサンドボックス（Daytonaが管理する隔離された一時的な実行環境）内で実行します。
+次のスニペットは、Anthropic API を用いて LLM に接続し、Claude に 25 の階乗を求めるコードの生成を依頼し、そのコードを Nightona のサンドボックス（Nightonaが管理する隔離された一時的な実行環境）内で実行します。
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
@@ -256,14 +256,14 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
     import os
     import re
     import requests
-    from daytona import Daytona, DaytonaConfig
+    from nightona import Nightona, NightonaConfig
     from dotenv import load_dotenv
 
     load_dotenv()
 
-    daytona = Daytona(DaytonaConfig())
+    nightona = Nightona(NightonaConfig())
 
-    sandbox = daytona.create()
+    sandbox = nightona.create()
 
     def get_claude_response(api_key, prompt):
         url = "https://api.anthropic.com/v1/messages"
@@ -304,8 +304,8 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
     ```bash
     ANTHROPIC_API_KEY="your-anthropic-api-key"
-    DAYTONA_API_KEY="your-daytona-api-key"
-    DAYTONA_TARGET=us
+    NIGHTONA_API_KEY="your-nightona-api-key"
+    NIGHTONA_TARGET=us
     python claude-example.py
     ```
 
@@ -316,13 +316,13 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
   <TabItem label="TypeScript" icon="seti:typescript">
     ````typescript
-    import { Daytona } from '@daytona/sdk'
+    import { Nightona } from '@nightona/sdk'
     import * as dotenv from 'dotenv'
     import axios from 'axios'
 
     dotenv.config()
 
-    const daytona = new Daytona()
+    const nightona = new Nightona()
 
     async function getClaudeResponse(apiKey: string, prompt: string): Promise<string> {
       const url = "https://api.anthropic.com/v1/messages"
@@ -354,7 +354,7 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
     }
 
     async function main() {
-      const sandbox = await daytona.create()
+      const sandbox = await nightona.create()
 
       const prompt = "25 の階乗を返す Python コード。コードのみを出力。説明なし。前置きなし。コメントなし。単一のコードブロックに生のコードのみ。"
       
@@ -379,8 +379,8 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
     ```bash
     ANTHROPIC_API_KEY="your-anthropic-api-key"
-    DAYTONA_API_KEY="your-daytona-api-key"
-    DAYTONA_TARGET=us
+    NIGHTONA_API_KEY="your-nightona-api-key"
+    NIGHTONA_TARGET=us
     npx ts-node claude-example.ts
     ```
 
@@ -392,15 +392,15 @@ Daytona は、Daytona プラットフォームと連携するための公式 Pyt
 
 ## 追加の例
 
-Daytona SDK の [Python の例](https://github.com/daytonaio/daytona/tree/main/examples/python) または [TypeScript/JavaScript の例](https://github.com/daytonaio/daytona/tree/main/examples/typescript) を使ってサンドボックス（Daytonaが管理する隔離された一時的な実行環境）を作成し、コードを実行しましょう。
+Nightona SDK の [Python の例](https://github.com/Amartuvshins0404/nightona/tree/main/examples/python) または [TypeScript/JavaScript の例](https://github.com/Amartuvshins0404/nightona/tree/main/examples/typescript) を使ってサンドボックス（Nightonaが管理する隔離された一時的な実行環境）を作成し、コードを実行しましょう。
 
-LLM を活用して Daytona 上での開発を加速できます。/llms.txt ファイルをコピーし、プロジェクトやチャットのコンテキストに含めてください: [llms-full.txt](https://www.daytona.io/docs/llms-full.txt) または [llms.txt](https://www.daytona.io/docs/llms.txt)
+LLM を活用して Nightona 上での開発を加速できます。/llms.txt ファイルをコピーし、プロジェクトやチャットのコンテキストに含めてください: [llms-full.txt](https://www.daytona.io/docs/llms-full.txt) または [llms.txt](https://www.daytona.io/docs/llms.txt)
 
-[GitHub](https://github.com/daytonaio/daytona) 上の Daytona SDK リポジトリを参照して、さらに詳しく学びましょう。
+[GitHub](https://github.com/Amartuvshins0404/nightona) 上の Nightona SDK リポジトリを参照して、さらに詳しく学びましょう。
 
-## ViteプロジェクトでのDaytona
+## ViteプロジェクトでのNightona
 
-ViteベースのプロジェクトでDaytona SDKを使用する場合、互換性を確保するためにNodeのポリフィルを設定する必要があります。`vite.config.ts` のplugins配列に以下の設定を追加してください：
+ViteベースのプロジェクトでNightona SDKを使用する場合、互換性を確保するためにNodeのポリフィルを設定する必要があります。`vite.config.ts` のplugins配列に以下の設定を追加してください：
 
 ```typescript
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
@@ -419,9 +419,9 @@ export default defineConfig({
 })
 ```
 
-## Next.js プロジェクトにおける Daytona
+## Next.js プロジェクトにおける Nightona
 
-Next.js プロジェクトで Daytona SDK を使用する場合、利用中のバンドラーに応じて Webpack や Turbopack との互換性を保つため、Node のポリフィルを設定する必要があります。次の設定を `next.config.ts` に追加してください:
+Next.js プロジェクトで Nightona SDK を使用する場合、利用中のバンドラーに応じて Webpack や Turbopack との互換性を保つため、Node のポリフィルを設定する必要があります。次の設定を `next.config.ts` に追加してください:
 
 ```typescript
 import type { NextConfig } from 'next'
@@ -451,14 +451,14 @@ const nextConfig: NextConfig = {
 export default nextConfig
 ```
 
-## Daytona CLI のセットアップ
+## Nightona CLI のセットアップ
 
-[ローカルデバイス上のイメージ](/docs/ja/snapshots#using-a-local-image)を使用する場合、またはコマンドラインインターフェースでサンドボックスを管理したい場合は、次のコマンドで Daytona CLI をインストールしてください:
+[ローカルデバイス上のイメージ](/docs/ja/snapshots#using-a-local-image)を使用する場合、またはコマンドラインインターフェースでサンドボックスを管理したい場合は、次のコマンドで Nightona CLI をインストールしてください:
 
 <Tabs syncKey="language">
   <TabItem label="Mac/Linux">
     ```bash
-    brew install daytonaio/cli/daytona
+    brew install daytonaio/cli/nightona
     ```
   </TabItem>
 

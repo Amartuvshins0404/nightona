@@ -1,7 +1,7 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,8 +19,8 @@ export async function GET(request: Request) {
   }
 
   try {
-    const daytona = new Daytona()
-    const sandbox = await daytona.get(sandboxId)
+    const nightona = new Nightona()
+    const sandbox = await nightona.get(sandboxId)
     const buf = await sandbox.fs.downloadFile('test.txt')
     return Response.json({
       downloadOk: buf.toString('utf-8') === expectedContent,

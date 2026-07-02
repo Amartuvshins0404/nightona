@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 //go:build unix
@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	toolbox "github.com/daytonaio/daemon/pkg/toolbox/computeruse"
+	toolbox "github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
 )
 
 func TestRunProcessOnceClosesLogFilesEachRun(t *testing.T) {

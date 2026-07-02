@@ -357,7 +357,7 @@ setFilePermissions(path: string, permissions: FilePermissionsParams): Promise<vo
 ```ts
 // Set file permissions and ownership
 await fs.setFilePermissions('app/script.sh', {
-  owner: 'daytona',
+  owner: 'nightona',
   group: 'users',
   mode: '755'  // シェルスクリプトに実行権限を付与
 });
@@ -490,7 +490,7 @@ await fs.uploadFiles(files);
 ```ts
 const permissions: FilePermissionsParams = {
   mode: '644',
-  owner: 'daytona',
+  owner: 'nightona',
   group: 'users'
 };
 ```

@@ -2,13 +2,13 @@
 
 ## Overview
 
-This example runs an [OpenCode](https://opencode.ai/docs/sdk/) coding agent inside a Daytona sandbox. You can interact with the agent via the CLI to run automations, build apps, and launch web apps or services using [Daytona preview links](https://www.daytona.io/docs/en/preview-and-authentication/#fetching-a-preview-link).
+This example runs an [OpenCode](https://opencode.ai/docs/sdk/) coding agent inside a Nightona sandbox. You can interact with the agent via the CLI to run automations, build apps, and launch web apps or services using [Nightona preview links](https://www.daytona.io/docs/en/preview-and-authentication/#fetching-a-preview-link).
 
 ## Features
 
 - **Secure sandbox execution:** The agent operates within a controlled environment, along with code or commands run by the agent.
 - **OpenCode integration:** The OpenCode server runs in the sandbox while the host attaches via the SDK, enabling full agent capabilities including reading and editing code files, and running shell commands.
-- **Preview deployed apps:** Use Daytona preview links to view and interact with your deployed applications.
+- **Preview deployed apps:** Use Nightona preview links to view and interact with your deployed applications.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ This example runs an [OpenCode](https://opencode.ai/docs/sdk/) coding agent insi
 
 To run this example, you need to set the following environment variables:
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 
 Create a `.env` file in the project directory with these variables.
 
@@ -42,7 +42,7 @@ Create a `.env` file in the project directory with these variables.
 
 When this example is run, the agent follows the following workflow:
 
-1. A new Daytona sandbox is created (public so preview links are reachable).
+1. A new Nightona sandbox is created (public so preview links are reachable).
 2. OpenCode is installed in the sandbox and the server is started.
 3. The host attaches via the OpenCode SDK and enters an interactive loop.
 4. User queries are passed to the agent, tool events are streamed, and the result is displayed.
@@ -56,8 +56,8 @@ Installing OpenCode in sandbox...
 Press Ctrl+C at any time to exit.
 User: make a lunar lander web app
 Thinking...
-📝 Add /home/daytona/index.html
-📝 Add /home/daytona/style.css
+📝 Add /home/nightona/index.html
+📝 Add /home/nightona/style.css
 🔨 ✓ Run: ...
 Built a playable lunar lander experience...
 
@@ -72,4 +72,4 @@ See the main project LICENSE file for details.
 ## References
 
 - [OpenCode SDK](https://opencode.ai/docs/sdk/)
-- [Daytona Documentation](https://www.daytona.io/docs)
+- [Nightona Documentation](https://www.daytona.io/docs)

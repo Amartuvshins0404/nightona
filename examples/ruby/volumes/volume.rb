@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
+nightona = Nightona::Nightona.new
 
 # Create a new volume or get an existing one
-volume = daytona.volume.get('my-volume', create: true)
+volume = nightona.volume.get('my-volume', create: true)
 
 # Mount the volume to the sandbox
-mount_dir = '/home/daytona/volume'
+mount_dir = '/home/nightona/volume'
 
-sandbox = daytona.create(
-  Daytona::CreateSandboxFromSnapshotParams.new(
-    language: Daytona::CodeLanguage::PYTHON,
-    volumes: [DaytonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: mount_dir)]
+sandbox = nightona.create(
+  Nightona::CreateSandboxFromSnapshotParams.new(
+    language: Nightona::CodeLanguage::PYTHON,
+    volumes: [NightonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: mount_dir)]
   )
 )
 
@@ -31,11 +31,11 @@ puts "Files: #{files}"
 
 # Create a new sandbox with the same volume
 # and mount it to the different path
-other_dir = '/home/daytona/my-files'
-other_sandbox = daytona.create(
-  Daytona::CreateSandboxFromSnapshotParams.new(
-    language: Daytona::CodeLanguage::PYTHON,
-    volumes: [DaytonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: other_dir)]
+other_dir = '/home/nightona/my-files'
+other_sandbox = nightona.create(
+  Nightona::CreateSandboxFromSnapshotParams.new(
+    language: Nightona::CodeLanguage::PYTHON,
+    volumes: [NightonaApiClient::SandboxVolume.new(volume_id: volume.id, mount_path: other_dir)]
   )
 )
 
@@ -48,6 +48,6 @@ file = other_sandbox.fs.download_file(File.expand_path('new-file.txt', other_dir
 puts "File: #{file}"
 
 # Cleanup
-daytona.delete(sandbox)
-daytona.delete(other_sandbox)
-daytona.volume.delete(volume)
+nightona.delete(sandbox)
+nightona.delete(other_sandbox)
+nightona.volume.delete(volume)

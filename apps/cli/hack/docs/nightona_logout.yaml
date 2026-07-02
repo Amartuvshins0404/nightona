@@ -1,0 +1,9 @@
+name: nightona logout
+synopsis: Logout from Nightona
+usage: nightona logout [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -11,7 +11,7 @@ from pathlib import Path
 import dspy
 import matplotlib.pyplot as plt
 import numpy as np
-from daytona_interpreter import DaytonaInterpreter
+from nightona_interpreter import NightonaInterpreter
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
@@ -64,7 +64,7 @@ dspy.configure(lm=lm)
 
 # ── Run RLM analysis ────────────────────────────────────────────────────────
 
-interpreter = DaytonaInterpreter()
+interpreter = NightonaInterpreter()
 
 rlm = dspy.RLM(
     signature="chapters: list[str], task: str -> wealth_data: list[dict]",

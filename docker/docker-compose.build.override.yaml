@@ -1,10 +1,10 @@
-name: daytona
+name: nightona
 services:
   api:
     build:
       context: ../
       dockerfile: apps/api/Dockerfile
-      target: daytona
+      target: nightona
   
   proxy:
     build:

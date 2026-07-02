@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Daytona, CodeLanguage, Sandbox } from '@daytona/sdk'
+import { Nightona, CodeLanguage, Sandbox } from '@nightona/sdk'
 import OpenAI from 'openai'
 import * as fs from 'fs'
 
@@ -16,8 +16,8 @@ function extractPython(text: string): string {
   return m ? m[1].trim() : ''
 }
 
-// Make sure you have the DAYTONA_API_KEY and OPENAI_API_KEY environment variables set
-const dt = new Daytona()
+// Make sure you have the NIGHTONA_API_KEY and OPENAI_API_KEY environment variables set
+const dt = new Nightona()
 const openai = new OpenAI()
 
 async function run() {

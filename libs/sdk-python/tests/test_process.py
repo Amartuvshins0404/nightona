@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -7,13 +7,13 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from daytona.common.process import CodeRunParams
-from daytona_toolbox_api_client import Chart as GeneratedChart
+from nightona.common.process import CodeRunParams
+from nightona_toolbox_api_client import Chart as GeneratedChart
 
 
 class TestSyncProcessExec:
     def _make_process(self):
-        from daytona._sync.process import Process
+        from nightona._sync.process import Process
 
         mock_api = MagicMock()
         return Process("python", mock_api, http_client=MagicMock()), mock_api
@@ -73,7 +73,7 @@ class TestSyncProcessExec:
 
 class TestSyncProcessSessions:
     def _make_process(self):
-        from daytona._sync.process import Process
+        from nightona._sync.process import Process
 
         mock_api = MagicMock()
         return Process("python", mock_api, http_client=MagicMock()), mock_api
@@ -153,7 +153,7 @@ class TestSyncProcessSessions:
 
 class TestAsyncProcessExec:
     def _make_process(self):
-        from daytona._async.process import AsyncProcess
+        from nightona._async.process import AsyncProcess
 
         mock_api = AsyncMock()
         return AsyncProcess("python", mock_api), mock_api

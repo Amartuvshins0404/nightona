@@ -10,7 +10,7 @@ RUN apk add --no-cache python3 py3-setuptools make g++
 
 RUN npm install -g corepack && corepack enable
 
-WORKDIR /daytona
+WORKDIR /nightona
 
 # Yarn caching layer
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -31,15 +31,15 @@ COPY libs/billing-api-client/ libs/billing-api-client/
 
 ENV NX_DAEMON=false
 
-RUN VITE_BASE_PATH=/dashboard/ VITE_API_URL=%DAYTONA_BASE_API_URL%/api yarn nx build dashboard --configuration=production --nxBail=true
+RUN VITE_BASE_PATH=/dashboard/ VITE_API_URL=%NIGHTONA_BASE_API_URL%/api yarn nx build dashboard --configuration=production --nxBail=true
 
 FROM nginx:alpine as dashboard
 
-COPY --from=builder /daytona/dist/apps/dashboard /usr/share/nginx/html/dashboard
-COPY --from=builder /daytona/apps/dashboard/docker/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /daytona/apps/dashboard/docker/entrypoint.sh /entrypoint.sh
+COPY --from=builder /nightona/dist/apps/dashboard /usr/share/nginx/html/dashboard
+COPY --from=builder /nightona/apps/dashboard/docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /nightona/apps/dashboard/docker/entrypoint.sh /entrypoint.sh
 
-ENV DAYTONA_BASE_API_URL="http://api:3000"
+ENV NIGHTONA_BASE_API_URL="http://api:3000"
 
 EXPOSE 80
 

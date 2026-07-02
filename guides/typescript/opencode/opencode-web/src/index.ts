@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Daytona, Sandbox } from '@daytona/sdk'
+import { Nightona, Sandbox } from '@nightona/sdk'
 import * as dotenv from 'dotenv'
 
 // Load environment variables from .env file
@@ -19,21 +19,21 @@ function injectEnvVar(name: string, content: string): string {
 }
 
 async function main() {
-  // Get the Daytona API key from environment variables
-  if (!process.env.DAYTONA_API_KEY) {
-    console.error('Error: DAYTONA_API_KEY environment variable is not set')
-    console.error('Please create a .env file with your Daytona API key')
+  // Get the Nightona API key from environment variables
+  if (!process.env.NIGHTONA_API_KEY) {
+    console.error('Error: NIGHTONA_API_KEY environment variable is not set')
+    console.error('Please create a .env file with your Nightona API key')
     process.exit(1)
   }
 
-  // Initialize the Daytona client
-  const daytona = new Daytona({ apiKey: process.env.DAYTONA_API_KEY })
+  // Initialize the Nightona client
+  const nightona = new Nightona({ apiKey: process.env.NIGHTONA_API_KEY })
 
   let sandbox: Sandbox | undefined
 
   try {
     console.log('Creating sandbox...')
-    sandbox = await daytona.create()
+    sandbox = await nightona.create()
 
     // Register cleanup handler immediately after sandbox creation
     process.once('SIGINT', async () => {
@@ -51,7 +51,7 @@ async function main() {
     console.log('Installing OpenCode...')
     await sandbox.process.executeCommand('npm i -g opencode-ai@1.1.1')
 
-    // Create the URL pattern for Daytona preview links
+    // Create the URL pattern for Nightona preview links
     // This is a URL where {PORT} is a placeholder for the port number
     // We first generate a preview link with the dummy port 1234, then replace it with {PORT}
     const previewLink = await sandbox.getPreviewLink(1234)
@@ -59,20 +59,20 @@ async function main() {
 
     // Configure the system prompt
     const systemPrompt = [
-      'You are running in a Daytona sandbox.',
-      'Use the /home/daytona directory instead of /workspace for file operations.',
+      'You are running in a Nightona sandbox.',
+      'Use the /home/nightona directory instead of /workspace for file operations.',
       `When running services on localhost, they will be accessible as: ${previewUrlPattern}`,
       'When starting a server, always give the user the preview URL to access it.',
       'When starting a server, start it in the background with & so the command does not block further instructions.',
     ].join(' ')
 
-    // OpenCode config with Daytona-aware agent
+    // OpenCode config with Nightona-aware agent
     const opencodeConfig = {
       $schema: 'https://opencode.ai/config.json',
-      default_agent: 'daytona',
+      default_agent: 'nightona',
       agent: {
-        daytona: {
-          description: 'Daytona sandbox-aware coding agent',
+        nightona: {
+          description: 'Nightona sandbox-aware coding agent',
           mode: 'primary',
           prompt: systemPrompt,
         },
@@ -95,7 +95,7 @@ async function main() {
     })
 
     // OpenCode prints a localhost URL pointing to the web UI
-    // This function detects the URL and replaces it with a Daytona preview URL
+    // This function detects the URL and replaces it with a Nightona preview URL
     const opencodePreviewLink = await sandbox.getPreviewLink(OPENCODE_PORT)
     const replaceUrl = (text: string) =>
       text.replace(new RegExp(`http:\\/\\/127\\.0\\.0\\.1:${OPENCODE_PORT}`, 'g'), opencodePreviewLink.url)

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package common
@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/daytonaio/daytona/cli/internal"
+	"github.com/Amartuvshins0404/nightona/apps/cli/internal"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v2"
 )

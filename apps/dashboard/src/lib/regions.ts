@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Region, RegionType } from '@daytona/api-client'
+import { Region, RegionType } from '@nightona/api-client'
 
 export const EMPTY_REGIONS: Region[] = []
 

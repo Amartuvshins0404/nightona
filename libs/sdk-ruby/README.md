@@ -1,6 +1,6 @@
-# Daytona Ruby SDK
+# Nightona Ruby SDK
 
-The official Ruby SDK for [Daytona](https://daytona.io), a secure and elastic infrastructure for running AI-generated code. Daytona provides full composable computers — [sandboxes](https://www.daytona.io/docs/en/sandboxes/) — that you can manage programmatically using the Daytona SDK.
+The official Ruby SDK for [Nightona](https://daytona.io), a secure and elastic infrastructure for running AI-generated code. Nightona provides full composable computers — [sandboxes](https://www.daytona.io/docs/en/sandboxes/) — that you can manage programmatically using the Nightona SDK.
 
 The SDK provides an interface for sandbox management, file system operations, Git operations, language server protocol support, process and code execution, and computer use. For more information, see the [documentation](https://www.daytona.io/docs/en/ruby-sdk/).
 
@@ -9,29 +9,29 @@ The SDK provides an interface for sandbox management, file system operations, Gi
 Install the package using **gem**:
 
 ```bash
-gem install daytona
+gem install nightona
 ```
 
 ## Get API key
 
-Generate an API key from the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/keys) to authenticate SDK requests and access Daytona services. For more information, see the [API keys](https://www.daytona.io/docs/en/api-keys/) documentation.
+Generate an API key from the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/keys) to authenticate SDK requests and access Nightona services. For more information, see the [API keys](https://www.daytona.io/docs/en/api-keys/) documentation.
 
 ## Configuration
 
 Configure the SDK using [environment variables](https://www.daytona.io/docs/en/configuration/#environment-variables) or by passing a [configuration object](https://www.daytona.io/docs/en/configuration/#configuration-in-code):
 
-- `DAYTONA_API_KEY`: Your Daytona [API key](https://www.daytona.io/docs/en/api-keys/)
-- `DAYTONA_API_URL`: The Daytona [API URL](https://www.daytona.io/docs/en/tools/api/)
-- `DAYTONA_TARGET`: Your target [region](https://www.daytona.io/docs/en/regions/) environment (e.g. `us`, `eu`)
+- `NIGHTONA_API_KEY`: Your Nightona [API key](https://www.daytona.io/docs/en/api-keys/)
+- `NIGHTONA_API_URL`: The Nightona [API URL](https://www.daytona.io/docs/en/tools/api/)
+- `NIGHTONA_TARGET`: Your target [region](https://www.daytona.io/docs/en/regions/) environment (e.g. `us`, `eu`)
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
 # Initialize with environment variables
-daytona = Daytona::Daytona.new
+nightona = Nightona::Nightona.new
 
 # Initialize with configuration object
-config = Daytona::Config.new(
+config = Nightona::Config.new(
   api_key: 'YOUR_API_KEY',
   api_url: 'YOUR_API_URL',
   target: 'us'
@@ -43,29 +43,29 @@ config = Daytona::Config.new(
 Create a sandbox to run your code securely in an isolated environment.
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-config = Daytona::Config.new(api_key: 'YOUR_API_KEY')
-daytona = Daytona::Daytona.new(config)
-sandbox = daytona.create
+config = Nightona::Config.new(api_key: 'YOUR_API_KEY')
+nightona = Nightona::Nightona.new(config)
+sandbox = nightona.create
 ```
 
 ## Examples and guides
 
-Daytona provides [examples](https://www.daytona.io/docs/en/getting-started/#examples) and [guides](https://www.daytona.io/docs/en/guides/) for common sandbox operations, best practices, and a wide range of topics, from basic usage to advanced topics, showcasing various types of integrations between Daytona and other tools.
+Nightona provides [examples](https://www.daytona.io/docs/en/getting-started/#examples) and [guides](https://www.daytona.io/docs/en/guides/) for common sandbox operations, best practices, and a wide range of topics, from basic usage to advanced topics, showcasing various types of integrations between Nightona and other tools.
 
 ### Create a sandbox with custom resources
 
 Create a sandbox with [custom resources](https://www.daytona.io/docs/en/sandboxes/#resources) (CPU, memory, disk).
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromImageParams.new(
-        image: Daytona::Image.debian_slim('3.12'),
-        resources: Daytona::Resources.new(cpu: 2, memory: 4, disk: 8)
+nightona = Nightona::Nightona.new
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromImageParams.new(
+        image: Nightona::Image.debian_slim('3.12'),
+        resources: Nightona::Resources.new(cpu: 2, memory: 4, disk: 8)
     )
 )
 ```
@@ -75,11 +75,11 @@ sandbox = daytona.create(
 Create an [ephemeral sandbox](https://www.daytona.io/docs/en/sandboxes/#ephemeral-sandboxes) that is automatically deleted when stopped.
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromSnapshotParams.new(ephemeral: true, auto_stop_interval: 5)
+nightona = Nightona::Nightona.new
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromSnapshotParams.new(ephemeral: true, auto_stop_interval: 5)
 )
 ```
 
@@ -88,11 +88,11 @@ sandbox = daytona.create(
 Create a sandbox from a [snapshot](https://www.daytona.io/docs/en/snapshots/).
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromSnapshotParams.new(
+nightona = Nightona::Nightona.new
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromSnapshotParams.new(
         snapshot: 'my-snapshot-name'
     )
 )
@@ -114,7 +114,7 @@ puts response.result
 # Passing environment variables
 response = sandbox.process.exec(
   command: 'echo $CUSTOM_SECRET',
-  env: { 'CUSTOM_SECRET' => 'DAYTONA' }
+  env: { 'CUSTOM_SECRET' => 'NIGHTONA' }
 )
 puts response.result
 ```
@@ -146,7 +146,7 @@ Clone, list branches, and add files to the sandbox.
 ```ruby
 # Basic clone
 sandbox.git.clone(
-  url: 'https://github.com/daytonaio/daytona.git',
+  url: 'https://github.com/Amartuvshins0404/nightona.git',
   path: 'workspace/repo'
 )
 
@@ -165,7 +165,7 @@ Create and start a language server to get code completions, document symbols, an
 ```ruby
 # Create a language server
 lsp_server = sandbox.create_lsp_server(
-  language_id: Daytona::LspServer::Language::PYTHON,
+  language_id: Nightona::LspServer::Language::PYTHON,
   path_to_project: 'workspace/project'
 )
 lsp_server.start
@@ -179,6 +179,6 @@ symbols = lsp_server.document_symbols('workspace/project/main.py')
 # Get completions
 completions = lsp_server.completions(
   path: 'workspace/project/main.py',
-  position: Daytona::LspServer::Position.new(line: 10, character: 15)
+  position: Nightona::LspServer::Position.new(line: 10, character: 15)
 )
 ```

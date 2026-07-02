@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package config
@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/daytonaio/common-go/pkg/cache"
-	"github.com/daytonaio/common-go/pkg/utils"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/cache"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/utils"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 	"github.com/go-playground/validator/v10"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
@@ -27,7 +27,7 @@ type Config struct {
 	TLSCertFile           string             `envconfig:"TLS_CERT_FILE"`
 	TLSKeyFile            string             `envconfig:"TLS_KEY_FILE"`
 	EnableTLS             bool               `envconfig:"ENABLE_TLS"`
-	DaytonaApiUrl         string             `envconfig:"DAYTONA_API_URL" validate:"required"`
+	NightonaApiUrl         string             `envconfig:"NIGHTONA_API_URL" validate:"required"`
 	Oidc                  OidcConfig         `envconfig:"OIDC"`
 	Redis                 *cache.RedisConfig `envconfig:"REDIS"`
 	ToolboxOnlyMode       bool               `envconfig:"TOOLBOX_ONLY_MODE"`
@@ -36,7 +36,7 @@ type Config struct {
 	ApiClientTimeoutSec   int                `envconfig:"API_CLIENT_TIMEOUT_SEC"`
 	ApiClient             *apiclient.APIClient
 	// ApiHTTPTransport is the shared transport for HTTP clients that talk to the
-	// Daytona API. Tighter IdleConnTimeout than http.DefaultTransport so we
+	// Nightona API. Tighter IdleConnTimeout than http.DefaultTransport so we
 	// don't reuse a connection the API server has already closed.
 	ApiHTTPTransport http.RoundTripper
 }
@@ -107,7 +107,7 @@ func GetConfig() (*Config, error) {
 	clientConfig := apiclient.NewConfiguration()
 	clientConfig.Servers = apiclient.ServerConfigurations{
 		{
-			URL: config.DaytonaApiUrl,
+			URL: config.NightonaApiUrl,
 		},
 	}
 
@@ -137,10 +137,10 @@ func GetConfig() (*Config, error) {
 
 	ctx := context.Background()
 
-	// Retry fetching Daytona API config with exponential backoff
+	// Retry fetching Nightona API config with exponential backoff
 	err = utils.RetryWithExponentialBackoff(
 		ctx,
-		"get Daytona API config",
+		"get Nightona API config",
 		10,
 		time.Second,
 		1*time.Minute,

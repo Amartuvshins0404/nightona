@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -10,15 +10,15 @@ import (
 	"os"
 	"time"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/options"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/options"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	// Create a new Daytona client using environment variables
-	// Set DAYTONA_API_KEY before running
-	client, err := daytona.NewClient()
+	// Create a new Nightona client using environment variables
+	// Set NIGHTONA_API_KEY before running
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -126,10 +126,10 @@ func main() {
 	log.Println("\n=== Keyboard Operations ===")
 
 	// Type text
-	if err := sandbox.ComputerUse.Keyboard().Type(ctx, "Hello, Daytona!", nil); err != nil {
+	if err := sandbox.ComputerUse.Keyboard().Type(ctx, "Hello, Nightona!", nil); err != nil {
 		log.Fatalf("Failed to type text: %v", err)
 	}
-	log.Println("✓ Typed: 'Hello, Daytona!'")
+	log.Println("✓ Typed: 'Hello, Nightona!'")
 
 	// Type with delay between characters
 	delay := 50 // milliseconds

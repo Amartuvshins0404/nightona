@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,10 +10,10 @@ import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
-import { DAYTONA_DOCS_URL } from '@/constants/ExternalLinks'
+import { NIGHTONA_DOCS_URL } from '@/constants/ExternalLinks'
 import { getMetricDisplayName } from '@/constants/metrics'
 import { MetricsQueryParams, useSandboxMetrics } from '@/hooks/useSandboxMetrics'
-import { MetricSeries } from '@daytona/api-client'
+import { MetricSeries } from '@nightona/api-client'
 import { format, subHours } from 'date-fns'
 import { BarChart3, RefreshCw } from 'lucide-react'
 import { useQueryStates } from 'nuqs'
@@ -220,7 +220,7 @@ function MetricsEmptyState({ hasFilters, onClearFilters }: { hasFilters: boolean
         ) : (
           <EmptyDescription>
             Metrics may take a moment to appear after the sandbox starts.{' '}
-            <a href={`${DAYTONA_DOCS_URL}/en/observability/otel-collection`} target="_blank" rel="noopener noreferrer">
+            <a href={`${NIGHTONA_DOCS_URL}/en/observability/otel-collection`} target="_blank" rel="noopener noreferrer">
               Learn more about observability
             </a>
             .

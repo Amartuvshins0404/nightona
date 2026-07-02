@@ -1,21 +1,21 @@
 ---
-title: Daytona MCP Server
-description: Interact with Daytona sandboxes using the Model Context Protocol.
+title: Nightona MCP Server
+description: Interact with Nightona sandboxes using the Model Context Protocol.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona Model Context Protocol (MCP) server enables AI agents to interact with [Daytona Sandboxes](/docs/en/sandboxes) programmatically. This guide covers how to set up and use the MCP server with various AI agents.
+Nightona Model Context Protocol (MCP) server enables AI agents to interact with [Nightona Sandboxes](/docs/en/sandboxes) programmatically. This guide covers how to set up and use the MCP server with various AI agents.
 
-## Install Daytona CLI
+## Install Nightona CLI
 
-Install the Daytona CLI to manage the MCP server.
+Install the Nightona CLI to manage the MCP server.
 
 <Tabs syncKey="os">
 <TabItem label="Mac/Linux">
 
 ```bash
-brew install daytonaio/cli/daytona
+brew install daytonaio/cli/nightona
 ```
 
 </TabItem>
@@ -28,15 +28,15 @@ powershell -Command "irm https://get.daytona.io/windows | iex"
 </TabItem>
 </Tabs>
 
-## Authenticate with Daytona
+## Authenticate with Nightona
 
-Authenticate with Daytona to enable MCP server access.
+Authenticate with Nightona to enable MCP server access.
 
 <Tabs>
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona login
+nightona login
 ```
 
 </TabItem>
@@ -44,36 +44,36 @@ daytona login
 
 ## Initialize MCP server
 
-Daytona provides methods to initialize the MCP server with your preferred AI agent. Supported agents include Claude, Cursor, and Windsurf.
+Nightona provides methods to initialize the MCP server with your preferred AI agent. Supported agents include Claude, Cursor, and Windsurf.
 
 <Tabs>
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
 # Initialize with Claude
-daytona mcp init claude
+nightona mcp init claude
 
 # Initialize with Cursor
-daytona mcp init cursor
+nightona mcp init cursor
 
 # Initialize with Windsurf
-daytona mcp init windsurf
+nightona mcp init windsurf
 ```
 
 </TabItem>
 </Tabs>
 
-After initialization, open your AI agent application to begin using Daytona features.
+After initialization, open your AI agent application to begin using Nightona features.
 
 ## Configure MCP server
 
-Daytona provides methods to generate MCP configuration for integration with other AI agents.
+Nightona provides methods to generate MCP configuration for integration with other AI agents.
 
 <Tabs>
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona mcp config
+nightona mcp config
 ```
 
 </TabItem>
@@ -84,14 +84,14 @@ This command outputs a JSON configuration that you can copy into your agent's se
 ```json
 {
   "mcpServers": {
-    "daytona-mcp": {
-      "command": "daytona",
+    "nightona-mcp": {
+      "command": "nightona",
       "args": ["mcp", "start"],
       "env": {
         "HOME": "${HOME}",
         "PATH": "${HOME}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin"
       },
-      "logFile": "${HOME}/Library/Logs/daytona/daytona-mcp-server.log"
+      "logFile": "${HOME}/Library/Logs/nightona/nightona-mcp-server.log"
     }
   }
 }
@@ -107,13 +107,13 @@ For Windows users, add the following to the `env` field:
 
 ## Start MCP server
 
-Daytona provides methods to manually start the MCP server.
+Nightona provides methods to manually start the MCP server.
 
 <Tabs>
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona mcp start
+nightona mcp start
 ```
 
 </TabItem>
@@ -121,7 +121,7 @@ daytona mcp start
 
 ## Available tools
 
-Daytona MCP server provides the following tools for interacting with Daytona Sandboxes:
+Nightona MCP server provides the following tools for interacting with Nightona Sandboxes:
 
 - [Sandbox management](/docs/en/sandboxes)
 - [File system operations](/docs/en/file-system-operations)
@@ -132,10 +132,10 @@ Daytona MCP server provides the following tools for interacting with Daytona San
 
 ## Troubleshooting
 
-To troubleshoot issues with the Daytona MCP server, try the following:
+To troubleshoot issues with the Nightona MCP server, try the following:
 
-- **Authentication issues**: run `daytona login` to refresh credentials
+- **Authentication issues**: run `nightona login` to refresh credentials
 - **Connection errors**: verify MCP server configuration, check server status
-- **Sandbox errors**: use `daytona list` to check sandbox status
+- **Sandbox errors**: use `nightona list` to check sandbox status
 
 If the issue persists, contact [support@daytona.io](mailto:support@daytona.io).

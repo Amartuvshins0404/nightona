@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -8,14 +8,14 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from daytona.common.errors import DaytonaError, DaytonaValidationError
-from daytona_api_client import SandboxState
+from nightona.common.errors import NightonaError, NightonaValidationError
+from nightona_api_client import SandboxState
 
 from .conftest import make_sandbox_dto
 
 
 def make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
-    from daytona._sync.sandbox import Sandbox
+    from nightona._sync.sandbox import Sandbox
 
     return Sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api, "python", http_client=MagicMock())
 
@@ -29,7 +29,7 @@ class TestSandboxInit:
         assert sandbox.cpu == 4
         assert sandbox.memory == 8
         assert sandbox.disk == 30
-        assert sandbox.user == "daytona"
+        assert sandbox.user == "nightona"
         assert sandbox.public is False
 
     def test_sandbox_has_subsystems(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
@@ -44,7 +44,7 @@ class TestSandboxInit:
 class TestSandboxLifecycleSettings:
     def test_negative_autostop_interval_raises(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
         sandbox = make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api)
-        with pytest.raises(DaytonaValidationError, match="Auto-stop interval must be a non-negative"):
+        with pytest.raises(NightonaValidationError, match="Auto-stop interval must be a non-negative"):
             sandbox.set_autostop_interval(-1)
 
     def test_valid_autostop_interval(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
@@ -55,7 +55,7 @@ class TestSandboxLifecycleSettings:
 
     def test_negative_auto_archive_interval_raises(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
         sandbox = make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api)
-        with pytest.raises(DaytonaValidationError, match="Auto-archive interval must be a non-negative"):
+        with pytest.raises(NightonaValidationError, match="Auto-archive interval must be a non-negative"):
             sandbox.set_auto_archive_interval(-1)
 
     def test_valid_auto_archive_interval(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
@@ -82,7 +82,7 @@ class TestSandboxOperations:
         assert sandbox.labels == new_labels
 
     def test_create_lsp_server(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
-        from daytona._sync.lsp_server import LspServer
+        from nightona._sync.lsp_server import LspServer
 
         sandbox = make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api)
         lsp = sandbox.create_lsp_server("python", "/workspace/project")
@@ -97,8 +97,8 @@ class TestSandboxOperations:
 
     def test_get_user_home_dir(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
         sandbox = make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api)
-        sandbox._info_api = MagicMock(get_user_home_dir=MagicMock(return_value=MagicMock(dir="/home/daytona")))
-        assert sandbox.get_user_home_dir() == "/home/daytona"
+        sandbox._info_api = MagicMock(get_user_home_dir=MagicMock(return_value=MagicMock(dir="/home/nightona")))
+        assert sandbox.get_user_home_dir() == "/home/nightona"
 
     def test_get_work_dir(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
         sandbox = make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api)
@@ -107,11 +107,11 @@ class TestSandboxOperations:
 
     def test_get_user_root_dir_delegates_to_home_dir(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
         sandbox = make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api)
-        sandbox._info_api = MagicMock(get_user_home_dir=MagicMock(return_value=MagicMock(dir="/home/daytona")))
+        sandbox._info_api = MagicMock(get_user_home_dir=MagicMock(return_value=MagicMock(dir="/home/nightona")))
 
         with warnings.catch_warnings(record=True):
             warnings.simplefilter("always")
-            assert sandbox.get_user_root_dir() == "/home/daytona"
+            assert sandbox.get_user_root_dir() == "/home/nightona"
 
     def test_preview_and_ssh_operations_delegate(self, sandbox_dto, mock_toolbox_api_client, mock_sandbox_api):
         sandbox = make_sandbox(sandbox_dto, mock_toolbox_api_client, mock_sandbox_api)
@@ -135,5 +135,5 @@ class TestSandboxWaitForStart:
         error_dto = make_sandbox_dto(state=SandboxState.ERROR, error_reason="build failed")
         sandbox = make_sandbox(error_dto, mock_toolbox_api_client, mock_sandbox_api)
         mock_sandbox_api.get_sandbox.return_value = error_dto
-        with pytest.raises(DaytonaError, match="failed to start"):
+        with pytest.raises(NightonaError, match="failed to start"):
             sandbox.wait_for_sandbox_start(timeout=0)

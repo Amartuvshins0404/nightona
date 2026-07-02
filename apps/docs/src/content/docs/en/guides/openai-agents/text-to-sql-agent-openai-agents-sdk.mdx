@@ -1,11 +1,11 @@
 ---
-title: Text-to-SQL Agent with the OpenAI Agents SDK and Daytona
+title: Text-to-SQL Agent with the OpenAI Agents SDK and Nightona
 description: Build a conversational agent that translates natural-language questions into SQL queries against real NASA spending data.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-In this guide we use the [OpenAI Agents SDK](https://developers.openai.com/api/docs/guides/agents) and Daytona sandboxes to build a conversational agent that answers natural-language questions about NASA's federal spending. It translates questions into SQL, runs them against a SQLite database of real USAspending.gov data (FY2021-FY2025), and explains the results. The agent runs inside a Daytona sandbox, which provides isolated code execution, pause/resume across runs (so you can reconnect to the same sandbox without re-downloading data), cross-session memory (so the agent learns from previous conversations), and signed preview URLs for downloading query results.
+In this guide we use the [OpenAI Agents SDK](https://developers.openai.com/api/docs/guides/agents) and Nightona sandboxes to build a conversational agent that answers natural-language questions about NASA's federal spending. It translates questions into SQL, runs them against a SQLite database of real USAspending.gov data (FY2021-FY2025), and explains the results. The agent runs inside a Nightona sandbox, which provides isolated code execution, pause/resume across runs (so you can reconnect to the same sandbox without re-downloading data), cross-session memory (so the agent learns from previous conversations), and signed preview URLs for downloading query results.
 
 ---
 
@@ -22,7 +22,7 @@ In this guide we use the [OpenAI Agents SDK](https://developers.openai.com/api/d
     | total_obligations |
     |-------------------|
     | 21352116106.41    |
-  ↓ https://8080-your-sandbox-id.proxy.daytona.works/query_1775081861_281.csv
+  ↓ https://8080-your-sandbox-id.proxy.nightona.works/query_1775081861_281.csv
 
 NASA obligated **$21.35 billion** in **FY2024**.
 
@@ -44,14 +44,14 @@ NASA obligated **$21.35 billion** in **FY2024**.
     | THE BOEING COMPANY                   | 1540996029.73     |
     | LOCKHEED MARTIN CORP                 | 1208072461.33     |
     | NORTHROP GRUMMAN CORPORATION         | 641375071.34      |
-  ↓ https://8080-your-sandbox-id.proxy.daytona.works/query_1775081919_307.csv
+  ↓ https://8080-your-sandbox-id.proxy.nightona.works/query_1775081919_307.csv
 
 In FY2024, the top 5 recipients were **California Institute of Technology ($2.25B)**,
 **SpaceX ($2.00B)**, **Boeing ($1.54B)**, **Lockheed Martin ($1.21B)**,
 and **Northrop Grumman ($641.38M)**.
 ```
 
-The agent keeps conversation context across turns, so one can naturally follow-up on previous questions. Each result also gets a download link via the Daytona sandbox's exposed port.
+The agent keeps conversation context across turns, so one can naturally follow-up on previous questions. Each result also gets a download link via the Nightona sandbox's exposed port.
 
 ## 1\. Setup
 
@@ -59,7 +59,7 @@ Set your environment variables:
 
 ```shell
 export OPENAI_API_KEY=...
-export DAYTONA_API_KEY=...       # from https://app.daytona.io/dashboard/keys
+export NIGHTONA_API_KEY=...       # from https://app.daytona.io/dashboard/keys
 ```
 
 Clone the repo, install dependencies and run:
@@ -67,8 +67,8 @@ Clone the repo, install dependencies and run:
 ```shell
 git clone https://github.com/openai/openai-agents-python
 cd openai-agents-python
-uv sync --extra daytona
-uv run python -m examples.sandbox.extensions.daytona.usaspending_text2sql.agent
+uv sync --extra nightona
+uv run python -m examples.sandbox.extensions.nightona.usaspending_text2sql.agent
 ```
 
 On the first run, the agent fetches NASA spending data from the USAspending.gov API and builds a SQLite database inside the sandbox. This takes a few minutes. Subsequent runs reuse the paused sandbox and skip this step entirely.
@@ -206,8 +206,8 @@ The first run is slow because `setup_db.py` needs to download data from the USAs
   <TabItem label="Python" icon="seti:python">
     ```py
     # Core pattern (see agent.py for full error handling):
-    client = DaytonaSandboxClient()
-    options = DaytonaSandboxClientOptions(pause_on_exit=True, exposed_ports=(8080,))
+    client = NightonaSandboxClient()
+    options = NightonaSandboxClientOptions(pause_on_exit=True, exposed_ports=(8080,))
 
     saved_state = _load_session_state()  # returns None on first run
     if saved_state is not None:
@@ -239,12 +239,12 @@ Each query result is saved as a CSV inside the sandbox. To make these downloadab
     # Get the signed public URL
     endpoint = await session.resolve_exposed_port(8080)
     downloads_url = endpoint.url_for("http")
-    # -> https://8080-abc123.proxy.daytona.works
+    # -> https://8080-abc123.proxy.nightona.works
     ```
   </TabItem>
 </Tabs>
 
-The `run_sql` tool includes the CSV filename in its response, and the agent surfaces the download link. You can see this in the session example at the top: each result has a `↓` download URL (signed Daytona preview link).
+The `run_sql` tool includes the CSV filename in its response, and the agent surfaces the download link. You can see this in the session example at the top: each result has a `↓` download URL (signed Nightona preview link).
 
 ## 8\. Memory Across Sessions
 

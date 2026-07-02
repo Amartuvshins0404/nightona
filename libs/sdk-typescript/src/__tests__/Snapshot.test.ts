@@ -1,7 +1,7 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Configuration } from '@daytona/api-client'
+import type { Configuration } from '@nightona/api-client'
 import { createApiResponse } from './helpers'
 import { SnapshotService } from '../Snapshot'
 import { Image } from '../Image'
@@ -10,7 +10,7 @@ const mockProcessStreamingResponse = jest.fn()
 const mockDynamicImport = jest.fn()
 
 jest.mock(
-  '@daytona/api-client',
+  '@nightona/api-client',
   () => ({
     SnapshotState: {
       ACTIVE: 'active',
@@ -158,7 +158,7 @@ describe('SnapshotService', () => {
   it('streams build logs when onLogs is provided for build snapshots', async () => {
     const fetchSpy = jest.spyOn(global, 'fetch' as never).mockResolvedValue({ ok: true } as never)
     snapshotsApi.createSnapshot.mockResolvedValue(createApiResponse({ id: 's5', name: 'snap5', state: 'building' }))
-    snapshotsApi.getSnapshotBuildLogsUrl.mockResolvedValue(createApiResponse({ url: 'https://logs.daytona/snap5' }))
+    snapshotsApi.getSnapshotBuildLogsUrl.mockResolvedValue(createApiResponse({ url: 'https://logs.nightona/snap5' }))
     snapshotsApi.getSnapshot.mockResolvedValue(createApiResponse({ id: 's5', name: 'snap5', state: 'active' }))
     mockProcessStreamingResponse.mockImplementation(async (_fetchLogs, onChunk: (chunk: string) => void) => {
       onChunk('log line')

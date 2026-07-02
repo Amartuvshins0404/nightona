@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package mcp
@@ -7,16 +7,16 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/daytonaio/daytona/cli/mcp"
+	"github.com/Amartuvshins0404/nightona/apps/cli/mcp"
 	"github.com/spf13/cobra"
 )
 
 var StartCmd = &cobra.Command{
 	Use:   "start",
-	Short: "Start Daytona MCP Server",
+	Short: "Start Nightona MCP Server",
 	Args:  cobra.NoArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		server := mcp.NewDaytonaMCPServer()
+		server := mcp.NewNightonaMCPServer()
 
 		interruptChan := make(chan os.Signal, 1)
 		signal.Notify(interruptChan, os.Interrupt)

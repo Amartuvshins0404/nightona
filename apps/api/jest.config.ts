@@ -1,10 +1,10 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 export default {
-  displayName: 'daytona',
+  displayName: 'nightona',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
@@ -12,5 +12,5 @@ export default {
   },
   transformIgnorePatterns: ['/node_modules/(?!uuid)'],
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/daytona',
+  coverageDirectory: '../../coverage/apps/nightona',
 }

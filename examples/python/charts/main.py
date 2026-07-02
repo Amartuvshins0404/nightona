@@ -2,14 +2,14 @@ import base64
 import os
 import time
 
-from daytona import (
+from nightona import (
     BarChart,
     BoxAndWhiskerChart,
     Chart,
     ChartType,
     CompositeChart,
     CreateSandboxFromImageParams,
-    Daytona,
+    Nightona,
     Image,
     LineChart,
     PieChart,
@@ -76,8 +76,8 @@ plt.show()
 
 
 def main():
-    daytona = Daytona()
-    sandbox = daytona.create(
+    nightona = Nightona()
+    sandbox = nightona.create(
         CreateSandboxFromImageParams(
             image=Image.debian_slim("3.13").pip_install("matplotlib"),
         ),
@@ -108,7 +108,7 @@ def main():
         else:
             print("No charts found")
 
-    daytona.delete(sandbox)
+    nightona.delete(sandbox)
 
 
 def print_chart(chart: Chart):

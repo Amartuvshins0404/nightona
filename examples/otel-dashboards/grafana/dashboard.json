@@ -3,7 +3,7 @@
     {
       "name": "DS_PROMETHEUS",
       "label": "Prometheus",
-      "description": "Prometheus data source for Daytona sandbox metrics",
+      "description": "Prometheus data source for Nightona sandbox metrics",
       "type": "datasource",
       "pluginId": "prometheus",
       "pluginName": "Prometheus"
@@ -70,7 +70,7 @@
       }
     ]
   },
-  "description": "Comprehensive CPU, Memory, and Disk monitoring for Daytona Sandboxes using Prometheus metrics from OpenTelemetry.",
+  "description": "Comprehensive CPU, Memory, and Disk monitoring for Nightona Sandboxes using Prometheus metrics from OpenTelemetry.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
@@ -143,7 +143,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "count(daytona_sandbox_cpu_utilization_percent)",
+          "expr": "count(nightona_sandbox_cpu_utilization_percent)",
           "instant": false,
           "legendFormat": "Active Sandboxes",
           "refId": "A"
@@ -213,7 +213,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "count(daytona_sandbox_cpu_utilization_percent > 80 or daytona_sandbox_memory_utilization_percent > 80 or daytona_sandbox_filesystem_utilization_percent > 80) or vector(0)",
+          "expr": "count(nightona_sandbox_cpu_utilization_percent > 80 or nightona_sandbox_memory_utilization_percent > 80 or nightona_sandbox_filesystem_utilization_percent > 80) or vector(0)",
           "instant": false,
           "legendFormat": "Over Threshold",
           "refId": "A"
@@ -481,7 +481,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
+          "expr": "nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
           "format": "table",
           "instant": false,
           "legendFormat": "__auto",
@@ -494,7 +494,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_cpu_limit_cores{service_name=~\"$service\"}",
+          "expr": "nightona_sandbox_cpu_limit_cores{service_name=~\"$service\"}",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -508,7 +508,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
+          "expr": "nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -522,7 +522,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_memory_usage_bytes{service_name=~\"$service\"} / 1073741824",
+          "expr": "nightona_sandbox_memory_usage_bytes{service_name=~\"$service\"} / 1073741824",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -536,7 +536,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_memory_limit_bytes{service_name=~\"$service\"} / 1073741824",
+          "expr": "nightona_sandbox_memory_limit_bytes{service_name=~\"$service\"} / 1073741824",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -550,7 +550,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
+          "expr": "nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -564,7 +564,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_filesystem_usage_bytes{service_name=~\"$service\"} / 1073741824",
+          "expr": "nightona_sandbox_filesystem_usage_bytes{service_name=~\"$service\"} / 1073741824",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -578,7 +578,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "daytona_sandbox_filesystem_total_bytes{service_name=~\"$service\"} / 1073741824",
+          "expr": "nightona_sandbox_filesystem_total_bytes{service_name=~\"$service\"} / 1073741824",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -751,7 +751,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
+          "expr": "nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
           "legendFormat": "{{service_name}}",
           "range": true,
           "refId": "A"
@@ -857,7 +857,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
+          "expr": "nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
           "legendFormat": "{{service_name}}",
           "range": true,
           "refId": "A"
@@ -963,7 +963,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
+          "expr": "nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
           "legendFormat": "{{service_name}}",
           "range": true,
           "refId": "A"
@@ -1040,7 +1040,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "topk(10, avg by (service_name) (avg_over_time(daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}[1h])))",
+          "expr": "topk(10, avg by (service_name) (avg_over_time(nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}[1h])))",
           "legendFormat": "{{service_name}}",
           "range": true,
           "refId": "A"
@@ -1117,7 +1117,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "topk(10, avg by (service_name) (avg_over_time(daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}[1h])))",
+          "expr": "topk(10, avg by (service_name) (avg_over_time(nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}[1h])))",
           "legendFormat": "{{service_name}}",
           "range": true,
           "refId": "A"
@@ -1194,7 +1194,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "topk(10, avg by (service_name) (avg_over_time(daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}[1h])))",
+          "expr": "topk(10, avg by (service_name) (avg_over_time(nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}[1h])))",
           "legendFormat": "{{service_name}}",
           "range": true,
           "refId": "A"
@@ -1300,7 +1300,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "(avg by (service_name) (daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}) * 0.33) + (avg by (service_name) (daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}) * 0.33) + (avg by (service_name) (daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}) * 0.34)",
+          "expr": "(avg by (service_name) (nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}) * 0.33) + (avg by (service_name) (nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}) * 0.33) + (avg by (service_name) (nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}) * 0.34)",
           "legendFormat": "{{service_name}}",
           "range": true,
           "refId": "A"
@@ -1417,7 +1417,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -1490,7 +1490,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -1663,7 +1663,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_cpu_limit_cores{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_cpu_limit_cores{service_name=~\"$service\"}",
               "format": "table",
               "instant": false,
               "legendFormat": "__auto",
@@ -1676,7 +1676,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg_over_time(daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}[1h])",
+              "expr": "avg_over_time(nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}[1h])",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -1690,7 +1690,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "max_over_time(daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}[1h])",
+              "expr": "max_over_time(nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}[1h])",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -1821,7 +1821,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_cpu_utilization_percent{service_name=~\"$service\"}",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -1942,7 +1942,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -2015,7 +2015,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -2112,7 +2112,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_memory_usage_bytes{service_name=~\"$service\"} / 1073741824",
+              "expr": "nightona_sandbox_memory_usage_bytes{service_name=~\"$service\"} / 1073741824",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -2305,7 +2305,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_memory_usage_bytes{service_name=~\"$service\"} / 1073741824",
+              "expr": "nightona_sandbox_memory_usage_bytes{service_name=~\"$service\"} / 1073741824",
               "format": "table",
               "instant": false,
               "legendFormat": "__auto",
@@ -2318,7 +2318,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_memory_limit_bytes{service_name=~\"$service\"} / 1073741824",
+              "expr": "nightona_sandbox_memory_limit_bytes{service_name=~\"$service\"} / 1073741824",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -2332,7 +2332,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg_over_time(daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}[1h])",
+              "expr": "avg_over_time(nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}[1h])",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -2346,7 +2346,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "max_over_time(daytona_sandbox_memory_utilization_percent{service_name=~\"$service\"}[1h])",
+              "expr": "max_over_time(nightona_sandbox_memory_utilization_percent{service_name=~\"$service\"}[1h])",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -2514,7 +2514,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -2587,7 +2587,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
+              "expr": "nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -2684,7 +2684,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_filesystem_usage_bytes{service_name=~\"$service\"} / 1073741824",
+              "expr": "nightona_sandbox_filesystem_usage_bytes{service_name=~\"$service\"} / 1073741824",
               "legendFormat": "{{service_name}}",
               "range": true,
               "refId": "A"
@@ -2893,7 +2893,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_filesystem_usage_bytes{service_name=~\"$service\"} / 1073741824",
+              "expr": "nightona_sandbox_filesystem_usage_bytes{service_name=~\"$service\"} / 1073741824",
               "format": "table",
               "instant": false,
               "legendFormat": "__auto",
@@ -2906,7 +2906,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_filesystem_available_bytes{service_name=~\"$service\"} / 1073741824",
+              "expr": "nightona_sandbox_filesystem_available_bytes{service_name=~\"$service\"} / 1073741824",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -2920,7 +2920,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_filesystem_total_bytes{service_name=~\"$service\"} / 1073741824",
+              "expr": "nightona_sandbox_filesystem_total_bytes{service_name=~\"$service\"} / 1073741824",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -2934,7 +2934,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "avg_over_time(daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}[1h])",
+              "expr": "avg_over_time(nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}[1h])",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -2948,7 +2948,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "max_over_time(daytona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}[1h])",
+              "expr": "max_over_time(nightona_sandbox_filesystem_utilization_percent{service_name=~\"$service\"}[1h])",
               "format": "table",
               "hide": false,
               "instant": false,
@@ -3134,7 +3134,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_used_cpu",
+              "expr": "nightona_sandbox_used_cpu",
               "legendFormat": "Used CPU - {{region_id}}",
               "range": true,
               "refId": "A"
@@ -3145,7 +3145,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_total_cpu",
+              "expr": "nightona_sandbox_total_cpu",
               "legendFormat": "Total CPU - {{region_id}}",
               "range": true,
               "refId": "B"
@@ -3265,7 +3265,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_used_ram_giby",
+              "expr": "nightona_sandbox_used_ram_giby",
               "legendFormat": "Used RAM - {{region_id}}",
               "range": true,
               "refId": "A"
@@ -3276,7 +3276,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_total_ram_giby",
+              "expr": "nightona_sandbox_total_ram_giby",
               "legendFormat": "Total RAM - {{region_id}}",
               "range": true,
               "refId": "B"
@@ -3396,7 +3396,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_used_storage_giby",
+              "expr": "nightona_sandbox_used_storage_giby",
               "legendFormat": "Used Storage - {{region_id}}",
               "range": true,
               "refId": "A"
@@ -3407,7 +3407,7 @@
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "daytona_sandbox_total_storage_giby",
+              "expr": "nightona_sandbox_total_storage_giby",
               "legendFormat": "Total Storage - {{region_id}}",
               "range": true,
               "refId": "B"
@@ -3554,7 +3554,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_used_cpu",
+              "expr": "nightona_sandbox_used_cpu",
               "format": "table",
               "instant": true,
               "legendFormat": "__auto",
@@ -3567,7 +3567,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_total_cpu",
+              "expr": "nightona_sandbox_total_cpu",
               "format": "table",
               "instant": true,
               "legendFormat": "__auto",
@@ -3580,7 +3580,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_used_ram_giby",
+              "expr": "nightona_sandbox_used_ram_giby",
               "format": "table",
               "instant": true,
               "legendFormat": "__auto",
@@ -3593,7 +3593,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_total_ram_giby",
+              "expr": "nightona_sandbox_total_ram_giby",
               "format": "table",
               "instant": true,
               "legendFormat": "__auto",
@@ -3606,7 +3606,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_used_storage_giby",
+              "expr": "nightona_sandbox_used_storage_giby",
               "format": "table",
               "instant": true,
               "legendFormat": "__auto",
@@ -3619,7 +3619,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "daytona_sandbox_total_storage_giby",
+              "expr": "nightona_sandbox_total_storage_giby",
               "format": "table",
               "instant": true,
               "legendFormat": "__auto",
@@ -3692,7 +3692,7 @@
   ],
   "schemaVersion": 38,
   "tags": [
-    "daytona",
+    "nightona",
     "sandbox",
     "opentelemetry",
     "prometheus"
@@ -3701,7 +3701,7 @@
     "list": [
       {
         "current": {},
-        "description": "Prometheus data source containing Daytona sandbox metrics",
+        "description": "Prometheus data source containing Nightona sandbox metrics",
         "hide": 0,
         "includeAll": false,
         "label": "Data Source",
@@ -3722,7 +3722,7 @@
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(daytona_sandbox_cpu_utilization_percent, service_name)",
+        "definition": "label_values(nightona_sandbox_cpu_utilization_percent, service_name)",
         "description": "Filter by sandbox service name",
         "hide": 0,
         "includeAll": true,
@@ -3732,7 +3732,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(daytona_sandbox_cpu_utilization_percent, service_name)",
+          "query": "label_values(nightona_sandbox_cpu_utilization_percent, service_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
@@ -3804,8 +3804,8 @@
     ]
   },
   "timezone": "",
-  "title": "Daytona Sandbox Resource Monitoring",
-  "uid": "daytona-sandbox-monitoring",
+  "title": "Nightona Sandbox Resource Monitoring",
+  "uid": "nightona-sandbox-monitoring",
   "version": 1,
   "weekStart": ""
 }

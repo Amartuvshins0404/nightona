@@ -1,7 +1,7 @@
 {
-  "name": "@daytona/sdk",
+  "name": "@nightona/sdk",
   "version": "0.0.0-dev",
-  "description": "Daytona TypeScript SDK for sandbox management and code execution",
+  "description": "Nightona TypeScript SDK for sandbox management and code execution",
   "exports": {
     ".": {
       "import": {
@@ -48,12 +48,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daytonaio/daytona.git"
+    "url": "git+https://github.com/Amartuvshins0404/nightona.git"
   },
-  "author": "Daytona Platforms Inc.",
+  "author": "Nightona Platforms Inc.",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/daytonaio/daytona/issues"
+    "url": "https://github.com/Amartuvshins0404/nightona/issues"
   },
   "homepage": "https://www.daytona.io/docs",
   "config": {
@@ -63,7 +63,7 @@
     "docs": "bash -O extglob -c 'rm -rf $npm_package_config_docsDir/!(index.mdx)' && typedoc && rm -f $npm_package_config_docsDir/readme.mdx"
   },
   "keywords": [
-    "daytona",
+    "nightona",
     "sandbox",
     "typescript",
     "sdk"

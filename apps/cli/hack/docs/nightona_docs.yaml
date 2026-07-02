@@ -1,0 +1,9 @@
+name: nightona docs
+synopsis: Opens the Nightona documentation in your default browser.
+usage: nightona docs [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

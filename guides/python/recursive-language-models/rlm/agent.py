@@ -1,4 +1,4 @@
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """Core RLM agent implementation."""
@@ -12,14 +12,14 @@ from typing import TYPE_CHECKING, Callable
 
 from rlm import prompts
 from rlm.client import BaseLMClient
-from rlm.repl import DaytonaREPL
+from rlm.repl import NightonaREPL
 from rlm.sandbox import SandboxExecutor, SandboxManager
 from rlm.types import AgentResult, Config, Iteration, UsageStats
 
 if TYPE_CHECKING:
     from output_logging.console import ConsoleOutput
 
-    from daytona import Sandbox
+    from nightona import Sandbox
 
 
 logger = logging.getLogger(__name__)
@@ -29,7 +29,7 @@ class RLMAgent:
     """
     Recursive Language Model agent.
 
-    Executes in a Daytona sandbox, can spawn sub-agents via rlm_query().
+    Executes in a Nightona sandbox, can spawn sub-agents via rlm_query().
     """
 
     def __init__(
@@ -80,7 +80,7 @@ class RLMAgent:
         self.agent_id = f"agent_{uuid.uuid4().hex[:8]}"
         self.sandbox: "Sandbox | None" = None
         self.sandbox_id: str | None = None
-        self.repl: DaytonaREPL | None = None
+        self.repl: NightonaREPL | None = None
 
         self._iterations: list[Iteration] = []
         self._spawned_agents: list[AgentResult] = []
@@ -115,7 +115,7 @@ class RLMAgent:
             task_content = self.problem_statement if self.depth == 0 else self.task
 
             # Initialize REPL with handlers and task variable
-            self.repl = DaytonaREPL(
+            self.repl = NightonaREPL(
                 sandbox=self.sandbox,
                 rlm_query_handler=self._handle_rlm_query,
                 rlm_query_batched_handler=self._handle_rlm_query_batched,

@@ -1,10 +1,10 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { pluralize } from '@/lib/utils'
-import { VolumeDto, VolumeState } from '@daytona/api-client'
+import { VolumeDto, VolumeState } from '@nightona/api-client'
 import { CheckSquare2Icon, MinusSquareIcon, PlusIcon, TrashIcon } from 'lucide-react'
 import { useMemo } from 'react'
 import { CommandConfig, useRegisterCommands } from '../CommandPalette'

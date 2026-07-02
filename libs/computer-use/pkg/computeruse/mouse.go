@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package computeruse
@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
 	"github.com/go-vgo/robotgo"
 	log "github.com/sirupsen/logrus"
 )

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package exporter
@@ -14,13 +14,13 @@ import (
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
 
-	common_cache "github.com/daytonaio/common-go/pkg/cache"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	"github.com/daytonaio/otel-collector/exporter/internal/config"
+	common_cache "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/cache"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/apps/otel-collector/exporter/internal/config"
 )
 
 const (
-	typeStr   = "daytona_exporter"
+	typeStr   = "nightona_exporter"
 	stability = component.StabilityLevelBeta
 )
 

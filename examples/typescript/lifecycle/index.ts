@@ -1,10 +1,10 @@
-import { Daytona, SandboxListSortDirection, SandboxListSortField, SandboxState } from '@daytona/sdk'
+import { Nightona, SandboxListSortDirection, SandboxListSortField, SandboxState } from '@nightona/sdk'
 
 async function main() {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
   console.log('Creating sandbox')
-  const sandbox = await daytona.create()
+  const sandbox = await nightona.create()
   console.log('Sandbox created')
 
   await sandbox.setLabels({
@@ -20,7 +20,7 @@ async function main() {
   console.log('Sandbox started')
 
   console.log('Getting existing sandbox')
-  const existingSandbox = await daytona.get(sandbox.id)
+  const existingSandbox = await nightona.get(sandbox.id)
   console.log('Got existing sandbox')
 
   const response = await existingSandbox.process.executeCommand(
@@ -35,7 +35,7 @@ async function main() {
     console.log(response.result)
   }
 
-  for await (const sb of daytona.list({
+  for await (const sb of nightona.list({
     limit: 10,
     labels: { env: 'dev' },
     states: [SandboxState.STARTED],

@@ -4,19 +4,19 @@ hideTitleOnPage: true
 ---
 
 
-## DaytonaAuthenticationError
+## NightonaAuthenticationError
 
 Error thrown when authentication fails (HTTP 401).
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -25,11 +25,11 @@ Error thrown when authentication fails (HTTP 401).
 
 ```ts
 try {
-  for await (const sandbox of daytona.list()) {
+  for await (const sandbox of nightona.list()) {
     console.log(sandbox.id)
   }
 } catch (error) {
-  if (error instanceof DaytonaAuthenticationError) {
+  if (error instanceof NightonaAuthenticationError) {
     console.log(error.statusCode)
   }
 }
@@ -37,18 +37,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaAuthenticationError()
+#### new NightonaAuthenticationError()
 
 ```ts
-new DaytonaAuthenticationError(
+new NightonaAuthenticationError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaAuthenticationError
+   errorCode?: string): NightonaAuthenticationError
 ```
 
 **Parameters**:
@@ -61,24 +61,24 @@ new DaytonaAuthenticationError(
 
 **Returns**:
 
-- `DaytonaAuthenticationError`
+- `NightonaAuthenticationError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## DaytonaAuthorizationError
+`NightonaError`.`constructor`
+## NightonaAuthorizationError
 
 Error thrown when the request is forbidden (HTTP 403).
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -87,9 +87,9 @@ Error thrown when the request is forbidden (HTTP 403).
 
 ```ts
 try {
-  await daytona.get('sandbox-without-access')
+  await nightona.get('sandbox-without-access')
 } catch (error) {
-  if (error instanceof DaytonaAuthorizationError) {
+  if (error instanceof NightonaAuthorizationError) {
     console.log(error.message)
   }
 }
@@ -97,18 +97,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaAuthorizationError()
+#### new NightonaAuthorizationError()
 
 ```ts
-new DaytonaAuthorizationError(
+new NightonaAuthorizationError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaAuthorizationError
+   errorCode?: string): NightonaAuthorizationError
 ```
 
 **Parameters**:
@@ -121,24 +121,24 @@ new DaytonaAuthorizationError(
 
 **Returns**:
 
-- `DaytonaAuthorizationError`
+- `NightonaAuthorizationError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## DaytonaConflictError
+`NightonaError`.`constructor`
+## NightonaConflictError
 
 Error thrown when a resource conflict occurs (HTTP 409).
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -147,9 +147,9 @@ Error thrown when a resource conflict occurs (HTTP 409).
 
 ```ts
 try {
-  await daytona.create({ name: 'existing-sandbox' })
+  await nightona.create({ name: 'existing-sandbox' })
 } catch (error) {
-  if (error instanceof DaytonaConflictError) {
+  if (error instanceof NightonaConflictError) {
     console.log(error.errorCode)
   }
 }
@@ -157,18 +157,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaConflictError()
+#### new NightonaConflictError()
 
 ```ts
-new DaytonaConflictError(
+new NightonaConflictError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaConflictError
+   errorCode?: string): NightonaConflictError
 ```
 
 **Parameters**:
@@ -181,24 +181,24 @@ new DaytonaConflictError(
 
 **Returns**:
 
-- `DaytonaConflictError`
+- `NightonaConflictError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## DaytonaConnectionError
+`NightonaError`.`constructor`
+## NightonaConnectionError
 
 Error thrown when a network connection fails.
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -209,7 +209,7 @@ Error thrown when a network connection fails.
 try {
   await ptyHandle.waitForConnection()
 } catch (error) {
-  if (error instanceof DaytonaConnectionError) {
+  if (error instanceof NightonaConnectionError) {
     console.log(error.message)
   }
 }
@@ -217,18 +217,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaConnectionError()
+#### new NightonaConnectionError()
 
 ```ts
-new DaytonaConnectionError(
+new NightonaConnectionError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaConnectionError
+   errorCode?: string): NightonaConnectionError
 ```
 
 **Parameters**:
@@ -241,14 +241,14 @@ new DaytonaConnectionError(
 
 **Returns**:
 
-- `DaytonaConnectionError`
+- `NightonaConnectionError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## DaytonaError
+`NightonaError`.`constructor`
+## NightonaError
 
-Base error for Daytona SDK.
+Base error for Nightona SDK.
 
 **Properties**:
 
@@ -264,9 +264,9 @@ Base error for Daytona SDK.
 
 ```ts
 try {
-  await daytona.get('missing-sandbox')
+  await nightona.get('missing-sandbox')
 } catch (error) {
-  if (error instanceof DaytonaError) {
+  if (error instanceof NightonaError) {
     console.log(error.statusCode)
     console.log(error.errorCode)
     console.log(error.message)
@@ -280,25 +280,25 @@ try {
 
 ### Extended by
 
-- `DaytonaNotFoundError`
-- `DaytonaRateLimitError`
-- `DaytonaAuthenticationError`
-- `DaytonaAuthorizationError`
-- `DaytonaConflictError`
-- `DaytonaValidationError`
-- `DaytonaTimeoutError`
-- `DaytonaConnectionError`
+- `NightonaNotFoundError`
+- `NightonaRateLimitError`
+- `NightonaAuthenticationError`
+- `NightonaAuthorizationError`
+- `NightonaConflictError`
+- `NightonaValidationError`
+- `NightonaTimeoutError`
+- `NightonaConnectionError`
 
 ### Constructors
 
-#### new DaytonaError()
+#### new NightonaError()
 
 ```ts
-new DaytonaError(
+new NightonaError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaError
+   errorCode?: string): NightonaError
 ```
 
 **Parameters**:
@@ -311,26 +311,26 @@ new DaytonaError(
 
 **Returns**:
 
-- `DaytonaError`
+- `NightonaError`
 
 ##### Overrides
 
 ```ts
 Error.constructor
 ```
-## DaytonaNotFoundError
+## NightonaNotFoundError
 
 Error thrown when a resource is not found (HTTP 404).
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -341,7 +341,7 @@ Error thrown when a resource is not found (HTTP 404).
 try {
   await sandbox.fs.downloadFile('/workspace/missing.txt')
 } catch (error) {
-  if (error instanceof DaytonaNotFoundError) {
+  if (error instanceof NightonaNotFoundError) {
     console.log(error.statusCode)
   }
 }
@@ -349,18 +349,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaNotFoundError()
+#### new NightonaNotFoundError()
 
 ```ts
-new DaytonaNotFoundError(
+new NightonaNotFoundError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaNotFoundError
+   errorCode?: string): NightonaNotFoundError
 ```
 
 **Parameters**:
@@ -373,24 +373,24 @@ new DaytonaNotFoundError(
 
 **Returns**:
 
-- `DaytonaNotFoundError`
+- `NightonaNotFoundError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## DaytonaRateLimitError
+`NightonaError`.`constructor`
+## NightonaRateLimitError
 
 Error thrown when rate limit is exceeded.
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -399,11 +399,11 @@ Error thrown when rate limit is exceeded.
 
 ```ts
 try {
-  for await (const sandbox of daytona.list()) {
+  for await (const sandbox of nightona.list()) {
     console.log(sandbox.id)
   }
 } catch (error) {
-  if (error instanceof DaytonaRateLimitError) {
+  if (error instanceof NightonaRateLimitError) {
     console.log(error.errorCode)
   }
 }
@@ -411,18 +411,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaRateLimitError()
+#### new NightonaRateLimitError()
 
 ```ts
-new DaytonaRateLimitError(
+new NightonaRateLimitError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaRateLimitError
+   errorCode?: string): NightonaRateLimitError
 ```
 
 **Parameters**:
@@ -435,24 +435,24 @@ new DaytonaRateLimitError(
 
 **Returns**:
 
-- `DaytonaRateLimitError`
+- `NightonaRateLimitError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## DaytonaTimeoutError
+`NightonaError`.`constructor`
+## NightonaTimeoutError
 
 Error thrown when a timeout occurs.
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -463,7 +463,7 @@ Error thrown when a timeout occurs.
 try {
   await sandbox.waitUntilStarted(1)
 } catch (error) {
-  if (error instanceof DaytonaTimeoutError) {
+  if (error instanceof NightonaTimeoutError) {
     console.log(error.message)
   }
 }
@@ -471,18 +471,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaTimeoutError()
+#### new NightonaTimeoutError()
 
 ```ts
-new DaytonaTimeoutError(
+new NightonaTimeoutError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaTimeoutError
+   errorCode?: string): NightonaTimeoutError
 ```
 
 **Parameters**:
@@ -495,24 +495,24 @@ new DaytonaTimeoutError(
 
 **Returns**:
 
-- `DaytonaTimeoutError`
+- `NightonaTimeoutError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## DaytonaValidationError
+`NightonaError`.`constructor`
+## NightonaValidationError
 
 Error thrown when input validation fails (HTTP 400 or client-side validation).
 
 **Properties**:
 
 - `errorCode?` _string_ - Machine-readable error code if available
-    - _Inherited from_: `DaytonaError.errorCode`
+    - _Inherited from_: `NightonaError.errorCode`
 - `headers?` _AxiosHeaders_ - Response headers if available
-    - _Inherited from_: `DaytonaError.headers`
+    - _Inherited from_: `NightonaError.headers`
 - `statusCode?` _number_ - HTTP status code if available
     
-    - _Inherited from_: `DaytonaError.statusCode`
+    - _Inherited from_: `NightonaError.statusCode`
 
 
 
@@ -523,7 +523,7 @@ Error thrown when input validation fails (HTTP 400 or client-side validation).
 try {
   Image.debianSlim('3.8' as never)
 } catch (error) {
-  if (error instanceof DaytonaValidationError) {
+  if (error instanceof NightonaValidationError) {
     console.log(error.message)
   }
 }
@@ -531,18 +531,18 @@ try {
 
 **Extends:**
 
-- `DaytonaError`
+- `NightonaError`
 
 ### Constructors
 
-#### new DaytonaValidationError()
+#### new NightonaValidationError()
 
 ```ts
-new DaytonaValidationError(
+new NightonaValidationError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaValidationError
+   errorCode?: string): NightonaValidationError
 ```
 
 **Parameters**:
@@ -555,18 +555,18 @@ new DaytonaValidationError(
 
 **Returns**:
 
-- `DaytonaValidationError`
+- `NightonaValidationError`
 
 ##### Inherited from
 
-`DaytonaError`.`constructor`
-## createAxiosDaytonaError()
+`NightonaError`.`constructor`
+## createAxiosNightonaError()
 
 ```ts
-function createAxiosDaytonaError(error: AxiosError): DaytonaError
+function createAxiosNightonaError(error: AxiosError): NightonaError
 ```
 
-Creates the appropriate Daytona error subclass from an Axios error.
+Creates the appropriate Nightona error subclass from an Axios error.
 
 **Parameters**:
 
@@ -575,22 +575,22 @@ Creates the appropriate Daytona error subclass from an Axios error.
 
 **Returns**:
 
-- `DaytonaError`
+- `NightonaError`
 
 ***
 
 
-## createDaytonaError()
+## createNightonaError()
 
 ```ts
-function createDaytonaError(
+function createNightonaError(
    message: string, 
    statusCode?: number, 
    headers?: AxiosHeaders, 
-   errorCode?: string): DaytonaError
+   errorCode?: string): NightonaError
 ```
 
-Creates the appropriate Daytona error subclass from structured error metadata.
+Creates the appropriate Nightona error subclass from structured error metadata.
 
 **Parameters**:
 
@@ -602,7 +602,7 @@ Creates the appropriate Daytona error subclass from structured error metadata.
 
 **Returns**:
 
-- `DaytonaError`
+- `NightonaError`
 
 ***
 
@@ -610,10 +610,10 @@ Creates the appropriate Daytona error subclass from structured error metadata.
 ## errorClassFromStatusCode()
 
 ```ts
-function errorClassFromStatusCode(statusCode?: number): typeof DaytonaError
+function errorClassFromStatusCode(statusCode?: number): typeof NightonaError
 ```
 
-Maps an HTTP status code to the corresponding Daytona error class.
+Maps an HTTP status code to the corresponding Nightona error class.
 
 **Parameters**:
 
@@ -622,7 +622,7 @@ Maps an HTTP status code to the corresponding Daytona error class.
 
 ### Returns
 
-*typeof* `DaytonaError`
+*typeof* `NightonaError`
 
 ***
 

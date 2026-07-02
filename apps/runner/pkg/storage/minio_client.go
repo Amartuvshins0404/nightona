@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package storage
@@ -9,7 +9,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/daytonaio/runner/cmd/runner/config"
+	"github.com/Amartuvshins0404/nightona/apps/runner/cmd/runner/config"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 )

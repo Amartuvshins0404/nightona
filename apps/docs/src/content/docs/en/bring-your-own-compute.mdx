@@ -5,18 +5,18 @@ description: Use your own runner machines to scale compute resources independent
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Bring Your Own Compute (BYOC) enables you to use your own runner machines to run sandbox workloads. Runners are machines that power Daytona's compute plane and provide the underlying infrastructure. Each runner is responsible for:
+Bring Your Own Compute (BYOC) enables you to use your own runner machines to run sandbox workloads. Runners are machines that power Nightona's compute plane and provide the underlying infrastructure. Each runner is responsible for:
 
 - **Workload execution**: running sandbox workloads
 - **Resource management**: allocating and monitoring CPU, memory, and disk resources
-- **Health reporting**: providing metrics and health status to the Daytona control plane
+- **Health reporting**: providing metrics and health status to the Nightona control plane
 - **Network connectivity**: managing sandbox networking, proxy connections, and SSH access
 
-Runners in [shared](/docs/en/regions#shared-regions) and [dedicated](/docs/en/regions#dedicated-regions) regions are fully managed by Daytona — from provisioning and maintenance to monitoring and scaling. For custom regions, you bring your own runner machines and are responsible for their management and operation.
+Runners in [shared](/docs/en/regions#shared-regions) and [dedicated](/docs/en/regions#dedicated-regions) regions are fully managed by Nightona — from provisioning and maintenance to monitoring and scaling. For custom regions, you bring your own runner machines and are responsible for their management and operation.
 
-Daytona provides two sets of runner management endpoints: [custom runners](#custom-runners) (`/runners`) and [admin operations](#admin-operations) (`/admin/runners`). While both support creating, listing, updating, and deleting runners, they serve different purposes and offer different levels of control.
+Nightona provides two sets of runner management endpoints: [custom runners](#custom-runners) (`/runners`) and [admin operations](#admin-operations) (`/admin/runners`). While both support creating, listing, updating, and deleting runners, they serve different purposes and offer different levels of control.
 
-Custom runner endpoints are scoped to your [organization](/docs/en/organizations) and support the `X-Daytona-Organization-ID` header. Admin endpoints operate across the entire platform and do not require an organization header.
+Custom runner endpoints are scoped to your [organization](/docs/en/organizations) and support the `X-Nightona-Organization-ID` header. Admin endpoints operate across the entire platform and do not require an organization header.
 
 Both `Runner` and `RunnerFull` share the same base fields, including resource metrics, allocated resources, availability score, snapshot count, and started sandboxes. The `RunnerFull` type extends `Runner` with the runner's `apiKey` and `regionType` fields.
 
@@ -51,9 +51,9 @@ Additionally, custom regions have no limits applied for concurrent resource usag
 
 ### Create a custom region
 
-Daytona provides methods to create a custom region using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#daytona/tag/organizations/POST/regions).
+Nightona provides methods to create a custom region using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#nightona/tag/organizations/POST/regions).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions)
 2. Click the **Create Region** button
 3. Enter the **region name**, **proxy URL**, **SSH gateway URL**, and **snapshot manager URL**
 
@@ -90,22 +90,22 @@ The response includes the region ID and credentials for any optional services yo
   "id": "region_12345",
   "proxyApiKey": "proxy-api-key-xyz",
   "sshGatewayApiKey": "ssh-gateway-api-key-abc",
-  "snapshotManagerUsername": "daytona",
+  "snapshotManagerUsername": "nightona",
   "snapshotManagerPassword": "generated-password"
 }
 ```
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**createRegion (API)**](/docs/en/tools/api#daytona/tag/organizations/POST/regions)
+> [**createRegion (API)**](/docs/en/tools/api#nightona/tag/organizations/POST/regions)
 
 ### Custom region credentials
 
-When you create a custom region, Daytona will provide credentials for any optional services you configure:
+When you create a custom region, Nightona will provide credentials for any optional services you configure:
 
-- An API key that should be used by your proxy service to authenticate with Daytona
-- An API key that should be used by your SSH gateway service to authenticate with Daytona
-- Basic authentication credentials that Daytona uses to access your snapshot manager service
+- An API key that should be used by your proxy service to authenticate with Nightona
+- An API key that should be used by your SSH gateway service to authenticate with Nightona
+- Basic authentication credentials that Nightona uses to access your snapshot manager service
 
 :::note
 If needed, these credentials can always be regenerated, but you will need to redeploy the corresponding services with the updated credentials.
@@ -113,9 +113,9 @@ If needed, these credentials can always be regenerated, but you will need to red
 
 ### List custom regions
 
-Daytona provides methods to list all available regions for your organization using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#daytona/tag/organizations/GET/regions).
+Nightona provides methods to list all available regions for your organization using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#nightona/tag/organizations/GET/regions).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions)
 2. The list of regions is displayed in the **Regions** table with the following columns:
 
 - **Name**: the name of the region
@@ -133,15 +133,15 @@ curl https://app.daytona.io/api/regions \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**listAvailableRegions (API)**](/docs/en/tools/api#daytona/tag/organizations/GET/regions)
+> [**listAvailableRegions (API)**](/docs/en/tools/api#nightona/tag/organizations/GET/regions)
 
 ### Get a custom region
 
-Daytona provides methods to get the details of a specific region using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#daytona/tag/organizations/GET/regions/{id}).
+Nightona provides methods to get the details of a specific region using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#nightona/tag/organizations/GET/regions/{id}).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions)
 2. Click the region you want to get the details of
 3. The region details are displayed in the **Region Details** panel with the following information:
 
@@ -161,15 +161,15 @@ curl https://app.daytona.io/api/regions/{regionId} \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**getRegionById (API)**](/docs/en/tools/api#daytona/tag/organizations/GET/regions/{id})
+> [**getRegionById (API)**](/docs/en/tools/api#nightona/tag/organizations/GET/regions/{id})
 
 ### Update a custom region
 
-Daytona provides methods to update the configuration of an existing custom region using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#daytona/tag/organizations/PATCH/regions/{id}).
+Nightona provides methods to update the configuration of an existing custom region using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#nightona/tag/organizations/PATCH/regions/{id}).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions)
 2. Click the region you want to update the configuration of
 3. Click the three dots menu (**⋮**) next to the region and select the **Edit** icon
 4. Enter the new **proxy URL**, **SSH gateway URL**, and **snapshot manager URL**
@@ -197,15 +197,15 @@ curl https://app.daytona.io/api/regions/{regionId} \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**updateRegion (API)**](/docs/en/tools/api#daytona/tag/organizations/PATCH/regions/{id})
+> [**updateRegion (API)**](/docs/en/tools/api#nightona/tag/organizations/PATCH/regions/{id})
 
 ### Delete a custom region
 
-Daytona provides methods to delete a custom region using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#daytona/tag/organizations/DELETE/regions/{id}). Regions that have runners assigned to them cannot be deleted.
+Nightona provides methods to delete a custom region using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions) or programmatically using the [API](/docs/en/tools/api#nightona/tag/organizations/DELETE/regions/{id}). Regions that have runners assigned to them cannot be deleted.
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/regions)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/regions)
 2. Click the region you want to delete
 3. Click the three dots menu (**⋮**) next to the region and select **Delete**
 4. Confirm the deletion
@@ -222,13 +222,13 @@ curl https://app.daytona.io/api/regions/{regionId} \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**deleteRegion (API)**](/docs/en/tools/api#daytona/tag/organizations/DELETE/regions/{id})
+> [**deleteRegion (API)**](/docs/en/tools/api#nightona/tag/organizations/DELETE/regions/{id})
 
 #### Regenerate proxy API key
 
-Daytona provides an API to regenerate the proxy API key for a custom region.
+Nightona provides an API to regenerate the proxy API key for a custom region.
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -242,13 +242,13 @@ curl https://app.daytona.io/api/regions/{regionId}/regenerate-proxy-api-key \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**regenerateProxyApiKey (API)**](/docs/en/tools/api#daytona/tag/organizations/POST/regions/{id}/regenerate-proxy-api-key)
+> [**regenerateProxyApiKey (API)**](/docs/en/tools/api#nightona/tag/organizations/POST/regions/{id}/regenerate-proxy-api-key)
 
 #### Regenerate SSH gateway API key
 
-Daytona provides an API to regenerate the SSH gateway API key for a custom region.
+Nightona provides an API to regenerate the SSH gateway API key for a custom region.
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -262,13 +262,13 @@ curl https://app.daytona.io/api/regions/{regionId}/regenerate-ssh-gateway-api-ke
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**regenerateSshGatewayApiKey (API)**](/docs/en/tools/api#daytona/tag/organizations/POST/regions/{id}/regenerate-ssh-gateway-api-key)
+> [**regenerateSshGatewayApiKey (API)**](/docs/en/tools/api#nightona/tag/organizations/POST/regions/{id}/regenerate-ssh-gateway-api-key)
 
 #### Regenerate snapshot manager credentials
 
-Daytona provides an API to regenerate the snapshot manager credentials for a custom region.
+Nightona provides an API to regenerate the snapshot manager credentials for a custom region.
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -282,9 +282,9 @@ curl https://app.daytona.io/api/regions/{regionId}/regenerate-snapshot-manager-c
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/organizations) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/organizations) reference:
 
-> [**regenerateSnapshotManagerCredentials (API)**](/docs/en/tools/api#daytona/tag/organizations/POST/regions/{id}/regenerate-snapshot-manager-credentials)
+> [**regenerateSnapshotManagerCredentials (API)**](/docs/en/tools/api#nightona/tag/organizations/POST/regions/{id}/regenerate-snapshot-manager-credentials)
 
 ## Custom runners
 
@@ -306,9 +306,9 @@ Custom runners are created and managed by your organization, allowing you to use
 
 ### Create a custom runner
 
-Daytona provides methods to create a custom runner using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#daytona/tag/runners/POST/runners).
+Nightona provides methods to create a custom runner using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#nightona/tag/runners/POST/runners).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners)
 2. Click the **Create Runner** button
 3. Select a **region** and enter its **name**
 4. Click **Create** to create the runner
@@ -333,7 +333,7 @@ curl https://app.daytona.io/api/runners \
 </TabItem>
 </Tabs>
 
-Upon creating a runner, you will be presented with a secure token that you can use to authenticate the runner with the Daytona control plane. The response includes the runner ID and the API key token:
+Upon creating a runner, you will be presented with a secure token that you can use to authenticate the runner with the Nightona control plane. The response includes the runner ID and the API key token:
 
 ```json
 {
@@ -346,15 +346,15 @@ Upon creating a runner, you will be presented with a secure token that you can u
 Save this token securely. You won't be able to see it again.
 :::
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/runners) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/runners) reference:
 
-> [**createRunner (API)**](/docs/en/tools/api#daytona/tag/runners/POST/runners)
+> [**createRunner (API)**](/docs/en/tools/api#nightona/tag/runners/POST/runners)
 
 ### List custom runners
 
-Daytona provides methods to list all runners in your organization using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#daytona/tag/runners/GET/runners).
+Nightona provides methods to list all runners in your organization using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#nightona/tag/runners/GET/runners).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners)
 2. The list of runners is displayed in the **Runners** table with the following columns:
 
 - **ID**: the ID of the runner
@@ -374,15 +374,15 @@ curl https://app.daytona.io/api/runners \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/runners) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/runners) reference:
 
-> [**listRunners (API)**](/docs/en/tools/api#daytona/tag/runners/GET/runners)
+> [**listRunners (API)**](/docs/en/tools/api#nightona/tag/runners/GET/runners)
 
 ### Get a custom runner
 
-Daytona provides methods to get the details of a specific runner using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#daytona/tag/runners/GET/runners/{id}).
+Nightona provides methods to get the details of a specific runner using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#nightona/tag/runners/GET/runners/{id}).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners)
 2. Click the runner you want to get the details of
 3. The runner details are displayed in the **Runner Details** panel with the following information:
 
@@ -410,15 +410,15 @@ curl https://app.daytona.io/api/runners/{runnerId} \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/runners) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/runners) reference:
 
-> [**getRunnerById (API)**](/docs/en/tools/api#daytona/tag/runners/GET/runners/{id})
+> [**getRunnerById (API)**](/docs/en/tools/api#nightona/tag/runners/GET/runners/{id})
 
 ### Update runner scheduling
 
-Daytona provides methods to update the scheduling status of a runner using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#daytona/tag/runners/PATCH/runners/{id}/scheduling). This allows you to mark a runner as unschedulable, preventing new sandboxes from being assigned to it.
+Nightona provides methods to update the scheduling status of a runner using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#nightona/tag/runners/PATCH/runners/{id}/scheduling). This allows you to mark a runner as unschedulable, preventing new sandboxes from being assigned to it.
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners)
 2. Use the checkbox to mark the runner as unschedulable or schedulable
 
 <Tabs>
@@ -433,15 +433,15 @@ curl https://app.daytona.io/api/runners/{runnerId}/scheduling \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/runners) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/runners) reference:
 
-> [**updateRunnerScheduling (API)**](/docs/en/tools/api#daytona/tag/runners/PATCH/runners/{id}/scheduling)
+> [**updateRunnerScheduling (API)**](/docs/en/tools/api#nightona/tag/runners/PATCH/runners/{id}/scheduling)
 
 ### Delete a custom runner
 
-Daytona provides methods to delete a custom runner using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#daytona/tag/runners/DELETE/runners/{id}).
+Nightona provides methods to delete a custom runner using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners) or programmatically using the [API](/docs/en/tools/api#nightona/tag/runners/DELETE/runners/{id}).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/runners)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/runners)
 2. Click the three dots menu (**⋮**) next to the runner you want to delete and select **Delete**
 3. Confirm the deletion
 
@@ -457,13 +457,13 @@ curl https://app.daytona.io/api/runners/{runnerId} \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/runners) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/runners) reference:
 
-> [**deleteRunner (API)**](/docs/en/tools/api#daytona/tag/runners/DELETE/runners/{id})
+> [**deleteRunner (API)**](/docs/en/tools/api#nightona/tag/runners/DELETE/runners/{id})
 
 ## Admin operations
 
-Admin runners operate across the entire platform. They do not require the `X-Daytona-Organization-ID` header and return `RunnerFull` objects with additional `apiKey` and `regionType` fields.
+Admin runners operate across the entire platform. They do not require the `X-Nightona-Organization-ID` header and return `RunnerFull` objects with additional `apiKey` and `regionType` fields.
 
 ### Admin runner configuration
 
@@ -478,7 +478,7 @@ Admin runners operate across the entire platform. They do not require the `X-Day
 
 **apiKey** (required)
 
-- The API key used to authenticate the runner with the Daytona control plane
+- The API key used to authenticate the runner with the Nightona control plane
 
 **apiVersion** (required)
 
@@ -511,7 +511,7 @@ Admin runners operate across the entire platform. They do not require the `X-Day
 
 ### Create a runner
 
-Daytona provides an admin API to create a runner with full configuration, including resource capacity and network settings. Unlike the custom runner endpoint, you must provide your own `apiKey` and specify the `apiVersion` (`0` or `2`).
+Nightona provides an admin API to create a runner with full configuration, including resource capacity and network settings. Unlike the custom runner endpoint, you must provide your own `apiKey` and specify the `apiVersion` (`0` or `2`).
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -538,13 +538,13 @@ curl https://app.daytona.io/api/admin/runners \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/admin) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/admin) reference:
 
-> [**adminCreateRunner (API)**](/docs/en/tools/api#daytona/tag/admin/POST/admin/runners)
+> [**adminCreateRunner (API)**](/docs/en/tools/api#nightona/tag/admin/POST/admin/runners)
 
 ### List runners
 
-Daytona provides an admin API to list all runners with full details, including resource usage metrics. You can optionally filter runners by region.
+Nightona provides an admin API to list all runners with full details, including resource usage metrics. You can optionally filter runners by region.
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -562,13 +562,13 @@ curl 'https://app.daytona.io/api/admin/runners?regionId=region_12345' \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/admin) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/admin) reference:
 
-> [**adminListRunners (API)**](/docs/en/tools/api#daytona/tag/admin/GET/admin/runners)
+> [**adminListRunners (API)**](/docs/en/tools/api#nightona/tag/admin/GET/admin/runners)
 
 ### Get runner
 
-Daytona provides an admin API to get full runner details, including resource usage and allocation metrics.
+Nightona provides an admin API to get full runner details, including resource usage and allocation metrics.
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -581,13 +581,13 @@ curl https://app.daytona.io/api/admin/runners/{runnerId} \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/admin) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/admin) reference:
 
-> [**adminGetRunnerById (API)**](/docs/en/tools/api#daytona/tag/admin/GET/admin/runners/{id})
+> [**adminGetRunnerById (API)**](/docs/en/tools/api#nightona/tag/admin/GET/admin/runners/{id})
 
 ### Update runner scheduling
 
-Daytona provides an admin API to update the scheduling status of a runner.
+Nightona provides an admin API to update the scheduling status of a runner.
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -601,13 +601,13 @@ curl https://app.daytona.io/api/admin/runners/{runnerId}/scheduling \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/admin) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/admin) reference:
 
-> [**adminUpdateRunnerScheduling (API)**](/docs/en/tools/api#daytona/tag/admin/PATCH/admin/runners/{id}/scheduling)
+> [**adminUpdateRunnerScheduling (API)**](/docs/en/tools/api#nightona/tag/admin/PATCH/admin/runners/{id}/scheduling)
 
 ### Delete runner
 
-Daytona provides an admin API to delete a runner.
+Nightona provides an admin API to delete a runner.
 
 <Tabs>
 <TabItem label="API" icon="seti:json">
@@ -621,17 +621,17 @@ curl https://app.daytona.io/api/admin/runners/{runnerId} \
 </TabItem>
 </Tabs>
 
-For more information, see the [API](/docs/en/tools/api#daytona/tag/admin) reference:
+For more information, see the [API](/docs/en/tools/api#nightona/tag/admin) reference:
 
-> [**adminDeleteRunner (API)**](/docs/en/tools/api#daytona/tag/admin/DELETE/admin/runners/{id})
+> [**adminDeleteRunner (API)**](/docs/en/tools/api#nightona/tag/admin/DELETE/admin/runners/{id})
 
 ## Runner deployment
 
-After registering a custom runner and obtaining its secure token, install and configure the Daytona runner application on your infrastructure. Daytona provides official [Terraform modules](#terraform) and [Helm charts](#helm-charts) for automated runner deployment.
+After registering a custom runner and obtaining its secure token, install and configure the Nightona runner application on your infrastructure. Nightona provides official [Terraform modules](#terraform) and [Helm charts](#helm-charts) for automated runner deployment.
 
 ### Terraform
 
-Daytona provides a Terraform module for deploying runners on AWS EC2 with automated installation and configuration. The module handles instance provisioning, security configuration, and runner registration with the Daytona platform.
+Nightona provides a Terraform module for deploying runners on AWS EC2 with automated installation and configuration. The module handles instance provisioning, security configuration, and runner registration with the Nightona platform.
 
 View the full documentation and examples in the GitHub repository:
 
@@ -643,12 +643,12 @@ View the full documentation and examples in the GitHub repository:
 - AWS credentials configured
 - VPC and subnet already created
 - Ubuntu 22.04 or later AMI
-- Daytona runner .deb package hosted at an accessible URL
+- Nightona runner .deb package hosted at an accessible URL
 
 #### Basic example
 
 ```hcl
-module "daytona_runner" {
+module "nightona_runner" {
   source = "./runner"
 
   # Network Configuration
@@ -659,8 +659,8 @@ module "daytona_runner" {
   ami_id        = "ami-0c55b159cbfafe1f0"  # Ubuntu 22.04 LTS
   instance_type = "t3.medium"
 
-  # Daytona Configuration
-  api_url   = "https://daytona.example.com/api"
+  # Nightona Configuration
+  api_url   = "https://nightona.example.com/api"
   api_key   = "your-api-key-here"
   region_id = "your-region-id"
 
@@ -677,7 +677,7 @@ module "daytona_runner" {
 #### Advanced example
 
 ```hcl
-module "daytona_runner" {
+module "nightona_runner" {
   source = "./runner"
 
   name_prefix = "production"
@@ -692,8 +692,8 @@ module "daytona_runner" {
   root_volume_size   = 100
   root_volume_type   = "gp3"
 
-  # Daytona Configuration
-  api_url   = "https://api.daytona.example.com"
+  # Nightona Configuration
+  api_url   = "https://api.nightona.example.com"
   api_key   = var.api_key  # Use variable for sensitive data
   region_id = var.region_id
 
@@ -718,12 +718,12 @@ module "daytona_runner" {
 | **`vpc_id`**                        | VPC ID where the runner will be deployed       | string       | -             | yes          |
 | **`subnet_id`**                     | Subnet ID where the runner will be deployed    | string       | -             | yes          |
 | **`ami_id`**                        | AMI ID for the EC2 instance                    | string       | -             | yes          |
-| **`api_url`**                       | Daytona API URL                                | string       | -             | yes          |
-| **`api_key`**                       | Daytona API key                                | string       | -             | yes          |
-| **`region_id`**                     | Daytona region ID                              | string       | -             | yes          |
-| **`name_prefix`**                   | Prefix for resource names                      | string       | "daytona"     | no           |
+| **`api_url`**                       | Nightona API URL                                | string       | -             | yes          |
+| **`api_key`**                       | Nightona API key                                | string       | -             | yes          |
+| **`region_id`**                     | Nightona region ID                              | string       | -             | yes          |
+| **`name_prefix`**                   | Prefix for resource names                      | string       | "nightona"     | no           |
 | **`runner_name`**                   | Name for the runner (used in API registration) | string       | null          | no           |
-| **`runner_version`**                | Daytona runner version                         | string       | "0.125.0-rc1" | no           |
+| **`runner_version`**                | Nightona runner version                         | string       | "0.125.0-rc1" | no           |
 | **`instance_type`**                 | EC2 instance type                              | string       | "t3.medium"   | no           |
 | **`key_name`**                      | SSH key pair name                              | string       | null          | no           |
 | **`root_volume_type`**              | Root volume type                               | string       | "gp3"         | no           |
@@ -744,8 +744,8 @@ module "daytona_runner" {
 
 | Name                | Description                        |
 | ------------------- | ---------------------------------- |
-| runner_id           | Daytona runner ID                  |
-| runner_name         | Daytona runner name                |
+| runner_id           | Nightona runner ID                  |
+| runner_name         | Nightona runner name                |
 | instance_id         | ID of the EC2 instance             |
 | instance_private_ip | Private IP address of the instance |
 | instance_public_ip  | Public IP address of the instance  |
@@ -768,10 +768,10 @@ module "daytona_runner" {
 aws ssm start-session --target <instance-id>
 
 # Check runner status
-sudo systemctl status daytona-runner
+sudo systemctl status nightona-runner
 
 # View logs
-sudo journalctl -u daytona-runner -f
+sudo journalctl -u nightona-runner -f
 ```
 
 #### Access using SSH
@@ -796,28 +796,28 @@ Troubleshoot runner issues:
 
 ```bash
 # Service status
-sudo systemctl status daytona-runner
+sudo systemctl status nightona-runner
 
 # Service logs
-sudo journalctl -u daytona-runner -n 100 --no-pager
+sudo journalctl -u nightona-runner -n 100 --no-pager
 
 # Check configuration
-sudo cat /etc/daytona/runner.env
+sudo cat /etc/nightona/runner.env
 ```
 
 Verify runner installation:
 
 ```bash
 # Check if binary exists
-ls -la /opt/daytona/runner
+ls -la /opt/nightona/runner
 
 # Check binary permissions
-file /opt/daytona/runner
+file /opt/nightona/runner
 ```
 
 ### Helm charts
 
-Daytona provides a Helm chart for deploying custom regions and their supporting infrastructure on Kubernetes. The `daytona-region` chart deploys a proxy service, optional snapshot manager, and a registration job, allowing you to run Daytona sandboxes within your own Kubernetes cluster.
+Nightona provides a Helm chart for deploying custom regions and their supporting infrastructure on Kubernetes. The `nightona-region` chart deploys a proxy service, optional snapshot manager, and a registration job, allowing you to run Nightona sandboxes within your own Kubernetes cluster.
 
 View the full documentation and examples in the GitHub repository:
 
@@ -839,8 +839,8 @@ curl -sSL https://download.daytona.io/install.sh | sudo bash
 
 The script will prompt you for:
 
-- Daytona API URL
-- Daytona Admin API Key
+- Nightona API URL
+- Nightona Admin API Key
 - System resource allocation (CPU, memory, disk)
 - Domain name for the runner
 - Runner API URL
@@ -849,9 +849,9 @@ The script will prompt you for:
 2. Automatic steps performed by the script
 
 - Checks system architecture
-- Downloads the Daytona runner binary
+- Downloads the Nightona runner binary
 - Installs Docker if missing
-- Registers the runner with the Daytona API
+- Registers the runner with the Nightona API
 - Creates and enables a systemd service for the runner
 - Starts the runner service
 
@@ -860,19 +860,19 @@ The script will prompt you for:
 Check status:
 
 ```bash
-sudo systemctl status daytona-runner
+sudo systemctl status nightona-runner
 ```
 
 View logs:
 
 ```bash
-sudo tail -f /var/log/daytona-runner.log
+sudo tail -f /var/log/nightona-runner.log
 ```
 
 Stop service:
 
 ```bash
-sudo systemctl stop daytona-runner
+sudo systemctl stop nightona-runner
 ```
 
 #### Override with environment variables
@@ -891,14 +891,14 @@ Set these variables before running the install script to customize the runner co
 | **`TLS_KEY_FILE`**          | Path to TLS key file         | `/etc/letsencrypt/live/$DOMAIN/privkey.pem`   |
 | **`ENABLE_TLS`**            | Enable TLS for runner        | `false`                                       |
 | **`API_PORT`**              | Port for runner API          | `3000`                                        |
-| **`LOG_FILE_PATH`**         | Path to runner log file      | `/var/log/daytona-runner.log`                 |
+| **`LOG_FILE_PATH`**         | Path to runner log file      | `/var/log/nightona-runner.log`                 |
 | **`LOG_LEVEL`**             | Log level                    | `info`                                        |
 | **`AWS_ENDPOINT_URL`**      | AWS S3 endpoint URL          | `https://s3.us-east-1.amazonaws.com`          |
 | **`AWS_ACCESS_KEY_ID`**     | AWS access key ID            | (empty)                                       |
 | **`AWS_SECRET_ACCESS_KEY`** | AWS secret access key        | (empty)                                       |
 | **`AWS_REGION`**            | AWS region                   | `us-east-1`                                   |
-| **`AWS_DEFAULT_BUCKET`**    | AWS S3 bucket name           | `daytona`                                     |
+| **`AWS_DEFAULT_BUCKET`**    | AWS S3 bucket name           | `nightona`                                     |
 | **`SSH_GATEWAY_ENABLE`**    | Enable SSH gateway           | `true` or `false` (auto-detected)             |
 | **`SSH_PUBLIC_KEY`**        | SSH gateway public key       | Fetched from API                              |
 | **`SSH_HOST_KEY_PATH`**     | Path to SSH host key         | `/etc/ssh/ssh_host_rsa_key`                   |
-| **`SERVER_URL`**            | Daytona API URL              | User-provided                                 |
+| **`SERVER_URL`**            | Nightona API URL              | User-provided                                 |

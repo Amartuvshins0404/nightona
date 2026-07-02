@@ -1,9 +1,9 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package session
 
-import "github.com/daytonaio/daemon/internal/util"
+import "github.com/Amartuvshins0404/nightona/apps/daemon/internal/util"
 
 func (s *SessionService) List() ([]Session, error) {
 	sessions := []Session{}

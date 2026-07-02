@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package proxy
@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	"github.com/daytonaio/common-go/pkg/utils"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/utils"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 	"github.com/gin-gonic/gin"
 
 	log "github.com/sirupsen/logrus"
@@ -116,7 +116,7 @@ func (p *Proxy) GetProxyTarget(ctx *gin.Context) (*url.URL, map[string]string, e
 	}
 
 	return target, map[string]string{
-		"X-Daytona-Authorization": fmt.Sprintf("Bearer %s", runnerInfo.ApiKey),
+		"X-Nightona-Authorization": fmt.Sprintf("Bearer %s", runnerInfo.ApiKey),
 		"X-Forwarded-Host":        ctx.Request.Host,
 	}, nil
 }

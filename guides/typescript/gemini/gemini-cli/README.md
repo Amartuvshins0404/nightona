@@ -1,10 +1,10 @@
-# Gemini CLI Coding Agent with Daytona
+# Gemini CLI Coding Agent with Nightona
 
-A headless coding agent powered by the [Gemini CLI](https://geminicli.com/) running inside secure [Daytona sandboxes](https://www.daytona.io/), streaming its task output back to your terminal in real time.
+A headless coding agent powered by the [Gemini CLI](https://geminicli.com/) running inside secure [Nightona sandboxes](https://www.daytona.io/), streaming its task output back to your terminal in real time.
 
 ## Features
 
-- **Secure sandbox execution:** The Gemini CLI and any code it runs stay inside an isolated Daytona sandbox.
+- **Secure sandbox execution:** The Gemini CLI and any code it runs stay inside an isolated Nightona sandbox.
 - **Fully headless:** Runs non-interactively with no browser OAuth and no permission prompts.
 - **Streaming output:** Parses the CLI's `stream-json` events for real-time tool and message activity.
 - **Session continuity:** Reuses the Gemini session across prompts (`-r`) for multi-turn context.
@@ -12,7 +12,7 @@ A headless coding agent powered by the [Gemini CLI](https://geminicli.com/) runn
 ## Prerequisites
 
 - Node.js 20 or newer
-- A Daytona API key from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- A Nightona API key from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - A Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey)
 
 ## Setup
@@ -26,7 +26,7 @@ A headless coding agent powered by the [Gemini CLI](https://geminicli.com/) runn
 2. Copy `.env.example` to `.env` and add your API keys:
 
    ```bash
-   DAYTONA_API_KEY=your_daytona_key
+   NIGHTONA_API_KEY=your_nightona_key
    SANDBOX_GEMINI_API_KEY=your_gemini_key
    ```
 
@@ -40,7 +40,7 @@ Then type a prompt at the `User:` prompt and watch the agent stream its work. Pr
 
 ## What's happening
 
-The script creates a Daytona sandbox with `GEMINI_API_KEY` and `GEMINI_CLI_TRUST_WORKSPACE=true` injected at create time, so the Gemini CLI authenticates headlessly (skipping browser OAuth) and bypasses the workspace-trust prompt that would otherwise block runs in a fresh directory. It installs `@google/gemini-cli` in the sandbox, then opens a PTY and runs `gemini -p "<prompt>" --yolo --output-format stream-json` for each turn. `--yolo` auto-approves tool calls so the run never blocks on a permission prompt, and `--output-format stream-json` emits newline-delimited JSON events that are parsed and printed live. The session ID from the `init` event is reused with `-r` for multi-turn continuity, and the sandbox is deleted automatically on exit.
+The script creates a Nightona sandbox with `GEMINI_API_KEY` and `GEMINI_CLI_TRUST_WORKSPACE=true` injected at create time, so the Gemini CLI authenticates headlessly (skipping browser OAuth) and bypasses the workspace-trust prompt that would otherwise block runs in a fresh directory. It installs `@google/gemini-cli` in the sandbox, then opens a PTY and runs `gemini -p "<prompt>" --yolo --output-format stream-json` for each turn. `--yolo` auto-approves tool calls so the run never blocks on a permission prompt, and `--output-format stream-json` emits newline-delimited JSON events that are parsed and printed live. The session ID from the `init` event is reused with `-r` for multi-turn continuity, and the sandbox is deleted automatically on exit.
 
 ## Example Output
 
@@ -88,4 +88,4 @@ User:
 ## References
 
 - [Gemini CLI Documentation](https://geminicli.com/docs/)
-- [Daytona Documentation](https://www.daytona.io/docs/)
+- [Nightona Documentation](https://www.daytona.io/docs/)

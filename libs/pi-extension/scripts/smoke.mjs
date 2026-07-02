@@ -1,12 +1,12 @@
 /**
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
  * Smoke test: load the extension exactly as Pi does (via jiti) against a stub
  * ExtensionAPI, and assert it registers the expected flags, tools, and events
- * without throwing. Does NOT require a Daytona API key or network.
+ * without throwing. Does NOT require a Nightona API key or network.
  */
 
 import { createRequire } from 'node:module'
@@ -48,7 +48,7 @@ if (typeof factory !== 'function') {
 // result, so this stays faithful (and robust if it ever becomes async).
 await factory(stubPi)
 
-const expectedFlags = ['daytona', 'repo', 'branch', 'snapshot', 'public']
+const expectedFlags = ['nightona', 'repo', 'branch', 'snapshot', 'public']
 const expectedTools = ['bash', 'read', 'write', 'edit', 'ls', 'find', 'grep', 'preview_url']
 const expectedEvents = ['user_bash', 'session_start', 'before_agent_start', 'agent_end', 'session_shutdown']
 const expectedCommands = ['sandbox', 'merge', 'pr', 'compare', 'github']

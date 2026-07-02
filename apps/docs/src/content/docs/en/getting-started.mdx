@@ -1,42 +1,42 @@
 ---
 title: Getting Started
-description: Get started with Daytona and learn how to create your first sandbox.
+description: Get started with Nightona and learn how to create your first sandbox.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This section introduces core concepts, common workflows, and next steps for using Daytona.
+This section introduces core concepts, common workflows, and next steps for using Nightona.
 
 ## Dashboard
 
-[Daytona Dashboard ↗](https://app.daytona.io/) is a visual user interface where you can manage sandboxes, access API keys, view usage, and more.
-It serves as the primary point of control for managing your Daytona resources.
+[Nightona Dashboard ↗](https://app.daytona.io/) is a visual user interface where you can manage sandboxes, access API keys, view usage, and more.
+It serves as the primary point of control for managing your Nightona resources.
 
 ## SDKs
 
-Daytona provides [Python](/docs/en/python-sdk), [TypeScript](/docs/en/typescript-sdk), [Ruby](/docs/en/ruby-sdk), [Go](/docs/en/go-sdk), and [Java](/docs/en/java-sdk) SDKs to programmatically interact with sandboxes. They support sandbox lifecycle management, code execution, resource access, and more.
+Nightona provides [Python](/docs/en/python-sdk), [TypeScript](/docs/en/typescript-sdk), [Ruby](/docs/en/ruby-sdk), [Go](/docs/en/go-sdk), and [Java](/docs/en/java-sdk) SDKs to programmatically interact with sandboxes. They support sandbox lifecycle management, code execution, resource access, and more.
 
 ## CLI
 
-Daytona provides command-line access to core features for interacting with Daytona Sandboxes, including managing their lifecycle, snapshots, and more. To interact with Daytona Sandboxes from the command line, install the Daytona CLI:
+Nightona provides command-line access to core features for interacting with Nightona Sandboxes, including managing their lifecycle, snapshots, and more. To interact with Nightona Sandboxes from the command line, install the Nightona CLI:
 
 <Tabs syncKey="language">
 <TabItem label="Mac">
 
 ```bash
-brew install daytonaio/cli/daytona
+brew install daytonaio/cli/nightona
 ```
 
-Trust the tap once so routine `brew upgrade` keeps the Daytona CLI up to date. Recent Homebrew versions require third-party taps to be explicitly trusted; without it, a bare `brew upgrade` skips the Daytona tap and the CLI goes stale:
+Trust the tap once so routine `brew upgrade` keeps the Nightona CLI up to date. Recent Homebrew versions require third-party taps to be explicitly trusted; without it, a bare `brew upgrade` skips the Nightona tap and the CLI goes stale:
 
 ```bash
 brew trust daytonaio/cli
 ```
 
-To upgrade the Daytona CLI to the latest version:
+To upgrade the Nightona CLI to the latest version:
 
 ```bash
-brew upgrade daytonaio/cli/daytona
+brew upgrade daytonaio/cli/nightona
 ```
 
 Alternatively, install directly without Homebrew:
@@ -44,13 +44,13 @@ Alternatively, install directly without Homebrew:
 For Apple Silicon (`arm64`):
 
   ```bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-darwin-arm64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-darwin-arm64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   ```
 
 For Intel (`amd64`):
 
   ```bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-darwin-amd64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-darwin-amd64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   ```
 
 </TabItem>
@@ -61,13 +61,13 @@ Choose the command for your Linux architecture. Both commands download the lates
 For `amd64` (`x86_64`):
 
   ```bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-linux-amd64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-linux-amd64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   ```
 
 For `arm64` (`aarch64`):
 
   ```bash
-  sudo curl -fL https://github.com/daytonaio/daytona/releases/latest/download/daytona-linux-arm64 -o /usr/local/bin/daytona && sudo chmod +x /usr/local/bin/daytona
+  sudo curl -fL https://github.com/Amartuvshins0404/nightona/releases/latest/download/nightona-linux-arm64 -o /usr/local/bin/nightona && sudo chmod +x /usr/local/bin/nightona
   ```
 
 </TabItem>
@@ -80,25 +80,25 @@ powershell -Command "irm https://get.daytona.io/windows | iex"
 </TabItem>
 </Tabs>
 
-After installing the Daytona CLI, use the `daytona` command to interact with Daytona sandboxes from the command line.
+After installing the Nightona CLI, use the `nightona` command to interact with Nightona sandboxes from the command line.
 
 To view all available commands and flags, see the [CLI reference](/docs/en/tools/cli).
 
 ## API
 
-Daytona provides a RESTful API for interacting with Daytona Sandboxes, including managing their lifecycle, snapshots, and more. 
-It serves as a flexible and powerful way to interact with Daytona from your own applications.
+Nightona provides a RESTful API for interacting with Nightona Sandboxes, including managing their lifecycle, snapshots, and more. 
+It serves as a flexible and powerful way to interact with Nightona from your own applications.
 
-To interact with Daytona Sandboxes from the API, see the [API reference](/docs/en/tools/api).
+To interact with Nightona Sandboxes from the API, see the [API reference](/docs/en/tools/api).
 
 ## MCP server
 
-Daytona provides a Model Context Protocol (MCP) server that enables AI agents to interact with Daytona Sandboxes programmatically. The MCP server integrates with popular AI agents including Claude, Cursor, and Windsurf.
+Nightona provides a Model Context Protocol (MCP) server that enables AI agents to interact with Nightona Sandboxes programmatically. The MCP server integrates with popular AI agents including Claude, Cursor, and Windsurf.
 
 To set up the MCP server with your AI agent:
 
 ```bash
-daytona mcp init [claude/cursor/windsurf]
+nightona mcp init [claude/cursor/windsurf]
 ```
 
 For more information, see the [MCP server documentation](/docs/en/mcp).
@@ -113,10 +113,10 @@ For **Cloudflare Workers**, set the Node.js compatibility flag in your `wrangler
 compatibility_flags = ["nodejs_compat"]
 ```
 
-For **Deno**, install with `deno add npm:@daytona/sdk` or import directly with the `npm:` specifier:
+For **Deno**, install with `deno add npm:@nightona/sdk` or import directly with the `npm:` specifier:
 
 ```typescript
-import { Daytona, Image } from 'npm:@daytona/sdk'
+import { Nightona, Image } from 'npm:@nightona/sdk'
 ```
 
 For **browser apps with Vite** (or any browser bundler), install [`vite-plugin-node-polyfills`](https://www.npmjs.com/package/vite-plugin-node-polyfills) and add it to your `vite.config.ts`:
@@ -130,18 +130,18 @@ export default defineConfig({
 })
 ```
 
-The SDK uses Node's `Buffer` for binary data (downloaded files, multipart bodies). Browsers don't ship `Buffer`, so the polyfill provides it. Without it, basic operations like `Image.base()` and `daytona.list()` still work, but methods that handle binary payloads (`fs.downloadFile`, `fs.downloadFiles`) will throw.
+The SDK uses Node's `Buffer` for binary data (downloaded files, multipart bodies). Browsers don't ship `Buffer`, so the polyfill provides it. Without it, basic operations like `Image.base()` and `nightona.list()` still work, but methods that handle binary payloads (`fs.downloadFile`, `fs.downloadFiles`) will throw.
 
 Some runtimes don't expose the full set of Node.js APIs (browsers and edge runtimes have no filesystem, no `crypto`, etc.). Methods that depend on those APIs throw a clear runtime error instead of silently producing wrong results.
 
 ## Guides
 
-Daytona provides a comprehensive set of [guides](/docs/en/guides) to help you get started. The guides cover a wide range of topics, from basic usage to advanced topics, and showcase various types of integrations between Daytona and other tools.
+Nightona provides a comprehensive set of [guides](/docs/en/guides) to help you get started. The guides cover a wide range of topics, from basic usage to advanced topics, and showcase various types of integrations between Nightona and other tools.
 
 ## Examples
 
-Daytona provides quick examples for common sandbox operations and best practices. <br />
-The examples are based on the Daytona [Python](/docs/en/python-sdk/), [TypeScript](/docs/en/typescript-sdk/), [Go](/docs/en/go-sdk/), [Ruby](/docs/en/ruby-sdk/), [Java](/docs/en/java-sdk/) **SDKs**, [CLI](/docs/en/tools/cli), and [API](/docs/en/tools/api) references. More examples are available in our [GitHub repository](https://github.com/daytonaio/daytona/tree/main/examples).
+Nightona provides quick examples for common sandbox operations and best practices. <br />
+The examples are based on the Nightona [Python](/docs/en/python-sdk/), [TypeScript](/docs/en/typescript-sdk/), [Go](/docs/en/go-sdk/), [Ruby](/docs/en/ruby-sdk/), [Java](/docs/en/java-sdk/) **SDKs**, [CLI](/docs/en/tools/cli), and [API](/docs/en/tools/api) references. More examples are available in our [GitHub repository](https://github.com/Amartuvshins0404/nightona/tree/main/examples).
 
 ### Create a sandbox
 
@@ -151,10 +151,10 @@ Create a [sandbox](/docs/en/sandboxes) with default settings.
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona
+from nightona import Nightona
 
-daytona = Daytona()
-sandbox = daytona.create()
+nightona = Nightona()
+sandbox = nightona.create()
 print(f"Sandbox ID: {sandbox.id}")
 ```
 
@@ -162,10 +162,10 @@ print(f"Sandbox ID: {sandbox.id}")
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
-const daytona = new Daytona();
-const sandbox = await daytona.create();
+const nightona = new Nightona();
+const sandbox = await nightona.create();
 console.log(`Sandbox ID: ${sandbox.id}`);
 ```
 
@@ -180,11 +180,11 @@ import (
     "fmt"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
@@ -201,10 +201,10 @@ func main() {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 puts "Sandbox ID: #{sandbox.id}"
 ```
 
@@ -212,13 +212,13 @@ puts "Sandbox ID: #{sandbox.id}"
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
-            Sandbox sandbox = daytona.create();
+        try (Nightona nightona = new Nightona()) {
+            Sandbox sandbox = nightona.create();
             System.out.println("Sandbox ID: " + sandbox.getId());
         }
     }
@@ -229,7 +229,7 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona create
+nightona create
 ```
 
 </TabItem>
@@ -254,10 +254,10 @@ Create a [sandbox](/docs/en/sandboxes) and run code securely in it.
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona
+from nightona import Nightona
 
-daytona = Daytona()
-sandbox = daytona.create()
+nightona = Nightona()
+sandbox = nightona.create()
 response = sandbox.process.exec("echo 'Hello, World!'")
 print(response.result)
 sandbox.delete()
@@ -266,10 +266,10 @@ sandbox.delete()
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
-const daytona = new Daytona();
-const sandbox = await daytona.create();
+const nightona = new Nightona();
+const sandbox = await nightona.create();
 const response = await sandbox.process.executeCommand('echo "Hello, World!"');
 console.log(response.result);
 await sandbox.delete();
@@ -286,11 +286,11 @@ import (
     "fmt"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
@@ -313,27 +313,27 @@ func main() {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 response = sandbox.process.exec(command: "echo 'Hello, World!'")
 puts response.result
-daytona.delete(sandbox)
+nightona.delete(sandbox)
 ```
 
 </TabItem>
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.ExecuteResponse;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.ExecuteResponse;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
-            Sandbox sandbox = daytona.create();
+        try (Nightona nightona = new Nightona()) {
+            Sandbox sandbox = nightona.create();
             ExecuteResponse response = sandbox.process.executeCommand("echo 'Hello, World!'");
             System.out.println(response.getResult());
             sandbox.delete();
@@ -346,9 +346,9 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona create --name my-sandbox
-daytona exec my-sandbox -- echo 'Hello, World!'
-daytona delete my-sandbox
+nightona create --name my-sandbox
+nightona exec my-sandbox -- echo 'Hello, World!'
+nightona delete my-sandbox
 ```
 
 </TabItem>
@@ -388,10 +388,10 @@ Create a sandbox with [custom resources](/docs/en/sandboxes#resources) (CPU, mem
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSandboxFromImageParams, Image, Resources
+from nightona import Nightona, CreateSandboxFromImageParams, Image, Resources
 
-daytona = Daytona()
-sandbox = daytona.create(
+nightona = Nightona()
+sandbox = nightona.create(
     CreateSandboxFromImageParams(
         image=Image.debian_slim("3.12"),
         resources=Resources(cpu=2, memory=4, disk=8)
@@ -403,10 +403,10 @@ sandbox = daytona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona, Image } from '@daytona/sdk';
+import { Nightona, Image } from '@nightona/sdk';
 
-const daytona = new Daytona();
-const sandbox = await daytona.create({
+const nightona = new Nightona();
+const sandbox = await nightona.create({
     image: Image.debianSlim('3.12'),
     resources: { cpu: 2, memory: 4, disk: 8 }
 });
@@ -422,18 +422,18 @@ import (
     "context"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
 
     sandbox, err := client.Create(context.Background(), types.ImageParams{
-        Image: daytona.DebianSlim(nil),
+        Image: nightona.DebianSlim(nil),
         Resources: &types.Resources{
             CPU:    2,
             Memory: 4,
@@ -450,13 +450,13 @@ func main() {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromImageParams.new(
-        image: Daytona::Image.debian_slim('3.12'),
-        resources: Daytona::Resources.new(cpu: 2, memory: 4, disk: 8)
+nightona = Nightona::Nightona.new
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromImageParams.new(
+        image: Nightona::Image.debian_slim('3.12'),
+        resources: Nightona::Resources.new(cpu: 2, memory: 4, disk: 8)
     )
 )
 ```
@@ -465,15 +465,15 @@ sandbox = daytona.create(
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Image;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.CreateSandboxFromImageParams;
-import io.daytona.sdk.model.Resources;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Image;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.CreateSandboxFromImageParams;
+import io.nightona.sdk.model.Resources;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             CreateSandboxFromImageParams params = new CreateSandboxFromImageParams();
             params.setImage(Image.debianSlim("3.12"));
             Resources resources = new Resources();
@@ -481,7 +481,7 @@ public class App {
             resources.setMemory(4);
             resources.setDisk(8);
             params.setResources(resources);
-            Sandbox sandbox = daytona.create(params);
+            Sandbox sandbox = nightona.create(params);
         }
     }
 }
@@ -491,7 +491,7 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona create --class small
+nightona create --class small
 ```
 
 </TabItem>
@@ -520,10 +520,10 @@ Create an [ephemeral sandbox](/docs/en/sandboxes#ephemeral-sandboxes) that is au
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSandboxFromSnapshotParams
+from nightona import Nightona, CreateSandboxFromSnapshotParams
 
-daytona = Daytona()
-sandbox = daytona.create(
+nightona = Nightona()
+sandbox = nightona.create(
     CreateSandboxFromSnapshotParams(ephemeral=True, auto_stop_interval=5)
 )
 ```
@@ -532,10 +532,10 @@ sandbox = daytona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
-const daytona = new Daytona();
-const sandbox = await daytona.create({
+const nightona = new Nightona();
+const sandbox = await nightona.create({
     ephemeral: true,
     autoStopInterval: 5
 });
@@ -551,12 +551,12 @@ import (
     "context"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
@@ -578,11 +578,11 @@ func main() {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromSnapshotParams.new(ephemeral: true, auto_stop_interval: 5)
+nightona = Nightona::Nightona.new
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromSnapshotParams.new(ephemeral: true, auto_stop_interval: 5)
 )
 ```
 
@@ -590,17 +590,17 @@ sandbox = daytona.create(
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.CreateSandboxFromSnapshotParams;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.CreateSandboxFromSnapshotParams;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
             params.setAutoDeleteInterval(0); // same effect as ephemeral: true
             params.setAutoStopInterval(5);
-            Sandbox sandbox = daytona.create(params);
+            Sandbox sandbox = nightona.create(params);
         }
     }
 }
@@ -611,7 +611,7 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona create --auto-stop 5 --auto-delete 0
+nightona create --auto-stop 5 --auto-delete 0
 ```
 
 </TabItem>
@@ -638,10 +638,10 @@ Create a sandbox from a pre-built [snapshot](/docs/en/snapshots) for faster sand
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 ```python
-from daytona import Daytona, CreateSandboxFromSnapshotParams
+from nightona import Nightona, CreateSandboxFromSnapshotParams
 
-daytona = Daytona()
-sandbox = daytona.create(
+nightona = Nightona()
+sandbox = nightona.create(
     CreateSandboxFromSnapshotParams(
         snapshot="my-snapshot-name",
         language="python"
@@ -653,10 +653,10 @@ sandbox = daytona.create(
 
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
-const daytona = new Daytona();
-const sandbox = await daytona.create({
+const nightona = new Nightona();
+const sandbox = await nightona.create({
     snapshot: 'my-snapshot-name',
     language: 'typescript'
 });
@@ -672,12 +672,12 @@ import (
     "context"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
@@ -698,13 +698,13 @@ func main() {
 
 <TabItem label="Ruby" icon="seti:ruby">
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromSnapshotParams.new(
+nightona = Nightona::Nightona.new
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromSnapshotParams.new(
         snapshot: 'my-snapshot-name',
-        language: Daytona::CodeLanguage::PYTHON
+        language: Nightona::CodeLanguage::PYTHON
     )
 )
 ```
@@ -713,17 +713,17 @@ sandbox = daytona.create(
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.CreateSandboxFromSnapshotParams;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.CreateSandboxFromSnapshotParams;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
             params.setSnapshot("my-snapshot-name");
             params.setLanguage("python");
-            Sandbox sandbox = daytona.create(params);
+            Sandbox sandbox = nightona.create(params);
         }
     }
 }
@@ -733,7 +733,7 @@ public class App {
 
 <TabItem label="CLI" icon="seti:shell">
 ```shell
-daytona create --snapshot my-snapshot-name
+nightona create --snapshot my-snapshot-name
 ```
 
 </TabItem>
@@ -760,15 +760,15 @@ Create a sandbox with a [declarative image](/docs/en/declarative-builder) that d
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSandboxFromImageParams, Image
+from nightona import Nightona, CreateSandboxFromImageParams, Image
 
-daytona = Daytona()
+nightona = Nightona()
 image = (
     Image.debian_slim("3.12")
     .pip_install(["requests", "pandas", "numpy"])
-    .workdir("/home/daytona")
+    .workdir("/home/nightona")
 )
-sandbox = daytona.create(
+sandbox = nightona.create(
     CreateSandboxFromImageParams(image=image),
     on_snapshot_create_logs=print
 )
@@ -778,13 +778,13 @@ sandbox = daytona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona, Image } from '@daytona/sdk';
+import { Nightona, Image } from '@nightona/sdk';
 
-const daytona = new Daytona();
+const nightona = new Nightona();
 const image = Image.debianSlim('3.12')
     .pipInstall(['requests', 'pandas', 'numpy'])
-    .workdir('/home/daytona');
-const sandbox = await daytona.create(
+    .workdir('/home/nightona');
+const sandbox = await nightona.create(
     { image },
     { onSnapshotCreateLogs: console.log }
 );
@@ -800,19 +800,19 @@ import (
     "context"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
 
-    image := daytona.DebianSlim(nil).
+    image := nightona.DebianSlim(nil).
         PipInstall([]string{"requests", "pandas", "numpy"}).
-        Workdir("/home/daytona")
+        Workdir("/home/nightona")
     sandbox, err := client.Create(context.Background(), types.ImageParams{
         Image: image,
     })
@@ -826,15 +826,15 @@ func main() {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-image = Daytona::Image
+nightona = Nightona::Nightona.new
+image = Nightona::Image
     .debian_slim('3.12')
     .pip_install(['requests', 'pandas', 'numpy'])
-    .workdir('/home/daytona')
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromImageParams.new(image: image),
+    .workdir('/home/nightona')
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromImageParams.new(image: image),
     on_snapshot_create_logs: proc { |chunk| puts chunk }
 )
 ```
@@ -843,20 +843,20 @@ sandbox = daytona.create(
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Image;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.CreateSandboxFromImageParams;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Image;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.CreateSandboxFromImageParams;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             Image image = Image.debianSlim("3.12")
                     .pipInstall("requests", "pandas", "numpy")
-                    .workdir("/home/daytona");
+                    .workdir("/home/nightona");
             CreateSandboxFromImageParams params = new CreateSandboxFromImageParams();
             params.setImage(image);
-            Sandbox sandbox = daytona.create(params, 60, System.out::println);
+            Sandbox sandbox = nightona.create(params, 60, System.out::println);
         }
     }
 }
@@ -866,7 +866,7 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona create --dockerfile ./Dockerfile
+nightona create --dockerfile ./Dockerfile
 ```
 
 </TabItem>
@@ -879,7 +879,7 @@ curl 'https://app.daytona.io/api/sandbox' \
   --header 'Content-Type: application/json' \
   --data '{
   "buildInfo": {
-    "dockerfileContent": "FROM python:3.12-slim\nRUN pip install requests pandas numpy\nWORKDIR /home/daytona"
+    "dockerfileContent": "FROM python:3.12-slim\nRUN pip install requests pandas numpy\nWORKDIR /home/nightona"
   }
 }'
 ```
@@ -895,13 +895,13 @@ Create a sandbox with a [volume](/docs/en/volumes) mounted to share data across 
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSandboxFromSnapshotParams, VolumeMount
+from nightona import Nightona, CreateSandboxFromSnapshotParams, VolumeMount
 
-daytona = Daytona()
-volume = daytona.volume.get("my-volume", create=True)
-sandbox = daytona.create(
+nightona = Nightona()
+volume = nightona.volume.get("my-volume", create=True)
+sandbox = nightona.create(
     CreateSandboxFromSnapshotParams(
-        volumes=[VolumeMount(volume_id=volume.id, mount_path="/home/daytona/data")]
+        volumes=[VolumeMount(volume_id=volume.id, mount_path="/home/nightona/data")]
     )
 )
 ```
@@ -910,12 +910,12 @@ sandbox = daytona.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
-const daytona = new Daytona();
-const volume = await daytona.volume.get('my-volume', true);
-const sandbox = await daytona.create({
-    volumes: [{ volumeId: volume.id, mountPath: '/home/daytona/data' }]
+const nightona = new Nightona();
+const volume = await nightona.volume.get('my-volume', true);
+const sandbox = await nightona.create({
+    volumes: [{ volumeId: volume.id, mountPath: '/home/nightona/data' }]
 });
 ```
 
@@ -929,12 +929,12 @@ import (
     "context"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
@@ -951,7 +951,7 @@ func main() {
         SandboxBaseParams: types.SandboxBaseParams{
             Volumes: []types.VolumeMount{{
                 VolumeID:  volume.ID,
-                MountPath: "/home/daytona/data",
+                MountPath: "/home/nightona/data",
             }},
         },
     })
@@ -964,15 +964,15 @@ func main() {
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-volume = daytona.volume.get('my-volume', create: true)
-sandbox = daytona.create(
-    Daytona::CreateSandboxFromSnapshotParams.new(
-        volumes: [DaytonaApiClient::SandboxVolume.new(
+nightona = Nightona::Nightona.new
+volume = nightona.volume.get('my-volume', create: true)
+sandbox = nightona.create(
+    Nightona::CreateSandboxFromSnapshotParams.new(
+        volumes: [NightonaApiClient::SandboxVolume.new(
             volume_id: volume.id,
-            mount_path: '/home/daytona/data'
+            mount_path: '/home/nightona/data'
         )]
     )
 )
@@ -982,33 +982,33 @@ sandbox = daytona.create(
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.exception.DaytonaNotFoundException;
-import io.daytona.sdk.model.CreateSandboxFromSnapshotParams;
-import io.daytona.sdk.model.Volume;
-import io.daytona.sdk.model.VolumeMount;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.exception.NightonaNotFoundException;
+import io.nightona.sdk.model.CreateSandboxFromSnapshotParams;
+import io.nightona.sdk.model.Volume;
+import io.nightona.sdk.model.VolumeMount;
 
 import java.util.Collections;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             Volume volume;
             try {
-                volume = daytona.volume().getByName("my-volume");
-            } catch (DaytonaNotFoundException e) {
-                volume = daytona.volume().create("my-volume");
+                volume = nightona.volume().getByName("my-volume");
+            } catch (NightonaNotFoundException e) {
+                volume = nightona.volume().create("my-volume");
             }
 
             VolumeMount mount = new VolumeMount();
             mount.setVolumeId(volume.getId());
-            mount.setMountPath("/home/daytona/data");
+            mount.setMountPath("/home/nightona/data");
 
             CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
             params.setVolumes(Collections.singletonList(mount));
 
-            Sandbox sandbox = daytona.create(params);
+            Sandbox sandbox = nightona.create(params);
         }
     }
 }
@@ -1018,8 +1018,8 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```shell
-daytona volume create my-volume
-daytona create --volume my-volume:/home/daytona/data
+nightona volume create my-volume
+nightona create --volume my-volume:/home/nightona/data
 ```
 
 </TabItem>
@@ -1034,7 +1034,7 @@ curl 'https://app.daytona.io/api/sandbox' \
   "volumes": [
     {
       "volumeId": "<VOLUME_ID>",
-      "mountPath": "/home/daytona/data"
+      "mountPath": "/home/nightona/data"
     }
   ]
 }'
@@ -1051,13 +1051,13 @@ Create a sandbox with a [Git repository](/docs/en/typescript-sdk/git) cloned to 
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona
+from nightona import Nightona
 
-daytona = Daytona()
-sandbox = daytona.create()
+nightona = Nightona()
+sandbox = nightona.create()
 
-sandbox.git.clone("https://github.com/daytonaio/daytona.git", "/home/daytona/daytona")
-status = sandbox.git.status("/home/daytona/daytona")
+sandbox.git.clone("https://github.com/Amartuvshins0404/nightona.git", "/home/nightona/nightona")
+status = sandbox.git.status("/home/nightona/nightona")
 print(f"Branch: {status.current_branch}")
 ```
 
@@ -1065,13 +1065,13 @@ print(f"Branch: {status.current_branch}")
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk';
+import { Nightona } from '@nightona/sdk';
 
-const daytona = new Daytona();
-const sandbox = await daytona.create();
+const nightona = new Nightona();
+const sandbox = await nightona.create();
 
-await sandbox.git.clone('https://github.com/daytonaio/daytona.git', '/home/daytona/daytona');
-const status = await sandbox.git.status('/home/daytona/daytona');
+await sandbox.git.clone('https://github.com/Amartuvshins0404/nightona.git', '/home/nightona/nightona');
+const status = await sandbox.git.status('/home/nightona/nightona');
 console.log(`Branch: ${status.currentBranch}`);
 ```
 
@@ -1086,11 +1086,11 @@ import (
     "fmt"
     "log"
 
-    "github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+    "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-    client, err := daytona.NewClient()
+    client, err := nightona.NewClient()
     if err != nil {
         log.Fatal(err)
     }
@@ -1100,8 +1100,8 @@ func main() {
         log.Fatal(err)
     }
 
-    sandbox.Git.Clone(context.Background(), "https://github.com/daytonaio/daytona.git", "/home/daytona/daytona")
-    status, err := sandbox.Git.Status(context.Background(), "/home/daytona/daytona")
+    sandbox.Git.Clone(context.Background(), "https://github.com/Amartuvshins0404/nightona.git", "/home/nightona/nightona")
+    status, err := sandbox.Git.Status(context.Background(), "/home/nightona/nightona")
     if err != nil {
         log.Fatal(err)
     }
@@ -1113,13 +1113,13 @@ func main() {
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 
-sandbox.git.clone(url: "https://github.com/daytonaio/daytona.git", path: "/home/daytona/daytona")
-status = sandbox.git.status("/home/daytona/daytona")
+sandbox.git.clone(url: "https://github.com/Amartuvshins0404/nightona.git", path: "/home/nightona/nightona")
+status = sandbox.git.status("/home/nightona/nightona")
 puts "Branch: #{status.current_branch}"
 ```
 
@@ -1127,16 +1127,16 @@ puts "Branch: #{status.current_branch}"
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.GitStatus;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.GitStatus;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
-            Sandbox sandbox = daytona.create();
-            sandbox.git.clone("https://github.com/daytonaio/daytona.git", "/home/daytona/daytona");
-            GitStatus status = sandbox.git.status("/home/daytona/daytona");
+        try (Nightona nightona = new Nightona()) {
+            Sandbox sandbox = nightona.create();
+            sandbox.git.clone("https://github.com/Amartuvshins0404/nightona.git", "/home/nightona/nightona");
+            GitStatus status = sandbox.git.status("/home/nightona/nightona");
             System.out.println("Branch: " + status.getCurrentBranch());
         }
     }
@@ -1160,12 +1160,12 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/clone' \
   --header 'Authorization: Bearer <API_KEY>' \
   --header 'Content-Type: application/json' \
   --data '{
-  "url": "https://github.com/daytonaio/daytona.git",
-  "path": "/home/daytona/daytona"
+  "url": "https://github.com/Amartuvshins0404/nightona.git",
+  "path": "/home/nightona/nightona"
 }'
 
 # Get repository status
-curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/status?path=/home/daytona/daytona' \
+curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/git/status?path=/home/nightona/nightona' \
   --header 'Authorization: Bearer <API_KEY>'
 ```
 

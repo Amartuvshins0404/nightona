@@ -1,24 +1,24 @@
 /**
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
- * Daytona-backed implementations of Pi's pluggable tool operations.
+ * Nightona-backed implementations of Pi's pluggable tool operations.
  *
  * The `bash`, `read`, `write`, `edit`, and `ls` tools accept an `*Operations`
- * object. We provide versions that run against a remote Daytona sandbox instead
+ * object. We provide versions that run against a remote Nightona sandbox instead
  * of the local machine. The tool factories are given the sandbox working
  * directory as their `cwd`, so the absolute paths Pi resolves and hands to these
  * ops are already sandbox-rooted.
  *
  * `grep` and `find` are NOT here: Pi runs ripgrep/fd locally and their
  * operations don't delegate the actual search (grep's ops only read context
- * lines; find's glob can't be expressed via Daytona's basename-only
+ * lines; find's glob can't be expressed via Nightona's basename-only
  * searchFiles). Those run inside the sandbox via `grep-tool.ts` / `find-tool.ts`.
  */
 
-import type { Sandbox } from '@daytona/sdk'
+import type { Sandbox } from '@nightona/sdk'
 import type {
   BashOperations,
   EditOperations,
@@ -41,7 +41,7 @@ async function run(sandbox: Sandbox, command: string): Promise<{ stdout: string;
 /**
  * Wrap a command so backgrounded processes can't hang the call.
  *
- * Daytona's `executeCommand` resolves only when the command's stdout/stderr
+ * Nightona's `executeCommand` resolves only when the command's stdout/stderr
  * reach EOF. A backgrounded process (`server &`) inherits those pipes and holds
  * them open indefinitely, so the call never returns. We run the command in a
  * subshell whose combined output is redirected to a temp file, then replay the
@@ -53,7 +53,7 @@ async function run(sandbox: Sandbox, command: string): Promise<{ stdout: string;
  */
 function backgroundSafe(command: string): string {
   return [
-    '__pi_out=$(mktemp 2>/dev/null || echo "/tmp/pi-daytona-$$.out")',
+    '__pi_out=$(mktemp 2>/dev/null || echo "/tmp/pi-nightona-$$.out")',
     `( ${command}`,
     ') >"$__pi_out" 2>&1',
     '__pi_rc=$?',
@@ -73,12 +73,12 @@ function backgroundSafe(command: string): string {
  */
 export function createBashOps(sandbox: Sandbox, cwdOverride?: string): BashOperations {
   return {
-    // Daytona's executeCommand is non-streaming, so we emit the whole output
+    // Nightona's executeCommand is non-streaming, so we emit the whole output
     // once when it resolves. We wrap the command (see backgroundSafe) so a
     // backgrounded process like `python3 -m http.server 8080 &` returns
     // immediately instead of hanging on the inherited output pipe.
     exec: async (command, cwd, { onData, signal, timeout }) => {
-      // We can only honor a pre-aborted signal: Daytona's executeCommand is a
+      // We can only honor a pre-aborted signal: Nightona's executeCommand is a
       // single blocking call with no cancellation, so once it's running there's
       // no way to abort mid-flight (racing a timer would just stop awaiting
       // while the sandbox command keeps running). `timeout` bounds the worst case.

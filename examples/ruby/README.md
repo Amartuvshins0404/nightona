@@ -1,6 +1,6 @@
 # Ruby SDK Examples
 
-This directory contains example scripts demonstrating how to use the Daytona Ruby SDK.
+This directory contains example scripts demonstrating how to use the Nightona Ruby SDK.
 
 ## Prerequisites
 
@@ -12,24 +12,24 @@ This directory contains example scripts demonstrating how to use the Daytona Rub
 
    ```bash
    # Required (choose one authentication method)
-   DAYTONA_API_KEY=your-api-key
+   NIGHTONA_API_KEY=your-api-key
    # OR
-   DAYTONA_JWT_TOKEN=your-jwt-token
-   DAYTONA_ORGANIZATION_ID=your-org-id  # required when using JWT token
+   NIGHTONA_JWT_TOKEN=your-jwt-token
+   NIGHTONA_ORGANIZATION_ID=your-org-id  # required when using JWT token
 
    # Optional
-   DAYTONA_API_URL=https://app.daytona.io/api  # defaults to this if not specified
-   DAYTONA_TARGET=us  # defaults to your organization's default region
+   NIGHTONA_API_URL=https://app.daytona.io/api  # defaults to this if not specified
+   NIGHTONA_TARGET=us  # defaults to your organization's default region
    ```
 
-   The SDK automatically loads only Daytona-specific variables from `.env` and `.env.local` files in the current working directory, where `.env.local` overrides `.env`. Runtime environment variables always take precedence over `.env` files.
+   The SDK automatically loads only Nightona-specific variables from `.env` and `.env.local` files in the current working directory, where `.env.local` overrides `.env`. Runtime environment variables always take precedence over `.env` files.
 
    **Option B: Export manually**
 
    ```bash
-   export DAYTONA_API_KEY="your-api-key"
-   export DAYTONA_API_URL="https://app.daytona.io/api"  # optional, this is the default
-   export DAYTONA_TARGET="us"  # optional
+   export NIGHTONA_API_KEY="your-api-key"
+   export NIGHTONA_API_URL="https://app.daytona.io/api"  # optional, this is the default
+   export NIGHTONA_TARGET="us"  # optional
    ```
 
 2. **Ruby** - Ensure Ruby is installed (the devcontainer includes Ruby 3.4.5)

@@ -1,11 +1,11 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 import { createApiResponse } from './helpers'
-import { DaytonaNotFoundError } from '../errors/DaytonaError'
+import { NightonaNotFoundError } from '../errors/NightonaError'
 import { VolumeService } from '../Volume'
 
-jest.mock('@daytona/api-client', () => ({}), { virtual: true })
+jest.mock('@nightona/api-client', () => ({}), { virtual: true })
 
 describe('VolumeService', () => {
   const volumesApi = {
@@ -29,7 +29,7 @@ describe('VolumeService', () => {
   })
 
   it('creates volume on not found when create=true', async () => {
-    volumesApi.getVolumeByName.mockRejectedValue(new DaytonaNotFoundError('missing', 404))
+    volumesApi.getVolumeByName.mockRejectedValue(new NightonaNotFoundError('missing', 404))
     volumesApi.createVolume.mockResolvedValue(createApiResponse({ id: 'v2', name: 'vol2' }))
 
     await expect(service.get('vol2', true)).resolves.toEqual({ id: 'v2', name: 'vol2' })
@@ -51,9 +51,9 @@ describe('VolumeService', () => {
   })
 
   it('does not create a volume when create=false and lookup fails', async () => {
-    volumesApi.getVolumeByName.mockRejectedValue(new DaytonaNotFoundError('missing', 404))
+    volumesApi.getVolumeByName.mockRejectedValue(new NightonaNotFoundError('missing', 404))
 
-    await expect(service.get('missing', false)).rejects.toBeInstanceOf(DaytonaNotFoundError)
+    await expect(service.get('missing', false)).rejects.toBeInstanceOf(NightonaNotFoundError)
     expect(volumesApi.createVolume).not.toHaveBeenCalled()
   })
 

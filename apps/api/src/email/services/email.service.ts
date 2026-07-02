@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -48,7 +48,7 @@ export class EmailService {
       await this.transporter.sendMail({
         from: this.options.from,
         to: payload.inviteeEmail,
-        subject: 'Invitation to join a Daytona organization',
+        subject: 'Invitation to join a Nightona organization',
         html: await renderFile(path.join(__dirname, 'assets/templates/organization-invitation.template.ejs'), {
           organizationName: EmailUtils.sanitizeForDisplay(payload.organizationName),
           invitedBy: payload.invitedBy,

@@ -6,7 +6,7 @@ hideTitleOnPage: true
 
 ## VolumeService
 
-Service for managing Daytona Volumes.
+Service for managing Nightona Volumes.
 
 This service provides methods to list, get, create, and delete Volumes.
 
@@ -57,8 +57,8 @@ If the Volume cannot be created
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volume = await daytona.volume.create("my-data-volume");
+const nightona = new Nightona();
+const volume = await nightona.volume.create("my-data-volume");
 console.log(`Created volume ${volume.name} with ID ${volume.id}`);
 ```
 
@@ -88,9 +88,9 @@ If the Volume does not exist or cannot be deleted
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volume = await daytona.volume.get("volume-name");
-await daytona.volume.delete(volume);
+const nightona = new Nightona();
+const volume = await nightona.volume.get("volume-name");
+await nightona.volume.delete(volume);
 console.log("Volume deleted successfully");
 ```
 
@@ -121,8 +121,8 @@ If the Volume does not exist or cannot be accessed
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volume = await daytona.volume.get("volume-name", true);
+const nightona = new Nightona();
+const volume = await nightona.volume.get("volume-name", true);
 console.log(`Volume ${volume.name} is in state ${volume.state}`);
 ```
 
@@ -143,8 +143,8 @@ Lists all available Volumes.
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const volumes = await daytona.volume.list();
+const nightona = new Nightona();
+const volumes = await nightona.volume.list();
 console.log(`Found ${volumes.length} volumes`);
 volumes.forEach(vol => console.log(`${vol.name} (${vol.id})`));
 ```
@@ -160,7 +160,7 @@ type Volume = VolumeDto & {
 };
 ```
 
-Represents a Daytona Volume which is a shared storage volume for Sandboxes.
+Represents a Nightona Volume which is a shared storage volume for Sandboxes.
 
 **Type declaration**:
 

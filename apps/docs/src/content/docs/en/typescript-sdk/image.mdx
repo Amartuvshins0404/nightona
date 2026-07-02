@@ -6,7 +6,7 @@ hideTitleOnPage: true
 
 ## Image
 
-Represents an image definition for a Daytona sandbox.
+Represents an image definition for a Nightona sandbox.
 Do not construct this class directly. Instead use one of its static factory methods,
 such as `Image.base()`, `Image.debianSlim()` or `Image.fromDockerfile()`.
 
@@ -140,7 +140,7 @@ Adds a local directory to the image.
 ```ts
 const image = Image
  .debianSlim('3.12')
- .addLocalDir('src', '/home/daytona/src')
+ .addLocalDir('src', '/home/nightona/src')
 ```
 
 ***
@@ -168,7 +168,7 @@ Adds a local file to the image.
 ```ts
 const image = Image
  .debianSlim('3.12')
- .addLocalFile('requirements.txt', '/home/daytona/requirements.txt')
+ .addLocalFile('requirements.txt', '/home/nightona/requirements.txt')
 ```
 
 ***
@@ -414,7 +414,7 @@ Sets the working directory in the image.
 ```ts
 const image = Image
  .debianSlim('3.12')
- .workdir('/home/daytona')
+ .workdir('/home/nightona')
 ```
 
 ***

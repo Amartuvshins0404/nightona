@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Skeleton } from '@/components/ui/skeleton'
 import { useOrganizationBillingPortalUrlQuery } from '@/hooks/queries/useOrganizationBillingPortalUrlQuery'
 import { usePaymentMethodsQuery } from '@/hooks/queries/usePaymentMethodsQuery'
-import { PaymentMethod } from '@daytona/billing-api-client'
+import { PaymentMethod } from '@nightona/billing-api-client'
 import { CreditCardIcon, PencilIcon } from 'lucide-react'
 
 interface PaymentMethodsCardProps {

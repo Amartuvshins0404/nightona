@@ -1,4 +1,4 @@
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 import asyncio
@@ -10,8 +10,8 @@ from datasets import Dataset
 from dotenv import load_dotenv
 from trl import GRPOConfig, GRPOTrainer
 
-from daytona import AsyncDaytona, AsyncSandbox
-from daytona.common.errors import DaytonaTimeoutError
+from nightona import AsyncNightona, AsyncSandbox
+from nightona.common.errors import NightonaTimeoutError
 
 load_dotenv()
 
@@ -87,9 +87,9 @@ TASKS = {
 PROMPT_TO_TASK = {task["prompt"]: task for task in TASKS.values()}
 
 
-async def _create_sandbox_pool_async(daytona: AsyncDaytona, n: int = 10) -> List[AsyncSandbox]:
+async def _create_sandbox_pool_async(nightona: AsyncNightona, n: int = 10) -> List[AsyncSandbox]:
     print(f"Creating {n} sandboxes...")
-    tasks = [daytona.create() for _ in range(n)]
+    tasks = [nightona.create() for _ in range(n)]
     sandboxes = await asyncio.gather(*tasks)
     print(f"Successfully created all {len(sandboxes)} sandboxes")
     return list(sandboxes)
@@ -196,7 +196,7 @@ async def evaluate_single_completion_async(
 
     try:
         response = await sandbox.code_interpreter.run_code(code, timeout=MAX_TIMEOUT_SECONDS)
-    except DaytonaTimeoutError:
+    except NightonaTimeoutError:
         print(f"Completion timed out after {MAX_TIMEOUT_SECONDS}s " f"in sandbox {getattr(sandbox, 'id', '?')}")
         return _fail_result(num_task_tests)
     except Exception as e:
@@ -260,7 +260,7 @@ def main():
         """Helper to run async code from sync context (e.g., reward functions)."""
         return loop.run_until_complete(coro)
 
-    daytona = AsyncDaytona()
+    nightona = AsyncNightona()
 
     sandbox_pool: List[AsyncSandbox] = []
 
@@ -292,7 +292,7 @@ def main():
     ) == EFFECTIVE_BATCH_SIZE, "The total batch size must equal the sandbox pool size."
 
     try:
-        sandbox_pool = run_async(_create_sandbox_pool_async(daytona, n=EFFECTIVE_BATCH_SIZE))
+        sandbox_pool = run_async(_create_sandbox_pool_async(nightona, n=EFFECTIVE_BATCH_SIZE))
 
         train_dataset = Dataset.from_dict({"prompt": [task["prompt"] for task in TASKS.values()]})
 
@@ -329,10 +329,10 @@ def main():
             run_async(_cleanup_sandbox_pool_async(sandbox_pool))
 
         try:
-            run_async(daytona.close())
-            print("Daytona client closed")
+            run_async(nightona.close())
+            print("Nightona client closed")
         except Exception as e:
-            print(f"Error closing Daytona client: {type(e).__name__}: {e}")
+            print(f"Error closing Nightona client: {type(e).__name__}: {e}")
 
         loop.close()
 

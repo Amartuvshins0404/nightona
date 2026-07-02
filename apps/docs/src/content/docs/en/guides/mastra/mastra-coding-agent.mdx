@@ -1,15 +1,15 @@
 ---
-title: Use Mastra Coding Agent with Daytona
-description: Learn how to integrate Daytona sandboxes with the Mastra coding agent for secure, isolated AI-powered development.
+title: Use Mastra Coding Agent with Nightona
+description: Learn how to integrate Nightona sandboxes with the Mastra coding agent for secure, isolated AI-powered development.
 ---
 
-This guide demonstrates how to configure the [Mastra coding agent](https://github.com/mastra-ai/template-coding-agent) to use Daytona sandboxes, enabling you to leverage AI capabilities for any coding-related task in a secure, isolated environment.
+This guide demonstrates how to configure the [Mastra coding agent](https://github.com/mastra-ai/template-coding-agent) to use Nightona sandboxes, enabling you to leverage AI capabilities for any coding-related task in a secure, isolated environment.
 
 ---
 
 ### 1. Workflow Overview
 
-Once configured, you can use Mastra Studio to interact with the coding agent through a ChatGPT-like interface. This enables human-in-the-loop workflows where you can guide the agent, review its decisions, and iterate on solutions in real-time; all while the agent executes tasks securely within Daytona sandboxes.
+Once configured, you can use Mastra Studio to interact with the coding agent through a ChatGPT-like interface. This enables human-in-the-loop workflows where you can guide the agent, review its decisions, and iterate on solutions in real-time; all while the agent executes tasks securely within Nightona sandboxes.
 
 ### 2. Project Setup
 
@@ -19,7 +19,7 @@ Node.js version 20 or higher is required to run the coding agent. Please ensure 
 
 #### Clone the Repository
 
-Clone the Mastra coding agent template repository, which includes the agent implementation and Daytona integration:
+Clone the Mastra coding agent template repository, which includes the agent implementation and Nightona integration:
 
 ```bash
 git clone https://github.com/mastra-ai/template-coding-agent.git
@@ -38,7 +38,7 @@ The `.env` file requires the following configuration:
 
 - **LLM Provider**: The AI model provider for your coding agent
 - **Model**: The specific model to use from your chosen provider
-- **Sandbox Provider**: Daytona configuration for isolated execution
+- **Sandbox Provider**: Nightona configuration for isolated execution
 
 For this guide, we'll use OpenAI as the LLM provider with the `gpt-4o-mini` model:
 
@@ -47,10 +47,10 @@ OPENAI_API_KEY=your_openai_key
 MODEL=openai/gpt-4o-mini
 ```
 
-Next, configure Daytona as your sandbox provider by adding your API key (available from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys)):
+Next, configure Nightona as your sandbox provider by adding your API key (available from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys)):
 
 ```env
-DAYTONA_API_KEY=your-daytona-api-key-here
+NIGHTONA_API_KEY=your-nightona-api-key-here
 ```
 
 #### Install Dependencies
@@ -128,7 +128,7 @@ Below is an example of terminal logs generated when the agent calls the `writeFi
         "toolName": "writeFile",
         "result": {
           "success": true,
-          "path": "/home/daytona/hello.js"
+          "path": "/home/nightona/hello.js"
         },
         "providerMetadata": {
           "openai": {
@@ -154,17 +154,17 @@ These logs show complete visibility into tool execution including arguments, res
 
 ### 4. Example Usage
 
-Let's walk through a practical example to see the Mastra coding agent and Daytona sandbox integration in action. We'll ask the agent to complete the following task:
+Let's walk through a practical example to see the Mastra coding agent and Nightona sandbox integration in action. We'll ask the agent to complete the following task:
 
 > _"Create a Python file with a function that reverses a string, write a test file for it, and run the tests."_
 
 #### Agent Workflow
 
-The agent executes this task through a series of coordinated steps, utilizing different tools to interact with the Daytona sandbox:
+The agent executes this task through a series of coordinated steps, utilizing different tools to interact with the Nightona sandbox:
 
 ##### 1. Create Sandbox
 
-The agent first provisions a new Daytona sandbox for Python development:
+The agent first provisions a new Nightona sandbox for Python development:
 
 **Tool:** `createSandbox`
 
@@ -217,8 +217,8 @@ Next, the agent creates both the implementation and test files in a single opera
 {
   "success": true,
   "filesWritten": [
-    "/home/daytona/reverse_string.py",
-    "/home/daytona/test_reverse_string.py"
+    "/home/nightona/reverse_string.py",
+    "/home/nightona/test_reverse_string.py"
   ]
 }
 ```
@@ -275,15 +275,15 @@ OK
 Would you like to see the code for either file or make any changes?
 ```
 
-This example demonstrates how the agent autonomously handles the entire development workflow, from environment setup to test execution, all within the secure Daytona sandbox environment.
+This example demonstrates how the agent autonomously handles the entire development workflow, from environment setup to test execution, all within the secure Nightona sandbox environment.
 
 :::tip[Sandbox Management]
-After the agent completes its task, you'll see the active sandbox in your [Daytona Dashboard](https://app.daytona.io/dashboard). It's recommended to clean up resources when finished, unless your use case requires the sandbox to remain active (e.g. for preview URLs or ongoing development).
+After the agent completes its task, you'll see the active sandbox in your [Nightona Dashboard](https://app.daytona.io/dashboard). It's recommended to clean up resources when finished, unless your use case requires the sandbox to remain active (e.g. for preview URLs or ongoing development).
 :::
 
 **Key Advantages**
 
-- **Secure Isolation**: All agent operations run in isolated Daytona sandboxes, protecting your local environment
+- **Secure Isolation**: All agent operations run in isolated Nightona sandboxes, protecting your local environment
 - **Multi-Language Support**: Execute code across different programming languages without local setup
 - **Enhanced Debugging**: Use Mastra Studio to visualize and debug agent workflows in real-time
-- **Scalable Execution**: Leverage Daytona's cloud infrastructure for resource-intensive tasks
+- **Scalable Execution**: Leverage Nightona's cloud infrastructure for resource-intensive tasks

@@ -1,10 +1,10 @@
 # Runtime compatibility tests
 
-End-to-end smoke tests that prove `@daytona/sdk` builds and runs in every supported JavaScript runtime. Each subdirectory is a self-contained mini-project that:
+End-to-end smoke tests that prove `@nightona/sdk` builds and runs in every supported JavaScript runtime. Each subdirectory is a self-contained mini-project that:
 
 1. Installs the locally-built SDK (via `npm pack` tarball)
 2. Builds (when the runtime requires bundling)
-3. Exercises `Image.base().env({...})` and `daytona.list()` against a real Daytona API
+3. Exercises `Image.base().env({...})` and `nightona.list()` against a real Nightona API
 4. Asserts the responses are well-formed
 
 ## Running locally
@@ -14,8 +14,8 @@ Build the SDK first, then run the orchestrator:
 ```bash
 yarn nx build sdk-typescript
 
-DAYTONA_API_KEY=<your-key> \
-DAYTONA_API_URL=https://app.daytona.io/api \
+NIGHTONA_API_KEY=<your-key> \
+NIGHTONA_API_URL=https://app.daytona.io/api \
   bash libs/sdk-typescript/runtime-tests/run-all.sh
 ```
 
@@ -62,8 +62,8 @@ Everything else (`wrangler`, `lambda-local`, `vite`, `next`, `nuxt`, `remix`, `e
 ## Adding a new runtime
 
 1. Create `runtime-tests/<runtime-name>/`
-2. Add a minimal `package.json` (no `@daytona/sdk` in deps — the orchestrator injects it via tarball)
-3. Add a test file that imports `@daytona/sdk`, exercises `Image.base()` + `daytona.list()`, and prints `PASS` / exits non-zero on failure
+2. Add a minimal `package.json` (no `@nightona/sdk` in deps — the orchestrator injects it via tarball)
+3. Add a test file that imports `@nightona/sdk`, exercises `Image.base()` + `nightona.list()`, and prints `PASS` / exits non-zero on failure
 4. Add `run.sh` that installs deps, runs `npm install --silent "$SDK_TARBALL"`, builds (if needed), and runs the test
 5. `chmod +x run.sh`
 
@@ -71,4 +71,4 @@ The orchestrator auto-discovers any directory with a `run.sh`.
 
 ## CI
 
-These tests run in `.github/workflows/e2e_pr_tests.yaml` after the SDK Jest e2e suite, gated by the same `nx affected` check (only when `sdk-typescript`, `api-client`, or `toolbox-api-client` change). They use the local Daytona stack the workflow already brings up.
+These tests run in `.github/workflows/e2e_pr_tests.yaml` after the SDK Jest e2e suite, gated by the same `nx affected` check (only when `sdk-typescript`, `api-client`, or `toolbox-api-client` change). They use the local Nightona stack the workflow already brings up.

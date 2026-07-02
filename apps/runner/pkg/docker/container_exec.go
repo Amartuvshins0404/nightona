@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -8,7 +8,7 @@ import (
 	"context"
 	"io"
 
-	"github.com/daytonaio/common-go/pkg/log"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/pkg/stdcopy"
 )

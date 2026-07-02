@@ -1,10 +1,10 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { cn } from '@/lib/utils'
-import { SandboxState as SandboxStateType } from '@daytona/api-client'
+import { SandboxState as SandboxStateType } from '@nightona/api-client'
 import { Loader2 } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { getStateLabel } from '../SandboxTable/constants'

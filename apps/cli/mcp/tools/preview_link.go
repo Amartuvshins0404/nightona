@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package tools
@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	apiclient_cli "github.com/daytonaio/daytona/cli/apiclient"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	apiclient_cli "github.com/Amartuvshins0404/nightona/apps/cli/apiclient"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 	"github.com/mark3labs/mcp-go/mcp"
 
 	log "github.com/sirupsen/logrus"
@@ -25,7 +25,7 @@ type PreviewLinkArgs struct {
 
 func GetPreviewLinkTool() mcp.Tool {
 	return mcp.NewTool("preview_link",
-		mcp.WithDescription("Generate accessible preview URLs for web applications running in the Daytona sandbox. Creates a secure tunnel to expose local ports externally without configuration. Validates if a server is actually running on the specified port and provides diagnostic information for troubleshooting. Supports custom descriptions and metadata for better organization of multiple services."),
+		mcp.WithDescription("Generate accessible preview URLs for web applications running in the Nightona sandbox. Creates a secure tunnel to expose local ports externally without configuration. Validates if a server is actually running on the specified port and provides diagnostic information for troubleshooting. Supports custom descriptions and metadata for better organization of multiple services."),
 		mcp.WithNumber("port", mcp.Required(), mcp.Description("Port to expose.")),
 		mcp.WithString("description", mcp.Required(), mcp.Description("Description of the service.")),
 		mcp.WithBoolean("checkServer", mcp.Required(), mcp.Description("Check if a server is running on the specified port.")),
@@ -34,7 +34,7 @@ func GetPreviewLinkTool() mcp.Tool {
 }
 
 func PreviewLink(ctx context.Context, request mcp.CallToolRequest, args PreviewLinkArgs) (*mcp.CallToolResult, error) {
-	apiClient, err := apiclient_cli.GetApiClient(nil, daytonaMCPHeaders)
+	apiClient, err := apiclient_cli.GetApiClient(nil, nightonaMCPHeaders)
 	if err != nil {
 		return nil, err
 	}

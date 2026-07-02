@@ -1,11 +1,11 @@
-# Amp Code Coding Agent with Daytona
+# Amp Code Coding Agent with Nightona
 
-A coding agent powered by the [Amp Code CLI](https://ampcode.com/) running inside secure [Daytona sandboxes](https://www.daytona.io/).
+A coding agent powered by the [Amp Code CLI](https://ampcode.com/) running inside secure [Nightona sandboxes](https://www.daytona.io/).
 
 ## Prerequisites
 
 - Node.js 18 or newer
-- A Daytona API key from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- A Nightona API key from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - An Amp API key from [Amp Settings](https://ampcode.com/settings)
 - **Amp paid credits** - Execute mode requires paid credits. [Add credits here](https://ampcode.com/pay)
 
@@ -20,7 +20,7 @@ A coding agent powered by the [Amp Code CLI](https://ampcode.com/) running insid
 2. Copy `.env.example` to `.env` and add your API keys:
 
    ```bash
-   DAYTONA_API_KEY=your_daytona_key
+   NIGHTONA_API_KEY=your_nightona_key
    SANDBOX_AMP_API_KEY=your_amp_key
    ```
 
@@ -32,14 +32,14 @@ Run the agent:
 npm run start
 ```
 
-The agent gets a Daytona-aware system prompt: sandbox context, the preview URL pattern, and instructions to write server startup commands to `/home/daytona/start.sh` instead of executing them directly in Amp.
+The agent gets a Nightona-aware system prompt: sandbox context, the preview URL pattern, and instructions to write server startup commands to `/home/nightona/start.sh` instead of executing them directly in Amp.
 
 The agent will:
 
-1. Create a Daytona sandbox
+1. Create a Nightona sandbox
 2. Install the Amp CLI in the sandbox
 3. Start an interactive prompt loop using CLI-per-turn mode with thread continuity
-4. If `/home/daytona/start.sh` exists after a turn, run it via a Daytona process session command
+4. If `/home/nightona/start.sh` exists after a turn, run it via a Nightona process session command
 
 Example session:
 
@@ -62,7 +62,7 @@ User:
 
 ## Features
 
-- Secure, isolated execution in Daytona sandboxes
+- Secure, isolated execution in Nightona sandboxes
 - Amp CLI with streaming JSON output for real-time updates
 - Thread-based session continuity across multiple turns
 - Automatic cleanup on exit
@@ -81,4 +81,4 @@ This example uses a PTY (pseudo-terminal) to stream output from Amp CLI, running
 
 - [Amp Manual - CLI](https://ampcode.com/manual#cli)
 - [Amp Manual - Streaming JSON](https://ampcode.com/manual#cli-streaming-json)
-- [Daytona Documentation](https://www.daytona.io/docs)
+- [Nightona Documentation](https://www.daytona.io/docs)

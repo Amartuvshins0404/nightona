@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package pty
@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/daytonaio/daemon/internal/util"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal/util"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	cmap "github.com/orcaman/concurrent-map/v2"

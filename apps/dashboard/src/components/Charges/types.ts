@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Charge } from '@daytona/billing-api-client'
+import { Charge } from '@nightona/billing-api-client'
 import { Table } from '@tanstack/react-table'
 
 export interface ChargesTableProps {

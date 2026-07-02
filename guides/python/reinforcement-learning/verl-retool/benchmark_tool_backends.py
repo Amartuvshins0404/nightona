@@ -1,7 +1,7 @@
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-"""Benchmark veRL ReTool tool backends: Daytona, Docker, and SandboxFusion."""
+"""Benchmark veRL ReTool tool backends: Nightona, Docker, and SandboxFusion."""
 
 from __future__ import annotations
 
@@ -111,8 +111,8 @@ def build_code_interpreter_schema():
     )
 
 
-def build_daytona_config(args: argparse.Namespace) -> dict[str, Any]:
-    """Build the Daytona tool config for the benchmark."""
+def build_nightona_config(args: argparse.Namespace) -> dict[str, Any]:
+    """Build the Nightona tool config for the benchmark."""
     config = {
         "type": "native",
         "rate_limit": args.rate_limit or max(args.concurrency),
@@ -122,15 +122,15 @@ def build_daytona_config(args: argparse.Namespace) -> dict[str, Any]:
         "delete_timeout": args.delete_timeout,
         "auto_stop_interval": args.auto_stop_interval,
         "auto_delete_interval": args.auto_delete_interval,
-        "name_prefix": "verl-daytona-bench",
+        "name_prefix": "verl-nightona-bench",
         "language": "python",
     }
 
     for key, value in {
-        "snapshot": args.daytona_snapshot,
-        "api_url": args.daytona_api_url,
-        "target": args.daytona_target,
-        "organization_id": args.daytona_organization_id,
+        "snapshot": args.nightona_snapshot,
+        "api_url": args.nightona_api_url,
+        "target": args.nightona_target,
+        "organization_id": args.nightona_organization_id,
     }.items():
         if value is not None:
             config[key] = value
@@ -157,10 +157,10 @@ def build_sandboxfusion_config(args: argparse.Namespace) -> dict[str, Any]:
 
 def check_backend_prereqs(args: argparse.Namespace) -> None:
     """Fail fast when required backend configuration is missing."""
-    if args.backend == "daytona":
-        if not os.environ.get("DAYTONA_API_KEY") and not os.environ.get("DAYTONA_JWT_TOKEN"):
+    if args.backend == "nightona":
+        if not os.environ.get("NIGHTONA_API_KEY") and not os.environ.get("NIGHTONA_JWT_TOKEN"):
             raise SystemExit(
-                "DAYTONA_API_KEY (or DAYTONA_JWT_TOKEN) is not set. Export it before running the Daytona benchmark."
+                "NIGHTONA_API_KEY (or NIGHTONA_JWT_TOKEN) is not set. Export it before running the Nightona benchmark."
             )
     elif args.backend == "docker":
         import shutil
@@ -244,10 +244,10 @@ def make_tool(args: argparse.Namespace):
 
     # Import veRL modules only after the optional checkout path is on sys.path.
     try:
-        if args.backend == "daytona":
-            from recipe.retool.daytona_sandbox_tool import CustomDaytonaSandboxTool
+        if args.backend == "nightona":
+            from recipe.retool.nightona_sandbox_tool import CustomNightonaSandboxTool
 
-            return CustomDaytonaSandboxTool(build_daytona_config(args), schema)
+            return CustomNightonaSandboxTool(build_nightona_config(args), schema)
 
         from recipe.retool.retool import CustomSandboxFusionTool
 
@@ -587,7 +587,7 @@ async def run_benchmarks(args: argparse.Namespace) -> tuple[list[dict[str, Any]]
 def parse_args() -> argparse.Namespace:
     """Parse the benchmark CLI arguments."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--backend", choices=["daytona", "docker", "sandboxfusion"], default="daytona")
+    parser.add_argument("--backend", choices=["nightona", "docker", "sandboxfusion"], default="nightona")
     parser.add_argument("--verl-root", default=None, help="Path to a local veRL checkout if it is not installed.")
     parser.add_argument("--output-root", default="outputs")
     parser.add_argument(
@@ -608,10 +608,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--num-workers", type=int, default=None)
     parser.add_argument("--memory-limit-mb", type=int, default=1024)
     parser.add_argument("--sandbox-fusion-url", default=None)
-    parser.add_argument("--daytona-api-url", default=None)
-    parser.add_argument("--daytona-target", default=None)
-    parser.add_argument("--daytona-organization-id", default=None)
-    parser.add_argument("--daytona-snapshot", default=None)
+    parser.add_argument("--nightona-api-url", default=None)
+    parser.add_argument("--nightona-target", default=None)
+    parser.add_argument("--nightona-organization-id", default=None)
+    parser.add_argument("--nightona-snapshot", default=None)
     parser.add_argument("--docker-image", default="python:3.11-slim")
     parser.add_argument("--docker-memory", default="256m")
     return parser.parse_args()

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package config
@@ -7,8 +7,8 @@ import (
 	"context"
 	"time"
 
-	common_cache "github.com/daytonaio/common-go/pkg/cache"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	common_cache "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/cache"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 	"go.uber.org/zap"
 )
 

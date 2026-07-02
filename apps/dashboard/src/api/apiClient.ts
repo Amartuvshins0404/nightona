@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -9,8 +9,8 @@ import {
   Configuration as AnalyticsConfiguration,
   TelemetryApi as AnalyticsTelemetryApi,
   UsageApi as AnalyticsUsageApi,
-} from '@daytona/analytics-api-client'
-import { Configuration as BillingConfiguration } from '@daytona/billing-api-client'
+} from '@nightona/analytics-api-client'
+import { Configuration as BillingConfiguration } from '@nightona/billing-api-client'
 import {
   ApiKeysApi,
   AuditApi,
@@ -25,9 +25,9 @@ import {
   UsersApi,
   VolumesApi,
   WebhooksApi,
-} from '@daytona/api-client'
+} from '@nightona/api-client'
 import axios, { AxiosError } from 'axios'
-import { DaytonaError } from './errors'
+import { NightonaError } from './errors'
 
 export class ApiClient {
   private config: Configuration
@@ -67,7 +67,7 @@ export class ApiClient {
           errorMessage = error.response?.data?.message || error.response?.data || error.message || String(error)
         }
 
-        throw DaytonaError.fromString(String(errorMessage), { cause: error instanceof Error ? error : undefined })
+        throw NightonaError.fromString(String(errorMessage), { cause: error instanceof Error ? error : undefined })
       },
     )
 

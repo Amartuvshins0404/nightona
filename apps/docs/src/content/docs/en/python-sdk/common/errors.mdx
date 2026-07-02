@@ -3,20 +3,20 @@ title: "Errors"
 hideTitleOnPage: true
 ---
 
-## DaytonaError
+## NightonaError
 
 ```python
-class DaytonaError(Exception)
+class NightonaError(Exception)
 ```
 
-Base error for Daytona SDK.
+Base error for Nightona SDK.
 
 **Example**:
 
 ```python
 try:
-    sandbox = daytona.get("missing-sandbox")
-except DaytonaError as exc:
+    sandbox = nightona.get("missing-sandbox")
+except NightonaError as exc:
     print(exc.status_code)
     print(exc.error_code)
     print(exc.message)
@@ -30,7 +30,7 @@ except DaytonaError as exc:
 - `error_code` _str | None_ - Machine-readable error code if available
 - `headers` _dict[str, Any]_ - Response headers
 
-#### DaytonaError.\_\_init\_\_
+#### NightonaError.\_\_init\_\_
 
 ```python
 def __init__(message: str,
@@ -39,7 +39,7 @@ def __init__(message: str,
              error_code: str | None = None)
 ```
 
-Initialize Daytona error.
+Initialize Nightona error.
 
 **Arguments**:
 
@@ -49,10 +49,10 @@ Initialize Daytona error.
 - `error_code` _str | None_ - Machine-readable error code if available
 
 
-## DaytonaNotFoundError
+## NightonaNotFoundError
 
 ```python
-class DaytonaNotFoundError(DaytonaError)
+class NightonaNotFoundError(NightonaError)
 ```
 
 Error for when a resource is not found (HTTP 404).
@@ -62,14 +62,14 @@ Error for when a resource is not found (HTTP 404).
 ```python
 try:
     sandbox.fs.download_file("/workspace/missing.txt")
-except DaytonaNotFoundError as exc:
+except NightonaNotFoundError as exc:
     print(exc.status_code)
 ```
 
-## DaytonaAuthenticationError
+## NightonaAuthenticationError
 
 ```python
-class DaytonaAuthenticationError(DaytonaError)
+class NightonaAuthenticationError(NightonaError)
 ```
 
 Error for when authentication fails (HTTP 401).
@@ -78,16 +78,16 @@ Error for when authentication fails (HTTP 401).
 
 ```python
 try:
-    for sandbox in daytona.list():
+    for sandbox in nightona.list():
         print(sandbox.id)
-except DaytonaAuthenticationError as exc:
+except NightonaAuthenticationError as exc:
     print(exc.status_code)
 ```
 
-## DaytonaAuthorizationError
+## NightonaAuthorizationError
 
 ```python
-class DaytonaAuthorizationError(DaytonaError)
+class NightonaAuthorizationError(NightonaError)
 ```
 
 Error for when the request is forbidden (HTTP 403).
@@ -96,15 +96,15 @@ Error for when the request is forbidden (HTTP 403).
 
 ```python
 try:
-    daytona.get("sandbox-without-access")
-except DaytonaAuthorizationError as exc:
+    nightona.get("sandbox-without-access")
+except NightonaAuthorizationError as exc:
     print(exc.message)
 ```
 
-## DaytonaRateLimitError
+## NightonaRateLimitError
 
 ```python
-class DaytonaRateLimitError(DaytonaError)
+class NightonaRateLimitError(NightonaError)
 ```
 
 Error for when rate limit is exceeded (HTTP 429).
@@ -113,16 +113,16 @@ Error for when rate limit is exceeded (HTTP 429).
 
 ```python
 try:
-    for sandbox in daytona.list():
+    for sandbox in nightona.list():
         print(sandbox.id)
-except DaytonaRateLimitError as exc:
+except NightonaRateLimitError as exc:
     print(exc.error_code)
 ```
 
-## DaytonaConflictError
+## NightonaConflictError
 
 ```python
-class DaytonaConflictError(DaytonaError)
+class NightonaConflictError(NightonaError)
 ```
 
 Error for when a resource conflict occurs (HTTP 409).
@@ -132,15 +132,15 @@ Error for when a resource conflict occurs (HTTP 409).
 ```python
 try:
     params = CreateSandboxFromSnapshotParams(name="existing-sandbox")
-    daytona.create(params)
-except DaytonaConflictError as exc:
+    nightona.create(params)
+except NightonaConflictError as exc:
     print(exc.error_code)
 ```
 
-## DaytonaValidationError
+## NightonaValidationError
 
 ```python
-class DaytonaValidationError(DaytonaError)
+class NightonaValidationError(NightonaError)
 ```
 
 Error for when input validation fails (HTTP 400 or client-side validation).
@@ -150,14 +150,14 @@ Error for when input validation fails (HTTP 400 or client-side validation).
 ```python
 try:
     Image.debian_slim("3.8")
-except DaytonaValidationError as exc:
+except NightonaValidationError as exc:
     print(exc.message)
 ```
 
-## DaytonaTimeoutError
+## NightonaTimeoutError
 
 ```python
-class DaytonaTimeoutError(DaytonaError)
+class NightonaTimeoutError(NightonaError)
 ```
 
 Error for when a timeout occurs.
@@ -167,14 +167,14 @@ Error for when a timeout occurs.
 ```python
 try:
     sandbox.wait_for_sandbox_start(timeout=1)
-except DaytonaTimeoutError as exc:
+except NightonaTimeoutError as exc:
     print(exc.message)
 ```
 
-## DaytonaConnectionError
+## NightonaConnectionError
 
 ```python
-class DaytonaConnectionError(DaytonaError)
+class NightonaConnectionError(NightonaError)
 ```
 
 Error for when a network connection fails.
@@ -184,7 +184,7 @@ Error for when a network connection fails.
 ```python
 try:
     pty_handle.wait_for_connection()
-except DaytonaConnectionError as exc:
+except NightonaConnectionError as exc:
     print(exc.message)
 ```
 
@@ -192,19 +192,19 @@ except DaytonaConnectionError as exc:
 
 ```python
 def error_class_from_status_code(
-        status_code: int | None) -> type[DaytonaError]
+        status_code: int | None) -> type[NightonaError]
 ```
 
-Map an HTTP status code to the corresponding DaytonaError subclass.
+Map an HTTP status code to the corresponding NightonaError subclass.
 
-#### create\_daytona\_error
+#### create\_nightona\_error
 
 ```python
-def create_daytona_error(message: str,
+def create_nightona_error(message: str,
                          status_code: int | None = None,
                          headers: Mapping[str, Any] | None = None,
-                         error_code: str | None = None) -> DaytonaError
+                         error_code: str | None = None) -> NightonaError
 ```
 
-Create the appropriate DaytonaError subclass from structured error metadata.
+Create the appropriate NightonaError subclass from structured error metadata.
 

@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,8 +10,8 @@ export const PythonSnippetGenerator: CodeSnippetGenerator = {
   getImports(p) {
     return (
       [
-        'from daytona import Daytona',
-        p.actions.useConfigObject ? 'DaytonaConfig' : '',
+        'from nightona import Nightona',
+        p.actions.useConfigObject ? 'NightonaConfig' : '',
         p.config.useSandboxCreateParams
           ? p.config.createSandboxFromSnapshot
             ? 'CreateSandboxFromSnapshotParams'
@@ -27,11 +27,11 @@ export const PythonSnippetGenerator: CodeSnippetGenerator = {
 
   getConfig(p) {
     if (!p.actions.useConfigObject) return ''
-    return ['\n# Define the configuration', 'config = DaytonaConfig()'].filter(Boolean).join('\n') + '\n'
+    return ['\n# Define the configuration', 'config = NightonaConfig()'].filter(Boolean).join('\n') + '\n'
   },
 
   getClientInit(p) {
-    return ['# Initialize the Daytona client', `daytona = Daytona(${p.actions.useConfigObject ? 'config' : ''})`]
+    return ['# Initialize the Nightona client', `nightona = Nightona(${p.actions.useConfigObject ? 'config' : ''})`]
       .filter(Boolean)
       .join('\n')
   },
@@ -87,7 +87,7 @@ export const PythonSnippetGenerator: CodeSnippetGenerator = {
   getSandboxCreate(p) {
     return [
       '\n# Create the Sandbox instance',
-      `sandbox = daytona.create(${p.config.useSandboxCreateParams ? 'params' : ''})`,
+      `sandbox = nightona.create(${p.config.useSandboxCreateParams ? 'params' : ''})`,
       'print(f"Sandbox created:{sandbox.id}")',
     ].join('\n')
   },

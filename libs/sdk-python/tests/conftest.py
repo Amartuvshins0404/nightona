@@ -1,7 +1,7 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-"""Shared fixtures and mock setup for Daytona Python SDK tests."""
+"""Shared fixtures and mock setup for Nightona Python SDK tests."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from daytona_api_client import Sandbox as SyncSandboxDto
-from daytona_api_client import SandboxState
+from nightona_api_client import Sandbox as SyncSandboxDto
+from nightona_api_client import SandboxState
 
 SDK_SRC = Path(__file__).resolve().parents[1] / "src"
 if str(SDK_SRC) not in sys.path:
@@ -25,7 +25,7 @@ def make_sandbox_dto(
     name: str = "test-sandbox",
     state: SandboxState = SandboxState.STARTED,
     organization_id: str = "test-org-id",
-    user: str = "daytona",
+    user: str = "nightona",
     target: str = "us",
     cpu: int = 4,
     gpu: int = 0,
@@ -119,16 +119,16 @@ def mock_code_toolbox():
 
 @pytest.fixture
 def env_with_api_key(monkeypatch):
-    """Set standard env vars for Daytona client initialization."""
-    monkeypatch.setenv("DAYTONA_API_KEY", "test-api-key-123")
-    monkeypatch.setenv("DAYTONA_API_URL", "https://test.daytona.io/api")
-    monkeypatch.setenv("DAYTONA_TARGET", "us")
+    """Set standard env vars for Nightona client initialization."""
+    monkeypatch.setenv("NIGHTONA_API_KEY", "test-api-key-123")
+    monkeypatch.setenv("NIGHTONA_API_URL", "https://test.daytona.io/api")
+    monkeypatch.setenv("NIGHTONA_TARGET", "us")
 
 
 @pytest.fixture
 def env_with_jwt(monkeypatch):
-    """Set JWT-based env vars for Daytona client initialization."""
-    monkeypatch.setenv("DAYTONA_JWT_TOKEN", "test-jwt-token-123")
-    monkeypatch.setenv("DAYTONA_ORGANIZATION_ID", "test-org-id")
-    monkeypatch.setenv("DAYTONA_API_URL", "https://test.daytona.io/api")
-    monkeypatch.setenv("DAYTONA_TARGET", "us")
+    """Set JWT-based env vars for Nightona client initialization."""
+    monkeypatch.setenv("NIGHTONA_JWT_TOKEN", "test-jwt-token-123")
+    monkeypatch.setenv("NIGHTONA_ORGANIZATION_ID", "test-org-id")
+    monkeypatch.setenv("NIGHTONA_API_URL", "https://test.daytona.io/api")
+    monkeypatch.setenv("NIGHTONA_TARGET", "us")

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package toolbox
@@ -12,8 +12,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/daytonaio/daytona/cli/config"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/apps/cli/config"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 )
 
 type ExecuteRequest struct {
@@ -100,7 +100,7 @@ func (c *Client) executeCommandViaProxy(ctx context.Context, proxyURL, sandboxId
 	}
 
 	if activeProfile.ActiveOrganizationId != nil {
-		req.Header.Set("X-Daytona-Organization-ID", *activeProfile.ActiveOrganizationId)
+		req.Header.Set("X-Nightona-Organization-ID", *activeProfile.ActiveOrganizationId)
 	}
 
 	client := &http.Client{}

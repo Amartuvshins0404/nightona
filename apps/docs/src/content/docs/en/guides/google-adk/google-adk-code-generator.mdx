@@ -1,11 +1,11 @@
 ---
 title: Generate Verified Code With Google ADK Agent
-description: Build Google ADK agents that generate and test code using Daytona's isolated sandbox environment.
+description: Build Google ADK agents that generate and test code using Nightona's isolated sandbox environment.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This guide demonstrates how to use the `DaytonaPlugin` for Google ADK to build an agent that generates, tests, and verifies code in a secure sandbox environment. The plugin enables agents to execute Python, JavaScript, and TypeScript code, run shell commands, and manage files within isolated Daytona sandboxes.
+This guide demonstrates how to use the `NightonaPlugin` for Google ADK to build an agent that generates, tests, and verifies code in a secure sandbox environment. The plugin enables agents to execute Python, JavaScript, and TypeScript code, run shell commands, and manage files within isolated Nightona sandboxes.
 
 In this example, we build a code generator agent that takes a natural language description of a function, generates the implementation in TypeScript, creates test cases, executes them in the sandbox, and iterates until all tests pass before returning the verified code.
 
@@ -13,7 +13,7 @@ In this example, we build a code generator agent that takes a natural language d
 
 ### 1. Workflow Overview
 
-You describe the function you want in plain English, specifying the language (Python, JavaScript, or TypeScript). The agent generates the implementation, writes tests for it, and executes everything in a Daytona sandbox. If tests fail, the agent automatically fixes the code and re-runs until all tests pass. Only then does it return the verified, working code.
+You describe the function you want in plain English, specifying the language (Python, JavaScript, or TypeScript). The agent generates the implementation, writes tests for it, and executes everything in a Nightona sandbox. If tests fail, the agent automatically fixes the code and re-runs until all tests pass. Only then does it return the verified, working code.
 
 The key benefit: you receive code that has already been tested and verified, not just generated.
 
@@ -21,11 +21,11 @@ The key benefit: you receive code that has already been tested and verified, not
 
 #### Clone the Repository
 
-Clone the Daytona repository and navigate to the example directory:
+Clone the Nightona repository and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona
-cd daytona/guides/python/google-adk/code-generator-agent/gemini
+git clone https://github.com/Amartuvshins0404/nightona
+cd nightona/guides/python/google-adk/code-generator-agent/gemini
 ```
 
 #### Install Dependencies
@@ -39,12 +39,12 @@ Install the required packages for this example:
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```bash
-    pip install -U google-adk daytona-adk python-dotenv
+    pip install -U google-adk nightona-adk python-dotenv
     ```
 
     The packages include:
     - `google-adk`: Google's Agent Development Kit for building AI agents
-    - `daytona-adk`: Provides the `DaytonaPlugin` that enables secure code execution in Daytona sandboxes
+    - `nightona-adk`: Provides the `NightonaPlugin` that enables secure code execution in Nightona sandboxes
     - `python-dotenv`: Used for loading environment variables from `.env` file
   </TabItem>
 </Tabs>
@@ -53,13 +53,13 @@ Install the required packages for this example:
 
 Get your API keys and configure your environment:
 
-1. **Daytona API key:** Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+1. **Nightona API key:** Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 2. **Google API key:** Get it from [Google AI Studio](https://aistudio.google.com/apikey)
 
 Create a `.env` file in your project:
 
 ```bash
-DAYTONA_API_KEY=dtn_***
+NIGHTONA_API_KEY=dtn_***
 GOOGLE_API_KEY=***
 ```
 
@@ -77,9 +77,9 @@ Before diving into the implementation, let's understand the key components we'll
 There are two ways to run Google ADK agents: using the `App` class with `InMemoryRunner`, or using `InMemoryRunner` directly with just an agent. The `App` serves as a configuration container that bundles agents with plugins, while the `Runner` handles actual execution and lifecycle management. This guide uses the `App` approach for cleaner organization of agents and plugins.
 :::
 
-#### Daytona Plugin
+#### Nightona Plugin
 
-The `DaytonaPlugin` provides tools that allow the agent to:
+The `NightonaPlugin` provides tools that allow the agent to:
 - Execute code in Python, JavaScript, or TypeScript
 - Run shell commands
 - Upload and read files
@@ -102,7 +102,7 @@ First, we set up our imports and load environment variables:
     from google.adk.apps import App
     from google.adk.runners import InMemoryRunner
 
-    from daytona_adk import DaytonaPlugin
+    from nightona_adk import NightonaPlugin
 
     load_dotenv()
 
@@ -114,17 +114,17 @@ First, we set up our imports and load environment variables:
     - `logging`: Enables debug output to see agent reasoning
     - `load_dotenv`: Loads API keys from your `.env` file
     - `Agent`, `App`, `InMemoryRunner`: Core Google ADK components
-    - `DaytonaPlugin`: Provides sandbox execution tools to the agent
+    - `NightonaPlugin`: Provides sandbox execution tools to the agent
 
     **Logging configuration:**
     The `logging.basicConfig(level=logging.DEBUG)` line configures Python's logging to show detailed debug output. You can adjust the logging level by passing different values:
-    - `logging.DEBUG`: Most verbose, shows all internal operations including DaytonaPlugin sandbox creation and tool invocations
+    - `logging.DEBUG`: Most verbose, shows all internal operations including NightonaPlugin sandbox creation and tool invocations
     - `logging.INFO`: Shows informational messages about agent progress
     - `logging.WARNING`: Shows only warnings and errors
     - `logging.ERROR`: Shows only errors
 
     :::tip[Behind the Scenes]
-    With `DEBUG` level logging enabled, you can see the DaytonaPlugin's internal operations, including when the sandbox is created, when the `execute_code_in_daytona` tool is invoked, and when cleanup occurs. The plugin's `plugin_name` (configurable, defaults to `daytona_plugin`) appears in these log messages, making it easy to trace plugin activity.
+    With `DEBUG` level logging enabled, you can see the NightonaPlugin's internal operations, including when the sandbox is created, when the `execute_code_in_nightona` tool is invoked, and when cleanup occurs. The plugin's `plugin_name` (configurable, defaults to `nightona_plugin`) appears in these log messages, making it easy to trace plugin activity.
     :::
   </TabItem>
 </Tabs>
@@ -195,23 +195,23 @@ The instruction is critical - it defines how the agent behaves. Our instruction 
   </TabItem>
 </Tabs>
 
-### 7. Configure the Daytona Plugin
+### 7. Configure the Nightona Plugin
 
 Initialize the plugin that provides sandbox execution capabilities:
 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
     ```python
-    plugin = DaytonaPlugin(
+    plugin = NightonaPlugin(
         labels={"example": "code-generator"},
     )
     ```
 
     **Configuration options:**
     - `labels`: Custom metadata tags for the sandbox (useful for tracking/filtering)
-    - `api_key`: Daytona API key (defaults to `DAYTONA_API_KEY` env var)
+    - `api_key`: Nightona API key (defaults to `NIGHTONA_API_KEY` env var)
     - `sandbox_name`: Custom name for the sandbox
-    - `plugin_name`: Name displayed in logs when the plugin logs messages (defaults to `daytona_plugin`)
+    - `plugin_name`: Name displayed in logs when the plugin logs messages (defaults to `nightona_plugin`)
     - `env_vars`: Environment variables to set in the sandbox
     - `auto_stop_interval`: Minutes before auto-stop (default: 15)
     - `auto_delete_interval`: Minutes before auto-delete (disabled by default)
@@ -220,7 +220,7 @@ Initialize the plugin that provides sandbox execution capabilities:
 
 ### 8. Create the Agent
 
-Create the agent with the Gemini model, our instruction, and the Daytona tools:
+Create the agent with the Gemini model, our instruction, and the Nightona tools:
 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
@@ -237,7 +237,7 @@ Create the agent with the Gemini model, our instruction, and the Daytona tools:
     - `model`: The Gemini model to use for reasoning and code generation
     - `name`: Identifier for the agent
     - `instruction`: The behavioral guidelines we defined
-    - `tools`: List of tools from the Daytona plugin that the agent can use
+    - `tools`: List of tools from the Nightona plugin that the agent can use
   </TabItem>
 </Tabs>
 
@@ -287,20 +287,20 @@ Run the complete example:
 
 When you run the code, the agent works through your request step by step. With `logging.DEBUG` enabled, you'll see detailed output including:
 
-- **DaytonaPlugin operations**: Sandbox creation, tool invocations (`execute_code_in_daytona`), and cleanup
+- **NightonaPlugin operations**: Sandbox creation, tool invocations (`execute_code_in_nightona`), and cleanup
 - **LLM requests and responses**: The prompts sent to Gemini and the responses received
-- **Plugin registration**: Confirmation that the `daytona_plugin` was registered with the agent
+- **Plugin registration**: Confirmation that the `nightona_plugin` was registered with the agent
 
 Here's what the debug output reveals about each step:
 
 **Step 1: Sandbox Creation**
 
 ```
-DEBUG:daytona_adk.plugin:Daytona sandbox created: e38f8574-48ac-48f1-a0ff-d922d02b0fcb
-INFO:google_adk.google.adk.plugins.plugin_manager:Plugin 'daytona_plugin' registered.
+DEBUG:nightona_adk.plugin:Nightona sandbox created: e38f8574-48ac-48f1-a0ff-d922d02b0fcb
+INFO:google_adk.google.adk.plugins.plugin_manager:Plugin 'nightona_plugin' registered.
 ```
 
-The DaytonaPlugin creates an isolated sandbox and registers itself with the agent.
+The NightonaPlugin creates an isolated sandbox and registers itself with the agent.
 
 **Step 2: Agent receives the request**
 
@@ -308,23 +308,23 @@ The agent receives your prompt and understands it needs to create a TypeScript `
 
 **Step 3: Agent generates code and tests**
 
-The agent writes both the implementation and test cases, then calls the `execute_code_in_daytona` tool:
+The agent writes both the implementation and test cases, then calls the `execute_code_in_nightona` tool:
 
 ```
 DEBUG:google_adk.google.adk.models.google_llm:
 LLM Response:
 -----------------------------------------------------------
 Function calls:
-name: execute_code_in_daytona, args: {'code': "...", 'language': 'typescript'}
+name: execute_code_in_nightona, args: {'code': "...", 'language': 'typescript'}
 ```
 
 **Step 4: Code execution in sandbox**
 
 ```
-DEBUG:daytona_adk.plugin:Before tool: execute_code_in_daytona
-DEBUG:daytona_adk.tools:Executing typescript code (length: 1570 chars)
-DEBUG:daytona_adk.tools:Code execution completed with exit_code: 0
-DEBUG:daytona_adk.plugin:After tool: execute_code_in_daytona
+DEBUG:nightona_adk.plugin:Before tool: execute_code_in_nightona
+DEBUG:nightona_adk.tools:Executing typescript code (length: 1570 chars)
+DEBUG:nightona_adk.tools:Code execution completed with exit_code: 0
+DEBUG:nightona_adk.plugin:After tool: execute_code_in_nightona
 ```
 
 The plugin executes the code in the isolated TypeScript environment and returns the result.
@@ -340,8 +340,8 @@ Once tests pass, the agent responds with only the working function. If you inclu
 **Step 7: Cleanup**
 
 ```
-INFO:daytona_adk.plugin:Deleting Daytona sandbox...
-INFO:daytona_adk.plugin:Daytona sandbox deleted.
+INFO:nightona_adk.plugin:Deleting Nightona sandbox...
+INFO:nightona_adk.plugin:Nightona sandbox deleted.
 INFO:google_adk.google.adk.runners:Runner closed.
 ```
 
@@ -451,7 +451,7 @@ Here is the complete, ready-to-run example with additional output formatting for
     from google.adk.apps import App
     from google.adk.runners import InMemoryRunner
 
-    from daytona_adk import DaytonaPlugin
+    from nightona_adk import NightonaPlugin
 
     load_dotenv()
 
@@ -500,7 +500,7 @@ Here is the complete, ready-to-run example with additional output formatting for
 
     async def main() -> None:
         """Run the code generator agent example."""
-        plugin = DaytonaPlugin(
+        plugin = NightonaPlugin(
             labels={"example": "code-generator"},
         )
 
@@ -546,11 +546,11 @@ Here is the complete, ready-to-run example with additional output formatting for
 **Key advantages of this approach:**
 
 - **Verified code:** Every response has been tested in a real execution environment
-- **Secure execution:** Code runs in isolated Daytona sandboxes, not on your machine
+- **Secure execution:** Code runs in isolated Nightona sandboxes, not on your machine
 - **Multi-language support:** Generate and test Python, JavaScript, or TypeScript
 - **Automatic iteration:** Agent fixes issues until tests pass
 - **Flexible output:** Returns only the working function by default, or includes tests if explicitly requested in the prompt
 
 ### 12. API Reference
 
-For the complete API reference of the Daytona ADK plugin, including all available tools and configuration options, see the [daytona-adk documentation](https://github.com/daytonaio/daytona-adk-plugin#available-tools).
+For the complete API reference of the Nightona ADK plugin, including all available tools and configuration options, see the [nightona-adk documentation](https://github.com/Amartuvshins0404/nightona-adk-plugin#available-tools).

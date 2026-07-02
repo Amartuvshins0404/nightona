@@ -1,21 +1,21 @@
 ---
-title: Build a Multi-Language Benchmark Agent with the Vercel AI SDK and Daytona
-description: Use the Vercel AI SDK's ToolLoopAgent with five sandbox tools to build a benchmarking agent that implements algorithms in Python and TypeScript, times them, plots the comparison with matplotlib, and downloads both the chart and a markdown findings report to your local filesystem - all running inside a Daytona sandbox.
+title: Build a Multi-Language Benchmark Agent with the Vercel AI SDK and Nightona
+description: Use the Vercel AI SDK's ToolLoopAgent with five sandbox tools to build a benchmarking agent that implements algorithms in Python and TypeScript, times them, plots the comparison with matplotlib, and downloads both the chart and a markdown findings report to your local filesystem - all running inside a Nightona sandbox.
 ---
 
 import { Image } from 'astro:assets'
 
 import sieveBenchmarkPlot from '../../../../../assets/docs/images/vercel-ai-sdk-sieve-benchmark.png'
 
-This guide walks through building a multi-language benchmarking agent with the [Vercel AI SDK](https://ai-sdk.dev/) and [Daytona](/docs/en/sandboxes) sandboxes. The agent has five tools (`runCode`, `runCommand`, `writeFile`, `readFile`, `downloadFile`) and a concrete benchmarking task: implement the Sieve of Eratosthenes in both Python and TypeScript, time them across input sizes, render a matplotlib comparison chart, and deliver two tangible artifacts to your local disk: the chart as a PNG and the findings as a markdown report.
+This guide walks through building a multi-language benchmarking agent with the [Vercel AI SDK](https://ai-sdk.dev/) and [Nightona](/docs/en/sandboxes) sandboxes. The agent has five tools (`runCode`, `runCommand`, `writeFile`, `readFile`, `downloadFile`) and a concrete benchmarking task: implement the Sieve of Eratosthenes in both Python and TypeScript, time them across input sizes, render a matplotlib comparison chart, and deliver two tangible artifacts to your local disk: the chart as a PNG and the findings as a markdown report.
 
-This is the shape of a real coding agent (multi-step, multi-language, multi-tool) producing tangible deliverables rather than just text, running entirely inside Daytona's isolated environment.
+This is the shape of a real coding agent (multi-step, multi-language, multi-tool) producing tangible deliverables rather than just text, running entirely inside Nightona's isolated environment.
 
 ---
 
 ### 1. Workflow Overview
 
-When you run the script, the agent receives a Sieve of Eratosthenes benchmark task, implements it in two languages, plots the result, and pulls the PNG to your local disk. The transcript below is **excerpted from an actual run** using `claude-sonnet-4-6` against a real Daytona sandbox. Source-code arguments inside `runCode` and `writeFile` calls are abridged (marked by `...`); tool-call shapes, results, file sizes, and the final answer are verbatim:
+When you run the script, the agent receives a Sieve of Eratosthenes benchmark task, implements it in two languages, plots the result, and pulls the PNG to your local disk. The transcript below is **excerpted from an actual run** using `claude-sonnet-4-6` against a real Nightona sandbox. Source-code arguments inside `runCode` and `writeFile` calls are abridged (marked by `...`); tool-call shapes, results, file sizes, and the final answer are verbatim:
 
 ```
 $ npm run start
@@ -107,24 +107,24 @@ Worth noticing in the transcript:
 
 #### Clone the Repository
 
-Clone the Daytona [repository](https://github.com/daytonaio/daytona) and navigate to the example directory:
+Clone the Nightona [repository](https://github.com/Amartuvshins0404/nightona) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/typescript/vercel-ai-sdk/multi-language-benchmark-agent
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/typescript/vercel-ai-sdk/multi-language-benchmark-agent
 ```
 
 #### Configure Environment
 
 Get your API keys:
 
-- **Daytona API key:** [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- **Nightona API key:** [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - **Anthropic API key:** [Anthropic Console](https://console.anthropic.com/)
 
 Copy `.env.example` to `.env` and add your keys:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_key
+NIGHTONA_API_KEY=your_nightona_key
 ANTHROPIC_API_KEY=your_anthropic_key
 ```
 
@@ -148,11 +148,11 @@ npm run start
 
 ### 3. How It Works
 
-The example consists of a single Node.js script (`src/index.ts`) that runs on your local machine. It uses the Daytona SDK to manage a sandbox and the Vercel AI SDK's `ToolLoopAgent` to drive the multi-step tool-calling loop.
+The example consists of a single Node.js script (`src/index.ts`) that runs on your local machine. It uses the Nightona SDK to manage a sandbox and the Vercel AI SDK's `ToolLoopAgent` to drive the multi-step tool-calling loop.
 
 #### Defining the Five Tools
 
-Each tool wraps a single Daytona primitive and has a single, non-overlapping job. The agent never has to choose between two paths for the same goal.
+Each tool wraps a single Nightona primitive and has a single, non-overlapping job. The agent never has to choose between two paths for the same goal.
 
 ```typescript
 const runCode = tool({
@@ -312,7 +312,7 @@ Each case corresponds to a distinct kind of progress event from the agent loop:
 
 #### Clean Up
 
-When the script exits (whether normally or on error), the Daytona sandbox is deleted in a `finally` block. The downloaded `sieve_benchmark.png` and `findings.md` remain on your local disk. Those are the artifacts the agent produced for you to inspect after the run.
+When the script exits (whether normally or on error), the Nightona sandbox is deleted in a `finally` block. The downloaded `sieve_benchmark.png` and `findings.md` remain on your local disk. Those are the artifacts the agent produced for you to inspect after the run.
 
 ### 4. Switching Providers
 

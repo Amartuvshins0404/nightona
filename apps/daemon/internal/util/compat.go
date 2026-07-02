@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package util
@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	sourceHeader = "X-Daytona-Source"
+	sourceHeader = "X-Nightona-Source"
 	goSDKSource  = "sdk-go"
 
 	// First Go SDK release whose generated client tolerates unknown response

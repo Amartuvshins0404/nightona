@@ -1,7 +1,7 @@
-# Copyright 2025 Daytona Platforms Inc.
+# Copyright 2025 Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-"""LangChain data analysis example using Daytona sandboxes."""
+"""LangChain data analysis example using Nightona sandboxes."""
 
 import base64
 
@@ -10,9 +10,9 @@ from langchain.agents import create_agent  # pylint: disable=import-error
 from langchain_anthropic import ChatAnthropic  # pylint: disable=import-error
 
 # pylint: disable=import-error
-from langchain_daytona_data_analysis import DaytonaDataAnalysisTool
+from langchain_nightona_data_analysis import NightonaDataAnalysisTool
 
-from daytona import ExecutionArtifacts
+from nightona import ExecutionArtifacts
 
 load_dotenv()
 
@@ -34,7 +34,7 @@ def process_data_analysis_result(result: ExecutionArtifacts):
 
 
 def main():
-    data_analysis_tool = DaytonaDataAnalysisTool(on_result=process_data_analysis_result)
+    data_analysis_tool = NightonaDataAnalysisTool(on_result=process_data_analysis_result)
 
     try:
         with open("./dataset.csv", "rb") as f:

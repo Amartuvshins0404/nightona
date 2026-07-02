@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -euo pipefail
@@ -20,15 +20,15 @@ cat > local.settings.json <<EOF
   "Values": {
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "DAYTONA_API_KEY": "$DAYTONA_API_KEY",
-    "DAYTONA_API_URL": "$DAYTONA_API_URL"
+    "NIGHTONA_API_KEY": "$NIGHTONA_API_KEY",
+    "NIGHTONA_API_URL": "$NIGHTONA_API_URL"
   }
 }
 EOF
 
 PORT=${RUNTIME_TEST_PORT:-3805}
 
-env DAYTONA_API_KEY="$DAYTONA_API_KEY" DAYTONA_API_URL="$DAYTONA_API_URL" \
+env NIGHTONA_API_KEY="$NIGHTONA_API_KEY" NIGHTONA_API_URL="$NIGHTONA_API_URL" \
   func start --port "$PORT" >/tmp/azure-runtime.log 2>&1 &
 PID=$!
 trap "kill -9 $PID 2>/dev/null || true; pkill -9 -f 'func.*start' 2>/dev/null || true" EXIT

@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package recording
@@ -6,7 +6,7 @@ package recording
 import (
 	"time"
 
-	"github.com/daytonaio/daemon/pkg/recording"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/recording"
 )
 
 // Recording represents a recording session (active or completed)

@@ -1,6 +1,6 @@
 ---
-title: Train LLMs with Reinforcement Learning Using TRL and Daytona
-description: Use parallel Daytona sandboxes to train code-generating LLMs with TRL's GRPO trainer.
+title: Train LLMs with Reinforcement Learning Using TRL and Nightona
+description: Use parallel Nightona sandboxes to train code-generating LLMs with TRL's GRPO trainer.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
@@ -8,9 +8,9 @@ import { Image } from 'astro:assets'
 
 import rewardsPlot from '../../../../../assets/docs/images/trl-grpo-rewards-plot.png'
 
-This guide demonstrates how to use Daytona sandboxes to safely execute hundreds of code completions in parallel during reinforcement learning training.
+This guide demonstrates how to use Nightona sandboxes to safely execute hundreds of code completions in parallel during reinforcement learning training.
 
-We use [TRL](https://huggingface.co/docs/trl/)'s GRPOTrainer together with 500 Daytona sandboxes evaluating completions concurrently, in order to train the `Qwen3-1.7B-Base` model on some basic code-writing tasks.
+We use [TRL](https://huggingface.co/docs/trl/)'s GRPOTrainer together with 500 Nightona sandboxes evaluating completions concurrently, in order to train the `Qwen3-1.7B-Base` model on some basic code-writing tasks.
 
 ---
 
@@ -20,7 +20,7 @@ This guide presents a simple, self-contained script that performs reinforcement 
 
 The training loop consists of following steps:
 1. **Generate**: The model produces many code completions for each prompt (e.g., 250 completions per prompt per step)
-2. **Evaluate**: Each completion runs in its own Daytona sandbox against a test suite
+2. **Evaluate**: Each completion runs in its own Nightona sandbox against a test suite
 3. **Reward**: Completions that pass more tests get higher rewards; errors or banned patterns get negative rewards
 4. **Update**: GRPO reinforces completions that scored above their group average
 
@@ -34,11 +34,11 @@ The evaluation step happens in parallel across all 500 sandboxes. The sandboxes 
 This guide is written to run on a single 80GB VRAM GPU. If you want to run it on a GPU with less VRAM, you can decrease `per_device_train_batch_size` parameter, possibly increasing `gradient_accumulation_steps` proportionally if you wish to keep effective batch size at 500.
 :::
 
-Clone the [Daytona repository](https://github.com/daytonaio/daytona.git) and navigate to the example directory:
+Clone the [Nightona repository](https://github.com/Amartuvshins0404/nightona.git) and navigate to the example directory:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/python/reinforcement-learning/trl
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/python/reinforcement-learning/trl
 ```
 
 #### Create Virtual Environment
@@ -59,17 +59,17 @@ pip install -e .
 ```
 
 This installs:
-- `daytona` - Daytona SDK for sandbox management
+- `nightona` - Nightona SDK for sandbox management
 - `trl[vllm]` - TRL with vLLM integration for fast inference
 - `datasets` - HuggingFace datasets library
 - `python-dotenv` - Environment variable management
 
 #### Configure Environment
 
-Get your Daytona API key from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys) and create a `.env` file:
+Get your Nightona API key from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys) and create a `.env` file:
 
 ```bash
-DAYTONA_API_KEY=your_daytona_api_key
+NIGHTONA_API_KEY=your_nightona_api_key
 ```
 
 ### 3. Understanding the Code
@@ -185,10 +185,10 @@ We create the sandbox pool upfront and reuse sandboxes throughout training:
     # so we spawn EFFECTIVE_BATCH_SIZE number of sandboxes.
 
     async def _create_sandbox_pool_async(
-        daytona: AsyncDaytona, n: int = 10
+        nightona: AsyncNightona, n: int = 10
     ) -> List[AsyncSandbox]:
         print(f"Creating {n} sandboxes...")
-        tasks = [daytona.create() for _ in range(n)]
+        tasks = [nightona.create() for _ in range(n)]
         sandboxes = await asyncio.gather(*tasks)
         print(f"Successfully created all {len(sandboxes)} sandboxes")
         return list(sandboxes)
@@ -237,7 +237,7 @@ The main evaluation function ties everything together - it sanitizes the complet
             response = await sandbox.code_interpreter.run_code(
                 code, timeout=MAX_TIMEOUT_SECONDS
             )
-        except DaytonaTimeoutError:
+        except NightonaTimeoutError:
             print(
                 f"Completion timed out after {MAX_TIMEOUT_SECONDS}s "
                 f"in sandbox {getattr(sandbox, 'id', '?')}"
@@ -464,7 +464,7 @@ The reward scheme:
 
 #### Bridging Sync and Async
 
-TRL's `GRPOTrainer` expects a synchronous reward function, but the Daytona SDK uses async/await for parallel sandbox operations. We bridge these two worlds with a helper:
+TRL's `GRPOTrainer` expects a synchronous reward function, but the Nightona SDK uses async/await for parallel sandbox operations. We bridge these two worlds with a helper:
 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
@@ -492,7 +492,7 @@ TRL's `GRPOTrainer` expects a synchronous reward function, but the Daytona SDK u
   </TabItem>
 </Tabs>
 
-This pattern lets us keep the async parallelism benefits of the Daytona SDK while working within TRL's synchronous training loop. The `run_async` helper blocks until all 500 parallel sandbox evaluations complete, then returns the results.
+This pattern lets us keep the async parallelism benefits of the Nightona SDK while working within TRL's synchronous training loop. The `run_async` helper blocks until all 500 parallel sandbox evaluations complete, then returns the results.
 
 #### Training Configuration
 

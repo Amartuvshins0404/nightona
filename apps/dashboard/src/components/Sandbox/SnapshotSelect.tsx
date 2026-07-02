@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -13,7 +13,7 @@ import { useSnapshotsQuery } from '@/hooks/queries/useSnapshotsQuery'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { cn } from '@/lib/utils'
-import { SnapshotState, type SnapshotDto } from '@daytona/api-client'
+import { SnapshotState, type SnapshotDto } from '@nightona/api-client'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Check, ChevronDownIcon, SearchIcon, X } from 'lucide-react'
 import { MouseEvent, Ref, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'

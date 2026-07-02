@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package services
@@ -9,10 +9,10 @@ import (
 	"log/slog"
 	"time"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
-	runnerapiclient "github.com/daytonaio/runner/pkg/apiclient"
-	"github.com/daytonaio/runner/pkg/docker"
-	"github.com/daytonaio/runner/pkg/models/enums"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
+	runnerapiclient "github.com/Amartuvshins0404/nightona/apps/runner/pkg/apiclient"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/docker"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models/enums"
 	"github.com/docker/docker/api/types/container"
 )
 

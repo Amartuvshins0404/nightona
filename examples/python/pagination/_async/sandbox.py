@@ -1,11 +1,11 @@
 import asyncio
 
-from daytona import AsyncDaytona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
+from nightona import AsyncNightona, ListSandboxesQuery, SandboxListSortDirection, SandboxListSortField, SandboxState
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
-        async for sandbox in daytona.list(
+    async with AsyncNightona() as nightona:
+        async for sandbox in nightona.list(
             ListSandboxesQuery(
                 limit=10,
                 labels={"env": "dev"},

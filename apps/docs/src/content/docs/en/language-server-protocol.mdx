@@ -5,21 +5,21 @@ description: Interact with language server protocol servers in your sandboxes.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona provides Language Server Protocol (LSP) support through sandbox instances. This enables advanced language features like code completion, diagnostics, and more.
+Nightona provides Language Server Protocol (LSP) support through sandbox instances. This enables advanced language features like code completion, diagnostics, and more.
 
 ## Create LSP servers
 
-Daytona provides methods to create LSP servers. The `path_to_project` argument is relative to the current sandbox working directory when no leading `/` is used. The working directory is specified by WORKDIR when it is present in the Dockerfile, and otherwise falls back to the user's home directory.
+Nightona provides methods to create LSP servers. The `path_to_project` argument is relative to the current sandbox working directory when no leading `/` is used. The working directory is specified by WORKDIR when it is present in the Dockerfile, and otherwise falls back to the user's home directory.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, LspLanguageId
+from nightona import Nightona, LspLanguageId
 
 # Create Sandbox
-daytona = Daytona()
-sandbox = daytona.create()
+nightona = Nightona()
+sandbox = nightona.create()
 
 # Create LSP server for Python
 lsp_server = sandbox.create_lsp_server(
@@ -32,11 +32,11 @@ lsp_server = sandbox.create_lsp_server(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona, LspLanguageId } from '@daytona/sdk'
+import { Nightona, LspLanguageId } from '@nightona/sdk'
 
 // Create sandbox
-const daytona = new Daytona()
-const sandbox = await daytona.create({
+const nightona = new Nightona()
+const sandbox = await nightona.create({
   language: 'typescript',
 })
 
@@ -51,15 +51,15 @@ const lspServer = await sandbox.createLspServer(
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
 # Create Sandbox
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 
 # Create LSP server for Python
 lsp_server = sandbox.create_lsp_server(
-  language_id: Daytona::LspServer::Language::PYTHON,
+  language_id: Nightona::LspServer::Language::PYTHON,
   path_to_project: 'workspace/project'
 )
 ```
@@ -69,7 +69,7 @@ lsp_server = sandbox.create_lsp_server(
 
 ```go
 // Create sandbox
-client, err := daytona.NewClient()
+client, err := nightona.NewClient()
 if err != nil {
 	log.Fatal(err)
 }
@@ -88,14 +88,14 @@ lsp := sandbox.CreateLspServer(types.LspLanguagePython, "workspace/project")
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.LspServer;
-import io.daytona.sdk.Sandbox;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.LspServer;
+import io.nightona.sdk.Sandbox;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
-            Sandbox sandbox = daytona.create();
+        try (Nightona nightona = new Nightona()) {
+            Sandbox sandbox = nightona.create();
             LspServer lspServer = sandbox.createLspServer(
                     LspServer.LspLanguageId.PYTHON.getValue(),
                     "workspace/project");
@@ -109,7 +109,7 @@ public class App {
 
 ### Supported languages
 
-The supported languages for creating LSP servers with Daytona are defined by the `LspLanguageId` enum:
+The supported languages for creating LSP servers with Nightona are defined by the `LspLanguageId` enum:
 
 | Enum Value                     | Description                            |
 | ------------------------------ | -------------------------------------- |
@@ -118,7 +118,7 @@ The supported languages for creating LSP servers with Daytona are defined by the
 
 ## Start LSP servers
 
-Daytona provides methods to start LSP servers.
+Nightona provides methods to start LSP servers.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -143,7 +143,7 @@ await lsp.start() // Initialize the server
 
 ```ruby
 lsp = sandbox.create_lsp_server(
-  language_id: Daytona::LspServer::Language::PYTHON,
+  language_id: Nightona::LspServer::Language::PYTHON,
   path_to_project: 'workspace/project'
 )
 lsp.start  # Initialize the server
@@ -189,7 +189,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/lsp/start' \
 
 ## Stop LSP servers
 
-Daytona provides methods to stop LSP servers.
+Nightona provides methods to stop LSP servers.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -252,7 +252,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/lsp/stop' \
 
 ## Code completions
 
-Daytona provides methods to get code completions for a specific position in a file.
+Nightona provides methods to get code completions for a specific position in a file.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -340,7 +340,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/lsp/completions' \
 
 ## File notifications
 
-Daytona provides methods to notify the LSP server when files are opened or closed. This enables features like diagnostics and completion tracking for the specified files.
+Nightona provides methods to notify the LSP server when files are opened or closed. This enables features like diagnostics and completion tracking for the specified files.
 
 ### Open file
 
@@ -472,7 +472,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/lsp/did-close' \
 
 ## Document symbols
 
-Daytona provides methods to retrieve symbols (functions, classes, variables, etc.) from a document.
+Nightona provides methods to retrieve symbols (functions, classes, variables, etc.) from a document.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -541,7 +541,7 @@ curl 'https://proxy.app.daytona.io/toolbox/{sandboxId}/lsp/document-symbols?lang
 
 ## Sandbox symbols
 
-Daytona provides methods to search for symbols across all files in the sandbox.
+Nightona provides methods to search for symbols across all files in the sandbox.
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">

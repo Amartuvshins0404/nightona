@@ -6,7 +6,7 @@ hideTitleOnPage: true
 
 ## サンドボックス
 
-Daytona のサンドボックスを表します。
+Nightona のサンドボックスを表します。
 
 **プロパティ**:
 
@@ -154,7 +154,7 @@ Daytona のサンドボックスを表します。
     ```ts
     SandboxDto.runnerDomain
     ```
-- `snapshot?` _string_ - サンドボックスの作成に使用された Daytona のスナップショット
+- `snapshot?` _string_ - サンドボックスの作成に使用された Nightona のスナップショット
     
     ##### 実装
     
@@ -395,7 +395,7 @@ setAutoArchiveInterval(interval: number): Promise<void>
 
 **スロー**:
 
-- `DaytonaError` - interval が非負の整数でない場合
+- `NightonaError` - interval が非負の整数でない場合
 
 **例:**
 
@@ -414,7 +414,7 @@ await sandbox.setAutoArchiveInterval(0);
 setAutoDeleteInterval(interval: number): Promise<void>
 ```
 
-サンドボックス（Daytonaが管理する隔離された一時的なコンピュート環境）の自動削除間隔を設定します。
+サンドボックス（Nightonaが管理する隔離された一時的なコンピュート環境）の自動削除間隔を設定します。
 
 指定した間隔のあいだ連続して停止状態が続くと、サンドボックスは自動的に削除されます。
 
@@ -466,7 +466,7 @@ Sandbox Previews を用いたインタラクションは含まれません。
 
 **スロー**:
 
-- `DaytonaError` - interval が非負の整数でない場合
+- `NightonaError` - interval が非負の整数でない場合
 
 **例:**
 
@@ -533,12 +533,12 @@ start(timeout?: number): Promise<void>
 
 **スロー**:
 
-- `DaytonaError` - サンドボックスの起動に失敗した場合、またはタイムアウトした場合
+- `NightonaError` - サンドボックスの起動に失敗した場合、またはタイムアウトした場合
 
 **例:**
 
 ```ts
-const sandbox = await daytona.getCurrentSandbox('my-sandbox');
+const sandbox = await nightona.getCurrentSandbox('my-sandbox');
 await sandbox.start(40);  // 最大 40 秒待機
 console.log('Sandbox started successfully');
 ```
@@ -568,7 +568,7 @@ stop(timeout?: number): Promise<void>
 **例:**
 
 ```ts
-const sandbox = await daytona.getCurrentSandbox('my-sandbox');
+const sandbox = await nightona.getCurrentSandbox('my-sandbox');
 await sandbox.stop();
 console.log('Sandbox stopped successfully');
 ```
@@ -598,7 +598,7 @@ waitUntilStarted(timeout?: number): Promise<void>
 
 **スロー**:
 
-- `DaytonaError` - サンドボックスがエラー状態になった場合、またはタイムアウト内に起動できなかった場合
+- `NightonaError` - サンドボックスがエラー状態になった場合、またはタイムアウト内に起動できなかった場合
 
 ***
 
@@ -625,7 +625,7 @@ waitUntilStopped(timeout?: number): Promise<void>
 
 **スロー**:
 
-- `DaytonaError` - サンドボックスがタイムアウト内に停止できなかった場合
+- `NightonaError` - サンドボックスがタイムアウト内に停止できなかった場合
 ## SandboxCodeToolbox
 
 コードツールボックスが実装すべきメソッドを定義するインターフェース

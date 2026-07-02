@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -24,7 +24,7 @@ import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { cn, getMetaKey } from '@/lib/utils'
 import { lazyRoutes } from '@/routes'
 import { usePylonCommands } from '@/vendor/pylon'
-import { OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum, OrganizationUserRoleEnum } from '@nightona/api-client'
 import {
   ArrowRightIcon,
   Box,

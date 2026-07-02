@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { SandboxListItem, SandboxState } from '@daytona/api-client'
+import { SandboxListItem, SandboxState } from '@nightona/api-client'
 
 export function isStartable(sandbox: SandboxListItem): boolean {
   return (

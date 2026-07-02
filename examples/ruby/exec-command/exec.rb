@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'daytona'
+require 'nightona'
 
 def basic_exec(sandbox)
   # Run some Python code directly (sandbox is configured for Python)
@@ -33,7 +33,7 @@ def session_exec(sandbox)
   # Execute a first command in the session
   command = sandbox.process.execute_session_command(
     session_id: 'exec-session-1',
-    req: Daytona::SessionExecuteRequest.new(command: 'export FOO=BAR')
+    req: Nightona::SessionExecuteRequest.new(command: 'export FOO=BAR')
   )
 
   # Get the session details again to see the command has been executed
@@ -50,7 +50,7 @@ def session_exec(sandbox)
   # Execute a second command in the session and see that the environment variable is set
   response = sandbox.process.execute_session_command(
     session_id: 'exec-session-1',
-    req: Daytona::SessionExecuteRequest.new(command: 'echo $FOO')
+    req: Nightona::SessionExecuteRequest.new(command: 'echo $FOO')
   )
   puts "FOO=#{response.stdout}"
 
@@ -74,7 +74,7 @@ def session_exec_logs_async(sandbox)
 
   command = sandbox.process.execute_session_command(
     session_id: session_id,
-    req: Daytona::SessionExecuteRequest.new(
+    req: Nightona::SessionExecuteRequest.new(
       command: 'counter=1; while (( counter <= 3 )); do echo "Count: $counter"; ((counter++)); sleep 2; done; non-existent-command',
       run_async: true
     )
@@ -158,27 +158,27 @@ def stateful_code_interpreter(sandbox)
       on_stderr: log_stderr,
       on_error: log_error
     )
-  rescue Daytona::Sdk::TimeoutError => e
+  rescue Nightona::Sdk::TimeoutError => e
     puts "Timed out as expected: #{e.message}"
   end
 end
 
 def main
-  daytona = Daytona::Daytona.new
+  nightona = Nightona::Nightona.new
 
   # First, create a sandbox
-  image = Daytona::Image.base('python:3.9.23-slim')
+  image = Nightona::Image.base('python:3.9.23-slim')
 
-  params = Daytona::CreateSandboxFromImageParams.new(
+  params = Nightona::CreateSandboxFromImageParams.new(
     image: image,
     language: 'python',
     auto_stop_interval: 60,
     auto_archive_interval: 60,
     auto_delete_interval: 120,
-    resources: Daytona::Resources.new(cpu: 2, memory: 2, disk: 10)
+    resources: Nightona::Resources.new(cpu: 2, memory: 2, disk: 10)
   )
 
-  sandbox = daytona.create(
+  sandbox = nightona.create(
     params,
     on_snapshot_create_logs: ->(chunk) { print chunk }
   )
@@ -193,7 +193,7 @@ def main
     puts e.backtrace
   ensure
     # Cleanup
-    daytona.delete(sandbox)
+    nightona.delete(sandbox)
   end
 end
 

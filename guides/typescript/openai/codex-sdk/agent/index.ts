@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// This is the Node.js Codex agent used inside the Daytona sandbox.
+// This is the Node.js Codex agent used inside the Nightona sandbox.
 // This script is uploaded to the sandbox and invoked with PROMPT in the environment.
 
 import { Codex, Thread } from '@openai/codex-sdk'
@@ -72,7 +72,7 @@ async function main(): Promise<void> {
 
   // Configure Codex options
   const options: ThreadOptions = {
-    workingDirectory: '/home/daytona',
+    workingDirectory: '/home/nightona',
     skipGitRepoCheck: true,
     sandboxMode: 'danger-full-access',
   }

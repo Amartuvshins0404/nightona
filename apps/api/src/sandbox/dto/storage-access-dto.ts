@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -38,7 +38,7 @@ export class StorageAccessDto {
 
   @ApiProperty({
     description: 'S3 bucket name',
-    example: 'daytona',
+    example: 'nightona',
   })
   bucket: string
 }

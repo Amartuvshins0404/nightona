@@ -1,15 +1,15 @@
 import time
 
-from daytona import CreateSandboxFromSnapshotParams, CreateSnapshotParams, Daytona, DaytonaConfig, Image
+from nightona import CreateSandboxFromSnapshotParams, CreateSnapshotParams, Nightona, NightonaConfig, Image
 
 
 def main():
-    daytona = Daytona(DaytonaConfig(target="us"))
+    nightona = Nightona(NightonaConfig(target="us"))
 
     snapshot1 = f"us-{int(time.time() * 1000)}"
     print(f"Creating snapshot {snapshot1}")
     try:
-        _ = daytona.snapshot.create(
+        _ = nightona.snapshot.create(
             CreateSnapshotParams(
                 name=snapshot1,
                 image=Image.debian_slim("3.12"),
@@ -23,7 +23,7 @@ def main():
     snapshot2 = f"eu-{int(time.time() * 1000)}"
     print(f"Creating snapshot {snapshot2}")
     try:
-        _ = daytona.snapshot.create(
+        _ = nightona.snapshot.create(
             CreateSnapshotParams(
                 name=snapshot2,
                 image=Image.debian_slim("3.13"),
@@ -36,16 +36,16 @@ def main():
 
     print(f"Creating sandbox from snapshot {snapshot1}")
     try:
-        sandbox = daytona.create(CreateSandboxFromSnapshotParams(snapshot=snapshot1))
-        daytona.delete(sandbox)
+        sandbox = nightona.create(CreateSandboxFromSnapshotParams(snapshot=snapshot1))
+        nightona.delete(sandbox)
     except Exception as e:
         print(e)
     print("--------------------------------")
 
     print(f"Creating sandbox from snapshot {snapshot2}")
     try:
-        sandbox = daytona.create(CreateSandboxFromSnapshotParams(snapshot=snapshot2))
-        daytona.delete(sandbox)
+        sandbox = nightona.create(CreateSandboxFromSnapshotParams(snapshot=snapshot2))
+        nightona.delete(sandbox)
     except Exception as e:
         print("error", e)
 

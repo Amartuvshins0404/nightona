@@ -1,19 +1,19 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 import { chromium } from 'playwright'
 import { createServer } from 'http'
 import { readFileSync, existsSync } from 'fs'
 import { extname, join, resolve } from 'path'
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
 const DIST = resolve('dist')
 const mime = { '.js': 'application/javascript', '.html': 'text/html', '.css': 'text/css', '.json': 'application/json' }
 
-const API_KEY = process.env.DAYTONA_API_KEY
-const API_URL = process.env.DAYTONA_API_URL
+const API_KEY = process.env.NIGHTONA_API_KEY
+const API_URL = process.env.NIGHTONA_API_URL
 if (!API_KEY || !API_URL) {
-  console.error('FAIL: DAYTONA_API_KEY and DAYTONA_API_URL must be set')
+  console.error('FAIL: NIGHTONA_API_KEY and NIGHTONA_API_URL must be set')
   process.exit(1)
 }
 
@@ -25,8 +25,8 @@ const FILE_PATH = 'test.txt'
 // ---------------------------------------------------------------------------
 
 console.log('Creating sandbox...')
-const daytona = new Daytona({ apiKey: API_KEY, apiUrl: API_URL })
-const sandbox = await daytona.create({ timeout: 120, labels: { purpose: 'runtime-test-vite-browser' } })
+const nightona = new Nightona({ apiKey: API_KEY, apiUrl: API_URL })
+const sandbox = await nightona.create({ timeout: 120, labels: { purpose: 'runtime-test-vite-browser' } })
 console.log('Sandbox created:', sandbox.id)
 
 let exitCode = 0
@@ -38,7 +38,7 @@ try {
   exitCode = await runBrowserTest(sandbox.id)
 } finally {
   console.log('Deleting sandbox:', sandbox.id)
-  await daytona.delete(sandbox).catch((e) => console.warn('Sandbox delete warning:', e.message))
+  await nightona.delete(sandbox).catch((e) => console.warn('Sandbox delete warning:', e.message))
 }
 
 process.exit(exitCode)
@@ -48,13 +48,13 @@ process.exit(exitCode)
 // ---------------------------------------------------------------------------
 
 async function runBrowserTest(sandboxId) {
-  // Injects Daytona config into index.html at serve time so the browser bundle
+  // Injects Nightona config into index.html at serve time so the browser bundle
   // can reach the real API and sandbox toolbox.
   // Both http://localhost:3001/api and http://proxy.localhost:4000/toolbox
   // support CORS with reflected origins, so no proxy is needed.
   const injectedScript = `<script>
-    window.__DAYTONA_API_KEY__ = ${JSON.stringify(API_KEY)};
-    window.__DAYTONA_API_URL__ = ${JSON.stringify(API_URL)};
+    window.__NIGHTONA_API_KEY__ = ${JSON.stringify(API_KEY)};
+    window.__NIGHTONA_API_URL__ = ${JSON.stringify(API_URL)};
     window.__TEST_SANDBOX_ID__ = ${JSON.stringify(sandboxId)};
     window.__TEST_FILE_CONTENT__ = ${JSON.stringify(FILE_CONTENT)};
   </script>`
@@ -112,10 +112,10 @@ async function runBrowserTest(sandboxId) {
 
     const checks = [
       ['imageOk', 'Image API broken'],
-      ['daytonaConstructorOk', 'Daytona constructor broken'],
+      ['nightonaConstructorOk', 'Nightona constructor broken'],
       ['fsThrowsOk', 'fs methods did not throw clear error'],
       ['bufferOk', 'globalThis.Buffer polyfill not available or broken'],
-      ['listOk', 'daytona.list() failed in browser'],
+      ['listOk', 'nightona.list() failed in browser'],
       ['downloadFileOk', 'FileSystem.downloadFile Buffer handling broken in browser (Binary.ts regression)'],
     ]
 

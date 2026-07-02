@@ -1,11 +1,11 @@
 import asyncio
 
-from daytona import AsyncDaytona, SessionExecuteRequest
+from nightona import AsyncNightona, SessionExecuteRequest
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
-        sandbox = await daytona.create()
+    async with AsyncNightona() as nightona:
+        sandbox = await nightona.create()
 
         exec_session_id = "exec-session-1"
         await sandbox.process.create_session(exec_session_id)
@@ -50,7 +50,7 @@ async def main():
         # And of course you can delete the session at any time
         await sandbox.process.delete_session(exec_session_id)
 
-        await daytona.delete(sandbox)
+        await nightona.delete(sandbox)
 
 
 if __name__ == "__main__":

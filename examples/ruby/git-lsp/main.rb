@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create(
-  Daytona::CreateSandboxFromImageParams.new(
-    image: Daytona::Image.base('ubuntu:25.10').run_commands(
+nightona = Nightona::Nightona.new
+sandbox = nightona.create(
+  Nightona::CreateSandboxFromImageParams.new(
+    image: Nightona::Image.base('ubuntu:25.10').run_commands(
       'apt-get update && apt-get install -y --no-install-recommends nodejs npm coreutils',
       'curl -fsSL https://deb.nodesource.com/setup_20.x | bash -',
       'apt-get install -y nodejs',
@@ -31,7 +31,7 @@ matches = sandbox.fs.find_files(project_dir, 'var obj1 = new Base();')
 puts "Matches: #{matches}"
 
 # Start the language server
-lsp = sandbox.create_lsp_server(language_id: Daytona::LspServer::Language::TYPESCRIPT, path_to_project: project_dir)
+lsp = sandbox.create_lsp_server(language_id: Nightona::LspServer::Language::TYPESCRIPT, path_to_project: project_dir)
 lsp.start
 
 # Notify the language server of the document we want to work on
@@ -55,8 +55,8 @@ lsp.did_open(matches.first.file)
 # Get completions at a specific position
 completions = lsp.completions(
   path: matches.first.file,
-  position: Daytona::LspServer::Position.new(line: 12, character: 18)
+  position: Nightona::LspServer::Position.new(line: 12, character: 18)
 )
 print("Completions: #{completions}")
 
-daytona.delete(sandbox)
+nightona.delete(sandbox)

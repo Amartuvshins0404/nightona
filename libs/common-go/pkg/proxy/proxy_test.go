@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package proxy_test
@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/daytonaio/common-go/pkg/proxy"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/proxy"
 	"github.com/gin-gonic/gin"
 )
 
@@ -91,7 +91,7 @@ func TestRawParam_PreservesPercentEncoding(t *testing.T) {
 // verifies the proxy Director propagates RawPath so that the backend receives
 // the original percent-encoding, not a re-encoded mutation.
 //
-// Regression for: https://github.com/daytonaio/daytona/issues/4448
+// Regression for: https://github.com/Amartuvshins0404/nightona/issues/4448
 // Mutation observed before fix:
 //
 //	(local)    → %28local%29   (parentheses incorrectly encoded)

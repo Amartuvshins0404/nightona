@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package toolbox
@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/daytonaio/common-go/pkg/log"
-	"github.com/daytonaio/common-go/pkg/telemetry"
-	"github.com/daytonaio/daemon/internal"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/telemetry"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal"
 )
 
 func (s *server) initTelemetry(ctx context.Context, serviceName, entrypointLogFilePath string, organizationId, regionId, snapshot *string) error {
@@ -49,7 +49,7 @@ func (s *server) initTelemetry(ctx context.Context, serviceName, entrypointLogFi
 
 	extraLabels := make(map[string]string)
 
-	if envLabels := os.Getenv("DAYTONA_SANDBOX_OTEL_EXTRA_LABELS"); envLabels != "" {
+	if envLabels := os.Getenv("NIGHTONA_SANDBOX_OTEL_EXTRA_LABELS"); envLabels != "" {
 		for pair := range strings.SplitSeq(envLabels, ",") {
 			parts := strings.SplitN(pair, "=", 2)
 			if len(parts) != 2 {
@@ -65,15 +65,15 @@ func (s *server) initTelemetry(ctx context.Context, serviceName, entrypointLogFi
 	}
 
 	if organizationId != nil && *organizationId != "" {
-		extraLabels["daytona_organization_id"] = *organizationId
+		extraLabels["nightona_organization_id"] = *organizationId
 	}
 
 	if regionId != nil && *regionId != "" {
-		extraLabels["daytona_region_id"] = *regionId
+		extraLabels["nightona_region_id"] = *regionId
 	}
 
 	if snapshot != nil && *snapshot != "" {
-		extraLabels["daytona_snapshot"] = *snapshot
+		extraLabels["nightona_snapshot"] = *snapshot
 	}
 
 	if len(extraLabels) > 0 {
@@ -104,7 +104,7 @@ func (s *server) initTelemetry(ctx context.Context, serviceName, entrypointLogFi
 
 		entrypointLogFile, err := os.Open(entrypointLogFilePath)
 		if err != nil {
-			s.logger.ErrorContext(ctx, "Failed to open entrypoint log file", "error", err, "daytona-entrypoint", true)
+			s.logger.ErrorContext(ctx, "Failed to open entrypoint log file", "error", err, "nightona-entrypoint", true)
 			return
 		}
 		defer entrypointLogFile.Close()
@@ -118,12 +118,12 @@ func (s *server) initTelemetry(ctx context.Context, serviceName, entrypointLogFi
 			case <-entrypointCtx.Done():
 				return
 			case line := <-stdoutChan:
-				s.logger.InfoContext(telemetryContext, string(line), "daytona-entrypoint", true)
+				s.logger.InfoContext(telemetryContext, string(line), "nightona-entrypoint", true)
 			case line := <-stderrChan:
-				s.logger.ErrorContext(telemetryContext, string(line), "daytona-entrypoint", true)
+				s.logger.ErrorContext(telemetryContext, string(line), "nightona-entrypoint", true)
 			case err := <-errChan:
 				if err != nil {
-					s.logger.ErrorContext(telemetryContext, "Error reading entrypoint log file", "error", err, "daytona-entrypoint", true)
+					s.logger.ErrorContext(telemetryContext, "Error reading entrypoint log file", "error", err, "nightona-entrypoint", true)
 				}
 				return
 			}
@@ -131,7 +131,7 @@ func (s *server) initTelemetry(ctx context.Context, serviceName, entrypointLogFi
 	}()
 
 	// Initialize OpenTelemetry metrics
-	mp, err := telemetry.InitMetrics(ctx, config, "daytona.sandbox")
+	mp, err := telemetry.InitMetrics(ctx, config, "nightona.sandbox")
 	if err != nil {
 		if shutDownErr := lp.Shutdown(telemetryContext); shutDownErr != nil {
 			s.logger.ErrorContext(ctx, "Failed to shutdown logger after metrics initialization failure", "shutdownErr", shutDownErr)

@@ -2,7 +2,7 @@ import sys
 import threading
 import time
 
-from daytona import Daytona, PtySize, Sandbox
+from nightona import Nightona, PtySize, Sandbox
 
 
 def interactive_pty_session(sandbox: Sandbox):
@@ -83,8 +83,8 @@ def kill_pty_session(sandbox: Sandbox):
 
 
 def main():
-    daytona = Daytona()
-    sandbox = daytona.create()
+    nightona = Nightona()
+    sandbox = nightona.create()
 
     try:
         # interactive PTY session with exit
@@ -96,7 +96,7 @@ def main():
     finally:
         # Cleanup
         print(f"\nDeleting sandbox: {sandbox.id}")
-        daytona.delete(sandbox)
+        nightona.delete(sandbox)
 
 
 if __name__ == "__main__":

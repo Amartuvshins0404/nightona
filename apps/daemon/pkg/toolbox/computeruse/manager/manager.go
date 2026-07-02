@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package manager
@@ -13,8 +13,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/daytonaio/daemon/pkg/childreap"
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/childreap"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 )
@@ -27,8 +27,8 @@ type pluginRef struct {
 
 var ComputerUseHandshakeConfig = plugin.HandshakeConfig{
 	ProtocolVersion:  1,
-	MagicCookieKey:   "DAYTONA_COMPUTER_USE_PLUGIN",
-	MagicCookieValue: "daytona_computer_use",
+	MagicCookieKey:   "NIGHTONA_COMPUTER_USE_PLUGIN",
+	MagicCookieValue: "nightona_computer_use",
 }
 
 var computerUse = &pluginRef{}

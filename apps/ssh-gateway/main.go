@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -19,7 +19,7 @@ import (
 	"strings"
 	"time"
 
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 	"golang.org/x/crypto/ssh"
 
 	log "github.com/sirupsen/logrus"

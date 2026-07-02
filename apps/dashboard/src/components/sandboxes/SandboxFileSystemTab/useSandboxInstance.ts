@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 import { useMemo } from 'react'
 import { useAuth } from 'react-oidc-context'
 
@@ -22,7 +22,7 @@ export function useSandboxInstance(sandboxId: string) {
       return null
     }
 
-    return new Daytona({
+    return new Nightona({
       jwtToken: user.access_token,
       apiUrl,
       organizationId: selectedOrganization.id,

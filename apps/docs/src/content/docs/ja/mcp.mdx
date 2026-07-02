@@ -1,27 +1,27 @@
 ---
-title: Daytona MCPサーバー
+title: Nightona MCPサーバー
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona Model Context Protocol (MCP) サーバーは、AIエージェントがDaytonaの機能にプログラムからアクセスし、操作できるようにします。本ガイドでは、各種AIエージェントでMCPサーバーをセットアップして利用する方法を解説します。
+Nightona Model Context Protocol (MCP) サーバーは、AIエージェントがNightonaの機能にプログラムからアクセスし、操作できるようにします。本ガイドでは、各種AIエージェントでMCPサーバーをセットアップして利用する方法を解説します。
 
 ## 前提条件
 
 開始する前に、以下を用意してください:
 
-- Daytona アカウント
-- Daytona CLI がインストールされていること
+- Nightona アカウント
+- Nightona CLI がインストールされていること
 - 互換性のある AI エージェント（Claude Desktop App、Claude Code、Cursor、または Windsurf）
 
 ## インストールとセットアップ
 
-### 1. Daytona CLI のインストール
+### 1. Nightona CLI のインストール
 
 <Tabs syncKey="os">
 <TabItem label="Mac/Linux">
 ```bash
-brew install daytonaio/cli/daytona
+brew install daytonaio/cli/nightona
 ```
 
 </TabItem>
@@ -32,32 +32,32 @@ powershell -Command "irm https://get.daytona.io/windows | iex"
 </TabItem>
 </Tabs>
 
-### 2. Daytona に認証する
+### 2. Nightona に認証する
 
 ```bash
-daytona login
+nightona login
 ```
 
 ### 3. MCPサーバーを初期化
 
-使用するAIエージェントで Daytona の MCPサーバーを初期化します:
+使用するAIエージェントで Nightona の MCPサーバーを初期化します:
 
 ```bash
-daytona mcp init [claude/cursor/windsurf]
+nightona mcp init [claude/cursor/windsurf]
 ```
 
 ### 4. AIエージェントを起動
 
-初期化後、AIエージェントのアプリケーションを起動して、Daytona の機能の利用を開始します。
+初期化後、AIエージェントのアプリケーションを起動して、Nightona の機能の利用を開始します。
 
 ## 他のAIエージェントとの統合
 
-Daytona MCP を他のAIエージェントと統合するには、次の手順に従ってください。
+Nightona MCP を他のAIエージェントと統合するには、次の手順に従ってください。
 
 1. MCP の設定を生成します:
 
 ```bash
-daytona mcp config
+nightona mcp config
 ```
 
 このコマンドは、エージェントの設定にコピーできる JSON 設定を出力します:
@@ -65,14 +65,14 @@ daytona mcp config
 ```json
 {
   "mcpServers": {
-    "daytona-mcp": {
-      "command": "daytona",
+    "nightona-mcp": {
+      "command": "nightona",
       "args": ["mcp", "start"],
       "env": {
         "HOME": "${HOME}",
         "PATH": "${HOME}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin"
       },
-      "logFile": "${HOME}/Library/Logs/daytona/daytona-mcp-server.log"
+      "logFile": "${HOME}/Library/Logs/nightona/nightona-mcp-server.log"
     }
   }
 }
@@ -95,7 +95,7 @@ Windows ユーザーは、`env` フィールドに次を追加してください
 
 - **サンドボックスの作成**
 
-  - 新しい Daytona サンドボックスを作成します
+  - 新しい Nightona サンドボックスを作成します
   - パラメータ:
     - `target` (default: "us"): ターゲット (リージョン)
     - `snapshot`: サンドボックス用のスナップショット (任意)
@@ -103,20 +103,20 @@ Windows ユーザーは、`env` フィールドに次を追加してください
     - `auto_archive_interval` (default: "10080"): 自動アーカイブまでの分数 (0 の場合は最大間隔が適用)
 
 - **サンドボックスの破棄**
-  - 既存の Daytona サンドボックスを削除します
+  - 既存の Nightona サンドボックスを削除します
 
 ### ファイル操作
 
 - **ファイルのダウンロード**
 
-  - Daytona サンドボックスからファイルをダウンロードします
+  - Nightona サンドボックスからファイルをダウンロードします
   - コンテンツをテキストまたは base64 エンコード画像として返します
   - パラメータ:
     - `file_path`: ファイルパス
 
 - **ファイルのアップロード**
 
-  - Daytona サンドボックスにファイルをアップロードします
+  - Nightona サンドボックスにファイルをアップロードします
   - テキストまたは base64 エンコードのバイナリをサポート
   - 必要な親ディレクトリを自動作成
   - 適切な権限でセッション中はファイルを保持
@@ -186,7 +186,7 @@ Windows ユーザーは、`env` フィールドに次を追加してください
 ### コマンド実行
 
 - **コマンドの実行**
-  - Daytona 環境でシェルコマンドを実行します
+  - Nightona 環境でシェルコマンドを実行します
   - stdout、stderr、終了コードを返します
   - コマンドはサンドボックスユーザー権限で実行されます
   - パラメータ:
@@ -198,7 +198,7 @@ Windows ユーザーは、`env` フィールドに次を追加してください
 
 - **認証の問題**
 
-  - 資格情報を更新するために `daytona login` を実行する
+  - 資格情報を更新するために `nightona login` を実行する
 
 - **接続エラー**
 
@@ -206,7 +206,7 @@ Windows ユーザーは、`env` フィールドに次を追加してください
   - サーバーのステータスを確認する
 
 - **サンドボックスのエラー**
-  - `daytona sandbox list` を使用してサンドボックスのステータスを確認する
+  - `nightona sandbox list` を使用してサンドボックスのステータスを確認する
 
 ## サポート
 

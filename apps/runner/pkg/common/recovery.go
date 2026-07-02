@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package common
@@ -8,7 +8,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/daytonaio/runner/pkg/models"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models"
 )
 
 // Patterns that indicate recoverable errors mapped to their recovery types

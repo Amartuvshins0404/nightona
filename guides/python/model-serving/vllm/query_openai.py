@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -10,7 +10,7 @@ from openai import OpenAI
 client = OpenAI(
     base_url=f"{os.environ['ENDPOINT']}/v1",
     api_key="EMPTY",  # vLLM doesn't check it; auth is the preview-token header
-    default_headers={"x-daytona-preview-token": os.environ["TOKEN"]},
+    default_headers={"x-nightona-preview-token": os.environ["TOKEN"]},
 )
 MODEL = "gemma-4-moe"
 
@@ -52,7 +52,7 @@ print(resp.choices[0].message.content)
 
 # tool calling: the model emits a call, we run it, feed the result back, the
 # model answers. Only the function body would change to run elsewhere (e.g. in
-# a Daytona sandbox); the loop stays the same.
+# a Nightona sandbox); the loop stays the same.
 def get_weather(city):
     rng = random.Random(city.lower())  # same city, same weather
     temp = rng.randint(-5, 35)

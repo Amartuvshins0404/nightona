@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/daytonaio/runner/pkg/common"
-	"github.com/daytonaio/runner/pkg/docker"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/common"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/docker"
 	"github.com/docker/docker/api/types/container"
 	"github.com/shirou/gopsutil/v4/cpu"
 	"github.com/shirou/gopsutil/v4/disk"

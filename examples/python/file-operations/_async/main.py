@@ -3,17 +3,17 @@ import json
 import os
 from datetime import datetime
 
-from daytona import AsyncDaytona, CreateSandboxFromSnapshotParams, FileDownloadRequest, FileUpload
+from nightona import AsyncNightona, CreateSandboxFromSnapshotParams, FileDownloadRequest, FileUpload
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
+    async with AsyncNightona() as nightona:
         params = CreateSandboxFromSnapshotParams(
             language="python",
         )
 
         # First, create a sandbox
-        sandbox = await daytona.create(params)
+        sandbox = await nightona.create(params)
         print(f"Created sandbox with ID: {sandbox.id}")
 
         # List files in the sandbox
@@ -137,7 +137,7 @@ async def main():
             os.remove("local-script.sh")
 
         # Delete the sandbox
-        await daytona.delete(sandbox)
+        await nightona.delete(sandbox)
 
 
 if __name__ == "__main__":

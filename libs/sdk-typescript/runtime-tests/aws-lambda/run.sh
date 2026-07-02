@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -euo pipefail
@@ -15,7 +15,7 @@ lambdaLocal.execute({
   lambdaFunc: { handler },
   lambdaHandler: 'handler',
   event: {},
-  environment: { DAYTONA_API_KEY: process.env.DAYTONA_API_KEY, DAYTONA_API_URL: process.env.DAYTONA_API_URL },
+  environment: { NIGHTONA_API_KEY: process.env.NIGHTONA_API_KEY, NIGHTONA_API_URL: process.env.NIGHTONA_API_URL },
   timeoutMs: 30000,
   verboseLevel: 0,
 }).then(r => process.stdout.write(r.body)).catch(e => { console.error('LAMBDA ERROR:', e.message); process.exit(1) });

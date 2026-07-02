@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Sandbox(SandboxDto)
 ```
 
-Daytona のサンドボックスを表します。
+Nightona のサンドボックスを表します。
 
 **属性**:
 
@@ -19,7 +19,7 @@ Daytona のサンドボックスを表します。
 - `computer_use` _ComputerUse_ - デスクトップ自動化のためのコンピューター使用インターフェース。
 - `id` _str_ - サンドボックスの一意の識別子。
 - `organization_id` _str_ - サンドボックスの組織 ID。
-- `snapshot` _str_ - サンドボックスの作成に使用された Daytona のスナップショット。
+- `snapshot` _str_ - サンドボックスの作成に使用された Nightona のスナップショット。
 - `user` _str_ - サンドボックス内で稼働する OS ユーザー。
 - `env` _Dict[str, str]_ - サンドボックスで設定される環境変数。
 - `labels` _Dict[str, str]_ - サンドボックスに付与されたカスタムラベル。
@@ -179,13 +179,13 @@ def start(timeout: Optional[float] = 60)
 
 **送出**:
 
-- `DaytonaError` - タイムアウトが負の場合、またはサンドボックスの起動に失敗／タイムアウトした場合。
+- `NightonaError` - タイムアウトが負の場合、またはサンドボックスの起動に失敗／タイムアウトした場合。
   
 
 **例**:
 
 ```python
-sandbox = daytona.get("my-sandbox-id")
+sandbox = nightona.get("my-sandbox-id")
 sandbox.start(timeout=40)  # 最大 40 秒待機
 print("Sandbox started successfully")
 ```
@@ -209,13 +209,13 @@ def stop(timeout: Optional[float] = 60)
 
 **送出**:
 
-- `DaytonaError` - タイムアウトが負の場合、またはサンドボックスの停止に失敗／タイムアウトした場合。
+- `NightonaError` - タイムアウトが負の場合、またはサンドボックスの停止に失敗／タイムアウトした場合。
   
 
 **例**:
 
 ```python
-sandbox = daytona.get("my-sandbox-id")
+sandbox = nightona.get("my-sandbox-id")
 sandbox.stop()
 print("Sandbox stopped successfully")
 ```
@@ -255,7 +255,7 @@ def wait_for_sandbox_start(timeout: Optional[float] = 60) -> None
 
 **送出**:
 
-- `DaytonaError` - タイムアウトが負の場合、またはサンドボックスの起動に失敗／タイムアウトした場合。
+- `NightonaError` - タイムアウトが負の場合、またはサンドボックスの起動に失敗／タイムアウトした場合。
 
 #### Sandbox.wait\_for\_sandbox\_stop
 
@@ -278,7 +278,7 @@ def wait_for_sandbox_stop(timeout: Optional[float] = 60) -> None
 
 **送出**:
 
-- `DaytonaError` - タイムアウトが負の場合、またはサンドボックスの停止に失敗／タイムアウトした場合。
+- `NightonaError` - タイムアウトが負の場合、またはサンドボックスの停止に失敗／タイムアウトした場合。
 
 #### Sandbox.set\_autostop\_interval
 
@@ -301,7 +301,7 @@ def set_autostop_interval(interval: int) -> None
 
 **送出**:
 
-- `DaytonaError` - interval が負の場合
+- `NightonaError` - interval が負の場合
   
 
 **例**:
@@ -332,7 +332,7 @@ def set_auto_archive_interval(interval: int) -> None
 
 **送出**:
 
-- `DaytonaError` - interval が負の場合
+- `NightonaError` - interval が負の場合
   
 
 **例**:

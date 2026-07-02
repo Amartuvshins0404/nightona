@@ -1,0 +1,14 @@
+name: nightona volume create
+synopsis: Create a volume
+usage: nightona volume create [NAME] [flags]
+options:
+  - name: size
+    shorthand: s
+    default_value: '10'
+    usage: Size of the volume in GB
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona volume - Manage Nightona volumes

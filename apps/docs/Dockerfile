@@ -10,7 +10,7 @@ RUN apk add --no-cache python3 py3-setuptools make g++
 
 RUN npm install -g corepack && corepack enable
 
-WORKDIR /daytona
+WORKDIR /nightona
 
 # Yarn caching layer
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -60,13 +60,13 @@ FROM node:22-alpine AS docs
 
 ARG VERSION=0.0.1
 
-WORKDIR /daytona
+WORKDIR /nightona
 
-COPY --from=build /daytona/node_modules node_modules
-COPY --from=build /daytona/dist/apps/docs dist/apps/docs
-COPY --from=build /daytona/apps/docs/server dist/apps/docs/server
+COPY --from=build /nightona/node_modules node_modules
+COPY --from=build /nightona/dist/apps/docs dist/apps/docs
+COPY --from=build /nightona/apps/docs/server dist/apps/docs/server
 
-WORKDIR /daytona/dist/apps/docs
+WORKDIR /nightona/dist/apps/docs
 
 RUN VER=$(echo ${VERSION} | sed 's/^v//') && \
   MAJOR=$(echo ${VER} | cut -d. -f1) && \

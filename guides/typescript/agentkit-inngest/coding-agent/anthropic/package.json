@@ -1,7 +1,7 @@
 {
-  "name": "daytona-coding-agent",
+  "name": "nightona-coding-agent",
   "version": "1.0.0",
-  "description": "AgentKit coding agent powered by Daytona",
+  "description": "AgentKit coding agent powered by Nightona",
   "license": "ISC",
   "type": "module",
   "scripts": {
@@ -13,7 +13,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@daytona/sdk": "^0.163.0",
+    "@nightona/sdk": "^0.163.0",
     "@inngest/agent-kit": "^0.13.2",
     "dotenv": "^17.2.3",
     "zod": "^4.1.13"

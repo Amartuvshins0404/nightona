@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -6,11 +6,11 @@ from __future__ import annotations
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from daytona.common.computer_use import ScreenshotOptions, ScreenshotRegion
+from nightona.common.computer_use import ScreenshotOptions, ScreenshotRegion
 
 
 def _make_computer_use():
-    from daytona._sync.computer_use import ComputerUse
+    from nightona._sync.computer_use import ComputerUse
 
     api_client = MagicMock()
     return ComputerUse(api_client, http_client=MagicMock()), api_client
@@ -145,7 +145,7 @@ class TestComputerUse:
         computer_use.recording.download("rec-1", str(destination))
 
         assert destination.read_bytes() == b"part1part2"
-        from daytona.internal.http_client import request_timeout
+        from nightona.internal.http_client import request_timeout
 
         client.stream.assert_called_once_with(
             "GET", "https://download", headers={"Authorization": "Bearer token"}, timeout=request_timeout(30 * 60)

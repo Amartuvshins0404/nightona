@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	"github.com/daytonaio/runner/pkg/api/dto"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
 )
 
 func (d *DockerClient) PullSnapshot(ctx context.Context, req dto.PullSnapshotRequestDTO) error {
@@ -44,7 +44,7 @@ func (d *DockerClient) PullSnapshot(ctx context.Context, req dto.PullSnapshotReq
 				return err
 			}
 
-			ref := "daytona-" + getHashWithoutPrefix(imageInfo.Hash) + ":daytona"
+			ref := "nightona-" + getHashWithoutPrefix(imageInfo.Hash) + ":nightona"
 			targetRef = fmt.Sprintf("%s/%s/%s", req.DestinationRegistry.Url, *req.DestinationRegistry.Project, ref)
 		}
 

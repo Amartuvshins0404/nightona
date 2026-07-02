@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -7,12 +7,12 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from daytona.common.git import GitCommitResponse
+from nightona.common.git import GitCommitResponse
 
 
 class TestSyncGit:
     def _make_git(self):
-        from daytona._sync.git import Git
+        from nightona._sync.git import Git
 
         mock_api = MagicMock()
         return Git(mock_api), mock_api
@@ -133,7 +133,7 @@ class TestSyncGit:
 
 class TestAsyncGit:
     def _make_git(self):
-        from daytona._async.git import AsyncGit
+        from nightona._async.git import AsyncGit
 
         mock_api = AsyncMock()
         return AsyncGit(mock_api), mock_api

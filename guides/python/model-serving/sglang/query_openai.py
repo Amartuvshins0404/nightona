@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -11,7 +11,7 @@ from openai import OpenAI
 client = OpenAI(
     base_url=f"{os.environ['ENDPOINT']}/v1",
     api_key="EMPTY",  # SGLang doesn't check it; auth is the preview-token header
-    default_headers={"x-daytona-preview-token": os.environ["TOKEN"]},
+    default_headers={"x-nightona-preview-token": os.environ["TOKEN"]},
 )
 MODEL = "gpt-oss-20b"
 
@@ -89,7 +89,7 @@ print(resp.choices[0].message.content)
 
 # tool calling: the model emits a call, we run it, feed the result back, the
 # model answers. Only the function body would change to run elsewhere (e.g. in
-# a Daytona sandbox); the loop stays the same.
+# a Nightona sandbox); the loop stays the same.
 def get_weather(city):
     rng = random.Random(city.lower())  # same city, same weather
     temp = rng.randint(-5, 35)
@@ -134,7 +134,7 @@ else:
 # prefix caching: RadixAttention reuses the KV cache of any shared prompt
 # prefix; the server's --enable-cache-report flag exposes the hit count in
 # usage.prompt_tokens_details
-context = "The Daytona platform provides isolated sandboxes for AI agents to safely execute code. " * 60
+context = "The Nightona platform provides isolated sandboxes for AI agents to safely execute code. " * 60
 print("\nprefix cache:")
 for attempt in (1, 2):
     t0 = time.perf_counter()

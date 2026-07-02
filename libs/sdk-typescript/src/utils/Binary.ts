@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { DaytonaError } from '../errors/DaytonaError'
+import { NightonaError } from '../errors/NightonaError'
 import { dynamicRequire } from './Import'
 
 let _BufferCtor: typeof Buffer | null = null
@@ -36,7 +36,7 @@ export function toUint8Array(data: string | ArrayBuffer | ArrayBufferView): Uint
   if (ArrayBuffer.isView(data)) {
     return new Uint8Array(data.buffer, data.byteOffset, data.byteLength)
   }
-  throw new DaytonaError('Unsupported data type for byte conversion.')
+  throw new NightonaError('Unsupported data type for byte conversion.')
 }
 
 /**
@@ -171,7 +171,7 @@ export async function collectStreamBytes(stream: any): Promise<Uint8Array> {
     return new Uint8Array(arrayBuffer)
   }
 
-  throw new DaytonaError('Unsupported stream type for byte collection.')
+  throw new NightonaError('Unsupported stream type for byte collection.')
 }
 
 /**

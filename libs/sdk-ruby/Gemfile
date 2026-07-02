@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in daytona.gemspec
+# Specify your gem's dependencies in nightona.gemspec
 gemspec
 
 gem 'pry', '~> 0.15'
@@ -14,5 +14,5 @@ gem 'solargraph', '~> 0.57'
 gem 'webmock', '~> 3.25'
 gem 'yard-markdown', '~> 0.5.0'
 
-gem 'daytona_api_client', '>= 0.0.0.pre.dev', path: '../api-client-ruby'
-gem 'daytona_toolbox_api_client', '>= 0.0.0.pre.dev', path: '../toolbox-api-client-ruby'
+gem 'nightona_api_client', '>= 0.0.0.pre.dev', path: '../api-client-ruby'
+gem 'nightona_toolbox_api_client', '>= 0.0.0.pre.dev', path: '../toolbox-api-client-ruby'

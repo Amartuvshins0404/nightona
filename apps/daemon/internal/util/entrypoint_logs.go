@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package util
@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/daytonaio/common-go/pkg/log"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
 )
 
 func ReadEntrypointLogs(entrypointLogFilePath string) error {

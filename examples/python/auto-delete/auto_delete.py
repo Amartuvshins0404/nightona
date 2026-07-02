@@ -1,11 +1,11 @@
-from daytona import CreateSandboxFromSnapshotParams, Daytona
+from nightona import CreateSandboxFromSnapshotParams, Nightona
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
     # Auto-delete is disabled by default
-    sandbox1 = daytona.create()
+    sandbox1 = nightona.create()
     print(sandbox1.auto_delete_interval)
 
     # Auto-delete after the Sandbox has been stopped for 1 hour
@@ -21,7 +21,7 @@ def main():
     print(sandbox1.auto_delete_interval)
 
     # Auto-delete after the Sandbox has been stopped for 1 day
-    sandbox2 = daytona.create(params=CreateSandboxFromSnapshotParams(auto_delete_interval=1440))
+    sandbox2 = nightona.create(params=CreateSandboxFromSnapshotParams(auto_delete_interval=1440))
     print(sandbox2.auto_delete_interval)
 
 

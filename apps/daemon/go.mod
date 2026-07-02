@@ -1,4 +1,4 @@
-module github.com/daytonaio/daemon
+module github.com/Amartuvshins0404/nightona/apps/daemon
 
 go 1.25.4
 

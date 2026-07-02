@@ -6,7 +6,7 @@ hideTitleOnPage: true
 
 ## SnapshotService
 
-Daytona スナップショットを管理するためのサービス。スナップショットの一覧表示、取得、作成、削除に利用できます。
+Nightona スナップショットを管理するためのサービス。スナップショットの一覧表示、取得、作成、削除に利用できます。
 
 ### Constructors
 
@@ -78,7 +78,7 @@ create(params: CreateSnapshotParams, options: {
 
 ```ts
 const image = Image.debianSlim('3.12').pipInstall('numpy');
-await daytona.snapshot.create({ name: 'my-snapshot', image: image }, { onLogs: console.log });
+await nightona.snapshot.create({ name: 'my-snapshot', image: image }, { onLogs: console.log });
 ```
 
 ***
@@ -107,9 +107,9 @@ delete(snapshot: Snapshot): Promise<void>
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const snapshot = await daytona.snapshot.get("snapshot-name");
-await daytona.snapshot.delete(snapshot);
+const nightona = new Nightona();
+const snapshot = await nightona.snapshot.get("snapshot-name");
+await nightona.snapshot.delete(snapshot);
 console.log("Snapshot deleted successfully");
 ```
 
@@ -139,8 +139,8 @@ get(name: string): Promise<Snapshot>
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const snapshot = await daytona.snapshot.get("snapshot-name");
+const nightona = new Nightona();
+const snapshot = await nightona.snapshot.get("snapshot-name");
 console.log(`Snapshot ${snapshot.name} is in state ${snapshot.state}`);
 ```
 
@@ -161,8 +161,8 @@ list(): Promise<Snapshot[]>
 **Example:**
 
 ```ts
-const daytona = new Daytona();
-const snapshots = await daytona.snapshot.list();
+const nightona = new Nightona();
+const snapshots = await nightona.snapshot.list();
 console.log(`Found ${snapshots.length} snapshots`);
 snapshots.forEach(snapshot => console.log(`${snapshot.name} (${snapshot.imageName})`));
 ```
@@ -199,7 +199,7 @@ type Snapshot = SnapshotDto & {
 };
 ```
 
-あらかじめ構成されたサンドボックスである Daytona のスナップショットを表します。
+あらかじめ構成されたサンドボックスである Nightona のスナップショットを表します。
 
 **型定義**:
 

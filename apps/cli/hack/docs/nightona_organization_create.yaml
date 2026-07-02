@@ -1,0 +1,9 @@
+name: nightona organization create
+synopsis: Create a new organization and set it as active
+usage: nightona organization create [ORGANIZATION_NAME] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona organization - Manage Nightona organizations

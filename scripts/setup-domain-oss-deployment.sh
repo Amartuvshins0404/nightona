@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# Copyright 2026 Daytona Platforms Inc.
+# Copyright 2026 Nightona Platforms Inc.
 # SPDX-License-Identifier: AGPL-3.0
 
-# Daytona Domain Setup
-# Automated deployment of Daytona OSS behind a custom domain with Caddy + TLS.
+# Nightona Domain Setup
+# Automated deployment of Nightona OSS behind a custom domain with Caddy + TLS.
 # Supports: Ubuntu, Debian, Fedora, CentOS, RHEL, Rocky, AlmaLinux, macOS
 # Usage: ./setup.sh
 set -euo pipefail
 
 # Remove transient per-step log on any exit so partial runs don't leave
 # captured stdout/stderr lying around in /tmp.
-trap 'rm -f "/tmp/daytona-step-$$.log"' EXIT INT TERM
+trap 'rm -f "/tmp/nightona-step-$$.log"' EXIT INT TERM
 
 # ── Colors ──────────────────────────────────────────────────
 GREEN='\033[0;32m'
@@ -35,7 +35,7 @@ REGISTRY_USER="" REGISTRY_PASSWORD=""
 HEALTH_CHECK_KEY="" OTEL_COLLECTOR_KEY=""
 CLICKHOUSE_ENABLED="" CLICKHOUSE_HOST_VAL="" CLICKHOUSE_PORT_VAL=""
 CLICKHOUSE_USER="" CLICKHOUSE_PASS="" CLICKHOUSE_DB_VAL="" CLICKHOUSE_PROTO=""
-REPO_DIR="$HOME/daytona"
+REPO_DIR="$HOME/nightona"
 
 # ── Helpers ─────────────────────────────────────────────────
 info()    { printf "  ${CYAN}▸${NC} %s\n" "$*"; }
@@ -57,10 +57,10 @@ sedi() {
 # Uses awk + ENVIRON so the value never appears in the process command line.
 _file_replace() {
     local file="$1" placeholder="$2" val="$3"
-    _DAYTONA_VAL="$val" awk -v ph="$placeholder" '
+    _NIGHTONA_VAL="$val" awk -v ph="$placeholder" '
     {
         while ((i = index($0, ph)) > 0)
-            $0 = substr($0, 1, i-1) ENVIRON["_DAYTONA_VAL"] substr($0, i + length(ph))
+            $0 = substr($0, 1, i-1) ENVIRON["_NIGHTONA_VAL"] substr($0, i + length(ph))
         print
     }' "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
 }
@@ -68,7 +68,7 @@ _file_replace() {
 run_step() {
     local name="$1"; shift
     printf "  ${CYAN}▸${NC} %s" "$name"
-    local log="/tmp/daytona-step-$$.log"
+    local log="/tmp/nightona-step-$$.log"
     install -m 600 /dev/null "$log"
     if "$@" > "$log" 2>&1; then
         printf "\r  ${GREEN}✓${NC} %s\n" "$name"
@@ -136,7 +136,7 @@ detect_platform() {
 
 # ── Input Collection ────────────────────────────────────────
 collect_input() {
-    printf "\n${BOLD}  Daytona Domain Setup${NC}\n"
+    printf "\n${BOLD}  Nightona Domain Setup${NC}\n"
     printf "  ═══════════════════════\n\n"
 
     # Domain
@@ -144,12 +144,12 @@ collect_input() {
     # Caddyfile, docker-compose env vars, and Dex config; accepting only
     # letters/digits/hyphens/dots prevents a typo from corrupting those files.
     while true; do
-        printf "  Domain (e.g. daytona.example.com): "; read -r DOMAIN
+        printf "  Domain (e.g. nightona.example.com): "; read -r DOMAIN
         DOMAIN="${DOMAIN#https://}"; DOMAIN="${DOMAIN#http://}"
         DOMAIN="$(echo "$DOMAIN" | tr -d '[:space:]')"
         [ -z "$DOMAIN" ] && { fail "Required"; continue; }
         if ! echo "$DOMAIN" | grep -qE '^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$'; then
-            fail "Must be a valid hostname (e.g. daytona.example.com)"
+            fail "Must be a valid hostname (e.g. nightona.example.com)"
             continue
         fi
         break
@@ -235,7 +235,7 @@ collect_input() {
         fail "Must be a valid email"
     done
 
-    # Admin password — fronts the Daytona dashboard on the public internet,
+    # Admin password — fronts the Nightona dashboard on the public internet,
     # so require 12 chars minimum rather than the bare-minimum 8.
     while true; do
         printf "  Admin password (min 12 chars): "; read -rs ADMIN_PASSWORD; echo
@@ -352,11 +352,11 @@ collect_input() {
 step_clean() {
     local cf="$REPO_DIR/docker/docker-compose.yaml"
     [ -f "$cf" ] && docker compose -f "$cf" down -v --remove-orphans 2>/dev/null || true
-    # Kill any orphaned daytona containers from a previous failed run
-    docker ps -aq --filter "name=daytona-" 2>/dev/null | xargs -r docker rm -f 2>/dev/null || true
+    # Kill any orphaned nightona containers from a previous failed run
+    docker ps -aq --filter "name=nightona-" 2>/dev/null | xargs -r docker rm -f 2>/dev/null || true
     # Clean transient files only — preserve $REPO_DIR so re-runs are non-destructive
     # (step_clone is now idempotent and skips when the repo is already present)
-    rm -rf /tmp/dashboard-extract /opt/daytona-dashboard-assets "$HOME/.daytona-dashboard-assets"
+    rm -rf /tmp/dashboard-extract /opt/nightona-dashboard-assets "$HOME/.nightona-dashboard-assets"
 }
 
 step_packages() {
@@ -378,7 +378,7 @@ step_clone() {
     # This makes re-runs non-destructive and lets users pre-stage the repo
     # (e.g. for testing local changes) without needing to edit this function.
     [ -d "$REPO_DIR/.git" ] && return 0
-    git clone https://github.com/daytonaio/daytona.git "$REPO_DIR"
+    git clone https://github.com/Amartuvshins0404/nightona.git "$REPO_DIR"
 }
 
 step_secrets() {
@@ -409,14 +409,14 @@ web:
   allowedOrigins: ['*']
   allowedHeaders: ['x-requested-with']
 staticClients:
-  - id: daytona
+  - id: nightona
     redirectURIs:
       - 'https://DOMAIN_PH'
       - 'https://DOMAIN_PH/dashboard'
       - 'https://DOMAIN_PH/api/oauth2-redirect.html'
       - 'https://DOMAIN_PH/callback'
       - 'https://proxy.DOMAIN_PH/callback'
-    name: 'Daytona'
+    name: 'Nightona'
     public: true
 enablePasswordDB: true
 staticPasswords:
@@ -438,14 +438,14 @@ step_compose() {
     # Uses awk + ENVIRON so credential values never appear in process arguments.
     _set() {
         local key="$1" val="$2"
-        _DAYTONA_VAL="$val" awk -v key="$key" '
+        _NIGHTONA_VAL="$val" awk -v key="$key" '
         {
             if (match($0, "^[[:space:]]*" key ":")) {
                 n = index($0, key ":")
-                print substr($0, 1, n-1) key ": " ENVIRON["_DAYTONA_VAL"]
+                print substr($0, 1, n-1) key ": " ENVIRON["_NIGHTONA_VAL"]
             } else if (match($0, "^[[:space:]]*-[[:space:]]*" key "=")) {
                 n = index($0, key "=")
-                print substr($0, 1, n-1) key "=" ENVIRON["_DAYTONA_VAL"]
+                print substr($0, 1, n-1) key "=" ENVIRON["_NIGHTONA_VAL"]
             } else {
                 print
             }
@@ -467,20 +467,20 @@ step_compose() {
     _set DEFAULT_RUNNER_API_KEY "$RUNNER_API_KEY"
     _set COOKIE_DOMAIN         "proxy.$DOMAIN"
     _set OIDC_PUBLIC_DOMAIN    "https://$DOMAIN/dex"
-    _set DAYTONA_RUNNER_TOKEN  "$RUNNER_API_KEY"
+    _set NIGHTONA_RUNNER_TOKEN  "$RUNNER_API_KEY"
 
     # API_KEY inside ssh-gateway section only
     # Uses ENVIRON so the key value never appears in process arguments
-    _DAYTONA_VAL="$SSH_GATEWAY_API_KEY" awk '
+    _NIGHTONA_VAL="$SSH_GATEWAY_API_KEY" awk '
         /^  ssh-gateway:/ { in_svc=1 }
         in_svc && /^  [a-z]/ && !/ssh-gateway:/ { in_svc=0 }
         in_svc && /API_KEY:/ {
             n = index($0, "API_KEY:")
-            $0 = substr($0, 1, n-1) "API_KEY: " ENVIRON["_DAYTONA_VAL"]
+            $0 = substr($0, 1, n-1) "API_KEY: " ENVIRON["_NIGHTONA_VAL"]
         }
         in_svc && /- API_KEY=/ {
             n = index($0, "API_KEY=")
-            $0 = substr($0, 1, n-1) "API_KEY=" ENVIRON["_DAYTONA_VAL"]
+            $0 = substr($0, 1, n-1) "API_KEY=" ENVIRON["_NIGHTONA_VAL"]
         }
         { print }
     ' "$cf" > "${cf}.tmp" && mv "${cf}.tmp" "$cf"
@@ -701,7 +701,7 @@ CADDYEOF
     # Hash passwords via stdin so they never appear in process arguments.
     # Note: Caddy 2.11+ requires a newline-terminated password on stdin (the trailing \n
     # is significant — without it the reader returns EOF before getting any input).
-    # Use the registry credentials (not the Daytona admin password) to gate the
+    # Use the registry credentials (not the Nightona admin password) to gate the
     # registry UI — keeping the admin login credential scoped to the dashboard.
     local pgadmin_hash registry_hash
     pgadmin_hash=$(printf '%s\n' "$PGADMIN_PASSWORD" | "$CADDY_BIN" hash-password)
@@ -717,14 +717,14 @@ CADDYEOF
 
     if [ "$OS" = "macos" ]; then
         # Wrapper script to load env vars and run Caddy
-        sudo tee /usr/local/bin/caddy-daytona > /dev/null <<WRAPEOF
+        sudo tee /usr/local/bin/caddy-nightona > /dev/null <<WRAPEOF
 #!/bin/bash
 set -a
 source "$CADDY_CONF_DIR/environment"
 set +a
 exec "$CADDY_BIN" run --config "$CADDY_CONF_DIR/Caddyfile" --adapter caddyfile
 WRAPEOF
-        sudo chmod +x /usr/local/bin/caddy-daytona
+        sudo chmod +x /usr/local/bin/caddy-nightona
 
         # LaunchAgent plist
         mkdir -p "$HOME/Library/LaunchAgents"
@@ -737,7 +737,7 @@ WRAPEOF
     <string>com.caddyserver.caddy</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/local/bin/caddy-daytona</string>
+        <string>/usr/local/bin/caddy-nightona</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
@@ -953,11 +953,11 @@ main() {
     detect_platform
     collect_input
 
-    printf "\n${BOLD}  Setting up Daytona...${NC}\n\n"
+    printf "\n${BOLD}  Setting up Nightona...${NC}\n\n"
 
     run_step "Cleaning previous installation"    step_clean
     run_step "Installing system packages"        step_packages
-    run_step "Cloning Daytona repository"        step_clone
+    run_step "Cloning Nightona repository"        step_clone
     run_step "Generating security credentials"   step_secrets
     run_step "Configuring Dex OIDC provider"     step_dex
     run_step "Configuring Docker Compose"        step_compose

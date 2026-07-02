@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -14,13 +14,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/daytonaio/common-go/pkg/log"
-	"github.com/daytonaio/runner/cmd/runner/config"
-	"github.com/daytonaio/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
+	"github.com/Amartuvshins0404/nightona/apps/runner/cmd/runner/config"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
 	"github.com/google/uuid"
 )
 
-const volumeMountPrefix = "daytona-volume-"
+const volumeMountPrefix = "nightona-volume-"
 
 // volumeId becomes part of the host mount path and the S3 bucket name, so require
 // the canonical lowercase UUID form (rejects braced/URN/dashless/uppercase variants,

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -42,7 +42,7 @@ const otlpExporterConfig: OTLPExporterNodeConfigBase = {
 
 const otelSdk = new NodeSDK({
   resource: resourceFromAttributes({
-    [ATTR_SERVICE_NAME]: `daytona-${serviceNameSuffix}`,
+    [ATTR_SERVICE_NAME]: `nightona-${serviceNameSuffix}`,
     [ATTR_DEPLOYMENT_ENVIRONMENT_NAME]: process.env.ENVIRONMENT,
     [ATTR_SERVICE_INSTANCE_ID]: process.env.NODE_APP_INSTANCE
       ? `${hostname()}-${process.env.NODE_APP_INSTANCE}`

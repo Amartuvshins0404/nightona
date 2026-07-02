@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -414,7 +414,7 @@ describe('DTO @IsSafeDisplayString() integration tests — display name fields o
   describe('legitimate display names that should NOT break', () => {
     it('should accept names with special characters', async () => {
       const testCases = [
-        'Daytona Platforms Inc.',
+        'Nightona Platforms Inc.',
         "O'Reilly Media",
         'Smith & Associates',
         'Dept. of Engineering',

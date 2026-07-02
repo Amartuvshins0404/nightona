@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
+nightona = Nightona::Nightona.new
 
-daytona.list(Daytona::ListSandboxesQuery.new(
+nightona.list(Nightona::ListSandboxesQuery.new(
                limit: 10,
                labels: { 'env' => 'dev' },
-               states: [Daytona::SandboxState::STARTED],
-               sort: Daytona::SandboxListSortField::CREATED_AT,
-               order: Daytona::SandboxListSortDirection::DESC
+               states: [Nightona::SandboxState::STARTED],
+               sort: Nightona::SandboxListSortField::CREATED_AT,
+               order: Nightona::SandboxListSortDirection::DESC
              )).each do |sandbox|
   puts sandbox.id
 end

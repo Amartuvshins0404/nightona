@@ -10,7 +10,7 @@ const [maj, min] = [major(version), minor(version)]
 const release = `${maj}.${min}`
 // TODO: switch to SDK
 
-const releaseLink = `https://github.com/daytonaio/daytona/releases/tag/v${release}.0`
+const releaseLink = `https://github.com/Amartuvshins0404/nightona/releases/tag/v${release}.0`
 
 const lang = Astro.props.lang ?? Astro.locals.starlightRoute.lang
 ---
@@ -31,7 +31,7 @@ const lang = Astro.props.lang ?? Astro.locals.starlightRoute.lang
     <p>
       <Fragment set:html={textArrowIcon} />{
         Astro.locals.t('footer.latestUpdates' as any)
-      } - <a href="https://github.com/daytonaio/daytona/commits/main/"
+      } - <a href="https://github.com/Amartuvshins0404/nightona/commits/main/"
         >{Astro.locals.t('footer.viewChangelog' as any)}</a
       >
     </p>
@@ -53,7 +53,7 @@ const lang = Astro.props.lang ?? Astro.locals.starlightRoute.lang
 
   <div class="docs-footer__container__bottom">
     <div class="docs-footer__container__bottom-block">
-      <div><p>© {new Date().getFullYear()} Daytona Platforms, Inc.</p></div>
+      <div><p>© {new Date().getFullYear()} Nightona Platforms, Inc.</p></div>
       <div class="divider"></div>
     </div>
 

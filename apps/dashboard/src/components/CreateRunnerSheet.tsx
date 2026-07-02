@@ -1,10 +1,10 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import React, { Ref, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
-import { Region, CreateRunnerResponse } from '@daytona/api-client'
+import { Region, CreateRunnerResponse } from '@nightona/api-client'
 import { useForm } from '@tanstack/react-form'
 import { z } from 'zod'
 import { AnimatePresence, motion } from 'framer-motion'

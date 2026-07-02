@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 import os
@@ -8,10 +8,10 @@ import time
 import requests
 from dotenv import load_dotenv
 
-from daytona import (
+from nightona import (
     CreateSandboxFromImageParams,
-    Daytona,
-    DaytonaConfig,
+    Nightona,
+    NightonaConfig,
     GpuType,
     Image,
     Resources,
@@ -28,10 +28,10 @@ TARGET = "us-east-1"  # current region for GPU sandboxes
 SESSION = "vllm"  # name of the background session the server runs in
 BOOT_TIMEOUT = 900  # max seconds to wait for the server to come up
 
-daytona = Daytona(DaytonaConfig(target=TARGET))
+nightona = Nightona(NightonaConfig(target=TARGET))
 env_vars = {"HF_TOKEN": os.environ["HF_TOKEN"]} if os.environ.get("HF_TOKEN") else {}
 print(f"creating GPU sandbox from {VLLM_IMAGE} ...", flush=True)
-sb = daytona.create(
+sb = nightona.create(
     CreateSandboxFromImageParams(
         image=Image.base(VLLM_IMAGE),
         resources=Resources(
@@ -74,7 +74,7 @@ try:
     cmd_id = cmd.cmd_id
 
     pv = sb.get_preview_link(PORT)
-    hdr = {"x-daytona-preview-token": pv.token}
+    hdr = {"x-nightona-preview-token": pv.token}
     print(f"preview: {pv.url}  (waiting for /health, up to {BOOT_TIMEOUT}s)", flush=True)
 
     deadline = time.time() + BOOT_TIMEOUT
@@ -112,5 +112,5 @@ finally:
     # auto_stop_interval=0 keeps it from idle-stopping; on failure this also
     # preserves the downloaded weights. Reconnect to reuse, delete when done.
     print(f"\nsandbox left UP: {sb.id}", flush=True)
-    print(f"  reconnect:  daytona.get('{sb.id}')", flush=True)
-    print(f"  delete:     daytona.get('{sb.id}').delete()", flush=True)
+    print(f"  reconnect:  nightona.get('{sb.id}')", flush=True)
+    print(f"  delete:     nightona.get('{sb.id}').delete()", flush=True)

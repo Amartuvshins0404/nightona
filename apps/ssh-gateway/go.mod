@@ -1,4 +1,4 @@
-module github.com/daytonaio/ssh-gateway
+module github.com/Amartuvshins0404/nightona/apps/ssh-gateway
 
 go 1.25.0
 

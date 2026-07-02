@@ -1,10 +1,10 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
 import { cn } from '@/lib/utils'
-import { SandboxClass, type RegionUsageOverview } from '@daytona/api-client'
+import { SandboxClass, type RegionUsageOverview } from '@nightona/api-client'
 import type { ReactNode } from 'react'
 import QuotaLine from './QuotaLine'
 import { Skeleton } from './ui/skeleton'

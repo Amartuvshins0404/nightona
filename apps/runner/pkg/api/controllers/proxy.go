@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package controllers
@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	proxy "github.com/daytonaio/common-go/pkg/proxy"
-	"github.com/daytonaio/common-go/pkg/utils"
-	"github.com/daytonaio/runner/pkg/runner"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	proxy "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/proxy"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/utils"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner"
 	"github.com/gin-gonic/gin"
 )
 

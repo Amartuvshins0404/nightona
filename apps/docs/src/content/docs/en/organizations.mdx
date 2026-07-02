@@ -5,13 +5,13 @@ description: Manage your organizations and their resources.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona provides organizations as a way to group resources and enable collaboration. Users can work individually in their personal organization or together in a collaborative organization.
+Nightona provides organizations as a way to group resources and enable collaboration. Users can work individually in their personal organization or together in a collaborative organization.
 
-Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard) to manage your organizations, or use the [API](/docs/en/tools/api/#daytona/tag/organizations) to manage them programmatically.
+Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard) to manage your organizations, or use the [API](/docs/en/tools/api/#nightona/tag/organizations) to manage them programmatically.
 
 ## Personal vs Collaborative
 
-Every Daytona user starts with a personal organization, ideal for solo use and experimentation. Collaborative organizations are created manually and designed for company-wide collaboration with shared access and controls.
+Every Nightona user starts with a personal organization, ideal for solo use and experimentation. Collaborative organizations are created manually and designed for company-wide collaboration with shared access and controls.
 
 | **Feature**        | **Personal organization**        | **Collaborative organization**                 |
 | ------------------ | -------------------------------- | ---------------------------------------------- |
@@ -23,13 +23,13 @@ Every Daytona user starts with a personal organization, ideal for solo use and e
 | **Quota Scope**    | Per user                         | Shared across all members                      |
 | **Deletable**      | No                               | Yes (by Owner)                                 |
 
-Users can switch between their personal and collaborative organizations by using the dropdown in the [Daytona Dashboard ↗](https://app.daytona.io/dashboard) sidebar. Each organization has its own sandboxes, API keys, and resource quotas.
+Users can switch between their personal and collaborative organizations by using the dropdown in the [Nightona Dashboard ↗](https://app.daytona.io/dashboard) sidebar. Each organization has its own sandboxes, API keys, and resource quotas.
 
 ## Create organization
 
-Daytona provides options to create organizations in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to create organizations in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/)
 2. Expand the dropdown at the top-left corner of the sidebar to view your organizations
 3. Click the **Create Organization** button
 4. Enter the organization name
@@ -55,7 +55,7 @@ curl 'https://app.daytona.io/api/organizations' \
 
 ## List organizations
 
-Daytona provides methods to list all organizations the authenticated user belongs to.
+Nightona provides methods to list all organizations the authenticated user belongs to.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -70,7 +70,7 @@ curl 'https://app.daytona.io/api/organizations' \
 
 ### Get by ID
 
-Daytona provides a method to get an organization by ID.
+Nightona provides a method to get an organization by ID.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -85,9 +85,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID' \
 
 ## Leave organization
 
-Daytona provides options to leave an organization in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to leave an organization in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/)
 2. Expand the dropdown at the top-left corner of the sidebar to view your organizations
 3. Select the organization you want to leave
 4. Click **Settings** in the sidebar
@@ -108,9 +108,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/leave' \
 
 ## Delete organization
 
-Daytona provides options to delete an organization in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to delete an organization in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/)
 2. Expand the dropdown at the top-left corner of the sidebar to view your organizations
 3. Select the organization you want to delete
 4. Click **Settings** in the sidebar
@@ -154,7 +154,7 @@ The list of available role assignments includes:
 
 ### Create role
 
-Daytona provides a method to create a new role in an organization.
+Nightona provides a method to create a new role in an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -176,7 +176,7 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/roles' \
 
 ### List roles
 
-Daytona provides a method to list all roles in an organization.
+Nightona provides a method to list all roles in an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -191,7 +191,7 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/roles' \
 
 ### Update role
 
-Daytona provides a method to update a role in an organization.
+Nightona provides a method to update a role in an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -213,7 +213,7 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/roles/ROLE_ID' \
 
 ### Delete role
 
-Daytona provides a method to delete a role in an organization.
+Nightona provides a method to delete a role in an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -229,11 +229,11 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/roles/ROLE_ID' \
 
 ## Members
 
-Daytona provides methods to manage members in an organization.
+Nightona provides methods to manage members in an organization.
 
 ### List members
 
-Daytona provides a method to list all members in an organization.
+Nightona provides a method to list all members in an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -248,9 +248,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/users' \
 
 ### Invite members
 
-Daytona provides a method to invite a new user to an organization.
+Nightona provides a method to invite a new user to an organization.
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members)
 2. Click the **Invite Member** button
 3. Enter the email address of the user you want to invite
 4. [Select a role](#roles) for the new user. If you select the **`Member`** role, define their [assignments](#role-assignments)
@@ -275,9 +275,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/invitations' \
 
 ### Remove members
 
-Daytona provides a method to remove a user from an organization.
+Nightona provides a method to remove a user from an organization.
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members)
 2. Click the **Remove** button next to the user you want to remove
 3. Confirm the removal by clicking the **Remove** button
 
@@ -295,9 +295,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/users/USER_ID' \
 
 ### Update access
 
-Daytona provides options to update the access of a member in an organization in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to update the access of a member in an organization in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members)
 2. Click the three-dot menu on the member row
 3. Click **Change Role** or **Manage Assignments**
 4. Update the role or assignments and click **Save**
@@ -321,9 +321,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/users/USER_ID/acc
 
 ## Invitations
 
-Daytona provides methods to manage invitations in an organization.
+Nightona provides methods to manage invitations in an organization.
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/user/invitations)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/user/invitations)
 2. Expand the dropdown at the bottom of the sidebar to view pending invitations to join other organizations.
 
 <Tabs syncKey="language">
@@ -339,7 +339,7 @@ curl 'https://app.daytona.io/api/organizations/invitations' \
 
 ### Get invitations count
 
-Daytona provides a method to get the number of invitations in an organization.
+Nightona provides a method to get the number of invitations in an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -354,9 +354,9 @@ curl 'https://app.daytona.io/api/organizations/invitations/count' \
 
 ### Accept invitation
 
-Daytona provides options to accept a pending organization invitation in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/user/invitations) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to accept a pending organization invitation in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/user/invitations) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/)
 2. Click your profile at the bottom-left of the sidebar
 3. Click **Invitations**
 4. Click the checkmark button on the invitation row
@@ -377,9 +377,9 @@ Once a user accepts an invitation to join an organization, they get access to re
 
 ### Decline invitation
 
-Daytona provides options to decline a pending organization invitation in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/user/invitations) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to decline a pending organization invitation in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/user/invitations) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/)
 2. Click your profile at the bottom-left of the sidebar
 3. Click **Invitations**
 4. Click the X button on the invitation row
@@ -399,7 +399,7 @@ curl 'https://app.daytona.io/api/organizations/invitations/INVITATION_ID/decline
 
 ### List pending
 
-Daytona provides a method to list pending invitations for an organization.
+Nightona provides a method to list pending invitations for an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -414,9 +414,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/invitations' \
 
 ### Update invitation
 
-Daytona provides options to update an invitation for an organization in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to update an invitation for an organization in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members)
 2. Scroll to the **Invitations** table
 3. Click the three-dot menu on the invitation row
 4. Click **Edit**
@@ -442,9 +442,9 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/invitations/INVIT
 
 ### Cancel invitation
 
-Daytona provides options to cancel an invitation for an organization in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to cancel an invitation for an organization in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/members)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/members)
 2. Scroll to the **Invitations** table
 3. Click the three-dot menu on the invitation row
 4. Click **Cancel**
@@ -470,7 +470,7 @@ For more information on available region types, see the [Regions](/docs/en/regio
 
 ### Set default region
 
-Daytona provides options to set the default region programmatically using the [API](/docs/en/tools/api/#daytona/tag/organizations).
+Nightona provides options to set the default region programmatically using the [API](/docs/en/tools/api/#nightona/tag/organizations).
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -490,15 +490,15 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/default-region' \
 
 ## Organization settings
 
-The settings page in the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/settings) allows you to view the organization ID and name, and optionally delete the organization if you don't need it anymore. This action is irreversible, so please proceed with caution. Personal organizations are there by default and cannot be deleted.
+The settings page in the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/settings) allows you to view the organization ID and name, and optionally delete the organization if you don't need it anymore. This action is irreversible, so please proceed with caution. Personal organizations are there by default and cannot be deleted.
 
 ## Advanced operations
 
-Daytona provides methods to perform advanced operations on an organization.
+Nightona provides methods to perform advanced operations on an organization.
 
 ### Usage overview
 
-Daytona provides a method to get the usage overview for an organization.
+Nightona provides a method to get the usage overview for an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -513,7 +513,7 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/usage' \
 
 ### Update sandbox default limited network egress
 
-Daytona provides a method to update the sandbox default limited network egress for an organization.
+Nightona provides a method to update the sandbox default limited network egress for an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -533,7 +533,7 @@ curl 'https://app.daytona.io/api/organizations/ORGANIZATION_ID/sandbox-default-l
 
 ### Update experimental configuration
 
-Daytona provides a method to update the experimental configuration for an organization.
+Nightona provides a method to update the experimental configuration for an organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">

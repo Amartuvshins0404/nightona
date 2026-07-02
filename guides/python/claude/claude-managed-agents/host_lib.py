@@ -1,8 +1,8 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Shared host-side helpers for ensuring a Daytona sandbox is running and the
+Shared host-side helpers for ensuring a Nightona sandbox is running and the
 in-sandbox EnvironmentWorker runner (sandbox_runner.py) is alive inside it.
 
 Used by the host orchestrator entrypoints and manual diagnostic drivers.
@@ -21,17 +21,17 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Callable
 
-from daytona import CreateSandboxFromSnapshotParams, Daytona, DaytonaConflictError, DaytonaNotFoundError
+from nightona import CreateSandboxFromSnapshotParams, Nightona, NightonaConflictError, NightonaNotFoundError
 
 REPO = pathlib.Path(__file__).resolve().parent
 RUNNER_LOG = "/tmp/sandbox_runner.log"
-RUNNER_PIDFILE = "/home/daytona/sandbox_runner.pid"
-RUNNER_EXITCODE_FILE = "/home/daytona/sandbox_runner.exit"
+RUNNER_PIDFILE = "/home/nightona/sandbox_runner.pid"
+RUNNER_EXITCODE_FILE = "/home/nightona/sandbox_runner.exit"
 STOPPED_AT_LABEL = "byoc.stopped_at"
 WORK_ID_LABEL = "byoc.work_id"
 DEFAULT_DOCKERFILE = REPO / "Dockerfile.default"
-SNAPSHOT_NAME_METADATA_KEY = "daytona.snapshot_name"
-SANDBOX_ID_METADATA_KEY = "daytona.sandbox_id"
+SNAPSHOT_NAME_METADATA_KEY = "nightona.snapshot_name"
+SANDBOX_ID_METADATA_KEY = "nightona.sandbox_id"
 SESSION_ID_LABEL = "byoc.session_id"
 ENVIRONMENT_ID_LABEL = "byoc.environment_id"
 MODE_LABEL = "byoc.mode"
@@ -42,7 +42,7 @@ AUTO_ARCHIVE_INTERVAL_MINUTES = 1440
 
 
 class SandboxSelectionError(ValueError):
-    """Raised when Daytona sandbox-selection metadata is invalid."""
+    """Raised when Nightona sandbox-selection metadata is invalid."""
 
 
 class SandboxResurrectionError(SandboxSelectionError):
@@ -99,7 +99,7 @@ def sandbox_selection_from_metadata(metadata: dict[str, Any] | None) -> SandboxS
 
 
 def get_or_create_sandbox(
-    daytona: Daytona,
+    nightona: Nightona,
     session_id: str,
     environment_id: str,
     *,
@@ -108,23 +108,23 @@ def get_or_create_sandbox(
     selection = sandbox_selection_from_metadata(metadata)
     if selection.sandbox_id:
         normal_name = sandbox_name(session_id)
-        with contextlib.suppress(DaytonaNotFoundError):
-            normal_sandbox = daytona.get(normal_name)
+        with contextlib.suppress(NightonaNotFoundError):
+            normal_sandbox = nightona.get(normal_name)
             if normal_sandbox.id != selection.sandbox_id:
                 raise SandboxSelectionError(
                     f"session sandbox {normal_name!r} already exists as {normal_sandbox.id!r}; "
                     f"refusing to attach {selection.sandbox_id!r}"
                 )
         return attach_prepared_sandbox(
-            daytona,
+            nightona,
             session_id,
             environment_id,
             selection.sandbox_id,
         )
 
     name = sandbox_name(session_id)
-    with contextlib.suppress(DaytonaNotFoundError):
-        return _managed_existing_sandbox(daytona.get(name), name)
+    with contextlib.suppress(NightonaNotFoundError):
+        return _managed_existing_sandbox(nightona.get(name), name)
 
     params = CreateSandboxFromSnapshotParams(
         name=name,
@@ -136,9 +136,9 @@ def get_or_create_sandbox(
         },
     )
     try:
-        sandbox = daytona.create(params, timeout=180)
-    except DaytonaConflictError:
-        return _managed_existing_sandbox(daytona.get(name), name)
+        sandbox = nightona.create(params, timeout=180)
+    except NightonaConflictError:
+        return _managed_existing_sandbox(nightona.get(name), name)
     try:
         sandbox.set_auto_archive_interval(AUTO_ARCHIVE_INTERVAL_MINUTES)
     except Exception as e:
@@ -161,12 +161,12 @@ def _managed_existing_sandbox(sandbox, name: str):
 
 
 def attach_prepared_sandbox(
-    daytona: Daytona,
+    nightona: Nightona,
     session_id: str,
     environment_id: str,
     sandbox_id: str,
 ):
-    sandbox = daytona.get(sandbox_id)
+    sandbox = nightona.get(sandbox_id)
     sandbox.refresh_data()
     labels = dict(getattr(sandbox, "labels", None) or {})
 
@@ -285,8 +285,8 @@ def clear_stop_state(sandbox) -> None:
 def preflight_runner_environment(sandbox) -> None:
     script = """
     set -eu
-    mkdir -p /home/daytona /mnt/session
-    test -w /home/daytona
+    mkdir -p /home/nightona /mnt/session
+    test -w /home/nightona
     test -w /mnt/session
     command -v bash >/dev/null
     command -v python3.12 >/dev/null
@@ -310,7 +310,7 @@ def install_runner(sandbox) -> None:
         raise RuntimeError(f"failed to prepare /mnt/session (exit {r.exit_code}); " f"output:\n{r.result or '<empty>'}")
     sandbox.fs.upload_file(
         (REPO / "sandbox_runner.py").read_bytes(),
-        "/home/daytona/sandbox_runner.py",
+        "/home/nightona/sandbox_runner.py",
     )
     r = sandbox.process.exec(
         "python3.12 -m pip install --quiet --user 'anthropic>=0.103'",
@@ -350,7 +350,7 @@ def runner_process_state(sandbox) -> RunnerProcessState:
 
     find_stale_runner() {{
       ps -eo pid=,comm=,args= |
-        awk '$2 == "python3.12" && $0 ~ "/home/daytona/sandbox_runner.py" {{print $1; exit}}'
+        awk '$2 == "python3.12" && $0 ~ "/home/nightona/sandbox_runner.py" {{print $1; exit}}'
     }}
 
     if ! test -s "$pidfile"; then
@@ -372,7 +372,7 @@ def runner_process_state(sandbox) -> RunnerProcessState:
     esac
 
     if kill -0 "$pid" 2>/dev/null; then
-      # PID 1 in Daytona sandboxes is `daytona sleep infinity`, which does
+      # PID 1 in Nightona sandboxes is `nightona sleep infinity`, which does
       # not reap orphans; an exited runner can linger as a zombie while
       # `kill -0` still succeeds.
       proc_state=$(awk '{{print $3}}' /proc/"$pid"/stat 2>/dev/null)
@@ -448,7 +448,7 @@ def stop_existing_runner_process_group(sandbox) -> None:
       exit 0
     fi
 
-    stale=$(ps -eo pid=,comm=,args= | awk '$2 == "python3.12" && $0 ~ "/home/daytona/sandbox_runner.py" {{print $1}}')
+    stale=$(ps -eo pid=,comm=,args= | awk '$2 == "python3.12" && $0 ~ "/home/nightona/sandbox_runner.py" {{print $1}}')
     if test -n "$stale"; then
       echo "pidfile missing; stopping stale sandbox_runner.py"
       for pid in $stale; do
@@ -592,7 +592,7 @@ def start_runner(
         "SESSION_ID": session_id,
     }
     runner_wrapper = f"""
-      python3.12 /home/daytona/sandbox_runner.py
+      python3.12 /home/nightona/sandbox_runner.py
       code=$?
       printf '%s\\n' "$code" > {shlex.quote(RUNNER_EXITCODE_FILE)}
       exit "$code"

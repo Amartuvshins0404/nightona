@@ -9,7 +9,7 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}",
-        "commands": ["rm -f *.gem", "bundle install", "gem build daytona.gemspec"],
+        "commands": ["rm -f *.gem", "bundle install", "gem build nightona.gemspec"],
         "parallel": false
       },
       "dependsOn": [
@@ -25,14 +25,14 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}",
-        "command": "if [ -n \"$RUBYGEMS_PKG_VERSION\" ]; then sed -i \"s/VERSION = '[^']*'/VERSION = '$RUBYGEMS_PKG_VERSION'/\" lib/daytona/sdk/version.rb && echo \"Changed version to $RUBYGEMS_PKG_VERSION\"; else echo \"Using version from version.rb\"; fi"
+        "command": "if [ -n \"$RUBYGEMS_PKG_VERSION\" ]; then sed -i \"s/VERSION = '[^']*'/VERSION = '$RUBYGEMS_PKG_VERSION'/\" lib/nightona/sdk/version.rb && echo \"Changed version to $RUBYGEMS_PKG_VERSION\"; else echo \"Using version from version.rb\"; fi"
       },
       "cache": true,
       "inputs": [
         { "env": "RUBYGEMS_PKG_VERSION" },
         { "env": "VERSION" }
       ],
-      "outputs": ["{projectRoot}/lib/daytona/sdk/version.rb"]
+      "outputs": ["{projectRoot}/lib/nightona/sdk/version.rb"]
     },
     "lint": {
       "executor": "nx:run-commands",
@@ -84,7 +84,7 @@
         "cwd": "{projectRoot}",
         "commands": [
           "mkdir -p ~/.gem && echo \":rubygems: $RUBYGEMS_API_KEY\" > ~/.gem/credentials && chmod 0600 ~/.gem/credentials",
-          "gem push daytona-*.gem --key rubygems --host https://rubygems.org"
+          "gem push nightona-*.gem --key rubygems --host https://rubygems.org"
         ],
         "parallel": false
       },

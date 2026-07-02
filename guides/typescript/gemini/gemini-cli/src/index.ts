@@ -1,9 +1,9 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Daytona, Sandbox } from '@daytona/sdk'
+import { Nightona, Sandbox } from '@nightona/sdk'
 import * as dotenv from 'dotenv'
 import * as readline from 'readline'
 import { GeminiSession } from './session.js'
@@ -11,10 +11,10 @@ import { GeminiSession } from './session.js'
 dotenv.config()
 
 async function main() {
-  const apiKey = process.env.DAYTONA_API_KEY
+  const apiKey = process.env.NIGHTONA_API_KEY
   if (!apiKey) {
-    console.error('Error: DAYTONA_API_KEY environment variable is not set')
-    console.error('Create a .env file with your Daytona API key (see .env.example)')
+    console.error('Error: NIGHTONA_API_KEY environment variable is not set')
+    console.error('Create a .env file with your Nightona API key (see .env.example)')
     process.exit(1)
   }
 
@@ -24,7 +24,7 @@ async function main() {
     process.exit(1)
   }
 
-  const daytona = new Daytona({ apiKey })
+  const nightona = new Nightona({ apiKey })
 
   let sandbox: Sandbox | undefined
   let session: GeminiSession | undefined
@@ -48,7 +48,7 @@ async function main() {
     // GEMINI_CLI_TRUST_WORKSPACE bypasses the CLI's workspace-trust prompt,
     // which otherwise blocks headless runs in a fresh sandbox directory.
     console.log('Creating sandbox...')
-    sandbox = await daytona.create({
+    sandbox = await nightona.create({
       envVars: {
         GEMINI_API_KEY: process.env.SANDBOX_GEMINI_API_KEY,
         GEMINI_CLI_TRUST_WORKSPACE: 'true',

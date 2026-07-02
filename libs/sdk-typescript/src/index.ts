@@ -1,17 +1,17 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { CodeLanguage, Daytona } from './Daytona'
+export { CodeLanguage, Nightona } from './Nightona'
 export type {
   CreateSandboxBaseParams,
   CreateSandboxFromImageParams,
   CreateSandboxFromSnapshotParams,
-  DaytonaConfig,
+  NightonaConfig,
   Resources,
   VolumeMount,
-} from './Daytona'
+} from './Nightona'
 export { FileSystem } from './FileSystem'
 export type {
   DownloadProgress,
@@ -32,16 +32,16 @@ export { Process } from './Process'
 // export { LspServer } from './LspServer'
 // export type { LspLanguageId, Position } from './LspServer'
 export {
-  DaytonaAuthenticationError,
-  DaytonaAuthorizationError,
-  DaytonaConflictError,
-  DaytonaConnectionError,
-  DaytonaError,
-  DaytonaNotFoundError,
-  DaytonaRateLimitError,
-  DaytonaTimeoutError,
-  DaytonaValidationError,
-} from './errors/DaytonaError'
+  NightonaAuthenticationError,
+  NightonaAuthorizationError,
+  NightonaConflictError,
+  NightonaConnectionError,
+  NightonaError,
+  NightonaNotFoundError,
+  NightonaRateLimitError,
+  NightonaTimeoutError,
+  NightonaValidationError,
+} from './errors/NightonaError'
 export { Image } from './Image'
 export { Sandbox } from './Sandbox'
 export type { ListSandboxesQuery } from './Sandbox'
@@ -72,7 +72,7 @@ export {
   SandboxListSortField,
   SandboxListSortDirection,
   SandboxClass,
-} from '@daytona/api-client'
+} from '@nightona/api-client'
 export type {
   FileInfo,
   GitStatus,
@@ -80,7 +80,7 @@ export type {
   Match,
   ReplaceResult,
   SearchFilesResponse,
-} from '@daytona/toolbox-api-client'
+} from '@nightona/toolbox-api-client'
 
 export type {
   ScreenshotRegion,

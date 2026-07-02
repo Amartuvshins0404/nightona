@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -127,7 +127,7 @@ export class TypedConfigService {
           getCredentials: fromTemporaryCredentials({
             params: {
               RoleArn: this.get('opensearch.aws.roleArn'),
-              RoleSessionName: 'daytona-opensearch',
+              RoleSessionName: 'nightona-opensearch',
             },
           }),
           service: 'es',

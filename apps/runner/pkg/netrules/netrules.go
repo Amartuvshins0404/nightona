@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package netrules
@@ -72,8 +72,8 @@ func (manager *NetRulesManager) saveIptablesRules() error {
 	return nil
 }
 
-// ListDaytonaRules returns all DOCKER-USER rules that jump to Daytona chains
-func (manager *NetRulesManager) ListDaytonaRules(table string, chain string) ([]string, error) {
+// ListNightonaRules returns all DOCKER-USER rules that jump to Nightona chains
+func (manager *NetRulesManager) ListNightonaRules(table string, chain string) ([]string, error) {
 	manager.mu.Lock()
 	defer manager.mu.Unlock()
 
@@ -82,14 +82,14 @@ func (manager *NetRulesManager) ListDaytonaRules(table string, chain string) ([]
 		return nil, err
 	}
 
-	var daytonaRules []string
+	var nightonaRules []string
 	for _, rule := range rules {
 		if strings.Contains(rule, ChainPrefix) {
-			daytonaRules = append(daytonaRules, rule)
+			nightonaRules = append(nightonaRules, rule)
 		}
 	}
 
-	return daytonaRules, nil
+	return nightonaRules, nil
 }
 
 // DeleteChainRule deletes a specific rule from a specific chain
@@ -105,8 +105,8 @@ func (manager *NetRulesManager) DeleteChainRule(table string, chain string, rule
 	return manager.ipt.Delete(table, chain, args...)
 }
 
-// ListDaytonaChains returns all chains that start with DAYTONA-SB-
-func (manager *NetRulesManager) ListDaytonaChains(table string) ([]string, error) {
+// ListNightonaChains returns all chains that start with NIGHTONA-SB-
+func (manager *NetRulesManager) ListNightonaChains(table string) ([]string, error) {
 	manager.mu.Lock()
 	defer manager.mu.Unlock()
 
@@ -115,14 +115,14 @@ func (manager *NetRulesManager) ListDaytonaChains(table string) ([]string, error
 		return nil, err
 	}
 
-	var daytonaChains []string
+	var nightonaChains []string
 	for _, chain := range chains {
 		if strings.HasPrefix(chain, ChainPrefix) {
-			daytonaChains = append(daytonaChains, chain)
+			nightonaChains = append(nightonaChains, chain)
 		}
 	}
 
-	return daytonaChains, nil
+	return nightonaChains, nil
 }
 
 // ClearAndDeleteChain deletes a specific table chain

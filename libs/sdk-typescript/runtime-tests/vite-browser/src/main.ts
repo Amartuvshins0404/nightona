@@ -1,12 +1,12 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 import { Buffer } from 'buffer'
-import { Daytona, Image } from '@daytona/sdk'
+import { Nightona, Image } from '@nightona/sdk'
 
 const result: Record<string, unknown> = {
   imageOk: false,
-  daytonaConstructorOk: false,
+  nightonaConstructorOk: false,
   fsThrowsOk: false,
   bufferOk: false,
   listOk: false,
@@ -21,10 +21,10 @@ try {
 }
 
 try {
-  new Daytona({ apiKey: 'browser-test', apiUrl: 'http://invalid.example' })
-  result.daytonaConstructorOk = true
+  new Nightona({ apiKey: 'browser-test', apiUrl: 'http://invalid.example' })
+  result.nightonaConstructorOk = true
 } catch {
-  result.daytonaConstructorOk = false
+  result.nightonaConstructorOk = false
 }
 
 try {
@@ -45,18 +45,18 @@ try {
   result.bufferOk = false
 }
 
-// Real API tests — require DAYTONA_API_KEY / DAYTONA_API_URL injected by the
+// Real API tests — require NIGHTONA_API_KEY / NIGHTONA_API_URL injected by the
 // Node.js orchestrator and a pre-created sandbox with a test file uploaded.
-const apiKey = (window as any).__DAYTONA_API_KEY__ as string | undefined
-const apiUrl = (window as any).__DAYTONA_API_URL__ as string | undefined
+const apiKey = (window as any).__NIGHTONA_API_KEY__ as string | undefined
+const apiUrl = (window as any).__NIGHTONA_API_URL__ as string | undefined
 const sandboxId = (window as any).__TEST_SANDBOX_ID__ as string | undefined
 const fileContent = (window as any).__TEST_FILE_CONTENT__ as string | undefined
 
 if (apiKey && apiUrl) {
-  const daytona = new Daytona({ apiKey, apiUrl })
+  const nightona = new Nightona({ apiKey, apiUrl })
 
   try {
-    const iter = daytona.list()
+    const iter = nightona.list()
     if (typeof (iter as any)[Symbol.asyncIterator] !== 'function') {
       throw new Error('list() did not return an async iterator')
     }
@@ -71,7 +71,7 @@ if (apiKey && apiUrl) {
   // processDownloadFilesResponseWithBuffered → toBuffer → getBufferCtor.
   if (sandboxId && fileContent) {
     try {
-      const sandbox = await daytona.get(sandboxId)
+      const sandbox = await nightona.get(sandboxId)
       const buf = await sandbox.fs.downloadFile('test.txt')
       result.downloadFileOk = buf.toString('utf-8') === fileContent
     } catch (e: unknown) {

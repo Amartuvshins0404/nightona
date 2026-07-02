@@ -1,0 +1,9 @@
+name: nightona start
+synopsis: Start a sandbox
+usage: nightona start [SANDBOX_ID] | [SANDBOX_NAME] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona - Nightona CLI

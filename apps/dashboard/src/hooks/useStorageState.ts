@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -76,7 +76,7 @@ const getBrowserLocalStorage: StorageStateStorageProvider = () => {
   return window.localStorage
 }
 
-const STORAGE_STATE_CHANGE_EVENT = 'daytona:storage-state-change'
+const STORAGE_STATE_CHANGE_EVENT = 'nightona:storage-state-change'
 
 function useStorageState<TValue>(
   key: string,

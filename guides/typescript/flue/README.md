@@ -2,9 +2,9 @@
 
 ## Overview
 
-This example builds an autonomous bug-fix agent with [Flue](https://flueframework.com/) and [Daytona](https://www.daytona.io/). Given a GitHub issue, the agent:
+This example builds an autonomous bug-fix agent with [Flue](https://flueframework.com/) and [Nightona](https://www.daytona.io/). Given a GitHub issue, the agent:
 
-1. Spins up a fresh Daytona sandbox.
+1. Spins up a fresh Nightona sandbox.
 2. Clones the target repository (your fork) into the sandbox.
 3. Reads the issue and the relevant source code.
 4. Writes a **failing test** that reproduces the bug.
@@ -12,7 +12,7 @@ This example builds an autonomous bug-fix agent with [Flue](https://flueframewor
 6. Runs the full test suite to verify the fix.
 7. Pushes a new branch to your fork and opens a pull request via `gh`.
 
-The whole TDD loop runs inside an isolated Daytona sandbox, so the agent can install dependencies and execute arbitrary code from any repository without ever touching your host machine. A sandbox is essential for this workflow: the agent clones unknown code, installs unknown dependencies, and executes the project's test suite — operations that need strict isolation from your host. Daytona provisions a fresh isolated environment for every run and tears it down on completion, so an untrusted repository can never affect your host.
+The whole TDD loop runs inside an isolated Nightona sandbox, so the agent can install dependencies and execute arbitrary code from any repository without ever touching your host machine. A sandbox is essential for this workflow: the agent clones unknown code, installs unknown dependencies, and executes the project's test suite — operations that need strict isolation from your host. Nightona provisions a fresh isolated environment for every run and tears it down on completion, so an untrusted repository can never affect your host.
 
 ## Features
 
@@ -20,12 +20,12 @@ The whole TDD loop runs inside an isolated Daytona sandbox, so the agent can ins
 - **Real pull requests.** The agent uses `gh` inside the sandbox to push a branch and open a real PR on your fork. You can review and merge in the GitHub UI.
 - **Skill-driven logic.** The TDD workflow lives in markdown (`.agents/skills/bug-fix/SKILL.md`), not code. Tweak the workflow without changing TypeScript.
 - **Structured output.** The agent returns a typed result (`prUrl`, `branch`, `filesChanged`, `summary`) you can pipe into downstream automation.
-- **Sandbox-isolated execution.** Cloning, dependency installation, and test runs happen entirely inside Daytona, so your host stays clean.
+- **Sandbox-isolated execution.** Cloning, dependency installation, and test runs happen entirely inside Nightona, so your host stays clean.
 
 ## Prerequisites
 
 - **Node.js 22+** (Flue requires it)
-- A **Daytona** account (sign up at [app.daytona.io](https://app.daytona.io))
+- A **Nightona** account (sign up at [app.daytona.io](https://app.daytona.io))
 - An **Anthropic** API key (for the default model `claude-sonnet-4-6`)
 - A **GitHub Personal Access Token** with `repo` scope
 - A **fork** of a target repository to demo against
@@ -46,7 +46,7 @@ Copy `.env.example` to `.env` and fill in:
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `DAYTONA_API_KEY` | yes | Get one from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys) |
+| `NIGHTONA_API_KEY` | yes | Get one from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys) |
 | `ANTHROPIC_API_KEY` | yes | For this agent's default model, `anthropic/claude-sonnet-4-6`. Required only if you don't override `MODEL`. (Flue itself has no default; our `bug-fix.ts` picks one.) |
 | `GITHUB_TOKEN` | yes | Personal Access Token with `repo` scope. Create at [github.com/settings/tokens](https://github.com/settings/tokens) |
 | `MODEL` | no | Override this agent's default. Any `provider/model-id` recognized by [`@mariozechner/pi-ai`](https://www.npmjs.com/package/@mariozechner/pi-ai). Examples: `anthropic/claude-opus-4-7`, `openai/gpt-5.5` |
@@ -157,7 +157,7 @@ Use this for the best introspection into what the LLM is doing tool-by-tool; use
                 │                                                 │
    POST /run ──▶│  bug-fix.ts orchestrator                        │
                 │     │                                           │
-                │     ├─ create Daytona sandbox (GH_TOKEN env)    │
+                │     ├─ create Nightona sandbox (GH_TOKEN env)    │
                 │     ├─ install gh + setup-git auth              │
                 │     ├─ resolve token owner (gh api user)        │
                 │     ├─ gh repo clone <user-fork>                │
@@ -174,7 +174,7 @@ Use this for the best introspection into what the LLM is doing tool-by-tool; use
                       │
                       ▼
                 ┌──────────────────────────────────────┐
-                │       Daytona sandbox (remote)       │
+                │       Nightona sandbox (remote)       │
                 │                                      │
                 │  test-driven-developer role          │
                 │     │                                │
@@ -202,7 +202,7 @@ guides/typescript/flue/
 │   ├── agents/
 │   │   └── bug-fix.ts        # orchestrator: sandbox + setup + skill invocation
 │   ├── connectors/
-│   │   └── daytona.ts        # adapts Daytona SDK to Flue's SandboxFactory
+│   │   └── nightona.ts        # adapts Nightona SDK to Flue's SandboxFactory
 │   └── roles/
 │       └── test-driven-developer.md   # subagent persona (TDD principles)
 └── .agents/
@@ -211,7 +211,7 @@ guides/typescript/flue/
             └── SKILL.md      # the TDD workflow (markdown, not code)
 ```
 
-The harness is intentionally minimal: a TypeScript orchestrator (`bug-fix.ts`), a Flue-spec connector (`daytona.ts`), one role markdown, and one skill markdown. There is **no `AGENTS.md`** at the guide root — Flue's runtime would prepend it to the LLM's system prompt for every agent call, but every guardrail it would contain (TDD discipline, minimal change, match host code style, etc.) is already covered by the `test-driven-developer` role and the `bug-fix` skill body. Adding `AGENTS.md` would be redundant and would also overwrite the target repository's `AGENTS.md` if it has one.
+The harness is intentionally minimal: a TypeScript orchestrator (`bug-fix.ts`), a Flue-spec connector (`nightona.ts`), one role markdown, and one skill markdown. There is **no `AGENTS.md`** at the guide root — Flue's runtime would prepend it to the LLM's system prompt for every agent call, but every guardrail it would contain (TDD discipline, minimal change, match host code style, etc.) is already covered by the `test-driven-developer` role and the `bug-fix` skill body. Adding `AGENTS.md` would be redundant and would also overwrite the target repository's `AGENTS.md` if it has one.
 
 ### Why split logic between `.ts` and `.md`?
 
@@ -260,7 +260,7 @@ The PR (and the underlying commit) are authored under the GitHub account that ow
 
 ## Common Issues
 
-- **`gh: command not found` after install**: the agent installs `gh` if the sandbox image lacks it. If installation fails, switch to a Daytona snapshot that includes `gh` (or extend the install fallback in `bug-fix.ts`).
+- **`gh: command not found` after install**: the agent installs `gh` if the sandbox image lacks it. If installation fails, switch to a Nightona snapshot that includes `gh` (or extend the install fallback in `bug-fix.ts`).
 - **`Failed to clone` errors**: make sure the `repo` payload field points at _your fork_ (e.g. `your-username/your-fork`), not the upstream, and that your `GITHUB_TOKEN` is a classic PAT with the `repo` scope.
 - **Test framework not detected**: the skill instructs the agent to read `package.json` and one existing test file. If the agent picks the wrong runner, tighten the Phase 1 instructions in `.agents/skills/bug-fix/SKILL.md`.
 - **PR not opened**: check that your fork has push protection disabled for branches matching `flue/*`, and that the token user is the fork owner.
@@ -270,12 +270,12 @@ The PR (and the underlying commit) are authored under the GitHub account that ow
 The orchestrator wraps the entire two-agent flow in a `try { ... } finally { ... }` block. On both successful runs and failures, the `finally` block:
 
 1. Destroys the **project** agent first (closes its session, no sandbox impact).
-2. Destroys the **setup** agent next, which fires `cleanup: true`'s registered `sandbox.delete()` callback and tears the Daytona sandbox down.
+2. Destroys the **setup** agent next, which fires `cleanup: true`'s registered `sandbox.delete()` callback and tears the Nightona sandbox down.
 3. As a fallback, if `init()` threw before the setup agent was created (so `cleanup: true` never armed), the orchestrator calls `sandbox.delete()` directly so we never leak a sandbox.
 
-This is necessary because Flue **does not auto-destroy sessions on handler return** — sessions persist for resumability via the same `<id>`, and the registered cleanup callback only runs when `agent.destroy()` is explicitly called. Without the `try/finally`, the Daytona sandbox would stay up indefinitely.
+This is necessary because Flue **does not auto-destroy sessions on handler return** — sessions persist for resumability via the same `<id>`, and the registered cleanup callback only runs when `agent.destroy()` is explicitly called. Without the `try/finally`, the Nightona sandbox would stay up indefinitely.
 
-Cleanup is best-effort: if `destroy()` or `sandbox.delete()` throws inside the `finally` block, the error is logged but the sandbox stays up. Verify in your [Daytona Dashboard](https://app.daytona.io/dashboard) after each run and remove any orphans manually if you see them.
+Cleanup is best-effort: if `destroy()` or `sandbox.delete()` throws inside the `finally` block, the error is logged but the sandbox stays up. Verify in your [Nightona Dashboard](https://app.daytona.io/dashboard) after each run and remove any orphans manually if you see them.
 
 ## License
 
@@ -285,5 +285,5 @@ MIT. See the root project `LICENSE`.
 
 - [Flue Documentation](https://flueframework.com/)
 - [Flue GitHub](https://github.com/withastro/flue)
-- [Daytona Documentation](https://www.daytona.io/docs)
-- [Daytona TypeScript SDK](https://www.daytona.io/docs/typescript-sdk/)
+- [Nightona Documentation](https://www.daytona.io/docs)
+- [Nightona TypeScript SDK](https://www.daytona.io/docs/typescript-sdk/)

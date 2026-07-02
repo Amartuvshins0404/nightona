@@ -1,11 +1,11 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package options
 
 import "time"
 
-// RunCode holds optional parameters for [daytona.CodeInterpreterService.RunCode].
+// RunCode holds optional parameters for [nightona.CodeInterpreterService.RunCode].
 type RunCode struct {
 	ContextID string            // Interpreter context ID for persistent state
 	Env       map[string]string // Environment variables for code execution

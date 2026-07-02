@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -8,15 +8,15 @@ import (
 	"log"
 	"time"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/options"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/options"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	// Create a new Daytona client using environment variables
-	// Set DAYTONA_API_KEY before running
-	client, err := daytona.NewClient()
+	// Create a new Nightona client using environment variables
+	// Set NIGHTONA_API_KEY before running
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -45,7 +45,7 @@ func main() {
 	log.Println("=== Example 1: Simple Python execution ===")
 	channels, err := interpreter.RunCode(
 		ctx,
-		"print('Hello from Daytona!')\nprint('Python version:', __import__('sys').version)",
+		"print('Hello from Nightona!')\nprint('Python version:', __import__('sys').version)",
 	)
 	if err != nil {
 		log.Fatalf("Failed to run code: %v", err)

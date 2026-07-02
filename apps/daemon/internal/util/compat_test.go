@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package util
@@ -25,52 +25,52 @@ func TestClientRejectsUnknownResponseFields(t *testing.T) {
 	}{
 		{
 			name:   "no source header",
-			header: header("X-Daytona-SDK-Version", "0.1.0"),
+			header: header("X-Nightona-SDK-Version", "0.1.0"),
 			want:   false,
 		},
 		{
 			name:   "non-go source",
-			header: header("X-Daytona-Source", "sdk-typescript", "X-Daytona-SDK-Version", "0.1.0"),
+			header: header("X-Nightona-Source", "sdk-typescript", "X-Nightona-SDK-Version", "0.1.0"),
 			want:   false,
 		},
 		{
 			name:   "go source without version",
-			header: header("X-Daytona-Source", "sdk-go"),
+			header: header("X-Nightona-Source", "sdk-go"),
 			want:   false,
 		},
 		{
 			name:   "go source dev build",
-			header: header("X-Daytona-Source", "sdk-go", "X-Daytona-SDK-Version", "v0.0.0-dev"),
+			header: header("X-Nightona-Source", "sdk-go", "X-Nightona-SDK-Version", "v0.0.0-dev"),
 			want:   false,
 		},
 		{
 			name:   "go source below threshold",
-			header: header("X-Daytona-Source", "sdk-go", "X-Daytona-SDK-Version", "0.187.0"),
+			header: header("X-Nightona-Source", "sdk-go", "X-Nightona-SDK-Version", "0.187.0"),
 			want:   true,
 		},
 		{
 			name:   "go source one patch below threshold",
-			header: header("X-Daytona-Source", "sdk-go", "X-Daytona-SDK-Version", "0.187.9"),
+			header: header("X-Nightona-Source", "sdk-go", "X-Nightona-SDK-Version", "0.187.9"),
 			want:   true,
 		},
 		{
 			name:   "go source at threshold",
-			header: header("X-Daytona-Source", "sdk-go", "X-Daytona-SDK-Version", "0.188.0"),
+			header: header("X-Nightona-Source", "sdk-go", "X-Nightona-SDK-Version", "0.188.0"),
 			want:   false,
 		},
 		{
 			name:   "go source above threshold",
-			header: header("X-Daytona-Source", "sdk-go", "X-Daytona-SDK-Version", "0.189.1"),
+			header: header("X-Nightona-Source", "sdk-go", "X-Nightona-SDK-Version", "0.189.1"),
 			want:   false,
 		},
 		{
 			name:   "go source unparseable version",
-			header: header("X-Daytona-Source", "sdk-go", "X-Daytona-SDK-Version", "not-a-version"),
+			header: header("X-Nightona-Source", "sdk-go", "X-Nightona-SDK-Version", "not-a-version"),
 			want:   false,
 		},
 		{
 			name:   "go source version via websocket subprotocol",
-			header: header("X-Daytona-Source", "sdk-go", "Sec-WebSocket-Protocol", "X-Daytona-SDK-Version~0.187.0"),
+			header: header("X-Nightona-Source", "sdk-go", "Sec-WebSocket-Protocol", "X-Nightona-SDK-Version~0.187.0"),
 			want:   true,
 		},
 	}

@@ -1,12 +1,12 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import WebSocket from 'isomorphic-ws'
 import type { PtyResult } from './types/Pty'
-import { DaytonaConnectionError, DaytonaError, DaytonaTimeoutError } from './errors/DaytonaError'
-import type { PtySessionInfo } from '@daytona/toolbox-api-client'
+import { NightonaConnectionError, NightonaError, NightonaTimeoutError } from './errors/NightonaError'
+import type { PtySessionInfo } from '@nightona/toolbox-api-client'
 import { WithInstrumentation } from './utils/otel.decorator'
 
 /**
@@ -94,7 +94,7 @@ export class PtyHandle {
 
     return new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
-        reject(new DaytonaTimeoutError('PTY connection timeout'))
+        reject(new NightonaTimeoutError('PTY connection timeout'))
       }, 10000) // 10 second timeout
 
       const checkConnection = () => {
@@ -103,7 +103,7 @@ export class PtyHandle {
           resolve()
         } else if (this.ws.readyState === WebSocket.CLOSED || this._error) {
           clearTimeout(timeout)
-          reject(new DaytonaConnectionError(this._error || 'Connection failed'))
+          reject(new NightonaConnectionError(this._error || 'Connection failed'))
         } else {
           setTimeout(checkConnection, 100)
         }
@@ -132,7 +132,7 @@ export class PtyHandle {
   @WithInstrumentation()
   async sendInput(data: string | Uint8Array): Promise<void> {
     if (!this.isConnected()) {
-      throw new DaytonaConnectionError('PTY is not connected')
+      throw new NightonaConnectionError('PTY is not connected')
     }
 
     try {
@@ -143,7 +143,7 @@ export class PtyHandle {
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error)
-      throw new DaytonaConnectionError(`Failed to send input to PTY: ${errorMessage}`)
+      throw new NightonaConnectionError(`Failed to send input to PTY: ${errorMessage}`)
     }
   }
 
@@ -229,7 +229,7 @@ export class PtyHandle {
             error: this._error,
           })
         } else if (this._error) {
-          reject(new DaytonaError(this._error))
+          reject(new NightonaError(this._error))
         } else {
           setTimeout(checkExit, 100)
         }
@@ -310,7 +310,7 @@ export class PtyHandle {
             const buffer = await data.arrayBuffer()
             bytes = new Uint8Array(buffer)
           } else {
-            throw new DaytonaError(`Unsupported message data type: ${Object.prototype.toString.call(data)}`)
+            throw new NightonaError(`Unsupported message data type: ${Object.prototype.toString.call(data)}`)
           }
 
           if (this.onPty) {
@@ -319,7 +319,7 @@ export class PtyHandle {
         }
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error)
-        throw new DaytonaError(`Error handling PTY message: ${errorMessage}`)
+        throw new NightonaError(`Error handling PTY message: ${errorMessage}`)
       }
     }
 
@@ -384,7 +384,7 @@ export class PtyHandle {
       this.ws.on('error', handleError)
       this.ws.on('close', handleClose)
     } else {
-      throw new DaytonaError('Unsupported WebSocket implementation')
+      throw new NightonaError('Unsupported WebSocket implementation')
     }
   }
 }

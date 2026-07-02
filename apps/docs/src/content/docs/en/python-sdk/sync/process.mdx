@@ -537,7 +537,7 @@ The PTY session behaves like a real terminal, supporting features like command h
 
 **Raises**:
 
-- `DaytonaError` - If the PTY session creation fails or the session ID is already in use.
+- `NightonaError` - If the PTY session creation fails or the session ID is already in use.
 
 #### Process.connect\_pty\_session
 
@@ -564,7 +564,7 @@ interact with a previously created terminal session.
 
 **Raises**:
 
-- `DaytonaError` - If the PTY session doesn't exist or connection fails.
+- `NightonaError` - If the PTY session doesn't exist or connection fails.
 
 #### Process.list\_pty\_sessions
 
@@ -622,7 +622,7 @@ configuration, and metadata.
 
 **Raises**:
 
-- `DaytonaError` - If the PTY session doesn't exist.
+- `NightonaError` - If the PTY session doesn't exist.
   
 
 **Example**:
@@ -658,7 +658,7 @@ This operation is irreversible. Any unsaved work in the terminal session will be
 
 **Raises**:
 
-- `DaytonaError` - If the PTY session doesn't exist or cannot be killed.
+- `NightonaError` - If the PTY session doesn't exist or cannot be killed.
   
 
 **Example**:
@@ -700,13 +700,13 @@ output requirements.
 
 **Raises**:
 
-- `DaytonaError` - If the PTY session doesn't exist or resize operation fails.
+- `NightonaError` - If the PTY session doesn't exist or resize operation fails.
   
 
 **Example**:
 
 ```python
-from daytona.common.pty import PtySize
+from nightona.common.pty import PtySize
 
 # Resize a PTY session to a larger terminal
 new_size = PtySize(rows=40, cols=150)

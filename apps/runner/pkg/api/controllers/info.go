@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package controllers
@@ -6,10 +6,10 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/daytonaio/runner/internal"
-	"github.com/daytonaio/runner/pkg/api/dto"
-	"github.com/daytonaio/runner/pkg/models"
-	"github.com/daytonaio/runner/pkg/runner"
+	"github.com/Amartuvshins0404/nightona/apps/runner/internal"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/models"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/runner"
 	"github.com/gin-gonic/gin"
 )
 

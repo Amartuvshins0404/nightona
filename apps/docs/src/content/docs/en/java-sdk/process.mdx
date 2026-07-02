@@ -29,7 +29,7 @@ Executes a shell command with default options.
 
 **Throws**:
 
-- `DaytonaException` - if execution fails
+- `NightonaException` - if execution fails
 
 #### executeCommand()
 ```java
@@ -51,7 +51,7 @@ Executes a shell command.
 
 **Throws**:
 
-- `DaytonaException` - if execution fails
+- `NightonaException` - if execution fails
 
 #### codeRun()
 ```java
@@ -70,7 +70,7 @@ Executes source code using Sandbox language tooling.
 
 **Throws**:
 
-- `DaytonaException` - if execution fails
+- `NightonaException` - if execution fails
 
 #### codeRun()
 ```java
@@ -116,7 +116,7 @@ Creates a persistent background session.
 
 **Throws**:
 
-- `DaytonaException` - if session creation fails
+- `NightonaException` - if session creation fails
 
 #### getSession()
 ```java
@@ -135,7 +135,7 @@ Returns session metadata.
 
 **Throws**:
 
-- `DaytonaException` - if retrieval fails
+- `NightonaException` - if retrieval fails
 
 #### getEntrypointSession()
 ```java
@@ -150,7 +150,7 @@ Returns entrypoint session metadata.
 
 **Throws**:
 
-- `DaytonaException` - if retrieval fails
+- `NightonaException` - if retrieval fails
 
 #### executeSessionCommand()
 ```java
@@ -170,7 +170,7 @@ Executes a command in an existing session.
 
 **Throws**:
 
-- `DaytonaException` - if execution fails
+- `NightonaException` - if execution fails
 
 #### getSessionCommand()
 ```java
@@ -190,7 +190,7 @@ Returns metadata for a command executed in a session.
 
 **Throws**:
 
-- `DaytonaException` - if retrieval fails
+- `NightonaException` - if retrieval fails
 
 #### getSessionCommandLogs()
 ```java
@@ -210,7 +210,7 @@ Returns logs for a command executed in a session.
 
 **Throws**:
 
-- `DaytonaException` - if retrieval fails
+- `NightonaException` - if retrieval fails
 
 #### getEntrypointLogs()
 ```java
@@ -225,7 +225,7 @@ Returns one-shot logs for the sandbox entrypoint session.
 
 **Throws**:
 
-- `DaytonaException` - if retrieval fails
+- `NightonaException` - if retrieval fails
 
 #### getEntrypointLogs()
 ```java
@@ -241,7 +241,7 @@ Streams logs for the sandbox entrypoint session via WebSocket.
 
 **Throws**:
 
-- `DaytonaException` - if streaming fails
+- `NightonaException` - if streaming fails
 
 #### sendSessionCommandInput()
 ```java
@@ -258,7 +258,7 @@ Sends input data to a command executed in a session.
 
 **Throws**:
 
-- `DaytonaException` - if sending input fails
+- `NightonaException` - if sending input fails
 
 #### deleteSession()
 ```java
@@ -273,7 +273,7 @@ Deletes a session.
 
 **Throws**:
 
-- `DaytonaException` - if deletion fails
+- `NightonaException` - if deletion fails
 
 #### listSessions()
 ```java
@@ -288,7 +288,7 @@ Lists all sessions in the Sandbox.
 
 **Throws**:
 
-- `DaytonaException` - if listing fails
+- `NightonaException` - if listing fails
 
 #### createPty()
 ```java
@@ -307,7 +307,7 @@ Creates a PTY terminal session.
 
 **Throws**:
 
-- `DaytonaException` - if PTY session creation fails
+- `NightonaException` - if PTY session creation fails
 
 #### connectPty()
 ```java
@@ -326,7 +326,7 @@ Connects to an existing PTY terminal session.
 
 **Throws**:
 
-- `DaytonaException` - if websocket connection setup fails
+- `NightonaException` - if websocket connection setup fails
 
 #### connectPty()
 ```java
@@ -346,7 +346,7 @@ Connects to an existing PTY terminal session.
 
 **Throws**:
 
-- `DaytonaException` - if websocket connection setup fails
+- `NightonaException` - if websocket connection setup fails
 
 #### listPtySessions()
 ```java
@@ -361,7 +361,7 @@ Lists PTY sessions in the Sandbox.
 
 **Throws**:
 
-- `DaytonaException` - if listing fails
+- `NightonaException` - if listing fails
 
 #### getPtySessionInfo()
 ```java
@@ -380,7 +380,7 @@ Returns PTY session information.
 
 **Throws**:
 
-- `DaytonaException` - if retrieval fails
+- `NightonaException` - if retrieval fails
 
 #### resizePtySession()
 ```java
@@ -397,7 +397,7 @@ Resizes an active PTY session.
 
 **Throws**:
 
-- `DaytonaException` - if resize fails
+- `NightonaException` - if resize fails
 
 #### killPtySession()
 ```java
@@ -412,4 +412,4 @@ Terminates a PTY session.
 
 **Throws**:
 
-- `DaytonaException` - if termination fails
+- `NightonaException` - if termination fails

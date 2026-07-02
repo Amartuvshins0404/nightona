@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package git
@@ -11,7 +11,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/daytonaio/daemon/pkg/gitprovider"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/gitprovider"
 	"github.com/stretchr/testify/require"
 )
 

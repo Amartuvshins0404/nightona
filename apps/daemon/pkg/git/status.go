@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package git
@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/daytonaio/daemon/pkg/childreap"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/childreap"
 	"github.com/go-git/go-git/v5"
 )
 

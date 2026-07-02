@@ -12,13 +12,13 @@ A snapshot defines the base operating system, language runtimes, system packages
 
 You start with default snapshots for common stacks, or create custom snapshots for your own toolchain and constraints. Custom snapshots are useful when your workflow depends on specific package versions, private dependencies, startup scripts, or filesystem layout.
 
-- **Snapshot SDKs**: [TypeScript](/docs/en/typescript-sdk/snapshot), [Python](/docs/en/python-sdk/sync/snapshot), [Ruby](/docs/en/ruby-sdk/snapshot), [Go](/docs/en/go-sdk/daytona#type-snapshotservice), [Java](/docs/en/java-sdk/snapshot)
-- **Snapshot API**: [RESTful API](/docs/en/tools/api/#daytona/tag/snapshots) ([OpenAPI spec](/docs/openapi.json)), [Toolbox API](/docs/en/tools/api#daytona-toolbox) ([OpenAPI spec](/docs/toolbox-openapi.json))
+- **Snapshot SDKs**: [TypeScript](/docs/en/typescript-sdk/snapshot), [Python](/docs/en/python-sdk/sync/snapshot), [Ruby](/docs/en/ruby-sdk/snapshot), [Go](/docs/en/go-sdk/nightona#type-snapshotservice), [Java](/docs/en/java-sdk/snapshot)
+- **Snapshot API**: [RESTful API](/docs/en/tools/api/#nightona/tag/snapshots) ([OpenAPI spec](/docs/openapi.json)), [Toolbox API](/docs/en/tools/api#nightona-toolbox) ([OpenAPI spec](/docs/toolbox-openapi.json))
 - **Snapshot CLI**: [Mac/Linux/Windows](/docs/en/tools/cli)
 
 ## Create Snapshots
 
-Daytona provides methods to create snapshots. You can create a snapshot from:
+Nightona provides methods to create snapshots. You can create a snapshot from:
 
 - [GPU snapshots](#gpu-snapshots) (for [GPU sandboxes](/docs/en/sandboxes#gpu-sandboxes))
 - [public images](#public-images)
@@ -26,7 +26,7 @@ Daytona provides methods to create snapshots. You can create a snapshot from:
 - [images from private registries](#images-from-private-registries)
 - [declarative builder](#declarative-builder)
 
-1. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
+1. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
 2. Click **Create Snapshot**
 3. Enter the snapshot **`name`** and **`image`**
 
@@ -39,10 +39,10 @@ Daytona provides methods to create snapshots. You can create a snapshot from:
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSnapshotParams
+from nightona import Nightona, CreateSnapshotParams
 
-daytona = Daytona()
-snapshot = daytona.snapshot.create(
+nightona = Nightona()
+snapshot = nightona.snapshot.create(
     CreateSnapshotParams(name="my-awesome-snapshot", image="python:3.12"),
 )
 ```
@@ -51,10 +51,10 @@ snapshot = daytona.snapshot.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from "@daytona/sdk";
+import { Nightona } from "@nightona/sdk";
 
-const daytona = new Daytona();
-const snapshot = await daytona.snapshot.create({
+const nightona = new Nightona();
+const snapshot = await nightona.snapshot.create({
   name: "my-awesome-snapshot",
   image: "python:3.12",
 });
@@ -64,11 +64,11 @@ const snapshot = await daytona.snapshot.create({
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-snapshot = daytona.snapshot.create(
-  Daytona::CreateSnapshotParams.new(name: 'my-awesome-snapshot', image: 'python:3.12')
+nightona = Nightona::Nightona.new
+snapshot = nightona.snapshot.create(
+  Nightona::CreateSnapshotParams.new(name: 'my-awesome-snapshot', image: 'python:3.12')
 )
 ```
 
@@ -81,12 +81,12 @@ package main
 import (
 	"context"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	client, _ := daytona.NewClient()
+	client, _ := nightona.NewClient()
 	ctx := context.Background()
 	snapshot, logCh, _ := client.Snapshot.Create(ctx, &types.CreateSnapshotParams{
 		Name:  "my-awesome-snapshot",
@@ -102,13 +102,13 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.model.Snapshot;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.model.Snapshot;
 
 final class CreateSnapshot {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
-            Snapshot snapshot = daytona.snapshot().create("my-awesome-snapshot", "python:3.12");
+        try (Nightona nightona = new Nightona()) {
+            Snapshot snapshot = nightona.snapshot().create("my-awesome-snapshot", "python:3.12");
         }
     }
 }
@@ -118,7 +118,7 @@ final class CreateSnapshot {
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona snapshot create my-awesome-snapshot --image python:3.11-slim --cpu 2 --memory 4
+nightona snapshot create my-awesome-snapshot --image python:3.11-slim --cpu 2 --memory 4
 ```
 
 </TabItem>
@@ -142,11 +142,11 @@ curl https://app.daytona.io/api/snapshots \
 
 ### GPU Snapshots
 
-Daytona provides methods to create GPU snapshots.
+Nightona provides methods to create GPU snapshots.
 
-GPU snapshots are used to create [GPU sandboxes](/docs/en/sandboxes#gpu-sandboxes). Daytona provides a pre-built `daytona-gpu` snapshot for creating GPU sandboxes.
+GPU snapshots are used to create [GPU sandboxes](/docs/en/sandboxes#gpu-sandboxes). Nightona provides a pre-built `nightona-gpu` snapshot for creating GPU sandboxes.
 
-1. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
+1. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
 2. Click **Create Snapshot**
 3. Enter the snapshot **`name`** and **`image`**
 4. Select **`us-east-1`** region
@@ -158,10 +158,10 @@ GPU snapshots are used to create [GPU sandboxes](/docs/en/sandboxes#gpu-sandboxe
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import CreateSnapshotParams, Daytona, DaytonaConfig, Image, Resources
+from nightona import CreateSnapshotParams, Nightona, NightonaConfig, Image, Resources
 
-daytona = Daytona(DaytonaConfig(target="us-east-1"))
-snapshot = daytona.snapshot.create(
+nightona = Nightona(NightonaConfig(target="us-east-1"))
+snapshot = nightona.snapshot.create(
     CreateSnapshotParams(
         name="my-gpu-snapshot",
         image=Image.base("python:3.12"),
@@ -174,10 +174,10 @@ snapshot = daytona.snapshot.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from "@daytona/sdk";
+import { Nightona } from "@nightona/sdk";
 
-const daytona = new Daytona({ target: "us-east-1" });
-const snapshot = await daytona.snapshot.create({
+const nightona = new Nightona({ target: "us-east-1" });
+const snapshot = await nightona.snapshot.create({
   name: "my-gpu-snapshot",
   image: "python:3.12",
   resources: { cpu: 1, memory: 1, disk: 1, gpu: 1 },
@@ -188,17 +188,17 @@ const snapshot = await daytona.snapshot.create({
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-config = Daytona::Config.new(
+config = Nightona::Config.new(
   target: "us-east-1"
 )
-daytona = Daytona::Daytona.new(config)
-snapshot = daytona.snapshot.create(
-  Daytona::CreateSnapshotParams.new(
+nightona = Nightona::Nightona.new(config)
+snapshot = nightona.snapshot.create(
+  Nightona::CreateSnapshotParams.new(
     name: 'my-gpu-snapshot',
     image: 'python:3.12',
-    resources: Daytona::Resources.new(cpu: 1, memory: 1, disk: 1, gpu: 1)
+    resources: Nightona::Resources.new(cpu: 1, memory: 1, disk: 1, gpu: 1)
   )
 )
 ```
@@ -211,12 +211,12 @@ package main
 
 import (
 	"context"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	client, _ := daytona.NewClientWithConfig(&types.DaytonaConfig{
+	client, _ := nightona.NewClientWithConfig(&types.NightonaConfig{
 		Target: "us-east-1",
 	})
 	ctx := context.Background()
@@ -240,26 +240,26 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.DaytonaConfig;
-import io.daytona.sdk.Image;
-import io.daytona.sdk.model.Resources;
-import io.daytona.sdk.model.Snapshot;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.NightonaConfig;
+import io.nightona.sdk.Image;
+import io.nightona.sdk.model.Resources;
+import io.nightona.sdk.model.Snapshot;
 
 final class CreateGpuSnapshot {
     public static void main(String[] args) {
-        DaytonaConfig config = new DaytonaConfig.Builder()
-                .apiKey(System.getenv("DAYTONA_API_KEY"))
+        NightonaConfig config = new NightonaConfig.Builder()
+                .apiKey(System.getenv("NIGHTONA_API_KEY"))
                 .target("us-east-1")
                 .build();
 
-        try (Daytona daytona = new Daytona(config)) {
+        try (Nightona nightona = new Nightona(config)) {
             Resources resources = new Resources();
             resources.setCpu(1);
             resources.setMemory(1);
             resources.setDisk(1);
             resources.setGpu(1);
-            Snapshot snapshot = daytona.snapshot().create(
+            Snapshot snapshot = nightona.snapshot().create(
                 "my-gpu-snapshot",
                 Image.base("python:3.12"),
                 resources,
@@ -295,9 +295,9 @@ curl https://app.daytona.io/api/snapshots \
 <a id="using-public-images"></a>
 ### Public images
 
-Daytona supports creating snapshots from any publicly accessible image or container registry.
+Nightona supports creating snapshots from any publicly accessible image or container registry.
 
-1. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
+1. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
 2. Click the **Create Snapshot** button
 3. Enter the snapshot **`name`** and **`image`** of any publicly accessible image or container registry
 
@@ -305,10 +305,10 @@ Daytona supports creating snapshots from any publicly accessible image or contai
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSnapshotParams
+from nightona import Nightona, CreateSnapshotParams
 
-daytona = Daytona()
-daytona.snapshot.create(
+nightona = Nightona()
+nightona.snapshot.create(
     CreateSnapshotParams(name="my-awesome-snapshot", image="python:3.11-slim"),
     on_logs=lambda chunk: print(chunk, end=""),
 )
@@ -318,10 +318,10 @@ daytona.snapshot.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from "@daytona/sdk";
+import { Nightona } from "@nightona/sdk";
 
-const daytona = new Daytona();
-await daytona.snapshot.create(
+const nightona = new Nightona();
+await nightona.snapshot.create(
   { name: "my-awesome-snapshot", image: "python:3.11-slim" },
   { onLogs: console.log },
 );
@@ -331,14 +331,14 @@ await daytona.snapshot.create(
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-params = Daytona::CreateSnapshotParams.new(
+nightona = Nightona::Nightona.new
+params = Nightona::CreateSnapshotParams.new(
   name: 'my-awesome-snapshot',
   image: 'python:3.11-slim'
 )
-snapshot = daytona.snapshot.create(params) do |chunk|
+snapshot = nightona.snapshot.create(params) do |chunk|
   print chunk
 end
 ```
@@ -351,12 +351,12 @@ package main
 
 import (
 	"context"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	client, _ := daytona.NewClient()
+	client, _ := nightona.NewClient()
 	ctx := context.Background()
 	snapshot, logChan, _ := client.Snapshot.Create(ctx, &types.CreateSnapshotParams{
 		Name:  "my-awesome-snapshot",
@@ -372,13 +372,13 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.model.Snapshot;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.model.Snapshot;
 
 public class App {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
-            Snapshot snapshot = daytona.snapshot().create("my-awesome-snapshot", "python:3.11-slim");
+        try (Nightona nightona = new Nightona()) {
+            Snapshot snapshot = nightona.snapshot().create("my-awesome-snapshot", "python:3.11-slim");
         }
     }
 }
@@ -388,7 +388,7 @@ public class App {
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona snapshot create my-awesome-snapshot --image python:3.11-slim
+nightona snapshot create my-awesome-snapshot --image python:3.11-slim
 ```
 
 </TabItem>
@@ -411,11 +411,11 @@ curl https://app.daytona.io/api/snapshots \
 <a id="using-local-images"></a>
 ### Local images
 
-Daytona supports creating snapshots from local images or from local Dockerfiles. 
+Nightona supports creating snapshots from local images or from local Dockerfiles. 
 
-To create a snapshot from a local image or from a local Dockerfile, use the [Daytona CLI](/docs/en/tools/cli#daytona-snapshot).
+To create a snapshot from a local image or from a local Dockerfile, use the [Nightona CLI](/docs/en/tools/cli#nightona-snapshot).
 
-Daytona expects the local image to be built for AMD64 architecture. Therefore, the `--platform=linux/amd64` flag is required when building the Docker image if your machine is running on a different architecture.
+Nightona expects the local image to be built for AMD64 architecture. Therefore, the `--platform=linux/amd64` flag is required when building the Docker image if your machine is running on a different architecture.
 
 1. Ensure the image and tag you want to use is available
 
@@ -423,35 +423,35 @@ Daytona expects the local image to be built for AMD64 architecture. Therefore, t
 docker images
 ```
 
-2. Create a snapshot and push it to Daytona:
+2. Create a snapshot and push it to Nightona:
 
 ```bash
-daytona snapshot push custom-alpine:3.21 --name alpine-minimal
+nightona snapshot push custom-alpine:3.21 --name alpine-minimal
 ```
 
-Alternatively, use the `--dockerfile` flag under `create` to pass the path to the Dockerfile you want to use and Daytona will build the snapshot for you. The `COPY`/`ADD` commands will be automatically parsed and added to the context. To manually add files to the context, use the `--context` flag.
+Alternatively, use the `--dockerfile` flag under `create` to pass the path to the Dockerfile you want to use and Nightona will build the snapshot for you. The `COPY`/`ADD` commands will be automatically parsed and added to the context. To manually add files to the context, use the `--context` flag.
 
 ```bash
-daytona snapshot create my-awesome-snapshot --dockerfile ./Dockerfile
+nightona snapshot create my-awesome-snapshot --dockerfile ./Dockerfile
 ```
 
 <a id="using-images-from-private-registries"></a>
 ### Images from private registries
 
-Daytona supports creating snapshots from images from [Docker Hub](#docker-hub), [Google Artifact Registry](#google-artifact-registry), [GitHub Container Registry](#github-container-registry-ghcr), [Amazon ECR](#amazon-elastic-container-registry-ecr) or other private container registries.
+Nightona supports creating snapshots from images from [Docker Hub](#docker-hub), [Google Artifact Registry](#google-artifact-registry), [GitHub Container Registry](#github-container-registry-ghcr), [Amazon ECR](#amazon-elastic-container-registry-ecr) or other private container registries.
 
-1. Navigate to [Daytona Registries ↗](https://app.daytona.io/dashboard/registries)
+1. Navigate to [Nightona Registries ↗](https://app.daytona.io/dashboard/registries)
 2. Click **Add Registry** and select your provider
 3. Fill in the visible fields
-4. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
+4. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
 5. Click **Create Snapshot**
 6. Enter the snapshot **`name`** and the full **`image`** reference, including the registry host and repository (e.g. **`my-registry.com/<repo>/custom-alpine:3.21`**)
 
 #### Docker Hub
 
-Daytona supports creating snapshots from Docker Hub images.
+Nightona supports creating snapshots from Docker Hub images.
 
-1. Navigate to [Daytona Registries ↗](https://app.daytona.io/dashboard/registries), 
+1. Navigate to [Nightona Registries ↗](https://app.daytona.io/dashboard/registries), 
 2. Click **Add Registry** and select the **Docker Hub** tab
 3. Input the following fields:
    - **Username**: your Docker Hub username (the account with access to the image)
@@ -461,9 +461,9 @@ Daytona supports creating snapshots from Docker Hub images.
 
 #### Google Artifact Registry
 
-Daytona supports creating snapshots from images from Google Artifact Registry, authenticated with a [service account key](https://cloud.google.com/iam/docs/keys-create-delete) in JSON format.
+Nightona supports creating snapshots from images from Google Artifact Registry, authenticated with a [service account key](https://cloud.google.com/iam/docs/keys-create-delete) in JSON format.
 
-1. Navigate to [Daytona Registries ↗](https://app.daytona.io/dashboard/registries), 
+1. Navigate to [Nightona Registries ↗](https://app.daytona.io/dashboard/registries), 
 2. Click **Add Registry** and select the **Google** tab
 2. Input the following fields:
    - **Registry URL**: the base URL for your region (e.g. **`https://us-central1-docker.pkg.dev`**)
@@ -477,9 +477,9 @@ Daytona supports creating snapshots from images from Google Artifact Registry, a
 <a id="github-container-registry-ghcr"></a>
 #### GitHub Container Registry
 
-Daytona supports creating snapshots from images from GitHub Container Registry.
+Nightona supports creating snapshots from images from GitHub Container Registry.
 
-1. Navigate to [Daytona Registries ↗](https://app.daytona.io/dashboard/registries), 
+1. Navigate to [Nightona Registries ↗](https://app.daytona.io/dashboard/registries), 
 2. Click **Add Registry** and select the **GitHub** tab
 2. Input the following fields:
    - **GitHub Username**: the account with access to the image
@@ -492,12 +492,12 @@ Daytona supports creating snapshots from images from GitHub Container Registry.
 <a id="amazon-elastic-container-registry-ecr"></a>
 #### Amazon Elastic Container Registry
 
-Daytona pulls private ECR images via cross-account IAM role assumption — you create a role in your AWS account that trusts Daytona's broker principal, and Daytona assumes it on every pull to fetch a short-lived ECR token. No long-lived AWS credentials are shared, and no manual token rotation is needed.
+Nightona pulls private ECR images via cross-account IAM role assumption — you create a role in your AWS account that trusts Nightona's broker principal, and Nightona assumes it on every pull to fetch a short-lived ECR token. No long-lived AWS credentials are shared, and no manual token rotation is needed.
 
 You'll need two values:
 
-- **Daytona Broker ARN**: `arn:aws:iam::967657494466:role/DaytonaEcrCredentialBroker` — the IAM principal Daytona uses to assume into your role. Self-hosted: substitute the IAM role your API pods assume (e.g. via IRSA).
-- **External ID**: your Daytona organization ID, visible in the dashboard URL (`/dashboard/<orgId>/...`) and on your organization settings page.
+- **Nightona Broker ARN**: `arn:aws:iam::967657494466:role/NightonaEcrCredentialBroker` — the IAM principal Nightona uses to assume into your role. Self-hosted: substitute the IAM role your API pods assume (e.g. via IRSA).
+- **External ID**: your Nightona organization ID, visible in the dashboard URL (`/dashboard/<orgId>/...`) and on your organization settings page.
 
 ##### 1. Create an IAM role in your AWS account
 
@@ -510,7 +510,7 @@ Trust policy:
   "Version": "2012-10-17",
   "Statement": [{
     "Effect": "Allow",
-    "Principal": { "AWS": "arn:aws:iam::967657494466:role/DaytonaEcrCredentialBroker" },
+    "Principal": { "AWS": "arn:aws:iam::967657494466:role/NightonaEcrCredentialBroker" },
     "Action": "sts:AssumeRole",
     "Condition": {
       "StringEquals": {
@@ -539,41 +539,41 @@ Permissions policy (read-only on ECR):
 }
 ```
 
-Copy the ARN of the role you just created (e.g. `arn:aws:iam::123456789012:role/daytona-ecr-puller`).
+Copy the ARN of the role you just created (e.g. `arn:aws:iam::123456789012:role/nightona-ecr-puller`).
 
-##### 2. Register the registry in Daytona
+##### 2. Register the registry in Nightona
 
-1. On [Daytona Registries ↗](https://app.daytona.io/dashboard/registries), click **Add Registry** and select the **Amazon ECR** tab.
+1. On [Nightona Registries ↗](https://app.daytona.io/dashboard/registries), click **Add Registry** and select the **Amazon ECR** tab.
 2. Fill in:
    - **Registry URL**: `<account_id>.dkr.ecr.<region>.amazonaws.com`
-   - **Role ARN**: the role you created in step 1 — Daytona assumes it on every pull
+   - **Role ARN**: the role you created in step 1 — Nightona assumes it on every pull
 
-   Password is not used for ECR — Daytona resolves credentials server-side by assuming the role you created in step 1, using your organization ID as the AssumeRole `ExternalId`.
+   Password is not used for ECR — Nightona resolves credentials server-side by assuming the role you created in step 1, using your organization ID as the AssumeRole `ExternalId`.
 
 ##### 3. Create the snapshot
 
-1. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots).
+1. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots).
 2. Click **Create Snapshot**.
 3. Enter the snapshot name and the full image reference (e.g. `123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo/custom-alpine:3.21`).
 
 ##### Optional: harden the trust policy
 
-Daytona sends a `daytona-<orgId>-pull` session name on every AssumeRole call. You can require it in your trust policy for CloudTrail audit visibility — add inside `Condition`:
+Nightona sends a `nightona-<orgId>-pull` session name on every AssumeRole call. You can require it in your trust policy for CloudTrail audit visibility — add inside `Condition`:
 
 ```json
 "StringLike": {
-  "sts:RoleSessionName": "daytona-<YOUR_EXTERNAL_ID>-*"
+  "sts:RoleSessionName": "nightona-<YOUR_EXTERNAL_ID>-*"
 }
 ```
 
 <a id="using-the-declarative-builder"></a>
 ### Declarative builder
 
-[Declarative Builder](/docs/en/declarative-builder) provides a powerful, code-first approach to defining dependencies for Daytona Sandboxes. Instead of importing images from a container registry, you can programmatically define them using the Daytona [SDKs](/docs/en/getting-started#sdks).
+[Declarative Builder](/docs/en/declarative-builder) provides a powerful, code-first approach to defining dependencies for Nightona Sandboxes. Instead of importing images from a container registry, you can programmatically define them using the Nightona [SDKs](/docs/en/getting-started#sdks).
 
 ### Resources
 
-Snapshots can be customized with specific [sandbox resources](/docs/en/sandboxes#resources). By default, Daytona sandboxes use **1 vCPU**, **1GB RAM**, and **3GiB disk**. To view your available resources and limits, see [limits](/docs/en/limits) or navigate to [Daytona Limits ↗](https://app.daytona.io/dashboard/limits).
+Snapshots can be customized with specific [sandbox resources](/docs/en/sandboxes#resources). By default, Nightona sandboxes use **1 vCPU**, **1GB RAM**, and **3GiB disk**. To view your available resources and limits, see [limits](/docs/en/limits) or navigate to [Nightona Limits ↗](https://app.daytona.io/dashboard/limits).
 
 To set custom snapshot resources, use the `Resources` class.
 
@@ -581,10 +581,10 @@ To set custom snapshot resources, use the `Resources` class.
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSnapshotParams, Resources
+from nightona import Nightona, CreateSnapshotParams, Resources
 
-daytona = Daytona()
-snapshot = daytona.snapshot.create(
+nightona = Nightona()
+snapshot = nightona.snapshot.create(
     CreateSnapshotParams(
         name="my-awesome-snapshot",
         image="python:3.12",
@@ -597,10 +597,10 @@ snapshot = daytona.snapshot.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from "@daytona/sdk";
+import { Nightona } from "@nightona/sdk";
 
-const daytona = new Daytona();
-const snapshot = await daytona.snapshot.create({
+const nightona = new Nightona();
+const snapshot = await nightona.snapshot.create({
   name: "my-awesome-snapshot1123",
   image: "python:3.12",
   resources: { cpu: 2, memory: 4, disk: 8 },
@@ -612,14 +612,14 @@ const snapshot = await daytona.snapshot.create({
   <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-snapshot = daytona.snapshot.create(
-  Daytona::CreateSnapshotParams.new(
+nightona = Nightona::Nightona.new
+snapshot = nightona.snapshot.create(
+  Nightona::CreateSnapshotParams.new(
     name: 'my-awesome-snapshot',
     image: 'python:3.12',
-    resources: Daytona::Resources.new(
+    resources: Nightona::Resources.new(
       cpu: 2,
       memory: 4,
       disk: 8
@@ -636,12 +636,12 @@ package main
 
 import (
 	"context"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	client, _ := daytona.NewClient()
+	client, _ := nightona.NewClient()
 	ctx := context.Background()
 	snapshot, logCh, _ := client.Snapshot.Create(ctx, &types.CreateSnapshotParams{
 		Name:  "my-awesome-snapshot",
@@ -662,19 +662,19 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Image;
-import io.daytona.sdk.model.Resources;
-import io.daytona.sdk.model.Snapshot;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Image;
+import io.nightona.sdk.model.Resources;
+import io.nightona.sdk.model.Snapshot;
 
 final class CreateSnapshotResources {
     public static void main(String[] args) {
-        try (Daytona daytona = new Daytona()) {
+        try (Nightona nightona = new Nightona()) {
             Resources resources = new Resources();
             resources.setCpu(2);
             resources.setMemory(4);
             resources.setDisk(8);
-            Snapshot snapshot = daytona.snapshot().create(
+            Snapshot snapshot = nightona.snapshot().create(
                 "my-awesome-snapshot",
                 Image.base("python:3.12"),
                 resources,
@@ -689,7 +689,7 @@ final class CreateSnapshotResources {
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona snapshot create my-awesome-snapshot --image python:3.11-slim --cpu 2 --memory 4 --disk 8
+nightona snapshot create my-awesome-snapshot --image python:3.11-slim --cpu 2 --memory 4 --disk 8
 ```
 
 </TabItem>
@@ -720,10 +720,10 @@ When creating a snapshot, you can specify the [region](/docs/en/regions) in whic
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSnapshotParams
+from nightona import Nightona, CreateSnapshotParams
 
-daytona = Daytona()
-snapshot = daytona.snapshot.create(
+nightona = Nightona()
+snapshot = nightona.snapshot.create(
     CreateSnapshotParams(
         name="my-awesome-snapshot",
         image="python:3.12",
@@ -736,10 +736,10 @@ snapshot = daytona.snapshot.create(
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from "@daytona/sdk";
+import { Nightona } from "@nightona/sdk";
 
-const daytona = new Daytona();
-const snapshot = await daytona.snapshot.create({
+const nightona = new Nightona();
+const snapshot = await nightona.snapshot.create({
   name: "my-awesome-snapshotus",
   image: "python:3.12",
   regionId: "us",
@@ -750,11 +750,11 @@ const snapshot = await daytona.snapshot.create({
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-snapshot = daytona.snapshot.create(
-  Daytona::CreateSnapshotParams.new(
+nightona = Nightona::Nightona.new
+snapshot = nightona.snapshot.create(
+  Nightona::CreateSnapshotParams.new(
     name: 'my-awesome-snapshot',
     image: 'python:3.12',
     region_id: 'us'
@@ -766,7 +766,7 @@ snapshot = daytona.snapshot.create(
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona snapshot create my-awesome-snapshot --image python:3.11-slim --region us
+nightona snapshot create my-awesome-snapshot --image python:3.11-slim --region us
 ```
 
 </TabItem>
@@ -789,7 +789,7 @@ curl https://app.daytona.io/api/snapshots \
 
 ## Get a Snapshot by name
 
-Daytona provides an option to get a snapshot by name.
+Nightona provides an option to get a snapshot by name.
 
 The following snippet returns the snapshot with the specified name:
 
@@ -797,21 +797,21 @@ The following snippet returns the snapshot with the specified name:
 <TabItem label="Python" icon="seti:python">
 
 ```python
-daytona.snapshot.get("my-awesome-snapshot")
+nightona.snapshot.get("my-awesome-snapshot")
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-await daytona.snapshot.get('my-awesome-snapshot')
+await nightona.snapshot.get('my-awesome-snapshot')
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-daytona.snapshot.get('my-awesome-snapshot')
+nightona.snapshot.get('my-awesome-snapshot')
 ```
 
 </TabItem>
@@ -825,7 +825,7 @@ _, err := client.Snapshots.Get(ctx, "my-awesome-snapshot")
 <TabItem label="Java" icon="seti:java">
 
 ```java
-daytona.snapshot().get("my-awesome-snapshot");
+nightona.snapshot().get("my-awesome-snapshot");
 ```
 
 </TabItem>
@@ -841,7 +841,7 @@ curl https://app.daytona.io/api/snapshots/my-awesome-snapshot \
 
 ## List Snapshots
 
-Daytona provides options to list snapshots and view their details.
+Nightona provides options to list snapshots and view their details.
 
 The following snippet lists all snapshots on the first page with a limit of 10 snapshots per page.
 
@@ -849,21 +849,21 @@ The following snippet lists all snapshots on the first page with a limit of 10 s
 <TabItem label="Python" icon="seti:python">
 
 ```python
-daytona.snapshot.list(page=2, limit=10)
+nightona.snapshot.list(page=2, limit=10)
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-await daytona.snapshot.list(2, 10)
+await nightona.snapshot.list(2, 10)
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-daytona.snapshot.list(page: 2, limit: 10)
+nightona.snapshot.list(page: 2, limit: 10)
 ```
 
 </TabItem>
@@ -878,7 +878,7 @@ _, err := client.Snapshots.List(ctx, &page, &limit)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-daytona.snapshot().list(2, 10);
+nightona.snapshot().list(2, 10);
 ```
 
 </TabItem>
@@ -886,7 +886,7 @@ daytona.snapshot().list(2, 10);
 
 ```bash
 # List snapshots with pagination
-daytona snapshot list --page 2 --limit 10
+nightona snapshot list --page 2 --limit 10
 ```
 
 </TabItem>
@@ -904,24 +904,24 @@ curl 'https://app.daytona.io/api/snapshots?page=2&limit=10' \
 
 Snapshots automatically become inactive after 2 weeks of not being used. To activate an inactive snapshot:
 
-1. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
+1. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
 2. Click the three dots at the end of the row for the snapshot you want to activate
 3. Click the **Activate** button
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 ```python
-daytona.snapshot.activate("my-awesome-snapshot")
+nightona.snapshot.activate("my-awesome-snapshot")
 ```
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-await daytona.snapshot.activate("my-awesome-snapshot")
+await nightona.snapshot.activate("my-awesome-snapshot")
 ```
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 ```ruby
-daytona.snapshot.activate('my-awesome-snapshot')
+nightona.snapshot.activate('my-awesome-snapshot')
 ```
 </TabItem>
 <TabItem label="API" icon="seti:json">
@@ -937,17 +937,17 @@ curl https://app.daytona.io/api/snapshots/my-inactive-snapshot/activate \
 
 ## Deactivate Snapshots
 
-Daytona provides an option to deactivate snapshots. Deactivated snapshots are not available for new sandboxes.
+Nightona provides an option to deactivate snapshots. Deactivated snapshots are not available for new sandboxes.
 
-1. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
+1. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
 2. Click the three dots at the end of the row for the snapshot you want to deactivate
 3. Click the **Deactivate** button
 
 ## Delete Snapshots
 
-Daytona provides options to delete snapshots. Deleted snapshots cannot be recovered.
+Nightona provides options to delete snapshots. Deleted snapshots cannot be recovered.
 
-1. Navigate to [Daytona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
+1. Navigate to [Nightona Snapshots ↗](https://app.daytona.io/dashboard/snapshots)
 2. Click the three dots at the end of the row for the snapshot you want to delete
 3. Click the **Delete** button
 
@@ -955,21 +955,21 @@ Daytona provides options to delete snapshots. Deleted snapshots cannot be recove
 <TabItem label="Python" icon="seti:python">
 
 ```python
-daytona.snapshot.delete(daytona.snapshot.get("my-awesome-snapshot"))
+nightona.snapshot.delete(nightona.snapshot.get("my-awesome-snapshot"))
 ```
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-await daytona.snapshot.delete(await daytona.snapshot.get("my-awesome-snapshot"))
+await nightona.snapshot.delete(await nightona.snapshot.get("my-awesome-snapshot"))
 ```
 
 </TabItem>
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-daytona.snapshot.delete(daytona.snapshot.get('my-awesome-snapshot'))
+nightona.snapshot.delete(nightona.snapshot.get('my-awesome-snapshot'))
 ```
 
 </TabItem>
@@ -984,14 +984,14 @@ err = client.Snapshots.Delete(ctx, snapshot)
 <TabItem label="Java" icon="seti:java">
 
 ```java
-daytona.snapshot().delete(daytona.snapshot().get("my-awesome-snapshot").getId());
+nightona.snapshot().delete(nightona.snapshot().get("my-awesome-snapshot").getId());
 ```
 
 </TabItem>
 <TabItem label="CLI" icon="seti:shell">
 
 ```bash
-daytona snapshot delete my-awesome-snapshot
+nightona snapshot delete my-awesome-snapshot
 ```
 
 </TabItem>
@@ -1025,7 +1025,7 @@ Inactive snapshots cannot be used to create sandboxes. They must be explicitly [
 
 ## Run Docker in a Sandbox
 
-Daytona Sandboxes can run Docker containers inside them (**Docker-in-Docker**), enabling you to build, test, and deploy containerized applications. This is particularly useful when your projects have dependencies on external services like databases, message queues, or other microservices.
+Nightona Sandboxes can run Docker containers inside them (**Docker-in-Docker**), enabling you to build, test, and deploy containerized applications. This is particularly useful when your projects have dependencies on external services like databases, message queues, or other microservices.
 
 Agents can seamlessly interact with these services since they run within the same sandbox environment, providing better isolation and security compared to external service dependencies. The following use cases are supported:
 
@@ -1040,7 +1040,7 @@ Docker-in-Docker Sandboxes require additional resources due to the Docker daemon
 
 #### Create a Docker-in-Docker Snapshot
 
-Daytona provides an option to create a snapshot with Docker support using pre-built Docker-in-Docker images as a base or by manually installing Docker in a custom image.
+Nightona provides an option to create a snapshot with Docker support using pre-built Docker-in-Docker images as a base or by manually installing Docker in a custom image.
 
 ##### Using pre-built images
 
@@ -1062,21 +1062,21 @@ RUN curl -fsSL https://get.docker.com | VERSION=28.3.3 sh -
 
 #### Run Docker Compose in a Sandbox
 
-Docker Compose allows you to define and run multi-container applications. With Docker-in-Docker enabled in a Daytona Sandbox, you can use Docker Compose to orchestrate services like databases, caches, and application containers.
+Docker Compose allows you to define and run multi-container applications. With Docker-in-Docker enabled in a Nightona Sandbox, you can use Docker Compose to orchestrate services like databases, caches, and application containers.
 
-First, create a Docker-in-Docker snapshot using the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/snapshots) or [CLI](/docs/en/tools/cli#daytona-snapshot-create) with one of the [pre-built images](#using-pre-built-images) (e.g., `docker:28.3.3-dind`). Then use the following snippet to run Docker Compose services inside a sandbox:
+First, create a Docker-in-Docker snapshot using the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/snapshots) or [CLI](/docs/en/tools/cli#nightona-snapshot-create) with one of the [pre-built images](#using-pre-built-images) (e.g., `docker:28.3.3-dind`). Then use the following snippet to run Docker Compose services inside a sandbox:
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
 
 ```python
-from daytona import Daytona, CreateSandboxFromSnapshotParams
+from nightona import Nightona, CreateSandboxFromSnapshotParams
 
-# Initialize the Daytona client
-daytona = Daytona()
+# Initialize the Nightona client
+nightona = Nightona()
 
 # Create a sandbox from a Docker-in-Docker snapshot
-sandbox = daytona.create(CreateSandboxFromSnapshotParams(snapshot='docker-dind'))
+sandbox = nightona.create(CreateSandboxFromSnapshotParams(snapshot='docker-dind'))
 
 # Create a docker-compose.yml file
 compose_content = '''
@@ -1104,13 +1104,13 @@ sandbox.process.exec('docker compose -p demo down')
 <TabItem label="TypeScript" icon="seti:typescript">
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
-// Initialize the Daytona client
-const daytona = new Daytona()
+// Initialize the Nightona client
+const nightona = new Nightona()
 
 // Create a sandbox from a Docker-in-Docker snapshot
-const sandbox = await daytona.create({ snapshot: 'docker-dind' })
+const sandbox = await nightona.create({ snapshot: 'docker-dind' })
 
 // Create a docker-compose.yml file
 const composeContent = `
@@ -1138,13 +1138,13 @@ await sandbox.process.executeCommand('docker compose -p demo down')
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-# Initialize the Daytona client
-daytona = Daytona::Daytona.new
+# Initialize the Nightona client
+nightona = Nightona::Nightona.new
 
 # Create a sandbox from a Docker-in-Docker snapshot
-sandbox = daytona.create(Daytona::CreateSandboxFromSnapshotParams.new(snapshot: 'docker-dind'))
+sandbox = nightona.create(Nightona::CreateSandboxFromSnapshotParams.new(snapshot: 'docker-dind'))
 
 # Create a docker-compose.yml file
 compose_content = <<~YAML
@@ -1178,19 +1178,19 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/daytonaio/sdk-go/daytona"
+	"github.com/daytonaio/sdk-go/nightona"
 	"github.com/daytonaio/sdk-go/types"
 )
 
 func main() {
 	ctx := context.Background()
 
-	// Initialize the Daytona client
-	client, _ := daytona.NewDaytona(nil)
+	// Initialize the Nightona client
+	client, _ := nightona.NewNightona(nil)
 
 	// Create a sandbox from a Docker-in-Docker snapshot
 	sandbox, _ := client.Create(ctx, &types.CreateSandboxFromSnapshotParams{
-		Snapshot: daytona.Ptr("docker-dind"),
+		Snapshot: nightona.Ptr("docker-dind"),
 	}, nil)
 
 	// Create a docker-compose.yml file
@@ -1221,21 +1221,21 @@ services:
 
 ## Run Kubernetes in a Sandbox
 
-Daytona Sandboxes can run a Kubernetes cluster inside the sandbox. Kubernetes runs entirely inside the sandbox and is removed when the sandbox is deleted, keeping environments secure and reproducible.
+Nightona Sandboxes can run a Kubernetes cluster inside the sandbox. Kubernetes runs entirely inside the sandbox and is removed when the sandbox is deleted, keeping environments secure and reproducible.
 
 ##### Run k3s in a Sandbox
 
 The following snippet installs and starts a k3s cluster inside a sandbox and lists all running pods.
 
 ```typescript
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 import { setTimeout } from 'timers/promises'
 
-// Initialize the Daytona client
-const daytona = new Daytona()
+// Initialize the Nightona client
+const nightona = new Nightona()
 
 // Create the sandbox instance
-const sandbox = await daytona.create()
+const sandbox = await nightona.create()
 
 // Run the k3s installation script
 const response = await sandbox.process.executeCommand(
@@ -1262,14 +1262,14 @@ console.log(pods.result)
 
 ## Default Snapshots
 
-Daytona provides pre-built snapshots with fixed resource sizes for creating sandboxes.
+Nightona provides pre-built snapshots with fixed resource sizes for creating sandboxes.
 
 | **Snapshot**         | **vCPU** | **Memory** | **Storage** | **GPU** |
 | -------------------- | -------- | ---------- | ----------- | ------- |
-| **`daytona-small`**  | 1        | 1GiB       | 3GiB        |         |
-| **`daytona-medium`** | 2        | 4GiB       | 8GiB        |         |
-| **`daytona-large`**  | 4        | 8GiB       | 10GiB       |         |
-| **`daytona-gpu`**    | 1        | 1GiB       | 1GiB        | 1       |
+| **`nightona-small`**  | 1        | 1GiB       | 3GiB        |         |
+| **`nightona-medium`** | 2        | 4GiB       | 8GiB        |         |
+| **`nightona-large`**  | 4        | 8GiB       | 10GiB       |         |
+| **`nightona-gpu`**    | 1        | 1GiB       | 1GiB        | 1       |
 | **`windows`**        | 2        | 8GiB       | 30GiB       |         |
 
 Snapshots are based on the `daytonaio/sandbox:<version>` image.
@@ -1280,7 +1280,7 @@ Snapshots are based on the `daytonaio/sandbox:<version>` image.
 - `beautifulsoup4` (v4.14.3)
 - `claude-agent-sdk` (v0.1.22)
 - `openai-agents` (v0.15.1)
-- `daytona` (v0.134.0)
+- `nightona` (v0.134.0)
 - `django` (v6.0.1)
 - `flask` (v3.1.2)
 - `huggingface-hub` (v0.36.0)

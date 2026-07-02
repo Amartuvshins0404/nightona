@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -8,7 +8,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/daytonaio/runner/pkg/api/dto"
+	"github.com/Amartuvshins0404/nightona/apps/runner/pkg/api/dto"
 )
 
 func (d *DockerClient) UpdateNetworkSettings(ctx context.Context, containerId string, updateNetworkSettingsDto dto.UpdateNetworkSettingsDTO) error {
@@ -39,7 +39,7 @@ func (d *DockerClient) UpdateNetworkSettings(ctx context.Context, containerId st
 	case hasAllowList:
 		err = d.netRulesManager.SetNetworkRules(containerShortId, ipAddress, allowListTrimmed)
 	case updateNetworkSettingsDto.NetworkBlockAll != nil && !*updateNetworkSettingsDto.NetworkBlockAll && !hasAllowList:
-		// Restore general outbound access (clear Daytona filter rules for this sandbox)
+		// Restore general outbound access (clear Nightona filter rules for this sandbox)
 		err = d.netRulesManager.DeleteNetworkRules(containerShortId)
 	case updateNetworkSettingsDto.NetworkAllowList != nil && !hasAllowList:
 		// Explicit empty allow list: treat as open network

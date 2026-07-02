@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -12,7 +12,7 @@ export function generateBuildInfoHash(dockerfileContent: string, contextHashes: 
   const sortedContextHashes = [...contextHashes].sort() || []
   const combined = dockerfileContent + sortedContextHashes.join('')
   const hash = createHash('sha256').update(combined).digest('hex')
-  return 'daytona-' + hash + ':daytona'
+  return 'nightona-' + hash + ':nightona'
 }
 
 @Entity()

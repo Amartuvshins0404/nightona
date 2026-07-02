@@ -1,11 +1,11 @@
 import asyncio
 
-from daytona import AsyncDaytona, CreateSandboxFromImageParams, Image, LspCompletionPosition
+from nightona import AsyncNightona, CreateSandboxFromImageParams, Image, LspCompletionPosition
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
-        sandbox = await daytona.create(
+    async with AsyncNightona() as nightona:
+        sandbox = await nightona.create(
             CreateSandboxFromImageParams(
                 image=(
                     Image.base("ubuntu:25.10").run_commands(
@@ -62,7 +62,7 @@ async def main():
             print("Error executing example:", error)
         finally:
             # Cleanup
-            await daytona.delete(sandbox)
+            await nightona.delete(sandbox)
 
 
 if __name__ == "__main__":

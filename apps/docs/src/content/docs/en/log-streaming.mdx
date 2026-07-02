@@ -34,11 +34,11 @@ This is ideal for:
 
 ```python
 import asyncio
-from daytona import Daytona, SessionExecuteRequest
+from nightona import Nightona, SessionExecuteRequest
 
 async def main():
-  daytona = Daytona()
-  sandbox = daytona.create()
+  nightona = Nightona()
+  sandbox = nightona.create()
 
   session_id = "streaming-session"
   sandbox.process.create_session(session_id)
@@ -78,11 +78,11 @@ if __name__ == "__main__":
 <TabItem label="Typescript" icon="seti:typescript">
 
 ```typescript
-import { Daytona, SessionExecuteRequest } from '@daytona/sdk'
+import { Nightona, SessionExecuteRequest } from '@nightona/sdk'
 
 async function main() {
-  const daytona = new Daytona()
-  const sandbox = await daytona.create()
+  const nightona = new Nightona()
+  const sandbox = await nightona.create()
   const sessionId = "exec-session-1"
   await sandbox.process.createSession(sessionId)
 
@@ -119,17 +119,17 @@ main()
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 
 session_id = 'streaming-session'
 sandbox.process.create_session(session_id)
 
 command = sandbox.process.execute_session_command(
   session_id,
-  Daytona::SessionExecuteRequest.new(
+  Nightona::SessionExecuteRequest.new(
     command: 'for i in {1..5}; do echo "Step $i"; echo "Error $i" >&2; sleep 1; done',
     var_async: true
   )
@@ -152,7 +152,7 @@ puts 'Other operations completed!'
 # Wait for the logs to complete
 log_thread.join
 
-daytona.delete(sandbox)
+nightona.delete(sandbox)
 ```
 
 </TabItem>
@@ -167,11 +167,11 @@ import (
 	"log"
 	"os"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-	client, _ := daytona.NewClient()
+	client, _ := nightona.NewClient()
 	ctx := context.Background()
 	sandbox, _ := client.Create(ctx, nil)
 
@@ -225,15 +225,15 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.SessionExecuteRequest;
-import io.daytona.sdk.model.SessionExecuteResponse;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.SessionExecuteRequest;
+import io.nightona.sdk.model.SessionExecuteResponse;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {
-        try (Daytona daytona = new Daytona()) {
-            Sandbox sandbox = daytona.create();
+        try (Nightona nightona = new Nightona()) {
+            Sandbox sandbox = nightona.create();
             String sessionId = "streaming-session";
             sandbox.getProcess().createSession(sessionId);
 
@@ -283,10 +283,10 @@ periodically check all existing logs, you can use the following example to get t
 
 ```python
 import time
-from daytona import Daytona, SessionExecuteRequest
+from nightona import Nightona, SessionExecuteRequest
 
-daytona = Daytona()
-sandbox = daytona.create()
+nightona = Nightona()
+sandbox = nightona.create()
 session_id = "exec-session-1"
 sandbox.process.create_session(session_id)
 
@@ -320,11 +320,11 @@ sandbox.delete()
 <TabItem label="Typescript" icon="seti:typescript">
 
 ```typescript
-import { Daytona, SessionExecuteRequest } from '@daytona/sdk'
+import { Nightona, SessionExecuteRequest } from '@nightona/sdk'
 
 async function main() {
-  const daytona = new Daytona()
-  const sandbox = await daytona.create()
+  const nightona = new Nightona()
+  const sandbox = await nightona.create()
   const sessionId = "exec-session-1"
   await sandbox.process.createSession(sessionId)
 
@@ -364,17 +364,17 @@ main()
 <TabItem label="Ruby" icon="seti:ruby">
 
 ```ruby
-require 'daytona'
+require 'nightona'
 
-daytona = Daytona::Daytona.new
-sandbox = daytona.create
+nightona = Nightona::Nightona.new
+sandbox = nightona.create
 session_id = 'exec-session-1'
 sandbox.process.create_session(session_id)
 
 # Execute a blocking command and wait for the result
 command = sandbox.process.execute_session_command(
   session_id,
-  Daytona::SessionExecuteRequest.new(
+  Nightona::SessionExecuteRequest.new(
     command: 'echo "Hello from stdout" && echo "Hello from stderr" >&2'
   )
 )
@@ -385,7 +385,7 @@ puts "[OUTPUT]: #{command.output}"
 # Or execute command in the background and get the logs later
 command = sandbox.process.execute_session_command(
   session_id,
-  Daytona::SessionExecuteRequest.new(
+  Nightona::SessionExecuteRequest.new(
     command: 'while true; do if (( RANDOM % 2 )); then echo "All good at $(date)"; else echo "Oops, an error at $(date)" >&2; fi; sleep 1; done',
     var_async: true
   )
@@ -397,7 +397,7 @@ puts "[STDOUT]: #{logs.stdout}"
 puts "[STDERR]: #{logs.stderr}"
 puts "[OUTPUT]: #{logs.output}"
 
-daytona.delete(sandbox)
+nightona.delete(sandbox)
 ```
 
 </TabItem>
@@ -412,11 +412,11 @@ import (
 	"log"
 	"time"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
 )
 
 func main() {
-	client, _ := daytona.NewClient()
+	client, _ := nightona.NewClient()
 	ctx := context.Background()
 	sandbox, _ := client.Create(ctx, nil)
 
@@ -457,16 +457,16 @@ func main() {
 <TabItem label="Java" icon="seti:java">
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.SessionCommandLogsResponse;
-import io.daytona.sdk.model.SessionExecuteRequest;
-import io.daytona.sdk.model.SessionExecuteResponse;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.SessionCommandLogsResponse;
+import io.nightona.sdk.model.SessionExecuteRequest;
+import io.nightona.sdk.model.SessionExecuteResponse;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {
-        try (Daytona daytona = new Daytona()) {
-            Sandbox sandbox = daytona.create();
+        try (Nightona nightona = new Nightona()) {
+            Sandbox sandbox = nightona.create();
             String sessionId = "exec-session-1";
             sandbox.getProcess().createSession(sessionId);
 

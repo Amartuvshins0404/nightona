@@ -1,6 +1,6 @@
 {
-  "title": "Daytona Sandbox Resource Monitoring",
-  "description": "Comprehensive CPU, Memory, and Disk monitoring for Daytona Sandboxes, plus organization-level quota usage. Metrics are ingested via OpenTelemetry (daytona.sandbox.*).",
+  "title": "Nightona Sandbox Resource Monitoring",
+  "description": "Comprehensive CPU, Memory, and Disk monitoring for Nightona Sandboxes, plus organization-level quota usage. Metrics are ingested via OpenTelemetry (nightona.sandbox.*).",
   "widgets": [
     {
       "definition": {
@@ -19,7 +19,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}",
                       "aggregator": "last"
                     }
                   ],
@@ -41,7 +41,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "max:daytona.sandbox.cpu.utilization{$service}",
+                      "query": "max:nightona.sandbox.cpu.utilization{$service}",
                       "aggregator": "max"
                     }
                   ],
@@ -68,7 +68,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "max:daytona.sandbox.memory.utilization{$service}",
+                      "query": "max:nightona.sandbox.memory.utilization{$service}",
                       "aggregator": "max"
                     }
                   ],
@@ -95,7 +95,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "max:daytona.sandbox.filesystem.utilization{$service}",
+                      "query": "max:nightona.sandbox.filesystem.utilization{$service}",
                       "aggregator": "max"
                     }
                   ],
@@ -121,49 +121,49 @@
                     {
                       "data_source": "metrics",
                       "name": "cpu",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "cpu_limit",
-                      "query": "avg:daytona.sandbox.cpu.limit{$service} by {service}",
+                      "query": "avg:nightona.sandbox.cpu.limit{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "mem",
-                      "query": "avg:daytona.sandbox.memory.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.utilization{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "mem_usage",
-                      "query": "avg:daytona.sandbox.memory.usage{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.usage{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "mem_limit",
-                      "query": "avg:daytona.sandbox.memory.limit{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.limit{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk",
-                      "query": "avg:daytona.sandbox.filesystem.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.utilization{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk_usage",
-                      "query": "avg:daytona.sandbox.filesystem.usage{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.usage{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk_total",
-                      "query": "avg:daytona.sandbox.filesystem.total{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.total{$service} by {service}",
                       "aggregator": "last"
                     }
                   ],
@@ -194,7 +194,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -216,7 +216,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.memory.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.memory.utilization{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -238,7 +238,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.filesystem.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.filesystem.utilization{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -260,7 +260,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}",
                       "aggregator": "avg"
                     }
                   ],
@@ -280,7 +280,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.memory.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.utilization{$service} by {service}",
                       "aggregator": "avg"
                     }
                   ],
@@ -300,7 +300,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.filesystem.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.utilization{$service} by {service}",
                       "aggregator": "avg"
                     }
                   ],
@@ -320,17 +320,17 @@
                     {
                       "data_source": "metrics",
                       "name": "cpu",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}"
                     },
                     {
                       "data_source": "metrics",
                       "name": "mem",
-                      "query": "avg:daytona.sandbox.memory.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.memory.utilization{$service} by {service}"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk",
-                      "query": "avg:daytona.sandbox.filesystem.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.filesystem.utilization{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -361,7 +361,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -393,7 +393,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}",
                       "aggregator": "last"
                     }
                   ],
@@ -412,19 +412,19 @@
                     {
                       "data_source": "metrics",
                       "name": "cpu_limit",
-                      "query": "avg:daytona.sandbox.cpu.limit{$service} by {service}",
+                      "query": "avg:nightona.sandbox.cpu.limit{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "cpu_avg",
-                      "query": "avg:daytona.sandbox.cpu.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.cpu.utilization{$service} by {service}",
                       "aggregator": "avg"
                     },
                     {
                       "data_source": "metrics",
                       "name": "cpu_peak",
-                      "query": "max:daytona.sandbox.cpu.utilization{$service} by {service}",
+                      "query": "max:nightona.sandbox.cpu.utilization{$service} by {service}",
                       "aggregator": "max"
                     }
                   ],
@@ -444,7 +444,7 @@
               "title": "CPU Usage Heatmap",
               "type": "heatmap",
               "requests": [
-                { "q": "avg:daytona.sandbox.cpu.utilization{$service} by {service}", "style": { "palette": "dog_classic" } }
+                { "q": "avg:nightona.sandbox.cpu.utilization{$service} by {service}", "style": { "palette": "dog_classic" } }
               ],
               "yaxis": { "min": "0", "max": "100" }
             }
@@ -469,7 +469,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.memory.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.memory.utilization{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -501,7 +501,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.memory.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.utilization{$service} by {service}",
                       "aggregator": "last"
                     }
                   ],
@@ -521,7 +521,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.memory.usage{$service} by {service}"
+                      "query": "avg:nightona.sandbox.memory.usage{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -541,25 +541,25 @@
                     {
                       "data_source": "metrics",
                       "name": "mem_usage",
-                      "query": "avg:daytona.sandbox.memory.usage{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.usage{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "mem_limit",
-                      "query": "avg:daytona.sandbox.memory.limit{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.limit{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "mem_avg",
-                      "query": "avg:daytona.sandbox.memory.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.memory.utilization{$service} by {service}",
                       "aggregator": "avg"
                     },
                     {
                       "data_source": "metrics",
                       "name": "mem_peak",
-                      "query": "max:daytona.sandbox.memory.utilization{$service} by {service}",
+                      "query": "max:nightona.sandbox.memory.utilization{$service} by {service}",
                       "aggregator": "max"
                     }
                   ],
@@ -595,7 +595,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.filesystem.utilization{$service} by {service}"
+                      "query": "avg:nightona.sandbox.filesystem.utilization{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -627,7 +627,7 @@
                     {
                       "data_source": "metrics",
                       "name": "query1",
-                      "query": "avg:daytona.sandbox.filesystem.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.utilization{$service} by {service}",
                       "aggregator": "last"
                     }
                   ],
@@ -650,12 +650,12 @@
                     {
                       "data_source": "metrics",
                       "name": "used",
-                      "query": "avg:daytona.sandbox.filesystem.usage{$service} by {service}"
+                      "query": "avg:nightona.sandbox.filesystem.usage{$service} by {service}"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total",
-                      "query": "avg:daytona.sandbox.filesystem.total{$service} by {service}"
+                      "query": "avg:nightona.sandbox.filesystem.total{$service} by {service}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -675,31 +675,31 @@
                     {
                       "data_source": "metrics",
                       "name": "disk_usage",
-                      "query": "avg:daytona.sandbox.filesystem.usage{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.usage{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk_avail",
-                      "query": "avg:daytona.sandbox.filesystem.available{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.available{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk_total",
-                      "query": "avg:daytona.sandbox.filesystem.total{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.total{$service} by {service}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk_avg",
-                      "query": "avg:daytona.sandbox.filesystem.utilization{$service} by {service}",
+                      "query": "avg:nightona.sandbox.filesystem.utilization{$service} by {service}",
                       "aggregator": "avg"
                     },
                     {
                       "data_source": "metrics",
                       "name": "disk_peak",
-                      "query": "max:daytona.sandbox.filesystem.utilization{$service} by {service}",
+                      "query": "max:nightona.sandbox.filesystem.utilization{$service} by {service}",
                       "aggregator": "max"
                     }
                   ],
@@ -735,13 +735,13 @@
                     {
                       "data_source": "metrics",
                       "name": "used",
-                      "query": "avg:daytona.sandbox.used_cpu{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.used_cpu{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total",
-                      "query": "avg:daytona.sandbox.total_cpu{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.total_cpu{$region} by {region.id}",
                       "aggregator": "last"
                     }
                   ],
@@ -766,13 +766,13 @@
                     {
                       "data_source": "metrics",
                       "name": "used",
-                      "query": "avg:daytona.sandbox.used_ram{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.used_ram{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total",
-                      "query": "avg:daytona.sandbox.total_ram{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.total_ram{$region} by {region.id}",
                       "aggregator": "last"
                     }
                   ],
@@ -797,13 +797,13 @@
                     {
                       "data_source": "metrics",
                       "name": "used",
-                      "query": "avg:daytona.sandbox.used_storage{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.used_storage{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total",
-                      "query": "avg:daytona.sandbox.total_storage{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.total_storage{$region} by {region.id}",
                       "aggregator": "last"
                     }
                   ],
@@ -829,12 +829,12 @@
                     {
                       "data_source": "metrics",
                       "name": "used",
-                      "query": "avg:daytona.sandbox.used_cpu{$region} by {region.id}"
+                      "query": "avg:nightona.sandbox.used_cpu{$region} by {region.id}"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total",
-                      "query": "avg:daytona.sandbox.total_cpu{$region} by {region.id}"
+                      "query": "avg:nightona.sandbox.total_cpu{$region} by {region.id}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -856,12 +856,12 @@
                     {
                       "data_source": "metrics",
                       "name": "used",
-                      "query": "avg:daytona.sandbox.used_ram{$region} by {region.id}"
+                      "query": "avg:nightona.sandbox.used_ram{$region} by {region.id}"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total",
-                      "query": "avg:daytona.sandbox.total_ram{$region} by {region.id}"
+                      "query": "avg:nightona.sandbox.total_ram{$region} by {region.id}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -883,12 +883,12 @@
                     {
                       "data_source": "metrics",
                       "name": "used",
-                      "query": "avg:daytona.sandbox.used_storage{$region} by {region.id}"
+                      "query": "avg:nightona.sandbox.used_storage{$region} by {region.id}"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total",
-                      "query": "avg:daytona.sandbox.total_storage{$region} by {region.id}"
+                      "query": "avg:nightona.sandbox.total_storage{$region} by {region.id}"
                     }
                   ],
                   "response_format": "timeseries",
@@ -909,37 +909,37 @@
                     {
                       "data_source": "metrics",
                       "name": "used_cpu",
-                      "query": "avg:daytona.sandbox.used_cpu{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.used_cpu{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total_cpu",
-                      "query": "avg:daytona.sandbox.total_cpu{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.total_cpu{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "used_ram",
-                      "query": "avg:daytona.sandbox.used_ram{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.used_ram{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total_ram",
-                      "query": "avg:daytona.sandbox.total_ram{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.total_ram{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "used_storage",
-                      "query": "avg:daytona.sandbox.used_storage{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.used_storage{$region} by {region.id}",
                       "aggregator": "last"
                     },
                     {
                       "data_source": "metrics",
                       "name": "total_storage",
-                      "query": "avg:daytona.sandbox.total_storage{$region} by {region.id}",
+                      "query": "avg:nightona.sandbox.total_storage{$region} by {region.id}",
                       "aggregator": "last"
                     }
                   ],

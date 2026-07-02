@@ -1,10 +1,10 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-"""GRPO training for FinQA across 1000 Daytona sandboxes.
+"""GRPO training for FinQA across 1000 Nightona sandboxes.
 
 Trains Qwen3-14B with LoRA to answer financial questions using tool calls,
-with rollouts collected in parallel across Daytona sandboxes running the
+with rollouts collected in parallel across Nightona sandboxes running the
 FinQA OpenEnv environment.
 
 Uses Group Relative Policy Optimization (GRPO):
@@ -46,7 +46,7 @@ import torch
 import torch.nn.functional as F
 from dotenv import load_dotenv
 from finqa_env import CallToolAction, FinQAEnv  # pylint: disable=import-error
-from openenv.core.containers.runtime.daytona_provider import DaytonaProvider  # pylint: disable=import-error
+from openenv.core.containers.runtime.nightona_provider import NightonaProvider  # pylint: disable=import-error
 from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from vllm import LLM, SamplingParams
@@ -270,14 +270,14 @@ class PreparedTrainBatch:
 # Sandbox pool management (reused from snake/train.py)
 # ---------------------------------------------------------------------------
 async def create_sandbox_pool(n: int, snapshot_name: str, semaphore: asyncio.Semaphore):
-    """Create n DaytonaProvider instances from a snapshot, bounded by semaphore."""
+    """Create n NightonaProvider instances from a snapshot, bounded by semaphore."""
     pool_by_idx: list[tuple | None] = [None] * n
     created = 0
 
     async def create_one(idx: int):
         nonlocal created
         async with semaphore:
-            provider = DaytonaProvider(auto_stop_interval=0, cmd=SERVER_CMD)
+            provider = NightonaProvider(auto_stop_interval=0, cmd=SERVER_CMD)
             try:
                 url = await asyncio.to_thread(
                     provider.start_container,
@@ -1660,7 +1660,7 @@ async def train(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="GRPO training for FinQA on Daytona sandboxes.")
+    parser = argparse.ArgumentParser(description="GRPO training for FinQA on Nightona sandboxes.")
     parser.add_argument(
         "--sandboxes",
         type=int,

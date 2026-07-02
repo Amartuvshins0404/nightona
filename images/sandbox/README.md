@@ -1,6 +1,6 @@
-# Daytona Sandbox Image
+# Nightona Sandbox Image
 
-[Dockerfile](./Dockerfile) contains the definition for [daytonaio/sandbox](https://hub.docker.com/r/daytonaio/sandbox) which is used as the default sandbox image in Daytona Cloud.
+[Dockerfile](./Dockerfile) contains the definition for [daytonaio/sandbox](https://hub.docker.com/r/daytonaio/sandbox) which is used as the default sandbox image in Nightona Cloud.
 
 The default sandbox image contains Python, Node and their most popular dependencies, including:
 
@@ -22,7 +22,7 @@ The default sandbox image contains Python, Node and their most popular dependenc
 - opencv-python
 - pillow
 - sqlalchemy
-- daytona
+- nightona
 - pydantic-ai
 - langchain
 - transformers

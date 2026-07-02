@@ -1,7 +1,7 @@
 {
-  "name": "@daytona/opencode",
+  "name": "@nightona/opencode",
   "version": "0.0.0-dev",
-  "description": "OpenCode plugin that automatically runs all sessions in Daytona sandboxes for isolated, reproducible development environments",
+  "description": "OpenCode plugin that automatically runs all sessions in Nightona sandboxes for isolated, reproducible development environments",
   "main": "./.opencode/plugin/index.js",
   "types": "./.opencode/plugin/index.d.ts",
   "files": [
@@ -9,21 +9,21 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daytonaio/daytona.git"
+    "url": "git+https://github.com/Amartuvshins0404/nightona.git"
   },
-  "author": "Daytona Platforms Inc.",
+  "author": "Nightona Platforms Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "@daytona/sdk": "^0.163.0",
+    "@nightona/sdk": "^0.163.0",
     "@opencode-ai/plugin": "1.1.59",
     "xdg-basedir": "^5.1.0",
     "zod": "^4.2.1"
   },
   "bugs": {
-    "url": "https://github.com/daytonaio/daytona/issues"
+    "url": "https://github.com/Amartuvshins0404/nightona/issues"
   },
   "keywords": [
-    "daytona",
+    "nightona",
     "opencode",
     "plugin"
   ]

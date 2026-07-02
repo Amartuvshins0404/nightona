@@ -4,17 +4,17 @@ title: Git操作
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona SDKは、Sandbox内の`git`モジュールを通じてGitの組み込みサポートを提供します。本ガイドでは、利用可能なすべてのGit操作とベストプラクティスを解説します。
+Nightona SDKは、Sandbox内の`git`モジュールを通じてGitの組み込みサポートを提供します。本ガイドでは、利用可能なすべてのGit操作とベストプラクティスを解説します。
 
 ## 基本操作
 
-Daytona SDKは、Sandbox（Daytonaが管理する隔離された一時的な実行環境）内でGitリポジトリのクローン、ステータス確認、管理を行う機能を提供します。`git`モジュールを使ってGitリポジトリを操作できます。
+Nightona SDKは、Sandbox（Nightonaが管理する隔離された一時的な実行環境）内でGitリポジトリのクローン、ステータス確認、管理を行う機能を提供します。`git`モジュールを使ってGitリポジトリを操作できます。
 
 ファイル操作と同様に、クローンの基準ディレクトリは現在のSandboxユーザーのホームです。例えば、`workspace/repo` は `/home/[username]/workspace/repo` を意味します。先頭を `/` にすることで作業ディレクトリに絶対パスも指定できます。
 
 ### リポジトリのクローン
 
-Daytona SDKは、PythonおよびTypeScriptからSandboxにGitリポジトリをクローンできます。パブリック/プライベートリポジトリ、特定ブランチのクローンに対応し、Personal Access Tokenを用いた認証も可能です。
+Nightona SDKは、PythonおよびTypeScriptからSandboxにGitリポジトリをクローンできます。パブリック/プライベートリポジトリ、特定ブランチのクローンに対応し、Personal Access Tokenを用いた認証も可能です。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -75,7 +75,7 @@ await sandbox.git.clone(
 
 ### リポジトリのステータス
 
-Daytona SDKは、Sandbox内のGitリポジトリのステータス確認にも対応しています。PythonおよびTypeScriptで、現在のブランチ、変更ファイル、メインブランチに対する先行/遅行コミット数を取得できます。
+Nightona SDKは、Sandbox内のGitリポジトリのステータス確認にも対応しています。PythonおよびTypeScriptで、現在のブランチ、変更ファイル、メインブランチに対する先行/遅行コミット数を取得できます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -119,11 +119,11 @@ response.branches.forEach(branch => {
 
 ## ブランチ操作
 
-Daytona SDK は、Git リポジトリのブランチ管理機能を提供します。ブランチの作成・切り替え・削除が可能です。
+Nightona SDK は、Git リポジトリのブランチ管理機能を提供します。ブランチの作成・切り替え・削除が可能です。
 
 ### ブランチの管理
 
-Daytona SDK では、Python と TypeScript から Git リポジトリのブランチを作成・切り替え・削除できます。
+Nightona SDK では、Python と TypeScript から Git リポジトリのブランチを作成・切り替え・削除できます。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">
@@ -156,7 +156,7 @@ await sandbox.git.deleteBranch("workspace/repo", "feature/old-feature");
 
 ## ステージングとコミット
 
-Daytona SDK では、Git リポジトリの変更をステージしてコミットできます。Python と TypeScript から、特定のファイルのみ、またはすべての変更をステージし、メッセージ付きでコミットできます。
+Nightona SDK では、Git リポジトリの変更をステージしてコミットできます。Python と TypeScript から、特定のファイルのみ、またはすべての変更をステージし、メッセージ付きでコミットできます。
 
 ### 変更の扱い
 
@@ -190,11 +190,11 @@ await sandbox.git.commit("workspace/repo", "feat: add new feature", "John Doe", 
 
 ## リモート操作
 
-Daytona SDK は Git のリモートリポジトリを扱う機能を提供します。変更のプッシュ、変更のプル、リモートの一覧表示が可能です。
+Nightona SDK は Git のリモートリポジトリを扱う機能を提供します。変更のプッシュ、変更のプル、リモートの一覧表示が可能です。
 
 ### リモートの操作
 
-Daytona SDK は、Python と TypeScript から Git リポジトリに対してプッシュ、プル、リモートの一覧表示を行う機能を提供します。
+Nightona SDK は、Python と TypeScript から Git リポジトリに対してプッシュ、プル、リモートの一覧表示を行う機能を提供します。
 
 <Tabs syncKey="language">
 <TabItem label="Python" icon="seti:python">

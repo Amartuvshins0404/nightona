@@ -1,19 +1,19 @@
-# Run DSPy RLMs on Daytona
+# Run DSPy RLMs on Nightona
 
 ## Overview
 
 DSPy's [RLM (Recursive Language Model)](https://dspy.ai/) module gives an LLM a Python REPL. The LLM writes code, executes it, sees the output, and repeats — building up state across iterations until it calls `SUBMIT()` with a final answer. Within that code, the LLM can also call `llm_query()` to invoke sub-LLM reasoning (the "recursive" part), mixing procedural computation with natural-language understanding.
 
-`DaytonaInterpreter` is a `CodeInterpreter` backend that runs all of this inside a Daytona cloud sandbox, so LLM-generated code never executes on the host.
+`NightonaInterpreter` is a `CodeInterpreter` backend that runs all of this inside a Nightona cloud sandbox, so LLM-generated code never executes on the host.
 
 ## Features
 
-- **Sandboxed REPL:** LLM-generated code runs in an isolated Daytona sandbox
+- **Sandboxed REPL:** LLM-generated code runs in an isolated Nightona sandbox
 - **Persistent state:** Variables and imports survive across iterations within a session
 - **Sub-LLM calls:** `llm_query()` and `llm_query_batched()` are bridged into the sandbox, letting generated code invoke nested LLM reasoning
 - **Custom tools:** Host-side Python functions (database queries, APIs, etc.) can be passed into the sandbox through a broker server
 - **Typed SUBMIT:** Output fields can have explicit types so the LLM knows the expected schema
-- **Context manager:** `DaytonaInterpreter` supports `with` for automatic cleanup
+- **Context manager:** `NightonaInterpreter` supports `with` for automatic cleanup
 
 ## Requirements
 
@@ -21,7 +21,7 @@ DSPy's [RLM (Recursive Language Model)](https://dspy.ai/) module gives an LLM a 
 
 ## Environment Variables
 
-- `DAYTONA_API_KEY`: Required for access to Daytona sandboxes. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for access to Nightona sandboxes. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 - `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, or `ANTHROPIC_API_KEY`: Required for your LLM provider (depending on which model you use)
 
 ## Getting Started
@@ -51,7 +51,7 @@ pip install -e ".[demo]"
 
 ```bash
 cp .env.example .env
-# Edit .env with your DAYTONA_API_KEY and LLM provider key
+# Edit .env with your NIGHTONA_API_KEY and LLM provider key
 ```
 
 4. Run the example:
@@ -68,7 +68,7 @@ Each RLM call runs an iterative loop:
 
 1. RLM prompts the LLM with the task inputs and the REPL history so far
 2. The LLM responds with reasoning and a Python code snippet
-3. The code executes in the Daytona sandbox
+3. The code executes in the Nightona sandbox
 4. The output (stdout, errors, or a final result) is appended to the REPL history
 5. Steps 1–4 repeat until the code calls `SUBMIT()` or the iteration limit is reached
 
@@ -84,7 +84,7 @@ State persists across iterations — variables, imports, and function definition
          │  LLM writes Python code          │
          │         │                        │
          │         ▼                        │
-         │  Execute in sandbox ─────────────┼──▶ Daytona Sandbox
+         │  Execute in sandbox ─────────────┼──▶ Nightona Sandbox
          │         │                        │    (persistent REPL)
          │         ▼                        │
          │  Append output to history        │
@@ -114,7 +114,7 @@ combined = "\n".join(summaries)
 SUBMIT(answer=combined)
 ```
 
-These functions execute on the host (they need LLM API access). `DaytonaInterpreter` bridges them into the sandbox through the broker, the same mechanism used for custom tools.
+These functions execute on the host (they need LLM API access). `NightonaInterpreter` bridges them into the sandbox through the broker, the same mechanism used for custom tools.
 
 ### Custom tools
 
@@ -133,7 +133,7 @@ From the LLM's perspective, these look like regular Python functions.
 ```python
 import dspy
 from dotenv import load_dotenv
-from daytona_interpreter import DaytonaInterpreter
+from nightona_interpreter import NightonaInterpreter
 
 load_dotenv()
 
@@ -141,8 +141,8 @@ load_dotenv()
 lm = dspy.LM("openrouter/anthropic/claude-sonnet-4.6")
 dspy.configure(lm=lm)
 
-# Create an RLM with the Daytona interpreter
-interpreter = DaytonaInterpreter()
+# Create an RLM with the Nightona interpreter
+interpreter = NightonaInterpreter()
 
 rlm = dspy.RLM(
     signature="question -> answer: str",
@@ -164,7 +164,7 @@ Pass host-side functions into the sandbox so the LLM's generated code can call t
 import json
 import dspy
 from dotenv import load_dotenv
-from daytona_interpreter import DaytonaInterpreter
+from nightona_interpreter import NightonaInterpreter
 
 load_dotenv()
 
@@ -178,7 +178,7 @@ def search_knowledge_base(query: str) -> str:
     return json.dumps({"results": [f"Result for: {query}"]})
 
 # Pass tools to the interpreter
-interpreter = DaytonaInterpreter(tools={"search_knowledge_base": search_knowledge_base})
+interpreter = NightonaInterpreter(tools={"search_knowledge_base": search_knowledge_base})
 
 rlm = dspy.RLM(
     signature="question -> answer: str",
@@ -225,5 +225,5 @@ See the main project LICENSE file for details.
 ## References
 
 - [DSPy](https://dspy.ai/) — The framework for programming with foundation models
-- [Daytona](https://www.daytona.io/) — Secure cloud development environments
+- [Nightona](https://www.daytona.io/) — Secure cloud development environments
 - [Recursive Language Models](https://arxiv.org/abs/2512.24601) — Zhang, Kraska, Khattab

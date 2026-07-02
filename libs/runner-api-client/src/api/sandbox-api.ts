@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Daytona Runner API
- * Daytona Runner API
+ * Nightona Runner API
+ * Nightona Runner API
  *
  * The version of the OpenAPI document: v0.0.0-dev
  * 
@@ -370,7 +370,7 @@ export const SandboxApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical daytona-{hash}:daytona tag.
+         * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical nightona-{hash}:nightona tag.
          * @summary Snapshot a running sandbox
          * @param {string} sandboxId Sandbox ID
          * @param {CreateSnapshotFromSandboxRequest} body Snapshot from sandbox
@@ -656,7 +656,7 @@ export const SandboxApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical daytona-{hash}:daytona tag.
+         * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical nightona-{hash}:nightona tag.
          * @summary Snapshot a running sandbox
          * @param {string} sandboxId Sandbox ID
          * @param {CreateSnapshotFromSandboxRequest} body Snapshot from sandbox
@@ -806,7 +806,7 @@ export const SandboxApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.resize(sandboxId, sandbox, options).then((request) => request(axios, basePath));
         },
         /**
-         * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical daytona-{hash}:daytona tag.
+         * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical nightona-{hash}:nightona tag.
          * @summary Snapshot a running sandbox
          * @param {string} sandboxId Sandbox ID
          * @param {CreateSnapshotFromSandboxRequest} body Snapshot from sandbox
@@ -950,7 +950,7 @@ export class SandboxApi extends BaseAPI {
     }
 
     /**
-     * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical daytona-{hash}:daytona tag.
+     * Commit the sandbox container filesystem and push the image to the supplied registry under the canonical nightona-{hash}:nightona tag.
      * @summary Snapshot a running sandbox
      * @param {string} sandboxId Sandbox ID
      * @param {CreateSnapshotFromSandboxRequest} body Snapshot from sandbox

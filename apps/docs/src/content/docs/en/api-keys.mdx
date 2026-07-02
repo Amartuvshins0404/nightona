@@ -5,21 +5,21 @@ description: Create and manage API keys for your organization.
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-Daytona API keys authenticate requests to the [Daytona API](/docs/en/tools/api). They are used by the Daytona [SDKs](/docs/en/getting-started#sdks) and [CLI](/docs/en/getting-started#cli) to access and manage resources in your organization.
+Nightona API keys authenticate requests to the [Nightona API](/docs/en/tools/api). They are used by the Nightona [SDKs](/docs/en/getting-started#sdks) and [CLI](/docs/en/getting-started#cli) to access and manage resources in your organization.
 
-Daytona uses JWT tokens to authenticate requests and interact with the API keys endpoints programmatically. To obtain a JWT token, use the [Daytona CLI](/docs/en/tools/cli) to login ([**`daytona login`**](/docs/en/tools/cli#daytona-login)) and save the token to your config. The CLI saves the access token in `config.json` on your machine, inside the Daytona config directory. The token value is available in the `api.token.accessToken` field of the active profile. JWT-authenticated requests must include the `X-Daytona-Organization-ID` header with your organization ID.
+Nightona uses JWT tokens to authenticate requests and interact with the API keys endpoints programmatically. To obtain a JWT token, use the [Nightona CLI](/docs/en/tools/cli) to login ([**`nightona login`**](/docs/en/tools/cli#nightona-login)) and save the token to your config. The CLI saves the access token in `config.json` on your machine, inside the Nightona config directory. The token value is available in the `api.token.accessToken` field of the active profile. JWT-authenticated requests must include the `X-Nightona-Organization-ID` header with your organization ID.
 
 ## Create an API key
 
-Daytona provides options to create API keys in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/keys) or programmatically using the [API](/docs/en/tools/api/#daytona/tag/api-keys).
+Nightona provides options to create API keys in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/keys) or programmatically using the [API](/docs/en/tools/api/#nightona/tag/api-keys).
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/keys)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/keys)
 2. Click the **Create Key** button
 3. Enter the name of the API key, set the expiration date, and [select permissions](#permissions--scopes)
 4. Click **Create** to create the API key
 5. Copy the API key to your clipboard
 
-To use the API key in your application, set the `DAYTONA_API_KEY` environment variable. Daytona supports multiple options to configure your environment: [in code](/docs/en/configuration#configuration-in-code), [environment variables](/docs/en/configuration#environment-variables), [.env file](/docs/en/configuration#env-file), and [default values](/docs/en/configuration#default-values).
+To use the API key in your application, set the `NIGHTONA_API_KEY` environment variable. Nightona supports multiple options to configure your environment: [in code](/docs/en/configuration#configuration-in-code), [environment variables](/docs/en/configuration#environment-variables), [.env file](/docs/en/configuration#env-file), and [default values](/docs/en/configuration#default-values).
 
 API keys support optional expiration and can be revoked at any time. After creation, you can only retrieve a masked key value when listing keys.
 
@@ -29,7 +29,7 @@ API keys support optional expiration and can be revoked at any time. After creat
 ```bash
 curl 'https://app.daytona.io/api/api-keys' \
   --request POST \
-  --header 'X-Daytona-Organization-ID: YOUR_ORGANIZATION_ID' \
+  --header 'X-Nightona-Organization-ID: YOUR_ORGANIZATION_ID' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer YOUR_JWT_TOKEN' \
   --data '{
@@ -64,14 +64,14 @@ curl 'https://app.daytona.io/api/api-keys' \
 
 ## List API keys
 
-Daytona provides methods to list all API keys for the current user or organization.
+Nightona provides methods to list all API keys for the current user or organization.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
 
 ```bash
 curl 'https://app.daytona.io/api/api-keys' \
-  --header 'X-Daytona-Organization-ID: YOUR_ORGANIZATION_ID' \
+  --header 'X-Nightona-Organization-ID: YOUR_ORGANIZATION_ID' \
   --header 'Authorization: Bearer YOUR_JWT_TOKEN'
 ```
 
@@ -80,7 +80,7 @@ curl 'https://app.daytona.io/api/api-keys' \
 
 ## Get current API key
 
-Daytona provides methods to get details of the API key used to authenticate the current request.
+Nightona provides methods to get details of the API key used to authenticate the current request.
 
 :::note
 This endpoint does not use a JWT token, instead it requires your organization API key.
@@ -91,7 +91,7 @@ This endpoint does not use a JWT token, instead it requires your organization AP
 
 ```bash
 curl 'https://app.daytona.io/api/api-keys/current' \
-  --header 'X-Daytona-Organization-ID: YOUR_ORGANIZATION_ID' \
+  --header 'X-Nightona-Organization-ID: YOUR_ORGANIZATION_ID' \
   --header 'Authorization: Bearer YOUR_API_KEY'
 ```
 
@@ -100,14 +100,14 @@ curl 'https://app.daytona.io/api/api-keys/current' \
 
 ## Get API key
 
-Daytona provides methods to get a single API key by name.
+Nightona provides methods to get a single API key by name.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
 
 ```bash
 curl 'https://app.daytona.io/api/api-keys/my-api-key' \
-  --header 'X-Daytona-Organization-ID: YOUR_ORGANIZATION_ID' \
+  --header 'X-Nightona-Organization-ID: YOUR_ORGANIZATION_ID' \
   --header 'Authorization: Bearer YOUR_JWT_TOKEN'
 ```
 
@@ -116,9 +116,9 @@ curl 'https://app.daytona.io/api/api-keys/my-api-key' \
 
 ## Delete API key
 
-Daytona provides options to delete an API key in [Daytona Dashboard ↗](https://app.daytona.io/dashboard/keys) or programmatically using the API. The key is revoked immediately and cannot be recovered.
+Nightona provides options to delete an API key in [Nightona Dashboard ↗](https://app.daytona.io/dashboard/keys) or programmatically using the API. The key is revoked immediately and cannot be recovered.
 
-1. Navigate to [Daytona Dashboard ↗](https://app.daytona.io/dashboard/keys)
+1. Navigate to [Nightona Dashboard ↗](https://app.daytona.io/dashboard/keys)
 2. Click **Revoke** next to the API key you want to delete
 3. Confirm the revocation
 
@@ -128,7 +128,7 @@ Daytona provides options to delete an API key in [Daytona Dashboard ↗](https:/
 ```bash
 curl 'https://app.daytona.io/api/api-keys/my-api-key' \
   --request DELETE \
-  --header 'X-Daytona-Organization-ID: YOUR_ORGANIZATION_ID' \
+  --header 'X-Nightona-Organization-ID: YOUR_ORGANIZATION_ID' \
   --header 'Authorization: Bearer YOUR_JWT_TOKEN'
 ```
 
@@ -137,7 +137,7 @@ curl 'https://app.daytona.io/api/api-keys/my-api-key' \
 
 ## Delete API key for user
 
-Daytona provides options for organization admins to delete an API key for a specific user.
+Nightona provides options for organization admins to delete an API key for a specific user.
 
 <Tabs syncKey="language">
 <TabItem label="API" icon="seti:json">
@@ -145,7 +145,7 @@ Daytona provides options for organization admins to delete an API key for a spec
 ```bash
 curl 'https://app.daytona.io/api/api-keys/{userId}/my-api-key' \
   --request DELETE \
-  --header 'X-Daytona-Organization-ID: YOUR_ORGANIZATION_ID' \
+  --header 'X-Nightona-Organization-ID: YOUR_ORGANIZATION_ID' \
   --header 'Authorization: Bearer YOUR_JWT_TOKEN'
 ```
 

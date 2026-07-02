@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package main
@@ -15,16 +15,16 @@ import (
 
 	golog "log"
 
-	"github.com/daytonaio/common-go/pkg/log"
-	"github.com/daytonaio/daemon/cmd/daemon/config"
-	"github.com/daytonaio/daemon/internal/util"
-	"github.com/daytonaio/daemon/pkg/childreap"
-	"github.com/daytonaio/daemon/pkg/recording"
-	"github.com/daytonaio/daemon/pkg/recordingdashboard"
-	"github.com/daytonaio/daemon/pkg/session"
-	"github.com/daytonaio/daemon/pkg/ssh"
-	"github.com/daytonaio/daemon/pkg/terminal"
-	"github.com/daytonaio/daemon/pkg/toolbox"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/log"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/cmd/daemon/config"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal/util"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/childreap"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/recording"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/recordingdashboard"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/session"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/ssh"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/terminal"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox"
 	"github.com/lmittmann/tint"
 	"github.com/mattn/go-isatty"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -56,7 +56,7 @@ func run() int {
 		return 2
 	}
 
-	configDir := filepath.Join(homeDir, ".daytona")
+	configDir := filepath.Join(homeDir, ".nightona")
 	err = os.MkdirAll(configDir, 0755)
 	if err != nil {
 		logger.Error("Failed to create config directory", "path", configDir, "error", err)

@@ -1,6 +1,6 @@
-# Daytona Java SDK
+# Nightona Java SDK
 
-The official Java SDK for [Daytona](https://daytona.io), a secure and elastic infrastructure for running AI-generated code. Daytona provides full composable computers — [sandboxes](https://www.daytona.io/docs/en/sandboxes/) — that you can manage programmatically using the Daytona SDK.
+The official Java SDK for [Nightona](https://daytona.io), a secure and elastic infrastructure for running AI-generated code. Nightona provides full composable computers — [sandboxes](https://www.daytona.io/docs/en/sandboxes/) — that you can manage programmatically using the Nightona SDK.
 
 The SDK provides an interface for sandbox management, file system operations, Git operations, language server protocol support, process and code execution, and computer use. For more information, see the [documentation](https://www.daytona.io/docs/en/java-sdk/).
 
@@ -10,7 +10,7 @@ Add the dependency using **Gradle**:
 
 ```kotlin
 dependencies {
-    implementation("io.daytona:sdk:x.y.z")
+    implementation("io.nightona:sdk:x.y.z")
 }
 ```
 
@@ -18,7 +18,7 @@ or using **Maven**:
 
 ```xml
 <dependency>
-  <groupId>io.daytona</groupId>
+  <groupId>io.nightona</groupId>
   <artifactId>sdk</artifactId>
   <version>x.y.z</version>
 </dependency>
@@ -26,30 +26,30 @@ or using **Maven**:
 
 ## Get API key
 
-Generate an API key from the [Daytona Dashboard ↗](https://app.daytona.io/dashboard/keys) to authenticate SDK requests and access Daytona services. For more information, see the [API keys](https://www.daytona.io/docs/en/api-keys/) documentation.
+Generate an API key from the [Nightona Dashboard ↗](https://app.daytona.io/dashboard/keys) to authenticate SDK requests and access Nightona services. For more information, see the [API keys](https://www.daytona.io/docs/en/api-keys/) documentation.
 
 ## Configuration
 
 Configure the SDK using [environment variables](https://www.daytona.io/docs/en/configuration/#environment-variables) or by passing a [configuration object](https://www.daytona.io/docs/en/configuration/#configuration-in-code):
 
-- `DAYTONA_API_KEY`: Your Daytona [API key](https://www.daytona.io/docs/en/api-keys/)
-- `DAYTONA_API_URL`: The Daytona [API URL](https://www.daytona.io/docs/en/tools/api/)
-- `DAYTONA_TARGET`: Your target [region](https://www.daytona.io/docs/en/regions/) environment (e.g. `us`, `eu`)
+- `NIGHTONA_API_KEY`: Your Nightona [API key](https://www.daytona.io/docs/en/api-keys/)
+- `NIGHTONA_API_URL`: The Nightona [API URL](https://www.daytona.io/docs/en/tools/api/)
+- `NIGHTONA_TARGET`: Your target [region](https://www.daytona.io/docs/en/regions/) environment (e.g. `us`, `eu`)
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.DaytonaConfig;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.NightonaConfig;
 
 // Initialize with environment variables
-Daytona daytona = new Daytona();
+Nightona nightona = new Nightona();
 
 // Initialize with configuration object
-DaytonaConfig config = new DaytonaConfig.Builder()
+NightonaConfig config = new NightonaConfig.Builder()
     .apiKey("YOUR_API_KEY")
     .apiUrl("YOUR_API_URL")
     .target("us")
     .build();
-Daytona daytona = new Daytona(config);
+Nightona nightona = new Nightona(config);
 ```
 
 ## Create a sandbox
@@ -57,15 +57,15 @@ Daytona daytona = new Daytona(config);
 Create a sandbox to run your code securely in an isolated environment.
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Sandbox;
-import io.daytona.sdk.model.CreateSandboxFromSnapshotParams;
-import io.daytona.sdk.model.ExecuteResponse;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Sandbox;
+import io.nightona.sdk.model.CreateSandboxFromSnapshotParams;
+import io.nightona.sdk.model.ExecuteResponse;
 
-try (Daytona daytona = new Daytona()) {
+try (Nightona nightona = new Nightona()) {
     CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
     params.setLanguage("python");
-    Sandbox sandbox = daytona.create(params);
+    Sandbox sandbox = nightona.create(params);
 
     ExecuteResponse response = sandbox.process.codeRun("print('Hello World!')");
     System.out.println(response.getResult());
@@ -76,23 +76,23 @@ try (Daytona daytona = new Daytona()) {
 
 ## Examples and guides
 
-Daytona provides [examples](https://www.daytona.io/docs/en/getting-started/#examples) and [guides](https://www.daytona.io/docs/en/guides/) for common sandbox operations, best practices, and a wide range of topics, from basic usage to advanced topics, showcasing various types of integrations between Daytona and other tools.
+Nightona provides [examples](https://www.daytona.io/docs/en/getting-started/#examples) and [guides](https://www.daytona.io/docs/en/guides/) for common sandbox operations, best practices, and a wide range of topics, from basic usage to advanced topics, showcasing various types of integrations between Nightona and other tools.
 
 ### Create a sandbox with custom resources
 
 Create a sandbox with [custom resources](https://www.daytona.io/docs/en/sandboxes/#resources) (CPU, memory, disk).
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.Image;
-import io.daytona.sdk.model.CreateSandboxFromImageParams;
-import io.daytona.sdk.model.Resources;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.Image;
+import io.nightona.sdk.model.CreateSandboxFromImageParams;
+import io.nightona.sdk.model.Resources;
 
-try (Daytona daytona = new Daytona()) {
+try (Nightona nightona = new Nightona()) {
     CreateSandboxFromImageParams params = new CreateSandboxFromImageParams();
     params.setImage(Image.debianSlim("3.12"));
     params.setResources(new Resources(2, null, 4, 8));
-    Sandbox sandbox = daytona.create(params);
+    Sandbox sandbox = nightona.create(params);
 }
 ```
 
@@ -101,14 +101,14 @@ try (Daytona daytona = new Daytona()) {
 Create a sandbox from a [snapshot](https://www.daytona.io/docs/en/snapshots/).
 
 ```java
-import io.daytona.sdk.Daytona;
-import io.daytona.sdk.model.CreateSandboxFromSnapshotParams;
+import io.nightona.sdk.Nightona;
+import io.nightona.sdk.model.CreateSandboxFromSnapshotParams;
 
-try (Daytona daytona = new Daytona()) {
+try (Nightona nightona = new Nightona()) {
     CreateSandboxFromSnapshotParams params = new CreateSandboxFromSnapshotParams();
     params.setSnapshot("my-snapshot-name");
     params.setLanguage("python");
-    Sandbox sandbox = daytona.create(params);
+    Sandbox sandbox = nightona.create(params);
 }
 ```
 

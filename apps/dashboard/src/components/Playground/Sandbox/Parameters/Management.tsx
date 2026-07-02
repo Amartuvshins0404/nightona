@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -9,8 +9,8 @@ import { SANDBOX_SNAPSHOT_DEFAULT_VALUE } from '@/constants/Playground'
 import { NumberParameterFormItem, ParameterFormItem } from '@/contexts/PlaygroundContext'
 import { usePlayground } from '@/hooks/usePlayground'
 import { getLanguageCodeToRun } from '@/lib/playground'
-import { SnapshotDto } from '@daytona/api-client'
-import { CodeLanguage } from '@daytona/sdk'
+import { SnapshotDto } from '@nightona/api-client'
+import { CodeLanguage } from '@nightona/sdk'
 import { HelpCircleIcon } from 'lucide-react'
 import InlineInputFormControl from '../../Inputs/InlineInputFormControl'
 import FormNumberInput from '../../Inputs/NumberInput'

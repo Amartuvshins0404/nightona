@@ -1,7 +1,7 @@
-from daytona import (
+from nightona import (
     CreateSandboxFromImageParams,
-    Daytona,
-    DaytonaTimeoutError,
+    Nightona,
+    NightonaTimeoutError,
     ExecutionError,
     OutputMessage,
     Resources,
@@ -10,7 +10,7 @@ from daytona import (
 
 
 def main():
-    daytona = Daytona()
+    nightona = Nightona()
 
     params = CreateSandboxFromImageParams(
         image="python:3.9.23-slim",
@@ -21,7 +21,7 @@ def main():
             disk=3,
         ),
     )
-    sandbox = daytona.create(params, timeout=150, on_snapshot_create_logs=print)
+    sandbox = nightona.create(params, timeout=150, on_snapshot_create_logs=print)
 
     # Run the code securely inside the sandbox
     response = sandbox.process.code_run('print("Hello World!")')
@@ -39,7 +39,7 @@ def main():
 
     stateful_code_interpreter(sandbox)
 
-    daytona.delete(sandbox)
+    nightona.delete(sandbox)
 
 
 def stateful_code_interpreter(sandbox: Sandbox):
@@ -110,7 +110,7 @@ print('Finished!')
             on_stderr=handle_stderr,
             on_error=handle_error,
         )
-    except DaytonaTimeoutError as exc:
+    except NightonaTimeoutError as exc:
         print(f"Timed out as expected: {exc}")
 
 

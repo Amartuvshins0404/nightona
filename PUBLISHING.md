@@ -1,6 +1,6 @@
-# Publishing Daytona SDKs
+# Publishing Nightona SDKs
 
-This document describes how to publish the Daytona SDKs (Python, TypeScript, and Ruby) to their respective package registries.
+This document describes how to publish the Nightona SDKs (Python, TypeScript, and Ruby) to their respective package registries.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ This document describes how to publish the Daytona SDKs (Python, TypeScript, and
 
 Before publishing any SDK, ensure you have:
 
-1. **Maintainer Access**: Write access to the Daytona repository
+1. **Maintainer Access**: Write access to the Nightona repository
 2. **Package Registry Credentials**:
    - PyPI: Token with upload permissions
    - npm: Token with publish permissions
@@ -141,25 +141,25 @@ Prerelease formats depend on SDK language:
 #### PyPI
 
 ```bash
-pip index versions daytona
+pip index versions nightona
 # or
-curl -s https://pypi.org/pypi/daytona/json | jq -r .info.version
+curl -s https://pypi.org/pypi/nightona/json | jq -r .info.version
 ```
 
 #### npm
 
 ```bash
-npm view @daytona/sdk version
+npm view @nightona/sdk version
 # or
-npm info @daytona/sdk
+npm info @nightona/sdk
 ```
 
 #### RubyGems
 
 ```bash
-gem search daytona --remote --exact
+gem search nightona --remote --exact
 # or
-gem info daytona --remote
+gem info nightona --remote
 ```
 
 ## References

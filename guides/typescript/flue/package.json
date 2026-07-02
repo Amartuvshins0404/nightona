@@ -1,7 +1,7 @@
 {
   "name": "flue-bug-fix-agent",
   "version": "1.0.0",
-  "description": "AI bug-fix agent that reproduces a GitHub issue with a failing test, implements the fix, and opens a PR — powered by Flue and Daytona.",
+  "description": "AI bug-fix agent that reproduces a GitHub issue with a failing test, implements the fix, and opens a PR — powered by Flue and Nightona.",
   "type": "module",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "flue",
-    "daytona",
+    "nightona",
     "agent",
     "github",
     "bug-fix",
@@ -24,7 +24,7 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@daytona/sdk": "^0.163.0",
+    "@nightona/sdk": "^0.163.0",
     "@flue/cli": "^0.3.10",
     "@flue/sdk": "^0.3.10",
     "valibot": "^1.0.0"

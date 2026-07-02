@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 set -euo pipefail
@@ -14,8 +14,8 @@ node -e "
 const fs = require('fs');
 const p = require('./package.json');
 p.overrides = {
-  '@daytona/api-client': '$API_CLIENT_TARBALL',
-  '@daytona/toolbox-api-client': '$TOOLBOX_API_CLIENT_TARBALL',
+  '@nightona/api-client': '$API_CLIENT_TARBALL',
+  '@nightona/toolbox-api-client': '$TOOLBOX_API_CLIENT_TARBALL',
 };
 fs.writeFileSync('./package.json', JSON.stringify(p, null, 2));
 "

@@ -1,11 +1,11 @@
 ---
 title: Serve LLMs on GPU Sandboxes with SGLang
-description: Serve OpenAI's gpt-oss reasoning model on a Daytona GPU sandbox with SGLang, and put it to work classifying documents with guaranteed-structure output.
+description: Serve OpenAI's gpt-oss reasoning model on a Nightona GPU sandbox with SGLang, and put it to work classifying documents with guaranteed-structure output.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
 
-This guide demonstrates how to serve large language models on a Daytona [GPU sandbox](/docs/en/sandboxes#gpu-sandboxes) with [SGLang](https://docs.sglang.ai/), and query them from anywhere through a token-authenticated preview URL. The worked example serves [gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b), OpenAI's open-weights reasoning model, but the same script serves any model SGLang supports.
+This guide demonstrates how to serve large language models on a Nightona [GPU sandbox](/docs/en/sandboxes#gpu-sandboxes) with [SGLang](https://docs.sglang.ai/), and query them from anywhere through a token-authenticated preview URL. The worked example serves [gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b), OpenAI's open-weights reasoning model, but the same script serves any model SGLang supports.
 
 SGLang serves an OpenAI-compatible API, so existing clients work unchanged. Beyond plain chat, the guide highlights some of SGLang's features:
 
@@ -30,19 +30,19 @@ Four clients then show the endpoint in action: `query.sh` (curl), `query_openai.
 
 ### 2. Setup
 
-Clone the [Daytona repository](https://github.com/daytonaio/daytona.git), navigate to the example directory, and install into a virtual environment:
+Clone the [Nightona repository](https://github.com/Amartuvshins0404/nightona.git), navigate to the example directory, and install into a virtual environment:
 
 ```bash
-git clone https://github.com/daytonaio/daytona.git
-cd daytona/guides/python/model-serving/sglang
+git clone https://github.com/Amartuvshins0404/nightona.git
+cd nightona/guides/python/model-serving/sglang
 python3 -m venv venv
 source venv/bin/activate
 pip install -e .
 ```
 
-This installs the `daytona` SDK along with the `openai` and `litellm` clients used by the query examples.
+This installs the `nightona` SDK along with the `openai` and `litellm` clients used by the query examples.
 
-Get your Daytona API key from the [Daytona Dashboard](https://app.daytona.io/dashboard/keys) and set it in a `.env` file:
+Get your Nightona API key from the [Nightona Dashboard](https://app.daytona.io/dashboard/keys) and set it in a `.env` file:
 
 ```bash
 cp .env.example .env
@@ -65,10 +65,10 @@ The `.env.example` also has an optional `HF_TOKEN` entry. It is not needed for g
     import requests
     from dotenv import load_dotenv
 
-    from daytona import (
+    from nightona import (
         CreateSandboxFromImageParams,
-        Daytona,
-        DaytonaConfig,
+        Nightona,
+        NightonaConfig,
         GpuType,
         Image,
         Resources,
@@ -85,9 +85,9 @@ The `.env.example` also has an optional `HF_TOKEN` entry. It is not needed for g
     SESSION = "sglang"  # name of the background session the server runs in
     BOOT_TIMEOUT = 900  # max seconds to wait for the server to come up
 
-    daytona = Daytona(DaytonaConfig(target=TARGET))
+    nightona = Nightona(NightonaConfig(target=TARGET))
     env_vars = {"HF_TOKEN": os.environ["HF_TOKEN"]} if os.environ.get("HF_TOKEN") else {}
-    sb = daytona.create(
+    sb = nightona.create(
         CreateSandboxFromImageParams(
             image=Image.base(SGLANG_IMAGE),
             resources=Resources(
@@ -145,7 +145,7 @@ Finally the script waits for the server, polling `/health_generate` through the 
   <TabItem label="Python" icon="seti:python">
     ```python
     pv = sb.get_preview_link(PORT)
-    hdr = {"x-daytona-preview-token": pv.token}
+    hdr = {"x-nightona-preview-token": pv.token}
 
     deadline = time.time() + BOOT_TIMEOUT
     ready = False
@@ -173,31 +173,31 @@ Finally the script waits for the server, polling `/health_generate` through the 
   </TabItem>
 </Tabs>
 
-`/health_generate` is a stricter readiness check than a plain liveness probe: it runs an actual forward pass, so a 200 means the model is loaded and generating, not merely that the port is open. The preview link is what exposes the server outside the sandbox: `pv.url` is reachable from anywhere, requests authenticate with the `x-daytona-preview-token` header, and the URL follows the structure described in the [preview docs](/docs/en/preview). If the server process dies during boot, the script notices the exit code immediately, saves the full log next to the script, and exits instead of waiting out the timeout.
+`/health_generate` is a stricter readiness check than a plain liveness probe: it runs an actual forward pass, so a 200 means the model is loaded and generating, not merely that the port is open. The preview link is what exposes the server outside the sandbox: `pv.url` is reachable from anywhere, requests authenticate with the `x-nightona-preview-token` header, and the URL follows the structure described in the [preview docs](/docs/en/preview). If the server process dies during boot, the script notices the exit code immediately, saves the full log next to the script, and exits instead of waiting out the timeout.
 
 Once healthy, the script prints the handoff and leaves the sandbox up either way: on success so the endpoint keeps serving, on failure so the already-downloaded weights aren't lost.
 
 ```
 ready - paste into your shell:
-export ENDPOINT=https://8000-{sandboxId}.{daytonaProxyDomain}
+export ENDPOINT=https://8000-{sandboxId}.{nightonaProxyDomain}
 export TOKEN={previewToken}
 
 sandbox left UP: {sandboxId}
-  reconnect:  daytona.get('{sandboxId}')
-  delete:     daytona.get('{sandboxId}').delete()
+  reconnect:  nightona.get('{sandboxId}')
+  delete:     nightona.get('{sandboxId}').delete()
 ```
 
 For capacity context: on an H100 sandbox this setup reports a KV cache pool of about 1.2 million tokens (`max_total_num_tokens` in the startup log) against the model's 131k context window, which is what lets the classification example later in this guide hold an 825,000-token corpus at once.
 
 ### 4. Querying the Endpoint
 
-Paste the printed `export` lines into your shell, then use any OpenAI-compatible client. The only Daytona-specific detail is the `x-daytona-preview-token` header; everything else is the standard OpenAI API surface, including `stream=True` for token streaming.
+Paste the printed `export` lines into your shell, then use any OpenAI-compatible client. The only Nightona-specific detail is the `x-nightona-preview-token` header; everything else is the standard OpenAI API surface, including `stream=True` for token streaming.
 
 <Tabs>
   <TabItem label="curl" icon="seti:shell">
     ```bash
     curl -sS --connect-timeout 30 --max-time 120 "$ENDPOINT/v1/chat/completions" \
-      -H "x-daytona-preview-token: $TOKEN" \
+      -H "x-nightona-preview-token: $TOKEN" \
       -H "Content-Type: application/json" \
       -d '{
         "model": "gpt-oss-20b",
@@ -213,7 +213,7 @@ Paste the printed `export` lines into your shell, then use any OpenAI-compatible
     client = OpenAI(
         base_url=f"{os.environ['ENDPOINT']}/v1",
         api_key="EMPTY",  # SGLang doesn't check it; auth is the preview-token header
-        default_headers={"x-daytona-preview-token": os.environ["TOKEN"]},
+        default_headers={"x-nightona-preview-token": os.environ["TOKEN"]},
     )
 
     resp = client.chat.completions.create(
@@ -232,7 +232,7 @@ Paste the printed `export` lines into your shell, then use any OpenAI-compatible
         model="openai/gpt-oss-20b",  # generic OpenAI-compatible provider
         api_base=f"{os.environ['ENDPOINT']}/v1",
         api_key="EMPTY",
-        extra_headers={"x-daytona-preview-token": os.environ["TOKEN"]},
+        extra_headers={"x-nightona-preview-token": os.environ["TOKEN"]},
         messages=[{"role": "user", "content": "Write a haiku about calling a model that runs in the cloud."}],
         max_tokens=4096,
     )
@@ -334,7 +334,7 @@ Schemas are not the only constraint SGLang supports. Its native `/generate` API 
   <TabItem label="curl" icon="seti:shell">
     ```bash
     curl -sS "$ENDPOINT/generate" \
-      -H "x-daytona-preview-token: $TOKEN" \
+      -H "x-nightona-preview-token: $TOKEN" \
       -H "Content-Type: application/json" \
       -d '{
         "text": "The best color for a terminal theme is",
@@ -390,7 +390,7 @@ Because the server was started with the `gpt-oss` tool-call parser, the model ca
   </TabItem>
 </Tabs>
 
-In this example `get_weather` runs in the same process as the client. Daytona makes a stronger pattern natural: give each chat session its own CPU sandbox and execute the model's tool calls there with `sandbox.process.code_run(...)`, so model-written code runs isolated from your machine and from other sessions. The GPU sandbox where the model thinks, and CPU sandboxes where its decisions execute, both on Daytona.
+In this example `get_weather` runs in the same process as the client. Nightona makes a stronger pattern natural: give each chat session its own CPU sandbox and execute the model's tool calls there with `sandbox.process.code_run(...)`, so model-written code runs isolated from your machine and from other sessions. The GPU sandbox where the model thinks, and CPU sandboxes where its decisions execute, both on Nightona.
 
 #### Prefix Caching
 
@@ -400,7 +400,7 @@ RadixAttention, SGLang's prefix cache, is on by default: when two requests share
   <TabItem label="Python" icon="seti:python">
     ```python
     context = (
-        "The Daytona platform provides isolated sandboxes for AI agents to safely execute code. " * 60
+        "The Nightona platform provides isolated sandboxes for AI agents to safely execute code. " * 60
     )
     for attempt in (1, 2):
         t0 = time.perf_counter()
@@ -442,7 +442,7 @@ The response format is a schema whose `enum` is the list of candidate authors, s
     client = AsyncOpenAI(
         base_url=f"{os.environ['ENDPOINT']}/v1",
         api_key="EMPTY",
-        default_headers={"x-daytona-preview-token": os.environ["TOKEN"]},
+        default_headers={"x-nightona-preview-token": os.environ["TOKEN"]},
     )
 
     AUTHORS = ["Austen", "Bronte", "Dickens", "Doyle", "Eliot", "Hawthorne",
@@ -502,7 +502,7 @@ Three things worth reading out of those numbers:
 
 ### 6. Access and Authentication
 
-Everything so far used the default preview auth: the token in the `x-daytona-preview-token` header, the best fit for code you control. The alternatives, in increasing order of openness:
+Everything so far used the default preview auth: the token in the `x-nightona-preview-token` header, the best fit for code you control. The alternatives, in increasing order of openness:
 
 | Setup | Client needs | Good for |
 |-------|--------------|----------|
@@ -545,7 +545,7 @@ The resulting KV pool is about 89,000 tokens, a fraction of the model's 131k con
 
 ### 9. Going Further: One Endpoint, Many Sandboxes
 
-A single GPU sandbox is one worker. SGLang's companion [Model Gateway](https://github.com/sgl-project/sglang/tree/main/sgl-model-gateway) is built to sit in front of many: among its load-balancing strategies is a cache-aware one that tracks each worker's radix cache and routes prefix-sharing requests to the worker that already has them cached. Since every Daytona sandbox exposes its server through its own preview URL, a fleet of single-GPU sandboxes behind one gateway becomes a horizontally scaled endpoint, with workers joining and leaving as you create and delete sandboxes.
+A single GPU sandbox is one worker. SGLang's companion [Model Gateway](https://github.com/sgl-project/sglang/tree/main/sgl-model-gateway) is built to sit in front of many: among its load-balancing strategies is a cache-aware one that tracks each worker's radix cache and routes prefix-sharing requests to the worker that already has them cached. Since every Nightona sandbox exposes its server through its own preview URL, a fleet of single-GPU sandboxes behind one gateway becomes a horizontally scaled endpoint, with workers joining and leaving as you create and delete sandboxes.
 
 ### 10. Configuration Options
 

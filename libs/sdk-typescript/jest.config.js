@@ -1,4 +1,4 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 /** @type {import('jest').Config} */
@@ -17,9 +17,9 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   roots: ['<rootDir>/src'],
   moduleNameMapper: {
-    '^@daytona/api-client$': '<rootDir>/../api-client/src/index.ts',
-    '^@daytona/toolbox-api-client$': '<rootDir>/../toolbox-api-client/src/index.ts',
-    '^@daytona/sdk$': '<rootDir>/src/index.ts',
+    '^@nightona/api-client$': '<rootDir>/../api-client/src/index.ts',
+    '^@nightona/toolbox-api-client$': '<rootDir>/../toolbox-api-client/src/index.ts',
+    '^@nightona/sdk$': '<rootDir>/src/index.ts',
   },
   coverageDirectory: '../../coverage/libs/sdk-typescript',
 }

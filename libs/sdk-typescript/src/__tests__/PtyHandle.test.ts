@@ -1,8 +1,8 @@
-// Copyright Daytona Platforms Inc.
+// Copyright Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 import type WebSocket from 'isomorphic-ws'
-import { DaytonaConnectionError, DaytonaError, DaytonaTimeoutError } from '../errors/DaytonaError'
+import { NightonaConnectionError, NightonaError, NightonaTimeoutError } from '../errors/NightonaError'
 
 type WebSocketEventHandlers = {
   open?: () => void | Promise<void>
@@ -103,7 +103,7 @@ describe('PtyHandle', () => {
     const { handle, ws } = await makeHandle()
 
     const waitPromise = handle.waitForConnection()
-    const rejection = expect(waitPromise).rejects.toEqual(new DaytonaConnectionError('permission denied'))
+    const rejection = expect(waitPromise).rejects.toEqual(new NightonaConnectionError('permission denied'))
     await ws.handlers.message?.({
       data: JSON.stringify({ type: 'control', status: 'error', error: 'permission denied' }),
     })
@@ -118,7 +118,7 @@ describe('PtyHandle', () => {
     const { handle } = await makeHandle({ readyState: 3 })
 
     const waitPromise = handle.waitForConnection()
-    const rejection = expect(waitPromise).rejects.toEqual(new DaytonaConnectionError('Connection failed'))
+    const rejection = expect(waitPromise).rejects.toEqual(new NightonaConnectionError('Connection failed'))
     await jest.runOnlyPendingTimersAsync()
 
     await rejection
@@ -133,7 +133,7 @@ describe('PtyHandle', () => {
     await jest.advanceTimersByTimeAsync(10000)
 
     await rejection
-    await expect(waitPromise).rejects.toBeInstanceOf(DaytonaTimeoutError)
+    await expect(waitPromise).rejects.toBeInstanceOf(NightonaTimeoutError)
   })
 
   it('sends string input as encoded bytes', async () => {
@@ -164,11 +164,11 @@ describe('PtyHandle', () => {
   it('throws when sending input while disconnected', async () => {
     const { handle } = await makeHandle()
 
-    await expect(handle.sendInput('pwd\n')).rejects.toBeInstanceOf(DaytonaConnectionError)
+    await expect(handle.sendInput('pwd\n')).rejects.toBeInstanceOf(NightonaConnectionError)
     await expect(handle.sendInput('pwd\n')).rejects.toThrow('PTY is not connected')
   })
 
-  it('wraps send errors as DaytonaConnectionError', async () => {
+  it('wraps send errors as NightonaConnectionError', async () => {
     const { handle, ws } = await makeHandle()
 
     ws.readyState = 1
@@ -178,7 +178,7 @@ describe('PtyHandle', () => {
     await ws.handlers.open?.()
     await ws.handlers.message?.({ data: JSON.stringify({ type: 'control', status: 'connected' }) })
 
-    await expect(handle.sendInput('pwd\n')).rejects.toBeInstanceOf(DaytonaConnectionError)
+    await expect(handle.sendInput('pwd\n')).rejects.toBeInstanceOf(NightonaConnectionError)
     await expect(handle.sendInput('pwd\n')).rejects.toThrow('Failed to send input to PTY: socket write failed')
   })
 
@@ -236,7 +236,7 @@ describe('PtyHandle', () => {
 
     await ws.handlers.error?.(new Error('boom'))
 
-    await expect(handle.wait()).rejects.toBeInstanceOf(DaytonaError)
+    await expect(handle.wait()).rejects.toBeInstanceOf(NightonaError)
     await expect(handle.wait()).rejects.toThrow('boom')
     expect(handle.error).toBe('boom')
   })

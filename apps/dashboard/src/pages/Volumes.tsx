@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -25,7 +25,7 @@ import { useVolumeWsSync } from '@/hooks/useVolumeWsSync'
 import { createBulkActionToast } from '@/lib/bulk-action-toast'
 import { handleApiError } from '@/lib/error-handling'
 import { pluralize } from '@/lib/utils'
-import { OrganizationRolePermissionsEnum, VolumeDto, VolumeState } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum, VolumeDto, VolumeState } from '@nightona/api-client'
 import { useQueryClient } from '@tanstack/react-query'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'

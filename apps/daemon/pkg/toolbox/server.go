@@ -1,9 +1,9 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
-//	@title			Daytona Toolbox API
+//	@title			Nightona Toolbox API
 //	@version		v0.0.0-dev
-//	@description	Daytona Toolbox API. The base URL comes from the sandbox's `toolboxProxyUrl` field (returned in sandbox DTO by the main Daytona API) plus the sandbox ID: `{toolboxProxyUrl}/{sandboxId}/{endpoint}`. Default for Daytona Cloud: `https://proxy.app.daytona.io/toolbox/{sandboxId}`.
+//	@description	Nightona Toolbox API. The base URL comes from the sandbox's `toolboxProxyUrl` field (returned in sandbox DTO by the main Nightona API) plus the sandbox ID: `{toolboxProxyUrl}/{sandboxId}/{endpoint}`. Default for Nightona Cloud: `https://proxy.app.daytona.io/toolbox/{sandboxId}`.
 //	@schemes		https
 //	@license.name	Apache-2.0
 //	@license.url	https://www.apache.org/licenses/LICENSE-2.0
@@ -25,33 +25,33 @@ import (
 	"path"
 	"time"
 
-	common_errors "github.com/daytonaio/common-go/pkg/errors"
-	common_proxy "github.com/daytonaio/common-go/pkg/proxy"
-	"github.com/daytonaio/common-go/pkg/telemetry"
-	"github.com/daytonaio/daemon/internal"
-	"github.com/daytonaio/daemon/pkg/recording"
-	session_svc "github.com/daytonaio/daemon/pkg/session"
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse"
-	"github.com/daytonaio/daemon/pkg/toolbox/computeruse/manager"
-	recordingcontroller "github.com/daytonaio/daemon/pkg/toolbox/computeruse/recording"
-	"github.com/daytonaio/daemon/pkg/toolbox/config"
-	"github.com/daytonaio/daemon/pkg/toolbox/fs"
-	"github.com/daytonaio/daemon/pkg/toolbox/git"
-	"github.com/daytonaio/daemon/pkg/toolbox/lsp"
-	"github.com/daytonaio/daemon/pkg/toolbox/port"
-	"github.com/daytonaio/daemon/pkg/toolbox/process"
-	"github.com/daytonaio/daemon/pkg/toolbox/process/coderun"
-	"github.com/daytonaio/daemon/pkg/toolbox/process/interpreter"
-	"github.com/daytonaio/daemon/pkg/toolbox/process/pty"
-	"github.com/daytonaio/daemon/pkg/toolbox/process/session"
-	"github.com/daytonaio/daemon/pkg/toolbox/proxy"
+	common_errors "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/errors"
+	common_proxy "github.com/Amartuvshins0404/nightona/libs/common-go/pkg/proxy"
+	"github.com/Amartuvshins0404/nightona/libs/common-go/pkg/telemetry"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/recording"
+	session_svc "github.com/Amartuvshins0404/nightona/apps/daemon/pkg/session"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse/manager"
+	recordingcontroller "github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/computeruse/recording"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/config"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/fs"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/git"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/lsp"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/port"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/process"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/process/coderun"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/process/interpreter"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/process/pty"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/process/session"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/proxy"
 	sloggin "github.com/samber/slog-gin"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 	otellog "go.opentelemetry.io/otel/sdk/log"
 	"go.opentelemetry.io/otel/sdk/metric"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 
-	"github.com/daytonaio/daemon/pkg/toolbox/docs"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/pkg/toolbox/docs"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	swaggerfiles "github.com/swaggo/files"
@@ -121,8 +121,8 @@ func (s *server) Start() error {
 	s.ctx, s.cancel = context.WithCancel(context.Background())
 	defer s.cancel()
 
-	docs.SwaggerInfo.Description = "Daytona Toolbox API"
-	docs.SwaggerInfo.Title = "Daytona Toolbox API"
+	docs.SwaggerInfo.Description = "Nightona Toolbox API"
+	docs.SwaggerInfo.Title = "Nightona Toolbox API"
 	docs.SwaggerInfo.BasePath = "/"
 	docs.SwaggerInfo.Version = internal.Version
 
@@ -277,10 +277,10 @@ func (s *server) Start() error {
 
 	go func() {
 		// Initialize plugin-based computer use lazily in a background goroutine
-		pluginPath := "/usr/local/lib/daytona-computer-use"
+		pluginPath := "/usr/local/lib/nightona-computer-use"
 		// Fallback to local config directory for development
 		if _, err := os.Stat(pluginPath); os.IsNotExist(err) {
-			pluginPath = path.Join(s.configDir, "daytona-computer-use")
+			pluginPath = path.Join(s.configDir, "nightona-computer-use")
 		}
 
 		impl, err := manager.GetComputerUse(s.logger, pluginPath)

@@ -1,6 +1,6 @@
-# Datadog Dashboard for Daytona Sandbox Monitoring
+# Datadog Dashboard for Nightona Sandbox Monitoring
 
-This directory contains a pre-configured Datadog dashboard for monitoring Daytona Sandbox resources (CPU, Memory, Disk) and organization-level quota usage. Metrics are ingested into Datadog via OpenTelemetry (`daytona.sandbox.*`).
+This directory contains a pre-configured Datadog dashboard for monitoring Nightona Sandbox resources (CPU, Memory, Disk) and organization-level quota usage. Metrics are ingested into Datadog via OpenTelemetry (`nightona.sandbox.*`).
 
 ## Dashboard Overview
 
@@ -16,13 +16,13 @@ The dashboard is organized into collapsible groups (one per topic):
 
 - A Datadog account with permission to create dashboards
 - A Datadog API key (for sending telemetry — see "Sending Data to Datadog" below)
-- Daytona telemetry flowing into Datadog (see [OpenTelemetry Collection docs](https://www.daytona.io/docs/en/observability/otel-collection/))
+- Nightona telemetry flowing into Datadog (see [OpenTelemetry Collection docs](https://www.daytona.io/docs/en/observability/otel-collection/))
 
 ## Sending Data to Datadog
 
-Datadog exposes a native OTLP intake endpoint, so you can point Daytona's OTLP destination directly at it — no Datadog Agent required.
+Datadog exposes a native OTLP intake endpoint, so you can point Nightona's OTLP destination directly at it — no Datadog Agent required.
 
-1. In the [Daytona Dashboard](https://app.daytona.io), go to **Settings** → **OpenTelemetry** (organization owners only).
+1. In the [Nightona Dashboard](https://app.daytona.io), go to **Settings** → **OpenTelemetry** (organization owners only).
 2. Configure the destination:
    - **OTLP Endpoint**: your Datadog site's OTLP intake URL
      - US1: `https://otlp.datadoghq.com`
@@ -33,7 +33,7 @@ Datadog exposes a native OTLP intake endpoint, so you can point Daytona's OTLP d
    - **Headers**: add `dd-api-key` = `<YOUR_DATADOG_API_KEY>`
 
 > **Note**
-> Datadog's OTLP **metrics** intake requires **delta** temporality for cumulative metric types (counters, histograms). Daytona's sandbox and organization metrics are all **gauges**, so they are accepted as-is. If you also export your own cumulative application metrics from inside sandboxes, configure your SDK to use delta temporality (`OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta`). OTLP **traces** intake is in Preview at Datadog and may require enabling for your account.
+> Datadog's OTLP **metrics** intake requires **delta** temporality for cumulative metric types (counters, histograms). Nightona's sandbox and organization metrics are all **gauges**, so they are accepted as-is. If you also export your own cumulative application metrics from inside sandboxes, configure your SDK to use delta temporality (`OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta`). OTLP **traces** intake is in Preview at Datadog and may require enabling for your account.
 
 ### How OTel attributes map to Datadog tags
 
@@ -41,7 +41,7 @@ Datadog exposes a native OTLP intake endpoint, so you can point Daytona's OTLP d
 - `region.id` → the **`region.id`** tag (used on the Organization Quotas page)
 - `organization.id` → the **`organization.id`** tag
 
-If a tag doesn't resolve in the dashboard, open **Metrics → Summary**, search for `daytona.sandbox.cpu.utilization`, and confirm the exact tag keys Datadog assigned — then adjust the template variables/queries to match.
+If a tag doesn't resolve in the dashboard, open **Metrics → Summary**, search for `nightona.sandbox.cpu.utilization`, and confirm the exact tag keys Datadog assigned — then adjust the template variables/queries to match.
 
 ## Importing the Dashboard
 
@@ -51,7 +51,7 @@ If a tag doesn't resolve in the dashboard, open **Metrics → Summary**, search 
 2. Give it any name, then open the dashboard's settings (gear icon, top right) → **Import dashboard JSON**.
    - Alternatively, on the **Dashboard List** page, use the **New Dashboard** dropdown → **Import Dashboard JSON file** and upload `dashboard.json`.
 3. Paste the contents of `dashboard.json` (or upload the file) and confirm the import.
-4. Save. The dashboard will be named **"Daytona Sandbox Resource Monitoring"**.
+4. Save. The dashboard will be named **"Nightona Sandbox Resource Monitoring"**.
 
 ### Via the API
 
@@ -82,7 +82,7 @@ The overview tiles and per-resource lists are color-coded with these thresholds:
 
 ## Metrics Tracked
 
-Per-sandbox metrics (prefixed with `daytona.sandbox.`):
+Per-sandbox metrics (prefixed with `nightona.sandbox.`):
 
 | Metric | Unit | Description |
 | --- | --- | --- |
@@ -96,7 +96,7 @@ Per-sandbox metrics (prefixed with `daytona.sandbox.`):
 | `filesystem.available` | bytes | Disk space available |
 | `filesystem.total` | bytes | Total disk space |
 
-Organization-level quota metrics (also prefixed with `daytona.sandbox.`, tagged by `region.id`):
+Organization-level quota metrics (also prefixed with `nightona.sandbox.`, tagged by `region.id`):
 
 | Metric | Unit | Description |
 | --- | --- | --- |
@@ -110,7 +110,7 @@ Organization-level quota metrics (also prefixed with `daytona.sandbox.`, tagged 
 
 ### No data in widgets
 
-1. Confirm telemetry is reaching Datadog: **Metrics → Summary**, search `daytona.sandbox`.
+1. Confirm telemetry is reaching Datadog: **Metrics → Summary**, search `nightona.sandbox`.
 2. Check the OTLP endpoint matches your Datadog **site** and the `dd-api-key` header is set.
 3. Verify the `service` / `region.id` tags exist on the metrics (tag keys can differ depending on your collector's attribute mapping). Adjust template variables/queries if needed.
 4. Widen the dashboard time range — sandbox metrics are emitted periodically.
@@ -134,4 +134,4 @@ To modify the dashboard:
 - [Datadog OpenTelemetry Documentation](https://docs.datadoghq.com/opentelemetry/)
 - [Datadog OTLP Ingestion](https://docs.datadoghq.com/opentelemetry/setup/otlp_ingest/)
 - [Datadog Dashboards Documentation](https://docs.datadoghq.com/dashboards/)
-- [Daytona OpenTelemetry Collection](https://www.daytona.io/docs/en/observability/otel-collection/)
+- [Nightona OpenTelemetry Collection](https://www.daytona.io/docs/en/observability/otel-collection/)

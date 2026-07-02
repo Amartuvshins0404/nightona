@@ -2,7 +2,7 @@ plugins {
     application
 }
 
-group = "io.daytona.examples"
+group = "io.nightona.examples"
 version = "0.1.0"
 
 java {
@@ -16,9 +16,9 @@ repositories {
 }
 
 dependencies {
-    implementation("io.daytona:sdk-java")
+    implementation("io.nightona:sdk-java")
 }
 
 application {
-    mainClass.set("io.daytona.examples.DeclarativeImage")
+    mainClass.set("io.nightona.examples.DeclarativeImage")
 }

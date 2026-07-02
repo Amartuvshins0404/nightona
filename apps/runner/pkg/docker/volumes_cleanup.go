@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package docker
@@ -83,7 +83,7 @@ func (d *DockerClient) getInUseVolumeMounts(ctx context.Context) (map[string]boo
 			if strings.HasPrefix(src, prefix) {
 				inUse[src] = true
 				// Also mark the volume root as in-use when a subpath is mounted.
-				// e.g. src="/mnt/daytona-volume-abc/sub" → root="/mnt/daytona-volume-abc"
+				// e.g. src="/mnt/nightona-volume-abc/sub" → root="/mnt/nightona-volume-abc"
 				if idx := strings.Index(src[len(prefix):], "/"); idx != -1 {
 					inUse[src[:len(prefix)+idx]] = true
 				}

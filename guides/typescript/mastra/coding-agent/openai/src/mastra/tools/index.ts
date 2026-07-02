@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -17,4 +17,4 @@ export {
   getFileSize,
   watchDirectory,
   runCommand,
-} from './daytona/tools'
+} from './nightona/tools'

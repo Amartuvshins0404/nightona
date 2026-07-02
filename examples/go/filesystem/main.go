@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -11,15 +11,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/daytona"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/options"
-	"github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/nightona"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/options"
+	"github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 )
 
 func main() {
-	// Create a new Daytona client using environment variables
-	// Set DAYTONA_API_KEY before running
-	client, err := daytona.NewClient()
+	// Create a new Nightona client using environment variables
+	// Set NIGHTONA_API_KEY before running
+	client, err := nightona.NewClient()
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -53,7 +53,7 @@ func main() {
 	log.Println("\nPerforming file operations...")
 
 	// Create a test file
-	testContent := []byte("Hello, Daytona!\nThis is a test file.")
+	testContent := []byte("Hello, Nightona!\nThis is a test file.")
 	testPath := "/tmp/test.txt"
 
 	if err := sandbox.FileSystem.UploadFile(ctx, testContent, testPath); err != nil {
@@ -76,7 +76,7 @@ func main() {
 		ctx,
 		bytes.NewReader(generatedPayload),
 		streamedPath,
-		daytona.WithUploadProgress(func(p daytona.UploadProgress) {
+		nightona.WithUploadProgress(func(p nightona.UploadProgress) {
 			log.Printf("  uploaded %d / %d bytes\n", p.BytesSent, len(generatedPayload))
 		}),
 	)
@@ -90,7 +90,7 @@ func main() {
 	stream, err := sandbox.FileSystem.DownloadFileStream(
 		ctx,
 		testPath,
-		daytona.WithDownloadProgress(func(p daytona.DownloadProgress) {
+		nightona.WithDownloadProgress(func(p nightona.DownloadProgress) {
 			log.Printf("  downloaded %d / %d bytes\n", p.BytesReceived, p.TotalBytes)
 		}),
 	)

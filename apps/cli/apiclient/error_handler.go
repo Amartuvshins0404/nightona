@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package apiclient
@@ -59,7 +59,7 @@ func HandleErrorResponse(res *http.Response, requestErr error) error {
 	}
 
 	if res.StatusCode == http.StatusUnauthorized {
-		errMessage += " - run 'daytona login' to reauthenticate"
+		errMessage += " - run 'nightona login' to reauthenticate"
 	}
 
 	if res.StatusCode == http.StatusForbidden {

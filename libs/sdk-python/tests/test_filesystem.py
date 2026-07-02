@@ -1,4 +1,4 @@
-# Copyright Daytona Platforms Inc.
+# Copyright Nightona Platforms Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 from __future__ import annotations
@@ -8,8 +8,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from daytona.common.errors import DaytonaError
-from daytona.common.filesystem import DownloadProgress, UploadProgress
+from nightona.common.errors import NightonaError
+from nightona.common.filesystem import DownloadProgress, UploadProgress
 
 
 def _build_multipart_body(
@@ -144,7 +144,7 @@ class _AsyncStreamClient:
 
 class TestSyncFileSystem:
     def _make_fs(self):
-        from daytona._sync.filesystem import FileSystem
+        from nightona._sync.filesystem import FileSystem
 
         mock_api = MagicMock()
         return FileSystem(mock_api, http_client=MagicMock()), mock_api
@@ -224,9 +224,9 @@ class TestSyncFileSystem:
     def test_set_file_permissions(self):
         fs, api = self._make_fs()
         api.set_file_permissions.return_value = None
-        fs.set_file_permissions("workspace/script.sh", mode="755", owner="daytona")
+        fs.set_file_permissions("workspace/script.sh", mode="755", owner="nightona")
         api.set_file_permissions.assert_called_once_with(
-            path="workspace/script.sh", mode="755", owner="daytona", group=None
+            path="workspace/script.sh", mode="755", owner="nightona", group=None
         )
 
     def test_download_file_returns_bytes(self):
@@ -239,11 +239,11 @@ class TestSyncFileSystem:
         fs, _api = self._make_fs()
         fs.download_files = MagicMock(return_value=[MagicMock(error="missing", error_details=None)])
 
-        with pytest.raises(DaytonaError, match="missing"):
+        with pytest.raises(NightonaError, match="missing"):
             fs.download_file("workspace/file.txt")
 
     def test_download_file_stream_yields_chunks(self):
-        from daytona._sync.filesystem import FileSystem
+        from nightona._sync.filesystem import FileSystem
 
         mock_api = MagicMock()
         remote_path = "workspace/file.txt"
@@ -271,7 +271,7 @@ class TestSyncFileSystem:
 
         assert streamed_chunks == [b"hello", b" wor", b"ld"]
         assert client.stream_args == ("POST", "https://download")
-        from daytona.internal.http_client import request_timeout
+        from nightona.internal.http_client import request_timeout
 
         assert client.stream_kwargs == {
             "json": {"paths": [remote_path]},
@@ -280,7 +280,7 @@ class TestSyncFileSystem:
         }
 
     def test_download_file_stream_calls_on_progress_with_total(self):
-        from daytona._sync.filesystem import FileSystem
+        from nightona._sync.filesystem import FileSystem
 
         mock_api = MagicMock()
         remote_path = "workspace/file.txt"
@@ -321,7 +321,7 @@ class TestSyncFileSystem:
         ]
 
     def test_download_file_stream_raises_on_error_part(self):
-        from daytona._sync.filesystem import FileSystem
+        from nightona._sync.filesystem import FileSystem
 
         mock_api = MagicMock()
         remote_path = "workspace/missing.txt"
@@ -345,7 +345,7 @@ class TestSyncFileSystem:
         )
         fs = FileSystem(mock_api, http_client=client)
 
-        with pytest.raises(DaytonaError, match="missing") as exc_info:
+        with pytest.raises(NightonaError, match="missing") as exc_info:
             list(fs.download_file_stream(remote_path))
 
         assert exc_info.value.status_code == 404
@@ -354,7 +354,7 @@ class TestSyncFileSystem:
     def test_download_file_stream_cancel_event_aborts(self):
         import threading
 
-        from daytona._sync.filesystem import FileSystem
+        from nightona._sync.filesystem import FileSystem
 
         mock_api = MagicMock()
         remote_path = "workspace/file.txt"
@@ -376,12 +376,12 @@ class TestSyncFileSystem:
         first = next(stream)
         assert first == b"hello"
         cancel.set()
-        with pytest.raises(DaytonaError, match="cancelled"):
+        with pytest.raises(NightonaError, match="cancelled"):
             next(stream)
 
     def test_download_file_stream_raises_on_truncated_response(self):
         """Response ends before the closing boundary; SDK must raise."""
-        from daytona._sync.filesystem import FileSystem
+        from nightona._sync.filesystem import FileSystem
 
         mock_api = MagicMock()
         remote_path = "workspace/file.txt"
@@ -398,13 +398,13 @@ class TestSyncFileSystem:
         )
         fs = FileSystem(mock_api, http_client=client)
 
-        with pytest.raises(DaytonaError, match=r"[Tt]runcated"):
+        with pytest.raises(NightonaError, match=r"[Tt]runcated"):
             list(fs.download_file_stream(remote_path))
 
 
 class TestAsyncFileSystem:
     def _make_fs(self):
-        from daytona._async.filesystem import AsyncFileSystem
+        from nightona._async.filesystem import AsyncFileSystem
 
         mock_api = AsyncMock()
         return AsyncFileSystem(mock_api), mock_api
@@ -477,12 +477,12 @@ class TestAsyncFileSystem:
         fs, _api = self._make_fs()
         fs.download_files = AsyncMock(return_value=[MagicMock(error="missing", error_details=None)])
 
-        with pytest.raises(DaytonaError, match="missing"):
+        with pytest.raises(NightonaError, match="missing"):
             await fs.download_file("workspace/file.txt")
 
     @pytest.mark.asyncio
     async def test_download_file_stream_yields_chunks(self):
-        from daytona._async.filesystem import AsyncFileSystem
+        from nightona._async.filesystem import AsyncFileSystem
 
         mock_api = AsyncMock()
         remote_path = "workspace/file.txt"
@@ -511,7 +511,7 @@ class TestAsyncFileSystem:
 
         assert streamed_chunks == [b"hello", b" wor", b"ld"]
         assert client.stream_args == ("POST", "https://download")
-        from daytona.internal.http_client import aiohttp_request_timeout
+        from nightona.internal.http_client import aiohttp_request_timeout
 
         assert client.stream_kwargs == {
             "json": {"paths": [remote_path]},
@@ -521,7 +521,7 @@ class TestAsyncFileSystem:
 
     @pytest.mark.asyncio
     async def test_download_file_stream_calls_on_progress_with_total_async(self):
-        from daytona._async.filesystem import AsyncFileSystem
+        from nightona._async.filesystem import AsyncFileSystem
 
         mock_api = AsyncMock()
         remote_path = "workspace/file.txt"
@@ -566,7 +566,7 @@ class TestAsyncFileSystem:
 
     @pytest.mark.asyncio
     async def test_download_file_stream_raises_on_error_part(self):
-        from daytona._async.filesystem import AsyncFileSystem
+        from nightona._async.filesystem import AsyncFileSystem
 
         mock_api = AsyncMock()
         remote_path = "workspace/missing.txt"
@@ -591,7 +591,7 @@ class TestAsyncFileSystem:
         mock_api.api_client.http_session = client
         fs = AsyncFileSystem(mock_api)
 
-        with pytest.raises(DaytonaError, match="missing") as exc_info:
+        with pytest.raises(NightonaError, match="missing") as exc_info:
             [chunk async for chunk in await fs.download_file_stream(remote_path)]
 
         assert exc_info.value.status_code == 404
@@ -601,7 +601,7 @@ class TestAsyncFileSystem:
     async def test_download_file_stream_cancel_event_aborts(self):
         import asyncio
 
-        from daytona._async.filesystem import AsyncFileSystem
+        from nightona._async.filesystem import AsyncFileSystem
 
         mock_api = AsyncMock()
         remote_path = "workspace/file.txt"
@@ -624,13 +624,13 @@ class TestAsyncFileSystem:
         first = await stream.__anext__()
         assert first == b"hello"
         cancel.set()
-        with pytest.raises(DaytonaError, match="cancelled"):
+        with pytest.raises(NightonaError, match="cancelled"):
             await stream.__anext__()
 
     @pytest.mark.asyncio
     async def test_download_file_stream_raises_on_truncated_response(self):
         """Async equivalent of the sync truncation guard. See sync test for context."""
-        from daytona._async.filesystem import AsyncFileSystem
+        from nightona._async.filesystem import AsyncFileSystem
 
         mock_api = AsyncMock()
         remote_path = "workspace/file.txt"
@@ -648,7 +648,7 @@ class TestAsyncFileSystem:
         fs = AsyncFileSystem(mock_api)
 
         stream = await fs.download_file_stream(remote_path)
-        with pytest.raises(DaytonaError, match=r"[Tt]runcated"):
+        with pytest.raises(NightonaError, match=r"[Tt]runcated"):
             async for _ in stream:
                 pass
 
@@ -682,7 +682,7 @@ class TestAsyncFileSystem:
         client.post = fake_post
 
         progress: list[UploadProgress] = []
-        with patch("daytona._async.filesystem.httpx.AsyncClient", return_value=client):
+        with patch("nightona._async.filesystem.httpx.AsyncClient", return_value=client):
             await fs.upload_file_stream(
                 source(),
                 "/remote/path.bin",
@@ -730,7 +730,7 @@ class TestAsyncFileSystem:
         client.post = fake_post
 
         progress: list[UploadProgress] = []
-        with patch("daytona._async.filesystem.httpx.AsyncClient", return_value=client):
+        with patch("nightona._async.filesystem.httpx.AsyncClient", return_value=client):
             await fs.upload_file_stream(
                 FakeAioFile(payload),
                 "/remote/aiof.bin",
@@ -773,7 +773,7 @@ class TestAsyncFileSystem:
         client.__aexit__ = AsyncMock(return_value=None)
         client.post = fake_post
 
-        with patch("daytona._async.filesystem.httpx.AsyncClient", return_value=client):
+        with patch("nightona._async.filesystem.httpx.AsyncClient", return_value=client):
             await fs.upload_file_stream(
                 source(),
                 "/remote/awaited.bin",
@@ -793,7 +793,7 @@ class TestAsyncFileSystem:
         async def on_progress(p: UploadProgress) -> None:
             pass
 
-        with pytest.raises(DaytonaError, match="async source"):
+        with pytest.raises(NightonaError, match="async source"):
             await fs.upload_file_stream(
                 b"sync-bytes",
                 "/remote/sync.bin",
@@ -802,7 +802,7 @@ class TestAsyncFileSystem:
 
     @pytest.mark.asyncio
     async def test_download_file_stream_awaits_async_on_progress(self):
-        from daytona._async.filesystem import AsyncFileSystem
+        from nightona._async.filesystem import AsyncFileSystem
 
         mock_api = AsyncMock()
         remote_path = "workspace/file.txt"

@@ -1,18 +1,18 @@
 {
-  "name": "@daytona/toolbox-api-client",
+  "name": "@nightona/toolbox-api-client",
   "version": "0.0.0-dev",
-  "description": "OpenAPI client for @daytona/toolbox-api-client",
+  "description": "OpenAPI client for @nightona/toolbox-api-client",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/daytonaio/daytona.git"
+    "url": "https://github.com/Amartuvshins0404/nightona.git"
   },
   "keywords": [
     "axios",
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@daytona/toolbox-api-client"
+    "@nightona/toolbox-api-client"
   ],
   "license": "Apache-2.0",
   "main": "./src/index.js",

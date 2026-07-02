@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -10,7 +10,7 @@ import { useApi } from '@/hooks/useApi'
 import { useOrganizations } from '@/hooks/useOrganizations'
 import { useUserOrganizationInvitations } from '@/hooks/useUserOrganizationInvitations'
 import { handleApiError } from '@/lib/error-handling'
-import { OrganizationInvitation } from '@daytona/api-client'
+import { OrganizationInvitation } from '@nightona/api-client'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { toast } from 'sonner'

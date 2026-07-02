@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -23,7 +23,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { ORGANIZATION_ROLE_PERMISSIONS_GROUPS } from '@/constants/OrganizationPermissionsGroups'
 import { cn } from '@/lib/utils'
 import { OrganizationRolePermissionGroup } from '@/types/OrganizationRolePermissionGroup'
-import { OrganizationRolePermissionsEnum } from '@daytona/api-client'
+import { OrganizationRolePermissionsEnum } from '@nightona/api-client'
 import { useForm } from '@tanstack/react-form'
 import { useMutation } from '@tanstack/react-query'
 import React, { Ref, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'

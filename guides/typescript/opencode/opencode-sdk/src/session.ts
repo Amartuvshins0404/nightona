@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -58,7 +58,7 @@ export class Session {
   // Create a new OpenCode session and subscribe to its events.
   static async create(baseUrl: string): Promise<Session> {
     const client = createOpencodeClient({ baseUrl })
-    const sessionRes = await client.session.create({ body: { title: 'Daytona query' } })
+    const sessionRes = await client.session.create({ body: { title: 'Nightona query' } })
     const sessionId = sessionRes.data?.id
     if (!sessionId) throw new Error('Failed to create OpenCode session:' + sessionRes.error)
     const events = await client.event.subscribe()

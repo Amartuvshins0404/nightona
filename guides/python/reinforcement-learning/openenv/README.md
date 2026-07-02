@@ -1,19 +1,19 @@
-# FinQA Evaluation & Training on Sandboxes (OpenEnv + Daytona)
+# FinQA Evaluation & Training on Sandboxes (OpenEnv + Nightona)
 
 ## Overview
 
-This guide demonstrates how to use [OpenEnv](https://github.com/meta-pytorch/OpenEnv) with Daytona sandboxes to evaluate and train models on [FinQA](https://huggingface.co/datasets/snorkelai/finqa-data), a financial question-answering dataset built from SEC 10-K filings. An agent interacts with company financial tables through SQL queries, then submits a final numerical answer.
+This guide demonstrates how to use [OpenEnv](https://github.com/meta-pytorch/OpenEnv) with Nightona sandboxes to evaluate and train models on [FinQA](https://huggingface.co/datasets/snorkelai/finqa-data), a financial question-answering dataset built from SEC 10-K filings. An agent interacts with company financial tables through SQL queries, then submits a final numerical answer.
 
 Two modes are included: a lightweight single-episode demo (`run.py`) and a full GRPO training loop (`train.py`) that runs parallel rollouts across hundreds of sandboxes.
 
 ## Features
 
 - **Snapshot-based sandboxes:** Pre-built snapshots with the FinQA environment and dataset baked in
-- **OpenEnv WebSocket protocol:** Connects to FinQA environment servers running inside Daytona sandboxes over WebSocket using the standard OpenEnv client
+- **OpenEnv WebSocket protocol:** Connects to FinQA environment servers running inside Nightona sandboxes over WebSocket using the standard OpenEnv client
 - **Multi-turn tool-calling episodes:** Agents explore tables, run SQL queries, and submit answers across multiple interaction turns
 - **RL reward signal:** Exact-match answer checking provides a binary reward (1.0 = correct, 0.0 = wrong)
 - **GRPO + LoRA training:** Trains `Qwen3-14B` with LoRA using Group Relative Policy Optimization
-- **Parallel rollouts at scale:** Collects episodes across up to 500 concurrent Daytona sandboxes
+- **Parallel rollouts at scale:** Collects episodes across up to 500 concurrent Nightona sandboxes
 - **Batched vLLM generation:** Uses vLLM with tensor parallelism for fast inference during rollout collection
 
 ## Requirements
@@ -26,7 +26,7 @@ Two modes are included: a lightweight single-episode demo (`run.py`) and a full 
 
 ## Environment Variables
 
-- `DAYTONA_API_KEY`: Required for Daytona sandbox access. Get it from [Daytona Dashboard](https://app.daytona.io/dashboard/keys)
+- `NIGHTONA_API_KEY`: Required for Nightona sandbox access. Get it from [Nightona Dashboard](https://app.daytona.io/dashboard/keys)
 
 ## Getting Started
 
@@ -45,7 +45,7 @@ source venv/bin/activate
 pip install -e .
 ```
 
-3. Set your Daytona API key:
+3. Set your Nightona API key:
 
 ```bash
 cp .env.example .env
@@ -100,13 +100,13 @@ python train.py --sandboxes 2 --iterations 1 --group-size 2
 
 `train.py` accepts the following arguments:
 
-- `--sandboxes` — Number of Daytona sandboxes (default: 500)
+- `--sandboxes` — Number of Nightona sandboxes (default: 500)
 - `--iterations` — Number of training iterations (default: 10)
 - `--group-size` — Episodes per prompt group for GRPO (default: 6)
 - `--target-groups-per-iter` — Stop rollout collection once this many groups are formed (default: 100, set 0 to use all rounds)
 - `--max-rollout-rounds` — Maximum rollout rounds per training iteration (default: 8)
 - `--model` — HuggingFace model ID (default: `Qwen/Qwen3-14B`)
-- `--snapshot` — Daytona snapshot name (default: `openenv-finqa`)
+- `--snapshot` — Nightona snapshot name (default: `openenv-finqa`)
 - `--lr` — Learning rate (default: 8e-5)
 - `--temperature` — Sampling temperature (default: 1.0)
 - `--max-steps` — Max episode steps (default: 20)
@@ -132,7 +132,7 @@ python train.py --sandboxes 2 --iterations 1 --group-size 2
 
 ### Single Episode (run.py)
 
-1. **Create sandbox:** Spin up a Daytona sandbox from the `openenv-finqa` snapshot and wait for the server health check
+1. **Create sandbox:** Spin up a Nightona sandbox from the `openenv-finqa` snapshot and wait for the server health check
 2. **Reset:** Connect over WebSocket and call `reset()` to start a new episode with a random question and company
 3. **Explore:** Use `get_descriptions` and `get_table_info` to discover available tables and their schemas
 4. **Query and submit:** Run SQL queries with `sql_query`, then submit a final answer with `submit_answer`

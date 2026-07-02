@@ -18,7 +18,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 
 RUN apk add --no-cache git
 
-WORKDIR /daytona
+WORKDIR /nightona
 
 # Yarn caching layer
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -36,7 +36,7 @@ COPY libs/api-client-go/go.mod libs/api-client-go/go.sum libs/api-client-go/
 RUN head -1 go.work > go.work.tmp && printf '\nuse (\n\t./apps/runner\n\t./apps/daemon\n\t./libs/common-go\n\t./libs/api-client-go\n)\n' >> go.work.tmp && mv go.work.tmp go.work
 
 ENV NX_DAEMON=false
-ENV GONOSUMDB=github.com/daytonaio/daytona
+ENV GONOSUMDB=github.com/Amartuvshins0404/nightona
 
 RUN go -C apps/runner mod download \
   && go -C apps/daemon mod download \
@@ -70,12 +70,12 @@ RUN apk update && apk upgrade --no-cache openssl pcre2 \
 
 WORKDIR /usr/local/bin
 
-COPY --from=build /daytona/dist/apps/runner daytona-runner
+COPY --from=build /nightona/dist/apps/runner nightona-runner
 
-RUN chmod +x daytona-runner
+RUN chmod +x nightona-runner
 
 RUN mkdir -p /etc/docker && echo '{"insecure-registries": ["registry:6000"]}' > /etc/docker/daemon.json
 
 HEALTHCHECK CMD [ "curl", "-f", "http://localhost:3003/" ]
 
-ENTRYPOINT ["sh", "-c", "/usr/local/bin/dockerd-entrypoint.sh & daytona-runner"]
+ENTRYPOINT ["sh", "-c", "/usr/local/bin/dockerd-entrypoint.sh & nightona-runner"]

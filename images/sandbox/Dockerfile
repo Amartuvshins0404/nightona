@@ -61,7 +61,7 @@ RUN python3 -m pip install --no-cache-dir \
     opencv-python==4.13.0.90 \
     pillow==12.1.0 \
     sqlalchemy==2.0.46 \
-    daytona==0.134.0 \
+    nightona==0.134.0 \
     pydantic-ai==1.47.0 \
     langchain==1.2.7 \
     transformers==4.57.6 \
@@ -74,17 +74,17 @@ RUN python3 -m pip install --no-cache-dir \
     claude-agent-sdk==0.1.22 \
     openai-agents==0.15.1
 
-# Create the Daytona user and configure sudo access
-RUN useradd -m daytona && echo "daytona ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/91-daytona
+# Create the Nightona user and configure sudo access
+RUN useradd -m nightona && echo "nightona ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/91-nightona
 
 # Install latest Node.js using nvm
 RUN bash -c "source /usr/local/share/nvm/nvm.sh && nvm install 25 && nvm use 25 && nvm alias default 25" \
-  && chown -R daytona:daytona /usr/local/share/nvm
+  && chown -R nightona:nightona /usr/local/share/nvm
 
 RUN npm install -g ts-node@10.9.2 typescript@5.9.3 typescript-language-server@5.1.3 bun@1.3.6 @anthropic-ai/claude-code@2.1.19 @openai/codex@0.128.0 openclaw@2026.2.1 opencode-ai@1.1.35
 
 # Create directory for computer use plugin
-RUN mkdir -p /usr/local/lib && chown daytona:daytona /usr/local/lib
+RUN mkdir -p /usr/local/lib && chown nightona:nightona /usr/local/lib
 
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
@@ -92,8 +92,8 @@ ENV LANG=en_US.UTF-8 \
     QT_ACCESSIBILITY=1 \
     NO_AT_BRIDGE=0
 
-# Switch to Daytona user
-USER daytona
+# Switch to Nightona user
+USER nightona
 
 # Create .zshrc to suppress zsh-newuser-install prompt
 RUN touch ~/.zshrc

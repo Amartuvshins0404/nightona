@@ -1,0 +1,9 @@
+name: nightona mcp config
+synopsis: Outputs JSON configuration for Nightona MCP Server
+usage: nightona mcp config [AGENT_NAME] [flags]
+inherited_options:
+  - name: help
+    default_value: 'false'
+    usage: help for nightona
+see_also:
+  - nightona mcp - Manage Nightona MCP Server

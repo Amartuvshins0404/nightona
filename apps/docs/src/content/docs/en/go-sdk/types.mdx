@@ -7,7 +7,7 @@ hideTitleOnPage: true
 # types
 
 ```go
-import "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
+import "github.com/Amartuvshins0404/nightona/libs/sdk-go/pkg/types"
 ```
 
 ## Index
@@ -17,7 +17,7 @@ import "github.com/daytonaio/daytona/libs/sdk-go/pkg/types"
 - [type CodeLanguage](<#CodeLanguage>)
 - [type CodeRunParams](<#CodeRunParams>)
 - [type CreateSnapshotParams](<#CreateSnapshotParams>)
-- [type DaytonaConfig](<#DaytonaConfig>)
+- [type NightonaConfig](<#NightonaConfig>)
 - [type ExecuteResponse](<#ExecuteResponse>)
 - [type ExecutionArtifacts](<#ExecutionArtifacts>)
 - [type ExecutionError](<#ExecutionError>)
@@ -117,13 +117,13 @@ type CreateSnapshotParams struct {
 }
 ```
 
-<a name="DaytonaConfig"></a>
-## type DaytonaConfig
+<a name="NightonaConfig"></a>
+## type NightonaConfig
 
-DaytonaConfig represents the configuration for the Daytona client. When a field is nil, the client will fall back to environment variables or defaults.
+NightonaConfig represents the configuration for the Nightona client. When a field is nil, the client will fall back to environment variables or defaults.
 
 ```go
-type DaytonaConfig struct {
+type NightonaConfig struct {
     APIKey         string
     JWTToken       string
     OrganizationID string
@@ -189,11 +189,11 @@ type ExecutionResult struct {
 <a name="ExperimentalConfig"></a>
 ## type ExperimentalConfig
 
-ExperimentalConfig holds experimental feature flags for the Daytona client.
+ExperimentalConfig holds experimental feature flags for the Nightona client.
 
 ```go
 type ExperimentalConfig struct {
-    // Deprecated: use DaytonaConfig.OtelEnabled. Kept for backwards compatibility.
+    // Deprecated: use NightonaConfig.OtelEnabled. Kept for backwards compatibility.
     OtelEnabled bool
 }
 ```
@@ -555,7 +555,7 @@ type SignedPreviewLink struct {
 <a name="Snapshot"></a>
 ## type Snapshot
 
-Snapshot represents a Daytona snapshot
+Snapshot represents a Nightona snapshot
 
 ```go
 type Snapshot struct {
@@ -594,7 +594,7 @@ type SnapshotParams struct {
 <a name="Volume"></a>
 ## type Volume
 
-Volume represents a Daytona volume
+Volume represents a Nightona volume
 
 ```go
 type Volume struct {

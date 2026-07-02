@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Daytona Platforms Inc.
+ * Copyright 2025 Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -11,7 +11,7 @@ import {
   getColumnSizeStyles,
   getTableSizeStyles,
 } from '@/lib/utils/table'
-import { Region, Runner, RunnerState } from '@daytona/api-client'
+import { Region, Runner, RunnerState } from '@nightona/api-client'
 import {
   ColumnDef,
   flexRender,

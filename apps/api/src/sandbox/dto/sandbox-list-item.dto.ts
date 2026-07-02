@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -116,7 +116,7 @@ export class SandboxListItemDto {
 
   @ApiProperty({
     description: 'The user associated with the project',
-    example: 'daytona',
+    example: 'nightona',
   })
   user: string
 

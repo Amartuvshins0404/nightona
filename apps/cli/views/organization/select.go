@@ -1,12 +1,12 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package organization
 
 import (
 	"github.com/charmbracelet/huh"
-	"github.com/daytonaio/daytona/cli/views/common"
-	apiclient "github.com/daytonaio/daytona/libs/api-client-go"
+	"github.com/Amartuvshins0404/nightona/apps/cli/views/common"
+	apiclient "github.com/Amartuvshins0404/nightona/libs/api-client-go"
 )
 
 func GetOrganizationIdFromPrompt(organizationList []apiclient.Organization) (*apiclient.Organization, error) {

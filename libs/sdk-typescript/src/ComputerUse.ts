@@ -1,10 +1,10 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import * as pathe from 'pathe'
-import { ComputerUseApi } from '@daytona/toolbox-api-client'
+import { ComputerUseApi } from '@nightona/toolbox-api-client'
 import type {
   MousePositionResponse,
   MouseMoveRequest,
@@ -34,7 +34,7 @@ import type {
   AccessibilityInvokeRequest,
   AccessibilitySetValueRequest,
   FindAccessibilityNodesRequest,
-} from '@daytona/toolbox-api-client'
+} from '@nightona/toolbox-api-client'
 import { dynamicImport } from './utils/Import'
 import { WithInstrumentation } from './utils/otel.decorator'
 
@@ -212,7 +212,7 @@ export class Keyboard {
    *
    * @param {string} text - The text to type
    * @param {number} [delay=0] - Delay between characters in milliseconds
-   * @throws {DaytonaError} If the type operation fails
+   * @throws {NightonaError} If the type operation fails
    *
    * @example
    * ```typescript
@@ -243,7 +243,7 @@ export class Keyboard {
    *
    * @param {string} key - The key to press. Canonical names include 'enter', 'escape', 'tab', letters, digits, unshifted punctuation, function keys, and grammar-safe numpad names such as 'num_plus'. Named keys are case-insensitive, and common aliases such as 'Return' and 'Escape' are normalized.
    * @param {string[]} [modifiers=[]] - Canonical modifier names are 'ctrl', 'alt', 'shift', and 'cmd'. Common aliases such as 'control', 'option', 'meta', and 'win' are normalized.
-   * @throws {DaytonaError} If the press operation fails
+   * @throws {NightonaError} If the press operation fails
    *
    * @example
    * ```typescript
@@ -282,7 +282,7 @@ export class Keyboard {
    * Presses a hotkey combination
    *
    * @param {string} keys - A single atomic hotkey chord (e.g., 'ctrl+c', 'alt+tab', 'cmd+shift+t', 'ctrl + c', 'shift'). Uses the same normalized key contract as `press()`.
-   * @throws {DaytonaError} If the hotkey operation fails
+   * @throws {NightonaError} If the hotkey operation fails
    *
    * @example
    * ```typescript

@@ -1,4 +1,4 @@
-// Copyright 2025 Daytona Platforms Inc.
+// Copyright 2025 Nightona Platforms Inc.
 // SPDX-License-Identifier: AGPL-3.0
 
 package session
@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/daytonaio/daemon/internal/util"
+	"github.com/Amartuvshins0404/nightona/apps/daemon/internal/util"
 )
 
 func isDevVersion(version string) bool {
@@ -15,7 +15,7 @@ func isDevVersion(version string) bool {
 }
 
 func IsCombinedOutput(sdkVersion string, versionComparison *int, requestHeader http.Header) bool {
-	return (versionComparison != nil && *versionComparison < 0 && !isDevVersion(sdkVersion)) || (sdkVersion == "" && requestHeader.Get("X-Daytona-Split-Output") != "true")
+	return (versionComparison != nil && *versionComparison < 0 && !isDevVersion(sdkVersion)) || (sdkVersion == "" && requestHeader.Get("X-Nightona-Split-Output") != "true")
 }
 
 func SkipServerDemux(sdkVersion string) bool {

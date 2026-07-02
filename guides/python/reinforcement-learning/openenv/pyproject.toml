@@ -1,12 +1,12 @@
 [project]
-name = "daytona-openenv-finqa"
+name = "nightona-openenv-finqa"
 version = "0.1.0"
-description = "FinQA evaluation and training on Daytona sandboxes using OpenEnv"
-authors = [{name = "Daytona Team", email = "support@daytona.io"}]
+description = "FinQA evaluation and training on Nightona sandboxes using OpenEnv"
+authors = [{name = "Nightona Team", email = "support@daytona.io"}]
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "daytona",
+    "nightona",
     "python-dotenv>=1.2.0",
     "openenv-core @ git+https://github.com/meta-pytorch/OpenEnv.git",
     "openenv-finqa-env @ git+https://github.com/meta-pytorch/OpenEnv.git#subdirectory=envs/finqa_env",

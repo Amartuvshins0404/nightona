@@ -1,5 +1,5 @@
 /**
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -9,7 +9,7 @@
  * These all run on the HOST via the `gh` CLI: minting a token and making GitHub
  * REST API calls (create branch ref, merge, delete, lookups). We never run
  * git-over-the-network on the host — the actual clone/commit/push happen INSIDE
- * the sandbox via the Daytona git API (see sync.ts). The only thing that crosses
+ * the sandbox via the Nightona git API (see sync.ts). The only thing that crosses
  * over is a short-lived token, passed to the sandbox as the push credential.
  */
 

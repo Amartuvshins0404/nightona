@@ -1,7 +1,7 @@
 {
   "name": "copilotkit-generative-ui-coding-agent",
   "version": "1.0.0",
-  "description": "A generative-UI coding agent powered by CopilotKit and Daytona sandboxes that scaffolds, edits and live-previews a Vite + React + Tailwind app inside the chat.",
+  "description": "A generative-UI coding agent powered by CopilotKit and Nightona sandboxes that scaffolds, edits and live-previews a Vite + React + Tailwind app inside the chat.",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,7 +10,7 @@
   },
   "keywords": [
     "copilotkit",
-    "daytona",
+    "nightona",
     "sandbox",
     "generative-ui",
     "coding-agent",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@copilotkit/react-core": "1.59.5",
     "@copilotkit/runtime": "1.59.5",
-    "@daytona/sdk": "0.184.0",
+    "@nightona/sdk": "0.184.0",
     "next": "15.5.15",
     "openai": "^5.0.0",
     "react": "19.0.0",

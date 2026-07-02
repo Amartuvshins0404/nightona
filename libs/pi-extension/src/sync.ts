@@ -1,5 +1,5 @@
 /**
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,12 +8,12 @@
  *
  * The agent commits its own work inside the sandbox (it's prompted to commit but
  * not push). The extension only pushes those commits to the session's GitHub
- * branch via the Daytona git API, using a transient token as the credential.
+ * branch via the Nightona git API, using a transient token as the credential.
  * Pushes are serialized so overlapping triggers can't race, and a branch with
  * nothing ahead of its remote is skipped.
  */
 
-import type { Sandbox } from '@daytona/sdk'
+import type { Sandbox } from '@nightona/sdk'
 import { withRecovery } from './sandbox.ts'
 
 const PUSH_USERNAME = 'x-access-token'

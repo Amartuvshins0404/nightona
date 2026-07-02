@@ -1,5 +1,5 @@
 /*
- * Copyright Daytona Platforms Inc.
+ * Copyright Nightona Platforms Inc.
  * SPDX-License-Identifier: AGPL-3.0
  */
 
@@ -19,7 +19,7 @@ import { useRegionLookup } from '@/hooks/queries/useRegionsQuery'
 import { useConfig } from '@/hooks/useConfig'
 import { useSelectedOrganization } from '@/hooks/useSelectedOrganization'
 import { cn } from '@/lib/utils'
-import { SandboxClass, type Organization, type RegionUsageOverview } from '@daytona/api-client'
+import { SandboxClass, type Organization, type RegionUsageOverview } from '@nightona/api-client'
 import { keepPreviousData } from '@tanstack/react-query'
 import { AlertCircle } from 'lucide-react'
 import { type ReactNode, useEffect, useMemo, useState } from 'react'

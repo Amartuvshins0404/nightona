@@ -1,22 +1,22 @@
-import { Daytona } from '@daytona/sdk'
+import { Nightona } from '@nightona/sdk'
 
 async function main() {
-  const daytona = new Daytona()
+  const nightona = new Nightona()
 
   // Default settings
-  const sandbox1 = await daytona.create()
+  const sandbox1 = await nightona.create()
   console.log('networkBlockAll:', sandbox1.networkBlockAll)
   console.log('networkAllowList:', sandbox1.networkAllowList)
 
   // Block all network access
-  const sandbox2 = await daytona.create({
+  const sandbox2 = await nightona.create({
     networkBlockAll: true,
   })
   console.log('networkBlockAll:', sandbox2.networkBlockAll)
   console.log('networkAllowList:', sandbox2.networkAllowList)
 
   // Explicitly allow list of network addresses
-  const sandbox3 = await daytona.create({
+  const sandbox3 = await nightona.create({
     networkAllowList: '192.168.1.0/16,10.0.0.0/24',
   })
   console.log('networkBlockAll:', sandbox3.networkBlockAll)

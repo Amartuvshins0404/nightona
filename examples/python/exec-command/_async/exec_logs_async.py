@@ -1,11 +1,11 @@
 import asyncio
 
-from daytona import AsyncDaytona, SessionExecuteRequest
+from nightona import AsyncNightona, SessionExecuteRequest
 
 
 async def main():
-    async with AsyncDaytona() as daytona:
-        sandbox = await daytona.create()
+    async with AsyncNightona() as nightona:
+        sandbox = await nightona.create()
 
         try:
             session_id = "exec-session-1"
@@ -45,7 +45,7 @@ async def main():
             print(f"Error: {e}")
         finally:
             print("Cleaning up sandbox...")
-            await daytona.delete(sandbox)
+            await nightona.delete(sandbox)
 
 
 if __name__ == "__main__":
