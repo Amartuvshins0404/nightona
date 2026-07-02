@@ -8,7 +8,7 @@ services:
       - OTEL_ENABLED=true
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
       # Default to slim image for faster startup
-      - DEFAULT_SNAPSHOT=daytonaio/sandbox:0.5.0-slim
+      - DEFAULT_SNAPSHOT=ghcr.io/nightona-co/sandbox:0.6.0-slim
       - ENCRYPTION_KEY=supersecretkey
       - ENCRYPTION_SALT=supersecretsalt
       - NODE_ENV=production
