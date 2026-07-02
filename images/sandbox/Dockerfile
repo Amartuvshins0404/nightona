@@ -45,6 +45,8 @@ RUN python3 -m pip install --no-cache-dir pipx==1.8.0 && pipx ensurepath && pipx
 RUN python3 -m pip install --no-cache-dir python-lsp-server==1.14.0
 
 # Install common pip packages
+# NOTE: the SDK is installed from the upstream "daytona" PyPI package;
+# a "nightona" package is not published on PyPI.
 RUN python3 -m pip install --no-cache-dir \
     numpy==2.4.1 \
     pandas==2.3.3 \
@@ -61,7 +63,7 @@ RUN python3 -m pip install --no-cache-dir \
     opencv-python==4.13.0.90 \
     pillow==12.1.0 \
     sqlalchemy==2.0.46 \
-    nightona==0.134.0 \
+    daytona==0.134.0 \
     pydantic-ai==1.47.0 \
     langchain==1.2.7 \
     transformers==4.57.6 \

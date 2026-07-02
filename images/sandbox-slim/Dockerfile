@@ -19,10 +19,12 @@ SHELL ["/bin/bash", "-c"]
 # Install pipx and uv
 RUN python3 -m pip install --no-cache-dir pipx==1.8.0 && pipx ensurepath && pipx install uv==0.9.26
 
-# Install Python LSP, nightona and essential pip packages
+# Install Python LSP, the sandbox SDK and essential pip packages
+# NOTE: the SDK is installed from the upstream "daytona" PyPI package;
+# a "nightona" package is not published on PyPI.
 RUN python3 -m pip install --no-cache-dir \
     python-lsp-server==1.14.0 \
-    nightona==0.22.0 \
+    daytona==0.22.0 \
     matplotlib==3.10.8 \
     pandas==2.2.3 \
     numpy==2.2.6
