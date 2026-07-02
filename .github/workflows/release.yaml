@@ -213,6 +213,7 @@ jobs:
     needs: build_projects
     runs-on: ${{ matrix.runner }}
     strategy:
+      fail-fast: false
       matrix:
         include:
           - runner: ubuntu-latest
