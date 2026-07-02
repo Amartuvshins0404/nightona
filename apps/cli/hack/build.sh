@@ -78,9 +78,11 @@ for var in "${REQUIRED_VARS[@]}"; do
 done
 
 if [ ${#MISSING_VARS[@]} -ne 0 ]; then
-    echo "Error: Missing required environment variables:"
-    printf '%s\n' "${MISSING_VARS[@]}"
-    exit 1
+    # These configure the hosted-SaaS Auth0 login flow, which open-source
+    # self-hosted builds do not use. Warn and bake in empty values instead
+    # of failing; the CLI still works via API keys and NIGHTONA_API_URL.
+    echo "Warning: building without hosted-auth config (empty values baked in):" >&2
+    printf '%s\n' "${MISSING_VARS[@]}" >&2
 fi
 
 # Create build directory if it doesn't exist
@@ -102,6 +104,6 @@ go build \
     -X 'github.com/nightona-co/nightona/apps/cli/internal.Auth0ClientSecret=${NIGHTONA_AUTH0_CLIENT_SECRET}' \
     -X 'github.com/nightona-co/nightona/apps/cli/internal.Auth0CallbackPort=${NIGHTONA_AUTH0_CALLBACK_PORT}' \
     -X 'github.com/nightona-co/nightona/apps/cli/internal.Auth0Audience=${NIGHTONA_AUTH0_AUDIENCE}'" \
-    -o "${DIST_DIR}/dist/apps/cli/${OUTPUT_FILE}" main.go
+    -o "${DIST_DIR}/dist/apps/cli/${OUTPUT_FILE}" .
 
 echo "Build complete: ${DIST_DIR}/dist/apps/cli/${OUTPUT_FILE}"
