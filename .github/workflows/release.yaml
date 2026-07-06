@@ -275,7 +275,7 @@ jobs:
           touch go.work.sum
 
       - name: Log in to the Container registry
-        uses: docker/login-action@c99871dec2022cc055c062a10cc1a1310835ceb4 # v4.3.0
+        uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0 # v4.4.0
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
@@ -337,7 +337,7 @@ jobs:
           restore-keys: yarn-${{ runner.os }}-${{ runner.arch }}-
       - run: yarn install --immutable
       - name: Log in to the Container registry
-        uses: docker/login-action@c99871dec2022cc055c062a10cc1a1310835ceb4 # v4.3.0
+        uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0 # v4.4.0
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
